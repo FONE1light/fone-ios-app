@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6002352A7E375D000CF1FD /* AppDelegate.swift */; };
-		AB6002382A7E375D000CF1FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6002372A7E375D000CF1FD /* SceneDelegate.swift */; };
 		AB60023A2A7E375D000CF1FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6002392A7E375D000CF1FD /* ViewController.swift */; };
 		AB60023D2A7E375D000CF1FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB60023B2A7E375D000CF1FD /* Main.storyboard */; };
-		AB6002402A7E375D000CF1FD /* fone_ios_app.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB60023E2A7E375D000CF1FD /* fone_ios_app.xcdatamodeld */; };
 		AB6002422A7E375D000CF1FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB6002412A7E375D000CF1FD /* Assets.xcassets */; };
 		AB6002452A7E375D000CF1FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB6002432A7E375D000CF1FD /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -19,10 +17,8 @@
 /* Begin PBXFileReference section */
 		AB6002322A7E375D000CF1FD /* fone-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fone-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6002352A7E375D000CF1FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AB6002372A7E375D000CF1FD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AB6002392A7E375D000CF1FD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AB60023C2A7E375D000CF1FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		AB60023F2A7E375D000CF1FD /* fone_ios_app.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = fone_ios_app.xcdatamodel; sourceTree = "<group>"; };
 		AB6002412A7E375D000CF1FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB6002442A7E375D000CF1FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB6002462A7E375D000CF1FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,16 +54,30 @@
 		AB6002342A7E375D000CF1FD /* fone-ios-app */ = {
 			isa = PBXGroup;
 			children = (
+				AB60024D2A7E3B15000CF1FD /* Model */,
+				AB60024C2A7E3B05000CF1FD /* View */,
 				AB6002352A7E375D000CF1FD /* AppDelegate.swift */,
-				AB6002372A7E375D000CF1FD /* SceneDelegate.swift */,
-				AB6002392A7E375D000CF1FD /* ViewController.swift */,
-				AB60023B2A7E375D000CF1FD /* Main.storyboard */,
 				AB6002412A7E375D000CF1FD /* Assets.xcassets */,
 				AB6002432A7E375D000CF1FD /* LaunchScreen.storyboard */,
 				AB6002462A7E375D000CF1FD /* Info.plist */,
-				AB60023E2A7E375D000CF1FD /* fone_ios_app.xcdatamodeld */,
 			);
 			path = "fone-ios-app";
+			sourceTree = "<group>";
+		};
+		AB60024C2A7E3B05000CF1FD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AB6002392A7E375D000CF1FD /* ViewController.swift */,
+				AB60023B2A7E375D000CF1FD /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AB60024D2A7E3B15000CF1FD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,8 +153,6 @@
 			files = (
 				AB60023A2A7E375D000CF1FD /* ViewController.swift in Sources */,
 				AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */,
-				AB6002382A7E375D000CF1FD /* SceneDelegate.swift in Sources */,
-				AB6002402A7E375D000CF1FD /* fone_ios_app.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,19 +370,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		AB60023E2A7E375D000CF1FD /* fone_ios_app.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				AB60023F2A7E375D000CF1FD /* fone_ios_app.xcdatamodel */,
-			);
-			currentVersion = AB60023F2A7E375D000CF1FD /* fone_ios_app.xcdatamodel */;
-			path = fone_ios_app.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = AB60022A2A7E375D000CF1FD /* Project object */;
 }
