@@ -12,9 +12,12 @@
 		AB60023D2A7E375D000CF1FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB60023B2A7E375D000CF1FD /* Main.storyboard */; };
 		AB6002422A7E375D000CF1FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB6002412A7E375D000CF1FD /* Assets.xcassets */; };
 		AB6002452A7E375D000CF1FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB6002432A7E375D000CF1FD /* LaunchScreen.storyboard */; };
+		E0BDEA0DC0E95129FC2019EC /* Pods_fone_ios_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34DE88C04B16A23498371085 /* Pods_fone_ios_app.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		34DE88C04B16A23498371085 /* Pods_fone_ios_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fone_ios_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		73B2586E188FFDD2D7707DE2 /* Pods-fone-ios-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fone-ios-app.release.xcconfig"; path = "Target Support Files/Pods-fone-ios-app/Pods-fone-ios-app.release.xcconfig"; sourceTree = "<group>"; };
 		AB6002322A7E375D000CF1FD /* fone-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fone-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6002352A7E375D000CF1FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB6002392A7E375D000CF1FD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +25,7 @@
 		AB6002412A7E375D000CF1FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB6002442A7E375D000CF1FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB6002462A7E375D000CF1FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4B6F0EC3D47C985DA64C29B /* Pods-fone-ios-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fone-ios-app.debug.xcconfig"; path = "Target Support Files/Pods-fone-ios-app/Pods-fone-ios-app.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0BDEA0DC0E95129FC2019EC /* Pods_fone_ios_app.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E38C3E6B05E44D6F190F4C2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				34DE88C04B16A23498371085 /* Pods_fone_ios_app.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AB6002292A7E375D000CF1FD = {
 			isa = PBXGroup;
 			children = (
 				AB6002342A7E375D000CF1FD /* fone-ios-app */,
 				AB6002332A7E375D000CF1FD /* Products */,
+				F9186D1B9A8EC496BD612481 /* Pods */,
+				4E38C3E6B05E44D6F190F4C2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,7 +69,9 @@
 		AB6002342A7E375D000CF1FD /* fone-ios-app */ = {
 			isa = PBXGroup;
 			children = (
+				AB60024E2A7E42A6000CF1FD /* Common */,
 				AB60024D2A7E3B15000CF1FD /* Model */,
+				AB60024F2A7E4781000CF1FD /* Network */,
 				AB60024C2A7E3B05000CF1FD /* View */,
 				AB6002352A7E375D000CF1FD /* AppDelegate.swift */,
 				AB6002412A7E375D000CF1FD /* Assets.xcassets */,
@@ -80,6 +97,37 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		AB60024E2A7E42A6000CF1FD /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		AB60024F2A7E4781000CF1FD /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				AB6002502A7E478E000CF1FD /* API */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		AB6002502A7E478E000CF1FD /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		F9186D1B9A8EC496BD612481 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D4B6F0EC3D47C985DA64C29B /* Pods-fone-ios-app.debug.xcconfig */,
+				73B2586E188FFDD2D7707DE2 /* Pods-fone-ios-app.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -87,9 +135,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB6002492A7E375D000CF1FD /* Build configuration list for PBXNativeTarget "fone-ios-app" */;
 			buildPhases = (
+				483AB71A1161C196AD8CD09C /* [CP] Check Pods Manifest.lock */,
 				AB60022E2A7E375D000CF1FD /* Sources */,
 				AB60022F2A7E375D000CF1FD /* Frameworks */,
 				AB6002302A7E375D000CF1FD /* Resources */,
+				AAB07DB066BDAAE84FA962FA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -145,6 +195,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		483AB71A1161C196AD8CD09C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-fone-ios-app-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AAB07DB066BDAAE84FA962FA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-fone-ios-app/Pods-fone-ios-app-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-fone-ios-app/Pods-fone-ios-app-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-fone-ios-app/Pods-fone-ios-app-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AB60022E2A7E375D000CF1FD /* Sources */ = {
@@ -294,6 +386,7 @@
 		};
 		AB60024A2A7E375D000CF1FD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4B6F0EC3D47C985DA64C29B /* Pods-fone-ios-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -322,6 +415,7 @@
 		};
 		AB60024B2A7E375D000CF1FD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 73B2586E188FFDD2D7707DE2 /* Pods-fone-ios-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
