@@ -14,6 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let coordinator = SceneCoordinator(window: window!)
+        
+        let loginViewModel = LoginViewModel(sceneCoordinator: coordinator)
+        let loginScene = Scene.login(loginViewModel)
+        
+        coordinator.transition(to: loginScene, using: .root, animated: false)
         return true
     }
 }

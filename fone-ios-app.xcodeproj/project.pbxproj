@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A32A2A8104E000748484 /* SceneCoordinatorType.swift */; };
+		AB49A32D2A81053200748484 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A32C2A81053200748484 /* Scene.swift */; };
+		AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A32E2A81055800748484 /* TransitionModel.swift */; };
+		AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A3322A8107A500748484 /* SceneCoordinator.swift */; };
+		AB49A33A2A810B3500748484 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A3392A810B3500748484 /* LoginViewModel.swift */; };
+		AB49A33C2A810CAA00748484 /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A33B2A810CAA00748484 /* ViewModelBindableType.swift */; };
+		AB49A33F2A810FE000748484 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A33D2A810FE000748484 /* LoginViewController.swift */; };
+		AB49A3402A810FE000748484 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB49A33E2A810FE000748484 /* LoginViewController.xib */; };
+		AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A3422A81158900748484 /* FindIDPasswordViewController.swift */; };
+		AB49A3452A81158900748484 /* FindIDPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB49A3432A81158900748484 /* FindIDPasswordViewController.xib */; };
+		AB49A3472A81159F00748484 /* FindIDPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A3462A81159F00748484 /* FindIDPasswordViewModel.swift */; };
+		AB49A3492A8119B900748484 /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A3482A8119B900748484 /* CommonViewModel.swift */; };
 		AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6002352A7E375D000CF1FD /* AppDelegate.swift */; };
 		AB60023A2A7E375D000CF1FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6002392A7E375D000CF1FD /* ViewController.swift */; };
 		AB60023D2A7E375D000CF1FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB60023B2A7E375D000CF1FD /* Main.storyboard */; };
@@ -18,6 +30,18 @@
 /* Begin PBXFileReference section */
 		34DE88C04B16A23498371085 /* Pods_fone_ios_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fone_ios_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73B2586E188FFDD2D7707DE2 /* Pods-fone-ios-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fone-ios-app.release.xcconfig"; path = "Target Support Files/Pods-fone-ios-app/Pods-fone-ios-app.release.xcconfig"; sourceTree = "<group>"; };
+		AB49A32A2A8104E000748484 /* SceneCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinatorType.swift; sourceTree = "<group>"; };
+		AB49A32C2A81053200748484 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		AB49A32E2A81055800748484 /* TransitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionModel.swift; sourceTree = "<group>"; };
+		AB49A3322A8107A500748484 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
+		AB49A3392A810B3500748484 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		AB49A33B2A810CAA00748484 /* ViewModelBindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindableType.swift; sourceTree = "<group>"; };
+		AB49A33D2A810FE000748484 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		AB49A33E2A810FE000748484 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		AB49A3422A81158900748484 /* FindIDPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIDPasswordViewController.swift; sourceTree = "<group>"; };
+		AB49A3432A81158900748484 /* FindIDPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FindIDPasswordViewController.xib; sourceTree = "<group>"; };
+		AB49A3462A81159F00748484 /* FindIDPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIDPasswordViewModel.swift; sourceTree = "<group>"; };
+		AB49A3482A8119B900748484 /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		AB6002322A7E375D000CF1FD /* fone-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fone-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6002352A7E375D000CF1FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB6002392A7E375D000CF1FD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +72,37 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AB49A3292A8104A000748484 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				AB49A32A2A8104E000748484 /* SceneCoordinatorType.swift */,
+				AB49A32C2A81053200748484 /* Scene.swift */,
+				AB49A32E2A81055800748484 /* TransitionModel.swift */,
+				AB49A3322A8107A500748484 /* SceneCoordinator.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		AB49A3342A810AC600748484 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				AB49A3392A810B3500748484 /* LoginViewModel.swift */,
+				AB49A33D2A810FE000748484 /* LoginViewController.swift */,
+				AB49A33E2A810FE000748484 /* LoginViewController.xib */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		AB49A3412A81156300748484 /* FindIDPassword */ = {
+			isa = PBXGroup;
+			children = (
+				AB49A3422A81158900748484 /* FindIDPasswordViewController.swift */,
+				AB49A3432A81158900748484 /* FindIDPasswordViewController.xib */,
+				AB49A3462A81159F00748484 /* FindIDPasswordViewModel.swift */,
+			);
+			path = FindIDPassword;
+			sourceTree = "<group>";
+		};
 		AB6002292A7E375D000CF1FD = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +127,7 @@
 				AB60024E2A7E42A6000CF1FD /* Common */,
 				AB60024D2A7E3B15000CF1FD /* Model */,
 				AB60024F2A7E4781000CF1FD /* Network */,
+				AB49A3292A8104A000748484 /* Scene */,
 				AB60024C2A7E3B05000CF1FD /* View */,
 				AB6002352A7E375D000CF1FD /* AppDelegate.swift */,
 				AB6002412A7E375D000CF1FD /* Assets.xcassets */,
@@ -84,6 +140,8 @@
 		AB60024C2A7E3B05000CF1FD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AB49A3412A81156300748484 /* FindIDPassword */,
+				AB49A3342A810AC600748484 /* Login */,
 				AB6002392A7E375D000CF1FD /* ViewController.swift */,
 				AB60023B2A7E375D000CF1FD /* Main.storyboard */,
 			);
@@ -100,6 +158,8 @@
 		AB60024E2A7E42A6000CF1FD /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				AB49A33B2A810CAA00748484 /* ViewModelBindableType.swift */,
+				AB49A3482A8119B900748484 /* CommonViewModel.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -188,6 +248,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB49A3402A810FE000748484 /* LoginViewController.xib in Resources */,
+				AB49A3452A81158900748484 /* FindIDPasswordViewController.xib in Resources */,
 				AB6002452A7E375D000CF1FD /* LaunchScreen.storyboard in Resources */,
 				AB6002422A7E375D000CF1FD /* Assets.xcassets in Resources */,
 				AB60023D2A7E375D000CF1FD /* Main.storyboard in Resources */,
@@ -243,8 +305,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB49A33F2A810FE000748484 /* LoginViewController.swift in Sources */,
+				AB49A3492A8119B900748484 /* CommonViewModel.swift in Sources */,
+				AB49A32D2A81053200748484 /* Scene.swift in Sources */,
+				AB49A3472A81159F00748484 /* FindIDPasswordViewModel.swift in Sources */,
 				AB60023A2A7E375D000CF1FD /* ViewController.swift in Sources */,
+				AB49A33C2A810CAA00748484 /* ViewModelBindableType.swift in Sources */,
 				AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */,
+				AB49A33A2A810B3500748484 /* LoginViewModel.swift in Sources */,
+				AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */,
+				AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */,
+				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,
+				AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
