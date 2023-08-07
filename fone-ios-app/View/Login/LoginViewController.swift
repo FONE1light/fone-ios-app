@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import NSObject_Rx
 
 class LoginViewController: UIViewController, ViewModelBindableType {
     var viewModel: LoginViewModel!
@@ -14,7 +15,6 @@ class LoginViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var emailSignUpButton: UIButton!
     
     func bindViewModel() {
-        
         emailSignUpButton.rx.tap
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .withUnretained(self)

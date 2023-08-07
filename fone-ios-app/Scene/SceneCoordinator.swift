@@ -8,7 +8,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import NSObject_Rx
 
 extension UIViewController {
     var sceneViewController: UIViewController {
@@ -36,7 +35,7 @@ class SceneCoordinator: SceneCoordinatorType {
             window.rootViewController = target
             
         case .push:
-            guard let nav = currentVC.navigationController else { break}
+            guard let nav = currentVC.navigationController else { break }
             
             nav.rx.willShow
                 .withUnretained(self)

@@ -14,7 +14,7 @@ enum Scene {
 }
 
 extension Scene {
-    func instantiate(from storyboard: String = "Main") -> UIViewController {
+    func instantiate() -> UIViewController {
         switch self {
         case .login(let loginViewModel):
             var loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
