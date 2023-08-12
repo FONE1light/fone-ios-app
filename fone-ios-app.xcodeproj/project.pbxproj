@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3650F6212A86715C0017645D /* Pretendard-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3650F61E2A86715C0017645D /* Pretendard-Regular.ttf */; };
+		3650F6222A86715C0017645D /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3650F61F2A86715C0017645D /* Pretendard-Medium.ttf */; };
+		3650F6232A86715C0017645D /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3650F6202A86715C0017645D /* Pretendard-Bold.ttf */; };
+		3650F6262A8672010017645D /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3650F6252A8672010017645D /* UIFont+Extension.swift */; };
 		AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A32A2A8104E000748484 /* SceneCoordinatorType.swift */; };
 		AB49A32D2A81053200748484 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A32C2A81053200748484 /* Scene.swift */; };
 		AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A32E2A81055800748484 /* TransitionModel.swift */; };
@@ -30,6 +34,10 @@
 
 /* Begin PBXFileReference section */
 		34DE88C04B16A23498371085 /* Pods_fone_ios_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fone_ios_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3650F61E2A86715C0017645D /* Pretendard-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.ttf"; sourceTree = "<group>"; };
+		3650F61F2A86715C0017645D /* Pretendard-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.ttf"; sourceTree = "<group>"; };
+		3650F6202A86715C0017645D /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
+		3650F6252A8672010017645D /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		3650F61A2A849BF10017645D /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		73B2586E188FFDD2D7707DE2 /* Pods-fone-ios-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fone-ios-app.release.xcconfig"; path = "Target Support Files/Pods-fone-ios-app/Pods-fone-ios-app.release.xcconfig"; sourceTree = "<group>"; };
 		AB49A32A2A8104E000748484 /* SceneCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinatorType.swift; sourceTree = "<group>"; };
@@ -66,10 +74,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3650F61C2A86710B0017645D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3650F61D2A8671130017645D /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3650F61D2A8671130017645D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3650F6202A86715C0017645D /* Pretendard-Bold.ttf */,
+				3650F61F2A86715C0017645D /* Pretendard-Medium.ttf */,
+				3650F61E2A86715C0017645D /* Pretendard-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		3650F6192A849BDB0017645D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				3650F61A2A849BF10017645D /* UIColor+Extension.swift */,
+                3650F6252A8672010017645D /* UIFont+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -134,6 +161,7 @@
 		AB6002342A7E375D000CF1FD /* fone-ios-app */ = {
 			isa = PBXGroup;
 			children = (
+				3650F61C2A86710B0017645D /* Resources */,
 				AB60024E2A7E42A6000CF1FD /* Common */,
 				AB60024D2A7E3B15000CF1FD /* Model */,
 				AB60024F2A7E4781000CF1FD /* Network */,
@@ -262,7 +290,10 @@
 				AB49A3402A810FE000748484 /* LoginViewController.xib in Resources */,
 				AB49A3452A81158900748484 /* FindIDPasswordViewController.xib in Resources */,
 				AB6002452A7E375D000CF1FD /* LaunchScreen.storyboard in Resources */,
+				3650F6222A86715C0017645D /* Pretendard-Medium.ttf in Resources */,
 				AB6002422A7E375D000CF1FD /* Assets.xcassets in Resources */,
+				3650F6212A86715C0017645D /* Pretendard-Regular.ttf in Resources */,
+				3650F6232A86715C0017645D /* Pretendard-Bold.ttf in Resources */,
 				AB60023D2A7E375D000CF1FD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,6 +347,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3650F6262A8672010017645D /* UIFont+Extension.swift in Sources */,
 				AB49A33F2A810FE000748484 /* LoginViewController.swift in Sources */,
 				AB49A3492A8119B900748484 /* CommonViewModel.swift in Sources */,
 				AB49A32D2A81053200748484 /* Scene.swift in Sources */,
