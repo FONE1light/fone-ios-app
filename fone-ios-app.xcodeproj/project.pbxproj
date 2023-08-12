@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3650F61B2A849BF10017645D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3650F61A2A849BF10017645D /* UIColor+Extension.swift */; };
 		AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6002352A7E375D000CF1FD /* AppDelegate.swift */; };
 		AB60023A2A7E375D000CF1FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6002392A7E375D000CF1FD /* ViewController.swift */; };
 		AB60023D2A7E375D000CF1FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB60023B2A7E375D000CF1FD /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		34DE88C04B16A23498371085 /* Pods_fone_ios_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fone_ios_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3650F61A2A849BF10017645D /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		73B2586E188FFDD2D7707DE2 /* Pods-fone-ios-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fone-ios-app.release.xcconfig"; path = "Target Support Files/Pods-fone-ios-app/Pods-fone-ios-app.release.xcconfig"; sourceTree = "<group>"; };
 		AB6002322A7E375D000CF1FD /* fone-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fone-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6002352A7E375D000CF1FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +42,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3650F6192A849BDB0017645D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3650F61A2A849BF10017645D /* UIColor+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		4E38C3E6B05E44D6F190F4C2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +110,7 @@
 		AB60024E2A7E42A6000CF1FD /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				3650F6192A849BDB0017645D /* Extensions */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -243,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3650F61B2A849BF10017645D /* UIColor+Extension.swift in Sources */,
 				AB60023A2A7E375D000CF1FD /* ViewController.swift in Sources */,
 				AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */,
 			);
