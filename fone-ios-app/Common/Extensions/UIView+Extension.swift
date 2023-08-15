@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIView {
-    @IBInspectable var bordercolor: UIColor {
+    @IBInspectable var borderColor: UIColor {
         get {
             let color = self.layer.borderColor ?? UIColor.clear.cgColor
             return UIColor(cgColor: color)
