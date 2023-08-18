@@ -6,6 +6,9 @@ PODS:
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
+  - Moya/RxSwift (15.0.0):
+    - Moya/Core
+    - RxSwift (~> 6.0)
   - "NSObject+Rx (5.2.2)":
     - RxSwift (~> 6.2)
   - RxCocoa (6.5.0):
@@ -26,6 +29,7 @@ DEPENDENCIES:
   - Alamofire
   - Kingfisher
   - Moya
+  - Moya/RxSwift
   - "NSObject+Rx"
   - RxCocoa
   - RxDataSources
@@ -63,6 +67,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: 1edb5673bee749812cf4aa8ee48bb49c27411633
+PODFILE CHECKSUM: 46dc5a585e277e85990ac50e84bb96316af9114a
 
 COCOAPODS: 1.12.1

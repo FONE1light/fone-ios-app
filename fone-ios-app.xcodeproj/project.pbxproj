@@ -11,6 +11,12 @@
 		362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628667F2A8B688300CD42BC /* DefaultTextField.swift */; };
 		362866822A8B6B3600CD42BC /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362866812A8B6B3600CD42BC /* UILabel+Extension.swift */; };
 		362866842A8B71B700CD42BC /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362866832A8B71B700CD42BC /* SignUpViewModel.swift */; };
+		3628668B2A8DF40F00CD42BC /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628668A2A8DF40F00CD42BC /* APIConfig.swift */; };
+		3628668E2A8DF4EA00CD42BC /* UserInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628668D2A8DF4EA00CD42BC /* UserInfoProvider.swift */; };
+		362866902A8DF5C900CD42BC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628668F2A8DF5C900CD42BC /* String+Extension.swift */; };
+		362866942A8E3D4700CD42BC /* Single+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362866932A8E3D4700CD42BC /* Single+Codable.swift */; };
+		362866972A8E3D8200CD42BC /* Response+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362866962A8E3D8200CD42BC /* Response+Codable.swift */; };
+		3628669A2A8E3E3700CD42BC /* UserInfoAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362866992A8E3E3700CD42BC /* UserInfoAPIModel.swift */; };
 		3650F61B2A849BF10017645D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3650F61A2A849BF10017645D /* UIColor+Extension.swift */; };
 		3650F6212A86715C0017645D /* Pretendard-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3650F61E2A86715C0017645D /* Pretendard-Regular.ttf */; };
 		3650F6222A86715C0017645D /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3650F61F2A86715C0017645D /* Pretendard-Medium.ttf */; };
@@ -42,6 +48,12 @@
 		3628667F2A8B688300CD42BC /* DefaultTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTextField.swift; sourceTree = "<group>"; };
 		362866812A8B6B3600CD42BC /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		362866832A8B71B700CD42BC /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		3628668A2A8DF40F00CD42BC /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
+		3628668D2A8DF4EA00CD42BC /* UserInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoProvider.swift; sourceTree = "<group>"; };
+		3628668F2A8DF5C900CD42BC /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		362866932A8E3D4700CD42BC /* Single+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Single+Codable.swift"; sourceTree = "<group>"; };
+		362866962A8E3D8200CD42BC /* Response+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Response+Codable.swift"; sourceTree = "<group>"; };
+		362866992A8E3E3700CD42BC /* UserInfoAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoAPIModel.swift; sourceTree = "<group>"; };
 		3650F61A2A849BF10017645D /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		3650F61E2A86715C0017645D /* Pretendard-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.ttf"; sourceTree = "<group>"; };
 		3650F61F2A86715C0017645D /* Pretendard-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.ttf"; sourceTree = "<group>"; };
@@ -100,12 +112,57 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		362866882A8DF3F400CD42BC /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				362866892A8DF40500CD42BC /* API */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		362866892A8DF40500CD42BC /* API */ = {
+			isa = PBXGroup;
+			children = (
+				362866982A8E3E2C00CD42BC /* Models */,
+				362866952A8E3D7500CD42BC /* Moya+Codable */,
+				3628668C2A8DF4C700CD42BC /* Providers */,
+				3628668A2A8DF40F00CD42BC /* APIConfig.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		3628668C2A8DF4C700CD42BC /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				3628668D2A8DF4EA00CD42BC /* UserInfoProvider.swift */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		362866952A8E3D7500CD42BC /* Moya+Codable */ = {
+			isa = PBXGroup;
+			children = (
+				362866932A8E3D4700CD42BC /* Single+Codable.swift */,
+				362866962A8E3D8200CD42BC /* Response+Codable.swift */,
+			);
+			path = "Moya+Codable";
+			sourceTree = "<group>";
+		};
+		362866982A8E3E2C00CD42BC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				362866992A8E3E3700CD42BC /* UserInfoAPIModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		3650F6192A849BDB0017645D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				3650F61A2A849BF10017645D /* UIColor+Extension.swift */,
 				3650F6252A8672010017645D /* UIFont+Extension.swift */,
 				362866812A8B6B3600CD42BC /* UILabel+Extension.swift */,
+				3628668F2A8DF5C900CD42BC /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -191,7 +248,7 @@
 				3650F61C2A86710B0017645D /* Resources */,
 				AB60024E2A7E42A6000CF1FD /* Common */,
 				AB60024D2A7E3B15000CF1FD /* Model */,
-				AB60024F2A7E4781000CF1FD /* Network */,
+				362866882A8DF3F400CD42BC /* Network */,
 				AB49A3292A8104A000748484 /* Scene */,
 				AB60024C2A7E3B05000CF1FD /* View */,
 				AB6002352A7E375D000CF1FD /* AppDelegate.swift */,
@@ -229,21 +286,6 @@
 				3650F6192A849BDB0017645D /* Extensions */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		AB60024F2A7E4781000CF1FD /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				AB6002502A7E478E000CF1FD /* API */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		AB6002502A7E478E000CF1FD /* API */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = API;
 			sourceTree = "<group>";
 		};
 		F9186D1B9A8EC496BD612481 /* Pods */ = {
@@ -376,14 +418,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				362866822A8B6B3600CD42BC /* UILabel+Extension.swift in Sources */,
+				362866902A8DF5C900CD42BC /* String+Extension.swift in Sources */,
 				3650F6262A8672010017645D /* UIFont+Extension.swift in Sources */,
 				AB49A33F2A810FE000748484 /* LoginViewController.swift in Sources */,
+				362866942A8E3D4700CD42BC /* Single+Codable.swift in Sources */,
 				AB49A3492A8119B900748484 /* CommonViewModel.swift in Sources */,
 				362866842A8B71B700CD42BC /* SignUpViewModel.swift in Sources */,
 				AB49A32D2A81053200748484 /* Scene.swift in Sources */,
 				AB49A3472A81159F00748484 /* FindIDPasswordViewModel.swift in Sources */,
+				3628668E2A8DF4EA00CD42BC /* UserInfoProvider.swift in Sources */,
 				3650F61B2A849BF10017645D /* UIColor+Extension.swift in Sources */,
 				AB60023A2A7E375D000CF1FD /* ViewController.swift in Sources */,
+				3628668B2A8DF40F00CD42BC /* APIConfig.swift in Sources */,
+				362866972A8E3D8200CD42BC /* Response+Codable.swift in Sources */,
 				AB49A33C2A810CAA00748484 /* ViewModelBindableType.swift in Sources */,
 				AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */,
 				3628667B2A8B670200CD42BC /* SignUpViewController.swift in Sources */,
@@ -393,6 +440,7 @@
 				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,
 				AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */,
 				362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */,
+				3628669A2A8E3E3700CD42BC /* UserInfoAPIModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

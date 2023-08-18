@@ -9,6 +9,7 @@ target 'fone-ios-app' do
 pod 'RxSwift'
 pod 'Alamofire'
 pod 'Moya'
+pod 'Moya/RxSwift' # MoyaProvider<>.request
 pod 'RxCocoa'
 pod 'RxDataSources'
 pod 'NSObject+Rx'
