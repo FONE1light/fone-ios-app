@@ -15,6 +15,12 @@ enum APIConfig {
     case PRODUCT // 운영 서버
 }
 
+extension APIConfig {
+    var baseURL: String {
+        "http://3.39.0.194"
+    }
+}
+
 class Tokens {
     static let shared = Tokens()
     
@@ -46,4 +52,14 @@ extension Token {
             return ""
         }
     }
+}
+
+class APISetting {
+    static let shared = APISetting()
+#if DEBUG
+    var config: APIConfig = .DEV
+#else
+    var config: APIConfig = .PRODUCT
+#endif
+    var defaultTimeout: TimeInterval = 10
 }

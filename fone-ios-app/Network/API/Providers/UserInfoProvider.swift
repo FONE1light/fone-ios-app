@@ -16,7 +16,7 @@ enum UserInfoTarget {
 
 extension UserInfoTarget: TargetType {
     var baseURL: URL {
-        "http://3.39.0.194".url!
+        APISetting.shared.config.baseURL.url!
     }
     
     var path: String {
