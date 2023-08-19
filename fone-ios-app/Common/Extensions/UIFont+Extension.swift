@@ -11,17 +11,17 @@ import UIKit
 enum FontType {
     case pretendard
     
-    var regular: String {
+    var regular: String { // weight 400
         switch self {
         case .pretendard: return "Pretendard-Regular"
         }
     }
-    var medium: String {
+    var medium: String { // weight 500
         switch self {
         case .pretendard: return "Pretendard-Medium"
         }
     }
-    var bold: String {
+    var bold: String { // weight 700
         switch self {
         case .pretendard: return "Pretendard-Bold"
         }
