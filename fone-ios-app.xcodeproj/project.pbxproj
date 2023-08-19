@@ -60,6 +60,7 @@
 		AB6149382A90B6CC0079CEC9 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = AB6149372A90B6CC0079CEC9 /* Moya */; };
 		AB61493A2A90B6CC0079CEC9 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AB6149392A90B6CC0079CEC9 /* ReactiveMoya */; };
 		AB61493C2A90B6CC0079CEC9 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AB61493B2A90B6CC0079CEC9 /* RxMoya */; };
+		ABA47FF72A850AE600B64403 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA47FF62A850AE600B64403 /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +98,7 @@
 		AB6002412A7E375D000CF1FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB6002442A7E375D000CF1FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB6002462A7E375D000CF1FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABA47FF62A850AE600B64403 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 				3650F6252A8672010017645D /* UIFont+Extension.swift */,
 				362866812A8B6B3600CD42BC /* UILabel+Extension.swift */,
 				3628668F2A8DF5C900CD42BC /* String+Extension.swift */,
+				ABA47FF62A850AE600B64403 /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -258,6 +261,8 @@
 			children = (
 				AB6002342A7E375D000CF1FD /* fone-ios-app */,
 				AB6002332A7E375D000CF1FD /* Products */,
+				4E38C3E6B05E44D6F190F4C2 /* Frameworks */,
+				ABD4BCB72A8A09C200E617F8 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -313,6 +318,28 @@
 				3650F6192A849BDB0017645D /* Extensions */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		AB60024F2A7E4781000CF1FD /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				AB6002502A7E478E000CF1FD /* API */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		AB6002502A7E478E000CF1FD /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		ABD4BCB72A8A09C200E617F8 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -441,6 +468,7 @@
 				AB60023A2A7E375D000CF1FD /* ViewController.swift in Sources */,
 				3628668B2A8DF40F00CD42BC /* APIConfig.swift in Sources */,
 				362866972A8E3D8200CD42BC /* Response+Codable.swift in Sources */,
+				ABA47FF72A850AE600B64403 /* UIView+Extension.swift in Sources */,
 				AB49A33C2A810CAA00748484 /* ViewModelBindableType.swift in Sources */,
 				AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */,
 				3628667B2A8B670200CD42BC /* SignUpViewController.swift in Sources */,
