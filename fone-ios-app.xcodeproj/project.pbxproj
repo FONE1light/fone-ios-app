@@ -261,8 +261,6 @@
 			children = (
 				AB6002342A7E375D000CF1FD /* fone-ios-app */,
 				AB6002332A7E375D000CF1FD /* Products */,
-				4E38C3E6B05E44D6F190F4C2 /* Frameworks */,
-				ABD4BCB72A8A09C200E617F8 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -318,28 +316,6 @@
 				3650F6192A849BDB0017645D /* Extensions */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		AB60024F2A7E4781000CF1FD /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				AB6002502A7E478E000CF1FD /* API */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		AB6002502A7E478E000CF1FD /* API */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		ABD4BCB72A8A09C200E617F8 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
