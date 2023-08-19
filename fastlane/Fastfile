@@ -25,11 +25,15 @@ end
 desc "Push a new beta build with Firebase App Distribution"
   lane :firebase do
     #build_app(workspace: "fone-ios-app.xcodeproj", scheme: "fone-ios-app")
-    spm(
-	command: "build",
-	build_path: "./build",
-	#configuration: "release"
+    build_app(
+      scheme: "fone-ios-app",
+      #export_method: "app-store",
     )
+#    spm(
+#	command: "build",
+#	build_path: "./build",
+#	#configuration: "release"
+#    )
     firebase_app_distribution(
 		match(
 			type: "appstore",
