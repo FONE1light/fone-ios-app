@@ -33,8 +33,11 @@ class SignUpViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
-        button.rx.tap.bind {
+        button.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
             print("clicked")
+            owner.viewModel.checkNicknameDuplication("테스트닉네임")
         }.disposed(by: rx.disposeBag)
     }
     
