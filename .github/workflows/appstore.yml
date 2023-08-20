@@ -25,13 +25,13 @@ jobs:
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-      - run: brew install fastlane
-      - run: pod install
-      - run: fastlane release
-        env:
-          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          KEYCHAIN_NAME: ${{ secrets.KEYCHAIN_NAME }}
-          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
-          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
-          APP_STORE_CONNECT_API_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
-          APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}
+#      - run: brew install fastlane
+#      - run: pod install
+      - run: fastlane upload
+#        env:
+#          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+#          KEYCHAIN_NAME: ${{ secrets.KEYCHAIN_NAME }}
+#          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+#          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+#          APP_STORE_CONNECT_API_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
+#          APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}
