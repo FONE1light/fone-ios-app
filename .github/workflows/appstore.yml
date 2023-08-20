@@ -2,9 +2,9 @@ name: App Store
 
 on:
   push:
-    branches:
-      - feature/fastlane+testflight+githubActions
-      - develop
+    # branches:
+    #   - feature/fastlane+testflight+githubActions
+    #   - develop
     tags:
       - "v*"
 
