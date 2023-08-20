@@ -13,34 +13,15 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
-### firebase
-
-```sh
-[bundle exec] fastlane firebase
-```
-
-Push a new beta build with Firebase App Distribution
-
-### upload
-
-```sh
-[bundle exec] fastlane upload
-```
-
-Trial 2
-
-----
-
-
 ## iOS
 
-### ios custom_lane
+### ios upload
 
 ```sh
-[bundle exec] fastlane ios custom_lane
+[bundle exec] fastlane ios upload
 ```
 
-Description of what the lane does
+Push a new beta build to TestFlight
 
 ----
 

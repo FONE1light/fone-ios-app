@@ -20,50 +20,13 @@ platform :ios do
   lane :custom_lane do
     # add actions here: https://docs.fastlane.tools/actions
   end
-end
 
-desc "Push a new beta build with Firebase App Distribution"
-  lane :firebase do
-    #build_app(workspace: "fone-ios-app.xcodeproj", scheme: "fone-ios-app")
-    build_app(
-      scheme: "fone-ios-app",
-      #export_method: "app-store",
-    )
-#    spm(
-#	command: "build",
-#	build_path: "./build",
-#	#configuration: "release"
-#    )
-    firebase_app_distribution(
-		match(
-			type: "appstore",
-			git_basic_authorization: "ZzBnZXR0ZXI6Z2hwX1k3R2pSSmNTd1BGT1dPRGY5UVdEanZBSklZMGtudjJUODRiOQ=="
-		),
-		app: "1:499416246374:ios:7593a351739dd3706725a7",
-		firebase_cli_token: "[방금 발급받은 Refresh Token]", 
-		groups: "fone"
-    )
-end
-
-desc "Trial 2"
-lane :upload do
-	sync_code_signing(
-		type: "appstore",
-		app_identifier: 'com.fone.filmone',
-		readonly: true
-	)
-        build_app(scheme: "fone-ios-app")
-        upload_to_testflight
-end
-
-
-def execSPM(lane)
-  spmConfiguration = lane == :inHouse ? "debug" : "release"
-  puts "🚘 lane: #{lane}"
-  puts "sum Configuration: #{spmConfiguration}"
-  spm(
-	command: "build",
-	build_path: "./build",
-	configuration: spmConfiguration
-  )
+  desc "Push a new beta build to TestFlight"
+  lane :upload do
+    sync_code_signing(type: "appstore",
+                      app_identifier: 'com.fone.filmone',
+                      readonly: true)
+    build_app(scheme: "fone-ios-app")
+    upload_to_testflight
+  end
 end
