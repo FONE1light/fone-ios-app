@@ -18,7 +18,6 @@ jobs:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           # APP_CENTER_ACCESS_TOKEN: ${{ secrets.APP_CENTER_ACCESS_TOKEN }}
           MATCH_GIT_BASIC_AUTHORIZATION: $ {{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
-          # MATCH_PASSWORD: 'Jj79401776!@#'
 
 #     strategy:
 #       matrix:
