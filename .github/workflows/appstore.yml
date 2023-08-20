@@ -3,8 +3,8 @@ name: App Store
 on:
   push:
     branches:
-    - feature/fastlane+testflight+githubActions
-    - develop
+      - feature/fastlane+testflight+githubActions
+      - develop
 
 jobs:
   appstore:
