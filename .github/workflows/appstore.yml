@@ -16,6 +16,9 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
+      - run: |
+          git config user.name ${{ secrets.USERNAME }}
+          git config user.password ${{ secrets.PASSWORD }}
       - run: fastlane upload
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
