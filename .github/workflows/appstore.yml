@@ -1,16 +1,7 @@
 name: App Store
 
 on:
-  push:
-    branches:
-      - feature/fastlane+testflight+githubActions
-      - feature/fastlane+testflight+githubActions_test
-      - develop
-    tags:
-      - "v*"
   pull_request:
-    branches:
-      - feature/fastlane+testflight+githubActions_test
   
 
 jobs:
@@ -40,7 +31,7 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
 
       - run: brew install fastlane
-      
+
       - run: fastlane upload 
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
