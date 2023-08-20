@@ -16,7 +16,6 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - run: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run: fastlane upload
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
