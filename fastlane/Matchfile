@@ -1,4 +1,4 @@
-git_url("https://github.com/FONE1light/fone-ios-certs.git")
+git_url("git@github.com:FONE1light/fone-ios-certs.git")
 
 git_branch("develop") # 추가
 
