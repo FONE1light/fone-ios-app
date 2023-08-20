@@ -45,6 +45,16 @@ desc "Push a new beta build with Firebase App Distribution"
     )
 end
 
+desc "Trial 2"
+lane :upload do
+	sync_code_signing(
+		type: "appstore",
+		app_identifier: 'com.fone.filmone',
+		readonly: true
+	)
+end
+
+
 def execSPM(lane)
   spmConfiguration = lane == :inHouse ? "debug" : "release"
   puts "🚘 lane: #{lane}"

@@ -21,6 +21,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Push a new beta build with Firebase App Distribution
 
+### upload
+
+```sh
+[bundle exec] fastlane upload
+```
+
+Trial 2
+
 ----
 
 
