@@ -5,6 +5,8 @@ on:
     branches:
       - feature/fastlane+testflight+githubActions
       - develop
+    tags:
+      - "v*"
 
 jobs:
   appstore:
