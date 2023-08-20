@@ -7,28 +7,26 @@ on:
 jobs:
   appstore:
     runs-on: macos-latest
-    strategy:
-          matrix:
-            node: [ '12', '14' ]
-            ruby: [ '2.6' ]
 
     steps:
       - uses: actions/checkout@v2
 
-      - uses: shimataro/ssh-key-action@v2
+      - name: Select Xcode Version
+        uses: maxim-lobanov/setup-xcode@v1
         with:
-          key: ${{ secrets.SSH_KEY }}          
+          xcode-version: latest-stable
+
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
-      - name: Install Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node }}
-
-      - name: Install Ruby
+      - name: Setup ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.ruby }}
+          ruby-version: 2.7.2
+          bundler-cache: true
 
       - run: brew install fastlane
 
@@ -39,3 +37,4 @@ jobs:
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
           FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
           FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
+          RELEASE_VERSION: ${{ github.event.release.tag_name }}
