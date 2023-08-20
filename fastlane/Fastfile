@@ -52,6 +52,8 @@ lane :upload do
 		app_identifier: 'com.fone.filmone',
 		readonly: true
 	)
+        build_app(scheme: "fone-ios-app")
+        upload_to_testflight
 end
 
 
