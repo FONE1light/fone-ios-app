@@ -16,10 +16,12 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          git config user.name ${{ secrets.USERNAME }}
-          git config user.password ${{ secrets.PASSWORD }}
-          fastlane upload 
+      # Install SSH Key
+      - uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}          
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+      - run: fastlane upload 
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           # APP_CENTER_ACCESS_TOKEN: ${{ secrets.APP_CENTER_ACCESS_TOKEN }}
