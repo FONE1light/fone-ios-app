@@ -4,9 +4,10 @@ on:
   push:
     branches:
       - feature/fastlane+testflight+githubActions
+      - feature/fastlane+testflight+githubActions_test
       - develop
-    tags:
-      - "v*"
+#    tags:
+#      - "v*"
   pull_request:
   
 
@@ -15,6 +16,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
+      - run: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run: fastlane upload
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
