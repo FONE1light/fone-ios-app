@@ -6,8 +6,8 @@ on:
       - feature/fastlane+testflight+githubActions
       - feature/fastlane+testflight+githubActions_test
       - develop
-#    tags:
-#      - "v*"
+    tags:
+      - "v*"
   pull_request:
   
 
