@@ -9,6 +9,8 @@ on:
     tags:
       - "v*"
   pull_request:
+    branches:
+      - feature/fastlane+testflight+githubActions_test
   
 
 jobs:
@@ -24,8 +26,14 @@ jobs:
       - run: fastlane upload 
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+          FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
+
+          # MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           # APP_CENTER_ACCESS_TOKEN: ${{ secrets.APP_CENTER_ACCESS_TOKEN }}
-          MATCH_GIT_BASIC_AUTHORIZATION: $ {{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          # MATCH_GIT_BASIC_AUTHORIZATION: $ {{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
 
 #     strategy:
 #       matrix:
