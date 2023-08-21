@@ -22,11 +22,22 @@ platform :ios do
   end
 
   desc "Push a new beta build to TestFlight"
-  lane :upload do
+  lane :upload do |options|
     sync_code_signing(type: "appstore",
                       app_identifier: 'com.fone.filmone',
                       readonly: true)
+                      if options[:v] 
+                        increment_version_number(version_number: options[:v])
+                      end
+                      increment_build_number(build_number: latest_testflight_build_number + 1)
     build_app(scheme: "fone-ios-app")
-    upload_to_testflight
+    upload_to_testflight(skip_waiting_for_build_processing: true)
   end
 end
+
+  error do |lane, exception|
+    puts "🤕🤕🤕Error🤕🤕🤕"
+    puts "lane : #{lane}"
+    puts "error : #{exception}"
+    desc "FastLane Fail" + exception.message
+  end
