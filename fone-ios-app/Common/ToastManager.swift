@@ -50,24 +50,24 @@ class ToastManager {
         toast.invalidateIntrinsicContentSize()
         toast.sizeToFit()
         
-        toast.snp.makeConstraints { make in
-            make.height.equalTo(toast.intrinsicContentSize.height)
-            make.width.equalTo(toastWidth)
-            make.centerX.equalTo(Application.keyWindow)
+        toast.snp.makeConstraints {
+            $0.height.equalTo(toast.intrinsicContentSize.height)
+            $0.width.equalTo(toastWidth)
+            $0.centerX.equalTo(Application.keyWindow)
         }
         
         switch positionType {
         case .withBottomSheet:
-            toast.snp.makeConstraints { make in
-                make.top.equalTo(Application.keyWindow).offset(54)
+            toast.snp.makeConstraints {
+                $0.top.equalTo(Application.keyWindow).offset(54)
             }
         case .withButton:
-            toast.snp.makeConstraints { make in
-                make.bottom.equalTo(Application.keyWindow).inset(102)
+            toast.snp.makeConstraints {
+                $0.bottom.equalTo(Application.keyWindow).inset(102)
             }
         case .withNothing:
-            toast.snp.makeConstraints { make in
-                make.bottom.equalTo(Application.keyWindow).inset(54)
+            toast.snp.makeConstraints {
+                $0.bottom.equalTo(Application.keyWindow).inset(54)
             }
         }
     }
