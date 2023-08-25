@@ -88,9 +88,8 @@ class LoginViewController: UIViewController, ViewModelBindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let shadowViews = [kakaoLoginView, naverLoginView, googleLoginView, appleLoginView]
-        for view in shadowViews {
-            view?.applyShadow(shadowType: .shadowIt2)
+        [ kakaoLoginView, naverLoginView, googleLoginView, appleLoginView ].forEach {
+            $0.applyShadow(shadowType: .shadowIt2)
         }
     }
 }
