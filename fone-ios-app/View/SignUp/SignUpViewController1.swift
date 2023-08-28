@@ -33,11 +33,13 @@ class SignUpViewController1: UIViewController, ViewModelBindableType {
     let jobSelectionBlock = SelectionBlock().then {
         $0.setTitle("직업 선택")
         $0.setSubtitle("(추후 변경 가능)")
+        $0.setSelections(["ACTOR", "STAFF"])
     }
     
     let interestSelectionBlock = SelectionBlock().then {
         $0.setTitle("관심사 선택")
         $0.setSubtitle("(중복 선택 가능)")
+        $0.setSelections(["장편영화", "단편영화", "독립영화"])
     }
     
     let button = UIButton().then {
@@ -61,6 +63,7 @@ class SignUpViewController1: UIViewController, ViewModelBindableType {
 
         setUI()
         setConstraints()
+        
     }
     
     private func setUI() {
@@ -94,6 +97,14 @@ class SignUpViewController1: UIViewController, ViewModelBindableType {
         stackView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.centerY.equalToSuperview()
+        }
+        
+        jobSelectionBlock.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        interestSelectionBlock.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
         }
         
         button.snp.makeConstraints {
