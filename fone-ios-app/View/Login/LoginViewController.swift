@@ -79,7 +79,7 @@ class LoginViewController: UIViewController, ViewModelBindableType {
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .subscribe(onNext: { _ in
-                
+                self.viewModel.moveToQuestion()
             })
             .disposed(by: rx.disposeBag)
         

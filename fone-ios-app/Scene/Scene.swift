@@ -12,6 +12,7 @@ enum Scene {
     case login(LoginViewModel)
     case findIDPassword(FindIDPasswordViewModel)
     case signUp(SignUpViewModel)
+    case question(QuestionViewModel)
 }
 
 extension Scene {
@@ -45,7 +46,15 @@ extension Scene {
             }
             
             return signUpVC
+            
+        case .question(let questionViewModel):
+            var questionVC = QuestionViewController(nibName: "QuestionViewController", bundle: nil)
+            
+            DispatchQueue.main.async {
+                questionVC.bind(viewModel: questionViewModel)
+            }
+            
+            return questionVC
         }
-        
     }
 }

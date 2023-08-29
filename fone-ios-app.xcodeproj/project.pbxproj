@@ -60,6 +60,9 @@
 		AB6149382A90B6CC0079CEC9 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = AB6149372A90B6CC0079CEC9 /* Moya */; };
 		AB61493A2A90B6CC0079CEC9 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AB6149392A90B6CC0079CEC9 /* ReactiveMoya */; };
 		AB61493C2A90B6CC0079CEC9 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AB61493B2A90B6CC0079CEC9 /* RxMoya */; };
+		AB79B3B92A9E298B008EBAA2 /* QuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB79B3B82A9E298B008EBAA2 /* QuestionViewModel.swift */; };
+		AB79B3BC2A9E29C4008EBAA2 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB79B3BA2A9E29C4008EBAA2 /* QuestionViewController.swift */; };
+		AB79B3BD2A9E29C4008EBAA2 /* QuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB79B3BB2A9E29C4008EBAA2 /* QuestionViewController.xib */; };
 		ABA47FF72A850AE600B64403 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA47FF62A850AE600B64403 /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +101,9 @@
 		AB6002412A7E375D000CF1FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB6002442A7E375D000CF1FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB6002462A7E375D000CF1FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB79B3B82A9E298B008EBAA2 /* QuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewModel.swift; sourceTree = "<group>"; };
+		AB79B3BA2A9E29C4008EBAA2 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		AB79B3BB2A9E29C4008EBAA2 /* QuestionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionViewController.xib; sourceTree = "<group>"; };
 		ABA47FF62A850AE600B64403 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -292,6 +298,7 @@
 		AB60024C2A7E3B05000CF1FD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AB79B3B72A9E294B008EBAA2 /* Question */,
 				AB49A3412A81156300748484 /* FindIDPassword */,
 				AB49A3342A810AC600748484 /* Login */,
 				362866792A8B66B900CD42BC /* SignUp */,
@@ -316,6 +323,16 @@
 				3650F6192A849BDB0017645D /* Extensions */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		AB79B3B72A9E294B008EBAA2 /* Question */ = {
+			isa = PBXGroup;
+			children = (
+				AB79B3B82A9E298B008EBAA2 /* QuestionViewModel.swift */,
+				AB79B3BA2A9E29C4008EBAA2 /* QuestionViewController.swift */,
+				AB79B3BB2A9E29C4008EBAA2 /* QuestionViewController.xib */,
+			);
+			path = Question;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,6 +437,7 @@
 				3650F6212A86715C0017645D /* Pretendard-Regular.ttf in Resources */,
 				3650F6232A86715C0017645D /* Pretendard-Bold.ttf in Resources */,
 				AB60023D2A7E375D000CF1FD /* Main.storyboard in Resources */,
+				AB79B3BD2A9E29C4008EBAA2 /* QuestionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,12 +458,14 @@
 				AB49A32D2A81053200748484 /* Scene.swift in Sources */,
 				AB49A3472A81159F00748484 /* FindIDPasswordViewModel.swift in Sources */,
 				3628668E2A8DF4EA00CD42BC /* UserInfoProvider.swift in Sources */,
+				AB79B3B92A9E298B008EBAA2 /* QuestionViewModel.swift in Sources */,
 				3650F61B2A849BF10017645D /* UIColor+Extension.swift in Sources */,
 				AB60023A2A7E375D000CF1FD /* ViewController.swift in Sources */,
 				3628668B2A8DF40F00CD42BC /* APIConfig.swift in Sources */,
 				362866972A8E3D8200CD42BC /* Response+Codable.swift in Sources */,
 				ABA47FF72A850AE600B64403 /* UIView+Extension.swift in Sources */,
 				AB49A33C2A810CAA00748484 /* ViewModelBindableType.swift in Sources */,
+				AB79B3BC2A9E29C4008EBAA2 /* QuestionViewController.swift in Sources */,
 				AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */,
 				3628667B2A8B670200CD42BC /* SignUpViewController.swift in Sources */,
 				AB49A33A2A810B3500748484 /* LoginViewModel.swift in Sources */,
