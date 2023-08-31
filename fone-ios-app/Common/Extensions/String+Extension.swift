@@ -14,7 +14,7 @@ extension String {
         }
     }
     
-    func toast(positionType: ToastPositionType = .withNothing, completion: (() -> Void)? = nil) {
-        ToastManager.show(self, positionType: positionType, completion: completion)
+    func toast(positionType: ToastPositionType = .withNothing, isKeyboardShowing: Bool = false, completion: (() -> Void)? = nil) {
+        ToastManager.show(self, positionType: positionType, isKeyboardShowing: isKeyboardShowing, completion: completion)
     }
 }

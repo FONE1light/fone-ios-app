@@ -18,18 +18,18 @@ enum ToastPositionType {
     case withBottomSheet
     case withButton
     case withNothing
-    // TODO: case withKeyboard
 }
 
 class ToastManager {
     static let toastWidth: CGFloat = UIScreen.main.bounds.size.width - 32
     
     // FIXME: completion이 필요없다면 삭제
-    static func show(_ message: String, positionType: ToastPositionType = .withNothing, completion: (() -> Void)? = nil) {
+    static func show(_ message: String, positionType: ToastPositionType = .withNothing, isKeyboardShowing: Bool = false, completion: (() -> Void)? = nil) {
         let toast = makeToastLabel(message: message)
         
         Application.keyWindow.addSubview(toast)
-        setPosition(toast: toast, positionType: positionType)
+        let toastPosition = isKeyboardShowing ? .withBottomSheet : positionType
+        setPosition(toast: toast, positionType: toastPosition)
         
         UIView.animate(withDuration: 2, delay: 0, options: []) {
             toast.alpha = 0.0
@@ -59,7 +59,7 @@ class ToastManager {
         switch positionType {
         case .withBottomSheet:
             toast.snp.makeConstraints {
-                $0.top.equalTo(Application.keyWindow).offset(54)
+                $0.top.equalTo(Application.keyWindow).offset(64)
             }
         case .withButton:
             toast.snp.makeConstraints {
