@@ -31,14 +31,14 @@ class SelectionBlock: UIView {
         )
 
         collectionView.register(SelectionCell.self, forCellWithReuseIdentifier: SelectionCell.identifier)
-        collectionView.backgroundColor = .yellow
 
         collectionView.dataSource = self
-        collectionView.delegate = self
+//        collectionView.delegate = self
 
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
         
+        collectionView.backgroundColor = .gray_F8F8F8
         return collectionView
     }()
     
@@ -46,6 +46,7 @@ class SelectionBlock: UIView {
         super.init(frame: .zero)
         self.setUI()
         self.setContraints()
+        self.bindViewModel()
     }
     
     required init?(coder: NSCoder) {
@@ -55,9 +56,6 @@ class SelectionBlock: UIView {
     private func setUI() {
         [titleLabel, subtitleLabel, collectionView]
             .forEach { self.addSubview($0) }
-        
-        self.backgroundColor = .gray_F8F8F8
-        
     }
     
     private func setContraints() {
@@ -92,6 +90,20 @@ class SelectionBlock: UIView {
     }
 }
 
+extension SelectionBlock {
+    func bindViewModel() {
+        
+        collectionView.rx.itemSelected
+            .withUnretained(self)
+            .subscribe { owner, indexPath in
+                guard let cell = owner.collectionView.cellForItem(at: indexPath) as? SelectionCell else { return }
+                cell.changeSelectedState()
+            }.disposed(by: rx.disposeBag)
+        
+        collectionView.rx.setDelegate(self).disposed(by: rx.disposeBag)
+        
+    }
+}
 
 extension SelectionBlock: UICollectionViewDataSource {
     // MARK: cell count
@@ -124,22 +136,32 @@ extension SelectionBlock: UICollectionViewDataSource {
 extension SelectionBlock: UICollectionViewDelegate {
     
     // MARK: selected
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("\(indexPath.item)번 Cell 클릭")
-    }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        print("\(indexPath.item)번 Cell 클릭")
+//        guard let cell = collectionView.cellForItem(at: indexPath) as? SelectionCell else { return }
+//
+//        cell.changeSelectedState()
+//
+//    }
 }
 
 extension SelectionBlock: UICollectionViewDelegateFlowLayout {
     // MARK: cellSize
     // TODO: 내부 contents 따라 유동적으로 설정
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let defaultHeight = 33.0
+//        let size = SelectionCell.fittingSize(height: defaultHeight, name: selectionList[indexPath.row])
+//
+//        return CGSize(width: size.width, height: size.height)
+        
         let collectionViewWidth = collectionView.bounds.width
+
         let cellItemForRow: CGFloat = 3
         let minimumSpacing: CGFloat = 2
-        
+
         let width = (collectionViewWidth - (cellItemForRow - 1) * minimumSpacing) / cellItemForRow
-        
-        return CGSize(width: width, height: 33)
+
+        return CGSize(width: width, height: defaultHeight)
     }
     
     // MARK: minimumSpacing

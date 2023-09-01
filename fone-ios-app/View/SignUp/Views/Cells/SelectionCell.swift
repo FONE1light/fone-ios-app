@@ -13,6 +13,8 @@ class SelectionCell: UICollectionViewCell {
     static let identifier = "SelectionCell"
     var disposeBag = DisposeBag()
     
+    var isChosen = false
+    
     let label = UILabel().then {
         $0.font = .font_r(14)
         $0.textColor = .gray_9E9E9E
@@ -22,7 +24,6 @@ class SelectionCell: UICollectionViewCell {
         super.init(frame: frame)
         
         setupUI()
-        self.backgroundColor = .beige_624418
     }
     
     required init?(coder: NSCoder) {
@@ -37,5 +38,31 @@ class SelectionCell: UICollectionViewCell {
             $0.top.bottom.equalToSuperview().inset(8)
             $0.leading.trailing.equalToSuperview().inset(20)
         }
+    }
+}
+
+extension SelectionCell {
+    func changeSelectedState() {
+        changeColor()
+        isChosen = !isChosen
+    }
+    
+    private func changeColor() {
+        if isChosen {
+            self.backgroundColor = .gray_EEEFEF
+            self.label.textColor = .gray_9E9E9E
+        } else {
+            self.backgroundColor = .red_FFEBF0
+            self.label.textColor = .red_CE0B39
+        }
+    }
+    
+    static func fittingSize(height: CGFloat, name: String?) -> CGSize {
+        let cell = SelectionCell().then {
+            $0.label.text = name
+        }
+        
+        let targetSize = CGSize(width: UIView.layoutFittingCompressedSize.width, height: height)
+        return cell.contentView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .fittingSizeLevel, verticalFittingPriority: .required)
     }
 }
