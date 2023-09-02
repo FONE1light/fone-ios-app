@@ -13,4 +13,8 @@ extension String {
             return URL(string: self)
         }
     }
+    
+    func toast(positionType: ToastPositionType = .withNothing, isKeyboardShowing: Bool = false, completion: (() -> Void)? = nil) {
+        ToastManager.show(self, positionType: positionType, isKeyboardShowing: isKeyboardShowing, completion: completion)
+    }
 }
