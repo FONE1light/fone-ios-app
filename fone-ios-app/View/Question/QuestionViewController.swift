@@ -19,6 +19,7 @@ class QuestionViewController: UIViewController, ViewModelBindableType {
     var questionTypeString = ""
     let placeholerString = "요청에 관한 세부 정보를 입력하세요. 저희 에프원이 가능한 빨리 답변을 드리도록 하겠습니다."
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
@@ -61,6 +62,17 @@ class QuestionViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
+        keyboardHeight()
+            .bind(to: viewModel.keyboardHeightBehaviorSubject)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.keyboardHeightBehaviorSubject
+            .subscribe(onNext: { [unowned self] (keyboardHeight) in
+                print(keyboardHeight)
+                scrollView.contentInset.bottom = keyboardHeight
+                viewModel.isKeyboardShowing = (keyboardHeight != 0)
+            }).disposed(by: rx.disposeBag)
+        
         emailTextField.rx.text.orEmpty
             .map { $0.isEmpty }
             .bind(to: viewModel.emailIsEmptySubject)
@@ -87,15 +99,13 @@ class QuestionViewController: UIViewController, ViewModelBindableType {
                 } else {
                     print("====제출 비활성화😵")
                 }
-            })
-            .disposed(by: rx.disposeBag)
+            }).disposed(by: rx.disposeBag)
         
         closeButton.rx.tap
             .withUnretained(self)
             .subscribe(onNext: { _ in
                 self.viewModel.sceneCoordinator.close(animated: true)
-            })
-            .disposed(by: rx.disposeBag)
+            }).disposed(by: rx.disposeBag)
         
         submitButton.rx.tap
             .withUnretained(self)
@@ -107,8 +117,7 @@ class QuestionViewController: UIViewController, ViewModelBindableType {
                 let agreeToPersonalInformation = agreeButton.isSelected
                 let question = QuestionInfo(id: nil, email: email, type: type, title: title, description: description ?? "", agreeToPersonalInformation: agreeToPersonalInformation)
                 owner.viewModel.submitQuestion(question: question)
-            }
-            .disposed(by: rx.disposeBag)
+            }.disposed(by: rx.disposeBag)
     }
 }
 
@@ -121,6 +130,18 @@ extension QuestionViewController: UITextViewDelegate {
         if descriptionTextView.text == "" {
             textViewSetPlaceHolder()
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+        }
+        return true
     }
     
     func textViewSetPlaceHolder() {

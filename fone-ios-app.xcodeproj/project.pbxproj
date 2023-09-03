@@ -60,6 +60,7 @@
 		AB6149382A90B6CC0079CEC9 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = AB6149372A90B6CC0079CEC9 /* Moya */; };
 		AB61493A2A90B6CC0079CEC9 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AB6149392A90B6CC0079CEC9 /* ReactiveMoya */; };
 		AB61493C2A90B6CC0079CEC9 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AB61493B2A90B6CC0079CEC9 /* RxMoya */; };
+		AB61493E2A90D4410079CEC9 /* ToastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB61493D2A90D4410079CEC9 /* ToastManager.swift */; };
 		AB6785542AA3335A00ACD35C /* EmailLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6785532AA3335A00ACD35C /* EmailLoginViewModel.swift */; };
 		AB6785572AA3336900ACD35C /* EmailLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6785552AA3336900ACD35C /* EmailLoginViewController.swift */; };
 		AB6785582AA3336900ACD35C /* EmailLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB6785562AA3336900ACD35C /* EmailLoginViewController.xib */; };
@@ -68,7 +69,7 @@
 		AB79B3B92A9E298B008EBAA2 /* QuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB79B3B82A9E298B008EBAA2 /* QuestionViewModel.swift */; };
 		AB79B3BC2A9E29C4008EBAA2 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB79B3BA2A9E29C4008EBAA2 /* QuestionViewController.swift */; };
 		AB79B3BD2A9E29C4008EBAA2 /* QuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB79B3BB2A9E29C4008EBAA2 /* QuestionViewController.xib */; };
-		AB61493E2A90D4410079CEC9 /* ToastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB61493D2A90D4410079CEC9 /* ToastManager.swift */; };
+		AB9885122AA476FF00282C07 /* Rx+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9885112AA476FF00282C07 /* Rx+Extension.swift */; };
 		ABA47FF72A850AE600B64403 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA47FF62A850AE600B64403 /* UIView+Extension.swift */; };
 		ABAFA3392A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAFA3382A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift */; };
 		ABAFA33B2A9F612900D50BAF /* QuestionInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAFA33A2A9F612900D50BAF /* QuestionInfoProvider.swift */; };
@@ -110,6 +111,7 @@
 		AB6002412A7E375D000CF1FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB6002442A7E375D000CF1FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB6002462A7E375D000CF1FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB61493D2A90D4410079CEC9 /* ToastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastManager.swift; sourceTree = "<group>"; };
 		AB6785532AA3335A00ACD35C /* EmailLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginViewModel.swift; sourceTree = "<group>"; };
 		AB6785552AA3336900ACD35C /* EmailLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginViewController.swift; sourceTree = "<group>"; };
 		AB6785562AA3336900ACD35C /* EmailLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmailLoginViewController.xib; sourceTree = "<group>"; };
@@ -118,7 +120,7 @@
 		AB79B3B82A9E298B008EBAA2 /* QuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewModel.swift; sourceTree = "<group>"; };
 		AB79B3BA2A9E29C4008EBAA2 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		AB79B3BB2A9E29C4008EBAA2 /* QuestionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionViewController.xib; sourceTree = "<group>"; };
-		AB61493D2A90D4410079CEC9 /* ToastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastManager.swift; sourceTree = "<group>"; };
+		AB9885112AA476FF00282C07 /* Rx+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Extension.swift"; sourceTree = "<group>"; };
 		ABA47FF62A850AE600B64403 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		ABAFA3382A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionInfoAPIModel.swift; sourceTree = "<group>"; };
 		ABAFA33A2A9F612900D50BAF /* QuestionInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionInfoProvider.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				362866812A8B6B3600CD42BC /* UILabel+Extension.swift */,
 				3628668F2A8DF5C900CD42BC /* String+Extension.swift */,
 				ABA47FF62A850AE600B64403 /* UIView+Extension.swift */,
+				AB9885112AA476FF00282C07 /* Rx+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				362866822A8B6B3600CD42BC /* UILabel+Extension.swift in Sources */,
 				362866902A8DF5C900CD42BC /* String+Extension.swift in Sources */,
 				3650F6262A8672010017645D /* UIFont+Extension.swift in Sources */,
+				AB9885122AA476FF00282C07 /* Rx+Extension.swift in Sources */,
 				AB49A33F2A810FE000748484 /* LoginViewController.swift in Sources */,
 				ABF3034B2AA33E4A00C14AF7 /* EmailSignUpViewModel.swift in Sources */,
 				362866942A8E3D4700CD42BC /* Single+Codable.swift in Sources */,
@@ -673,6 +677,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8T28CKNCH3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "fone-ios-app/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "에프원";
@@ -702,6 +707,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8T28CKNCH3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "fone-ios-app/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "에프원";

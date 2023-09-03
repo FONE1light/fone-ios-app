@@ -10,6 +10,8 @@ import RxSwift
 
 class QuestionViewModel: CommonViewModel {
     var disposeBag = DisposeBag()
+    var isKeyboardShowing = false
+    var keyboardHeightBehaviorSubject = BehaviorSubject<CGFloat>(value: 0)
     var emailIsEmptySubject = BehaviorSubject<Bool>(value: true)
     var titleIsEmptySubject = BehaviorSubject<Bool>(value: true)
     var descriptionIsEmptySubject = BehaviorSubject<Bool>(value: true)
@@ -31,13 +33,10 @@ class QuestionViewModel: CommonViewModel {
                 print("received!")
                 print("response: \(response)")
                 
-                if response.result == "SUCCESS" {
-                    "제출이 완료되었습니다.".toast(positionType: .withButton)
-                } else {
-                    "제출에 실패하였습니다. 다시 시도해주세요.".toast(positionType: .withButton)
-                }
-            }, onError: { _ in 
-                "제출에 실패하였습니다. 다시 시도해주세요.".toast(positionType: .withButton)
+                let toastMessage = response.result == "SUCCESS" ? "제출이 완료되었습니다." : "제출에 실패하였습니다. 다시 시도해주세요."
+                toastMessage.toast(positionType: .withButton, isKeyboardShowing: owner.isKeyboardShowing)
+            }, onError: { [unowned self] _ in
+                "제출에 실패하였습니다. 다시 시도해주세요.".toast(positionType: .withButton, isKeyboardShowing: isKeyboardShowing)
             }).disposed(by: disposeBag)
     }
 }
