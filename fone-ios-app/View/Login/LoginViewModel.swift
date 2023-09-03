@@ -8,9 +8,21 @@
 import Foundation
 
 class LoginViewModel: CommonViewModel {
+    func moveToEmailLogin() {
+        let emailLoginViewModel = EmailLoginViewModel(sceneCoordinator: self.sceneCoordinator)
+        let emailLoginScene = Scene.emailLogin(emailLoginViewModel)
+        self.sceneCoordinator.transition(to: emailLoginScene, using: .fullScreenModal, animated: true)
+    }
+    
+    func moveToEmailSignUp() {
+        let emailSignUpViewModel = EmailSignUpViewModel(sceneCoordinator: self.sceneCoordinator)
+        let emailSignUpScene = Scene.emailSignUp(emailSignUpViewModel)
+        self.sceneCoordinator.transition(to: emailSignUpScene, using: .fullScreenModal, animated: true)
+    }
+    
     func moveToQuestion() {
         let questionViewModel = QuestionViewModel(sceneCoordinator: self.sceneCoordinator)
-        let questionPasswordScene = Scene.question(questionViewModel)
-        self.sceneCoordinator.transition(to: questionPasswordScene, using: .fullScreenModal, animated: true)
+        let questionScene = Scene.question(questionViewModel)
+        self.sceneCoordinator.transition(to: questionScene, using: .fullScreenModal, animated: true)
     }
 }

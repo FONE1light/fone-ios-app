@@ -13,6 +13,8 @@ enum Scene {
     case findIDPassword(FindIDPasswordViewModel)
     case signUp(SignUpViewModel)
     case question(QuestionViewModel)
+    case emailLogin(EmailLoginViewModel)
+    case emailSignUp(EmailSignUpViewModel)
 }
 
 extension Scene {
@@ -55,6 +57,26 @@ extension Scene {
             }
             
             return questionVC
+            
+        case .emailLogin(let emailLoginViewModel):
+            var emailLoginVC = EmailLoginViewController(nibName: "EmailLoginViewController", bundle: nil)
+            
+            DispatchQueue.main.async {
+                emailLoginVC.bind(viewModel: emailLoginViewModel)
+            }
+            
+            let emailLoginNav = UINavigationController(rootViewController: emailLoginVC)
+            
+            return emailLoginNav
+            
+        case .emailSignUp(let emailSignUpViewModel):
+            var emailSignUpVC = EmailSignUpViewController(nibName: "EmailSignUpViewController", bundle: nil)
+            
+            DispatchQueue.main.async {
+                emailSignUpVC.bind(viewModel: emailSignUpViewModel)
+            }
+            
+            return emailSignUpVC
         }
     }
 }

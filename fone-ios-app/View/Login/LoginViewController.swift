@@ -63,7 +63,7 @@ class LoginViewController: UIViewController, ViewModelBindableType {
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .subscribe(onNext: { _ in
-                
+                self.viewModel.moveToEmailLogin()
             })
             .disposed(by: rx.disposeBag)
         
@@ -71,7 +71,7 @@ class LoginViewController: UIViewController, ViewModelBindableType {
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .subscribe(onNext: { _ in
-                
+                self.viewModel.moveToEmailSignUp()
             })
             .disposed(by: rx.disposeBag)
         

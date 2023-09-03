@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Bold.ttf">
+            <string>Pretendard-Bold</string>
+        </array>
+        <array key="Pretendard-Medium.ttf">
+            <string>Pretendard-Medium</string>
+        </array>
+        <array key="Pretendard-Regular.ttf">
+            <string>Pretendard-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EmailLoginViewController" customModule="fone_ios_app" customModuleProvider="target">
+            <connections>
+                <outlet property="closeButton" destination="4cj-Ay-oeb" id="EFs-zd-ZfK"/>
+                <outlet property="findIDPasswordButton" destination="RMz-t3-xxn" id="bPk-T1-gQA"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GnX-k0-Qma">
+                    <rect key="frame" x="0.0" y="59" width="393" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cj-Ay-oeb">
+                            <rect key="frame" x="353" y="13" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="WIc-nw-yWk"/>
+                                <constraint firstAttribute="width" constant="24" id="hzK-Vd-goH"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="close_MD"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이메일 로그인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICG-RG-BxC">
+                            <rect key="frame" x="145" y="13.666666666666671" width="103" height="23"/>
+                            <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="19"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="ICG-RG-BxC" firstAttribute="centerX" secondItem="GnX-k0-Qma" secondAttribute="centerX" id="AQF-MB-cvT"/>
+                        <constraint firstItem="ICG-RG-BxC" firstAttribute="centerY" secondItem="GnX-k0-Qma" secondAttribute="centerY" id="iw2-Oc-ow0"/>
+                        <constraint firstAttribute="height" constant="50" id="pNH-8B-Ndp"/>
+                        <constraint firstAttribute="trailing" secondItem="4cj-Ay-oeb" secondAttribute="trailing" constant="16" id="tVF-N1-Mzz"/>
+                        <constraint firstItem="4cj-Ay-oeb" firstAttribute="centerY" secondItem="GnX-k0-Qma" secondAttribute="centerY" id="zSk-Ev-bXs"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이메일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtE-Fw-Ld2">
+                    <rect key="frame" x="16" y="117" width="39" height="18"/>
+                    <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wFS-ae-5PU">
+                    <rect key="frame" x="16" y="143" width="361" height="42"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="이메일 주소를 입력해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZLS-Hw-9hk">
+                            <rect key="frame" x="10" y="12" width="341" height="18"/>
+                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="ZLS-Hw-9hk" firstAttribute="top" secondItem="wFS-ae-5PU" secondAttribute="top" constant="12" id="b9D-Kh-sIA"/>
+                        <constraint firstAttribute="bottom" secondItem="ZLS-Hw-9hk" secondAttribute="bottom" constant="12" id="bBb-vG-rBK"/>
+                        <constraint firstAttribute="trailing" secondItem="ZLS-Hw-9hk" secondAttribute="trailing" constant="10" id="dUe-m0-Ks0"/>
+                        <constraint firstItem="ZLS-Hw-9hk" firstAttribute="leading" secondItem="wFS-ae-5PU" secondAttribute="leading" constant="10" id="dtU-1d-86m"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="비밀번호" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UrA-mt-KDi">
+                    <rect key="frame" x="16" y="205" width="52" height="18"/>
+                    <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZgH-5U-MAG">
+                    <rect key="frame" x="16" y="231" width="361" height="42"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="비밀번호를 입력해 주세요 " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Syc-g0-aEy">
+                            <rect key="frame" x="10" y="12" width="341" height="18"/>
+                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="Syc-g0-aEy" firstAttribute="leading" secondItem="ZgH-5U-MAG" secondAttribute="leading" constant="10" id="7zo-9k-SOb"/>
+                        <constraint firstAttribute="bottom" secondItem="Syc-g0-aEy" secondAttribute="bottom" constant="12" id="JYA-7k-acA"/>
+                        <constraint firstAttribute="trailing" secondItem="Syc-g0-aEy" secondAttribute="trailing" constant="10" id="MJo-xk-qtC"/>
+                        <constraint firstItem="Syc-g0-aEy" firstAttribute="top" secondItem="ZgH-5U-MAG" secondAttribute="top" constant="12" id="XNQ-xx-FQM"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMz-t3-xxn">
+                    <rect key="frame" x="137.66666666666666" y="381" width="118" height="28"/>
+                    <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="13"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="아이디 · 비밀번호 찾기 ">
+                        <color key="titleColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYW-yq-hu4">
+                    <rect key="frame" x="16" y="313" width="361" height="48"/>
+                    <color key="backgroundColor" red="0.77254901960784317" green="0.77254901960784317" blue="0.77254901960784317" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="ebv-HK-THw"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="16"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="로그인 하기">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="ZgH-5U-MAG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="2ni-Zu-8kA"/>
+                <constraint firstItem="RMz-t3-xxn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="7Fd-LV-DZZ"/>
+                <constraint firstItem="GnX-k0-Qma" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="7XS-Co-oV7"/>
+                <constraint firstItem="gtE-Fw-Ld2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="84V-ER-MGj"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cYW-yq-hu4" secondAttribute="trailing" constant="16" id="Acs-ri-nv8"/>
+                <constraint firstItem="cYW-yq-hu4" firstAttribute="top" secondItem="ZgH-5U-MAG" secondAttribute="bottom" constant="40" id="Bmd-HL-mDw"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ZgH-5U-MAG" secondAttribute="trailing" constant="16" id="E33-W3-q5m"/>
+                <constraint firstItem="UrA-mt-KDi" firstAttribute="top" secondItem="wFS-ae-5PU" secondAttribute="bottom" constant="20" id="HVI-PZ-CYm"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wFS-ae-5PU" secondAttribute="trailing" constant="16" id="IMh-1i-2DX"/>
+                <constraint firstItem="gtE-Fw-Ld2" firstAttribute="top" secondItem="GnX-k0-Qma" secondAttribute="bottom" constant="8" id="Khx-xm-GNU"/>
+                <constraint firstItem="UrA-mt-KDi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="PLH-6K-Wu2"/>
+                <constraint firstItem="cYW-yq-hu4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="bVY-04-9ah"/>
+                <constraint firstItem="wFS-ae-5PU" firstAttribute="top" secondItem="gtE-Fw-Ld2" secondAttribute="bottom" constant="8" id="fCb-0z-EkX"/>
+                <constraint firstItem="wFS-ae-5PU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="skC-KV-Kgp"/>
+                <constraint firstItem="ZgH-5U-MAG" firstAttribute="top" secondItem="UrA-mt-KDi" secondAttribute="bottom" constant="8" id="uI3-ur-rnN"/>
+                <constraint firstItem="RMz-t3-xxn" firstAttribute="top" secondItem="cYW-yq-hu4" secondAttribute="bottom" constant="20" id="wXz-kr-fNZ"/>
+                <constraint firstItem="GnX-k0-Qma" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="yGE-oi-vjb"/>
+                <constraint firstAttribute="trailing" secondItem="GnX-k0-Qma" secondAttribute="trailing" id="zzh-W0-ukM"/>
+            </constraints>
+            <point key="canvasLocation" x="10" y="20"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="close_MD" width="24" height="24"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
