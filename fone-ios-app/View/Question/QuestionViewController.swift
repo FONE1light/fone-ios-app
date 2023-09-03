@@ -70,6 +70,7 @@ class QuestionViewController: UIViewController, ViewModelBindableType {
             .subscribe(onNext: { [unowned self] (keyboardHeight) in
                 print(keyboardHeight)
                 scrollView.contentInset.bottom = keyboardHeight
+                scrollView.verticalScrollIndicatorInsets.bottom = keyboardHeight
                 viewModel.isKeyboardShowing = (keyboardHeight != 0)
             }).disposed(by: rx.disposeBag)
         
