@@ -46,6 +46,7 @@ class SceneCoordinator: SceneCoordinatorType {
             
             nav.pushViewController(target, animated: animated)
             currentVC = target.sceneViewController
+            
         case .fullScreenModal:
             target.modalPresentationStyle = UIModalPresentationStyle.fullScreen
             currentVC.present(target, animated: animated)
