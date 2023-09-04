@@ -30,7 +30,7 @@ enum FontType {
 
 extension UIFont {
     
-    /// Bold 타입
+    /// Bold 타입(weight 700)
     class func font_b(_ size: CGFloat) -> UIFont {
         let fontName = FontType.pretendard.bold
         guard let font = UIFont(name: fontName, size: size) else {
@@ -39,7 +39,7 @@ extension UIFont {
         return font
     }
     
-    /// Medium 타입
+    /// Medium 타입(weight 500)
     class func font_m(_ size: CGFloat) -> UIFont {
         let fontName = FontType.pretendard.medium
         guard let font = UIFont(name: fontName, size: size) else {
@@ -49,7 +49,7 @@ extension UIFont {
         return font
     }
 
-    /// Regular 타입
+    /// Regular 타입(weight 400)
     class func font_r(_ size: CGFloat) -> UIFont {
         let fontName = FontType.pretendard.regular
         guard let font = UIFont(name: fontName, size: size) else {
