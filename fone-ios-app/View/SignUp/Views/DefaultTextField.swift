@@ -12,19 +12,21 @@ class DefaultTextField: UITextField {
 
     init(placeHolder: String? = nil) {
         super.init(frame: .zero)
-        self.setUI()
+        self.setUI(placeHolder)
+        self.setContraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setUI() {
+    private func setUI(_ placeHolder: String?) {
         self.backgroundColor = .gray_F8F8F8
-        self.text = placeholder
+        self.placeholder = placeHolder
         self.font = .font_r(14)
 //        self.lineHeight = 19 // TODO: lineHeight extension 추가
         self.textColor = .gray_9E9E9E
+        self.cornerRadius = 5
     }
     
     private func setContraints() {
