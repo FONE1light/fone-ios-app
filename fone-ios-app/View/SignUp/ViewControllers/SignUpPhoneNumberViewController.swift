@@ -1,5 +1,5 @@
 //
-//  SignUpViewController3.swift
+//  SignUpPhoneNumberViewController.swift
 //  fone-ios-app
 //
 //  Created by 여나경 on 2023/09/02.
@@ -9,7 +9,7 @@ import UIKit
 import Then
 
 // TODO: Notch 여백 설정
-class SignUpViewController3: UIViewController, ViewModelBindableType {
+class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
 
     var viewModel: SignUpViewModel! // FIXME: ! 없이 할 방법
     
