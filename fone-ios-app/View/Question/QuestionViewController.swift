@@ -67,11 +67,12 @@ class QuestionViewController: UIViewController, ViewModelBindableType {
             .disposed(by: rx.disposeBag)
         
         viewModel.keyboardHeightBehaviorSubject
-            .subscribe(onNext: { [unowned self] (keyboardHeight) in
+            .withUnretained(self)
+            .subscribe(onNext: { (owner, keyboardHeight) in
                 print(keyboardHeight)
-                scrollView.contentInset.bottom = keyboardHeight
-                scrollView.verticalScrollIndicatorInsets.bottom = keyboardHeight
-                viewModel.isKeyboardShowing = (keyboardHeight != 0)
+                owner.scrollView.contentInset.bottom = keyboardHeight
+                owner.scrollView.verticalScrollIndicatorInsets.bottom = keyboardHeight
+                owner.viewModel.isKeyboardShowing = (keyboardHeight != 0)
             }).disposed(by: rx.disposeBag)
         
         emailTextField.rx.text.orEmpty
@@ -92,9 +93,10 @@ class QuestionViewController: UIViewController, ViewModelBindableType {
         
         viewModel.submitButtonEnable
             .distinctUntilChanged()
-            .subscribe(onNext: { [unowned self] isEnabled in
-                submitButton.isEnabled = isEnabled
-                submitButton.backgroundColor = submitButton.isEnabled ? UIColor.red_CE0B39 : UIColor.gray_C5C5C5
+            .withUnretained(self)
+            .subscribe(onNext: { (owner, isEnabled) in
+                owner.submitButton.isEnabled = isEnabled
+                owner.submitButton.backgroundColor = owner.submitButton.isEnabled ? UIColor.red_CE0B39 : UIColor.gray_C5C5C5
                 if isEnabled {
                     print("====제출 가능👌")
                 } else {
@@ -110,12 +112,12 @@ class QuestionViewController: UIViewController, ViewModelBindableType {
         
         submitButton.rx.tap
             .withUnretained(self)
-            .bind { [unowned self] owner, _ in
-                let email = emailTextField.text ?? ""
-                let type = questionTypeString
-                let title = titleTextField.text ?? ""
-                let description = descriptionTextView.text == placeholerString ? "" : descriptionTextView.text
-                let agreeToPersonalInformation = agreeButton.isSelected
+            .bind { owner, _ in
+                let email = owner.emailTextField.text ?? ""
+                let type = owner.questionTypeString
+                let title = owner.titleTextField.text ?? ""
+                let description = owner.descriptionTextView.text == owner.placeholerString ? "" : owner.descriptionTextView.text
+                let agreeToPersonalInformation = owner.agreeButton.isSelected
                 let question = QuestionInfo(id: nil, email: email, type: type, title: title, description: description ?? "", agreeToPersonalInformation: agreeToPersonalInformation)
                 owner.viewModel.submitQuestion(question: question)
             }.disposed(by: rx.disposeBag)

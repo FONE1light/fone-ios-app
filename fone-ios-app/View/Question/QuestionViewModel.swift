@@ -35,8 +35,8 @@ class QuestionViewModel: CommonViewModel {
                 
                 let toastMessage = response.result == "SUCCESS" ? "제출이 완료되었습니다." : "제출에 실패하였습니다. 다시 시도해주세요."
                 toastMessage.toast(positionType: .withButton, isKeyboardShowing: owner.isKeyboardShowing)
-            }, onError: { [unowned self] _ in
-                "제출에 실패하였습니다. 다시 시도해주세요.".toast(positionType: .withButton, isKeyboardShowing: isKeyboardShowing)
+            }, onError: { [weak self] _ in
+                "제출에 실패하였습니다. 다시 시도해주세요.".toast(positionType: .withButton, isKeyboardShowing: self?.isKeyboardShowing ?? false)
             }).disposed(by: disposeBag)
     }
 }
