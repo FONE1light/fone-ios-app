@@ -97,3 +97,16 @@ extension UIView {
         self.layer.shadowRadius = shadowType.shadowBlur / 2.0
     }
 }
+
+extension UIButton {
+    func setEnabled(isEnabled: Bool) {
+        self.isEnabled = isEnabled
+        if self.isEnabled {
+            self.backgroundColor = UIColor.red_CE0B39
+            self.applyShadow(shadowType: .shadowBt)
+        } else {
+            self.backgroundColor = UIColor.gray_C5C5C5
+            self.applyShadow(shadowType: .shadowIt2)
+        }
+    }
+}

@@ -13,6 +13,7 @@ import RxSwift
 enum UserInfoTarget {
     case fetchMyPage
     case checkNicknameDuplication(nickname: String)
+    case emailSignIn(emailSignInUserRequest: EmailSignInUserRequest)
 }
 
 extension UserInfoTarget: TargetType {
@@ -26,11 +27,18 @@ extension UserInfoTarget: TargetType {
             return "/api/v1/users"
         case .checkNicknameDuplication:
             return "/api/v1/users/check-nickname-duplication"
+        case .emailSignIn(_):
+            return "/api/v1/users/email/sign-in"
         }
     }
     
     var method: Moya.Method {
-        .get
+        switch self {
+        case .fetchMyPage, .checkNicknameDuplication(_):
+            return .get
+        case .emailSignIn(_):
+            return .post
+        }
     }
     
     var task: Task {
@@ -38,6 +46,8 @@ extension UserInfoTarget: TargetType {
         case .checkNicknameDuplication(let nickname):
             let param = ["nickname": nickname]
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
+        case .emailSignIn(let emailSignInUserRequest):
+            return .requestJSONEncodable(emailSignInUserRequest)
         default:
             return .requestPlain
         }
@@ -52,6 +62,8 @@ extension UserInfoTarget: TargetType {
         switch self {
         case .fetchMyPage:
             commonHeaders[Tokens.shared.accessToken.key] = Tokens.shared.accessToken.value // TODO: MOCK,
+        case .emailSignIn(_):
+            commonHeaders["Content-Type"] = "application/json"
         default:
             break
         }
