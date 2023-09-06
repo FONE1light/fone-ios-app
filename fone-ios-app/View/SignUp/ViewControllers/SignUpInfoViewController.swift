@@ -7,10 +7,12 @@
 
 import UIKit
 import Then
+import RxSwift
 
 // TODO: Notch 여백 설정
 class SignUpInfoViewController: UIViewController, ViewModelBindableType {
 
+    var disposeBag = DisposeBag()
     var viewModel: SignUpViewModel! // FIXME: ! 없이 할 방법
     
     let baseView = UIView().then {
@@ -40,11 +42,11 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
     
     private let nicknameTextField = DefaultTextField(placeHolder: "3~8자리의 숫자, 영어, 한글만 가능합니다")
     
-    private let duplicationCheckButton = UIButton().then {
+    // TODO: activate 상태일 때 누르면 gray_D9D9D9로 바뀌는 것 수정. 버튼의 상태값 확인
+    private let duplicationCheckButton = DefaultButton().then {
         $0.setTitle("중복확인", for: .normal)
+        $0.setTitleColor(.gray_D9D9D9, for: .normal)
         $0.titleLabel?.font = .font_r(14)
-        $0.titleLabel?.textColor = .gray_D9D9D9 // TODO: 왜 색깔 적용 안되고 white인지
-//        $0.backgroundColor = .black//.gray_D9D9D9
         $0.borderColor = .gray_D9D9D9
         $0.borderWidth = 1
         $0.cornerRadius = 5
@@ -66,21 +68,20 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
     
     private let birthTextField = DefaultTextField(placeHolder: "YYYY-MM-DD")
     
-    private let maleButton = UIButton().then {
+    private let maleButton = DefaultButton().then {
         $0.setTitle("남자", for: .normal)
+//        $0.setTitleColor(.red_F43663, for: .normal) // TODO: textColor 적용
+        $0.setTitleColor(.gray_D9D9D9, for: .normal)
         $0.titleLabel?.font = .font_r(14)
-        $0.titleLabel?.textColor = .gray_D9D9D9 // TODO: 왜 색깔 적용 안되고 white인지
-//        $0.backgroundColor = .black//.gray_D9D9D9
         $0.borderColor = .gray_D9D9D9
         $0.borderWidth = 1
         $0.cornerRadius = 5
     }
     
-    private let femaleButton = UIButton().then {
+    private let femaleButton = DefaultButton().then {
         $0.setTitle("여자", for: .normal)
+        $0.setTitleColor(.gray_D9D9D9, for: .normal) // TODO: textColor 적용
         $0.titleLabel?.font = .font_r(14)
-        $0.titleLabel?.textColor = .gray_D9D9D9 // TODO: 왜 색깔 적용 안되고 white인지
-//        $0.backgroundColor = .black//.gray_D9D9D9
         $0.borderColor = .gray_D9D9D9
         $0.borderWidth = 1
         $0.cornerRadius = 5
@@ -108,9 +109,83 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
         duplicationCheckButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-            print("clicked")
-            owner.viewModel.checkNicknameDuplication("테스트닉네임")
-        }.disposed(by: rx.disposeBag)
+                guard let nickname = owner.nicknameTextField.text, !nickname.isEmpty else {
+                    return
+                }
+                owner.viewModel.checkNicknameDuplication(nickname)
+            }.disposed(by: rx.disposeBag)
+        
+        maleButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                if owner.maleButton.isActivated.value {
+                    owner.maleButton.deactivate()
+                } else {
+                    owner.maleButton.activate()
+                    owner.femaleButton.deactivate()
+                }
+            }.disposed(by: rx.disposeBag)
+        
+        femaleButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                if owner.femaleButton.isActivated.value {
+                    owner.femaleButton.deactivate()
+                } else {
+                    owner.femaleButton.activate()
+                    owner.maleButton.deactivate()
+                }
+            }.disposed(by: rx.disposeBag)
+        
+        nicknameTextField.rx.controlEvent(.editingChanged)
+            .withUnretained(self)
+            .bind { owner, _ in
+                if let nickname = owner.nicknameTextField.text,
+                   nickname.count > 3 {
+                    owner.duplicationCheckButton.activate()
+                } else {
+                    owner.duplicationCheckButton.deactivate()
+                }
+            }.disposed(by: rx.disposeBag)
+        
+        duplicationCheckButton.isActivated
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .bind { owner, isActivated in
+                if isActivated {
+                    owner.duplicationCheckButton.borderColor = .red_F43663
+                    owner.duplicationCheckButton.titleLabel?.textColor = .red_F43663
+                } else {
+                    owner.duplicationCheckButton.borderColor = .gray_D9D9D9
+                    owner.duplicationCheckButton.titleLabel?.textColor = .gray_D9D9D9
+                }
+            }.disposed(by: disposeBag) // rx로?
+        
+        maleButton.isActivated
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .bind { owner, isActivated in
+                if isActivated {
+                    owner.maleButton.borderColor = .red_F43663
+                    owner.maleButton.titleLabel?.textColor = .red_F43663
+                } else {
+                    owner.maleButton.borderColor = .gray_D9D9D9
+                    owner.maleButton.titleLabel?.textColor = .gray_D9D9D9
+                }
+            }.disposed(by: disposeBag) // rx로?
+        
+        femaleButton.isActivated
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .bind { owner, isActivated in
+                if isActivated {
+                    owner.femaleButton.borderColor = .red_F43663
+                    owner.femaleButton.titleLabel?.textColor = .red_F43663
+                } else {
+                    owner.femaleButton.borderColor = .gray_D9D9D9
+                    owner.femaleButton.titleLabel?.textColor = .gray_D9D9D9
+                }
+            }.disposed(by: disposeBag) // rx로?
     }
     
     override func viewDidLoad() {

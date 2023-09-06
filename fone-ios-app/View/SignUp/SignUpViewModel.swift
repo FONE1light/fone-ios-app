@@ -11,6 +11,8 @@ import RxSwift
 class SignUpViewModel: CommonViewModel {
     var disposeBag = DisposeBag()
     
+    var nickname: String?
+    
     func fetchMyPage() {
         userInfoProvider.rx.request(.fetchMyPage)
             .mapObject(UserInfoModel.self)

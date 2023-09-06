@@ -11,7 +11,7 @@ import RxRelay
 class DefaultButton: UIButton {
     
     /// 활성화된 상태인지 아닌지
-    var isActivated = PublishRelay<Bool>()
+    var isActivated = BehaviorRelay<Bool>(value: false)
 }
 
 extension DefaultButton {
