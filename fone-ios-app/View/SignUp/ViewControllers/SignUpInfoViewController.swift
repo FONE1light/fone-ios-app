@@ -106,6 +106,21 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
+        // TextFields
+        nicknameTextField.rx.controlEvent(.editingChanged)
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.viewModel.checkNicknameAvailbleState(owner.nicknameTextField.text)
+            }.disposed(by: rx.disposeBag)
+        
+        birthTextField.rx.controlEvent(.editingChanged)
+            .withUnretained(self)
+            .bind { owner, _ in
+                let formattedBirth = owner.viewModel.formatBirthString(owner.birthTextField.text)
+                owner.birthTextField.text = formattedBirth
+            }.disposed(by: rx.disposeBag)
+        
+        // Buttons
         duplicationCheckButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
@@ -137,30 +152,6 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
                 }
             }.disposed(by: rx.disposeBag)
         
-        nicknameTextField.rx.controlEvent(.editingChanged)
-            .withUnretained(self)
-            .bind { owner, _ in
-                if let nickname = owner.nicknameTextField.text,
-                   nickname.count > 3 {
-                    owner.duplicationCheckButton.activate()
-                } else {
-                    owner.duplicationCheckButton.deactivate()
-                }
-            }.disposed(by: rx.disposeBag)
-        
-        duplicationCheckButton.isActivated
-            .distinctUntilChanged()
-            .withUnretained(self)
-            .bind { owner, isActivated in
-                if isActivated {
-                    owner.duplicationCheckButton.borderColor = .red_F43663
-                    owner.duplicationCheckButton.titleLabel?.textColor = .red_F43663
-                } else {
-                    owner.duplicationCheckButton.borderColor = .gray_D9D9D9
-                    owner.duplicationCheckButton.titleLabel?.textColor = .gray_D9D9D9
-                }
-            }.disposed(by: disposeBag) // rx로?
-        
         maleButton.isActivated
             .distinctUntilChanged()
             .withUnretained(self)
@@ -186,6 +177,30 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
                     owner.femaleButton.titleLabel?.textColor = .gray_D9D9D9
                 }
             }.disposed(by: disposeBag) // rx로?
+        
+        // ViewModel
+        viewModel.nicknameAvailbleState
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .bind { owner, state in
+                switch state {
+                case .cannotCheck, .duplicated:
+                    owner.duplicationCheckButton.borderColor = .gray_D9D9D9
+                    owner.duplicationCheckButton.titleLabel?.text = "중복확인"
+                    owner.duplicationCheckButton.titleLabel?.textColor = .gray_D9D9D9
+                case .canCheck:
+                    owner.duplicationCheckButton.borderColor = .red_F43663
+                    owner.duplicationCheckButton.titleLabel?.text = "중복확인"
+                    owner.duplicationCheckButton.titleLabel?.textColor = .red_F43663
+                    
+                case .available:
+                    owner.duplicationCheckButton.borderColor = .gray_D9D9D9
+                    owner.duplicationCheckButton.titleLabel?.text = "인증완료"
+                    owner.duplicationCheckButton.titleLabel?.textColor = .gray_D9D9D9
+                    
+                }
+            }.disposed(by: self.disposeBag)
+        
     }
     
     override func viewDidLoad() {
