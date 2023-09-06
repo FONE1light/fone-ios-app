@@ -16,7 +16,7 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
     var viewModel: SignUpViewModel! // FIXME: ! 없이 할 방법
     
     let baseView = UIView().then {
-        $0.backgroundColor = .white_FFFFFF // beige
+        $0.backgroundColor = .white_FFFFFF
     }
     
     let stackView = UIStackView().then {
