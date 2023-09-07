@@ -96,6 +96,15 @@ extension UIView {
         self.layer.shadowOffset = shadowType.shadowOffset
         self.layer.shadowRadius = shadowType.shadowBlur / 2.0
     }
+    
+    func setTextFieldErrorBorder(showError: Bool) {
+        if showError {
+            self.borderWidth = 1
+            self.borderColor = .crimson_FF5841
+        } else {
+            self.borderWidth = 0
+        }
+    }
 }
 
 extension UIButton {

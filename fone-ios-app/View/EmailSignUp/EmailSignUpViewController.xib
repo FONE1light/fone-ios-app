@@ -23,7 +23,18 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EmailSignUpViewController" customModule="fone_ios_app" customModuleProvider="target">
             <connections>
                 <outlet property="closeButton" destination="RSe-fs-qrB" id="fPW-Qt-jgd"/>
-                <outlet property="passwordEyeButton" destination="m96-uJ-hxH" id="5lj-dS-R9a"/>
+                <outlet property="confirmPasswordContainerView" destination="9bn-Rh-A8D" id="fdf-1H-BGg"/>
+                <outlet property="confirmPasswordErrorLabel" destination="Kuc-3f-VCq" id="oaR-uB-4Xu"/>
+                <outlet property="confirmPasswordEyeButton" destination="0t6-AJ-d9V" id="tBb-pv-oPn"/>
+                <outlet property="confirmPasswordTextField" destination="rd7-tL-Wlr" id="AEO-eu-mK8"/>
+                <outlet property="emailConfirmButton" destination="YbX-xq-Wpb" id="S7q-ae-JOs"/>
+                <outlet property="emailContainerView" destination="eJz-7E-be2" id="kyJ-Ls-sGP"/>
+                <outlet property="emailErrorLabel" destination="THS-rq-43i" id="8EO-zQ-vBF"/>
+                <outlet property="emailTextField" destination="P4n-WZ-4ZX" id="sFU-Ch-Y0H"/>
+                <outlet property="nextButton" destination="YQY-q6-m7k" id="Q4m-Zz-4Qb"/>
+                <outlet property="passwordContainerView" destination="fyT-rt-ESj" id="9pW-VS-Z3U"/>
+                <outlet property="passwordErrorLabel" destination="Oe5-Wu-aLL" id="QKc-hk-L4L"/>
+                <outlet property="passwordEyeButton" destination="m96-uJ-hxH" id="OZU-O5-Zby"/>
                 <outlet property="passwordTextField" destination="bdG-Hs-wTu" id="aLz-mp-Hqx"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -74,6 +85,9 @@
                             <rect key="frame" x="10" y="12" width="341" height="18"/>
                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="kkB-zP-37I"/>
+                            </connections>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -102,6 +116,9 @@
                             <rect key="frame" x="10" y="12" width="255" height="18"/>
                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                             <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="E29-TQ-0HB"/>
+                            </connections>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -160,6 +177,9 @@
                             <rect key="frame" x="10" y="12" width="341" height="16"/>
                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                             <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="bsw-Xp-Ds6"/>
+                            </connections>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m96-uJ-hxH">
                             <rect key="frame" x="329" y="8" width="24" height="24"/>
@@ -200,6 +220,9 @@
                             <rect key="frame" x="10" y="12" width="341" height="16"/>
                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                             <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="rBX-G6-p3U"/>
+                            </connections>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0t6-AJ-d9V">
                             <rect key="frame" x="329" y="8" width="24" height="24"/>

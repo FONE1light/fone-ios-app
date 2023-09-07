@@ -11,9 +11,14 @@ import RxSwift
 class EmailLoginViewModel: CommonViewModel {
     var disposeBag = DisposeBag()
     var emailTextSubject = BehaviorSubject<String>(value: "")
-    var emailIsValidSubject = PublishSubject<Bool>()
     var passwordIsEmptySubject = BehaviorSubject<Bool>(value: true)
     var isKeyboardShowing = false
+    
+    lazy var emailIsValidSubject: Observable<Bool> = {
+        emailTextSubject
+            .filter { $0 != "" }
+            .map { $0.isValidEmail() }
+    }()
     
     lazy var loginButtonEnable: Observable<Bool> = {
         Observable.combineLatest(emailTextSubject, passwordIsEmptySubject) { (email, passwordIsEmpty) -> Bool in
@@ -28,8 +33,8 @@ class EmailLoginViewModel: CommonViewModel {
         self.sceneCoordinator.transition(to: findIDPasswordScene, using: .push, animated: true)
     }
     
-    func emailLogin(emailSignInUserRequest: EmailSignInUserRequest) {
-        userInfoProvider.rx.request(.emailSignIn(emailSignInUserRequest: emailSignInUserRequest))
+    func emailLogin(emailSignInInfo: EmailSignInInfo) {
+        userInfoProvider.rx.request(.emailSignIn(emailSignInInfo: emailSignInInfo))
             .mapObject(EmailSignInResponseModel.self)
             .asObservable()
             .withUnretained(self)
@@ -38,6 +43,9 @@ class EmailLoginViewModel: CommonViewModel {
                 print("response: \(response)")
                 if response.result == "SUCCESS" {
                     // TODO: 로그인 성공 후 처리
+                    
+                    UserDefaults.standard.set(response.data?.token.accessToken, forKey: "accessToken")
+                    
                 } else {
                     response.message.toast(isKeyboardShowing: self.isKeyboardShowing)
                 }

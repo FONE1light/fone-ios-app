@@ -10,6 +10,7 @@ import RxSwift
 
 class SignUpViewModel: CommonViewModel {
     var disposeBag = DisposeBag()
+    var signInInfo: EmailSignInInfo?
     
     func fetchMyPage() {
         userInfoProvider.rx.request(.fetchMyPage)

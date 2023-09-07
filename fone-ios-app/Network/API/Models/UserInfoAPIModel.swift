@@ -54,8 +54,8 @@ struct NicknameInfo: Codable {
     let isDuplicate: Bool
 }
 
-// MARK: - EmailSignInUserRequest
-struct EmailSignInUserRequest: Codable {
+// MARK: - EmailSignInInfo
+struct EmailSignInInfo: Codable {
     let email: String
     let password: String
 }
@@ -63,13 +63,13 @@ struct EmailSignInUserRequest: Codable {
 // MARK: - EmailSignInResponseModel
 struct EmailSignInResponseModel: Codable {
     let result: String
-    let data: EmailSignInInfo?
+    let data: EmailSignInData?
     let message: String
     let errorCode: String?
 }
 
-// MARK: - EmailSignInInfo
-struct EmailSignInInfo: Codable {
+// MARK: - EmailSignInData
+struct EmailSignInData: Codable {
     let user: User
     let token: TokenModel
 }
