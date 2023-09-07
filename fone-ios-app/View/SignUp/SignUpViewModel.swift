@@ -40,6 +40,7 @@ class SignUpViewModel: CommonViewModel {
     }
     
     func checkNicknameDuplication(_ nickname: String) {
+        guard nickname.count > 3 else { return }
         userInfoProvider.rx.request(.checkNicknameDuplication(nickname: nickname))
             .mapObject(CheckNicknameDuplicationModel.self)
             .asObservable()
@@ -49,12 +50,14 @@ class SignUpViewModel: CommonViewModel {
                 print("response: \(response)")
                 if response.data.isDuplicate {
                     owner.nicknameAvailbleState.accept(.duplicated)
+                    "사용할 수 있는 닉네임입니다.".toast() // TODO: 토스트 표시
                 } else {
                     owner.nicknameAvailbleState.accept(.available)
                 }
                 
             }, onError: { error in
                 print("\(error)")
+                self.nicknameAvailbleState.accept(.available)
             }).disposed(by: disposeBag)
     }
 }
