@@ -63,11 +63,11 @@ class ToastManager {
             }
         case .withButton:
             toast.snp.makeConstraints {
-                $0.bottom.equalTo(Application.keyWindow).inset(102)
+                $0.bottom.equalTo(Application.keyWindow.safeAreaLayoutGuide).inset(102)
             }
         case .withNothing:
             toast.snp.makeConstraints {
-                $0.bottom.equalTo(Application.keyWindow).inset(54)
+                $0.bottom.equalTo(Application.keyWindow.safeAreaLayoutGuide).inset(54)
             }
         }
     }
