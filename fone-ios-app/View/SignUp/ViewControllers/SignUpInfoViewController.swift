@@ -229,8 +229,8 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
     }
     
     private func setNavigationBar() {
-        self.navigationItem.title = "회원가입"
-        self.navigationItem.backButtonTitle = "hi"
+        self.navigationItem.titleView = NavigationTitleView(title: "회원가입")
+        self.navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem() //UIBarButtonItem(customView: arrowLeftView)
     }
     
     private func setUI() {
