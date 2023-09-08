@@ -11,7 +11,9 @@ enum Scene {
     //    case home()
     case login(LoginViewModel)
     case findIDPassword(FindIDPasswordViewModel)
-    case signUp(SignUpViewModel)
+    case signUpSelection(SignUpViewModel) // 회원가입1
+    case signUpInfo(SignUpViewModel) // 회원가입2
+    case signUpPhoneNumber(SignUpViewModel) // 회원가입3
     case question(QuestionViewModel)
     case emailLogin(EmailLoginViewModel)
     case emailSignUp(EmailSignUpViewModel)
@@ -40,8 +42,26 @@ extension Scene {
             
             return findIDPasswordVC
             
-        case .signUp(let signUpViewModel):
-            var signUpVC = SignUpViewController()
+        case .signUpSelection(let signUpViewModel):
+            var signUpVC = SignUpSelectionViewController()
+
+            DispatchQueue.main.async {
+                signUpVC.bind(viewModel: signUpViewModel)
+            }
+
+            return signUpVC
+            
+        case .signUpInfo(let signUpViewModel):
+            var signUpVC = SignUpInfoViewController()
+            
+            DispatchQueue.main.async {
+                signUpVC.bind(viewModel: signUpViewModel)
+            }
+            
+            return signUpVC
+            
+        case .signUpPhoneNumber(let signUpViewModel):
+            var signUpVC = SignUpPhoneNumberViewController()
             
             DispatchQueue.main.async {
                 signUpVC.bind(viewModel: signUpViewModel)
