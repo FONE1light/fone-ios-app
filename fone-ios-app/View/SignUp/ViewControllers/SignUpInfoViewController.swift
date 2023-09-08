@@ -76,7 +76,6 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
     
     private let maleButton = DefaultButton().then {
         $0.setTitle("남자", for: .normal)
-//        $0.setTitleColor(.red_F43663, for: .normal) // TODO: textColor 적용
         $0.setTitleColor(.gray_D9D9D9, for: .normal)
         $0.titleLabel?.font = .font_r(14)
         $0.borderColor = .gray_D9D9D9
@@ -86,7 +85,7 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
     
     private let femaleButton = DefaultButton().then {
         $0.setTitle("여자", for: .normal)
-        $0.setTitleColor(.gray_D9D9D9, for: .normal) // TODO: textColor 적용
+        $0.setTitleColor(.gray_D9D9D9, for: .normal)
         $0.titleLabel?.font = .font_r(14)
         $0.borderColor = .gray_D9D9D9
         $0.borderWidth = 1
@@ -224,8 +223,14 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
         super.viewDidLoad()
 
         setUI()
+        setNavigationBar()
         setConstraints()
         
+    }
+    
+    private func setNavigationBar() {
+        self.navigationItem.title = "회원가입"
+        self.navigationItem.backButtonTitle = "hi"
     }
     
     private func setUI() {
@@ -288,8 +293,7 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
         
         stackView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
-            $0.centerY.equalToSuperview()
-//            $0.top.equalToSuperview().offset(40) // TODO: 노치 처리 후
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(40)
         }
         
         duplicatedWarningLabel.snp.makeConstraints {
@@ -316,6 +320,10 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
             $0.leading.equalToSuperview()
         }
         
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
+        nicknameTextField.leftView = paddingView
+        nicknameTextField.leftViewMode = .always
+        
         nicknameTextField.snp.makeConstraints {
             $0.top.equalTo(nicknameLabel.snp.bottom).offset(8)
             $0.leading.bottom.equalToSuperview()
@@ -339,6 +347,10 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
             $0.top.equalTo(birthLabel.snp.bottom).offset(1)
             $0.leading.equalToSuperview()
         }
+        
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
+        birthTextField.leftView = paddingView
+        birthTextField.leftViewMode = .always
         
         birthTextField.snp.makeConstraints {
             $0.top.equalTo(birthSubtitleLabel.snp.bottom).offset(8)
