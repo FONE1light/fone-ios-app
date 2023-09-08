@@ -8,7 +8,6 @@
 import UIKit
 import Then
 
-// TODO: Notch 여백 설정
 class SignUpSelctionViewController: UIViewController, ViewModelBindableType {
 
     var viewModel: SignUpViewModel! // FIXME: ! 없이 할 방법
@@ -33,13 +32,13 @@ class SignUpSelctionViewController: UIViewController, ViewModelBindableType {
     let jobSelectionBlock = SelectionBlock().then {
         $0.setTitle("직업 선택")
         $0.setSubtitle("(추후 변경 가능)")
-        $0.setSelections(["ACTOR", "STAFF"])
+        $0.setSelections(["ACTOR", "STAFF", "NORMAL", "HUNTER"])
     }
     
     let interestSelectionBlock = SelectionBlock().then {
         $0.setTitle("관심사 선택")
         $0.setSubtitle("(중복 선택 가능)")
-        $0.setSelections(["장편영화", "단편영화", "독립영화"])
+        $0.setSelections(["장편영화", "단편영화", "독립영화", "웹 드라마", "뮤비 / CF", "OTT/TV 드라마", "유튜브", "홍보 / 바이럴", "기타"])
     }
     
     let button = UIButton().then {
@@ -96,7 +95,7 @@ class SignUpSelctionViewController: UIViewController, ViewModelBindableType {
         
         stackView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
-            $0.centerY.equalToSuperview()
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(40)
         }
         
         jobSelectionBlock.snp.makeConstraints {
