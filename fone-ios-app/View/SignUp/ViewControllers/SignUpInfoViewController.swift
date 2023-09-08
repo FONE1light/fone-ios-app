@@ -320,10 +320,6 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
             $0.leading.equalToSuperview()
         }
         
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
-        nicknameTextField.leftView = paddingView
-        nicknameTextField.leftViewMode = .always
-        
         nicknameTextField.snp.makeConstraints {
             $0.top.equalTo(nicknameLabel.snp.bottom).offset(8)
             $0.leading.bottom.equalToSuperview()
@@ -347,10 +343,6 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
             $0.top.equalTo(birthLabel.snp.bottom).offset(1)
             $0.leading.equalToSuperview()
         }
-        
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
-        birthTextField.leftView = paddingView
-        birthTextField.leftViewMode = .always
         
         birthTextField.snp.makeConstraints {
             $0.top.equalTo(birthSubtitleLabel.snp.bottom).offset(8)

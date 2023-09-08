@@ -30,6 +30,10 @@ class DefaultTextField: UITextField {
     }
     
     private func setContraints() {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+        
         self.snp.makeConstraints {
             $0.height.equalTo(40)
         }
