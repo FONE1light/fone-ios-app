@@ -110,6 +110,8 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
         $0.image = UIImage(named: "profileImage")
     }
     
+    private let button = BottomButton()
+    
     func bindViewModel() {
         // TextFields
         nicknameTextField.rx.controlEvent(.editingChanged)
@@ -183,6 +185,13 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
                 }
             }.disposed(by: disposeBag) // rx로?
         
+        button.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                let signUpScene = Scene.signUpPhoneNumber(owner.viewModel)
+                owner.viewModel.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
+            }.disposed(by: rx.disposeBag)
+        
         // ViewModel
         viewModel.nicknameAvailbleState
             .distinctUntilChanged()
@@ -240,6 +249,7 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
         
         baseView.addSubview(stackView)
         baseView.addSubview(duplicatedWarningLabel)
+        baseView.addSubview(button)
         
         [
             stepIndicator,
@@ -311,6 +321,12 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
 
         profileBlock.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
+        }
+        
+        button.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-38)
+            $0.height.equalTo(48)
         }
     }
     

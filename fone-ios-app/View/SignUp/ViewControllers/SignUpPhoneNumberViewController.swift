@@ -52,7 +52,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     
     let agreementBlock = UIView()
     
-    
+    private let button = BottomButton(title: "회원가입")
     
     func bindViewModel() {
         sendAuthNumberButton.rx.tap
@@ -61,6 +61,13 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
             print("clicked")
             owner.viewModel.checkNicknameDuplication("테스트닉네임")
         }.disposed(by: rx.disposeBag)
+        
+        button.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                let signUpScene = Scene.signUpSuccess(owner.viewModel)
+                owner.viewModel.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
+            }.disposed(by: rx.disposeBag)
     }
     
     override func viewDidLoad() {
@@ -77,6 +84,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         self.view.addSubview(baseView)
         
         baseView.addSubview(stackView)
+        baseView.addSubview(button)
         
         [
             stepIndicator,
@@ -120,6 +128,12 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         
         agreementBlock.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
+        }
+        
+        button.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-38)
+            $0.height.equalTo(48)
         }
 
     }
