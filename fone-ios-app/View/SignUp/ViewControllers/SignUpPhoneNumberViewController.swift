@@ -51,7 +51,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     
     let agreementBlock = UIView()
     
-    private let button = BottomButton(title: "회원가입")
+    private let button = CustomButton("회원가입", type: .bottom)
     
     func bindViewModel() {
         sendAuthNumberButton.rx.tap
