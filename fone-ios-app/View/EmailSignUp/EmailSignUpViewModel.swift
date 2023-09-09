@@ -41,7 +41,7 @@ class EmailSignUpViewModel: CommonViewModel {
         let signUpViewModel = SignUpViewModel(sceneCoordinator: self.sceneCoordinator)
         signUpViewModel.signInInfo = EmailSignInInfo(email: email, password: password)
         
-        let signUpScene = Scene.signUp(signUpViewModel)
+        let signUpScene = Scene.signUpSelection(signUpViewModel)
         self.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
     }
 }
