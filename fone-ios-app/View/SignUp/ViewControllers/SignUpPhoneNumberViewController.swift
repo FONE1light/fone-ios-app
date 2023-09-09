@@ -8,10 +8,9 @@
 import UIKit
 import Then
 
-// TODO: Notch 여백 설정
 class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
 
-    var viewModel: SignUpViewModel! // FIXME: ! 없이 할 방법
+    var viewModel: SignUpViewModel!
     
     let baseView = UIView().then {
         $0.backgroundColor = .white_FFFFFF
@@ -119,7 +118,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         stackView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.centerY.equalToSuperview()
-//            $0.top.equalToSuperview().offset(40)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(40)
         }
         
         phoneNumberBlock.snp.makeConstraints {

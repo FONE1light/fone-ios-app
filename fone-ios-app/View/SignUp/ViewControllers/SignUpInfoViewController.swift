@@ -9,11 +9,10 @@ import UIKit
 import Then
 import RxSwift
 
-// TODO: Notch 여백 설정
 class SignUpInfoViewController: UIViewController, ViewModelBindableType {
 
     var disposeBag = DisposeBag()
-    var viewModel: SignUpViewModel! // FIXME: ! 없이 할 방법
+    var viewModel: SignUpViewModel!
     
     let baseView = UIView().then {
         $0.backgroundColor = .white_FFFFFF

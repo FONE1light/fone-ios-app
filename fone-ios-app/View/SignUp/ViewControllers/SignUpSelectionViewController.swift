@@ -10,7 +10,7 @@ import Then
 
 class SignUpSelectionViewController: UIViewController, ViewModelBindableType {
 
-    var viewModel: SignUpViewModel! // FIXME: ! 없이 할 방법
+    var viewModel: SignUpViewModel!
     
     let baseView = UIView().then {
         $0.backgroundColor = .white_FFFFFF
