@@ -96,7 +96,9 @@ extension Scene {
                 emailSignUpVC.bind(viewModel: emailSignUpViewModel)
             }
             
-            return emailSignUpVC
+            let emailSignUpNav = UINavigationController(rootViewController: emailSignUpVC)
+            
+            return emailSignUpNav
         }
     }
 }

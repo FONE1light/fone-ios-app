@@ -69,7 +69,6 @@ class QuestionViewController: UIViewController, ViewModelBindableType {
         viewModel.keyboardHeightBehaviorSubject
             .withUnretained(self)
             .subscribe(onNext: { (owner, keyboardHeight) in
-                print(keyboardHeight)
                 owner.scrollView.contentInset.bottom = keyboardHeight
                 owner.scrollView.verticalScrollIndicatorInsets.bottom = keyboardHeight
                 owner.viewModel.isKeyboardShowing = (keyboardHeight != 0)
@@ -95,8 +94,7 @@ class QuestionViewController: UIViewController, ViewModelBindableType {
             .distinctUntilChanged()
             .withUnretained(self)
             .subscribe(onNext: { (owner, isEnabled) in
-                owner.submitButton.isEnabled = isEnabled
-                owner.submitButton.backgroundColor = owner.submitButton.isEnabled ? UIColor.red_CE0B39 : UIColor.gray_C5C5C5
+                owner.submitButton.setEnabled(isEnabled: isEnabled)
                 if isEnabled {
                     print("====제출 가능👌")
                 } else {
