@@ -51,7 +51,6 @@ class EmailLoginViewModel: CommonViewModel {
                     response.data?.token.accessToken.toast(isKeyboardShowing: self.isKeyboardShowing)
                 } else {
                     self.showLoginErrorAlertSubject.onNext(())
-                    response.message.toast(isKeyboardShowing: self.isKeyboardShowing)
                 }
             }).disposed(by: disposeBag)
     }
