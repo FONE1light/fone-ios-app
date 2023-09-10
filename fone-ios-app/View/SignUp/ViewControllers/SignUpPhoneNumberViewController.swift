@@ -16,11 +16,6 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         $0.backgroundColor = .white_FFFFFF
     }
     
-    let stackView = UIStackView().then {
-        $0.axis = .vertical
-        $0.alignment = .leading
-    }
-    
     let stepIndicator = StepIndicator(.third)
     
     let titleLabel = UILabel().then {
@@ -39,17 +34,29 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     
     private let phoneNumberTextField = DefaultTextField(placeHolder: "'-' 빼고 숫자만 입력")
     
-    private let sendAuthNumberButton = UIButton().then {
-        $0.setTitle("인증번호 발송", for: .normal)
-        $0.titleLabel?.font = .font_r(14)
-        $0.titleLabel?.textColor = .gray_D9D9D9 // TODO: 왜 색깔 적용 안되고 white인지
-//        $0.backgroundColor = .black//.gray_D9D9D9
-        $0.borderColor = .gray_D9D9D9
-        $0.borderWidth = 1
-        $0.cornerRadius = 5
+    private let sendAuthNumberButton = CustomButton("인증번호 발송", type: .auth).then {
+        $0.isEnabled = false
     }
     
-    let agreementBlock = UIView()
+    let authNumberBlock = UIView()
+    
+    private let authNumberTextField = DefaultTextField(placeHolder: "인증번호 6자리")
+    
+    private let checkAuthNumberButton = CustomButton(type: .auth).then {
+        $0.setTitle("인증번호 확인", for: .normal)
+        $0.isEnabled = false
+    }
+    
+    private let authNumberLabel = UILabel().then {
+        $0.text = "인증번호를 발송했습니다. (유효시간 3분)\n인증번호가 오지 않는다면, 통신사 스팸 차단 서비스 혹은 휴대폰 번호 차단 여부를 확인해주세요."
+        $0.font = .font_r(12)
+        $0.textColor = .gray_555555
+        $0.numberOfLines = 0
+    }
+    
+    let agreementBlock = UIView().then {
+        $0.backgroundColor = .gray_161616
+    }
     
     private let button = CustomButton("회원가입", type: .bottom)
     
@@ -74,7 +81,6 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
 
         setUI()
         setConstraints()
-        
     }
     
     private func setUI() {
@@ -82,51 +88,65 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         
         self.view.addSubview(baseView)
         
-        baseView.addSubview(stackView)
-        baseView.addSubview(button)
-        
         [
             stepIndicator,
-            EmptyView(height: 14),
             titleLabel,
-            EmptyView(height: 32),
             phoneNumberBlock,
-            EmptyView(height: 178),
-            agreementBlock
+            authNumberBlock,
+            agreementBlock,
+            button
         ]
-            .forEach {
-            stackView.addArrangedSubview($0)
-        }
+            .forEach { baseView.addSubview($0) }
         
         [
             phoneNumberLabel,
             phoneNumberTextField,
-            sendAuthNumberButton
+            sendAuthNumberButton,
         ]
             .forEach { phoneNumberBlock.addSubview($0) }
         
+        [
+            authNumberLabel,
+            authNumberTextField,
+            checkAuthNumberButton,
+        ]
+            .forEach { authNumberBlock.addSubview($0) }
+        
         self.setupPhoneNumberBlock()
+        self.setupAuthNumberBlock()
+        self.setupAgreementBlock()
         
     }
     
     private func setConstraints() {
         baseView.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(40)
+            $0.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(16)
         }
         
-        stackView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.centerY.equalToSuperview()
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(40)
+        stepIndicator.snp.makeConstraints {
+            $0.top.leading.equalToSuperview()
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(stepIndicator.snp.bottom).offset(14)
         }
         
         phoneNumberBlock.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(32)
             $0.leading.trailing.equalToSuperview()
+        }
+        
+        authNumberBlock.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(phoneNumberBlock.snp.bottom).offset(40)
         }
         
         agreementBlock.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(authNumberBlock.snp.bottom).offset(49)
+            $0.height.equalTo(80) // TODO: 삭제
         }
         
         button.snp.makeConstraints {
@@ -138,9 +158,10 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     }
     
     private func setupPhoneNumberBlock() {
+        
         phoneNumberLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
         }
         
         phoneNumberTextField.snp.makeConstraints {
@@ -152,8 +173,33 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
             $0.top.bottom.equalTo(phoneNumberTextField)
             $0.leading.equalTo(phoneNumberTextField.snp.trailing).offset(4)
             $0.trailing.equalToSuperview()
-            $0.width.equalTo(82)
+            $0.width.equalTo(94)
         }
+    }
+    
+    private func setupAuthNumberBlock() {
+        authNumberTextField.snp.makeConstraints {
+            $0.top.leading.equalToSuperview()
+        }
+        
+        checkAuthNumberButton.snp.makeConstraints {
+            $0.top.bottom.equalTo(authNumberTextField)
+            $0.leading.equalTo(authNumberTextField.snp.trailing).offset(4)
+            $0.trailing.equalToSuperview()
+            $0.width.equalTo(94)
+        }
+        
+        authNumberLabel.snp.makeConstraints {
+            $0.top.equalTo(authNumberTextField.snp.bottom).offset(4)
+            $0.leading.equalTo(authNumberTextField.snp.leading)
+            $0.trailing.equalTo(checkAuthNumberButton.snp.trailing)
+            $0.bottom.equalToSuperview()
+        }
+    }
+    
+    private func setupAgreementBlock() {
+//        agreeButton.setImage(UIImage(named: "checkboxes_off"), for: .normal)
+//        agreeButton.setImage(UIImage(named: "checkboxes_on"), for: .selected)
     }
     
     
