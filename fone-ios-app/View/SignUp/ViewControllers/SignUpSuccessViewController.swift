@@ -8,10 +8,9 @@
 import UIKit
 import Then
 
-// TODO: Notch 여백 설정
 class SignUpSuccessViewController: UIViewController, ViewModelBindableType {
 
-    var viewModel: SignUpViewModel! // FIXME: ! 없이 할 방법
+    var viewModel: SignUpViewModel!
     
     let checkView = UIView().then {
         $0.cornerRadius = 38
@@ -48,9 +47,14 @@ class SignUpSuccessViewController: UIViewController, ViewModelBindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.isNavigationBarHidden = true
         setUI()
         setConstraints()
 
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
     }
     
     private func setUI() {
@@ -70,7 +74,8 @@ class SignUpSuccessViewController: UIViewController, ViewModelBindableType {
         }
         
         checkView.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(264)
+            $0.centerX.equalToSuperview()
             $0.size.equalTo(76)
         }
         

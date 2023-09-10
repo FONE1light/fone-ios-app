@@ -25,11 +25,10 @@
 		36BCC7E02AA31A350060E35A /* SignUpInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BCC7DF2AA31A350060E35A /* SignUpInfoViewController.swift */; };
 		36BCC7E22AA328AB0060E35A /* SignUpPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BCC7E12AA328AB0060E35A /* SignUpPhoneNumberViewController.swift */; };
 		36BCC7E42AA32B530060E35A /* SignUpSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BCC7E32AA32B530060E35A /* SignUpSuccessViewController.swift */; };
+		36BCC7E62AA5E0180060E35A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BCC7E52AA5E0180060E35A /* CustomButton.swift */; };
 		36D293D22A961E7300171C77 /* SignUpSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D293D12A961E7300171C77 /* SignUpSelectionViewController.swift */; };
 		36D293D42A961FDB00171C77 /* SelectionBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D293D32A961FDB00171C77 /* SelectionBlock.swift */; };
 		36D293D62A96270900171C77 /* StepIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D293D52A96270900171C77 /* StepIndicator.swift */; };
-		36E2693B2AAAE01C0034B485 /* BottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2693A2AAAE01C0034B485 /* BottomButton.swift */; };
-		36BCC7E62AA5E0180060E35A /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BCC7E52AA5E0180060E35A /* DefaultButton.swift */; };
 		36E2693F2AAAEEDA0034B485 /* NavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2693E2AAAEEDA0034B485 /* NavigationTitleView.swift */; };
 		36E269412AAAEF420034B485 /* NavigationLeftBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E269402AAAEF420034B485 /* NavigationLeftBarButtonItem.swift */; };
 		36F50AA92A962C9800991C9B /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F50AA82A962C9800991C9B /* EmptyView.swift */; };
@@ -108,11 +107,10 @@
 		36BCC7DF2AA31A350060E35A /* SignUpInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInfoViewController.swift; sourceTree = "<group>"; };
 		36BCC7E12AA328AB0060E35A /* SignUpPhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPhoneNumberViewController.swift; sourceTree = "<group>"; };
 		36BCC7E32AA32B530060E35A /* SignUpSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSuccessViewController.swift; sourceTree = "<group>"; };
+		36BCC7E52AA5E0180060E35A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		36D293D12A961E7300171C77 /* SignUpSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSelectionViewController.swift; sourceTree = "<group>"; };
 		36D293D32A961FDB00171C77 /* SelectionBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionBlock.swift; sourceTree = "<group>"; };
 		36D293D52A96270900171C77 /* StepIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepIndicator.swift; sourceTree = "<group>"; };
-		36E2693A2AAAE01C0034B485 /* BottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButton.swift; sourceTree = "<group>"; };
-		36BCC7E52AA5E0180060E35A /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
 		36E2693E2AAAEEDA0034B485 /* NavigationTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTitleView.swift; sourceTree = "<group>"; };
 		36E269402AAAEF420034B485 /* NavigationLeftBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLeftBarButtonItem.swift; sourceTree = "<group>"; };
 		36F50AA82A962C9800991C9B /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
@@ -300,8 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				36F50AA82A962C9800991C9B /* EmptyView.swift */,
-				36E2693A2AAAE01C0034B485 /* BottomButton.swift */,
-				36BCC7E52AA5E0180060E35A /* DefaultButton.swift */,
+				36BCC7E52AA5E0180060E35A /* CustomButton.swift */,
 				36E2693E2AAAEEDA0034B485 /* NavigationTitleView.swift */,
 				36E269402AAAEF420034B485 /* NavigationLeftBarButtonItem.swift */,
 			);
@@ -585,7 +582,7 @@
 				362866972A8E3D8200CD42BC /* Response+Codable.swift in Sources */,
 				ABA47FF72A850AE600B64403 /* UIView+Extension.swift in Sources */,
 				AB49A33C2A810CAA00748484 /* ViewModelBindableType.swift in Sources */,
-				36BCC7E62AA5E0180060E35A /* DefaultButton.swift in Sources */,
+				36BCC7E62AA5E0180060E35A /* CustomButton.swift in Sources */,
 				AB79B3BC2A9E29C4008EBAA2 /* QuestionViewController.swift in Sources */,
 				AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */,
 				3628667B2A8B670200CD42BC /* SignUpViewController.swift in Sources */,
@@ -599,7 +596,6 @@
 				ABAFA3392A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift in Sources */,
 				AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */,
 				362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */,
-				36E2693B2AAAE01C0034B485 /* BottomButton.swift in Sources */,
 				3628669A2A8E3E3700CD42BC /* UserInfoAPIModel.swift in Sources */,
 				ABAFA33B2A9F612900D50BAF /* QuestionInfoProvider.swift in Sources */,
 				36BCC7E42AA32B530060E35A /* SignUpSuccessViewController.swift in Sources */,

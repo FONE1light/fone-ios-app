@@ -14,6 +14,7 @@ enum Scene {
     case signUpSelection(SignUpViewModel) // 회원가입1
     case signUpInfo(SignUpViewModel) // 회원가입2
     case signUpPhoneNumber(SignUpViewModel) // 회원가입3
+    case signUpSuccess(SignUpViewModel) // 회원가입 완료
     case question(QuestionViewModel)
     case emailLogin(EmailLoginViewModel)
     case emailSignUp(EmailSignUpViewModel)
@@ -62,6 +63,15 @@ extension Scene {
             
         case .signUpPhoneNumber(let signUpViewModel):
             var signUpVC = SignUpPhoneNumberViewController()
+            
+            DispatchQueue.main.async {
+                signUpVC.bind(viewModel: signUpViewModel)
+            }
+            
+            return signUpVC
+            
+        case .signUpSuccess(let signUpViewModel):
+            var signUpVC = SignUpSuccessViewController()
             
             DispatchQueue.main.async {
                 signUpVC.bind(viewModel: signUpViewModel)
