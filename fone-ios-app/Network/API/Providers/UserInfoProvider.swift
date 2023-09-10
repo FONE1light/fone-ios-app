@@ -13,7 +13,7 @@ import RxSwift
 enum UserInfoTarget {
     case fetchMyPage
     case checkNicknameDuplication(nickname: String)
-    case emailSignIn(emailSignInUserRequest: EmailSignInUserRequest)
+    case emailSignIn(emailSignInInfo: EmailSignInInfo)
 }
 
 extension UserInfoTarget: TargetType {
@@ -46,8 +46,8 @@ extension UserInfoTarget: TargetType {
         case .checkNicknameDuplication(let nickname):
             let param = ["nickname": nickname]
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
-        case .emailSignIn(let emailSignInUserRequest):
-            return .requestJSONEncodable(emailSignInUserRequest)
+        case .emailSignIn(let emailSignInInfo):
+            return .requestJSONEncodable(emailSignInInfo)
         default:
             return .requestPlain
         }

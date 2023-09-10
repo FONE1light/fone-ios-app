@@ -19,11 +19,11 @@ class SelectionBlock: UIView {
         $0.textColor = .gray_9E9E9E
     }
     
-    private var selectionList: [String] = ["aa","bb"]
+    private var selectionList: [String] = []
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 10
         let collectionView = UICollectionView(
             frame: .zero,
@@ -37,8 +37,7 @@ class SelectionBlock: UIView {
 
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
-        
-        collectionView.backgroundColor = .gray_F8F8F8
+    
         return collectionView
     }()
     
@@ -72,7 +71,8 @@ class SelectionBlock: UIView {
         collectionView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
-            $0.height.greaterThanOrEqualTo(33) // TODO: 다른 높이 지정 방식 없는지 확인
+//            $0.height.greaterThanOrEqualTo(33) // TODO: 다른 높이 지정 방식 없는지 확인
+            $0.height.greaterThanOrEqualTo(75) //equalTo(70)
             $0.bottom.equalToSuperview()
         }
     }
@@ -106,6 +106,7 @@ extension SelectionBlock {
 }
 
 extension SelectionBlock: UICollectionViewDataSource {
+    
     // MARK: cell count
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return selectionList.count
@@ -157,7 +158,7 @@ extension SelectionBlock: UICollectionViewDelegateFlowLayout {
         let collectionViewWidth = collectionView.bounds.width
 
         let cellItemForRow: CGFloat = 3
-        let minimumSpacing: CGFloat = 2
+        let minimumSpacing: CGFloat = 8
 
         let width = (collectionViewWidth - (cellItemForRow - 1) * minimumSpacing) / cellItemForRow
 
@@ -166,9 +167,10 @@ extension SelectionBlock: UICollectionViewDelegateFlowLayout {
     
     // MARK: minimumSpacing
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 2
+        return 3
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 2
+        return 9
     }
 }

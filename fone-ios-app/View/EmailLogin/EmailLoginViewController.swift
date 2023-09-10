@@ -42,8 +42,8 @@ class EmailLoginViewController: UIViewController, ViewModelBindableType {
             .subscribe(onNext: { _ in
                 let email = self.emailTextField.text ?? ""
                 let password = self.passwordTextField.text ?? ""
-                let signInRequest = EmailSignInUserRequest(email: email, password: password)
-                self.viewModel.emailLogin(emailSignInUserRequest: signInRequest)
+                let signInInfo = EmailSignInInfo(email: email, password: password)
+                self.viewModel.emailLogin(emailSignInInfo: signInInfo)
             }).disposed(by: rx.disposeBag)
         
         findIDPasswordButton.rx.tap
@@ -69,24 +69,12 @@ class EmailLoginViewController: UIViewController, ViewModelBindableType {
                 owner.loginButton.setEnabled(isEnabled: isEnabled)
             }).disposed(by: rx.disposeBag)
         
-        viewModel.emailTextSubject
-            .distinctUntilChanged()
-            .withUnretained(self)
-            .subscribe(onNext: { (owner, email) in
-                owner.viewModel.emailIsValidSubject.onNext(email.isValidEmail())
-            }).disposed(by: rx.disposeBag)
-        
         viewModel.emailIsValidSubject
             .distinctUntilChanged()
             .withUnretained(self)
             .subscribe(onNext: { (owner, isEmailValid) in
                 owner.emailErrorMessage.isHidden = isEmailValid
-                if isEmailValid {
-                    owner.emailContainerView.borderWidth = 0
-                } else {
-                    owner.emailContainerView.borderWidth = 1
-                    owner.emailContainerView.borderColor = .crimson_FF5841
-                }
+                owner.emailContainerView.setTextFieldErrorBorder(showError: !isEmailValid)
             })
             .disposed(by: rx.disposeBag)
     }

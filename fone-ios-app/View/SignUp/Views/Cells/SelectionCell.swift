@@ -32,7 +32,7 @@ class SelectionCell: UICollectionViewCell {
     
     private func setupUI() {
         self.addSubview(label)
-        self.cornerRadius = 15 // TODO: 정확한 값 확인 후 수정
+        self.cornerRadius = 16
         
         label.snp.makeConstraints {
             $0.top.bottom.equalToSuperview().inset(8)

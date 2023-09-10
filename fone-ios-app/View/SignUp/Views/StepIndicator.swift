@@ -7,7 +7,6 @@
 
 import UIKit
 
-// TODO: SignUpStep 타입 이용해서 순서 변경
 enum SignUpStep {
     case first
     case second
@@ -41,8 +40,18 @@ class StepIndicator: UIStackView {
         self.axis = .horizontal
         self.spacing = 8
         
-        [currentStep, otherStep1, otherStep2]
-            .forEach { self.addArrangedSubview($0) }
+        var steps = [otherStep1, otherStep2]
+        
+        switch step {
+        case .first:
+            steps.insert(currentStep, at: 0)
+        case .second:
+            steps.insert(currentStep, at: 1)
+        case .third:
+            steps.insert(currentStep, at: 2)
+        }
+        
+        steps.forEach { self.addArrangedSubview($0) }
     }
     
     private func setConstraints() {
