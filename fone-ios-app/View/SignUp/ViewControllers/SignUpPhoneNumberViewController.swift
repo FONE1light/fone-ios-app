@@ -7,10 +7,11 @@
 
 import UIKit
 import Then
+import SnapKit
 
 class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
 
-    var viewModel: SignUpViewModel!
+    var viewModel: SignUpPhoneNumberViewModel!
     
     let baseView = UIView().then {
         $0.backgroundColor = .white_FFFFFF
@@ -58,6 +59,14 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         $0.backgroundColor = .gray_161616
     }
     
+    private lazy var tableView = UITableView().then {
+        $0.showsVerticalScrollIndicator = false
+        $0.backgroundColor = .yellow
+//        $0.delegate = self
+        $0.dataSource = self
+        $0.register(with: TermsCell.self)
+    }
+    
     private let button = CustomButton("회원가입", type: .bottom)
     
     func bindViewModel() {
@@ -65,13 +74,14 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
             .withUnretained(self)
             .bind { owner, _ in
             print("clicked")
-            owner.viewModel.checkNicknameDuplication("테스트닉네임")
+                
         }.disposed(by: rx.disposeBag)
         
         button.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let signUpScene = Scene.signUpSuccess(owner.viewModel)
+                let successViewModel = SignUpViewModel(sceneCoordinator: self.viewModel.sceneCoordinator)
+                let signUpScene = Scene.signUpSuccess(successViewModel)
                 owner.viewModel.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
             }.disposed(by: rx.disposeBag)
     }
@@ -111,6 +121,11 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
             checkAuthNumberButton,
         ]
             .forEach { authNumberBlock.addSubview($0) }
+        
+        [
+            tableView
+        ]
+            .forEach { agreementBlock.addSubview($0)}
         
         self.setupPhoneNumberBlock()
         self.setupAuthNumberBlock()
@@ -198,9 +213,33 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     }
     
     private func setupAgreementBlock() {
-//        agreeButton.setImage(UIImage(named: "checkboxes_off"), for: .normal)
-//        agreeButton.setImage(UIImage(named: "checkboxes_on"), for: .selected)
+        tableView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.bottom.equalToSuperview() // TODO: 나중에 수정
+        }
     }
     
+    
+}
+
+//extension SignUpPhoneNumberViewController: UITableViewDelegate {
+    
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        //        return self.arrDropDownDataSource.count
+//        return 2
+//    }
+//}
+
+extension SignUpPhoneNumberViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //        return self.arrDropDownDataSource.count
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(for: indexPath) as TermsCell
+        return cell
+    }
     
 }
