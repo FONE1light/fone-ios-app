@@ -8,10 +8,9 @@
 import UIKit
 import Then
 
-// TODO: Notch 여백 설정
 class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
 
-    var viewModel: SignUpViewModel! // FIXME: ! 없이 할 방법
+    var viewModel: SignUpViewModel!
     
     let baseView = UIView().then {
         $0.backgroundColor = .white_FFFFFF
@@ -52,7 +51,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     
     let agreementBlock = UIView()
     
-    
+    private let button = CustomButton("회원가입", type: .bottom)
     
     func bindViewModel() {
         sendAuthNumberButton.rx.tap
@@ -61,6 +60,13 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
             print("clicked")
             owner.viewModel.checkNicknameDuplication("테스트닉네임")
         }.disposed(by: rx.disposeBag)
+        
+        button.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                let signUpScene = Scene.signUpSuccess(owner.viewModel)
+                owner.viewModel.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
+            }.disposed(by: rx.disposeBag)
     }
     
     override func viewDidLoad() {
@@ -77,6 +83,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         self.view.addSubview(baseView)
         
         baseView.addSubview(stackView)
+        baseView.addSubview(button)
         
         [
             stepIndicator,
@@ -111,7 +118,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         stackView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.centerY.equalToSuperview()
-//            $0.top.equalToSuperview().offset(40)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(40)
         }
         
         phoneNumberBlock.snp.makeConstraints {
@@ -120,6 +127,12 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         
         agreementBlock.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
+        }
+        
+        button.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-38)
+            $0.height.equalTo(48)
         }
 
     }

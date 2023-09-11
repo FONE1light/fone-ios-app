@@ -10,7 +10,7 @@ import Then
 
 class SignUpSelectionViewController: UIViewController, ViewModelBindableType {
 
-    var viewModel: SignUpViewModel! // FIXME: ! 없이 할 방법
+    var viewModel: SignUpViewModel!
     
     let baseView = UIView().then {
         $0.backgroundColor = .white_FFFFFF
@@ -41,7 +41,7 @@ class SignUpSelectionViewController: UIViewController, ViewModelBindableType {
         $0.setSelections(["장편영화", "단편영화", "독립영화", "웹 드라마", "뮤비 / CF", "OTT/TV 드라마", "유튜브", "홍보 / 바이럴", "기타"])
     }
   
-    let button = BottomButton()
+    let button = CustomButton("다음", type: .bottom)
     
     func bindViewModel() {
         button.rx.tap

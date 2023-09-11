@@ -9,11 +9,10 @@ import UIKit
 import Then
 import RxSwift
 
-// TODO: Notch 여백 설정
 class SignUpInfoViewController: UIViewController, ViewModelBindableType {
 
     var disposeBag = DisposeBag()
-    var viewModel: SignUpViewModel! // FIXME: ! 없이 할 방법
+    var viewModel: SignUpViewModel!
     
     let baseView = UIView().then {
         $0.backgroundColor = .white_FFFFFF
@@ -48,15 +47,7 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
         $0.textColor = .crimson_FF5841
     }
     
-    private let duplicationCheckButton = DefaultButton().then {
-        $0.setTitle("중복확인", for: .normal)
-        $0.setTitleColor(.gray_D9D9D9, for: .normal)
-        
-        $0.titleLabel?.font = .font_r(14)
-        $0.borderColor = .gray_D9D9D9
-        $0.borderWidth = 1
-        $0.cornerRadius = 5
-    }
+    private let duplicationCheckButton = CustomButton("중복확인", type: .auth)
     
     let birthBlock = UIView()
     
@@ -74,22 +65,12 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
     
     private let birthTextField = DefaultTextField(placeHolder: "YYYY-MM-DD")
     
-    private let maleButton = DefaultButton().then {
-        $0.setTitle("남자", for: .normal)
-        $0.setTitleColor(.gray_D9D9D9, for: .normal)
-        $0.titleLabel?.font = .font_r(14)
-        $0.borderColor = .gray_D9D9D9
-        $0.borderWidth = 1
-        $0.cornerRadius = 5
+    private let maleButton = CustomButton("남자", type: .auth).then {
+        $0.isActivated = false
     }
     
-    private let femaleButton = DefaultButton().then {
-        $0.setTitle("여자", for: .normal)
-        $0.setTitleColor(.gray_D9D9D9, for: .normal)
-        $0.titleLabel?.font = .font_r(14)
-        $0.borderColor = .gray_D9D9D9
-        $0.borderWidth = 1
-        $0.cornerRadius = 5
+    private let femaleButton = CustomButton("여자", type: .auth).then {
+        $0.isActivated = false
     }
     
     let profileBlock = UIView()
@@ -109,6 +90,8 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
     private let profileImage = UIImageView().then {
         $0.image = UIImage(named: "profileImage")
     }
+    
+    private let button = CustomButton("다음", type: .bottom)
     
     func bindViewModel() {
         // TextFields
@@ -138,50 +121,23 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
         maleButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                if owner.maleButton.isActivated.value {
-                    owner.maleButton.deactivate()
-                } else {
-                    owner.maleButton.activate()
-                    owner.femaleButton.deactivate()
-                }
+                owner.maleButton.isActivated = !owner.maleButton.isActivated
+                owner.femaleButton.isActivated = !owner.maleButton.isActivated
             }.disposed(by: rx.disposeBag)
         
         femaleButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                if owner.femaleButton.isActivated.value {
-                    owner.femaleButton.deactivate()
-                } else {
-                    owner.femaleButton.activate()
-                    owner.maleButton.deactivate()
-                }
+                owner.femaleButton.isActivated = !owner.femaleButton.isActivated
+                owner.maleButton.isActivated = !owner.femaleButton.isActivated
             }.disposed(by: rx.disposeBag)
         
-        maleButton.isActivated
-            .distinctUntilChanged()
+        button.rx.tap
             .withUnretained(self)
-            .bind { owner, isActivated in
-                if isActivated {
-                    owner.maleButton.borderColor = .red_F43663
-                    owner.maleButton.setTitleColor(.red_F43663, for: .normal)
-                } else {
-                    owner.maleButton.borderColor = .gray_D9D9D9
-                    owner.maleButton.setTitleColor(.gray_D9D9D9, for: .normal)
-                }
-            }.disposed(by: disposeBag) // rx로?
-        
-        femaleButton.isActivated
-            .distinctUntilChanged()
-            .withUnretained(self)
-            .bind { owner, isActivated in
-                if isActivated {
-                    owner.femaleButton.borderColor = .red_F43663
-                    owner.femaleButton.setTitleColor(.red_F43663, for: .normal)
-                } else {
-                    owner.femaleButton.borderColor = .gray_D9D9D9
-                    owner.femaleButton.setTitleColor(.gray_D9D9D9, for: .normal)
-                }
-            }.disposed(by: disposeBag) // rx로?
+            .bind { owner, _ in
+                let signUpScene = Scene.signUpPhoneNumber(owner.viewModel)
+                owner.viewModel.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
+            }.disposed(by: rx.disposeBag)
         
         // ViewModel
         viewModel.nicknameAvailbleState
@@ -190,29 +146,20 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
             .bind { owner, state in
                 switch state {
                 case .cannotCheck:
-                    owner.duplicationCheckButton.borderColor = .gray_D9D9D9
                     owner.duplicationCheckButton.setTitle("중복확인", for: .normal)
-                    owner.duplicationCheckButton.setTitleColor(.gray_D9D9D9, for: .normal)
-                    owner.nicknameTextField.borderWidth = 0
+                    owner.duplicationCheckButton.isEnabled = false
                     owner.duplicatedWarningLabel.isHidden = true
                 case .canCheck:
-                    owner.duplicationCheckButton.borderColor = .red_F43663
                     owner.duplicationCheckButton.setTitle("중복확인", for: .normal)
-                    owner.duplicationCheckButton.setTitleColor(.red_F43663, for: .normal)
-                    owner.nicknameTextField.borderWidth = 0
+                    owner.duplicationCheckButton.isEnabled = true
                     owner.duplicatedWarningLabel.isHidden = true
                 case .duplicated:
-                    owner.duplicationCheckButton.borderColor = .gray_D9D9D9
                     owner.duplicationCheckButton.setTitle("중복확인", for: .normal)
-                    owner.duplicationCheckButton.setTitleColor(.gray_D9D9D9, for: .normal)
-                    owner.nicknameTextField.borderColor = .crimson_FF5841
-                    owner.nicknameTextField.borderWidth = 1
+                    owner.duplicationCheckButton.isEnabled = false
                     owner.duplicatedWarningLabel.isHidden = false
                 case .available:
-                    owner.duplicationCheckButton.borderColor = .gray_D9D9D9
                     owner.duplicationCheckButton.setTitle("인증완료", for: .normal)
-                    owner.duplicationCheckButton.setTitleColor(.gray_D9D9D9, for: .normal)
-                    owner.nicknameTextField.borderWidth = 0
+                    owner.duplicationCheckButton.isEnabled = false
                     owner.duplicatedWarningLabel.isHidden = true
                 }
             }.disposed(by: self.disposeBag)
@@ -240,6 +187,7 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
         
         baseView.addSubview(stackView)
         baseView.addSubview(duplicatedWarningLabel)
+        baseView.addSubview(button)
         
         [
             stepIndicator,
@@ -311,6 +259,12 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
 
         profileBlock.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
+        }
+        
+        button.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-38)
+            $0.height.equalTo(48)
         }
     }
     
