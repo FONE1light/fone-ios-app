@@ -8,9 +8,11 @@
 import UIKit
 import Then
 import SnapKit
+import RxSwift
 
 class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
 
+    var disposeBag = DisposeBag()
     var viewModel: SignUpPhoneNumberViewModel!
     
     let baseView = UIView().then {
@@ -33,13 +35,17 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         $0.textColor = .gray_161616
     }
     
-    private let phoneNumberTextField = DefaultTextField(placeHolder: "'-' 빼고 숫자만 입력")
+    private let phoneNumberTextField = DefaultTextField(placeHolder: "'-' 빼고 숫자만 입력").then {
+        $0.keyboardType = .numberPad
+    }
     
     private let sendAuthNumberButton = CustomButton("인증번호 발송", type: .auth).then {
         $0.isEnabled = false
     }
     
-    let authNumberBlock = UIView()
+    let authNumberBlock = UIView().then {
+        $0.isHidden = true
+    }
     
     private let authNumberTextField = DefaultTextField(placeHolder: "인증번호 6자리")
     
@@ -75,6 +81,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
             .withUnretained(self)
             .bind { owner, _ in
             print("clicked")
+                owner.authNumberBlock.isHidden = false
                 
         }.disposed(by: rx.disposeBag)
         
@@ -93,6 +100,33 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
 //                cell.expandableView.isHidden = !cell.expandableView.isHidden
 //                owner.tableView.reloadRows(at: [indexPath], with: .automatic)
 //            }.disposed(by: rx.disposeBag)
+        
+        phoneNumberTextField.rx.controlEvent(.editingChanged)
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.viewModel.checkPhoneNumberState(owner.phoneNumberTextField.text)
+            }.disposed(by: rx.disposeBag)
+        
+        // ViewModel
+        viewModel.phoneNumberAvailbleState
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .bind { owner, state in
+                switch state {
+                case .cannotCheck:
+                    owner.sendAuthNumberButton.setTitle("인증번호 발송", for: .normal)
+                    owner.sendAuthNumberButton.isEnabled = false
+                case .canCheck:
+                    owner.sendAuthNumberButton.setTitle("인증번호 발송", for: .normal)
+                    owner.sendAuthNumberButton.isEnabled = true
+                case .resend:
+                    owner.sendAuthNumberButton.setTitle("재전송", for: .normal)
+                    owner.sendAuthNumberButton.isEnabled = false
+                case .available:
+                    owner.sendAuthNumberButton.setTitle("인증완료", for: .normal)
+                    owner.sendAuthNumberButton.isEnabled = false
+                }
+            }.disposed(by: self.disposeBag)
     }
     
     override func viewDidLoad() {
@@ -100,7 +134,6 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
 
         setUI()
         setConstraints()
-        bindViewModel()
     }
     
     private func setUI() {
