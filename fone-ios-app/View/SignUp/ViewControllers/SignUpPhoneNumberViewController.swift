@@ -61,8 +61,9 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     
     private lazy var tableView = UITableView().then {
         $0.showsVerticalScrollIndicator = false
-        $0.backgroundColor = .yellow
-//        $0.delegate = self
+//        $0.backgroundColor = .yellow
+        $0.separatorStyle = .none
+        $0.delegate = self
         $0.dataSource = self
         $0.register(with: TermsCell.self)
     }
@@ -84,6 +85,14 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
                 let signUpScene = Scene.signUpSuccess(successViewModel)
                 owner.viewModel.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
             }.disposed(by: rx.disposeBag)
+        
+//        tableView.rx.itemSelected
+//            .withUnretained(self)
+//            .bind { owner, indexPath in
+//                guard let cell = owner.tableView.cellForRow(at: indexPath) as? TermsCell else { return }
+//                cell.expandableView.isHidden = !cell.expandableView.isHidden
+//                owner.tableView.reloadRows(at: [indexPath], with: .automatic)
+//            }.disposed(by: rx.disposeBag)
     }
     
     override func viewDidLoad() {
@@ -91,6 +100,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
 
         setUI()
         setConstraints()
+        bindViewModel()
     }
     
     private func setUI() {
@@ -131,6 +141,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         self.setupAuthNumberBlock()
         self.setupAgreementBlock()
         
+        
     }
     
     private func setConstraints() {
@@ -161,7 +172,8 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         agreementBlock.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(authNumberBlock.snp.bottom).offset(49)
-            $0.height.equalTo(80) // TODO: 삭제
+//            $0.height.lessThanOrEqualTo(221) // TODO: 삭제
+            $0.height.equalTo(221)
         }
         
         button.snp.makeConstraints {
@@ -222,13 +234,16 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     
 }
 
-//extension SignUpPhoneNumberViewController: UITableViewDelegate {
+extension SignUpPhoneNumberViewController: UITableViewDelegate {
     
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        //        return self.arrDropDownDataSource.count
-//        return 2
-//    }
-//}
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = self.tableView.cellForRow(at: indexPath) as? TermsCell else { return }
+        cell.expandableView.isHidden = !cell.expandableView.isHidden
+//        self.tableView.reloadRows(at: [indexPath], with: .automatic)
+//        tableView.reloadRows(at: [indexPath], with: .fade)
+        tableView.reloadData()
+    }
+}
 
 extension SignUpPhoneNumberViewController: UITableViewDataSource {
     
@@ -239,6 +254,7 @@ extension SignUpPhoneNumberViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as TermsCell
+        cell.label.text = "이용약관 동의(필수)"
         return cell
     }
     
