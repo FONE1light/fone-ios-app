@@ -36,6 +36,11 @@
 		36E269412AAAEF420034B485 /* NavigationLeftBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E269402AAAEF420034B485 /* NavigationLeftBarButtonItem.swift */; };
 		36F50AA92A962C9800991C9B /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F50AA82A962C9800991C9B /* EmptyView.swift */; };
 		36F50AAC2A9897AA00991C9B /* SelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F50AAB2A9897AA00991C9B /* SelectionCell.swift */; };
+		AB3F07192AADAA9200E54A25 /* FindIDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3F07172AADAA9200E54A25 /* FindIDCell.swift */; };
+		AB3F071A2AADAA9200E54A25 /* FindIDCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB3F07182AADAA9200E54A25 /* FindIDCell.xib */; };
+		AB3F071D2AADADB700E54A25 /* FindPasswordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3F071B2AADADB700E54A25 /* FindPasswordCell.swift */; };
+		AB3F071E2AADADB700E54A25 /* FindPasswordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB3F071C2AADADB700E54A25 /* FindPasswordCell.xib */; };
+		AB3F07202AADB72500E54A25 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3F071F2AADB72500E54A25 /* UICollectionView+Extension.swift */; };
 		AB4546502AAB452D0019B27F /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB45464F2AAB452D0019B27F /* UIButton+Extension.swift */; };
 		AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A32A2A8104E000748484 /* SceneCoordinatorType.swift */; };
 		AB49A32D2A81053200748484 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A32C2A81053200748484 /* Scene.swift */; };
@@ -121,6 +126,11 @@
 		36E269402AAAEF420034B485 /* NavigationLeftBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLeftBarButtonItem.swift; sourceTree = "<group>"; };
 		36F50AA82A962C9800991C9B /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		36F50AAB2A9897AA00991C9B /* SelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionCell.swift; sourceTree = "<group>"; };
+		AB3F07172AADAA9200E54A25 /* FindIDCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIDCell.swift; sourceTree = "<group>"; };
+		AB3F07182AADAA9200E54A25 /* FindIDCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FindIDCell.xib; sourceTree = "<group>"; };
+		AB3F071B2AADADB700E54A25 /* FindPasswordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordCell.swift; sourceTree = "<group>"; };
+		AB3F071C2AADADB700E54A25 /* FindPasswordCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FindPasswordCell.xib; sourceTree = "<group>"; };
+		AB3F071F2AADB72500E54A25 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		AB45464F2AAB452D0019B27F /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		AB49A32A2A8104E000748484 /* SceneCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinatorType.swift; sourceTree = "<group>"; };
 		AB49A32C2A81053200748484 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
@@ -269,6 +279,7 @@
 				AB45464F2AAB452D0019B27F /* UIButton+Extension.swift */,
 				AB9885112AA476FF00282C07 /* Rx+Extension.swift */,
 				36AC7BD62AAE883500478030 /* UITableView+Extension.swift */,
+				AB3F071F2AADB72500E54A25 /* UICollectionView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -330,6 +341,17 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		AB3F07162AADAA5D00E54A25 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				AB3F07172AADAA9200E54A25 /* FindIDCell.swift */,
+				AB3F07182AADAA9200E54A25 /* FindIDCell.xib */,
+				AB3F071B2AADADB700E54A25 /* FindPasswordCell.swift */,
+				AB3F071C2AADADB700E54A25 /* FindPasswordCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		AB49A3292A8104A000748484 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,6 +376,7 @@
 		AB49A3412A81156300748484 /* FindIDPassword */ = {
 			isa = PBXGroup;
 			children = (
+				AB3F07162AADAA5D00E54A25 /* Cells */,
 				AB49A3422A81158900748484 /* FindIDPasswordViewController.swift */,
 				AB49A3432A81158900748484 /* FindIDPasswordViewController.xib */,
 				AB49A3462A81159F00748484 /* FindIDPasswordViewModel.swift */,
@@ -545,12 +568,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB49A3402A810FE000748484 /* LoginViewController.xib in Resources */,
+				AB3F071A2AADAA9200E54A25 /* FindIDCell.xib in Resources */,
 				AB49A3452A81158900748484 /* FindIDPasswordViewController.xib in Resources */,
 				AB6002452A7E375D000CF1FD /* LaunchScreen.storyboard in Resources */,
 				AB67855D2AA3374F00ACD35C /* EmailSignUpViewController.xib in Resources */,
 				AB6785582AA3336900ACD35C /* EmailLoginViewController.xib in Resources */,
 				3650F6222A86715C0017645D /* Pretendard-Medium.ttf in Resources */,
 				AB6002422A7E375D000CF1FD /* Assets.xcassets in Resources */,
+				AB3F071E2AADADB700E54A25 /* FindPasswordCell.xib in Resources */,
 				3650F6212A86715C0017645D /* Pretendard-Regular.ttf in Resources */,
 				3650F6232A86715C0017645D /* Pretendard-Bold.ttf in Resources */,
 				AB60023D2A7E375D000CF1FD /* Main.storyboard in Resources */,
@@ -595,6 +620,7 @@
 				36BCC7E62AA5E0180060E35A /* CustomButton.swift in Sources */,
 				AB79B3BC2A9E29C4008EBAA2 /* QuestionViewController.swift in Sources */,
 				AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */,
+				AB3F071D2AADADB700E54A25 /* FindPasswordCell.swift in Sources */,
 				3628667B2A8B670200CD42BC /* SignUpViewController.swift in Sources */,
 				AB49A33A2A810B3500748484 /* LoginViewModel.swift in Sources */,
 				AB6785572AA3336900ACD35C /* EmailLoginViewController.swift in Sources */,
@@ -614,11 +640,13 @@
 				AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */,
 				AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */,
 				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,
+				AB3F07192AADAA9200E54A25 /* FindIDCell.swift in Sources */,
 				36D293D42A961FDB00171C77 /* SelectionBlock.swift in Sources */,
 				36D293D22A961E7300171C77 /* SignUpSelectionViewController.swift in Sources */,
 				AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */,
 				362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */,
 				3628669A2A8E3E3700CD42BC /* UserInfoAPIModel.swift in Sources */,
+				AB3F07202AADB72500E54A25 /* UICollectionView+Extension.swift in Sources */,
 				36BCC7E22AA328AB0060E35A /* SignUpPhoneNumberViewController.swift in Sources */,
 				36D293D62A96270900171C77 /* StepIndicator.swift in Sources */,
 			);

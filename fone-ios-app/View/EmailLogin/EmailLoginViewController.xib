@@ -158,12 +158,6 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </button>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="입력하신 비밀번호와 동일하지 않습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z3s-Xm-4Lw">
-                    <rect key="frame" x="16" y="275" width="188.66666666666666" height="14"/>
-                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
-                    <color key="textColor" red="1" green="0.34509803919999998" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -183,9 +177,7 @@
                 <constraint firstItem="cYW-yq-hu4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="bVY-04-9ah"/>
                 <constraint firstItem="wFS-ae-5PU" firstAttribute="top" secondItem="gtE-Fw-Ld2" secondAttribute="bottom" constant="8" id="fCb-0z-EkX"/>
                 <constraint firstItem="wFS-ae-5PU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="skC-KV-Kgp"/>
-                <constraint firstItem="z3s-Xm-4Lw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="tdN-Ec-58Y"/>
                 <constraint firstItem="ZgH-5U-MAG" firstAttribute="top" secondItem="UrA-mt-KDi" secondAttribute="bottom" constant="8" id="uI3-ur-rnN"/>
-                <constraint firstItem="z3s-Xm-4Lw" firstAttribute="top" secondItem="ZgH-5U-MAG" secondAttribute="bottom" constant="3" id="vy7-DR-gA6"/>
                 <constraint firstItem="mZS-YO-ncW" firstAttribute="leading" secondItem="wFS-ae-5PU" secondAttribute="leading" id="wKH-h5-8tz"/>
                 <constraint firstItem="RMz-t3-xxn" firstAttribute="top" secondItem="cYW-yq-hu4" secondAttribute="bottom" constant="20" id="wXz-kr-fNZ"/>
                 <constraint firstItem="GnX-k0-Qma" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="yGE-oi-vjb"/>

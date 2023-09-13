@@ -75,8 +75,23 @@ class EmailLoginViewController: UIViewController, ViewModelBindableType {
             .subscribe(onNext: { (owner, isEmailValid) in
                 owner.emailErrorMessage.isHidden = isEmailValid
                 owner.emailContainerView.setTextFieldErrorBorder(showError: !isEmailValid)
-            })
-            .disposed(by: rx.disposeBag)
+            }).disposed(by: rx.disposeBag)
+        
+        viewModel.showLoginErrorAlertSubject
+            .subscribe(onNext: { _ in
+                self.loginErrorAlert()
+            }).disposed(by: rx.disposeBag)
+    }
+    
+    func loginErrorAlert() {
+        let alertTitle = """
+        로그인에 실패했습니다.
+        아이디 또는 비밀번호를 확인해주세요.
+        """
+        let alert = UIAlertController.init(title: "", message: alertTitle, preferredStyle: .alert)
+        let action = UIAlertAction(title: "확인", style: .default)
+        alert.addAction(action)
+        self.present(alert, animated: true)
     }
 }
 
