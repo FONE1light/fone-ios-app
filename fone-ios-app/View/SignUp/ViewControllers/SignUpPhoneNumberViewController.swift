@@ -132,8 +132,17 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setNavigationBar()
         setUI()
         setConstraints()
+    }
+    
+    private func setNavigationBar() {
+        navigationItem.titleView = NavigationTitleView(title: "회원가입")
+        navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
+            type: .back,
+            viewController: self
+        )
     }
     
     private func setUI() {
