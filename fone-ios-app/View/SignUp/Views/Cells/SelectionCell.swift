@@ -8,6 +8,17 @@
 import UIKit
 import RxSwift
 
+extension SelectionCell {
+    struct Constants {
+        /// leading, trailing inset
+        static let leadingInset: CGFloat = 20
+        /// top, bottom inset
+        static let topInset: CGFloat = 8
+        /// `label`의 fontSize
+        static let fontSize: CGFloat = 14
+    }
+}
+
 class SelectionCell: UICollectionViewCell {
     
     static let identifier = "SelectionCell"
@@ -16,7 +27,7 @@ class SelectionCell: UICollectionViewCell {
     var isChosen = false
     
     let label = UILabel().then {
-        $0.font = .font_r(14)
+        $0.font = .font_r(Constants.fontSize)
         $0.textColor = .gray_9E9E9E
     }
     
@@ -35,8 +46,8 @@ class SelectionCell: UICollectionViewCell {
         self.cornerRadius = 16
         
         label.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview().inset(8)
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.top.bottom.equalToSuperview().inset(Constants.topInset)
+            $0.leading.trailing.equalToSuperview().inset(Constants.leadingInset)
         }
     }
 }

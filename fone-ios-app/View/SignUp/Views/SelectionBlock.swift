@@ -8,6 +8,21 @@
 import UIKit
 import Then
 
+class DynamicHeightCollectionView: UICollectionView {
+    
+    override func layoutSubviews() {
+      super.layoutSubviews()
+      if !__CGSizeEqualToSize(bounds.size,self.intrinsicContentSize){
+        self.invalidateIntrinsicContentSize()
+      }
+    }
+    
+    override var intrinsicContentSize: CGSize {
+      return contentSize
+    }
+}
+
+
 /// 직업 or 관심사 선택 label + UICollectionView 영역
 class SelectionBlock: UIView {
     private let titleLabel = UILabel().then {
@@ -21,11 +36,11 @@ class SelectionBlock: UIView {
     
     private var selectionList: [String] = []
     
-    private lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: DynamicHeightCollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 10
-        let collectionView = UICollectionView(
+        let collectionView = DynamicHeightCollectionView(
             frame: .zero,
             collectionViewLayout: layout
         )
@@ -71,8 +86,7 @@ class SelectionBlock: UIView {
         collectionView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
-//            $0.height.greaterThanOrEqualTo(33) // TODO: 다른 높이 지정 방식 없는지 확인
-            $0.height.greaterThanOrEqualTo(75) //equalTo(70)
+//            $0.height.greaterThanOrEqualTo(75) // DynamicHeightCollectionView 사용해서 불필요
             $0.bottom.equalToSuperview()
         }
     }
@@ -148,26 +162,20 @@ extension SelectionBlock: UICollectionViewDelegate {
 
 extension SelectionBlock: UICollectionViewDelegateFlowLayout {
     // MARK: cellSize
-    // TODO: 내부 contents 따라 유동적으로 설정
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let defaultHeight = 33.0
-//        let size = SelectionCell.fittingSize(height: defaultHeight, name: selectionList[indexPath.row])
-//
-//        return CGSize(width: size.width, height: size.height)
         
-        let collectionViewWidth = collectionView.bounds.width
-
-        let cellItemForRow: CGFloat = 3
-        let minimumSpacing: CGFloat = 8
-
-        let width = (collectionViewWidth - (cellItemForRow - 1) * minimumSpacing) / cellItemForRow
-
-        return CGSize(width: width, height: defaultHeight)
+        let item = selectionList[indexPath.row]
+        let itemSize = item.size(withAttributes: [
+            NSAttributedString.Key.font : UIFont.font_r(SelectionCell.Constants.fontSize)
+        ])
+        let itemWidth = itemSize.width + SelectionCell.Constants.leadingInset * 2 + 1 // TODO: 약간의 여백(1) 필요한 이유
+        return CGSize(width: itemWidth, height: defaultHeight)
     }
     
     // MARK: minimumSpacing
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 3
+        return 8
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
