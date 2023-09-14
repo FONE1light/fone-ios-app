@@ -8,7 +8,7 @@
 import UIKit
 
 enum Scene {
-    //    case home()
+    case home(HomeViewModel)
     case login(LoginViewModel)
     case findIDPassword(FindIDPasswordViewModel)
     case signUpSelection(SignUpViewModel) // 회원가입1
@@ -23,6 +23,10 @@ enum Scene {
 extension Scene {
     func instantiate() -> UIViewController {
         switch self {
+        case .home(let homeViewModel):
+            let tabBarController = TabBarViewController()
+            return tabBarController
+            
         case .login(let loginViewModel):
             var loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
             
