@@ -8,21 +8,6 @@
 import UIKit
 import Then
 
-class DynamicHeightCollectionView: UICollectionView {
-    
-    override func layoutSubviews() {
-      super.layoutSubviews()
-      if !__CGSizeEqualToSize(bounds.size,self.intrinsicContentSize){
-        self.invalidateIntrinsicContentSize()
-      }
-    }
-    
-    override var intrinsicContentSize: CGSize {
-      return contentSize
-    }
-}
-
-
 /// 직업 or 관심사 선택 label + UICollectionView 영역
 class SelectionBlock: UIView {
     private let titleLabel = UILabel().then {
@@ -37,22 +22,19 @@ class SelectionBlock: UIView {
     private var selectionList: [String] = []
     
     private lazy var collectionView: DynamicHeightCollectionView = {
-        let layout = UICollectionViewFlowLayout()
+        let layout = LeftAlignedCollectionViewFlowLayout()
+        
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 10
         let collectionView = DynamicHeightCollectionView(
             frame: .zero,
             collectionViewLayout: layout
         )
-
-        collectionView.register(SelectionCell.self, forCellWithReuseIdentifier: SelectionCell.identifier)
-
-        collectionView.dataSource = self
-//        collectionView.delegate = self
-
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
     
+        collectionView.register(SelectionCell.self, forCellWithReuseIdentifier: SelectionCell.identifier)
+        collectionView.dataSource = self
+
         return collectionView
     }()
     
@@ -138,26 +120,6 @@ extension SelectionBlock: UICollectionViewDataSource {
         
         return cell
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        let size = collectionView.bounds.size
-//        return CGSize(width: size.width * 0.8, height: size.height)
-//    }
-
-}
-
-
-extension SelectionBlock: UICollectionViewDelegate {
-    
-    // MARK: selected
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        print("\(indexPath.item)번 Cell 클릭")
-//        guard let cell = collectionView.cellForItem(at: indexPath) as? SelectionCell else { return }
-//
-//        cell.changeSelectedState()
-//
-//    }
 }
 
 extension SelectionBlock: UICollectionViewDelegateFlowLayout {
