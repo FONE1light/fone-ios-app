@@ -62,18 +62,11 @@ class SignUpSelectionViewController: UIViewController, ViewModelBindableType {
     }
     
     private func setNavigationBar() {
-        self.navigationItem.titleView = UILabel().then {
-            $0.text = "회원가입"
-            $0.font = .font_b(19)
-            $0.textColor = .gray_161616
-        }
-
-        let arrowLeftView = UIImageView().then {
-            $0.image = UIImage(named: "arrow_left24")
-        }
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: arrowLeftView)
-        
-        
+        self.navigationItem.titleView = NavigationTitleView(title: "회원가입")
+        self.navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
+            type: .back,
+            viewController: self
+        )
     }
     
     private func setUI() {
