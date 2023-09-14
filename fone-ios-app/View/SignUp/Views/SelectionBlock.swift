@@ -7,6 +7,7 @@
 
 import UIKit
 import Then
+import RxRelay
 
 /// 직업 or 관심사 선택 label + UICollectionView 영역
 class SelectionBlock: UIView {
@@ -19,7 +20,7 @@ class SelectionBlock: UIView {
         $0.textColor = .gray_9E9E9E
     }
     
-    private var selectionList: [String] = []
+    private var items: [Selection] = []
     
     private lazy var collectionView: DynamicHeightCollectionView = {
         let layout = LeftAlignedCollectionViewFlowLayout()
@@ -31,12 +32,14 @@ class SelectionBlock: UIView {
         )
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
-    
+        
         collectionView.register(SelectionCell.self, forCellWithReuseIdentifier: SelectionCell.identifier)
         collectionView.dataSource = self
-
+        
         return collectionView
     }()
+    
+    let selectedItems = BehaviorRelay<[Selection]>(value: [])
     
     init() {
         super.init(frame: .zero)
@@ -81,8 +84,8 @@ class SelectionBlock: UIView {
         subtitleLabel.text = text
     }
     
-    func setSelections(_ list: [String]) {
-        selectionList = list
+    func setSelections(_ list: [Selection]) {
+        items = list
     }
 }
 
@@ -93,7 +96,21 @@ extension SelectionBlock {
             .withUnretained(self)
             .subscribe { owner, indexPath in
                 guard let cell = owner.collectionView.cellForItem(at: indexPath) as? SelectionCell else { return }
+                // 1. design properties 변경
                 cell.changeSelectedState()
+                
+                // 2. 선택된 item 업데이트
+                guard let item = cell.item else { return }
+                var items = owner.selectedItems.value
+                
+                if cell.isChosen {
+                    items.append(item)
+                } else {
+                    items.removeAll { $0.name == item.name }
+                }
+                
+                owner.selectedItems.accept(items)
+                
             }.disposed(by: rx.disposeBag)
         
         collectionView.rx.setDelegate(self).disposed(by: rx.disposeBag)
@@ -105,7 +122,7 @@ extension SelectionBlock: UICollectionViewDataSource {
     
     // MARK: cell count
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return selectionList.count
+        return items.count
     }
     
     // MARK: cell
@@ -114,9 +131,8 @@ extension SelectionBlock: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.label.text = selectionList[indexPath.row]
+        cell.setItem(items[indexPath.row])
         cell.backgroundColor = .gray_EEEFEF
-        cell.label.textColor = .gray_9E9E9E
         
         return cell
     }
@@ -127,7 +143,7 @@ extension SelectionBlock: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let defaultHeight = 33.0
         
-        let item = selectionList[indexPath.row]
+        let item = items[indexPath.row].name
         let itemSize = item.size(withAttributes: [
             NSAttributedString.Key.font : UIFont.font_r(SelectionCell.Constants.fontSize)
         ])

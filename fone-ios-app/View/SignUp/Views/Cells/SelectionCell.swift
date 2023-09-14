@@ -26,7 +26,13 @@ class SelectionCell: UICollectionViewCell {
     
     var isChosen = false
     
-    let label = UILabel().then {
+    var item: Selection? {
+        didSet {
+            label.text = item?.name
+        }
+    }
+    
+    private let label = UILabel().then {
         $0.font = .font_r(Constants.fontSize)
         $0.textColor = .gray_9E9E9E
     }
@@ -53,6 +59,10 @@ class SelectionCell: UICollectionViewCell {
 }
 
 extension SelectionCell {
+    func setItem(_ selection: Selection) {
+        item = selection
+    }
+    
     func changeSelectedState() {
         changeColor()
         isChosen = !isChosen
