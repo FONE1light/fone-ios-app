@@ -7,10 +7,12 @@
 
 import UIKit
 import Then
+import RxSwift
 
 class SignUpSelectionViewController: UIViewController, ViewModelBindableType {
 
     var viewModel: SignUpViewModel!
+    var disposeBag = DisposeBag()
     
     let baseView = UIView().then {
         $0.backgroundColor = .white_FFFFFF
@@ -32,13 +34,13 @@ class SignUpSelectionViewController: UIViewController, ViewModelBindableType {
     let jobSelectionBlock = SelectionBlock().then {
         $0.setTitle("직업 선택")
         $0.setSubtitle("(추후 변경 가능)")
-        $0.setSelections(["ACTOR", "STAFF", "NORMAL", "HUNTER"])
+        $0.setSelections(Job.allCases)
     }
     
     let interestSelectionBlock = SelectionBlock().then {
         $0.setTitle("관심사 선택")
         $0.setSubtitle("(중복 선택 가능)")
-        $0.setSelections(["장편영화", "단편영화", "독립영화", "웹 드라마", "뮤비 / CF", "OTT/TV 드라마", "유튜브", "홍보 / 바이럴", "기타"])
+        $0.setSelections(Interest.allCases)
     }
   
     let button = CustomButton("다음", type: .bottom)
@@ -50,6 +52,20 @@ class SignUpSelectionViewController: UIViewController, ViewModelBindableType {
                 let signUpScene = Scene.signUpInfo(owner.viewModel)
                 owner.viewModel.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
             }.disposed(by: rx.disposeBag)
+        
+        jobSelectionBlock.selectedItems
+            .withUnretained(self)
+            .bind { owner, items in
+                guard items.count == 1, let job = items.first as? Job else { return }
+                owner.viewModel.job = job
+            }.disposed(by: disposeBag)
+        
+        interestSelectionBlock.selectedItems
+            .withUnretained(self)
+            .bind { owner, items in
+                guard let interests = items as? [Interest] else { return }
+                owner.viewModel.interests = interests
+            }.disposed(by: disposeBag)
     }
     
     override func viewDidLoad() {

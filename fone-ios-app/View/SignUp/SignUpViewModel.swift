@@ -24,6 +24,9 @@ class SignUpViewModel: CommonViewModel {
     var disposeBag = DisposeBag()
     var signInInfo: EmailSignInInfo?
     
+    var job: Job?
+    var interests: [Interest]?
+    
     var nicknameAvailbleState = BehaviorRelay<NicknameAvailableState>(value: .cannotCheck)
     
     func fetchMyPage() {

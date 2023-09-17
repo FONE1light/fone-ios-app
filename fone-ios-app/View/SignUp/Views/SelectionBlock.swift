@@ -7,6 +7,7 @@
 
 import UIKit
 import Then
+import RxRelay
 
 /// 직업 or 관심사 선택 label + UICollectionView 영역
 class SelectionBlock: UIView {
@@ -19,27 +20,26 @@ class SelectionBlock: UIView {
         $0.textColor = .gray_9E9E9E
     }
     
-    private var selectionList: [String] = []
+    private var items: [Selection] = []
     
-    private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+    private lazy var collectionView: DynamicHeightCollectionView = {
+        let layout = LeftAlignedCollectionViewFlowLayout()
+        
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 10
-        let collectionView = UICollectionView(
+        let collectionView = DynamicHeightCollectionView(
             frame: .zero,
             collectionViewLayout: layout
         )
-
-        collectionView.register(SelectionCell.self, forCellWithReuseIdentifier: SelectionCell.identifier)
-
-        collectionView.dataSource = self
-//        collectionView.delegate = self
-
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
-    
+        
+        collectionView.register(SelectionCell.self, forCellWithReuseIdentifier: SelectionCell.identifier)
+        collectionView.dataSource = self
+        
         return collectionView
     }()
+    
+    let selectedItems = BehaviorRelay<[Selection]>(value: [])
     
     init() {
         super.init(frame: .zero)
@@ -71,8 +71,7 @@ class SelectionBlock: UIView {
         collectionView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
-//            $0.height.greaterThanOrEqualTo(33) // TODO: 다른 높이 지정 방식 없는지 확인
-            $0.height.greaterThanOrEqualTo(75) //equalTo(70)
+//            $0.height.greaterThanOrEqualTo(75) // DynamicHeightCollectionView 사용해서 불필요
             $0.bottom.equalToSuperview()
         }
     }
@@ -85,8 +84,8 @@ class SelectionBlock: UIView {
         subtitleLabel.text = text
     }
     
-    func setSelections(_ list: [String]) {
-        selectionList = list
+    func setSelections(_ list: [Selection]) {
+        items = list
     }
 }
 
@@ -97,7 +96,21 @@ extension SelectionBlock {
             .withUnretained(self)
             .subscribe { owner, indexPath in
                 guard let cell = owner.collectionView.cellForItem(at: indexPath) as? SelectionCell else { return }
+                // 1. design properties 변경
                 cell.changeSelectedState()
+                
+                // 2. 선택된 item 업데이트
+                guard let item = cell.item else { return }
+                var items = owner.selectedItems.value
+                
+                if cell.isChosen {
+                    items.append(item)
+                } else {
+                    items.removeAll { $0.name == item.name }
+                }
+                
+                owner.selectedItems.accept(items)
+                
             }.disposed(by: rx.disposeBag)
         
         collectionView.rx.setDelegate(self).disposed(by: rx.disposeBag)
@@ -109,7 +122,7 @@ extension SelectionBlock: UICollectionViewDataSource {
     
     // MARK: cell count
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return selectionList.count
+        return items.count
     }
     
     // MARK: cell
@@ -118,56 +131,29 @@ extension SelectionBlock: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.label.text = selectionList[indexPath.row]
+        cell.setItem(items[indexPath.row])
         cell.backgroundColor = .gray_EEEFEF
-        cell.label.textColor = .gray_9E9E9E
         
         return cell
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        let size = collectionView.bounds.size
-//        return CGSize(width: size.width * 0.8, height: size.height)
-//    }
-
-}
-
-
-extension SelectionBlock: UICollectionViewDelegate {
-    
-    // MARK: selected
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        print("\(indexPath.item)번 Cell 클릭")
-//        guard let cell = collectionView.cellForItem(at: indexPath) as? SelectionCell else { return }
-//
-//        cell.changeSelectedState()
-//
-//    }
 }
 
 extension SelectionBlock: UICollectionViewDelegateFlowLayout {
     // MARK: cellSize
-    // TODO: 내부 contents 따라 유동적으로 설정
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let defaultHeight = 33.0
-//        let size = SelectionCell.fittingSize(height: defaultHeight, name: selectionList[indexPath.row])
-//
-//        return CGSize(width: size.width, height: size.height)
         
-        let collectionViewWidth = collectionView.bounds.width
-
-        let cellItemForRow: CGFloat = 3
-        let minimumSpacing: CGFloat = 8
-
-        let width = (collectionViewWidth - (cellItemForRow - 1) * minimumSpacing) / cellItemForRow
-
-        return CGSize(width: width, height: defaultHeight)
+        let item = items[indexPath.row].name
+        let itemSize = item.size(withAttributes: [
+            NSAttributedString.Key.font : UIFont.font_r(SelectionCell.Constants.fontSize)
+        ])
+        let itemWidth = itemSize.width + SelectionCell.Constants.leadingInset * 2 + 1 // TODO: 약간의 여백(1) 필요한 이유
+        return CGSize(width: itemWidth, height: defaultHeight)
     }
     
     // MARK: minimumSpacing
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 3
+        return 8
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
