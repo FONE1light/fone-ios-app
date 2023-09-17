@@ -265,10 +265,17 @@
 			children = (
 				362866992A8E3E3700CD42BC /* UserInfoAPIModel.swift */,
 				ABAFA3382A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		364482C92AB761DD00984507 /* Data */ = {
+			isa = PBXGroup;
+			children = (
 				364BCC6D2AB36A4900E14B25 /* Job.swift */,
 				364BCC6F2AB36A5900E14B25 /* Interest.swift */,
 			);
-			path = Models;
+			path = Data;
 			sourceTree = "<group>";
 		};
 		3650F6192A849BDB0017645D /* Extensions */ = {
@@ -400,6 +407,7 @@
 			children = (
 				3650F61C2A86710B0017645D /* Resources */,
 				AB60024E2A7E42A6000CF1FD /* Common */,
+				364482C92AB761DD00984507 /* Data */,
 				362866882A8DF3F400CD42BC /* Network */,
 				AB49A3292A8104A000748484 /* Scene */,
 				AB60024C2A7E3B05000CF1FD /* View */,
