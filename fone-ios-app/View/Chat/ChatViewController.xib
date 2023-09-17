@@ -19,6 +19,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatViewController" customModule="fone_ios_app" customModuleProvider="target">
             <connections>
+                <outlet property="notiButton" destination="rQp-u6-ZHH" id="FSL-Cw-Adg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -28,13 +29,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="서비스 준비 중입니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mph-RY-dzH">
-                    <rect key="frame" x="114" y="459" width="165" height="24"/>
+                    <rect key="frame" x="113" y="459" width="167" height="24"/>
                     <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAC-Xx-D6j">
-                    <rect key="frame" x="59" y="487" width="275.33333333333331" height="33.666666666666629"/>
+                    <rect key="frame" x="57.666666666666657" y="487" width="277.66666666666674" height="32.666666666666629"/>
                     <string key="text">빠르고 편리한 서비스를 위해 최선을 다하겠습니다.
 7월 오픈 예정</string>
                     <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
@@ -57,11 +58,22 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQp-u6-ZHH">
+                            <rect key="frame" x="353" y="13" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="83N-5V-vlE"/>
+                                <constraint firstAttribute="height" constant="24" id="JLC-C5-Dy3"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="bell"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="aPf-3x-cJS" firstAttribute="centerY" secondItem="zxo-SQ-nyb" secondAttribute="centerY" id="80K-Bg-yoA"/>
+                        <constraint firstAttribute="trailing" secondItem="rQp-u6-ZHH" secondAttribute="trailing" constant="16" id="WUB-OJ-owS"/>
                         <constraint firstItem="aPf-3x-cJS" firstAttribute="leading" secondItem="zxo-SQ-nyb" secondAttribute="leading" constant="16" id="c5B-KX-jZB"/>
+                        <constraint firstItem="rQp-u6-ZHH" firstAttribute="centerY" secondItem="zxo-SQ-nyb" secondAttribute="centerY" id="do2-p8-0Ey"/>
                         <constraint firstAttribute="height" constant="50" id="fe9-HQ-5gs"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
@@ -96,6 +108,7 @@
         </view>
     </objects>
     <resources>
+        <image name="bell" width="24" height="24"/>
         <image name="preparing" width="197" height="109"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

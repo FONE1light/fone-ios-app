@@ -19,8 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var destinationScene: Scene
         
         if let refreshToken = UserDefaults.standard.string(forKey: "refreshToken") {
-            let homeViewModel = HomeViewModel(sceneCoordinator: coordinator)
-            destinationScene = Scene.home(homeViewModel)
+            destinationScene = Scene.home(coordinator)
         } else {
             let loginViewModel = LoginViewModel(sceneCoordinator: coordinator)
             destinationScene = Scene.login(loginViewModel)

@@ -90,6 +90,9 @@
 		AB6785582AA3336900ACD35C /* EmailLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB6785562AA3336900ACD35C /* EmailLoginViewController.xib */; };
 		AB67855C2AA3374F00ACD35C /* EmailSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB67855A2AA3374F00ACD35C /* EmailSignUpViewController.swift */; };
 		AB67855D2AA3374F00ACD35C /* EmailSignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB67855B2AA3374F00ACD35C /* EmailSignUpViewController.xib */; };
+		AB6992242AB6E87100B67455 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6992232AB6E87100B67455 /* ChatViewModel.swift */; };
+		AB7900B72AB5C99A004DA4F3 /* NotiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7900B52AB5C99A004DA4F3 /* NotiViewController.swift */; };
+		AB7900B82AB5C99A004DA4F3 /* NotiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7900B62AB5C99A004DA4F3 /* NotiViewController.xib */; };
 		AB79B3B92A9E298B008EBAA2 /* QuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB79B3B82A9E298B008EBAA2 /* QuestionViewModel.swift */; };
 		AB79B3BC2A9E29C4008EBAA2 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB79B3BA2A9E29C4008EBAA2 /* QuestionViewController.swift */; };
 		AB79B3BD2A9E29C4008EBAA2 /* QuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB79B3BB2A9E29C4008EBAA2 /* QuestionViewController.xib */; };
@@ -166,6 +169,9 @@
 		AB6785562AA3336900ACD35C /* EmailLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmailLoginViewController.xib; sourceTree = "<group>"; };
 		AB67855A2AA3374F00ACD35C /* EmailSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignUpViewController.swift; sourceTree = "<group>"; };
 		AB67855B2AA3374F00ACD35C /* EmailSignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmailSignUpViewController.xib; sourceTree = "<group>"; };
+		AB6992232AB6E87100B67455 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		AB7900B52AB5C99A004DA4F3 /* NotiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiViewController.swift; sourceTree = "<group>"; };
+		AB7900B62AB5C99A004DA4F3 /* NotiViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotiViewController.xib; sourceTree = "<group>"; };
 		AB79B3B82A9E298B008EBAA2 /* QuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewModel.swift; sourceTree = "<group>"; };
 		AB79B3BA2A9E29C4008EBAA2 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		AB79B3BB2A9E29C4008EBAA2 /* QuestionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionViewController.xib; sourceTree = "<group>"; };
@@ -357,6 +363,7 @@
 			children = (
 				AB2578A82AAF3C8F00328363 /* ChatViewController.swift */,
 				AB2578A92AAF3C8F00328363 /* ChatViewController.xib */,
+				AB6992232AB6E87100B67455 /* ChatViewModel.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -440,7 +447,8 @@
 		AB60024C2A7E3B05000CF1FD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AB2578A32AAF387F00328363 /* TabBarViewController.swift */,
+				AB7900B92AB5D0E1004DA4F3 /* TabBar */,
+				AB7900B42AB5C989004DA4F3 /* Noti */,
 				AB2578A72AAF3C7A00328363 /* Chat */,
 				AB2578982AAF335F00328363 /* Home */,
 				AB6785592AA3373800ACD35C /* EmailSignUp */,
@@ -492,6 +500,23 @@
 				ABF3034A2AA33E4A00C14AF7 /* EmailSignUpViewModel.swift */,
 			);
 			path = EmailSignUp;
+			sourceTree = "<group>";
+		};
+		AB7900B42AB5C989004DA4F3 /* Noti */ = {
+			isa = PBXGroup;
+			children = (
+				AB7900B52AB5C99A004DA4F3 /* NotiViewController.swift */,
+				AB7900B62AB5C99A004DA4F3 /* NotiViewController.xib */,
+			);
+			path = Noti;
+			sourceTree = "<group>";
+		};
+		AB7900B92AB5D0E1004DA4F3 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				AB2578A32AAF387F00328363 /* TabBarViewController.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		AB79B3B72A9E294B008EBAA2 /* Question */ = {
@@ -598,6 +623,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB7900B82AB5C99A004DA4F3 /* NotiViewController.xib in Resources */,
 				AB49A3402A810FE000748484 /* LoginViewController.xib in Resources */,
 				AB3F071A2AADAA9200E54A25 /* FindIDCell.xib in Resources */,
 				AB49A3452A81158900748484 /* FindIDPasswordViewController.xib in Resources */,
@@ -640,6 +666,7 @@
 				AB25789E2AAF341900328363 /* HomeViewModel.swift in Sources */,
 				AB49A32D2A81053200748484 /* Scene.swift in Sources */,
 				AB49A3472A81159F00748484 /* FindIDPasswordViewModel.swift in Sources */,
+				AB7900B72AB5C99A004DA4F3 /* NotiViewController.swift in Sources */,
 				3628668E2A8DF4EA00CD42BC /* UserInfoProvider.swift in Sources */,
 				AB79B3B92A9E298B008EBAA2 /* QuestionViewModel.swift in Sources */,
 				AB2578A12AAF36A900328363 /* HomeViewController.swift in Sources */,
@@ -680,6 +707,7 @@
 				36D293D22A961E7300171C77 /* SignUpSelectionViewController.swift in Sources */,
 				AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */,
 				362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */,
+				AB6992242AB6E87100B67455 /* ChatViewModel.swift in Sources */,
 				3628669A2A8E3E3700CD42BC /* UserInfoAPIModel.swift in Sources */,
 				AB3F07202AADB72500E54A25 /* UICollectionView+Extension.swift in Sources */,
 				36BCC7E22AA328AB0060E35A /* SignUpPhoneNumberViewController.swift in Sources */,
