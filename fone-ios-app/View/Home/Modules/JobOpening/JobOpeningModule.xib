@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Bold.ttf">
+            <string>Pretendard-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="JobOpeningModule" customModule="fone_ios_app" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="214"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="214"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ttz-td-7kV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="214"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나와 비슷한 사람들이 보고있는 공고" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3n-F5-TmD">
+                                <rect key="frame" x="16" y="0.0" width="222.33333333333334" height="20"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="16"/>
+                                <color key="textColor" red="0.086274509803921567" green="0.086274509803921567" blue="0.086274509803921567" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RzF-oZ-swk">
+                                <rect key="frame" x="343" y="2" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="99D-T5-lZf"/>
+                                    <constraint firstAttribute="height" constant="16" id="Lai-XW-hzi"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="arrow_right"/>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="OPN-1O-80V">
+                                <rect key="frame" x="0.0" y="27" width="375" height="187"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WfB-7a-q2v">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="r3n-F5-TmD" firstAttribute="leading" secondItem="Ttz-td-7kV" secondAttribute="leading" constant="16" id="Coi-Qu-5Xq"/>
+                            <constraint firstItem="r3n-F5-TmD" firstAttribute="top" secondItem="Ttz-td-7kV" secondAttribute="top" id="GKT-Ve-itQ"/>
+                            <constraint firstAttribute="trailing" secondItem="RzF-oZ-swk" secondAttribute="trailing" constant="16" id="Hkh-1x-a5a"/>
+                            <constraint firstItem="OPN-1O-80V" firstAttribute="top" secondItem="r3n-F5-TmD" secondAttribute="bottom" constant="7" id="Mzw-UV-kzM"/>
+                            <constraint firstAttribute="bottom" secondItem="OPN-1O-80V" secondAttribute="bottom" id="QCg-mP-97q"/>
+                            <constraint firstItem="RzF-oZ-swk" firstAttribute="centerY" secondItem="r3n-F5-TmD" secondAttribute="centerY" id="hPE-ir-FQE"/>
+                            <constraint firstItem="OPN-1O-80V" firstAttribute="leading" secondItem="Ttz-td-7kV" secondAttribute="leading" id="iyK-iq-kRU"/>
+                            <constraint firstAttribute="trailing" secondItem="OPN-1O-80V" secondAttribute="trailing" id="msG-xX-JA8"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="Ttz-td-7kV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="I8e-bB-C78"/>
+                <constraint firstAttribute="trailing" secondItem="Ttz-td-7kV" secondAttribute="trailing" id="ZzT-sK-pWH"/>
+                <constraint firstItem="Ttz-td-7kV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="emG-kM-kRi"/>
+                <constraint firstAttribute="bottom" secondItem="Ttz-td-7kV" secondAttribute="bottom" id="fyI-AZ-BBJ"/>
+            </constraints>
+            <point key="canvasLocation" x="9" y="20"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="arrow_right" width="16" height="16"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
