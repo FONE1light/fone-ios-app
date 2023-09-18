@@ -20,6 +20,8 @@
 		364482CC2AB7C75E00984507 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482CB2AB7C75E00984507 /* MyPageViewController.swift */; };
 		364482CE2AB7C76500984507 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482CD2AB7C76500984507 /* MyPageViewModel.swift */; };
 		364482D02AB7D15F00984507 /* NavigationRightBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482CF2AB7D15F00984507 /* NavigationRightBarButton.swift */; };
+		364482D32AB804E100984507 /* MyPageButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482D22AB804E100984507 /* MyPageButtonStackView.swift */; };
+		364482D52AB8082E00984507 /* MyPageButtonStackViewContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482D42AB8082E00984507 /* MyPageButtonStackViewContentView.swift */; };
 		364BCC6A2AB3672500E14B25 /* DynamicHeightCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364BCC692AB3672500E14B25 /* DynamicHeightCollectionView.swift */; };
 		364BCC6C2AB3673900E14B25 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364BCC6B2AB3673900E14B25 /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		364BCC6E2AB36A4900E14B25 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364BCC6D2AB36A4900E14B25 /* Job.swift */; };
@@ -117,6 +119,8 @@
 		364482CB2AB7C75E00984507 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		364482CD2AB7C76500984507 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
 		364482CF2AB7D15F00984507 /* NavigationRightBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRightBarButton.swift; sourceTree = "<group>"; };
+		364482D22AB804E100984507 /* MyPageButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageButtonStackView.swift; sourceTree = "<group>"; };
+		364482D42AB8082E00984507 /* MyPageButtonStackViewContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageButtonStackViewContentView.swift; sourceTree = "<group>"; };
 		364BCC692AB3672500E14B25 /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
 		364BCC6B2AB3673900E14B25 /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		364BCC6D2AB36A4900E14B25 /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
@@ -294,10 +298,20 @@
 		364482CA2AB7C74900984507 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				364482D12AB804D400984507 /* Views */,
 				364482CB2AB7C75E00984507 /* MyPageViewController.swift */,
 				364482CD2AB7C76500984507 /* MyPageViewModel.swift */,
 			);
 			path = MyPage;
+			sourceTree = "<group>";
+		};
+		364482D12AB804D400984507 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				364482D22AB804E100984507 /* MyPageButtonStackView.swift */,
+				364482D42AB8082E00984507 /* MyPageButtonStackViewContentView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		3650F6192A849BDB0017645D /* Extensions */ = {
@@ -634,6 +648,7 @@
 				36F50AAC2A9897AA00991C9B /* SelectionCell.swift in Sources */,
 				3650F6262A8672010017645D /* UIFont+Extension.swift in Sources */,
 				AB9885122AA476FF00282C07 /* Rx+Extension.swift in Sources */,
+				364482D32AB804E100984507 /* MyPageButtonStackView.swift in Sources */,
 				36E2693F2AAAEEDA0034B485 /* NavigationTitleView.swift in Sources */,
 				AB49A33F2A810FE000748484 /* LoginViewController.swift in Sources */,
 				ABF3034B2AA33E4A00C14AF7 /* EmailSignUpViewModel.swift in Sources */,
@@ -661,6 +676,7 @@
 				AB79B3BC2A9E29C4008EBAA2 /* QuestionViewController.swift in Sources */,
 				AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */,
 				AB3F071D2AADADB700E54A25 /* FindPasswordCell.swift in Sources */,
+				364482D52AB8082E00984507 /* MyPageButtonStackViewContentView.swift in Sources */,
 				364482CE2AB7C76500984507 /* MyPageViewModel.swift in Sources */,
 				3628667B2A8B670200CD42BC /* SignUpViewController.swift in Sources */,
 				AB49A33A2A810B3500748484 /* LoginViewModel.swift in Sources */,
