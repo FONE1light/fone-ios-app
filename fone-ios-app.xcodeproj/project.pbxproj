@@ -22,6 +22,7 @@
 		364482D02AB7D15F00984507 /* NavigationRightBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482CF2AB7D15F00984507 /* NavigationRightBarButton.swift */; };
 		364482D32AB804E100984507 /* MyPageButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482D22AB804E100984507 /* MyPageButtonStackView.swift */; };
 		364482D52AB8082E00984507 /* MyPageButtonStackViewContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482D42AB8082E00984507 /* MyPageButtonStackViewContentView.swift */; };
+		364482D82AB80EDA00984507 /* MyPageMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482D72AB80EDA00984507 /* MyPageMenuCell.swift */; };
 		364BCC6A2AB3672500E14B25 /* DynamicHeightCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364BCC692AB3672500E14B25 /* DynamicHeightCollectionView.swift */; };
 		364BCC6C2AB3673900E14B25 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364BCC6B2AB3673900E14B25 /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		364BCC6E2AB36A4900E14B25 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364BCC6D2AB36A4900E14B25 /* Job.swift */; };
@@ -121,6 +122,7 @@
 		364482CF2AB7D15F00984507 /* NavigationRightBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRightBarButton.swift; sourceTree = "<group>"; };
 		364482D22AB804E100984507 /* MyPageButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageButtonStackView.swift; sourceTree = "<group>"; };
 		364482D42AB8082E00984507 /* MyPageButtonStackViewContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageButtonStackViewContentView.swift; sourceTree = "<group>"; };
+		364482D72AB80EDA00984507 /* MyPageMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageMenuCell.swift; sourceTree = "<group>"; };
 		364BCC692AB3672500E14B25 /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
 		364BCC6B2AB3673900E14B25 /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		364BCC6D2AB36A4900E14B25 /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
@@ -308,10 +310,19 @@
 		364482D12AB804D400984507 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				364482D62AB80EA300984507 /* Cells */,
 				364482D22AB804E100984507 /* MyPageButtonStackView.swift */,
 				364482D42AB8082E00984507 /* MyPageButtonStackViewContentView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		364482D62AB80EA300984507 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				364482D72AB80EDA00984507 /* MyPageMenuCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		3650F6192A849BDB0017645D /* Extensions */ = {
@@ -669,6 +680,7 @@
 				36BCC7E02AA31A350060E35A /* SignUpInfoViewController.swift in Sources */,
 				364BCC6A2AB3672500E14B25 /* DynamicHeightCollectionView.swift in Sources */,
 				362866972A8E3D8200CD42BC /* Response+Codable.swift in Sources */,
+				364482D82AB80EDA00984507 /* MyPageMenuCell.swift in Sources */,
 				ABA47FF72A850AE600B64403 /* UIView+Extension.swift in Sources */,
 				AB49A33C2A810CAA00748484 /* ViewModelBindableType.swift in Sources */,
 				364BCC6E2AB36A4900E14B25 /* Job.swift in Sources */,

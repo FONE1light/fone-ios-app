@@ -43,7 +43,20 @@ class MyPageViewController: UIViewController, ViewModelBindableType {
         $0.backgroundColor = .gray_F8F8F8
     }
     
-    private let tableView = UITableView()
+    private lazy var tableView = UITableView().then {
+        // TODO: Extension 만들어서 축약
+        $0.register(MyPageMenuCell.self, forCellReuseIdentifier: MyPageMenuCell.identifier)
+        $0.separatorStyle = .none
+        $0.dataSource = self
+    }
+    
+    private let menuList: [MyPageMenuType] = [
+        .postings,
+        .contact,
+        .version,
+        .logout,
+        .withdrawal
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -150,4 +163,20 @@ extension MyPageViewController {
     }
 }
 
+// MARK: - UITableView functions
+extension MyPageViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return menuList.count
+    }
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyPageMenuCell.identifier, for: indexPath) as? MyPageMenuCell else {
+            // TODO: Identifier 확정
+            // "MyPageMenuCell" == MyPageMenuCell.identifier == "\(MyPageMenuCell.self)"
+            return UITableViewCell()
+        }
+        // FIXME: index 지정 방식 변경
+        cell.setupCell(type: menuList[indexPath.row])
+        return cell
+    }
+}
