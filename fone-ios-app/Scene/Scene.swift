@@ -18,6 +18,7 @@ enum Scene {
     case question(QuestionViewModel)
     case emailLogin(EmailLoginViewModel)
     case emailSignUp(EmailSignUpViewModel)
+    case myPage(MyPageViewModel)
 }
 
 extension Scene {
@@ -109,6 +110,15 @@ extension Scene {
             let emailSignUpNav = UINavigationController(rootViewController: emailSignUpVC)
             
             return emailSignUpNav
+            
+        case .myPage(let myPageViewModel):
+            var myPageVC = MyPageViewController()
+            
+            DispatchQueue.main.async {
+                myPageVC.bind(viewModel: myPageViewModel)
+            }
+            
+            return myPageVC
         }
     }
 }
