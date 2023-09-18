@@ -18,7 +18,6 @@ class SignUpSuccessViewController: UIViewController, ViewModelBindableType {
     }
     let checkImageView = UIImageView(image: UIImage(named: "Check_Big"))
 
-    
     let welcomeLabel = UILabel().then {
         $0.text = "황수철 님!\n에프원 회원가입을 환영합니다."
         $0.textAlignment = .center
@@ -27,13 +26,7 @@ class SignUpSuccessViewController: UIViewController, ViewModelBindableType {
         $0.textColor = .gray_161616
     }
     
-    let loginButton = UIButton().then {
-        $0.setTitle("로그인하기", for: .normal)
-        $0.backgroundColor = .red_CE0B39
-        $0.cornerRadius = 5
-        $0.titleLabel?.font = .font_m(16)
-    }
-    
+    let loginButton = CustomButton("로그인하기", type: .bottom)
     
     func bindViewModel() {
         loginButton.rx.tap

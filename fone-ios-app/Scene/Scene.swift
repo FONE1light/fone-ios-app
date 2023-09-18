@@ -13,7 +13,7 @@ enum Scene {
     case findIDPassword(FindIDPasswordViewModel)
     case signUpSelection(SignUpViewModel) // 회원가입1
     case signUpInfo(SignUpViewModel) // 회원가입2
-    case signUpPhoneNumber(SignUpViewModel) // 회원가입3
+    case signUpPhoneNumber(SignUpPhoneNumberViewModel) // 회원가입3
     case signUpSuccess(SignUpViewModel) // 회원가입 완료
     case question(QuestionViewModel)
     case emailLogin(EmailLoginViewModel)
