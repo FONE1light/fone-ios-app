@@ -71,12 +71,7 @@ class SelectionBlock: UIView {
         collectionView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
-<<<<<<< HEAD
-//            $0.height.greaterThanOrEqualTo(33) // TODO: 다른 높이 지정 방식 없는지 확인
-            $0.height.greaterThanOrEqualTo(75) //equalTo(70)
-=======
 //            $0.height.greaterThanOrEqualTo(75) // DynamicHeightCollectionView 사용해서 불필요
->>>>>>> 1e7d325ddc2ba9628990d24ff9812eb18d6ac710
             $0.bottom.equalToSuperview()
         }
     }
