@@ -11,7 +11,13 @@ enum Scene {
     //    case home()
     case login(LoginViewModel)
     case findIDPassword(FindIDPasswordViewModel)
-    case signUp(SignUpViewModel)
+    case signUpSelection(SignUpViewModel) // 회원가입1
+    case signUpInfo(SignUpViewModel) // 회원가입2
+    case signUpPhoneNumber(SignUpPhoneNumberViewModel) // 회원가입3
+    case signUpSuccess(SignUpViewModel) // 회원가입 완료
+    case question(QuestionViewModel)
+    case emailLogin(EmailLoginViewModel)
+    case emailSignUp(EmailSignUpViewModel)
 }
 
 extension Scene {
@@ -37,15 +43,72 @@ extension Scene {
             
             return findIDPasswordVC
             
-        case .signUp(let signUpViewModel):
-            var signUpVC = SignUpViewController()
+        case .signUpSelection(let signUpViewModel):
+            var signUpVC = SignUpSelectionViewController()
+
+            DispatchQueue.main.async {
+                signUpVC.bind(viewModel: signUpViewModel)
+            }
+
+            return signUpVC
+            
+        case .signUpInfo(let signUpViewModel):
+            var signUpVC = SignUpInfoViewController()
             
             DispatchQueue.main.async {
                 signUpVC.bind(viewModel: signUpViewModel)
             }
             
             return signUpVC
+            
+        case .signUpPhoneNumber(let signUpViewModel):
+            var signUpVC = SignUpPhoneNumberViewController()
+            
+            DispatchQueue.main.async {
+                signUpVC.bind(viewModel: signUpViewModel)
+            }
+            
+            return signUpVC
+            
+        case .signUpSuccess(let signUpViewModel):
+            var signUpVC = SignUpSuccessViewController()
+            
+            DispatchQueue.main.async {
+                signUpVC.bind(viewModel: signUpViewModel)
+            }
+            
+            return signUpVC
+            
+        case .question(let questionViewModel):
+            var questionVC = QuestionViewController(nibName: "QuestionViewController", bundle: nil)
+            
+            DispatchQueue.main.async {
+                questionVC.bind(viewModel: questionViewModel)
+            }
+            
+            return questionVC
+            
+        case .emailLogin(let emailLoginViewModel):
+            var emailLoginVC = EmailLoginViewController(nibName: "EmailLoginViewController", bundle: nil)
+            
+            DispatchQueue.main.async {
+                emailLoginVC.bind(viewModel: emailLoginViewModel)
+            }
+            
+            let emailLoginNav = UINavigationController(rootViewController: emailLoginVC)
+            
+            return emailLoginNav
+            
+        case .emailSignUp(let emailSignUpViewModel):
+            var emailSignUpVC = EmailSignUpViewController(nibName: "EmailSignUpViewController", bundle: nil)
+            
+            DispatchQueue.main.async {
+                emailSignUpVC.bind(viewModel: emailSignUpViewModel)
+            }
+            
+            let emailSignUpNav = UINavigationController(rootViewController: emailSignUpVC)
+            
+            return emailSignUpNav
         }
-        
     }
 }
