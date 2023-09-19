@@ -23,8 +23,6 @@ class ChatViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
-        guard !hasViewModel else { return }
-        
         notiButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in

@@ -88,6 +88,8 @@ class TabBarViewController: UITabBarController {
                 guard var vc = nav.visibleViewController as? HomeViewController else { return }
                 let viewModel = HomeViewModel(sceneCoordinator: coordinator)
                 coordinator.currentVC = vc
+                
+                guard !vc.hasViewModel else { return }
                 DispatchQueue.main.async {
                     vc.bind(viewModel: viewModel)
                     vc.hasViewModel = true
@@ -97,6 +99,8 @@ class TabBarViewController: UITabBarController {
                 guard var vc = nav.visibleViewController as? ChatViewController else { return }
                 let viewModel = ChatViewModel(sceneCoordinator: coordinator)
                 coordinator.currentVC = vc
+                
+                guard !vc.hasViewModel else { return }
                 DispatchQueue.main.async {
                     vc.bind(viewModel: viewModel)
                     vc.hasViewModel = true
