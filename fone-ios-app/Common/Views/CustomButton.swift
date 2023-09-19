@@ -24,14 +24,14 @@ extension ButtonDesignType {
     
     var disabledTitleColor: UIColor? {
         switch self {
-        case .auth: return .gray_D9D9D9
+        case .auth: return .gray_9E9E9E
         default: return nil
         }
     }
     
     var defaultTitleColor: UIColor? {
         switch self {
-        case .auth: return .red_F43663
+        case .auth: return .red_CE0B39
         case .bottom: return .white_FFFFFF
         }
     }
