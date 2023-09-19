@@ -18,6 +18,9 @@ enum Scene {
     case question(QuestionViewModel)
     case emailLogin(EmailLoginViewModel)
     case emailSignUp(EmailSignUpViewModel)
+    
+    // 마이페이지
+    case profile(ProfileViewModel) // 프로필 수정
 }
 
 extension Scene {
@@ -109,6 +112,15 @@ extension Scene {
             let emailSignUpNav = UINavigationController(rootViewController: emailSignUpVC)
             
             return emailSignUpNav
+            
+        case .profile(let profileViewModel):
+            var profileVC = ProfileViewController()
+            
+            DispatchQueue.main.async {
+                profileVC.bind(viewModel: profileViewModel)
+            }
+        
+            return profileVC
         }
     }
 }
