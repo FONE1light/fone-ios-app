@@ -16,17 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         sleep(3)
         let coordinator = SceneCoordinator(window: window!)
-        var destinationScene: Scene
         
-        if let refreshToken = UserDefaults.standard.string(forKey: "refreshToken") {
-            destinationScene = Scene.home(coordinator)
-        } else {
-            let loginViewModel = LoginViewModel(sceneCoordinator: coordinator)
-            destinationScene = Scene.login(loginViewModel)
-        }
+        let loginViewModel = LoginViewModel(sceneCoordinator: coordinator)
+        let loginScene = Scene.login(loginViewModel)
         
-        coordinator.transition(to: destinationScene, using: .root, animated: false)
-        
+        coordinator.transition(to: loginScene, using: .root, animated: false)
         return true
     }
 }
