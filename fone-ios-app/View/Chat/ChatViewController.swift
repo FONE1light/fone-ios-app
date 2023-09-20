@@ -1,0 +1,33 @@
+//
+//  ChatViewController.swift
+//  fone-ios-app
+//
+//  Created by Yukyung Huh on 2023/09/11.
+//
+
+import UIKit
+
+class ChatViewController: UIViewController, ViewModelBindableType {
+    var viewModel: ChatViewModel!
+    var hasViewModel = false
+    
+    @IBOutlet weak var notiButton: UIButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    func bindViewModel() {
+        notiButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                let notiScene = Scene.notification
+                owner.viewModel.sceneCoordinator.transition(to: notiScene, using: .push, animated: true)
+            }.disposed(by: rx.disposeBag)
+    }
+}
