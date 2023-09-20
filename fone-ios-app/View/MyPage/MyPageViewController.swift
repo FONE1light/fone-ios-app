@@ -69,6 +69,14 @@ class MyPageViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
+        rightArrowButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                let profileViewModel = ProfileViewModel(sceneCoordinator: self.viewModel.sceneCoordinator)
+                let scene = Scene.profile(profileViewModel)
+                self.viewModel.sceneCoordinator.transition(to: scene, using: .push, animated: true)
+            }.disposed(by: rx.disposeBag)
+        
         buttonStackView?.scrapButtonTap
             .withUnretained(self)
             .bind { owner, _ in
@@ -159,6 +167,13 @@ extension MyPageViewController {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(42)
             $0.bottom.equalToSuperview()
+        }
+        
+        rightArrowButton.snp.makeConstraints {
+            $0.top.equalTo(profileImage.snp.top)
+            $0.leading.equalTo(profileImage.snp.leading)
+            $0.trailing.equalTo(rightArrowImage.snp.trailing)
+            $0.bottom.equalTo(profileImage.snp.bottom)
         }
     }
 }
