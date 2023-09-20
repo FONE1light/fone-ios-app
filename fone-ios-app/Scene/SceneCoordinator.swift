@@ -11,6 +11,9 @@ import RxCocoa
 
 extension UIViewController {
     var sceneViewController: UIViewController {
+        if let tabBarController = self as? TabBarViewController {
+            return tabBarController.selectedViewController?.children.first ?? self
+        }
         return self.children.last ?? self
     }
 }
@@ -19,7 +22,7 @@ class SceneCoordinator: SceneCoordinatorType {
     private let disposeBag = DisposeBag()
     
     private var window: UIWindow
-    private var currentVC: UIViewController
+    var currentVC: UIViewController
     
     required init(window: UIWindow) {
         self.window = window
