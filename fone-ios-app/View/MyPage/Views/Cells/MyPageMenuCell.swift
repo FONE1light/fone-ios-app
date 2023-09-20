@@ -29,7 +29,7 @@ enum MyPageMenuType {
     
     var image: UIImage? {
         guard let imageName = self.imageName else { return nil }
-        return UIImage(named: imageName)
+        return UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate)
     }
     
     var text: String? {
@@ -65,7 +65,7 @@ class MyPageMenuCell: UITableViewCell {
     var disposeBag = DisposeBag()
     
     private lazy var leadingImage = UIImageView().then {
-        $0.image = UIImage()
+        $0.tintColor = .gray_9E9E9E
     }
     
     private let label = UILabel().then {
@@ -87,10 +87,6 @@ class MyPageMenuCell: UITableViewCell {
     
     func setupCell(type: MyPageMenuType) {
         leadingImage.image = type.image
-        // FIXME: tintColor 적용 불가
-//        leadingImage.tintColor = .red
-//        leadingImage.backgroundColor = .red
-//        leadingImage.borderColor = .red
         label.text = type.text
         trailingView = type.trailingView
         
