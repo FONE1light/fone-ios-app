@@ -8,7 +8,7 @@
 import UIKit
 
 enum Scene {
-    //    case home()
+    case home(SceneCoordinator)
     case login(LoginViewModel)
     case findIDPassword(FindIDPasswordViewModel)
     case signUpSelection(SignUpViewModel) // 회원가입1
@@ -18,11 +18,21 @@ enum Scene {
     case question(QuestionViewModel)
     case emailLogin(EmailLoginViewModel)
     case emailSignUp(EmailSignUpViewModel)
+    case notification
+    case myPage(MyPageViewModel)
+    
+    // 마이페이지 내부
+    case profile(ProfileViewModel) // 프로필 수정
 }
 
 extension Scene {
     func instantiate() -> UIViewController {
         switch self {
+        case .home(let coordinator):
+            let tabBarController = TabBarViewController(coordinator: coordinator)
+            
+            return tabBarController
+            
         case .login(let loginViewModel):
             var loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
             
@@ -109,6 +119,29 @@ extension Scene {
             let emailSignUpNav = UINavigationController(rootViewController: emailSignUpVC)
             
             return emailSignUpNav
+            
+        case .notification:
+            let notiVC = NotiViewController()
+            
+            return notiVC
+            
+        case .myPage(let myPageViewModel):
+            var myPageVC = MyPageViewController()
+            
+            DispatchQueue.main.async {
+                myPageVC.bind(viewModel: myPageViewModel)
+            }
+            
+            return myPageVC
+            
+        case .profile(let profileViewModel):
+            var profileVC = ProfileViewController()
+            
+            DispatchQueue.main.async {
+                profileVC.bind(viewModel: profileViewModel)
+            }
+        
+            return profileVC
         }
     }
 }

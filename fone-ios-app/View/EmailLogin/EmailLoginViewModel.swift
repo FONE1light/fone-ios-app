@@ -47,8 +47,10 @@ class EmailLoginViewModel: CommonViewModel {
                     
                     UserDefaults.standard.set(response.data?.token.accessToken, forKey: "accessToken")
                     UserDefaults.standard.set(response.data?.token.refreshToken, forKey: "refreshToken")
-                    
                     response.data?.token.accessToken.toast(isKeyboardShowing: self.isKeyboardShowing)
+                    
+                    print("accessToken == \(response.data?.token.accessToken)")
+                    print("refreshToken == \(response.data?.token.refreshToken)")
                 } else {
                     self.showLoginErrorAlertSubject.onNext(())
                 }
