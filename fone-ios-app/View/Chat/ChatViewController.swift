@@ -11,23 +11,18 @@ class ChatViewController: UIViewController, ViewModelBindableType {
     var viewModel: ChatViewModel!
     var hasViewModel = false
     
-    @IBOutlet weak var notiButton: UIButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
+        setNavigationBar()
     }
     
     func bindViewModel() {
-        notiButton.rx.tap
-            .withUnretained(self)
-            .bind { owner, _ in
-                let notiScene = Scene.notification
-                owner.viewModel.sceneCoordinator.transition(to: notiScene, using: .push, animated: true)
-            }.disposed(by: rx.disposeBag)
+
+    }
+    
+    private func setNavigationBar() {
+        self.navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(type: .chat)
+        self.navigationItem.rightBarButtonItem = NavigationRightBarButtonItem(type: .notification, viewController: self)
     }
 }
