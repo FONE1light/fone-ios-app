@@ -90,6 +90,19 @@
 		AB6785582AA3336900ACD35C /* EmailLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB6785562AA3336900ACD35C /* EmailLoginViewController.xib */; };
 		AB67855C2AA3374F00ACD35C /* EmailSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB67855A2AA3374F00ACD35C /* EmailSignUpViewController.swift */; };
 		AB67855D2AA3374F00ACD35C /* EmailSignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB67855B2AA3374F00ACD35C /* EmailSignUpViewController.xib */; };
+		AB6992242AB6E87100B67455 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6992232AB6E87100B67455 /* ChatViewModel.swift */; };
+		AB6992292AB6ED0200B67455 /* MainBannerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6992272AB6ED0200B67455 /* MainBannerModule.swift */; };
+		AB69922A2AB6ED0200B67455 /* MainBannerModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB6992282AB6ED0200B67455 /* MainBannerModule.xib */; };
+		AB69922E2AB6FD9700B67455 /* MainBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69922C2AB6FD9700B67455 /* MainBannerCell.swift */; };
+		AB69922F2AB6FD9700B67455 /* MainBannerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB69922D2AB6FD9700B67455 /* MainBannerCell.xib */; };
+		AB6992352AB70E8000B67455 /* JobOpeningModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6992332AB70E8000B67455 /* JobOpeningModule.swift */; };
+		AB6992362AB70E8000B67455 /* JobOpeningModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB6992342AB70E8000B67455 /* JobOpeningModule.xib */; };
+		AB6992392AB70E9100B67455 /* CompetitionModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6992372AB70E9100B67455 /* CompetitionModule.swift */; };
+		AB69923A2AB70E9100B67455 /* CompetitionModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB6992382AB70E9100B67455 /* CompetitionModule.xib */; };
+		AB69923F2AB7117C00B67455 /* ProfileModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69923D2AB7117C00B67455 /* ProfileModule.swift */; };
+		AB6992402AB7117C00B67455 /* ProfileModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB69923E2AB7117C00B67455 /* ProfileModule.xib */; };
+		AB7900B72AB5C99A004DA4F3 /* NotiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7900B52AB5C99A004DA4F3 /* NotiViewController.swift */; };
+		AB7900B82AB5C99A004DA4F3 /* NotiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7900B62AB5C99A004DA4F3 /* NotiViewController.xib */; };
 		AB79B3B92A9E298B008EBAA2 /* QuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB79B3B82A9E298B008EBAA2 /* QuestionViewModel.swift */; };
 		AB79B3BC2A9E29C4008EBAA2 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB79B3BA2A9E29C4008EBAA2 /* QuestionViewController.swift */; };
 		AB79B3BD2A9E29C4008EBAA2 /* QuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB79B3BB2A9E29C4008EBAA2 /* QuestionViewController.xib */; };
@@ -165,6 +178,19 @@
 		AB6785562AA3336900ACD35C /* EmailLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmailLoginViewController.xib; sourceTree = "<group>"; };
 		AB67855A2AA3374F00ACD35C /* EmailSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignUpViewController.swift; sourceTree = "<group>"; };
 		AB67855B2AA3374F00ACD35C /* EmailSignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmailSignUpViewController.xib; sourceTree = "<group>"; };
+		AB6992232AB6E87100B67455 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		AB6992272AB6ED0200B67455 /* MainBannerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBannerModule.swift; sourceTree = "<group>"; };
+		AB6992282AB6ED0200B67455 /* MainBannerModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainBannerModule.xib; sourceTree = "<group>"; };
+		AB69922C2AB6FD9700B67455 /* MainBannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBannerCell.swift; sourceTree = "<group>"; };
+		AB69922D2AB6FD9700B67455 /* MainBannerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainBannerCell.xib; sourceTree = "<group>"; };
+		AB6992332AB70E8000B67455 /* JobOpeningModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningModule.swift; sourceTree = "<group>"; };
+		AB6992342AB70E8000B67455 /* JobOpeningModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JobOpeningModule.xib; sourceTree = "<group>"; };
+		AB6992372AB70E9100B67455 /* CompetitionModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionModule.swift; sourceTree = "<group>"; };
+		AB6992382AB70E9100B67455 /* CompetitionModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompetitionModule.xib; sourceTree = "<group>"; };
+		AB69923D2AB7117C00B67455 /* ProfileModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModule.swift; sourceTree = "<group>"; };
+		AB69923E2AB7117C00B67455 /* ProfileModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileModule.xib; sourceTree = "<group>"; };
+		AB7900B52AB5C99A004DA4F3 /* NotiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiViewController.swift; sourceTree = "<group>"; };
+		AB7900B62AB5C99A004DA4F3 /* NotiViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotiViewController.xib; sourceTree = "<group>"; };
 		AB79B3B82A9E298B008EBAA2 /* QuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewModel.swift; sourceTree = "<group>"; };
 		AB79B3BA2A9E29C4008EBAA2 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		AB79B3BB2A9E29C4008EBAA2 /* QuestionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionViewController.xib; sourceTree = "<group>"; };
@@ -210,7 +236,6 @@
 		362866792A8B66B900CD42BC /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				36AC7BD32AAE851E00478030 /* ViewModels */,
 				36BCC7DE2AA31A1D0060E35A /* ViewControllers */,
 				3628667C2A8B67D100CD42BC /* Views */,
 				3628667A2A8B670200CD42BC /* SignUpViewController.swift */,
@@ -295,7 +320,6 @@
 				ABA47FF62A850AE600B64403 /* UIView+Extension.swift */,
 				AB45464F2AAB452D0019B27F /* UIButton+Extension.swift */,
 				AB9885112AA476FF00282C07 /* Rx+Extension.swift */,
-				36AC7BD62AAE883500478030 /* UITableView+Extension.swift */,
 				AB3F071F2AADB72500E54A25 /* UICollectionView+Extension.swift */,
 			);
 			path = Extensions;
@@ -355,9 +379,29 @@
 			isa = PBXGroup;
 			children = (
 				36F50AAB2A9897AA00991C9B /* SelectionCell.swift */,
-				36AC7BD82AAE88F400478030 /* TermsCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		AB2578982AAF335F00328363 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				AB6992252AB6ECCC00B67455 /* Modules */,
+				AB25789D2AAF341900328363 /* HomeViewModel.swift */,
+				AB25789F2AAF36A900328363 /* HomeViewController.swift */,
+				AB2578A02AAF36A900328363 /* HomeViewController.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		AB2578A72AAF3C7A00328363 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				AB2578A82AAF3C8F00328363 /* ChatViewController.swift */,
+				AB2578A92AAF3C8F00328363 /* ChatViewController.xib */,
+				AB6992232AB6E87100B67455 /* ChatViewModel.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		AB3F07162AADAA5D00E54A25 /* Cells */ = {
@@ -424,7 +468,7 @@
 			children = (
 				3650F61C2A86710B0017645D /* Resources */,
 				AB60024E2A7E42A6000CF1FD /* Common */,
-				364482C92AB761DD00984507 /* Data */,
+				AB60024D2A7E3B15000CF1FD /* Model */,
 				362866882A8DF3F400CD42BC /* Network */,
 				AB49A3292A8104A000748484 /* Scene */,
 				AB60024C2A7E3B05000CF1FD /* View */,
@@ -439,6 +483,11 @@
 		AB60024C2A7E3B05000CF1FD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AB7900B92AB5D0E1004DA4F3 /* TabBar */,
+				AB7900B42AB5C989004DA4F3 /* Noti */,
+				AB2578A72AAF3C7A00328363 /* Chat */,
+				AB2578982AAF335F00328363 /* Home */,
+        364482CA2AB7C74900984507 /* MyPage */,
 				AB6785592AA3373800ACD35C /* EmailSignUp */,
 				AB6785522AA3333100ACD35C /* EmailLogin */,
 				AB79B3B72A9E294B008EBAA2 /* Question */,
@@ -449,6 +498,13 @@
 				AB60023B2A7E375D000CF1FD /* Main.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		AB60024D2A7E3B15000CF1FD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		AB60024E2A7E42A6000CF1FD /* Common */ = {
@@ -481,6 +537,80 @@
 				ABF3034A2AA33E4A00C14AF7 /* EmailSignUpViewModel.swift */,
 			);
 			path = EmailSignUp;
+			sourceTree = "<group>";
+		};
+		AB6992252AB6ECCC00B67455 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				AB6992262AB6ECD700B67455 /* MainBanner */,
+				AB6992302AB70E1600B67455 /* JobOpening */,
+				AB6992312AB70E2600B67455 /* Competition */,
+				AB6992322AB70E5F00B67455 /* Profile */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		AB6992262AB6ECD700B67455 /* MainBanner */ = {
+			isa = PBXGroup;
+			children = (
+				AB69922B2AB6FD8400B67455 /* Cells */,
+				AB6992272AB6ED0200B67455 /* MainBannerModule.swift */,
+				AB6992282AB6ED0200B67455 /* MainBannerModule.xib */,
+			);
+			path = MainBanner;
+			sourceTree = "<group>";
+		};
+		AB69922B2AB6FD8400B67455 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				AB69922C2AB6FD9700B67455 /* MainBannerCell.swift */,
+				AB69922D2AB6FD9700B67455 /* MainBannerCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		AB6992302AB70E1600B67455 /* JobOpening */ = {
+			isa = PBXGroup;
+			children = (
+				AB6992332AB70E8000B67455 /* JobOpeningModule.swift */,
+				AB6992342AB70E8000B67455 /* JobOpeningModule.xib */,
+			);
+			path = JobOpening;
+			sourceTree = "<group>";
+		};
+		AB6992312AB70E2600B67455 /* Competition */ = {
+			isa = PBXGroup;
+			children = (
+				AB6992372AB70E9100B67455 /* CompetitionModule.swift */,
+				AB6992382AB70E9100B67455 /* CompetitionModule.xib */,
+			);
+			path = Competition;
+			sourceTree = "<group>";
+		};
+		AB6992322AB70E5F00B67455 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				AB69923D2AB7117C00B67455 /* ProfileModule.swift */,
+				AB69923E2AB7117C00B67455 /* ProfileModule.xib */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		AB7900B42AB5C989004DA4F3 /* Noti */ = {
+			isa = PBXGroup;
+			children = (
+				AB7900B52AB5C99A004DA4F3 /* NotiViewController.swift */,
+				AB7900B62AB5C99A004DA4F3 /* NotiViewController.xib */,
+			);
+			path = Noti;
+			sourceTree = "<group>";
+		};
+		AB7900B92AB5D0E1004DA4F3 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				AB2578A32AAF387F00328363 /* TabBarViewController.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		AB79B3B72A9E294B008EBAA2 /* Question */ = {
@@ -592,13 +722,20 @@
 				AB49A3452A81158900748484 /* FindIDPasswordViewController.xib in Resources */,
 				AB6002452A7E375D000CF1FD /* LaunchScreen.storyboard in Resources */,
 				AB67855D2AA3374F00ACD35C /* EmailSignUpViewController.xib in Resources */,
+				AB2578A22AAF36A900328363 /* HomeViewController.xib in Resources */,
+				AB69923A2AB70E9100B67455 /* CompetitionModule.xib in Resources */,
+				AB2578AB2AAF3C8F00328363 /* ChatViewController.xib in Resources */,
 				AB6785582AA3336900ACD35C /* EmailLoginViewController.xib in Resources */,
 				3650F6222A86715C0017645D /* Pretendard-Medium.ttf in Resources */,
+				AB69922F2AB6FD9700B67455 /* MainBannerCell.xib in Resources */,
+				AB69922A2AB6ED0200B67455 /* MainBannerModule.xib in Resources */,
 				AB6002422A7E375D000CF1FD /* Assets.xcassets in Resources */,
 				AB3F071E2AADADB700E54A25 /* FindPasswordCell.xib in Resources */,
 				3650F6212A86715C0017645D /* Pretendard-Regular.ttf in Resources */,
+				AB6992402AB7117C00B67455 /* ProfileModule.xib in Resources */,
 				3650F6232A86715C0017645D /* Pretendard-Bold.ttf in Resources */,
 				AB60023D2A7E375D000CF1FD /* Main.storyboard in Resources */,
+				AB6992362AB70E8000B67455 /* JobOpeningModule.xib in Resources */,
 				AB79B3BD2A9E29C4008EBAA2 /* QuestionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -611,7 +748,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				362866822A8B6B3600CD42BC /* UILabel+Extension.swift in Sources */,
-				36AC7BD92AAE88F400478030 /* TermsCell.swift in Sources */,
 				362866902A8DF5C900CD42BC /* String+Extension.swift in Sources */,
 				36F50AAC2A9897AA00991C9B /* SelectionCell.swift in Sources */,
 				3650F6262A8672010017645D /* UIFont+Extension.swift in Sources */,
@@ -634,10 +770,15 @@
 				AB60023A2A7E375D000CF1FD /* ViewController.swift in Sources */,
 				3628668B2A8DF40F00CD42BC /* APIConfig.swift in Sources */,
 				36BCC7E02AA31A350060E35A /* SignUpInfoViewController.swift in Sources */,
-				364BCC6A2AB3672500E14B25 /* DynamicHeightCollectionView.swift in Sources */,
 				362866972A8E3D8200CD42BC /* Response+Codable.swift in Sources */,
+				AB9DAAA82AB0A4F500B00016 /* HomeInfoProvider.swift in Sources */,
 				ABA47FF72A850AE600B64403 /* UIView+Extension.swift in Sources */,
 				AB49A33C2A810CAA00748484 /* ViewModelBindableType.swift in Sources */,
+				AB6992392AB70E9100B67455 /* CompetitionModule.swift in Sources */,
+				36BCC7E62AA5E0180060E35A /* CustomButton.swift in Sources */,
+				AB79B3BC2A9E29C4008EBAA2 /* QuestionViewController.swift in Sources */,
+				AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */,
+				AB0F8E4C2AB324B7006D85F7 /* HomeInfoAPIModel.swift in Sources */,
 				364BCC6E2AB36A4900E14B25 /* Job.swift in Sources */,
 				36BCC7E62AA5E0180060E35A /* CustomButton.swift in Sources */,
 				AB79B3BC2A9E29C4008EBAA2 /* QuestionViewController.swift in Sources */,
@@ -648,6 +789,32 @@
 				AB6785572AA3336900ACD35C /* EmailLoginViewController.swift in Sources */,
 				AB67855C2AA3374F00ACD35C /* EmailSignUpViewController.swift in Sources */,
 				AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */,
+				AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */,
+				AB6992352AB70E8000B67455 /* JobOpeningModule.swift in Sources */,
+				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,
+				AB4546502AAB452D0019B27F /* UIButton+Extension.swift in Sources */,
+				ABAFA3392A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift in Sources */,
+				AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */,
+				AB69923F2AB7117C00B67455 /* ProfileModule.swift in Sources */,
+				AB69922E2AB6FD9700B67455 /* MainBannerCell.swift in Sources */,
+				362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */,
+				3628669A2A8E3E3700CD42BC /* UserInfoAPIModel.swift in Sources */,
+				ABAFA33B2A9F612900D50BAF /* QuestionInfoProvider.swift in Sources */,
+				36BCC7E42AA32B530060E35A /* SignUpSuccessViewController.swift in Sources */,
+				AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */,
+				AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */,
+				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,
+				AB3F07192AADAA9200E54A25 /* FindIDCell.swift in Sources */,
+				36D293D42A961FDB00171C77 /* SelectionBlock.swift in Sources */,
+				36D293D22A961E7300171C77 /* SignUpSelectionViewController.swift in Sources */,
+				AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */,
+				362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */,
+				AB6992242AB6E87100B67455 /* ChatViewModel.swift in Sources */,
+				3628669A2A8E3E3700CD42BC /* UserInfoAPIModel.swift in Sources */,
+				AB3F07202AADB72500E54A25 /* UICollectionView+Extension.swift in Sources */,
+				36BCC7E22AA328AB0060E35A /* SignUpPhoneNumberViewController.swift in Sources */,
+				AB2578AA2AAF3C8F00328363 /* ChatViewController.swift in Sources */,
+				AB6992292AB6ED0200B67455 /* MainBannerModule.swift in Sources */,
 				36AC7BD52AAE852E00478030 /* SignUpPhoneNumberViewModel.swift in Sources */,
 				AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */,
 				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,
