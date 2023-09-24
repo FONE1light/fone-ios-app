@@ -31,7 +31,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     
     private let phoneNumberLabel = UILabel().then {
         $0.text = "휴대전화 번호"
-        $0.font = .font_m(15)
+        $0.font = .font_b(15)
         $0.textColor = .gray_161616
     }
     

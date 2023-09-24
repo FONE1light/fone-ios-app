@@ -29,15 +29,15 @@ class EmailSignUpViewController: UIViewController, ViewModelBindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.isHidden = true
+        setNavigationBar()
     }
     
     func bindViewModel() {
-        closeButton.rx.tap
-            .withUnretained(self)
-            .subscribe(onNext: { _ in
-                self.viewModel.sceneCoordinator.close(animated: true)
-            }).disposed(by: rx.disposeBag)
+//        closeButton.rx.tap
+//            .withUnretained(self)
+//            .subscribe(onNext: { _ in
+//                self.viewModel.sceneCoordinator.close(animated: true)
+//            }).disposed(by: rx.disposeBag)
         
         emailTextField.rx.text.orEmpty
             .bind(to: viewModel.emailTextSubject)
@@ -110,6 +110,11 @@ class EmailSignUpViewController: UIViewController, ViewModelBindableType {
                 let password = self.passwordTextField.text ?? ""
                 self.viewModel.moveToSignUp(email: email, password: password)
             }).disposed(by: rx.disposeBag)
+    }
+    
+    private func setNavigationBar() {
+        self.navigationItem.titleView = NavigationTitleView(title: "이메일 회원가입")
+        self.navigationItem.rightBarButtonItem = NavigationRightBarButtonItem(type: .close, viewController: self)
     }
     
     func eyeButtonTapped(textField: UITextField, eyeButton: UIButton) {
