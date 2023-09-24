@@ -19,7 +19,7 @@ extension RightBarButtonType {
     var tintColor: UIColor? {
         switch self {
         case .notification: return .gray_9E9E9E
-        case       .close: return .gray_555555
+        case .close: return .gray_555555
         default: return nil
         }
     }
