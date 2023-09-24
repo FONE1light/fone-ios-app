@@ -20,10 +20,10 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Q8l-3r-jE7">
-                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Q8l-3r-jE7">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WX0-Zn-t8x">
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="WX0-Zn-t8x">
                         <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -35,8 +35,8 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Q8l-3r-jE7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="4x9-2B-Ocs"/>
-                <constraint firstItem="Q8l-3r-jE7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="JGe-55-UL4"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Q8l-3r-jE7" secondAttribute="bottom" id="L3C-rZ-a4g"/>
+                <constraint firstItem="Q8l-3r-jE7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="JGe-55-UL4"/>
+                <constraint firstAttribute="bottom" secondItem="Q8l-3r-jE7" secondAttribute="bottom" id="L3C-rZ-a4g"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Q8l-3r-jE7" secondAttribute="trailing" id="Mql-9l-5Xp"/>
             </constraints>
             <point key="canvasLocation" x="6" y="21"/>
