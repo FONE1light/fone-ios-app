@@ -13,6 +13,8 @@ enum LeftBarButtonType {
     case back
     case close
     case myPage
+    case chat
+    case home
 }
 
 extension LeftBarButtonType {
@@ -41,6 +43,20 @@ extension LeftBarButtonType {
                 $0.text = "나의 F-ONE"
                 $0.textColor = .gray_161616
                 $0.font = .font_b(19)
+            }
+            return label
+        case .chat:
+            let label = UILabel().then {
+                $0.text = "채팅"
+                $0.textColor = .gray_161616
+                $0.font = .font_b(19)
+            }
+            return label
+        case .home:
+            let label = UILabel().then {
+                $0.text = "F-ONE"
+                $0.textColor = .gray_161616
+                $0.font = .font_b(22)
             }
             return label
         default: return nil

@@ -11,23 +11,31 @@ class HomeViewController: UIViewController, ViewModelBindableType {
     var viewModel: HomeViewModel!
     var hasViewModel = false
     
-    @IBOutlet weak var notiButton: UIButton!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
+        setNavigationBar()
+        
     }
     
     func bindViewModel() {
-        notiButton.rx.tap
-            .withUnretained(self)
-            .bind { owner, _ in
-                let notiScene = Scene.notification
-                owner.viewModel.sceneCoordinator.transition(to: notiScene, using: .push, animated: true)
-            }.disposed(by: rx.disposeBag)
+        
+    }
+    
+    private func setNavigationBar() {
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.hidesBarsOnSwipe = true
+        
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.shadowColor = nil
+        navigationBarAppearance.backgroundColor = .white
+        
+        navigationController?.navigationBar.standardAppearance = navigationBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
+        
+        self.navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(type: .home)
+        self.navigationItem.rightBarButtonItem = NavigationRightBarButtonItem(type: .notification, viewController: self)
     }
 }

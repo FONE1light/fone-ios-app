@@ -39,10 +39,9 @@ extension RightBarButtonType {
     /// 버튼 클릭 시 실행할 동작
     func action(_ viewController: UIViewController?) {
         switch self {
-        // TODO: 알림 VC 생기면 연결
-//        case .notification:
-//            let notificationViewController =
-//            viewController?.navigationController?.pushViewController(notificationViewController, animated: true)
+        case .notification:
+            let notificationViewController = NotiViewController()
+            viewController?.navigationController?.pushViewController(notificationViewController, animated: true)
         default: return
         }
     }

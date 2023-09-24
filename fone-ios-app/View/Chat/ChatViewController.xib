@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,7 +19,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatViewController" customModule="fone_ios_app" customModuleProvider="target">
             <connections>
-                <outlet property="notiButton" destination="rQp-u6-ZHH" id="FSL-Cw-Adg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -49,39 +48,6 @@
                         <constraint firstAttribute="width" constant="197" id="g92-nr-4ad"/>
                     </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zxo-SQ-nyb">
-                    <rect key="frame" x="0.0" y="59" width="393" height="50"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="채팅" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPf-3x-cJS">
-                            <rect key="frame" x="16" y="13.666666666666671" width="33" height="23"/>
-                            <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="19"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQp-u6-ZHH">
-                            <rect key="frame" x="353" y="13" width="24" height="24"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="24" id="83N-5V-vlE"/>
-                                <constraint firstAttribute="height" constant="24" id="JLC-C5-Dy3"/>
-                            </constraints>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" image="bell"/>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstItem="aPf-3x-cJS" firstAttribute="centerY" secondItem="zxo-SQ-nyb" secondAttribute="centerY" id="80K-Bg-yoA"/>
-                        <constraint firstAttribute="trailing" secondItem="rQp-u6-ZHH" secondAttribute="trailing" constant="16" id="WUB-OJ-owS"/>
-                        <constraint firstItem="aPf-3x-cJS" firstAttribute="leading" secondItem="zxo-SQ-nyb" secondAttribute="leading" constant="16" id="c5B-KX-jZB"/>
-                        <constraint firstItem="rQp-u6-ZHH" firstAttribute="centerY" secondItem="zxo-SQ-nyb" secondAttribute="centerY" id="do2-p8-0Ey"/>
-                        <constraint firstAttribute="height" constant="50" id="fe9-HQ-5gs"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pO0-tE-O0X">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="59"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -93,22 +59,18 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="pO0-tE-O0X" secondAttribute="bottom" id="3Rx-HZ-Dfh"/>
                 <constraint firstItem="pO0-tE-O0X" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="4Zi-wy-MgM"/>
                 <constraint firstItem="mph-RY-dzH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="4j8-tp-FQy"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zxo-SQ-nyb" secondAttribute="trailing" id="F2E-lR-Oeb"/>
                 <constraint firstItem="V43-5m-vPX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="271" id="JwW-Yq-88n"/>
                 <constraint firstItem="V43-5m-vPX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="KEe-Yv-w4a"/>
                 <constraint firstItem="AAC-Xx-D6j" firstAttribute="top" secondItem="mph-RY-dzH" secondAttribute="bottom" constant="4" id="X2e-Yy-Mdc"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pO0-tE-O0X" secondAttribute="trailing" id="kse-uy-gvM"/>
                 <constraint firstItem="mph-RY-dzH" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="400" id="mTK-yi-bnh"/>
-                <constraint firstItem="zxo-SQ-nyb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="tEe-2K-WTD"/>
                 <constraint firstItem="pO0-tE-O0X" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vUD-Ct-Tzu"/>
-                <constraint firstItem="zxo-SQ-nyb" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="yAx-VY-Yr7"/>
                 <constraint firstItem="AAC-Xx-D6j" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="zre-sC-GJC"/>
             </constraints>
             <point key="canvasLocation" x="140" y="20"/>
         </view>
     </objects>
     <resources>
-        <image name="bell" width="24" height="24"/>
         <image name="preparing" width="197" height="109"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
