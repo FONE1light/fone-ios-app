@@ -114,7 +114,6 @@ class TabBarViewController: UITabBarController {
     private func setTabBarAppearance() {
         if #available(iOS 15, *) {
             let appearance = UITabBarAppearance()
-            let tabBar = UITabBar()
             appearance.configureWithOpaqueBackground()
             appearance.backgroundColor = .white_FFFFFF
             tabBar.standardAppearance = appearance

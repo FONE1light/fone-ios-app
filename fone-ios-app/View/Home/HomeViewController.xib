@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Pretendard-Bold.ttf">
-            <string>Pretendard-Bold</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="fone_ios_app" customModuleProvider="target">
             <connections>
-                <outlet property="notiButton" destination="7HD-iB-VSf" id="PIj-Md-Pfo"/>
+                <outlet property="collectionView" destination="Q8l-3r-jE7" id="IOW-ob-UTC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -25,43 +20,10 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSO-9h-kIy">
-                    <rect key="frame" x="0.0" y="59" width="393" height="60"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F-ONE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gri-s9-xLA">
-                            <rect key="frame" x="16" y="12" width="67.666666666666671" height="36"/>
-                            <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="22"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7HD-iB-VSf">
-                            <rect key="frame" x="353" y="18" width="24" height="24"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="24" id="ULB-YF-Nhy"/>
-                                <constraint firstAttribute="height" constant="24" id="xEz-XB-3c8"/>
-                            </constraints>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" image="bell"/>
-                        </button>
-                    </subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Q8l-3r-jE7">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstItem="gri-s9-xLA" firstAttribute="leading" secondItem="CSO-9h-kIy" secondAttribute="leading" constant="16" id="EOT-tP-q2b"/>
-                        <constraint firstAttribute="height" constant="60" id="J3M-WG-uGP"/>
-                        <constraint firstItem="gri-s9-xLA" firstAttribute="top" secondItem="CSO-9h-kIy" secondAttribute="top" constant="12" id="fuc-XS-4rd"/>
-                        <constraint firstAttribute="bottom" secondItem="gri-s9-xLA" secondAttribute="bottom" constant="12" id="g6C-tY-wpR"/>
-                        <constraint firstItem="7HD-iB-VSf" firstAttribute="centerY" secondItem="CSO-9h-kIy" secondAttribute="centerY" id="tN9-Q8-WKr"/>
-                        <constraint firstAttribute="trailing" secondItem="7HD-iB-VSf" secondAttribute="trailing" constant="16" id="zYs-vS-r8g"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nPf-66-aGy">
-                    <rect key="frame" x="0.0" y="0.0" width="393" height="59"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                </view>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Q8l-3r-jE7">
-                    <rect key="frame" x="0.0" y="119" width="393" height="699"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WX0-Zn-t8x">
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="WX0-Zn-t8x">
                         <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -72,23 +34,15 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nPf-66-aGy" secondAttribute="trailing" id="3Ih-xO-4ch"/>
                 <constraint firstItem="Q8l-3r-jE7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="4x9-2B-Ocs"/>
-                <constraint firstItem="nPf-66-aGy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="5hs-Lb-e2Q"/>
-                <constraint firstItem="CSO-9h-kIy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="AGA-Kc-uq5"/>
-                <constraint firstItem="CSO-9h-kIy" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="EQH-uO-skI"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Q8l-3r-jE7" secondAttribute="bottom" id="L3C-rZ-a4g"/>
+                <constraint firstItem="Q8l-3r-jE7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="JGe-55-UL4"/>
+                <constraint firstAttribute="bottom" secondItem="Q8l-3r-jE7" secondAttribute="bottom" id="L3C-rZ-a4g"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Q8l-3r-jE7" secondAttribute="trailing" id="Mql-9l-5Xp"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CSO-9h-kIy" secondAttribute="trailing" id="SvK-rd-2fb"/>
-                <constraint firstItem="Q8l-3r-jE7" firstAttribute="top" secondItem="CSO-9h-kIy" secondAttribute="bottom" id="cjr-5m-x2K"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="nPf-66-aGy" secondAttribute="bottom" id="dCz-Zp-MLz"/>
-                <constraint firstItem="nPf-66-aGy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hBP-tx-yXQ"/>
             </constraints>
             <point key="canvasLocation" x="6" y="21"/>
         </view>
     </objects>
     <resources>
-        <image name="bell" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

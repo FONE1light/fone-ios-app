@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Medium.ttf">
+            <string>Pretendard-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MainBannerModule" customModule="fone_ios_app" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="I1F-KQ-sWg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="AUL-sh-sne">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Idz-ec-hfs">
+                        <rect key="frame" x="304" y="208" width="55" height="24"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="Oel-1B-k3r"/>
+                            <constraint firstAttribute="width" constant="55" id="uHz-VN-627"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="15.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 / 6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55K-wq-atF">
+                        <rect key="frame" x="318" y="210" width="27" height="20"/>
+                        <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="sfZ-1k-Awt"/>
+            <constraints>
+                <constraint firstItem="I1F-KQ-sWg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="43R-i0-KaN"/>
+                <constraint firstItem="55K-wq-atF" firstAttribute="top" secondItem="Idz-ec-hfs" secondAttribute="top" constant="2" id="GVd-6Z-Nfd"/>
+                <constraint firstAttribute="bottom" secondItem="I1F-KQ-sWg" secondAttribute="bottom" id="I5Y-4a-NJq"/>
+                <constraint firstItem="Idz-ec-hfs" firstAttribute="bottom" secondItem="55K-wq-atF" secondAttribute="bottom" constant="2" id="LZj-9j-IHN"/>
+                <constraint firstItem="55K-wq-atF" firstAttribute="centerX" secondItem="Idz-ec-hfs" secondAttribute="centerX" id="MfL-QX-E0W"/>
+                <constraint firstItem="I1F-KQ-sWg" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="RuM-xb-rT2"/>
+                <constraint firstAttribute="bottom" secondItem="Idz-ec-hfs" secondAttribute="bottom" constant="18" id="SUc-A2-o2L"/>
+                <constraint firstAttribute="trailing" secondItem="I1F-KQ-sWg" secondAttribute="trailing" id="UBf-ai-2j7"/>
+                <constraint firstAttribute="trailing" secondItem="Idz-ec-hfs" secondAttribute="trailing" constant="16" id="nLK-RM-QIt"/>
+            </constraints>
+            <connections>
+                <outlet property="collectionView" destination="I1F-KQ-sWg" id="q9h-xF-m7H"/>
+                <outlet property="pageCountLabel" destination="55K-wq-atF" id="gb9-RV-HkK"/>
+            </connections>
+            <point key="canvasLocation" x="21" y="21"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
