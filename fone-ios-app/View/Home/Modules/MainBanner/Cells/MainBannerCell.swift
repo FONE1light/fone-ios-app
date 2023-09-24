@@ -9,9 +9,14 @@ import UIKit
 
 class MainBannerCell: UICollectionViewCell {
 
+    @IBOutlet weak var imageView: UIImageView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
     }
 
+    func configure(index: Int) {
+        imageView.image = UIImage(named: "banner\(index + 1)")
+    }
 }
