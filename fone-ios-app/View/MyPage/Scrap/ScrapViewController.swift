@@ -20,13 +20,21 @@ class ScrapViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: ScrapViewModel!
     
-    var tabBar = MyPageTabBar(
+    private var tabBar = MyPageTabBar(
         width: UIScreen.main.bounds.width - Constants.horizontalInset * 2,
         height: Constants.tabBarHeight
     )
     
-    let underLineView = UIView().then {
+    private let underLineView = UIView().then {
         $0.backgroundColor = .gray_D9D9D9
+    }
+    
+    private lazy var tableView = UITableView().then {
+        $0.showsVerticalScrollIndicator = false
+        $0.separatorStyle = .none
+//        $0.delegate = self
+        $0.dataSource = self
+        $0.register(with: PostTableViewCell.self)
     }
     
     func bindViewModel() {
@@ -52,7 +60,7 @@ class ScrapViewController: UIViewController, ViewModelBindableType {
     private func setUI() {
         self.view.backgroundColor = .white_FFFFFF
         
-        [tabBar, underLineView].forEach {
+        [tabBar, underLineView, tableView].forEach {
             self.view.addSubview($0)
         }
         
@@ -76,5 +84,41 @@ class ScrapViewController: UIViewController, ViewModelBindableType {
             $0.top.equalTo(tabBar.snp.bottom)
             $0.height.equalTo(1)
         }
+        
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(underLineView.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
     }
+}
+
+extension ScrapViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //        return self.arrDropDownDataSource.count
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(for: indexPath) as PostTableViewCell
+        
+//        cell.configure(
+//            deadline: "2023.01.20",
+//            coorporate: "성균관대학교 영상학과",
+//            gender: "남자",
+//            period: "일주일",
+//            casting: "수영선수"
+//        )
+        
+        cell.configure(
+            deadline: "2023.01.20",
+            coorporate: "성균관대학교 영상학과",
+            gender: "남자",
+            period: "일주일",
+            field: "미술"
+        )
+        
+        return cell
+    }
+
 }
