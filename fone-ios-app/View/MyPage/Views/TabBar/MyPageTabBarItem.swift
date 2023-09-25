@@ -13,19 +13,14 @@ class MyPageTabBarItem: UITabBarItem {
         super.init()
         
         self.title = title
-        self.image = nil
         self.tag = tag
         
         let fontAttributes = [
             NSAttributedString.Key.font: UIFont.font_r(14),
-//            NSAttributedString.Key.foregroundColor: UIColor.gray_9E9E9E,
         ]
         let selectedFontAttributes = [
             NSAttributedString.Key.font: UIFont.font_m(14),
             NSAttributedString.Key.foregroundColor: UIColor.red_CE0B39,
-//            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick,
-//            NSAttributedString.Key.underlineColor: UIColor.red_CE0B39,
-//            NSAttributedString.Key.backgroundColor: UIColor.white,
         ]
         
         setTitleTextAttributes(fontAttributes, for: .normal)
