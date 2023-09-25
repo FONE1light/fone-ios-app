@@ -10,7 +10,6 @@ import UIKit
 class EmailLoginViewController: UIViewController, ViewModelBindableType {
     var viewModel: EmailLoginViewModel!
     
-    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var emailContainerView: UIView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var emailErrorMessage: UILabel!
@@ -21,20 +20,13 @@ class EmailLoginViewController: UIViewController, ViewModelBindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.isHidden = true
+        setNavigationBar()
     }
     
     func bindViewModel() {
         keyboardHeight()
             .map { $0 != 0 }
             .subscribe { self.viewModel.isKeyboardShowing = $0 }
-            .disposed(by: rx.disposeBag)
-        
-        closeButton.rx.tap
-            .withUnretained(self)
-            .subscribe(onNext: { _ in
-                self.viewModel.sceneCoordinator.close(animated: true)
-            })
             .disposed(by: rx.disposeBag)
         
         loginButton.rx.tap
@@ -81,6 +73,11 @@ class EmailLoginViewController: UIViewController, ViewModelBindableType {
             .subscribe(onNext: { _ in
                 self.loginErrorAlert()
             }).disposed(by: rx.disposeBag)
+    }
+    
+    private func setNavigationBar() {
+        self.navigationItem.titleView = NavigationTitleView(title: "이메일 로그인")
+        self.navigationItem.rightBarButtonItem = NavigationRightBarButtonItem(type: .close, viewController: self)
     }
     
     func loginErrorAlert() {

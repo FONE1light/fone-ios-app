@@ -12,7 +12,7 @@ import RxRelay
 /// 직업 or 관심사 선택 label + UICollectionView 영역
 class SelectionBlock: UIView {
     private let titleLabel = UILabel().then {
-        $0.font = .font_m(15)
+        $0.font = .font_b(15)
     }
     
     private let subtitleLabel = UILabel().then {

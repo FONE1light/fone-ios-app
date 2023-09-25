@@ -35,7 +35,7 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
     
     private let nicknameLabel = UILabel().then {
         $0.text = "닉네임 *"
-        $0.font = .font_m(15)
+        $0.font = .font_b(15)
         $0.textColor = .gray_161616
     }
     
@@ -53,7 +53,7 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
     
     private let birthLabel = UILabel().then {
         $0.text = "생년월일 및 성별 *"
-        $0.font = .font_m(15)
+        $0.font = .font_b(15)
         $0.textColor = .gray_161616
     }
     
@@ -77,7 +77,7 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
     
     private let profileLabel = UILabel().then {
         $0.text = "프로필 사진 등록"
-        $0.font = .font_m(15)
+        $0.font = .font_b(15)
         $0.textColor = .gray_161616
     }
     
