@@ -31,7 +31,7 @@ class ScrapViewController: UIViewController, ViewModelBindableType {
     
     private lazy var tableView = UITableView().then {
         $0.showsVerticalScrollIndicator = false
-        $0.separatorStyle = .none // cell 하단에 추가
+        $0.separatorStyle = .none
 //        $0.delegate = self
         $0.dataSource = self
         $0.register(with: ScrapPostCell.self)
@@ -103,11 +103,13 @@ extension ScrapViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(for: indexPath) as ScrapPostCell
         
 //        cell.configure(
+//            job: .staff,
+//            interests: [.featureFilm, .youtube],
 //            deadline: "2023.01.20",
 //            coorporate: "성균관대학교 영상학과",
 //            gender: "남자",
 //            period: "일주일",
-//            casting: "수영선수"
+//            field: "미술"
 //        )
         
         cell.configure(
@@ -117,7 +119,7 @@ extension ScrapViewController: UITableViewDataSource {
             coorporate: "성균관대학교 영상학과",
             gender: "남자",
             period: "일주일",
-            field: "미술"
+            casting: "수영선수"
         )
         
         return cell
