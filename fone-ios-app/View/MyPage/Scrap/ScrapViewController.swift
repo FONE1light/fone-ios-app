@@ -31,10 +31,10 @@ class ScrapViewController: UIViewController, ViewModelBindableType {
     
     private lazy var tableView = UITableView().then {
         $0.showsVerticalScrollIndicator = false
-        $0.separatorStyle = .none
+        $0.separatorStyle = .none // cell 하단에 추가
 //        $0.delegate = self
         $0.dataSource = self
-        $0.register(with: PostTableViewCell.self)
+        $0.register(with: ScrapPostCell.self)
     }
     
     func bindViewModel() {
@@ -100,7 +100,7 @@ extension ScrapViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(for: indexPath) as PostTableViewCell
+        let cell = tableView.dequeueReusableCell(for: indexPath) as ScrapPostCell
         
 //        cell.configure(
 //            deadline: "2023.01.20",
@@ -111,6 +111,8 @@ extension ScrapViewController: UITableViewDataSource {
 //        )
         
         cell.configure(
+            job: .actor,
+            interests: [.ottDrama, .shortFilm],
             deadline: "2023.01.20",
             coorporate: "성균관대학교 영상학과",
             gender: "남자",

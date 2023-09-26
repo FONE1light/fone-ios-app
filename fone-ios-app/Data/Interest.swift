@@ -5,7 +5,7 @@
 //  Created by 여나경 on 2023/09/14.
 //
 
-import Foundation
+import UIKit
 
 enum Interest: Selection, CaseIterable {
     case featureFilm
@@ -44,5 +44,17 @@ enum Interest: Selection, CaseIterable {
         case .viral: return "VIRAL"
         case .etc: return "ETC"
         }
+    }
+    
+    var tagTextColor: UIColor? {
+        UIColor.violet_6D5999
+    }
+    
+    var tagBackgroundColor : UIColor? {
+        UIColor.gray_EEEFEF
+    }
+    
+    var tagCornerRadius: CGFloat? {
+        return 10 // TODO: 디자인 값 확정 후 수정
     }
 }

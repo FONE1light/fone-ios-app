@@ -5,10 +5,14 @@
 //  Created by 여나경 on 2023/09/14.
 //
 
-import Foundation
+import UIKit
 
 protocol Selection {
     var name: String { get }
+    
+    var tagTextColor: UIColor? { get }
+    var tagBackgroundColor: UIColor? { get }
+    var tagCornerRadius: CGFloat? { get }
 }
 
 enum Job: Selection, CaseIterable {
@@ -28,5 +32,27 @@ enum Job: Selection, CaseIterable {
     
     var serverName: String {
         return self.name
+    }
+    
+    var tagTextColor: UIColor? {
+        switch self {
+        case .actor, .staff: return UIColor.white_FFFFFF
+        default: return nil
+        }
+    }
+    
+    var tagBackgroundColor : UIColor? {
+        switch self {
+        case .actor: return UIColor.red_FAAABD
+        case .staff: return UIColor.violet_6D5999
+        default: return nil
+        }
+    }
+    
+    var tagCornerRadius: CGFloat? {
+        switch self {
+        case .actor, .staff: return 5
+        default: return nil
+        }
     }
 }

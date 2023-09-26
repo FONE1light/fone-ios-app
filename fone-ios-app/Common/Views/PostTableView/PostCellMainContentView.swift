@@ -1,17 +1,15 @@
 //
-//  PostTableViewCell.swift
+//  PostCellMainContentView.swift
 //  fone-ios-app
 //
-//  Created by 여나경 on 2023/09/24.
+//  Created by 여나경 on 2023/09/25.
 //
 
 import UIKit
 
-class PostTableViewCell: UITableViewCell {
+class PostCellMainContentView: UIView {
     
-    var hasBookmark = true
-    
-    static let identifier = String(describing: PostTableViewCell.self)
+    var hasBookmark: Bool
     
     private let horizontalStackView = UIStackView().then {
         $0.axis = .horizontal
@@ -19,11 +17,9 @@ class PostTableViewCell: UITableViewCell {
         $0.alignment = .top
     }
     
-    /// `badges`, `titleLabel`을 포함하고 있는 leftView
+    /// `tagList`, `titleLabel`을 포함하고 있는 leftView
     private let leftView = UIView()
-    private let badges = UIView().then {
-        $0.backgroundColor = .blue
-    }
+    private let tagList = TagList()
     
     let titleLabel = UILabel().then {
         $0.font = .font_r(14)
@@ -42,15 +38,17 @@ class PostTableViewCell: UITableViewCell {
     
     private var titleValueBlock = TitleValueBlock()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    init(hasBookmark: Bool = true) {
+        self.hasBookmark = hasBookmark
+        super.init(frame: .zero)
         
-        self.selectionStyle = .none
         setupUI()
         setConstraints()
     }
     
     func configure(
+        job: Job, // actor/staff
+        interests: [Interest], // 작품 성격 최대 2개
         deadline: String? = nil,
         coorporate: String? = nil,
         gender: String? = nil,
@@ -58,6 +56,8 @@ class PostTableViewCell: UITableViewCell {
         casting: String? = nil,
         field: String? = nil
     ) {
+        tagList.setValues(job: job, intersts: interests)
+        
         titleValueBlock.setValues(
             deadline: deadline,
             coorporate: coorporate,
@@ -72,7 +72,7 @@ class PostTableViewCell: UITableViewCell {
         
         [horizontalStackView, titleValueBlock]
             .forEach {
-                contentView.addSubview($0)
+                self.addSubview($0)
             }
         [leftView]
             .forEach {
@@ -84,7 +84,7 @@ class PostTableViewCell: UITableViewCell {
             bookmarkView.addSubview(bookmarkImageView)
         }
         
-        [badges, titleLabel]
+        [tagList, titleLabel]
             .forEach {
                 leftView.addSubview($0)
             }
@@ -93,29 +93,27 @@ class PostTableViewCell: UITableViewCell {
     
     private func setConstraints() {
         horizontalStackView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(12)
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.top.leading.trailing.equalToSuperview()
         }
         
         titleValueBlock.snp.makeConstraints {
             $0.top.equalTo(horizontalStackView.snp.bottom).offset(8)
             $0.leading.trailing.equalTo(horizontalStackView)
-            $0.bottom.equalToSuperview().offset(-12)
-//            $0.height.equalTo(60)
+            $0.bottom.equalToSuperview()
         }
         
         bookmarkView.snp.makeConstraints {
             $0.size.equalTo(32)
         }
         
-        badges.snp.makeConstraints {
+        tagList.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview()
+            $0.leading.equalToSuperview()
             $0.height.equalTo(22)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(badges.snp.bottom).offset(6)
+            $0.top.equalTo(tagList.snp.bottom).offset(6)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
@@ -133,3 +131,4 @@ class PostTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
