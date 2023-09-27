@@ -1,5 +1,5 @@
 //
-//  Interest.swift
+//  Category.swift
 //  fone-ios-app
 //
 //  Created by 여나경 on 2023/09/14.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum Interest: Selection, CaseIterable {
+enum Category: Selection, CaseIterable {
     case featureFilm
     case shortFilm
     case independentFilm

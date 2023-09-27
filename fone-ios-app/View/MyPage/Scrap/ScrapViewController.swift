@@ -104,7 +104,7 @@ extension ScrapViewController: UITableViewDataSource {
         
 //        cell.configure(
 //            job: .staff,
-//            interests: [.featureFilm, .youtube],
+//            categories: [.featureFilm, .youtube],
 //            deadline: "2023.01.20",
 //            coorporate: "성균관대학교 영상학과",
 //            gender: "남자",
@@ -114,7 +114,7 @@ extension ScrapViewController: UITableViewDataSource {
         
         cell.configure(
             job: .actor,
-            interests: [.ottDrama, .shortFilm],
+            categories: [.ottDrama, .shortFilm],
             deadline: "2023.01.20",
             coorporate: "성균관대학교 영상학과",
             gender: "남자",

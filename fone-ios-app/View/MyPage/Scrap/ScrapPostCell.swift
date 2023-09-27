@@ -28,7 +28,7 @@ class ScrapPostCell: UITableViewCell {
     
     func configure(
         job: Job, // actor/staff
-        interests: [Interest], // 작품 성격 최대 2개
+        categories: [Category], // 작품 성격 최대 2개
         deadline: String? = nil,
         coorporate: String? = nil,
         gender: String? = nil,
@@ -38,7 +38,7 @@ class ScrapPostCell: UITableViewCell {
     ) {
         mainContentView.configure(
             job: job,
-            interests: interests,
+            categories: categories,
             deadline: deadline,
             coorporate: coorporate,
             gender: gender,

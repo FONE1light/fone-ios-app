@@ -25,7 +25,7 @@ class SignUpViewModel: CommonViewModel {
     var signInInfo: EmailSignInInfo?
     
     var job: Job?
-    var interests: [Interest]?
+    var interests: [Category]?
     
     var nicknameAvailbleState = BehaviorRelay<NicknameAvailableState>(value: .cannotCheck)
     

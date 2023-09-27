@@ -16,10 +16,10 @@ class TagList: UIStackView {
     }
     
     /// 해당 함수를 호출해서 값 세팅, 초기화.
-    func setValues(job: Job, intersts: [Interest]) {
+    func setValues(job: Job, categories: [Category]) {
         tagList.append(Tag(job))
-        intersts.forEach { interest in
-            tagList.append(Tag(interest))
+        categories.forEach { category in
+            tagList.append(Tag(category))
         }
         
         setupUI()

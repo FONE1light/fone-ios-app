@@ -48,7 +48,7 @@ class PostCellMainContentView: UIView {
     
     func configure(
         job: Job, // actor/staff
-        interests: [Interest], // 작품 성격 최대 2개
+        categories: [Category], // 작품 성격 최대 2개
         deadline: String? = nil,
         coorporate: String? = nil,
         gender: String? = nil,
@@ -56,7 +56,7 @@ class PostCellMainContentView: UIView {
         casting: String? = nil,
         field: String? = nil
     ) {
-        tagList.setValues(job: job, intersts: interests)
+        tagList.setValues(job: job, categories: categories)
         
         titleValueBlock.setValues(
             deadline: deadline,
