@@ -23,6 +23,7 @@ enum Scene {
     
     // 마이페이지 내부
     case profile(ProfileViewModel) // 프로필 수정
+    case scrap(ScrapViewModel)     // 스크랩
 }
 
 extension Scene {
@@ -142,6 +143,15 @@ extension Scene {
             }
         
             return profileVC
+            
+        case .scrap(let scrapViewModel):
+            var scrapVC = ScrapViewController()
+            
+            DispatchQueue.main.async {
+                scrapVC.bind(viewModel: scrapViewModel)
+            }
+            
+            return scrapVC
         }
     }
 }
