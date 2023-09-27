@@ -40,7 +40,7 @@ class SignUpSelectionViewController: UIViewController, ViewModelBindableType {
     let interestSelectionBlock = SelectionBlock().then {
         $0.setTitle("관심사 선택")
         $0.setSubtitle("(중복 선택 가능)")
-        $0.setSelections(Interest.allCases)
+        $0.setSelections(Category.allCases)
     }
   
     let button = CustomButton("다음", type: .bottom)
@@ -63,7 +63,7 @@ class SignUpSelectionViewController: UIViewController, ViewModelBindableType {
         interestSelectionBlock.selectedItems
             .withUnretained(self)
             .bind { owner, items in
-                guard let interests = items as? [Interest] else { return }
+                guard let interests = items as? [Category] else { return }
                 owner.viewModel.interests = interests
             }.disposed(by: disposeBag)
     }

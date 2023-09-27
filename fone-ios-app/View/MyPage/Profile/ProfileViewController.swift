@@ -47,10 +47,10 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         $0.setSelections(Job.allCases)
     }
     
-    let interestSelectionBlock = SelectionBlock().then {
+    let categorySelectionBlock = SelectionBlock().then {
         $0.setTitle("관심사 선택")
         $0.setSubtitle("(중복 선택 가능)")
-        $0.setSelections(Interest.allCases)
+        $0.setSelections(Category.allCases)
     }
     
     let button = CustomButton("수정하기", type: .bottom)
@@ -126,7 +126,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
             profileImage,
             nicknameBlock,
             jobSelectionBlock,
-            interestSelectionBlock,
+            categorySelectionBlock,
             button
         ]
             .forEach { baseView.addSubview($0) }
@@ -166,7 +166,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
             $0.leading.trailing.equalToSuperview()
         }
         
-        interestSelectionBlock.snp.makeConstraints {
+        categorySelectionBlock.snp.makeConstraints {
             $0.top.equalTo(jobSelectionBlock.snp.bottom).offset(41)
             $0.leading.trailing.equalToSuperview()
         }

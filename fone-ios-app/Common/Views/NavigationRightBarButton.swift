@@ -9,6 +9,7 @@ import UIKit
 
 enum RightBarButtonType {
     case notification
+    case close
 }
 
 extension RightBarButtonType {
@@ -18,6 +19,7 @@ extension RightBarButtonType {
     var tintColor: UIColor? {
         switch self {
         case .notification: return .gray_9E9E9E
+        case .close: return .gray_555555
         default: return nil
         }
     }
@@ -26,6 +28,7 @@ extension RightBarButtonType {
     var image: UIImage? {
         switch self {
         case .notification: return UIImage(named: "bell")
+        case .close: return UIImage(named: "close_MD")
         default: return nil
         }
     }
@@ -42,6 +45,11 @@ extension RightBarButtonType {
         case .notification:
             let notificationViewController = NotiViewController()
             viewController?.navigationController?.pushViewController(notificationViewController, animated: true)
+        case .close:
+            if let vc = viewController as? any ViewModelBindableType {
+                guard let viewModel = vc.viewModel as? CommonViewModel else { return }
+                viewModel.sceneCoordinator.close(animated: true)
+            }
         default: return
         }
     }
