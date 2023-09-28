@@ -138,6 +138,8 @@
 		ABA47FF72A850AE600B64403 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA47FF62A850AE600B64403 /* UIView+Extension.swift */; };
 		ABAFA3392A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAFA3382A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift */; };
 		ABAFA33B2A9F612900D50BAF /* QuestionInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAFA33A2A9F612900D50BAF /* QuestionInfoProvider.swift */; };
+		ABC1DBDD2AC0113800B9A6BF /* JobOpeningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1DBDB2AC0113800B9A6BF /* JobOpeningCell.swift */; };
+		ABC1DBDE2AC0113800B9A6BF /* JobOpeningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC1DBDC2AC0113800B9A6BF /* JobOpeningCell.xib */; };
 		ABF3034B2AA33E4A00C14AF7 /* EmailSignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF3034A2AA33E4A00C14AF7 /* EmailSignUpViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -254,6 +256,8 @@
 		ABA47FF62A850AE600B64403 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		ABAFA3382A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionInfoAPIModel.swift; sourceTree = "<group>"; };
 		ABAFA33A2A9F612900D50BAF /* QuestionInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionInfoProvider.swift; sourceTree = "<group>"; };
+		ABC1DBDB2AC0113800B9A6BF /* JobOpeningCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningCell.swift; sourceTree = "<group>"; };
+		ABC1DBDC2AC0113800B9A6BF /* JobOpeningCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JobOpeningCell.xib; sourceTree = "<group>"; };
 		ABF3034A2AA33E4A00C14AF7 /* EmailSignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignUpViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -569,6 +573,7 @@
 		AB1CEAB42ABFD22E00E7E54F /* JobOpening */ = {
 			isa = PBXGroup;
 			children = (
+				ABC1DBDA2AC00F0D00B9A6BF /* Cells */,
 				AB1CEAB52ABFD23A00E7E54F /* JobOpeningModule.swift */,
 				AB1CEAB62ABFD23A00E7E54F /* JobOpeningModule.xib */,
 			);
@@ -760,6 +765,15 @@
 			path = Question;
 			sourceTree = "<group>";
 		};
+		ABC1DBDA2AC00F0D00B9A6BF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				ABC1DBDB2AC0113800B9A6BF /* JobOpeningCell.swift */,
+				ABC1DBDC2AC0113800B9A6BF /* JobOpeningCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -874,6 +888,7 @@
 				3650F6232A86715C0017645D /* Pretendard-Bold.ttf in Resources */,
 				AB60023D2A7E375D000CF1FD /* Main.storyboard in Resources */,
 				AB1CEAB82ABFD23A00E7E54F /* JobOpeningModule.xib in Resources */,
+				ABC1DBDE2AC0113800B9A6BF /* JobOpeningCell.xib in Resources */,
 				AB79B3BD2A9E29C4008EBAA2 /* QuestionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -993,6 +1008,7 @@
 				AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */,
 				367D9BB82AC1204600DA6C96 /* MyPageTabBar.swift in Sources */,
 				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,
+				ABC1DBDD2AC0113800B9A6BF /* JobOpeningCell.swift in Sources */,
 				AB3F07192AADAA9200E54A25 /* FindIDCell.swift in Sources */,
 				364482D02AB7D15F00984507 /* NavigationRightBarButton.swift in Sources */,
 				36D293D42A961FDB00171C77 /* SelectionBlock.swift in Sources */,

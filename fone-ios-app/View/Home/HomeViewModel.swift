@@ -10,7 +10,7 @@ import RxSwift
 
 class HomeViewModel: CommonViewModel {
     var disposeBag = DisposeBag()
-    var homeInfoData: HomeInfoData?
+    var homeInfoDataSubject = BehaviorSubject<HomeInfoData?>(value: nil)
     
     override init(sceneCoordinator: SceneCoordinatorType) {
         super.init(sceneCoordinator: sceneCoordinator)
@@ -27,7 +27,7 @@ class HomeViewModel: CommonViewModel {
                 if response.errorCode == "Unauthorized" {
                     self.reissueToken()
                 } else {
-                    self.homeInfoData = response.data
+                    self.homeInfoDataSubject.onNext(response.data)
                 }
             }, onError: { error in
                 print("\(error)")
