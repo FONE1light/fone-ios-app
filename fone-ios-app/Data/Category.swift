@@ -57,4 +57,8 @@ enum Category: Selection, CaseIterable {
     var tagCornerRadius: CGFloat? {
         return 11
     }
+    
+    static func getType(serverName: String) -> Category? {
+        return Category.allCases.filter { $0.serverName == serverName }.first
+    }
 }
