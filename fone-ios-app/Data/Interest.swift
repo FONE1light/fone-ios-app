@@ -7,42 +7,42 @@
 
 import UIKit
 
-enum Category: String, Selection, CaseIterable {
-    case FEATURE_FILM
-    case SHORT_FILM
-    case INDEPENDENT_FILM
-    case WEB_DRAMA
-    case MOVIE
-    case OTT_DRAMA
-    case YOUTUBE
-    case VIRAL
-    case ETC
+enum Category: Selection, CaseIterable {
+    case featureFilm
+    case shortFilm
+    case independentFilm
+    case webDrama
+    case musicVideo
+    case ottDrama
+    case youtube
+    case viral
+    case etc
     
     var name: String {
         switch self {
-        case .FEATURE_FILM: return "장편영화"
-        case .SHORT_FILM: return "단편영화"
-        case .INDEPENDENT_FILM: return "독립영화"
-        case .WEB_DRAMA: return "웹 드라마"
-        case .MOVIE: return "뮤비 / CF"
-        case .OTT_DRAMA: return "OTT/TV 드라마"
-        case .YOUTUBE: return "유튜브"
-        case .VIRAL: return "홍보 / 바이럴"
-        case .ETC: return "기타"
+        case .featureFilm: return "장편영화"
+        case .shortFilm: return "단편영화"
+        case .independentFilm: return "독립영화"
+        case .webDrama: return "웹 드라마"
+        case .musicVideo: return "뮤비 / CF"
+        case .ottDrama: return "OTT/TV 드라마"
+        case .youtube: return "유튜브"
+        case .viral: return "홍보 / 바이럴"
+        case .etc: return "기타"
         }
     }
     
     var serverName: String {
         switch self {
-        case .FEATURE_FILM: return "FEATURE_FILM"
-        case .SHORT_FILM: return "SHORT_FILM"
-        case .INDEPENDENT_FILM: return "INDEPENDENT_FILM"
-        case .WEB_DRAMA: return "WEB_DRAMA"
-        case .MOVIE: return "MOVIE"
-        case .OTT_DRAMA: return "OTT_DRAMA"
-        case .YOUTUBE: return "YOUTUBE"
-        case .VIRAL: return "VIRAL"
-        case .ETC: return "ETC"
+        case .featureFilm: return "FEATURE_FILM"
+        case .shortFilm: return "SHORT_FILM"
+        case .independentFilm: return "INDEPENDENT_FILM"
+        case .webDrama: return "WEB_DRAMA"
+        case .musicVideo: return "MOVIE"
+        case .ottDrama: return "OTT_DRAMA"
+        case .youtube: return "YOUTUBE"
+        case .viral: return "VIRAL"
+        case .etc: return "ETC"
         }
     }
     
@@ -56,5 +56,9 @@ enum Category: String, Selection, CaseIterable {
     
     var tagCornerRadius: CGFloat? {
         return 10 // TODO: 디자인 값 확정 후 수정
+    }
+    
+    static func getType(serverName: String) -> Category? {
+        return Category.allCases.filter { $0.serverName == serverName }.first
     }
 }

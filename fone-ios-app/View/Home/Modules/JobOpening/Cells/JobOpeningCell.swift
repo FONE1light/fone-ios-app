@@ -53,10 +53,10 @@ class JobOpeningCell: UICollectionViewCell {
         var filteredCategory: [String] = []
         var hasOTT = false
         for category in item.categories {
-            if category == Category.OTT_DRAMA.serverName {
+            if category == Category.ottDrama.serverName {
                 hasOTT = true
             } else {
-                if let categoryName = Category(rawValue: category)?.name, !categoryName.isEmpty {
+                if let categoryName = Category.getType(serverName: category)?.name, !categoryName.isEmpty {
                     filteredCategory.append(categoryName)
                 }
             }
@@ -76,7 +76,7 @@ class JobOpeningCell: UICollectionViewCell {
         if hasOTT {
             secondCategoryView.isHidden = false
             secondCategoryLabel.isHidden = false
-            secondCategoryLabel.text = Category.OTT_DRAMA.name
+            secondCategoryLabel.text = Category.ottDrama.name
         }
     }
     
