@@ -10,12 +10,12 @@ import SnapKit
 
 class Divider: UIView {
     
-    private var width: ConstraintRelatableTarget
+    private var width: ConstraintRelatableTarget?
     private var height: ConstraintRelatableTarget
     private var color: UIColor
     
     init(
-        width: ConstraintRelatableTarget,
+        width: ConstraintRelatableTarget? = nil,
         height: ConstraintRelatableTarget,
         color: UIColor = .gray_D9D9D9
     ) {
@@ -36,7 +36,9 @@ class Divider: UIView {
     
     private func setConstraints() {
         snp.makeConstraints {
-            $0.width.equalTo(width)
+            if let nonOptionalWidth = width {
+                $0.width.equalTo(nonOptionalWidth)
+            }
             $0.height.equalTo(height)
         }
     }

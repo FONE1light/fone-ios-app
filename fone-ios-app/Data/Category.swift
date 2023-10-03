@@ -55,7 +55,7 @@ enum Category: Selection, CaseIterable {
     }
     
     var tagCornerRadius: CGFloat? {
-        return 10 // TODO: 디자인 값 확정 후 수정
+        return 11
     }
     
     static func getType(serverName: String) -> Category? {

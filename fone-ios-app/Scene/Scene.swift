@@ -24,6 +24,7 @@ enum Scene {
     // 마이페이지 내부
     case profile(ProfileViewModel) // 프로필 수정
     case scrap(ScrapViewModel)     // 스크랩
+    case competition(CompetitionViewModel) // 공모전 // TODO: 구인구직, 공모전 뷰 컨 UI 범위 확인 후 삭제
 }
 
 extension Scene {
@@ -152,6 +153,15 @@ extension Scene {
             }
             
             return scrapVC
+            
+        case .competition(let competitionViewModel):
+            var competitionVC = CompetitionViewController()
+            
+            DispatchQueue.main.async {
+                competitionVC.bind(viewModel: competitionViewModel)
+            }
+            
+            return competitionVC
         }
     }
 }
