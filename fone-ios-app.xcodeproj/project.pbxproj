@@ -36,7 +36,7 @@
 		367D9BB62AC1202A00DA6C96 /* MyPageTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BB52AC1202A00DA6C96 /* MyPageTabBarItem.swift */; };
 		367D9BB82AC1204600DA6C96 /* MyPageTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BB72AC1204600DA6C96 /* MyPageTabBar.swift */; };
 		367D9BBF2AC1572700DA6C96 /* Divider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BBE2AC1572700DA6C96 /* Divider.swift */; };
-		367D9BC22AC1675800DA6C96 /* ScrapPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BC12AC1675800DA6C96 /* ScrapPostCell.swift */; };
+		367D9BC22AC1675800DA6C96 /* JobPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BC12AC1675800DA6C96 /* JobPostCell.swift */; };
 		367D9BC42AC167A000DA6C96 /* TitleValueBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BC32AC167A000DA6C96 /* TitleValueBlock.swift */; };
 		367D9BC62AC167C400DA6C96 /* TitleValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BC52AC167C400DA6C96 /* TitleValueView.swift */; };
 		367D9BC92AC2720000DA6C96 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BC82AC2720000DA6C96 /* Tag.swift */; };
@@ -47,13 +47,13 @@
 		367D9BD62AC3BC6200DA6C96 /* CompetitionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BD52AC3BC6200DA6C96 /* CompetitionCell.swift */; };
 		367D9BD82ACB5CC900DA6C96 /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BD72ACB5CC900DA6C96 /* JobViewController.swift */; };
 		367D9BDA2ACB5D9F00DA6C96 /* JobViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BD92ACB5D9F00DA6C96 /* JobViewModel.swift */; };
-		367D9BDC2ACE433200DA6C96 /* ScrapViewController_TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BDB2ACE433200DA6C96 /* ScrapViewController_TabBarVC.swift */; };
+		367D9BDC2ACE433200DA6C96 /* ScrapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BDB2ACE433200DA6C96 /* ScrapViewController.swift */; };
+		367D9BFE2AD7583500DA6C96 /* UITabBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BFD2AD7583500DA6C96 /* UITabBar+Extension.swift */; };
 		36AC7BD52AAE852E00478030 /* SignUpPhoneNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AC7BD42AAE852E00478030 /* SignUpPhoneNumberViewModel.swift */; };
 		36AC7BD72AAE883500478030 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AC7BD62AAE883500478030 /* UITableView+Extension.swift */; };
 		36AC7BD92AAE88F400478030 /* TermsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AC7BD82AAE88F400478030 /* TermsCell.swift */; };
 		36AC7BDD2AB1315700478030 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AC7BDC2AB1315700478030 /* ProfileViewController.swift */; };
 		36AC7BDF2AB1319500478030 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AC7BDE2AB1319500478030 /* ProfileViewModel.swift */; };
-		36B8FDE32AC0ED970040AFB2 /* ScrapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B8FDE22AC0ED970040AFB2 /* ScrapViewController.swift */; };
 		36B8FDE52AC0EDA20040AFB2 /* ScrapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B8FDE42AC0EDA20040AFB2 /* ScrapViewModel.swift */; };
 		36BCC7E02AA31A350060E35A /* SignUpInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BCC7DF2AA31A350060E35A /* SignUpInfoViewController.swift */; };
 		36BCC7E22AA328AB0060E35A /* SignUpPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BCC7E12AA328AB0060E35A /* SignUpPhoneNumberViewController.swift */; };
@@ -177,7 +177,7 @@
 		367D9BB52AC1202A00DA6C96 /* MyPageTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTabBarItem.swift; sourceTree = "<group>"; };
 		367D9BB72AC1204600DA6C96 /* MyPageTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTabBar.swift; sourceTree = "<group>"; };
 		367D9BBE2AC1572700DA6C96 /* Divider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Divider.swift; sourceTree = "<group>"; };
-		367D9BC12AC1675800DA6C96 /* ScrapPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapPostCell.swift; sourceTree = "<group>"; };
+		367D9BC12AC1675800DA6C96 /* JobPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostCell.swift; sourceTree = "<group>"; };
 		367D9BC32AC167A000DA6C96 /* TitleValueBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleValueBlock.swift; sourceTree = "<group>"; };
 		367D9BC52AC167C400DA6C96 /* TitleValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleValueView.swift; sourceTree = "<group>"; };
 		367D9BC82AC2720000DA6C96 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
@@ -188,13 +188,13 @@
 		367D9BD52AC3BC6200DA6C96 /* CompetitionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionCell.swift; sourceTree = "<group>"; };
 		367D9BD72ACB5CC900DA6C96 /* JobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobViewController.swift; sourceTree = "<group>"; };
 		367D9BD92ACB5D9F00DA6C96 /* JobViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobViewModel.swift; sourceTree = "<group>"; };
-		367D9BDB2ACE433200DA6C96 /* ScrapViewController_TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapViewController_TabBarVC.swift; sourceTree = "<group>"; };
+		367D9BDB2ACE433200DA6C96 /* ScrapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapViewController.swift; sourceTree = "<group>"; };
+		367D9BFD2AD7583500DA6C96 /* UITabBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+Extension.swift"; sourceTree = "<group>"; };
 		36AC7BD42AAE852E00478030 /* SignUpPhoneNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPhoneNumberViewModel.swift; sourceTree = "<group>"; };
 		36AC7BD62AAE883500478030 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		36AC7BD82AAE88F400478030 /* TermsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsCell.swift; sourceTree = "<group>"; };
 		36AC7BDC2AB1315700478030 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		36AC7BDE2AB1319500478030 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		36B8FDE22AC0ED970040AFB2 /* ScrapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapViewController.swift; sourceTree = "<group>"; };
 		36B8FDE42AC0EDA20040AFB2 /* ScrapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapViewModel.swift; sourceTree = "<group>"; };
 		36BCC7DF2AA31A350060E35A /* SignUpInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInfoViewController.swift; sourceTree = "<group>"; };
 		36BCC7E12AA328AB0060E35A /* SignUpPhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPhoneNumberViewController.swift; sourceTree = "<group>"; };
@@ -426,6 +426,7 @@
 				36AC7BD62AAE883500478030 /* UITableView+Extension.swift */,
 				AB3F071F2AADB72500E54A25 /* UICollectionView+Extension.swift */,
 				367D9BB32AC11B4500DA6C96 /* UIImage+Extension.swift */,
+				367D9BFD2AD7583500DA6C96 /* UITabBar+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -479,7 +480,7 @@
 		367D9BCE2AC3B87500DA6C96 /* Job */ = {
 			isa = PBXGroup;
 			children = (
-				367D9BC12AC1675800DA6C96 /* ScrapPostCell.swift */,
+				367D9BC12AC1675800DA6C96 /* JobPostCell.swift */,
 				367D9BD72ACB5CC900DA6C96 /* JobViewController.swift */,
 				367D9BD92ACB5D9F00DA6C96 /* JobViewModel.swift */,
 			);
@@ -518,9 +519,8 @@
 			children = (
 				367D9BCE2AC3B87500DA6C96 /* Job */,
 				367D9BCF2AC3B88200DA6C96 /* Competition */,
-				36B8FDE22AC0ED970040AFB2 /* ScrapViewController.swift */,
 				36B8FDE42AC0EDA20040AFB2 /* ScrapViewModel.swift */,
-				367D9BDB2ACE433200DA6C96 /* ScrapViewController_TabBarVC.swift */,
+				367D9BDB2ACE433200DA6C96 /* ScrapViewController.swift */,
 			);
 			path = Scrap;
 			sourceTree = "<group>";
@@ -944,6 +944,7 @@
 				AB25789E2AAF341900328363 /* HomeViewModel.swift in Sources */,
 				AB49A32D2A81053200748484 /* Scene.swift in Sources */,
 				367D9BBF2AC1572700DA6C96 /* Divider.swift in Sources */,
+				367D9BFE2AD7583500DA6C96 /* UITabBar+Extension.swift in Sources */,
 				AB49A3472A81159F00748484 /* FindIDPasswordViewModel.swift in Sources */,
 				AB7900B72AB5C99A004DA4F3 /* NotiViewController.swift in Sources */,
 				3628668E2A8DF4EA00CD42BC /* UserInfoProvider.swift in Sources */,
@@ -957,7 +958,6 @@
 				3628668B2A8DF40F00CD42BC /* APIConfig.swift in Sources */,
 				367D9BB62AC1202A00DA6C96 /* MyPageTabBarItem.swift in Sources */,
 				36BCC7E02AA31A350060E35A /* SignUpInfoViewController.swift in Sources */,
-				36B8FDE32AC0ED970040AFB2 /* ScrapViewController.swift in Sources */,
 				364BCC6A2AB3672500E14B25 /* DynamicHeightCollectionView.swift in Sources */,
 				362866972A8E3D8200CD42BC /* Response+Codable.swift in Sources */,
 				364482D82AB80EDA00984507 /* MyPageMenuCell.swift in Sources */,
@@ -990,7 +990,7 @@
 				AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */,
 				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,
 				AB4546502AAB452D0019B27F /* UIButton+Extension.swift in Sources */,
-				367D9BC22AC1675800DA6C96 /* ScrapPostCell.swift in Sources */,
+				367D9BC22AC1675800DA6C96 /* JobPostCell.swift in Sources */,
 				ABAFA3392A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift in Sources */,
 				AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */,
 				362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */,
@@ -998,7 +998,7 @@
 				ABAFA33B2A9F612900D50BAF /* QuestionInfoProvider.swift in Sources */,
 				36BCC7E42AA32B530060E35A /* SignUpSuccessViewController.swift in Sources */,
 				AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */,
-				367D9BDC2ACE433200DA6C96 /* ScrapViewController_TabBarVC.swift in Sources */,
+				367D9BDC2ACE433200DA6C96 /* ScrapViewController.swift in Sources */,
 				AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */,
 				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,
 				AB3F07192AADAA9200E54A25 /* FindIDCell.swift in Sources */,

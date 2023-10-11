@@ -17,7 +17,7 @@ class JobViewController: UIViewController, ViewModelBindableType {
         $0.separatorStyle = .none
 //        $0.delegate = self
         $0.dataSource = self
-        $0.register(with: ScrapPostCell.self)
+        $0.register(with: JobPostCell.self)
     }
     
     func bindViewModel() {
@@ -42,8 +42,6 @@ class JobViewController: UIViewController, ViewModelBindableType {
     }
     
     private func setUI() {
-//        self.view.backgroundColor = .white_FFFFFF
-        
         [tableView].forEach {
             self.view.addSubview($0)
         }
@@ -66,7 +64,7 @@ extension JobViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(for: indexPath) as ScrapPostCell
+        let cell = tableView.dequeueReusableCell(for: indexPath) as JobPostCell
         
 //        cell.configure(
 //            job: .staff,

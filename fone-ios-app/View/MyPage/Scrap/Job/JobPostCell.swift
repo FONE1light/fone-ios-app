@@ -1,5 +1,5 @@
 //
-//  ScrapPostCell.swift
+//  JobPostCell.swift
 //  fone-ios-app
 //
 //  Created by 여나경 on 2023/09/24.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-class ScrapPostCell: UITableViewCell {
+class JobPostCell: UITableViewCell {
     
     private let mainContentView = PostCellMainContentView(hasBookmark: true)
     
-    static let identifier = String(describing: ScrapPostCell.self)
+    static let identifier = String(describing: JobPostCell.self)
     
     private let separator = Divider(
         width: UIScreen.main.bounds.width,
