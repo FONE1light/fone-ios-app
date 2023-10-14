@@ -10,24 +10,27 @@ import Then
 
 class Tag: UIView {
     
-    var selectionType: Selection
-    
     private let label = UILabel().then {
         $0.font = .font_m(12)
     }
     
-    init(_ type: Selection) {
-        selectionType = type
+    init(_ selectionType: Selection? = nil) {
         super.init(frame: .zero)
         
         backgroundColor = .yellow
-        setupUI()
+        addSubview(label)
+        
+        if let selectionType = selectionType {
+            setupUI(selectionType)
+        }
         setConstraints()
     }
     
-    private func setupUI() {
-        addSubview(label)
-        
+    func setType(as selectionType: Selection) {
+        setupUI(selectionType)
+    }
+    
+    private func setupUI(_ selectionType: Selection) {
         label.text = selectionType.name
         label.textColor = selectionType.tagTextColor
         self.backgroundColor = selectionType.tagBackgroundColor
@@ -42,6 +45,9 @@ class Tag: UIView {
             $0.top.bottom.equalToSuperview().inset(2)
             $0.leading.trailing.equalToSuperview().inset(10)
         }
+    }
+    
+    private func setColorProperties() {
     }
     
     required init?(coder: NSCoder) {

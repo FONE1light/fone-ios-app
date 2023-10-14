@@ -6,10 +6,17 @@
 //
 
 import UIKit
+import Then
+import SnapKit
 
 class PostCellMainContentView: UIView {
     
     var hasBookmark: Bool
+    
+    private let imageView = UIImageView().then {
+        $0.cornerRadius = 5
+        $0.backgroundColor = .gray_D9D9D9
+    }
     
     private let horizontalStackView = UIStackView().then {
         $0.axis = .horizontal
@@ -22,21 +29,19 @@ class PostCellMainContentView: UIView {
     private let tagList = TagList()
     
     let titleLabel = UILabel().then {
-        $0.font = .font_r(14)
+        $0.font = .font_b(14)
         $0.textColor = .gray_161616
         $0.numberOfLines = 2
         $0.text = "성균관대 영상학과에서 단편영화<Duet>배우 모집합니다."
     }
     
-    private let bookmarkView = UIView().then {
-        $0.cornerRadius = 16
-        $0.backgroundColor = .gray_EEEFEF
-    }
     private let bookmarkImageView = UIImageView().then {
         $0.image = UIImage(named: "Bookmark")
     }
     
-    private var titleValueBlock = TitleValueBlock()
+    private let detailInfoBlock = DetailInfoBlock()
+    
+    private var jobTag = Tag()
     
     init(hasBookmark: Bool = true) {
         self.hasBookmark = hasBookmark
@@ -47,6 +52,7 @@ class PostCellMainContentView: UIView {
     }
     
     func configure(
+        isOfficial: Bool = false,
         job: Job, // actor/staff
         categories: [Category], // 작품 성격 최대 2개
         deadline: String? = nil,
@@ -56,32 +62,39 @@ class PostCellMainContentView: UIView {
         casting: String? = nil,
         field: String? = nil
     ) {
-        tagList.setValues(job: job, categories: categories)
-        
-        titleValueBlock.setValues(
-            deadline: deadline,
-            coorporate: coorporate,
-            gender: gender,
-            period: period,
-            casting: casting,
-            field: field
+        tagList.setValues(
+            isOfficial: isOfficial,
+            categories: categories
         )
+        
+        detailInfoBlock.setValues(
+            dDay: "D-15",
+            coorporate: coorporate,
+            field: field ?? casting
+        )
+        
+        jobTag.setType(as: job)
     }
     
     private func setupUI() {
         
-        [horizontalStackView, titleValueBlock]
+        [
+            imageView,
+            horizontalStackView,
+            detailInfoBlock,
+            jobTag
+        ]
             .forEach {
                 self.addSubview($0)
             }
+        
         [leftView]
             .forEach {
                 horizontalStackView.addArrangedSubview($0)
             }
         
         if hasBookmark {
-            horizontalStackView.addArrangedSubview(bookmarkView)
-            bookmarkView.addSubview(bookmarkImageView)
+            horizontalStackView.addArrangedSubview(bookmarkImageView)
         }
         
         [tagList, titleLabel]
@@ -92,37 +105,43 @@ class PostCellMainContentView: UIView {
     }
     
     private func setConstraints() {
-        horizontalStackView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
+        imageView.snp.makeConstraints {
+            $0.width.equalTo(100)
+            $0.height.equalTo(112)
+            $0.top.leading.bottom.equalToSuperview()
         }
         
-        titleValueBlock.snp.makeConstraints {
-            $0.top.equalTo(horizontalStackView.snp.bottom).offset(8)
-            $0.leading.trailing.equalTo(horizontalStackView)
+        horizontalStackView.snp.makeConstraints {
+            $0.top.equalTo(imageView)
+            $0.leading.equalTo(imageView.snp.trailing).offset(7)
+            $0.trailing.equalToSuperview()
+        }
+        
+        detailInfoBlock.snp.makeConstraints {
+            $0.top.equalTo(horizontalStackView.snp.bottom).offset(6)
+            $0.leading.equalTo(horizontalStackView)
+        }
+        
+        jobTag.snp.makeConstraints {
+            $0.leading.equalTo(detailInfoBlock.snp.trailing).offset(10) // FIXME: 디자인 확정 후 값 수정
+            $0.trailing.equalTo(horizontalStackView.snp.trailing)
             $0.bottom.equalToSuperview()
         }
         
-        bookmarkView.snp.makeConstraints {
-            $0.size.equalTo(32)
+        bookmarkImageView.snp.makeConstraints {
+            $0.size.equalTo(24)
         }
         
         tagList.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview()
-            $0.height.equalTo(22)
+            $0.height.equalTo(18)
         }
         
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(tagList.snp.bottom).offset(6)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
-        }
-        
-        if hasBookmark {
-            bookmarkImageView.snp.makeConstraints {
-                $0.size.equalTo(22)
-                $0.center.equalToSuperview()
-            }
         }
         
     }

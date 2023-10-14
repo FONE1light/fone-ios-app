@@ -9,15 +9,17 @@ import UIKit
 
 class TagList: UIStackView {
     
-    private var tagList: [Tag] = []
+    private var tagList: [UIView] = []
     
     init() {
         super.init(frame: .zero)
     }
     
     /// 해당 함수를 호출해서 값 세팅, 초기화.
-    func setValues(job: Job, categories: [Category]) {
-        tagList.append(Tag(job))
+    func setValues(isOfficial: Bool = false, categories: [Category]) {
+        if isOfficial {
+            tagList.append(OfficialMark())
+        }
         categories.forEach { category in
             tagList.append(Tag(category))
         }
@@ -28,7 +30,8 @@ class TagList: UIStackView {
     
     private func setupUI() {
         axis = .horizontal
-        spacing = 6
+        spacing = 4
+        alignment = .center
         
         tagList.forEach {
             self.addArrangedSubview($0)
