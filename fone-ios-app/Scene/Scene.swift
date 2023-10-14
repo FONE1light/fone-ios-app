@@ -26,6 +26,7 @@ enum Scene {
     case scrap(ScrapViewModel)     // 스크랩
     case competition(CompetitionViewModel) // 공모전 // TODO: 구인구직, 공모전 뷰 컨 UI 범위 확인 후 삭제
     case savedProfiles(SavedProfilesTabBarViewModel) // 찜한 프로필
+
 }
 
 extension Scene {
