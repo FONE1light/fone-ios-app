@@ -1,5 +1,5 @@
 //
-//  SavedProfilesViewController.swift
+//  SavedProfilesContentViewController.swift
 //  fone-ios-app
 //
 //  Created by 여나경 on 2023/10/11.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SavedProfilesViewController: UIViewController, ViewModelBindableType {
+class SavedProfilesContentViewController: UIViewController, ViewModelBindableType {
     
     struct Profile {
         let imageUrl: String?
@@ -16,9 +16,7 @@ class SavedProfilesViewController: UIViewController, ViewModelBindableType {
         let isSaved: Bool?
     }
     
-//    private let yOffset: CGFloat
-    
-    var viewModel: SavedProfilesViewModel!
+    var viewModel: SavedProfilesContentViewModel!
     
     private var profiles: [Profile] = [
         Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true),
@@ -50,15 +48,16 @@ class SavedProfilesViewController: UIViewController, ViewModelBindableType {
         return collectionView
     }()
     
-//    init(yOffset: CGFloat) {
-//        self.yOffset = yOffset
-//        super.init()
-//
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+    // TODO: 추후 backgroundColor 삭제
+    init(backgroundColor: UIColor) {
+        super.init(nibName: nil, bundle: nil)
+        
+        view.backgroundColor = backgroundColor
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func bindViewModel() {
         
@@ -82,28 +81,11 @@ class SavedProfilesViewController: UIViewController, ViewModelBindableType {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview()
         }
-        
-//        let y = 50 + view.safeAreaInsets.top
-//        self.view.frame.origin = CGPoint(x: 0, y: y)
     }
-    
-//    override func viewDidLayoutSubviews() {
-//
-//        let y = 80 + view.safeAreaInsets.top
-//        self.view.frame.origin = CGPoint(x: 0, y: y)
-//
-//        //        self.view.frame.origin = CGPoint(x: 0, y: yOffset)
-//    }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        
-//        let y = 80 + view.safeAreaInsets.top
-//        self.view.frame.origin = CGPoint(x: 0, y: y)
-//    }
 }
 
 
-extension SavedProfilesViewController: UICollectionViewDataSource {
+extension SavedProfilesContentViewController: UICollectionViewDataSource {
     
     // MARK: cell count
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -127,18 +109,10 @@ extension SavedProfilesViewController: UICollectionViewDataSource {
 
 }
 
-extension SavedProfilesViewController: UICollectionViewDelegateFlowLayout {
+extension SavedProfilesContentViewController: UICollectionViewDelegateFlowLayout {
     // MARK: cellSize
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let defaultHeight = 223.0 // FIXME: 셀크기로
-        
-//        let item = profiles[indexPath.row].name
-//        let itemSize = item?.size(withAttributes: [
-//            NSAttributedString.Key.font : UIFont.font_r(SelectionCell.Constants.fontSize)
-//        ])
-        
-        
-//        let itemWidth = itemSize.width + MyPageProfileCell.Constants.leadingInset * 2 + 1 // TODO: 약간의 여백(1) 필요한 이유
         let itemWidth = (UIScreen.main.bounds.width - 16*2 - 14) / 2
         return CGSize(width: itemWidth, height: defaultHeight)
     }
