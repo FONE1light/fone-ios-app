@@ -52,7 +52,7 @@ class SavedProfilesContentViewController: UIViewController, ViewModelBindableTyp
     init(backgroundColor: UIColor) {
         super.init(nibName: nil, bundle: nil)
         
-        view.backgroundColor = backgroundColor
+//        view.backgroundColor = backgroundColor
     }
 
     required init?(coder: NSCoder) {
