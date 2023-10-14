@@ -33,6 +33,14 @@ struct User: Codable {
     }
 }
 
+// MARK: - ReissueTokenModel
+struct ReissueTokenModel: Codable {
+    let result: String
+    let data: TokenModel
+    let message: String
+    let errorCode: String?
+}
+
 // MARK: - TokenModel
 struct TokenModel: Codable {
     let accessToken, refreshToken, tokenType: String
@@ -72,4 +80,10 @@ struct EmailSignInResponseModel: Codable {
 struct EmailSignInData: Codable {
     let user: User
     let token: TokenModel
+}
+
+// MARK: - TokenInfo
+struct TokenInfo: Codable {
+    let accessToken: String
+    let refreshToken: String
 }

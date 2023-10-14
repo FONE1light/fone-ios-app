@@ -43,17 +43,19 @@ class EmailLoginViewModel: CommonViewModel {
                 print("received!")
                 print("response: \(response)")
                 if response.result == "SUCCESS" {
-                    // TODO: 로그인 성공 후 처리
-                    
-                    UserDefaults.standard.set(response.data?.token.accessToken, forKey: "accessToken")
-                    UserDefaults.standard.set(response.data?.token.refreshToken, forKey: "refreshToken")
-                    response.data?.token.accessToken.toast(isKeyboardShowing: self.isKeyboardShowing)
-                    
-                    print("accessToken == \(response.data?.token.accessToken)")
-                    print("refreshToken == \(response.data?.token.refreshToken)")
+                    guard let token = response.data?.token else { return }
+                    Tokens.shared.accessToken.value = token.accessToken
+                    Tokens.shared.refreshToken.value = token.refreshToken
+                    self.moveToHome()
                 } else {
                     self.showLoginErrorAlertSubject.onNext(())
                 }
             }).disposed(by: disposeBag)
+    }
+    
+    func moveToHome() {
+        guard let coordinator = self.sceneCoordinator as? SceneCoordinator else { return }
+        let homeScene = Scene.home(coordinator)
+        self.sceneCoordinator.transition(to: homeScene, using: .root, animated: true)
     }
 }

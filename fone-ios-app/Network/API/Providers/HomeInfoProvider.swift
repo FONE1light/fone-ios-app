@@ -32,7 +32,7 @@ extension HomeInfoTarget: TargetType {
     var headers: [String : String]? {
         switch self {
         case .fetchHome:
-            let accessToken = UserDefaults.standard.string(forKey: "accessToken") ?? ""
+            let accessToken = Tokens.shared.accessToken.value
             let authorization = "Bearer \(accessToken)"
             return ["Authorization": authorization]
         }
