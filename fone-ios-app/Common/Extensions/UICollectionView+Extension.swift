@@ -33,9 +33,15 @@ extension Reusable {
 }
 
 extension UICollectionView {
+    /// XIB로 만든 셀 register
     func register<T: UICollectionViewCell>(_: T.Type) {
         let nib = UINib(nibName: T.nibName, bundle: nil)
         register(nib, forCellWithReuseIdentifier: T.identifier)
+    }
+    
+    /// 코드로 만든 셀 register
+    func register<T: UICollectionViewCell>(with className: T.Type) {
+        self.register(T.self, forCellWithReuseIdentifier: String(describing: T.self))
     }
     
     func dequeueReusableCell<T: UICollectionViewCell>(forIndexPath indexPath: IndexPath) -> T {
