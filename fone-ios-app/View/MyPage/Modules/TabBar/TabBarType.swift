@@ -29,8 +29,8 @@ extension TabBarType {
             ]
         case .myRegistrations:
             return [
-               ScrapViewController(), // 모집 탭
-               ProfileRegistrationViewController() // 프로필 탭
+                JobRegistrationViewController(), // 모집 탭
+                ProfileRegistrationViewController() // 프로필 탭
             ]
         }
     }
