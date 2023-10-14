@@ -2,41 +2,42 @@
 //  ScrapViewController.swift
 //  fone-ios-app
 //
-//  Created by 여나경 on 2023/09/24.
+//  Created by 여나경 on 2023/10/04.
 //
 
 import UIKit
 
-extension ScrapViewController {
-    struct Constants {
-        /// leading, trailing inset
-        static let horizontalInset: CGFloat = 17
-        
-        static let tabBarHeight: CGFloat = 37
+enum ScrapTabs: Int, CaseIterable {
+    case job = 0
+    case competition
+    
+    var nav: UINavigationController {
+        switch self {
+        case .job:
+            return UINavigationController(rootViewController: JobViewController())
+        case .competition:
+            return UINavigationController(rootViewController: CompetitionViewController())
+        }
+    }
+    
+    var tabBarItem: MyPageTabBarItem {
+        switch self {
+        case .job:
+            return MyPageTabBarItem(title: "구인구직", tag: 0)
+        case .competition:
+            return MyPageTabBarItem(title: "공모전", tag: 1)
+        }
     }
 }
 
-class ScrapViewController: UIViewController, ViewModelBindableType {
+class ScrapViewController: UITabBarController, ViewModelBindableType, UITabBarControllerDelegate {
     
     var viewModel: ScrapViewModel!
-    
-    private var tabBar = MyPageTabBar(
-        width: UIScreen.main.bounds.width - Constants.horizontalInset * 2,
-        height: Constants.tabBarHeight
-    )
-    
+
     private let underLineView = UIView().then {
         $0.backgroundColor = .gray_D9D9D9
     }
-    
-    private lazy var tableView = UITableView().then {
-        $0.showsVerticalScrollIndicator = false
-        $0.separatorStyle = .none
-//        $0.delegate = self
-        $0.dataSource = self
-        $0.register(with: ScrapPostCell.self)
-    }
-    
+
     func bindViewModel() {
         
     }
@@ -45,10 +46,13 @@ class ScrapViewController: UIViewController, ViewModelBindableType {
         super.viewDidLoad()
     
         setNavigationBar()
+        setTabBar()
+        
         setUI()
         setConstraints()
     }
     
+
     private func setNavigationBar() {
         self.navigationItem.titleView = NavigationTitleView(title: "스크랩")
         self.navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
@@ -57,72 +61,47 @@ class ScrapViewController: UIViewController, ViewModelBindableType {
         )
     }
     
+    private func setTabBar() {
+        tabBar.barTintColor = .white
+        tabBar.unselectedItemTintColor = .gray_9E9E9E
+        tabBar.barStyle = .black
+        tabBar.setUnderline(itemsCount: ScrapTabs.allCases.count)
+        
+        var tabs: [UINavigationController] = []
+        for tab in ScrapTabs.allCases {
+            let viewController = tab.nav
+            viewController.tabBarItem = tab.tabBarItem
+            tabs.append(viewController)
+        }
+        
+        setViewControllers(tabs, animated: false)
+        selectedViewController = tabs.first
+    }
+    
     private func setUI() {
         self.view.backgroundColor = .white_FFFFFF
         
-        [tabBar, underLineView, tableView].forEach {
-            self.view.addSubview($0)
+        [underLineView].forEach {
+            self.tabBar.addSubview($0)
         }
-        
-        let job = MyPageTabBarItem(title: "구인구직", tag: 0)
-        
-        let competition = MyPageTabBarItem(title: "공모전", tag: 1)
-        
-        tabBar.setItems([job, competition], animated: true)
-        tabBar.selectedItem = tabBar.items?.first
     }
     
+    override func viewDidLayoutSubviews() {
+        tabBar.frame = CGRect(x: UITabBar.Constants.horizontalInset,
+                              y: view.safeAreaInsets.top,
+                              width: UIScreen.main.bounds.width - UITabBar.Constants.horizontalInset * 2,
+                              height: UITabBar.Constants.tabBarHeight
+        )
+
+        super.viewDidLayoutSubviews()
+    }
+
     private func setConstraints() {
-        tabBar.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            $0.leading.trailing.equalToSuperview().inset(Constants.horizontalInset)
-            $0.height.equalTo(Constants.tabBarHeight)
-        }
-        
         underLineView.snp.makeConstraints {
-            $0.leading.trailing.equalTo(tabBar)
-            $0.top.equalTo(tabBar.snp.bottom)
+            $0.leading.trailing.equalToSuperview() // superview: tabBar
+            $0.bottom.equalToSuperview().offset(1)
             $0.height.equalTo(1)
         }
-        
-        tableView.snp.makeConstraints {
-            $0.top.equalTo(underLineView.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
-        }
-    }
-}
-
-extension ScrapViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //        return self.arrDropDownDataSource.count
-        return 2
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(for: indexPath) as ScrapPostCell
-        
-//        cell.configure(
-//            job: .staff,
-//            categories: [.featureFilm, .youtube],
-//            deadline: "2023.01.20",
-//            coorporate: "성균관대학교 영상학과",
-//            gender: "남자",
-//            period: "일주일",
-//            field: "미술"
-//        )
-        
-        cell.configure(
-            job: .actor,
-            categories: [.ottDrama, .shortFilm],
-            deadline: "2023.01.20",
-            coorporate: "성균관대학교 영상학과",
-            gender: "남자",
-            period: "일주일",
-            casting: "수영선수"
-        )
-        
-        return cell
-    }
-
 }
