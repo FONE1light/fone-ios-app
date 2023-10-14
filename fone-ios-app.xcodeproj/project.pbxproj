@@ -50,13 +50,19 @@
 		367D9C072AD766E800DA6C96 /* SavedProfilesTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C062AD766E800DA6C96 /* SavedProfilesTabBarViewModel.swift */; };
 		367D9C092AD774CD00DA6C96 /* MyPageProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C082AD774CD00DA6C96 /* MyPageProfileCell.swift */; };
 		367D9C0B2AD9F03900DA6C96 /* SavedProfilesTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C0A2AD9F03900DA6C96 /* SavedProfilesTabBarController.swift */; };
-		367D9C0D2AD9F5AF00DA6C96 /* SavedProfilesPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C0C2AD9F5AF00DA6C96 /* SavedProfilesPageViewController.swift */; };
+		367D9C0D2AD9F5AF00DA6C96 /* MyPagePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C0C2AD9F5AF00DA6C96 /* MyPagePageViewController.swift */; };
 		367D9C0F2AD9FBC900DA6C96 /* MyPageTabBarCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C0E2AD9FBC900DA6C96 /* MyPageTabBarCollectionView.swift */; };
 		367D9C122AD9FE2600DA6C96 /* MyPageTabBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C112AD9FE2600DA6C96 /* MyPageTabBarCell.swift */; };
 		367D9BD82ACB5CC900DA6C96 /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BD72ACB5CC900DA6C96 /* JobViewController.swift */; };
 		367D9BDA2ACB5D9F00DA6C96 /* JobViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BD92ACB5D9F00DA6C96 /* JobViewModel.swift */; };
 		367D9BDC2ACE433200DA6C96 /* ScrapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BDB2ACE433200DA6C96 /* ScrapViewController.swift */; };
 		367D9BFE2AD7583500DA6C96 /* UITabBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BFD2AD7583500DA6C96 /* UITabBar+Extension.swift */; };
+		367D9C182ADA292200DA6C96 /* MyRegistrationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C172ADA292200DA6C96 /* MyRegistrationsViewController.swift */; };
+		367D9C1A2ADA294E00DA6C96 /* MyRegistrationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C192ADA294E00DA6C96 /* MyRegistrationsViewModel.swift */; };
+		367D9C222ADA4AA700DA6C96 /* TabBarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C212ADA4AA700DA6C96 /* TabBarType.swift */; };
+		367D9C2B2ADA5EC700DA6C96 /* ProfileRegistrationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C282ADA5EC700DA6C96 /* ProfileRegistrationCell.swift */; };
+		367D9C2C2ADA5EC700DA6C96 /* ProfileRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C292ADA5EC700DA6C96 /* ProfileRegistrationViewController.swift */; };
+		367D9C2D2ADA5EC700DA6C96 /* ProfileRegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C2A2ADA5EC700DA6C96 /* ProfileRegistrationViewModel.swift */; };
 		36AC7BD52AAE852E00478030 /* SignUpPhoneNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AC7BD42AAE852E00478030 /* SignUpPhoneNumberViewModel.swift */; };
 		36AC7BD72AAE883500478030 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AC7BD62AAE883500478030 /* UITableView+Extension.swift */; };
 		36AC7BD92AAE88F400478030 /* TermsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AC7BD82AAE88F400478030 /* TermsCell.swift */; };
@@ -203,13 +209,19 @@
 		367D9C062AD766E800DA6C96 /* SavedProfilesTabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedProfilesTabBarViewModel.swift; sourceTree = "<group>"; };
 		367D9C082AD774CD00DA6C96 /* MyPageProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageProfileCell.swift; sourceTree = "<group>"; };
 		367D9C0A2AD9F03900DA6C96 /* SavedProfilesTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedProfilesTabBarController.swift; sourceTree = "<group>"; };
-		367D9C0C2AD9F5AF00DA6C96 /* SavedProfilesPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedProfilesPageViewController.swift; sourceTree = "<group>"; };
+		367D9C0C2AD9F5AF00DA6C96 /* MyPagePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePageViewController.swift; sourceTree = "<group>"; };
 		367D9C0E2AD9FBC900DA6C96 /* MyPageTabBarCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTabBarCollectionView.swift; sourceTree = "<group>"; };
 		367D9C112AD9FE2600DA6C96 /* MyPageTabBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTabBarCell.swift; sourceTree = "<group>"; };
 		367D9BD72ACB5CC900DA6C96 /* JobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobViewController.swift; sourceTree = "<group>"; };
 		367D9BD92ACB5D9F00DA6C96 /* JobViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobViewModel.swift; sourceTree = "<group>"; };
 		367D9BDB2ACE433200DA6C96 /* ScrapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapViewController.swift; sourceTree = "<group>"; };
 		367D9BFD2AD7583500DA6C96 /* UITabBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+Extension.swift"; sourceTree = "<group>"; };
+		367D9C172ADA292200DA6C96 /* MyRegistrationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRegistrationsViewController.swift; sourceTree = "<group>"; };
+		367D9C192ADA294E00DA6C96 /* MyRegistrationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRegistrationsViewModel.swift; sourceTree = "<group>"; };
+		367D9C212ADA4AA700DA6C96 /* TabBarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarType.swift; sourceTree = "<group>"; };
+		367D9C282ADA5EC700DA6C96 /* ProfileRegistrationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileRegistrationCell.swift; sourceTree = "<group>"; };
+		367D9C292ADA5EC700DA6C96 /* ProfileRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileRegistrationViewController.swift; sourceTree = "<group>"; };
+		367D9C2A2ADA5EC700DA6C96 /* ProfileRegistrationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileRegistrationViewModel.swift; sourceTree = "<group>"; };
 		36AC7BD42AAE852E00478030 /* SignUpPhoneNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPhoneNumberViewModel.swift; sourceTree = "<group>"; };
 		36AC7BD62AAE883500478030 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		36AC7BD82AAE88F400478030 /* TermsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsCell.swift; sourceTree = "<group>"; };
@@ -408,13 +420,14 @@
 		364482CA2AB7C74900984507 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
-				367D9C132ADA214300DA6C96 /* Modules */,
-				364482D12AB804D400984507 /* Views */,
 				364482CB2AB7C75E00984507 /* MyPageViewController.swift */,
 				364482CD2AB7C76500984507 /* MyPageViewModel.swift */,
+				367D9C132ADA214300DA6C96 /* Modules */,
+				364482D12AB804D400984507 /* Views */,
 				36AC7BDB2AB1311D00478030 /* Profile */,
 				36B8FDE12AC0ED670040AFB2 /* Scrap */,
 				367D9BFF2AD7632C00DA6C96 /* SavedProfiles */,
+				367D9C162ADA28B200DA6C96 /* MyRegistrations */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -536,6 +549,7 @@
 		367D9C102AD9FBCF00DA6C96 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				367D9C212ADA4AA700DA6C96 /* TabBarType.swift */,
 				367D9C0E2AD9FBC900DA6C96 /* MyPageTabBarCollectionView.swift */,
 				367D9C112AD9FE2600DA6C96 /* MyPageTabBarCell.swift */,
 			);
@@ -546,6 +560,7 @@
 			isa = PBXGroup;
 			children = (
 				367D9C102AD9FBCF00DA6C96 /* TabBar */,
+				367D9C0C2AD9F5AF00DA6C96 /* MyPagePageViewController.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -554,7 +569,6 @@
 			isa = PBXGroup;
 			children = (
 				367D9C152ADA227300DA6C96 /* Cells */,
-				367D9C0C2AD9F5AF00DA6C96 /* SavedProfilesPageViewController.swift */,
 				367D9C042AD765C800DA6C96 /* SavedProfilesContentViewController.swift */,
 				367D9C022AD7636A00DA6C96 /* SavedProfilesContentViewModel.swift */,
 			);
@@ -565,6 +579,44 @@
 			isa = PBXGroup;
 			children = (
 				367D9C082AD774CD00DA6C96 /* MyPageProfileCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		367D9C162ADA28B200DA6C96 /* MyRegistrations */ = {
+			isa = PBXGroup;
+			children = (
+				367D9C1B2ADA486500DA6C96 /* Job */,
+				367D9C262ADA5EC700DA6C96 /* Profile */,
+				367D9C172ADA292200DA6C96 /* MyRegistrationsViewController.swift */,
+				367D9C192ADA294E00DA6C96 /* MyRegistrationsViewModel.swift */,
+			);
+			path = MyRegistrations;
+			sourceTree = "<group>";
+		};
+		367D9C1B2ADA486500DA6C96 /* Job */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Job;
+			path = "모집";
+			sourceTree = "<group>";
+		};
+		367D9C262ADA5EC700DA6C96 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				367D9C272ADA5EC700DA6C96 /* Cells */,
+				367D9C292ADA5EC700DA6C96 /* ProfileRegistrationViewController.swift */,
+				367D9C2A2ADA5EC700DA6C96 /* ProfileRegistrationViewModel.swift */,
+			);
+			name = Profile;
+			path = "fone-ios-app/View/MyPage/MyRegistrations/Profile";
+			sourceTree = SOURCE_ROOT;
+		};
+		367D9C272ADA5EC700DA6C96 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				367D9C282ADA5EC700DA6C96 /* ProfileRegistrationCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1021,7 +1073,9 @@
 				36AC7BDF2AB1319500478030 /* ProfileViewModel.swift in Sources */,
 				36F50AAC2A9897AA00991C9B /* SelectionCell.swift in Sources */,
 				3650F6262A8672010017645D /* UIFont+Extension.swift in Sources */,
+				367D9C2B2ADA5EC700DA6C96 /* ProfileRegistrationCell.swift in Sources */,
 				367D9BCD2AC2B19700DA6C96 /* PostCellMainContentView.swift in Sources */,
+				367D9C222ADA4AA700DA6C96 /* TabBarType.swift in Sources */,
 				367D9C0B2AD9F03900DA6C96 /* SavedProfilesTabBarController.swift in Sources */,
 				AB9885122AA476FF00282C07 /* Rx+Extension.swift in Sources */,
 				364482D32AB804E100984507 /* MyPageButtonStackView.swift in Sources */,
@@ -1032,6 +1086,7 @@
 				ABF3034B2AA33E4A00C14AF7 /* EmailSignUpViewModel.swift in Sources */,
 				362866942A8E3D4700CD42BC /* Single+Codable.swift in Sources */,
 				36AC7BDD2AB1315700478030 /* ProfileViewController.swift in Sources */,
+				367D9C1A2ADA294E00DA6C96 /* MyRegistrationsViewModel.swift in Sources */,
 				36E269412AAAEF420034B485 /* NavigationLeftBarButtonItem.swift in Sources */,
 				AB49A3492A8119B900748484 /* CommonViewModel.swift in Sources */,
 				36F50AA92A962C9800991C9B /* EmptyView.swift in Sources */,
@@ -1055,6 +1110,8 @@
 				3628668B2A8DF40F00CD42BC /* APIConfig.swift in Sources */,
 				367D9BB62AC1202A00DA6C96 /* MyPageTabBarItem.swift in Sources */,
 				36BCC7E02AA31A350060E35A /* SignUpInfoViewController.swift in Sources */,
+				367D9C2D2ADA5EC700DA6C96 /* ProfileRegistrationViewModel.swift in Sources */,
+				36B8FDE32AC0ED970040AFB2 /* ScrapViewController.swift in Sources */,
 				364BCC6A2AB3672500E14B25 /* DynamicHeightCollectionView.swift in Sources */,
 				362866972A8E3D8200CD42BC /* Response+Codable.swift in Sources */,
 				364482D82AB80EDA00984507 /* MyPageMenuCell.swift in Sources */,
@@ -1084,6 +1141,7 @@
 				367D9BDA2ACB5D9F00DA6C96 /* JobViewModel.swift in Sources */,
 				AB67855C2AA3374F00ACD35C /* EmailSignUpViewController.swift in Sources */,
 				AB1CEAAD2ABFD20F00E7E54F /* ProfileModule.swift in Sources */,
+				367D9C2C2ADA5EC700DA6C96 /* ProfileRegistrationViewController.swift in Sources */,
 				AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */,
 				AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */,
 				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,
@@ -1113,7 +1171,7 @@
 				367D9BCB2AC2A22700DA6C96 /* TagList.swift in Sources */,
 				AB2578AA2AAF3C8F00328363 /* ChatViewController.swift in Sources */,
 				AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */,
-				367D9C0D2AD9F5AF00DA6C96 /* SavedProfilesPageViewController.swift in Sources */,
+				367D9C0D2AD9F5AF00DA6C96 /* MyPagePageViewController.swift in Sources */,
 				36AC7BD52AAE852E00478030 /* SignUpPhoneNumberViewModel.swift in Sources */,
 				AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */,
 				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,
@@ -1137,6 +1195,7 @@
 				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,
 				ABC1DBDD2AC0113800B9A6BF /* JobOpeningCell.swift in Sources */,
 				AB3F07192AADAA9200E54A25 /* FindIDCell.swift in Sources */,
+				367D9C182ADA292200DA6C96 /* MyRegistrationsViewController.swift in Sources */,
 				364482D02AB7D15F00984507 /* NavigationRightBarButton.swift in Sources */,
 				36D293D42A961FDB00171C77 /* SelectionBlock.swift in Sources */,
 				36D293D22A961E7300171C77 /* SignUpSelectionViewController.swift in Sources */,

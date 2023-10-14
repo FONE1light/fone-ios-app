@@ -7,27 +7,29 @@
 
 import UIKit
 
+struct Profile {
+    let imageUrl: String?
+    let name: String?
+    let age: String?
+    let isSaved: Bool?
+    let birthYear: String? // age, birthYear 공존 혹은 하나만?
+    let job: Job? // 서버 데이터 확인 후 수정
+}
+
 class SavedProfilesContentViewController: UIViewController, ViewModelBindableType {
-    
-    struct Profile {
-        let imageUrl: String?
-        let name: String?
-        let age: String?
-        let isSaved: Bool?
-    }
     
     var viewModel: SavedProfilesContentViewModel!
     
     private var profiles: [Profile] = [
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: false),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: false),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: false),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true)
+        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true, birthYear: nil, job: nil),
+        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: false, birthYear: nil, job: nil),
+        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true, birthYear: nil, job: nil),
+        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: false, birthYear: nil, job: nil),
+        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true, birthYear: nil, job: nil),
+        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true, birthYear: nil, job: nil),
+        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: false, birthYear: nil, job: nil),
+        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true, birthYear: nil, job: nil),
+        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true, birthYear: nil, job: nil)
     ]
     
     private lazy var collectionView: UICollectionView = {

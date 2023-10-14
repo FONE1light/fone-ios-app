@@ -44,8 +44,7 @@ class MyPageViewController: UIViewController, ViewModelBindableType {
     }
     
     private lazy var tableView = UITableView().then {
-        // TODO: Extension 만들어서 축약
-        $0.register(MyPageMenuCell.self, forCellReuseIdentifier: MyPageMenuCell.identifier)
+        $0.register(with: MyPageMenuCell.self)
         $0.separatorStyle = .none
         $0.dataSource = self
     }
@@ -185,11 +184,8 @@ extension MyPageViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyPageMenuCell.identifier, for: indexPath) as? MyPageMenuCell else {
-            // TODO: Identifier 확정
-            // "MyPageMenuCell" == MyPageMenuCell.identifier == "\(MyPageMenuCell.self)"
-            return UITableViewCell()
-        }
+        let cell = tableView.dequeueReusableCell(for: indexPath) as MyPageMenuCell
+                
         // FIXME: index 지정 방식 변경
         cell.setupCell(type: menuList[indexPath.row])
         return cell
