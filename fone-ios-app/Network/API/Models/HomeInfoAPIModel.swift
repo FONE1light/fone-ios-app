@@ -16,17 +16,17 @@ struct HomeInfo: Codable {
 // MARK: - HomeInfoData
 struct HomeInfoData: Codable {
     let order: [String]
-    let jobOpening, competition, profile: Competition
+    let jobOpening, competition, profile: ModuleInfo
 }
 
-// MARK: - Competition
-struct Competition: Codable {
+// MARK: - ModuleInfo
+struct ModuleInfo: Codable {
     let title, subTitle: String
-    let data: CompetitionData
+    let data: ModuleData
 }
 
-// MARK: - CompetitionData
-struct CompetitionData: Codable {
+// MARK: - ModuleData
+struct ModuleData: Codable {
     let content: [Content]
     let pageable: Pageable
     let last: Bool

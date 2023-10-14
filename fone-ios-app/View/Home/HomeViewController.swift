@@ -18,6 +18,8 @@ class HomeViewController: UIViewController, ViewModelBindableType {
     var viewModel: HomeViewModel!
     var hasViewModel = false
     
+    var homeInfo: HomeInfoData?
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -25,11 +27,17 @@ class HomeViewController: UIViewController, ViewModelBindableType {
         
         setNavigationBar()
         setCollectionView()
-        
     }
     
     func bindViewModel() {
+        viewModel
+            .homeInfoDataSubject
+            .subscribe(onNext: { [weak self] homeInfo in
+                self?.homeInfo = homeInfo
+                self?.collectionView.reloadData()
+            }).disposed(by: rx.disposeBag)
         
+        setCollectionView()
     }
     
     private func setNavigationBar() {
@@ -59,22 +67,24 @@ class HomeViewController: UIViewController, ViewModelBindableType {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = UICollectionViewCell()
-        
         switch indexPath.section {
         case ModuleSection.mainBanner.rawValue:
-            cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as MainBannerModule
+            let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as MainBannerModule
+            return cell
         case ModuleSection.jobOpening.rawValue:
-            cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as JobOpeningModule
+            let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as JobOpeningModule
+            cell.setModuelInfo(info: homeInfo?.jobOpening)
+            return cell
         case ModuleSection.competition.rawValue:
-            cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CompetitionModule
+            let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CompetitionModule
+            return cell
         case ModuleSection.profile.rawValue:
-            cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as ProfileModule
+            let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as ProfileModule
+            cell.setModuelInfo(info: homeInfo?.profile)
+            return cell
         default:
-            break
+            return UICollectionViewCell()
         }
-        
-        return cell
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
