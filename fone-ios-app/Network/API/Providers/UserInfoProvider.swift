@@ -14,6 +14,7 @@ enum UserInfoTarget {
     case fetchMyPage
     case checkNicknameDuplication(nickname: String)
     case emailSignIn(emailSignInInfo: EmailSignInInfo)
+    case reissueToken(tokenInfo: TokenInfo)
 }
 
 extension UserInfoTarget: TargetType {
@@ -29,6 +30,8 @@ extension UserInfoTarget: TargetType {
             return "/api/v1/users/check-nickname-duplication"
         case .emailSignIn(_):
             return "/api/v1/users/email/sign-in"
+        case .reissueToken(_):
+            return "/api/v1/users/reissue"
         }
     }
     
@@ -36,7 +39,7 @@ extension UserInfoTarget: TargetType {
         switch self {
         case .fetchMyPage, .checkNicknameDuplication(_):
             return .get
-        case .emailSignIn(_):
+        case .emailSignIn(_), .reissueToken(_):
             return .post
         }
     }
@@ -48,6 +51,8 @@ extension UserInfoTarget: TargetType {
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
         case .emailSignIn(let emailSignInInfo):
             return .requestJSONEncodable(emailSignInInfo)
+        case .reissueToken(let tokenInfo):
+            return .requestJSONEncodable(tokenInfo)
         default:
             return .requestPlain
         }
@@ -62,7 +67,7 @@ extension UserInfoTarget: TargetType {
         switch self {
         case .fetchMyPage:
             commonHeaders[Tokens.shared.accessToken.key] = Tokens.shared.accessToken.value // TODO: MOCK,
-        case .emailSignIn(_):
+        case .emailSignIn(_), .reissueToken(_):
             commonHeaders["Content-Type"] = "application/json"
         default:
             break
