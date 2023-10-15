@@ -7,11 +7,15 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import PanModal
 
 class MyPageViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: MyPageViewModel!
     var hasViewModel = false
+    
+    var disposeBag = DisposeBag()
     
     private let profileSection = UIView()
     
@@ -192,10 +196,25 @@ extension MyPageViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(for: indexPath) as MyPageMenuCell
-                
+        
+        let menuType = menuList[indexPath.row]
+        
         // FIXME: index 지정 방식 변경
-        cell.setupCell(type: menuList[indexPath.row])
+        cell.setupCell(type: menuType)
+        
+        cell.buttonTap.withUnretained(self)
+            .bind { owner, _ in
+                
+                if let scene = menuType.nextScene(owner.viewModel.sceneCoordinator) {
+                    owner.viewModel.sceneCoordinator.transition(to: scene, using: .push, animated: true)
+                } else if let bottomSheet = menuType.bottomSheet {
+                    // FIXME: 높이 늘어나는 것 해결(UIView-Encapsulated-Layout-Height)
+                    owner.presentPanModal(view: bottomSheet)
+                }
+                
+            }.disposed(by: disposeBag)
         return cell
     }
 }
