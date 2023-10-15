@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import Then
 import RxSwift
+import RxCocoa
 
 enum MyPageMenuType {
     case postings
@@ -57,6 +58,18 @@ enum MyPageMenuType {
         default: return nil
         }
     }
+    
+    func nextScene(_ sceneCoordinator: SceneCoordinatorType) -> Scene? {
+        switch self {
+        case .postings:
+            // TODO: 나의 등록내역 화면으로 변경
+            let viewModel = ScrapViewModel(sceneCoordinator: sceneCoordinator)
+            let scene = Scene.scrap(viewModel)
+            return scene
+        default: return nil
+        }
+    }
+    
 }
 
 class MyPageMenuCell: UITableViewCell {
@@ -64,6 +77,9 @@ class MyPageMenuCell: UITableViewCell {
     static let identifier = String(describing: MyPageMenuCell.self)
     var disposeBag = DisposeBag()
     
+    var buttonTap: ControlEvent<Void> {
+        button.rx.tap
+    }
     private lazy var leadingImage = UIImageView().then {
         $0.tintColor = .gray_9E9E9E
     }
@@ -74,6 +90,8 @@ class MyPageMenuCell: UITableViewCell {
     }
     
     private var trailingView: UIView?
+    
+    private let button = UIButton()
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -94,11 +112,16 @@ class MyPageMenuCell: UITableViewCell {
     }
     
     private func setupUI() {
+//<<<<<<< HEAD
+//        selectionStyle = .none
+//
+//        [leadingImage, label, trailingView]
+//=======
         selectionStyle = .none
-        
-        [leadingImage, label, trailingView]
+        [leadingImage, label, trailingView, button]
+//>>>>>>> 9caefc5 (feat: 바텀시트 추가, buttonAction 추가)
             .compactMap { $0 }
-            .forEach { self.addSubview($0) }
+            .forEach { contentView.addSubview($0) }
     
         leadingImage.snp.makeConstraints {
 //            $0.size.equalTo(24) // TODO: 필요없다면 지우기
@@ -112,9 +135,20 @@ class MyPageMenuCell: UITableViewCell {
             $0.leading.equalTo(leadingImage.snp.trailing).offset(6)
         }
         
-        trailingView?.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().offset(-16)
+        if let trailingView = trailingView {
+            trailingView.snp.makeConstraints {
+                $0.centerY.equalToSuperview()
+                $0.trailing.equalToSuperview().offset(-16)
+            }
+            
+            button.snp.makeConstraints {
+                $0.edges.equalTo(trailingView).inset(-2)
+            }
+        } else {
+            button.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
         }
+        
     }
 }

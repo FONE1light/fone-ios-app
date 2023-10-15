@@ -7,11 +7,13 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import PanModal
 
 class MyPageViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: MyPageViewModel!
-    
+    var disposeBag = DisposeBag()
     private let profileSection = UIView()
     
     private let profileImage = UIImageView().then {
@@ -184,10 +186,26 @@ extension MyPageViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(for: indexPath) as MyPageMenuCell
-                
+        
+        let menuType = menuList[indexPath.row]
+        
         // FIXME: index 지정 방식 변경
-        cell.setupCell(type: menuList[indexPath.row])
+        cell.setupCell(type: menuType)
+        
+        cell.buttonTap.withUnretained(self)
+            .bind { owner, _ in
+//                guard let scene = menuType.nextScene(owner.viewModel.sceneCoordinator) else { return }
+//                owner.viewModel.sceneCoordinator.transition(to: scene, using: .push, animated: true)
+                let bottomSheet = MyPageBottomSheet(
+                    title: "로그아웃 하시겠습니까?",
+                    content: "깡총! 소셜 로그인 화면으로 돌아가요"
+                )
+                // FIXME: 높이 늘어나는 것 해결(UIView-Encapsulated-Layout-Height)
+                owner.presentPanModal(view: bottomSheet)
+                
+            }.disposed(by: disposeBag)
         return cell
     }
 }
