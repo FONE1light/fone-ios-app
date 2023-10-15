@@ -85,23 +85,4 @@ class ScrapViewController: UIViewController, ViewModelBindableType {
             $0.height.equalTo(MyPageTabBarCollectionView.Constants.tabBarHeight + MyPageTabBarCollectionView.Constants.grayUnderlineHeight)
         }
     }
-    
-//    override func viewDidLayoutSubviews() {
-//        tabBar.frame = CGRect(x: UITabBar.Constants.horizontalInset,
-//                              y: view.safeAreaInsets.top,
-//                              width: UIScreen.main.bounds.width - UITabBar.Constants.horizontalInset * 2,
-//                              height: UITabBar.Constants.tabBarHeight
-//        )
-//
-//        super.viewDidLayoutSubviews()
-//    }
-//
-//    private func setConstraints() {
-//        underLineView.snp.makeConstraints {
-//            $0.leading.trailing.equalToSuperview() // superview: tabBar
-//            $0.bottom.equalToSuperview().offset(1)
-//            $0.height.equalTo(1)
-//        }
-//    }
-    
 }
