@@ -80,13 +80,20 @@ class MyPageViewController: UIViewController, ViewModelBindableType {
         buttonStackView?.scrapButtonTap
             .withUnretained(self)
             .bind { owner, _ in
-                print("scrapButton clicked")
+                let viewModel = ScrapViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator)
+                let scene = Scene.scrap(viewModel)
+                
+                owner.viewModel.sceneCoordinator.transition(to: scene, using: .push, animated: true)
+
             }.disposed(by: rx.disposeBag)
         
         buttonStackView?.saveButtonTap
             .withUnretained(self)
             .bind { owner, _ in
-                print("saveButton clicked")
+                let viewModel = MyRegistrationsViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator)
+                let scene = Scene.myRegistrations(viewModel)
+                
+                owner.viewModel.sceneCoordinator.transition(to: scene, using: .push, animated: true)
             }.disposed(by: rx.disposeBag)
     }
     
