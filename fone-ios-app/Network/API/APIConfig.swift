@@ -37,19 +37,19 @@ extension Token {
     var key: String {
         switch self {
         case .accessToken:
-            return "access_token"
+            return "accessToken"
         case .refreshToken:
-            return "refresh_token"
+            return "refreshToken"
         }
     }
     
     // FIXME: 테스트용이므로 실제 사용 시 재설정. 구조 변경도 고려
     var value: String {
-        switch self {
-        case .accessToken:
-            return "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJwcmltZWFkbWluIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTY0NTUzNzA4NSwiaXNzdWVkX2F0IjoxNjQ1NTMzNDg1ODg5LCJhdXRob3JpdGllcyI6WyJST0xFX0FETUlOIl0sImp0aSI6ImI5ZmFkNzY5LWYwNjYtNGU2MC1iZWYyLTllMDE0NzVjNzAyYyIsImNsaWVudF9pZCI6ImN1cmwifQ.Ls_quM54efPKXNwQygfTQdQuPxGbdJlqicdTS5dt5JBVTx1Bs46N3d-ftGTVd9RfnM7GsGCLwR-eqIkRKMrNpxG4TBdyImpmF_Fig50R6SdU8EXOtqTZVOUx5YCvy21Vm6LI1xyTOme_FcJBFrd3DzTHMepDhzFgusWJE4B6jE_IhTj19h1l194urq2_HyqmZctnlvuH5XxcG_JQelgPy4xyHyHaH3v1kdplRvwiiYYVvRZkYDmieqcpnfj7G6rIOHKgf62hGzxaohuoRGjp1J72ktp-Nwe9NDRfsTz9raSRVKgNYs186D4e_LCoe9d2f1_jMgyE_PzhJvGXHq-tPw"
-        case .refreshToken:
-            return ""
+        get {
+            return UserDefaults.standard.string(forKey: self.key) ?? ""
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: self.key)
         }
     }
 }
