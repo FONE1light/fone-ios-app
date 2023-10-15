@@ -10,7 +10,7 @@ enum Tabs: Int, CaseIterable {
     case home = 0
     //    case 구인구직
     case chat
-    //    case 마이페이지
+    case myPage
     
     var nav: UINavigationController {
         switch self {
@@ -18,6 +18,8 @@ enum Tabs: Int, CaseIterable {
             return UINavigationController(rootViewController: HomeViewController())
         case .chat:
             return UINavigationController(rootViewController: ChatViewController())
+        case .myPage:
+            return UINavigationController(rootViewController: MyPageViewController())
         }
     }
     
@@ -27,6 +29,8 @@ enum Tabs: Int, CaseIterable {
             return UIImage(named: "home_selected") ?? UIImage()
         case .chat:
             return UIImage(named: "chat_unselected") ?? UIImage()
+        case .myPage:
+            return UIImage(named: "mypage_unselected") ?? UIImage()
         }
     }
     
@@ -36,6 +40,8 @@ enum Tabs: Int, CaseIterable {
             return "홈"
         case .chat:
             return "채팅"
+        case .myPage:
+            return "마이페이지"
         }
     }
     
@@ -45,6 +51,8 @@ enum Tabs: Int, CaseIterable {
             return UIImage(named: "home_selected") ?? UIImage()
         case .chat:
             return UIImage(named: "chat_selected") ?? UIImage()
+        case .myPage:
+            return UIImage(named: "mypage_selected") ?? UIImage()
         }
     }
 }
@@ -98,6 +106,17 @@ class TabBarViewController: UITabBarController {
                 
                 guard var vc = nav.visibleViewController as? ChatViewController else { return }
                 let viewModel = ChatViewModel(sceneCoordinator: coordinator)
+                coordinator.currentVC = vc
+                
+                guard !vc.hasViewModel else { return }
+                DispatchQueue.main.async {
+                    vc.bind(viewModel: viewModel)
+                    vc.hasViewModel = true
+                }
+                
+            case 2: // FIXME: 구인구직 탭 추가 후 case 3으로 변경
+                guard var vc = nav.visibleViewController as? MyPageViewController else { return }
+                let viewModel = MyPageViewModel(sceneCoordinator: coordinator)
                 coordinator.currentVC = vc
                 
                 guard !vc.hasViewModel else { return }

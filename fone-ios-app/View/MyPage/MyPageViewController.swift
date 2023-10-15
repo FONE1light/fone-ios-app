@@ -11,6 +11,7 @@ import SnapKit
 class MyPageViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: MyPageViewModel!
+    var hasViewModel = false
     
     private let profileSection = UIView()
     
