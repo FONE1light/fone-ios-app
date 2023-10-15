@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import Then
 import RxSwift
+import RxCocoa
 
 enum MyPageMenuType {
     case postings
@@ -57,6 +58,34 @@ enum MyPageMenuType {
         default: return nil
         }
     }
+    
+    var bottomSheet: UIView? {
+        switch self {
+        case .logout:
+            return MyPageBottomSheet(
+                title: "로그아웃 하시겠습니까?",
+                content: "깡총! 소셜 로그인 화면으로 돌아가요"
+            )
+        case .withdrawal:
+            return MyPageBottomSheet(
+                title: ".. 저희 이별하나요? 너무 아쉬워요",
+                content: "회원탈퇴를 진행할 경우 혜택 및\n게시글, 관심, 채팅 등 모든 정보가 삭제됩니다."
+            )
+        default: return nil
+        }
+        
+    }
+    
+    func nextScene(_ sceneCoordinator: SceneCoordinatorType) -> Scene? {
+        switch self {
+        case .postings:
+            let viewModel = MyRegistrationsViewModel(sceneCoordinator: sceneCoordinator)
+            let scene = Scene.myRegistrations(viewModel)
+            return scene
+        default: return nil
+        }
+    }
+    
 }
 
 class MyPageMenuCell: UITableViewCell {
@@ -64,6 +93,9 @@ class MyPageMenuCell: UITableViewCell {
     static let identifier = String(describing: MyPageMenuCell.self)
     var disposeBag = DisposeBag()
     
+    var buttonTap: ControlEvent<Void> {
+        button.rx.tap
+    }
     private lazy var leadingImage = UIImageView().then {
         $0.tintColor = .gray_9E9E9E
     }
@@ -74,6 +106,8 @@ class MyPageMenuCell: UITableViewCell {
     }
     
     private var trailingView: UIView?
+    
+    private let button = UIButton()
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -96,13 +130,11 @@ class MyPageMenuCell: UITableViewCell {
     private func setupUI() {
         selectionStyle = .none
         
-        [leadingImage, label, trailingView]
+        [leadingImage, label, trailingView, button]
             .compactMap { $0 }
-            .forEach { self.addSubview($0) }
+            .forEach { contentView.addSubview($0) }
     
         leadingImage.snp.makeConstraints {
-//            $0.size.equalTo(24) // TODO: 필요없다면 지우기
-//            $0.centerY.equalToSuperview()
             $0.top.bottom.equalToSuperview().inset(10) // FIXME: centerY만 해도 높이 44로 되는 이유
             $0.leading.equalToSuperview().offset(16)
         }
@@ -112,9 +144,27 @@ class MyPageMenuCell: UITableViewCell {
             $0.leading.equalTo(leadingImage.snp.trailing).offset(6)
         }
         
-        trailingView?.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().offset(-16)
+        if let trailingView = trailingView {
+            trailingView.snp.makeConstraints {
+                $0.centerY.equalToSuperview()
+                $0.trailing.equalToSuperview().offset(-16)
+            }
+            
+            // arrow_right16은 크기 지정
+            if let imageView = trailingView as? UIImageView {
+                imageView.snp.makeConstraints {
+                    $0.size.equalTo(16)
+                }
+            }
+            
+            button.snp.makeConstraints {
+                $0.edges.equalTo(trailingView).inset(-2)
+            }
+        } else {
+            button.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
         }
+        
     }
 }
