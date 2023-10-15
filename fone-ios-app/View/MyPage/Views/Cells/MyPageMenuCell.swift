@@ -79,9 +79,8 @@ enum MyPageMenuType {
     func nextScene(_ sceneCoordinator: SceneCoordinatorType) -> Scene? {
         switch self {
         case .postings:
-            // TODO: 나의 등록내역 화면으로 변경
-            let viewModel = ScrapViewModel(sceneCoordinator: sceneCoordinator)
-            let scene = Scene.scrap(viewModel)
+            let viewModel = MyRegistrationsViewModel(sceneCoordinator: sceneCoordinator)
+            let scene = Scene.myRegistrations(viewModel)
             return scene
         default: return nil
         }
@@ -129,20 +128,13 @@ class MyPageMenuCell: UITableViewCell {
     }
     
     private func setupUI() {
-//<<<<<<< HEAD
-//        selectionStyle = .none
-//
-//        [leadingImage, label, trailingView]
-//=======
         selectionStyle = .none
+        
         [leadingImage, label, trailingView, button]
-//>>>>>>> 9caefc5 (feat: 바텀시트 추가, buttonAction 추가)
             .compactMap { $0 }
             .forEach { contentView.addSubview($0) }
     
         leadingImage.snp.makeConstraints {
-//            $0.size.equalTo(24) // TODO: 필요없다면 지우기
-//            $0.centerY.equalToSuperview()
             $0.top.bottom.equalToSuperview().inset(10) // FIXME: centerY만 해도 높이 44로 되는 이유
             $0.leading.equalToSuperview().offset(16)
         }
@@ -156,6 +148,13 @@ class MyPageMenuCell: UITableViewCell {
             trailingView.snp.makeConstraints {
                 $0.centerY.equalToSuperview()
                 $0.trailing.equalToSuperview().offset(-16)
+            }
+            
+            // arrow_right16은 크기 지정
+            if let imageView = trailingView as? UIImageView {
+                imageView.snp.makeConstraints {
+                    $0.size.equalTo(16)
+                }
             }
             
             button.snp.makeConstraints {
