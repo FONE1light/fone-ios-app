@@ -6,52 +6,61 @@
 //
 
 import UIKit
+import RxSwift
 
-enum ScrapTabs: Int, CaseIterable {
-    case job = 0
-    case competition
-    
-    var nav: UINavigationController {
-        switch self {
-        case .job:
-            return UINavigationController(rootViewController: JobViewController())
-        case .competition:
-            return UINavigationController(rootViewController: CompetitionViewController())
-        }
-    }
-    
-    var tabBarItem: MyPageTabBarItem {
-        switch self {
-        case .job:
-            return MyPageTabBarItem(title: "구인구직", tag: 0)
-        case .competition:
-            return MyPageTabBarItem(title: "공모전", tag: 1)
-        }
-    }
-}
-
-class ScrapViewController: UITabBarController, ViewModelBindableType, UITabBarControllerDelegate {
+// TODO: 공통 Custom TabBarController 만들어서 정리 (ScrapViewController, SavedProfilesTabBarController, MyRegistrationsViewController)
+class ScrapViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: ScrapViewModel!
-
-    private let underLineView = UIView().then {
-        $0.backgroundColor = .gray_D9D9D9
-    }
+    var disposeBag = DisposeBag()
+    
+    private let tabBar = MyPageTabBarCollectionView(type: .scrap)
+    
+    private var pageController: MyPagePageViewController!
+    
+    private var currentIndex = 0
 
     func bindViewModel() {
-        
+        tabBar.itemSelected
+            .withUnretained(self)
+            .bind { owner, indexPath in
+                
+                let index = indexPath.row
+                if index != owner.currentIndex {
+                    owner.pageController.movePage(index: index)
+                    owner.tabBar.scrollToItem(at: IndexPath.init(item: index, section: 0), at: .centeredHorizontally, animated: true)
+                }
+                
+                owner.currentIndex = index
+                
+            }.disposed(by: disposeBag)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        setNavigationBar()
-        setTabBar()
         
+        setNavigationBar()
         setUI()
         setConstraints()
+        
+        initPageController()
     }
     
+    private func initPageController() {
+        pageController = MyPagePageViewController(tabBarType: .scrap)
+        // TODO: y offset, height 확정
+        let tabBarHeight = MyPageTabBarCollectionView.Constants.tabBarHeight + MyPageTabBarCollectionView.Constants.grayUnderlineHeight
+        self.pageController.view.frame = CGRect.init(
+            x: 0,
+            y: tabBarHeight + 100,
+            width: self.view.frame.width,
+            height: self.view.frame.height - tabBarHeight - 100//(view.safeAreaInsets.top + tabBar.frame.height)
+        )
+        
+        self.addChild(self.pageController)
+        self.view.addSubview(self.pageController.view)
+        self.pageController.didMove(toParent: self)
+    }
 
     private func setNavigationBar() {
         self.navigationItem.titleView = NavigationTitleView(title: "스크랩")
@@ -61,47 +70,38 @@ class ScrapViewController: UITabBarController, ViewModelBindableType, UITabBarCo
         )
     }
     
-    private func setTabBar() {
-        tabBar.barTintColor = .white
-        tabBar.unselectedItemTintColor = .gray_9E9E9E
-        tabBar.barStyle = .black
-        tabBar.setUnderline(itemsCount: ScrapTabs.allCases.count)
-        
-        var tabs: [UINavigationController] = []
-        for tab in ScrapTabs.allCases {
-            let viewController = tab.nav
-            viewController.tabBarItem = tab.tabBarItem
-            tabs.append(viewController)
-        }
-        
-        setViewControllers(tabs, animated: false)
-        selectedViewController = tabs.first
-    }
-    
     private func setUI() {
         self.view.backgroundColor = .white_FFFFFF
         
-        [underLineView].forEach {
-            self.tabBar.addSubview($0)
+        [tabBar].forEach {
+            self.view.addSubview($0)
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        tabBar.frame = CGRect(x: UITabBar.Constants.horizontalInset,
-                              y: view.safeAreaInsets.top,
-                              width: UIScreen.main.bounds.width - UITabBar.Constants.horizontalInset * 2,
-                              height: UITabBar.Constants.tabBarHeight
-        )
-
-        super.viewDidLayoutSubviews()
-    }
-
     private func setConstraints() {
-        underLineView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview() // superview: tabBar
-            $0.bottom.equalToSuperview().offset(1)
-            $0.height.equalTo(1)
+        tabBar.snp.makeConstraints {
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            $0.leading.trailing.equalToSuperview().inset(MyPageTabBarCollectionView.Constants.horizontalInset)
+            $0.height.equalTo(MyPageTabBarCollectionView.Constants.tabBarHeight + MyPageTabBarCollectionView.Constants.grayUnderlineHeight)
         }
     }
+    
+//    override func viewDidLayoutSubviews() {
+//        tabBar.frame = CGRect(x: UITabBar.Constants.horizontalInset,
+//                              y: view.safeAreaInsets.top,
+//                              width: UIScreen.main.bounds.width - UITabBar.Constants.horizontalInset * 2,
+//                              height: UITabBar.Constants.tabBarHeight
+//        )
+//
+//        super.viewDidLayoutSubviews()
+//    }
+//
+//    private func setConstraints() {
+//        underLineView.snp.makeConstraints {
+//            $0.leading.trailing.equalToSuperview() // superview: tabBar
+//            $0.bottom.equalToSuperview().offset(1)
+//            $0.height.equalTo(1)
+//        }
+//    }
     
 }
