@@ -78,6 +78,7 @@ class SignUpSelectionViewController: UIViewController, ViewModelBindableType {
     }
     
     private func setNavigationBar() {
+        self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.titleView = NavigationTitleView(title: "회원가입")
         self.navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
             type: .back,
