@@ -8,6 +8,7 @@
 import UIKit
 
 enum TabBarType {
+    case scrap
     case savedProfiles
     case myRegistrations
 }
@@ -15,6 +16,7 @@ enum TabBarType {
 extension TabBarType {
     var titles: [String] {
         switch self {
+        case .scrap: return ["구인구직", "공모전"]
         case .savedProfiles: return ["배우", "스태프"]
         case .myRegistrations: return ["모집", "프로필"]
         }
@@ -22,6 +24,11 @@ extension TabBarType {
     
     var viewControllers: [UIViewController] {
         switch self {
+        case .scrap:
+            return [
+                JobViewController(),
+                CompetitionViewController()
+            ]
         case .savedProfiles:
             return [
                 SavedProfilesContentViewController(backgroundColor: .beige_624418), // 배우 탭
