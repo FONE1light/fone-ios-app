@@ -196,14 +196,13 @@ extension MyPageViewController: UITableViewDataSource {
         
         cell.buttonTap.withUnretained(self)
             .bind { owner, _ in
-//                guard let scene = menuType.nextScene(owner.viewModel.sceneCoordinator) else { return }
-//                owner.viewModel.sceneCoordinator.transition(to: scene, using: .push, animated: true)
-                let bottomSheet = MyPageBottomSheet(
-                    title: "로그아웃 하시겠습니까?",
-                    content: "깡총! 소셜 로그인 화면으로 돌아가요"
-                )
-                // FIXME: 높이 늘어나는 것 해결(UIView-Encapsulated-Layout-Height)
-                owner.presentPanModal(view: bottomSheet)
+                
+                if let scene = menuType.nextScene(owner.viewModel.sceneCoordinator) {
+                    owner.viewModel.sceneCoordinator.transition(to: scene, using: .push, animated: true)
+                } else if let bottomSheet = menuType.bottomSheet {
+                    // FIXME: 높이 늘어나는 것 해결(UIView-Encapsulated-Layout-Height)
+                    owner.presentPanModal(view: bottomSheet)
+                }
                 
             }.disposed(by: disposeBag)
         return cell
