@@ -61,7 +61,7 @@ enum MyPageMenuType {
 
 class MyPageMenuCell: UITableViewCell {
     
-    static let identifier = "MyPageMenuCell"
+    static let identifier = String(describing: MyPageMenuCell.self)
     var disposeBag = DisposeBag()
     
     private lazy var leadingImage = UIImageView().then {
@@ -94,6 +94,8 @@ class MyPageMenuCell: UITableViewCell {
     }
     
     private func setupUI() {
+        selectionStyle = .none
+        
         [leadingImage, label, trailingView]
             .compactMap { $0 }
             .forEach { self.addSubview($0) }

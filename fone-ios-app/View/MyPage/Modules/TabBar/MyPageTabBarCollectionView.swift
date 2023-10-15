@@ -8,18 +8,6 @@
 import UIKit
 import RxCocoa
 
-enum TabBarType {
-     case savedProfiles
-}
-
-extension TabBarType {
-    var titles: [String] {
-        switch self {
-        case .savedProfiles: return ["배우", "스태프"]
-        }
-    }
-}
-
 class MyPageTabBarCollectionView: UIView {
     struct Constants {
         /// leading, trailing inset

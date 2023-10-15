@@ -1,5 +1,5 @@
 //
-//  SavedProfilesTabBarController.swift
+//  MyRegistrationsViewController.swift
 //  fone-ios-app
 //
 //  Created by 여나경 on 2023/10/13.
@@ -8,17 +8,12 @@
 import UIKit
 import RxSwift
 
-
-class SavedProfilesTabBarController: UIViewController, ViewModelBindableType {
-    struct Constants {
-        /// leading, trailing inset
-        static let horizontalInset: CGFloat = 16
-    }
+class MyRegistrationsViewController: UIViewController, ViewModelBindableType {
     
-    var viewModel: SavedProfilesTabBarViewModel!
+    var viewModel: MyRegistrationsViewModel!
     var disposeBag = DisposeBag()
     
-    private let tabBar = MyPageTabBarCollectionView(type: .savedProfiles)
+    private let tabBar = MyPageTabBarCollectionView(type: .myRegistrations)
     
     private var pageController: MyPagePageViewController!
     
@@ -28,9 +23,7 @@ class SavedProfilesTabBarController: UIViewController, ViewModelBindableType {
         tabBar.itemSelected
             .withUnretained(self)
             .bind { owner, indexPath in
-                print("\(indexPath) is selected")
                 
-                // If selected Index is other than Selected one, by comparing with current index, page controller goes either forward or backward.
                 let index = indexPath.row
                 if index != owner.currentIndex {
                     owner.pageController.movePage(index: index)
@@ -53,7 +46,7 @@ class SavedProfilesTabBarController: UIViewController, ViewModelBindableType {
     }
     
     private func initPageController() {
-        pageController = MyPagePageViewController(tabBarType: .savedProfiles)
+        pageController = MyPagePageViewController(tabBarType: .myRegistrations)
         // TODO: y offset, height 확정
         let tabBarHeight = MyPageTabBarCollectionView.Constants.tabBarHeight + MyPageTabBarCollectionView.Constants.grayUnderlineHeight
         self.pageController.view.frame = CGRect.init(
@@ -69,7 +62,7 @@ class SavedProfilesTabBarController: UIViewController, ViewModelBindableType {
     }
     
     private func setNavigationBar() {
-        self.navigationItem.titleView = NavigationTitleView(title: "찜한 프로필")
+        self.navigationItem.titleView = NavigationTitleView(title: "나의 등록내역")
         self.navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
             type: .back,
             viewController: self
@@ -92,5 +85,4 @@ class SavedProfilesTabBarController: UIViewController, ViewModelBindableType {
         }
     }
     
-
 }
