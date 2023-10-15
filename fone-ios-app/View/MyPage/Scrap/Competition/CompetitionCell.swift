@@ -25,7 +25,7 @@ class CompetitionCell: UITableViewCell {
     }
     
     private let titleLabel = UILabel().then {
-        $0.font = .font_m(14)
+        $0.font = .font_b(14)
         $0.textColor = .gray_161616
         $0.numberOfLines = 2
     }
@@ -48,10 +48,6 @@ class CompetitionCell: UITableViewCell {
         $0.textColor = .gray_9E9E9E
     }
     
-    private let bookmarkView = UIView().then {
-        $0.cornerRadius = 16
-        $0.backgroundColor = .gray_EEEFEF
-    }
     private let bookmarkImageView = UIImageView().then {
         $0.image = UIImage(named: "Bookmark")
     }
@@ -75,7 +71,6 @@ class CompetitionCell: UITableViewCell {
             dDayLabel,
             viewImageView,
             viewCountLabel,
-            bookmarkView,
             bookmarkImageView,
             separator
         ]
@@ -93,7 +88,7 @@ class CompetitionCell: UITableViewCell {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(14)
             $0.leading.equalTo(competitionImageView.snp.trailing).offset(12)
-            $0.trailing.equalTo(bookmarkView.snp.leading).offset(-20)
+            $0.trailing.equalTo(bookmarkImageView.snp.leading).offset(-22)
         }
         
         coorporationLabel.snp.makeConstraints {
@@ -116,15 +111,10 @@ class CompetitionCell: UITableViewCell {
             $0.leading.equalTo(viewImageView.snp.trailing).offset(2)
         }
         
-        bookmarkView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(10)
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.size.equalTo(32)
-        }
-        
         bookmarkImageView.snp.makeConstraints {
-            $0.center.equalTo(bookmarkView)
-            $0.size.equalTo(22)
+            $0.top.equalToSuperview().offset(14)
+            $0.trailing.equalToSuperview().offset(-24)
+            $0.size.equalTo(24)
         }
         
         separator.snp.makeConstraints {

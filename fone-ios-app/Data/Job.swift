@@ -44,7 +44,7 @@ enum Job: Selection, CaseIterable {
     var tagBackgroundColor : UIColor? {
         switch self {
         case .actor: return UIColor.red_FAAABD
-        case .staff: return UIColor.violet_6D5999
+        case .staff: return UIColor.violet_AFA3CA
         default: return nil
         }
     }

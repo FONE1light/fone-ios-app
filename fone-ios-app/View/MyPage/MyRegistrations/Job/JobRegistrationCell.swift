@@ -10,7 +10,7 @@ import RxCocoa
 
 class JobRegistrationCell: UITableViewCell {
     
-    private let mainContentView = PostCellMainContentView(hasBookmark: true)
+    private let mainContentView = PostCellMainContentView(hasBookmark: false)
     
     private let horizontalDivider = Divider(height: 1, color: .gray_D9D9D9)
     private let verticalDivider = Divider(width: 1, color: .gray_D9D9D9)
