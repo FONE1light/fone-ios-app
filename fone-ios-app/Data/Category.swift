@@ -1,13 +1,13 @@
 //
-//  Interest.swift
+//  Category.swift
 //  fone-ios-app
 //
 //  Created by 여나경 on 2023/09/14.
 //
 
-import Foundation
+import UIKit
 
-enum Interest: Selection, CaseIterable {
+enum Category: Selection, CaseIterable {
     case featureFilm
     case shortFilm
     case independentFilm
@@ -44,5 +44,21 @@ enum Interest: Selection, CaseIterable {
         case .viral: return "VIRAL"
         case .etc: return "ETC"
         }
+    }
+    
+    var tagTextColor: UIColor? {
+        UIColor.violet_6D5999
+    }
+    
+    var tagBackgroundColor : UIColor? {
+        UIColor.gray_EEEFEF
+    }
+    
+    var tagCornerRadius: CGFloat? {
+        return 11
+    }
+    
+    static func getType(serverName: String) -> Category? {
+        return Category.allCases.filter { $0.serverName == serverName }.first
     }
 }

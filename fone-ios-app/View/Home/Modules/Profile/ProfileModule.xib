@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Bold.ttf">
+            <string>Pretendard-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ProfileModule" customModule="fone_ios_app" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="249"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="249"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YTH-x5-45d">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="249"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="배우 프로필 보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLS-Ie-ebv">
+                                <rect key="frame" x="15.999999999999993" y="15.999999999999998" width="104.33333333333331" height="19.333333333333329"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7s-Wo-Jjf">
+                                <rect key="frame" x="343" y="17.666666666666668" width="16" height="16.000000000000004"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="Eog-pb-4LU"/>
+                                    <constraint firstAttribute="width" constant="16" id="gU8-go-qp0"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button" image="arrow_right16"/>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="BP9-EW-Gh8">
+                                <rect key="frame" x="0.0" y="42.333333333333329" width="375" height="166.66666666666669"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BVY-Vx-ePp">
+                                    <size key="itemSize" width="241" height="166"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="W7s-Wo-Jjf" firstAttribute="centerY" secondItem="FLS-Ie-ebv" secondAttribute="centerY" id="DZB-BI-tEL"/>
+                            <constraint firstItem="BP9-EW-Gh8" firstAttribute="leading" secondItem="YTH-x5-45d" secondAttribute="leading" id="eDp-WL-XCU"/>
+                            <constraint firstItem="FLS-Ie-ebv" firstAttribute="top" secondItem="YTH-x5-45d" secondAttribute="top" constant="16" id="eqe-0X-XdO"/>
+                            <constraint firstAttribute="trailing" secondItem="BP9-EW-Gh8" secondAttribute="trailing" id="fse-11-iCI"/>
+                            <constraint firstAttribute="bottom" secondItem="BP9-EW-Gh8" secondAttribute="bottom" constant="40" id="oxp-qe-MqH"/>
+                            <constraint firstItem="FLS-Ie-ebv" firstAttribute="leading" secondItem="YTH-x5-45d" secondAttribute="leading" constant="16" id="xd6-x8-Nms"/>
+                            <constraint firstItem="BP9-EW-Gh8" firstAttribute="top" secondItem="FLS-Ie-ebv" secondAttribute="bottom" constant="7" id="xe3-cK-hN6"/>
+                            <constraint firstAttribute="trailing" secondItem="W7s-Wo-Jjf" secondAttribute="trailing" constant="16" id="z6m-tL-iwF"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="YTH-x5-45d" secondAttribute="bottom" id="Cwc-uU-K2y"/>
+                <constraint firstAttribute="trailing" secondItem="YTH-x5-45d" secondAttribute="trailing" id="ER4-0N-GCa"/>
+                <constraint firstItem="YTH-x5-45d" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="UyH-fX-0mk"/>
+                <constraint firstItem="YTH-x5-45d" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="XxO-tz-BRe"/>
+            </constraints>
+            <connections>
+                <outlet property="collectionView" destination="BP9-EW-Gh8" id="3ID-p3-v5C"/>
+                <outlet property="titleLabel" destination="FLS-Ie-ebv" id="EID-fu-0hh"/>
+            </connections>
+            <point key="canvasLocation" x="21" y="21"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="arrow_right16" width="16" height="16"/>
+    </resources>
+</document>

@@ -8,7 +8,7 @@
 import UIKit
 
 enum Scene {
-    //    case home()
+    case home(SceneCoordinator)
     case login(LoginViewModel)
     case findIDPassword(FindIDPasswordViewModel)
     case signUpSelection(SignUpViewModel) // 회원가입1
@@ -18,11 +18,25 @@ enum Scene {
     case question(QuestionViewModel)
     case emailLogin(EmailLoginViewModel)
     case emailSignUp(EmailSignUpViewModel)
+    case notification
+    case myPage(MyPageViewModel)
+    
+    // 마이페이지 내부
+    case profile(ProfileViewModel) // 프로필 수정
+    case scrap(ScrapViewModel)     // 스크랩
+    case competition(CompetitionViewModel) // 공모전 // TODO: 구인구직, 공모전 뷰 컨 UI 범위 확인 후 삭제
+    case savedProfiles(SavedProfilesTabBarViewModel) // 찜한 프로필
+    case myRegistrations(MyRegistrationsViewModel) // 나의 등록내역
 }
 
 extension Scene {
     func instantiate() -> UIViewController {
         switch self {
+        case .home(let coordinator):
+            let tabBarController = TabBarViewController(coordinator: coordinator)
+            
+            return tabBarController
+            
         case .login(let loginViewModel):
             var loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
             
@@ -109,6 +123,67 @@ extension Scene {
             let emailSignUpNav = UINavigationController(rootViewController: emailSignUpVC)
             
             return emailSignUpNav
+            
+        case .notification:
+            let notiVC = NotiViewController()
+            
+            return notiVC
+            
+        case .myPage(let myPageViewModel):
+            var myPageVC = MyPageViewController()
+            
+            DispatchQueue.main.async {
+                myPageVC.bind(viewModel: myPageViewModel)
+            }
+            
+            return myPageVC
+            
+        case .profile(let profileViewModel):
+            var profileVC = ProfileViewController()
+            
+            DispatchQueue.main.async {
+                profileVC.bind(viewModel: profileViewModel)
+            }
+        
+            return profileVC
+            
+        case .scrap(let scrapViewModel):
+            var scrapVC = ScrapViewController()
+            
+            DispatchQueue.main.async {
+                scrapVC.bind(viewModel: scrapViewModel)
+            }
+            
+            return scrapVC
+            
+        case .competition(let competitionViewModel):
+            var competitionVC = CompetitionViewController()
+            
+            DispatchQueue.main.async {
+                competitionVC.bind(viewModel: competitionViewModel)
+            }
+            
+            return competitionVC
+            
+        case .savedProfiles(let savedProfilesTabBarViewModel):
+            var savedProfilesVC = SavedProfilesTabBarController()
+            
+            DispatchQueue.main.async {
+                savedProfilesVC.bind(viewModel: savedProfilesTabBarViewModel)
+            }
+            
+            return savedProfilesVC
+            
+        case .myRegistrations(let myRegistrationsViewModel):
+            var myRegistrationsVC = MyRegistrationsViewController()
+            
+            DispatchQueue.main.async {
+                myRegistrationsVC.bind(viewModel: myRegistrationsViewModel)
+            }
+            
+            return myRegistrationsVC
+            
+            
         }
     }
 }

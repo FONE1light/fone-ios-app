@@ -12,14 +12,54 @@ import RxSwift
 enum LeftBarButtonType {
     case back
     case close
+    case myPage
+    case chat
+    case home
 }
 
 extension LeftBarButtonType {
+    /// 색상
+    ///
+    /// `image`면 `tintColor`가 적용되고 `customView`면 적용되지 않음
+    var tintColor: UIColor? {
+        switch self {
+        case .back, .close: return .gray_555555
+        default: return nil
+        }
+    }
     /// 버튼 이미지
     var image: UIImage? {
         switch self {
         case .back: return UIImage(named: "arrow_left24")
         case .close: return UIImage(named: "close_MD")
+        default: return nil
+        }
+    }
+    
+    var customView: UIView? {
+        switch self {
+        case .myPage:
+            let label = UILabel().then {
+                $0.text = "나의 F-ONE"
+                $0.textColor = .gray_161616
+                $0.font = .font_b(19)
+            }
+            return label
+        case .chat:
+            let label = UILabel().then {
+                $0.text = "채팅"
+                $0.textColor = .gray_161616
+                $0.font = .font_b(19)
+            }
+            return label
+        case .home:
+            let label = UILabel().then {
+                $0.text = "F-ONE"
+                $0.textColor = .gray_161616
+                $0.font = .font_b(22)
+            }
+            return label
+        default: return nil
         }
     }
     
@@ -30,9 +70,11 @@ extension LeftBarButtonType {
             viewController?.navigationController?.popViewController(animated: true)
         case .close:
             viewController?.dismiss(animated: true)
+        default: return
         }
     }
 }
+
 /// `navigationItem.leftBarButtonItem`에 설정할 BarButton 클래스
 class NavigationLeftBarButtonItem: UIBarButtonItem {
     
@@ -42,7 +84,7 @@ class NavigationLeftBarButtonItem: UIBarButtonItem {
     ///   - viewController: 해당 클래스를 사용할 ViewController. 버튼 클릭 액션 연결 위해 필요
     init(
         type: LeftBarButtonType? = nil,
-        viewController: UIViewController?
+        viewController: UIViewController? = nil
     ) {
         super.init()
         
@@ -52,7 +94,8 @@ class NavigationLeftBarButtonItem: UIBarButtonItem {
     
     private func initUI(_ type: LeftBarButtonType?) {
         image = type?.image
-        tintColor = .black_000000
+        customView = type?.customView
+        tintColor = type?.tintColor
     }
     
     private func bindAction(_ type: LeftBarButtonType?, _ viewController: UIViewController?) {
