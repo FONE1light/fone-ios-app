@@ -30,3 +30,9 @@ extension String {
         return passwordTest.evaluate(with: self)
     }
 }
+
+extension String {
+    func prefixString(_ max: Int) -> String {
+        return String(self.prefix(max))
+    }
+}

@@ -20,10 +20,19 @@ enum PhoneNumberAvailableState {
     case available
 }
 
+enum AuthNumberState {
+    case cannotCheck
+    case canCheck
+    case authorized
+}
+
 class SignUpPhoneNumberViewModel: CommonViewModel {
     
     var phoneNumberAvailbleState = BehaviorRelay<PhoneNumberAvailableState>(value: .cannotCheck)
     
+    var authNumberState = BehaviorRelay<AuthNumberState>(value: .cannotCheck)
+    
+    /// 휴대전화번호가 유효한지(자릿수 체크) 확인
     func checkPhoneNumberState(_ phoneNumber: String?) {
         if let phoneNumber = phoneNumber,
            phoneNumber.count == 11 {
@@ -33,5 +42,47 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
         }
     }
     
+    /// 휴대전화번호를 형식에 맞게 수정하여 반환
+    /// - 11글자까지 입력 가능
+    func formatPhoneNumberString(_ phoneNumber: String?) -> String? {
+        guard let phoneNumber = phoneNumber else { return nil }
+        
+        var newPhoneNumber = phoneNumber.replacingOccurrences(of: "-", with: "")
+        newPhoneNumber = newPhoneNumber.prefixString(11)
+        
+        return newPhoneNumber
+    }
+    
+    /// 인증번호를 검증할 수 있는지 아닌지 확인
+    func checkAuthNumberState(_ authNumber: String?) {
+        guard authNumber?.count == 6 else {
+            authNumberState.accept(.cannotCheck)
+            return
+        }
+        authNumberState.accept(.canCheck)
+    }
+    
+    /// 인증번호 전송
+    func sendAuthNumber() {
+        ToastManager.show(
+            "인증번호를 전송하였습니다.\n(인증번호: 000000)",
+            positionType: .withButton
+        )
+        // TODO: 인증번호 전송 API
+    }
+    
+    /// 인증번호 유효성 확인
+    func validateAuthNumber(_ authNumber: String?) {
+        // TODO: 인증번호 확인 API, 결과 따라 분기
+        if authNumber == "000000" {
+            phoneNumberAvailbleState.accept(.available)
+            authNumberState.accept(.authorized)
+        } else {
+            ToastManager.show(
+                "올바른 인증번호를 입력해주세요.",
+                positionType: .withButton
+            )
+        }
+    }
     
 }

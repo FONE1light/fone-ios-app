@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3628667B2A8B670200CD42BC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628667A2A8B670200CD42BC /* SignUpViewController.swift */; };
 		362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628667F2A8B688300CD42BC /* DefaultTextField.swift */; };
 		362866822A8B6B3600CD42BC /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362866812A8B6B3600CD42BC /* UILabel+Extension.swift */; };
 		362866842A8B71B700CD42BC /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362866832A8B71B700CD42BC /* SignUpViewModel.swift */; };
@@ -80,6 +79,7 @@
 		36BCC7E22AA328AB0060E35A /* SignUpPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BCC7E12AA328AB0060E35A /* SignUpPhoneNumberViewController.swift */; };
 		36BCC7E42AA32B530060E35A /* SignUpSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BCC7E32AA32B530060E35A /* SignUpSuccessViewController.swift */; };
 		36BCC7E62AA5E0180060E35A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BCC7E52AA5E0180060E35A /* CustomButton.swift */; };
+		36C8B7EE2ADC853D008B6F88 /* SignUpTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C8B7ED2ADC853D008B6F88 /* SignUpTerms.swift */; };
 		36D293D22A961E7300171C77 /* SignUpSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D293D12A961E7300171C77 /* SignUpSelectionViewController.swift */; };
 		36D293D42A961FDB00171C77 /* SelectionBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D293D32A961FDB00171C77 /* SelectionBlock.swift */; };
 		36D293D62A96270900171C77 /* StepIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D293D52A96270900171C77 /* StepIndicator.swift */; };
@@ -173,7 +173,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3628667A2A8B670200CD42BC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3628667F2A8B688300CD42BC /* DefaultTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTextField.swift; sourceTree = "<group>"; };
 		362866812A8B6B3600CD42BC /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		362866832A8B71B700CD42BC /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -245,6 +244,7 @@
 		36BCC7E12AA328AB0060E35A /* SignUpPhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPhoneNumberViewController.swift; sourceTree = "<group>"; };
 		36BCC7E32AA32B530060E35A /* SignUpSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSuccessViewController.swift; sourceTree = "<group>"; };
 		36BCC7E52AA5E0180060E35A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		36C8B7ED2ADC853D008B6F88 /* SignUpTerms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTerms.swift; sourceTree = "<group>"; };
 		36D293D12A961E7300171C77 /* SignUpSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSelectionViewController.swift; sourceTree = "<group>"; };
 		36D293D32A961FDB00171C77 /* SelectionBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionBlock.swift; sourceTree = "<group>"; };
 		36D293D52A96270900171C77 /* StepIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepIndicator.swift; sourceTree = "<group>"; };
@@ -357,7 +357,6 @@
 				36AC7BD32AAE851E00478030 /* ViewModels */,
 				36BCC7DE2AA31A1D0060E35A /* ViewControllers */,
 				3628667C2A8B67D100CD42BC /* Views */,
-				3628667A2A8B670200CD42BC /* SignUpViewController.swift */,
 				362866832A8B71B700CD42BC /* SignUpViewModel.swift */,
 			);
 			path = SignUp;
@@ -427,6 +426,7 @@
 			children = (
 				364BCC6D2AB36A4900E14B25 /* Job.swift */,
 				364BCC6F2AB36A5900E14B25 /* Category.swift */,
+				36C8B7ED2ADC853D008B6F88 /* SignUpTerms.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1161,7 +1161,6 @@
 				367D9BD82ACB5CC900DA6C96 /* JobViewController.swift in Sources */,
 				364482D52AB8082E00984507 /* MyPageButtonStackViewContentView.swift in Sources */,
 				364482CE2AB7C76500984507 /* MyPageViewModel.swift in Sources */,
-				3628667B2A8B670200CD42BC /* SignUpViewController.swift in Sources */,
 				AB1CEAA82ABFD1D700E7E54F /* MainBannerModule.swift in Sources */,
 				367D9BD62AC3BC6200DA6C96 /* CompetitionCell.swift in Sources */,
 				367D9C072AD766E800DA6C96 /* SavedProfilesTabBarViewModel.swift in Sources */,
@@ -1192,6 +1191,7 @@
 				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,
 				AB3F07192AADAA9200E54A25 /* FindIDCell.swift in Sources */,
 				367D9C362ADA664700DA6C96 /* JobRegistrationCell.swift in Sources */,
+				36C8B7EE2ADC853D008B6F88 /* SignUpTerms.swift in Sources */,
 				36D293D42A961FDB00171C77 /* SelectionBlock.swift in Sources */,
 				36D293D22A961E7300171C77 /* SignUpSelectionViewController.swift in Sources */,
 				AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */,
