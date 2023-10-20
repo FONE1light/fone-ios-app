@@ -15,19 +15,22 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     var disposeBag = DisposeBag()
     var viewModel: SignUpPhoneNumberViewModel!
     
-    let baseView = UIView().then {
+    private var timer: Timer?
+    private var leftSeconds = 180
+    
+    private let baseView = UIView().then {
         $0.backgroundColor = .white_FFFFFF
     }
     
-    let stepIndicator = StepIndicator(.third)
+    private let stepIndicator = StepIndicator(.third)
     
-    let titleLabel = UILabel().then {
+    private let titleLabel = UILabel().then {
         $0.text = "마지막으로\n휴대전화 번호를 인증해주세요."
         $0.font = .font_b(20)
         $0.numberOfLines = 0
     }
     
-    let phoneNumberBlock = UIView()
+    private let phoneNumberBlock = UIView()
     
     private let phoneNumberLabel = UILabel().then {
         $0.text = "휴대전화 번호"
@@ -43,11 +46,17 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         $0.isEnabled = false
     }
     
-    let authNumberBlock = UIView().then {
+    private let authNumberBlock = UIView().then {
         $0.isHidden = true
     }
     
     private let authNumberTextField = DefaultTextField(placeHolder: "인증번호 6자리")
+    
+    private let timeLabel = UILabel().then {
+        $0.text = "03:00"
+        $0.font = .font_r(12)
+        $0.textColor = .crimson_FF5841
+    }
     
     private let validateAuthNumberButton = CustomButton(type: .auth).then {
         $0.setTitle("인증번호 확인", for: .normal)
@@ -61,7 +70,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         $0.numberOfLines = 0
     }
     
-    let agreementBlock = UIView().then {
+    private let agreementBlock = UIView().then {
         $0.backgroundColor = .gray_161616
     }
     
@@ -124,7 +133,6 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         
         // MARK: - ViewModel
         viewModel.phoneNumberAvailbleState
-            .distinctUntilChanged()
             .withUnretained(self)
             .bind { owner, state in
                 switch state {
@@ -134,9 +142,9 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
                 case .canCheck:
                     owner.sendAuthNumberButton.setTitle("인증번호 발송", for: .normal)
                     owner.sendAuthNumberButton.isEnabled = true
-                case .resend:
+                case .sent:
                     owner.sendAuthNumberButton.setTitle("재전송", for: .normal)
-                    owner.sendAuthNumberButton.isEnabled = false
+                    owner.startTimer()
                 case .available:
                     owner.sendAuthNumberButton.setTitle("인증완료", for: .normal)
                     owner.sendAuthNumberButton.isEnabled = false
@@ -199,6 +207,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         [
             authNumberLabel,
             authNumberTextField,
+            timeLabel,
             validateAuthNumberButton,
         ]
             .forEach { authNumberBlock.addSubview($0) }
@@ -280,6 +289,11 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
             $0.top.leading.equalToSuperview()
         }
         
+        timeLabel.snp.makeConstraints {
+            $0.centerY.equalTo(authNumberTextField)
+            $0.trailing.equalTo(authNumberTextField.snp.trailing).offset(-10)
+        }
+        
         validateAuthNumberButton.snp.makeConstraints {
             $0.top.bottom.equalTo(authNumberTextField)
             $0.leading.equalTo(authNumberTextField.snp.trailing).offset(4)
@@ -306,9 +320,8 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         authNumberBlock.isHidden = false
         authNumberTextField.text = ""
         validateAuthNumberButton.isEnabled = false
+        timeLabel.text = "03:00"
     }
-    
-    
 }
 
 extension SignUpPhoneNumberViewController: UITableViewDelegate {
@@ -325,7 +338,7 @@ extension SignUpPhoneNumberViewController: UITableViewDelegate {
 extension SignUpPhoneNumberViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //        return self.arrDropDownDataSource.count
+//        return SignUpTerms.allCases.count
         return 2
     }
     
@@ -337,4 +350,31 @@ extension SignUpPhoneNumberViewController: UITableViewDataSource {
         return cell
     }
     
+}
+
+extension SignUpPhoneNumberViewController {
+    
+    func startTimer() {
+        leftSeconds = 180
+        
+        // 기존에 타이머 동작중이면 중지 처리
+        if let timer = timer, timer.isValid {
+            timer.invalidate()
+        }
+        
+        // 1초 간격 타이머 시작
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateTime() {
+        if leftSeconds > 0 {
+            leftSeconds -= 1
+            let timerString = String(format:"%02d:%02d", Int(leftSeconds/60), leftSeconds%60)
+            timeLabel.text = timerString
+        } else {
+            timer?.invalidate()
+            timer = nil
+            timeLabel.text = "00:00"
+        }
+    }
 }

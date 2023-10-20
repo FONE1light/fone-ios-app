@@ -14,8 +14,8 @@ enum PhoneNumberAvailableState {
     case cannotCheck
     /// 인증번호 발송 불가능(버튼 비활성화)
     case canCheck
-    /// 재전송
-    case resend
+    /// 인증번호 발송 완료('재전송' 표시)
+    case sent
     /// 인증 완료
     case available
 }
@@ -69,6 +69,8 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
             positionType: .withButton
         )
         // TODO: 인증번호 전송 API
+        
+        phoneNumberAvailbleState.accept(.sent)
     }
     
     /// 인증번호 유효성 확인
