@@ -103,7 +103,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         button.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let successViewModel = SignUpViewModel(sceneCoordinator: self.viewModel.sceneCoordinator)
+                let successViewModel = SignUpSuccessViewModel(sceneCoordinator: self.viewModel.sceneCoordinator)
                 let signUpScene = Scene.signUpSuccess(successViewModel)
                 owner.viewModel.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
             }.disposed(by: rx.disposeBag)

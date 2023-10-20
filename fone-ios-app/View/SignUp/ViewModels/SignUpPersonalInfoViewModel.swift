@@ -1,8 +1,8 @@
 //
-//  SignUpViewModel.swift
+//  SignUpPersonalInfoViewModel.swift
 //  fone-ios-app
 //
-//  Created by 여나경 on 2023/08/15.
+//  Created by 여나경 on 10/20/23.
 //
 
 import Foundation
@@ -20,28 +20,18 @@ enum NicknameAvailableState {
     case available
 }
 
-class SignUpViewModel: CommonViewModel {
+class SignUpPersonalInfoViewModel: CommonViewModel {
     var disposeBag = DisposeBag()
-    var signInInfo: EmailSignInInfo?
     
-    var job: Job?
-    var interests: [Category]?
+    var signInInfo: EmailSignInInfo?
+    var signUpSelectionInfo: SignUpSelectionInfo?
+    
+    var nickname: String?
+    var birthday: String?
+    var gender: String?
+    var profileUrl: String?
     
     var nicknameAvailbleState = BehaviorRelay<NicknameAvailableState>(value: .cannotCheck)
-    
-    func fetchMyPage() {
-        userInfoProvider.rx.request(.fetchMyPage)
-            .mapObject(UserInfoModel.self)
-            .asObservable()
-            .withUnretained(self)
-            .subscribe(onNext: { owner, response in
-                print("received!")
-                print("response: \(response)")
-                
-            }, onError: { error in
-                print("\(error)")
-            }).disposed(by: disposeBag)
-    }
     
     func checkNicknameDuplication(_ nickname: String) {
         guard nickname.count >= 3 else { return }
@@ -55,6 +45,7 @@ class SignUpViewModel: CommonViewModel {
                 if response.data.isDuplicate {
                     owner.nicknameAvailbleState.accept(.duplicated)
                 } else {
+                    owner.nickname = nickname
                     owner.nicknameAvailbleState.accept(.available)
                     "사용할 수 있는 닉네임입니다.".toast(positionType: .withButton)
                 }
@@ -66,7 +57,7 @@ class SignUpViewModel: CommonViewModel {
     }
 }
 
-extension SignUpViewModel {
+extension SignUpPersonalInfoViewModel {
     /// 생년월일을 형식에 맞게 수정하여 반환
     /// - 마지막은 숫자(유저가 직접 dash를 지우는 일이 없도록 함)
     /// - 4글자, 6글자 초과 시 dash 추가

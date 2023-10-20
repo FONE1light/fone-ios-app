@@ -11,7 +11,7 @@ import RxSwift
 
 class SignUpSelectionViewController: UIViewController, ViewModelBindableType {
 
-    var viewModel: SignUpViewModel!
+    var viewModel: SignUpSelectionViewModel!
     var disposeBag = DisposeBag()
     
     let baseView = UIView().then {
@@ -49,7 +49,15 @@ class SignUpSelectionViewController: UIViewController, ViewModelBindableType {
         button.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let signUpScene = Scene.signUpInfo(owner.viewModel)
+                let sceneCoordinator = owner.viewModel.sceneCoordinator
+                let personalInfoViewModel = SignUpPersonalInfoViewModel(sceneCoordinator: sceneCoordinator)
+                let job = owner.viewModel.job?.serverName
+                let interests = owner.viewModel.interests?.map { $0.serverName }
+                personalInfoViewModel.signUpSelectionInfo = SignUpSelectionInfo(
+                    job: job,
+                    interests: interests
+                )
+                let signUpScene = Scene.signUpPersonalInfo(personalInfoViewModel)
                 owner.viewModel.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
             }.disposed(by: rx.disposeBag)
         

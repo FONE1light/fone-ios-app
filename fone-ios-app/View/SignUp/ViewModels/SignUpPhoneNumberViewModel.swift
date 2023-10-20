@@ -28,6 +28,13 @@ enum AuthNumberState {
 
 class SignUpPhoneNumberViewModel: CommonViewModel {
     
+    var disposeBag = DisposeBag()
+    
+    var signInInfo: EmailSignInInfo?
+    var signUpSelectionInfo: SignUpSelectionInfo?
+    var signUpPersonalInfo: SignUpPersonalInfo?
+    var signUpPhoneNumberInfo = SignUpPhoneNumberInfo()
+    
     var phoneNumberAvailbleState = BehaviorRelay<PhoneNumberAvailableState>(value: .cannotCheck)
     
     var authNumberState = BehaviorRelay<AuthNumberState>(value: .cannotCheck)
@@ -93,6 +100,42 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
         }
     }
     
+    func signUp() {
+        // TODO: 구조 고려해서 채우기
+        let emailSignUpInfo = EmailSignUpInfo(
+//            name: signInInfo?.name ?? "",
+            name: "<SIGNININFO.NAME>",
+            email: signInInfo?.email ?? "",
+            password: signInInfo?.password ?? "",
+            
+            job: signUpSelectionInfo?.job ?? "",
+            interests: signUpSelectionInfo?.interests ?? [],
+            
+            nickname: signUpPersonalInfo?.nickname ?? "",
+            birthday: signUpPersonalInfo?.birthday ?? "",
+            gender: signUpPersonalInfo?.gender ?? "",
+            profileUrl: signUpPersonalInfo?.profileURL ?? "",
+            
+            phoneNumber: signUpPhoneNumberInfo.phoneNumber ?? "",
+            agreeToTermsOfServiceTermsOfUse: signUpPhoneNumberInfo.agreeToTermsOfServiceTermsOfUse ?? false,
+            agreeToPersonalInformation: signUpPhoneNumberInfo.agreeToPersonalInformation ?? false,
+            isReceiveMarketing: signUpPhoneNumberInfo.isReceiveMarketing ?? false,
+            token: "<ACCESSTOKEN?>", // accessToken?
+            identifier: "<USER.IDENTIFIER?>"// user.identifier
+        )
+        
+        userInfoProvider.rx.request(.emailSignUp(emailSignUpInfo))
+            .mapObject(EmailSignUpResponseModel.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, response in
+                print("received!")
+                print("response: \(response)")
+            }, onError: { error in
+                print("\(error)")
+            }).disposed(by: disposeBag)
+        
+    }
 }
 
 extension SignUpPhoneNumberViewModel {
