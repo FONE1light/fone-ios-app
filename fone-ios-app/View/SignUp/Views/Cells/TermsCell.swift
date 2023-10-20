@@ -21,7 +21,10 @@ class TermsCell: UITableViewCell {
     let expandableView = UIView().then {
         $0.cornerRadius = 5
         $0.backgroundColor = .gray_EEEFEF
+        $0.isHidden = true
     }
+    
+    let scrollView = UIScrollView()
     
     let checkBox = UIImageView().then {
         $0.image = UIImage(named: "checkboxes_off")
@@ -37,12 +40,6 @@ class TermsCell: UITableViewCell {
     }
     
     let termsLabel = UILabel().then {
-        $0.text = """
-이용약관 동의이용약관 동의이용약관 동의이용약관 동의이용약관
-이용약관 동의이용약관 동의이용약관 동의이용약관 동의이용약관
-이용약관 동의이용약관 동의이용약관 동의이용약관 동의이용약관
-이용약관 동의이용약관 동의이용약관 동의이용약관 동의이용약관
-"""
         $0.numberOfLines = 0
         $0.font = .font_r(12)
         $0.textColor = .gray_9E9E9E
@@ -65,12 +62,12 @@ class TermsCell: UITableViewCell {
             $0.edges.equalToSuperview()
         }
         
-        // visiableView
+        // visibleView
         [checkBox, label, arrowDown]
             .forEach { visibleView.addSubview($0) }
-        
+
         checkBox.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview().inset(8)
+            $0.top.bottom.equalToSuperview().inset(8).priority(.low)
             $0.leading.equalToSuperview()
             $0.size.equalTo(16)
         }
@@ -85,12 +82,25 @@ class TermsCell: UITableViewCell {
             $0.trailing.equalToSuperview()
         }
         
-        [ termsLabel ]
+        // expandableView
+        expandableView.snp.makeConstraints {
+            $0.height.equalTo(77.3).priority(.low) // FIXME: 높이 다른 방식으로 지정
+        }
+        
+        [ scrollView ]
             .forEach { expandableView.addSubview($0) }
         
-        termsLabel.snp.makeConstraints {
+        [ termsLabel ]
+            .forEach { scrollView.addSubview($0) }
+        
+        scrollView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview().inset(10)
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        termsLabel.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview()
+            $0.leading.trailing.equalTo(expandableView).inset(20)
         }
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
