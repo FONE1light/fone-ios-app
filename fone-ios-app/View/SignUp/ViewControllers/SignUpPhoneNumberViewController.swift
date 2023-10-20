@@ -35,7 +35,10 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         $0.textColor = .gray_161616
     }
     
-    private let phoneNumberTextField = DefaultTextField(placeHolder: "'-' 빼고 숫자만 입력").then {
+    private let phoneNumberTextField = DefaultTextField(
+        placeHolder: "'-' 빼고 숫자만 입력",
+        keyboardType: .numberPad
+    ).then {
         $0.keyboardType = .numberPad
     }
     
@@ -47,10 +50,11 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         $0.isHidden = true
     }
     
-    private let authNumberTextField = DefaultTextField(placeHolder: "인증번호 6자리")
+    private let authNumberTextField = DefaultTextField(
+        placeHolder: "인증번호 6자리",
+        keyboardType: .numberPad)
     
     private let timeLabel = UILabel().then {
-        $0.text = "03:00"
         $0.font = .font_r(12)
         $0.textColor = .crimson_FF5841
     }
@@ -171,7 +175,8 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.hideKeyboardWhenTapped()
+        
         setNavigationBar()
         setUI()
         setConstraints()
