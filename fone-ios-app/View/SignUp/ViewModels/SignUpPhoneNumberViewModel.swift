@@ -30,10 +30,16 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
     
     var disposeBag = DisposeBag()
     
+    // 이전 화면에서 넘어온 데이터
     var signInInfo: EmailSignInInfo?
     var signUpSelectionInfo: SignUpSelectionInfo?
     var signUpPersonalInfo: SignUpPersonalInfo?
-    var signUpPhoneNumberInfo = SignUpPhoneNumberInfo()
+    
+    // 현재 화면에서 사용하는 값
+    var phoneNumber: String?
+    var agreeToTermsOfServiceTermsOfUse: Bool?
+    var agreeToPersonalInformation: Bool?
+    var isReceiveMarketing: Bool?
     
     var phoneNumberAvailbleState = BehaviorRelay<PhoneNumberAvailableState>(value: .cannotCheck)
     
@@ -87,11 +93,12 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
     }
     
     /// 인증번호 유효성 확인
-    func validateAuthNumber(_ authNumber: String?) {
+    func validateAuthNumber(phoneNumber: String?, authNumber: String?) {
         // TODO: 인증번호 확인 API, 결과 따라 분기
         if authNumber == "000000" {
             phoneNumberAvailbleState.accept(.available)
             authNumberState.accept(.authorized)
+            self.phoneNumber = phoneNumber
         } else {
             ToastManager.show(
                 "올바른 인증번호를 입력해주세요.",
@@ -116,10 +123,10 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
             gender: signUpPersonalInfo?.gender ?? "",
             profileUrl: signUpPersonalInfo?.profileURL ?? "",
             
-            phoneNumber: signUpPhoneNumberInfo.phoneNumber ?? "",
-            agreeToTermsOfServiceTermsOfUse: signUpPhoneNumberInfo.agreeToTermsOfServiceTermsOfUse ?? false,
-            agreeToPersonalInformation: signUpPhoneNumberInfo.agreeToPersonalInformation ?? false,
-            isReceiveMarketing: signUpPhoneNumberInfo.isReceiveMarketing ?? false,
+            phoneNumber: phoneNumber ?? "",
+            agreeToTermsOfServiceTermsOfUse: agreeToTermsOfServiceTermsOfUse ?? false,
+            agreeToPersonalInformation: agreeToPersonalInformation ?? false,
+            isReceiveMarketing: isReceiveMarketing ?? false,
             token: "<ACCESSTOKEN?>", // accessToken?
             identifier: "<USER.IDENTIFIER?>"// user.identifier
         )
@@ -131,8 +138,16 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
             .subscribe(onNext: { owner, response in
                 print("received!")
                 print("response: \(response)")
+                // TODO: 화면 이동 로직 위치 재고 - VC or VM
+                if response.result == "SUCCESS" {
+                    let successViewModel = SignUpSuccessViewModel(sceneCoordinator: self.sceneCoordinator)
+                    let signUpScene = Scene.signUpSuccess(successViewModel)
+                    self.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
+                } else {
+                    response.message.toast(positionType: .withButton)
+                }
             }, onError: { error in
-                print("\(error)")
+                "\(error)".toast(positionType: .withButton)
             }).disposed(by: disposeBag)
         
     }

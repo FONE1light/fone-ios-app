@@ -23,9 +23,11 @@ enum NicknameAvailableState {
 class SignUpPersonalInfoViewModel: CommonViewModel {
     var disposeBag = DisposeBag()
     
+    // 이전 화면에서 넘어온 데이터
     var signInInfo: EmailSignInInfo?
     var signUpSelectionInfo: SignUpSelectionInfo?
     
+    // 현재 화면에서 사용하는 값
     var nickname: String?
     var birthday: String?
     var gender: String?

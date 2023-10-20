@@ -97,15 +97,16 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         validateAuthNumberButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.validateAuthNumber(owner.authNumberTextField.text)
+                owner.viewModel.validateAuthNumber(
+                    phoneNumber: owner.phoneNumberTextField.text,
+                    authNumber: owner.authNumberTextField.text
+                )
         }.disposed(by: rx.disposeBag)
 
         button.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let successViewModel = SignUpSuccessViewModel(sceneCoordinator: self.viewModel.sceneCoordinator)
-                let signUpScene = Scene.signUpSuccess(successViewModel)
-                owner.viewModel.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
+                owner.viewModel.signUp()
             }.disposed(by: rx.disposeBag)
         
 //        tableView.rx.itemSelected

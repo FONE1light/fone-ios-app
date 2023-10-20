@@ -53,6 +53,7 @@ class SignUpSelectionViewController: UIViewController, ViewModelBindableType {
                 let personalInfoViewModel = SignUpPersonalInfoViewModel(sceneCoordinator: sceneCoordinator)
                 let job = owner.viewModel.job?.serverName
                 let interests = owner.viewModel.interests?.map { $0.serverName }
+                personalInfoViewModel.signInInfo = owner.viewModel.signInInfo
                 personalInfoViewModel.signUpSelectionInfo = SignUpSelectionInfo(
                     job: job,
                     interests: interests

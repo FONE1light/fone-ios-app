@@ -140,6 +140,7 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
             .bind { owner, _ in
                 let sceneCoordinator = owner.viewModel.sceneCoordinator
                 let phoneNumberViewModel = SignUpPhoneNumberViewModel(sceneCoordinator: sceneCoordinator)
+                phoneNumberViewModel.signInInfo = owner.viewModel.signInInfo
                 phoneNumberViewModel.signUpSelectionInfo = owner.viewModel.signUpSelectionInfo
 //                phoneNumberViewModel.signUpPersonalInfo = owner.viewModel.signUpPersonalInfo
                 phoneNumberViewModel.signUpPersonalInfo = SignUpPersonalInfo(
