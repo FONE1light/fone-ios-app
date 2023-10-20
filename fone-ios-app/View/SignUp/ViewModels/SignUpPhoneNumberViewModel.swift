@@ -31,6 +31,10 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
     var phoneNumberAvailbleState = BehaviorRelay<PhoneNumberAvailableState>(value: .cannotCheck)
     
     var authNumberState = BehaviorRelay<AuthNumberState>(value: .cannotCheck)
+    var stringLeftSeconds = PublishRelay<String>()
+    
+    private var timer: Timer?
+    private var leftSeconds = 180
     
     /// 휴대전화번호가 유효한지(자릿수 체크) 확인
     func checkPhoneNumberState(_ phoneNumber: String?) {
@@ -70,6 +74,8 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
         )
         // TODO: 인증번호 전송 API
         
+        startTimer()
+        
         phoneNumberAvailbleState.accept(.sent)
     }
     
@@ -87,4 +93,31 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
         }
     }
     
+}
+
+extension SignUpPhoneNumberViewModel {
+    
+    private func startTimer() {
+        leftSeconds = 180
+        
+        // 기존에 타이머 동작중이면 중지 처리
+        if let timer = timer, timer.isValid {
+            timer.invalidate()
+        }
+        
+        // 1초 간격 타이머 시작
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+    }
+    
+    @objc private func updateTime() {
+        if leftSeconds > 0 {
+            leftSeconds -= 1
+            let timerString = String(format:"%02d:%02d", Int(leftSeconds/60), leftSeconds%60)
+            stringLeftSeconds.accept(timerString)
+        } else {
+            timer?.invalidate()
+            timer = nil
+            stringLeftSeconds.accept("00:00")
+        }
+    }
 }

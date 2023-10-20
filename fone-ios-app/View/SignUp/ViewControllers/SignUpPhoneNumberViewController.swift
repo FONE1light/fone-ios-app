@@ -15,9 +15,6 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     var disposeBag = DisposeBag()
     var viewModel: SignUpPhoneNumberViewModel!
     
-    private var timer: Timer?
-    private var leftSeconds = 180
-    
     private let baseView = UIView().then {
         $0.backgroundColor = .white_FFFFFF
     }
@@ -144,7 +141,6 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
                     owner.sendAuthNumberButton.isEnabled = true
                 case .sent:
                     owner.sendAuthNumberButton.setTitle("재전송", for: .normal)
-                    owner.startTimer()
                 case .available:
                     owner.sendAuthNumberButton.setTitle("인증완료", for: .normal)
                     owner.sendAuthNumberButton.isEnabled = false
@@ -163,6 +159,13 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
                 case .authorized:
                     owner.authNumberBlock.isHidden = true
                 }
+            }.disposed(by: self.disposeBag)
+        
+        viewModel.stringLeftSeconds
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .bind { owner, timeLeft in
+                owner.timeLabel.text = timeLeft
             }.disposed(by: self.disposeBag)
     }
     
@@ -328,6 +331,7 @@ extension SignUpPhoneNumberViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = self.tableView.cellForRow(at: indexPath) as? TermsCell else { return }
+//        tableView.beginUpdates()
         cell.expandableView.isHidden = !cell.expandableView.isHidden
 //        self.tableView.reloadRows(at: [indexPath], with: .automatic)
 //        tableView.reloadRows(at: [indexPath], with: .fade)
@@ -350,31 +354,4 @@ extension SignUpPhoneNumberViewController: UITableViewDataSource {
         return cell
     }
     
-}
-
-extension SignUpPhoneNumberViewController {
-    
-    func startTimer() {
-        leftSeconds = 180
-        
-        // 기존에 타이머 동작중이면 중지 처리
-        if let timer = timer, timer.isValid {
-            timer.invalidate()
-        }
-        
-        // 1초 간격 타이머 시작
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
-    }
-    
-    @objc func updateTime() {
-        if leftSeconds > 0 {
-            leftSeconds -= 1
-            let timerString = String(format:"%02d:%02d", Int(leftSeconds/60), leftSeconds%60)
-            timeLabel.text = timerString
-        } else {
-            timer?.invalidate()
-            timer = nil
-            timeLabel.text = "00:00"
-        }
-    }
 }
