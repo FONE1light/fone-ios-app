@@ -179,3 +179,19 @@ extension SignUpPhoneNumberViewModel {
         }
     }
 }
+
+extension SignUpPhoneNumberViewModel {
+    func switchAgreeToTermsOfServiceTermsOfUse() {
+        agreeToTermsOfServiceTermsOfUse = !agreeToTermsOfServiceTermsOfUse
+        // TODO: cellModel 이용
+//        cellModel.isChecked = !cellModel.isChecked
+    }
+    
+    func switchAgreeToPersonalInformation() {
+        agreeToPersonalInformation = !agreeToPersonalInformation
+    }
+    
+    func switchIsReceiveMarketing() {
+        isReceiveMarketing = !isReceiveMarketing
+    }
+}
