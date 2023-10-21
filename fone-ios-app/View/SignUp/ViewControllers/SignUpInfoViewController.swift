@@ -91,6 +91,10 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
         $0.image = UIImage(named: "profileImage")
     }
     
+    private let imagePickerViewController = UIImagePickerController()
+    
+    private let profileButton = UIButton()
+    
     private let button = CustomButton("다음", type: .bottom)
     
     func bindViewModel() {
@@ -130,6 +134,12 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
             .bind { owner, _ in
                 owner.femaleButton.isActivated = !owner.femaleButton.isActivated
                 owner.maleButton.isActivated = !owner.femaleButton.isActivated
+            }.disposed(by: rx.disposeBag)
+        
+        profileButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.showActionSheet()
             }.disposed(by: rx.disposeBag)
         
         button.rx.tap
@@ -230,7 +240,8 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
         [
             profileLabel,
             profileSubtitleLabel,
-            profileImage
+            profileImage,
+            profileButton
         ]
             .forEach { profileBlock.addSubview($0) }
         self.setupProfileBlock()
@@ -336,6 +347,68 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
             $0.leading.bottom.equalToSuperview()
             $0.size.equalTo(108)
         }
+        
+        profileButton.snp.makeConstraints {
+            $0.edges.equalTo(profileImage)
+        }
     }
     
 }
+
+extension SignUpInfoViewController: UIImagePickerControllerDelegate {
+    
+    private func showActionSheet() {
+        let chooseImage = UIAlertAction(
+            title: "앨범에서 사진 선택",
+            style: .default
+        ) { _ in
+            self.imagePickerViewController.delegate = self
+            self.imagePickerViewController.sourceType = .photoLibrary
+            self.present(self.imagePickerViewController, animated: true)
+        }
+        
+        let changeToDefaultImage = UIAlertAction(
+            title: "기본 이미지로 변경",
+            style: .default
+        ) { _ in
+            self.profileImage.image = UIImage(named: "profileImage")
+            // TODO: viewModel 수정된 버전 머지되면 아래 주석 해제
+//            self.viewModel.profileUrl = nil
+        }
+        
+        let cancel = UIAlertAction(
+            title: "취소",
+            style: .cancel
+        )
+        
+        let alert = UIAlertController(
+            title: "프로필 사진 설정",
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(chooseImage)
+        alert.addAction(changeToDefaultImage)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true)
+    }
+    
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
+    ) {
+        if let imageUrl = info[.imageURL] as? URL {
+            print(imageUrl)
+            // TODO: 이미지 업로드 API 후 url 저장
+//            self.viewModel.uploadImage()
+        }
+        
+        if let pickedImage = info[.originalImage] as? UIImage {
+            profileImage.image = pickedImage
+        }
+        
+        imagePickerViewController.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension SignUpInfoViewController: UINavigationControllerDelegate {}
