@@ -386,8 +386,7 @@ extension SignUpPersonalInfoViewController: UIImagePickerControllerDelegate {
             style: .default
         ) { _ in
             self.profileImage.image = UIImage(named: "profileImage")
-            // TODO: viewModel 수정된 버전 머지되면 아래 주석 해제
-//            self.viewModel.profileUrl = nil
+            self.viewModel.profileUrl = nil
         }
         
         let cancel = UIAlertAction(
@@ -413,8 +412,7 @@ extension SignUpPersonalInfoViewController: UIImagePickerControllerDelegate {
     ) {
         if let imageUrl = info[.imageURL] as? URL {
             print(imageUrl)
-            // TODO: 이미지 업로드 API 후 url 저장
-//            self.viewModel.uploadImage()
+            viewModel.uploadProfileImage()
         }
         
         if let pickedImage = info[.originalImage] as? UIImage {

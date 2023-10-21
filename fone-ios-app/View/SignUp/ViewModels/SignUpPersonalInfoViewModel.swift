@@ -96,3 +96,10 @@ extension SignUpPersonalInfoViewModel {
         }
     }
 }
+
+extension SignUpPersonalInfoViewModel {
+    func uploadProfileImage() {
+        // TODO: 이미지 업로드 API 후 url 저장
+        profileUrl = "<uploadedURL>"
+    }
+}

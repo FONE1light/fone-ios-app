@@ -37,9 +37,9 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
     
     // 현재 화면에서 사용하는 값
     var phoneNumber: String?
-    var agreeToTermsOfServiceTermsOfUse: Bool?
-    var agreeToPersonalInformation: Bool?
-    var isReceiveMarketing: Bool?
+    var agreeToTermsOfServiceTermsOfUse = false
+    var agreeToPersonalInformation = false
+    var isReceiveMarketing = false
     
     var phoneNumberAvailbleState = BehaviorRelay<PhoneNumberAvailableState>(value: .cannotCheck)
     
@@ -124,9 +124,9 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
             profileUrl: signUpPersonalInfo?.profileURL ?? "",
             
             phoneNumber: phoneNumber ?? "",
-            agreeToTermsOfServiceTermsOfUse: agreeToTermsOfServiceTermsOfUse ?? false,
-            agreeToPersonalInformation: agreeToPersonalInformation ?? false,
-            isReceiveMarketing: isReceiveMarketing ?? false,
+            agreeToTermsOfServiceTermsOfUse: agreeToTermsOfServiceTermsOfUse,
+            agreeToPersonalInformation: agreeToPersonalInformation,
+            isReceiveMarketing: isReceiveMarketing,
             token: "<ACCESSTOKEN?>", // accessToken?
             identifier: "<USER.IDENTIFIER?>"// user.identifier
         )
