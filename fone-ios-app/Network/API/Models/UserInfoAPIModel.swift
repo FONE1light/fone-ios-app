@@ -64,7 +64,7 @@ struct NicknameInfo: Codable {
 
 // MARK: - EmailSignInInfo
 struct EmailSignInInfo: Codable {
-//    let name: String
+    //    let name: String
     let email: String
     let password: String
 }
@@ -87,6 +87,13 @@ struct EmailSignInData: Codable {
 struct TokenInfo: Codable {
     let accessToken: String
     let refreshToken: String
+}
+
+// MARK: - SendSMSResponseModel
+struct SendSMSResponseModel: Codable {
+    let result: String
+    let message: String
+    let errorCode: String?
 }
 
 // MARK: - EmailSignUpInfo
