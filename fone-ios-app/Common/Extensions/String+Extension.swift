@@ -43,3 +43,9 @@ extension String {
         return phoneNumberWithDash
     }
 }
+
+extension String {
+    func prefixString(_ max: Int) -> String {
+        return String(self.prefix(max))
+    }
+}

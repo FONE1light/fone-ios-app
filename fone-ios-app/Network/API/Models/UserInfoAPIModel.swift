@@ -64,6 +64,7 @@ struct NicknameInfo: Codable {
 
 // MARK: - EmailSignInInfo
 struct EmailSignInInfo: Codable {
+    //    let name: String
     let email: String
     let password: String
 }
@@ -95,3 +96,69 @@ struct SendSMSResponseModel: Codable {
     let errorCode: String?
 }
 
+// MARK: - EmailSignUpInfo
+//struct EmailSignUpInfo: Codable {
+//    let agreeToPersonalInformation, agreeToTermsOfServiceTermsOfUse: Bool
+//    let birthday, email, gender, identifier: String
+//    let interests: [String]
+//    let isReceiveMarketing: Bool
+//    let job, name, nickname, password: String
+//    let phoneNumber, profileURL, token: String
+//
+//    enum CodingKeys: String, CodingKey {
+//        case agreeToPersonalInformation, agreeToTermsOfServiceTermsOfUse, birthday, email, gender, identifier, interests, isReceiveMarketing, job, name, nickname, password, phoneNumber
+//        case profileURL = "profileUrl"
+//        case token
+//    }
+//}
+
+// MARK: - EmailSignUpInfo
+struct EmailSignUpInfo: Codable {
+    let name, email, password: String
+    
+    let job: String
+    let interests: [String]
+    
+    let nickname, birthday, gender: String
+    let profileUrl: String
+    
+    let phoneNumber: String
+    let agreeToTermsOfServiceTermsOfUse: Bool
+    let agreeToPersonalInformation: Bool
+    let isReceiveMarketing: Bool
+    
+    let token, identifier: String
+}
+
+// MARK: - EmailSignUpResponseModel
+struct EmailSignUpResponseModel: Codable {
+    let result: String
+    let data: EmailSignUpData?
+    let message: String
+    let errorCode: String?
+}
+
+// MARK: - EmailSignUpData
+struct EmailSignUpData: Codable {
+    let user: User
+    let token: TokenModel
+}
+
+struct SignUpSelectionInfo {
+    let job: String?
+    let interests: [String]?
+}
+
+struct SignUpPersonalInfo {
+    let nickname, birthday, gender: String?
+    let profileURL: String?
+}
+
+struct SignUpPhoneNumberInfo {
+    var phoneNumber: String?
+    var agreeToTermsOfServiceTermsOfUse: Bool?
+    var agreeToPersonalInformation: Bool?
+    var isReceiveMarketing: Bool?
+    
+    init() {}
+}
