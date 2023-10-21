@@ -49,17 +49,7 @@ class SignUpSelectionViewController: UIViewController, ViewModelBindableType {
         button.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let sceneCoordinator = owner.viewModel.sceneCoordinator
-                let personalInfoViewModel = SignUpPersonalInfoViewModel(sceneCoordinator: sceneCoordinator)
-                let job = owner.viewModel.job?.serverName
-                let interests = owner.viewModel.interests?.map { $0.serverName }
-                personalInfoViewModel.signInInfo = owner.viewModel.signInInfo
-                personalInfoViewModel.signUpSelectionInfo = SignUpSelectionInfo(
-                    job: job,
-                    interests: interests
-                )
-                let signUpScene = Scene.signUpPersonalInfo(personalInfoViewModel)
-                owner.viewModel.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
+                owner.viewModel.moveToSignUpPersonalInfo()
             }.disposed(by: rx.disposeBag)
         
         jobSelectionBlock.selectedItems

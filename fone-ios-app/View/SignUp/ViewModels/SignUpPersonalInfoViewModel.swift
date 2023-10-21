@@ -30,13 +30,13 @@ class SignUpPersonalInfoViewModel: CommonViewModel {
     // 현재 화면에서 사용하는 값
     var nickname: String?
     var birthday: String?
-    var gender: String?
+    var gender: GenderType?
     var profileUrl: String?
     
     var nicknameAvailbleState = BehaviorRelay<NicknameAvailableState>(value: .cannotCheck)
     
     func checkNicknameDuplication(_ nickname: String) {
-        guard nickname.count >= 3 else { return }
+        guard nickname.count >= 3 && nickname.count <= 8 else { return }
         userInfoProvider.rx.request(.checkNicknameDuplication(nickname: nickname))
             .mapObject(CheckNicknameDuplicationModel.self)
             .asObservable()
@@ -44,12 +44,12 @@ class SignUpPersonalInfoViewModel: CommonViewModel {
             .subscribe(onNext: { owner, response in
                 print("received!")
                 print("response: \(response)")
-                if response.data.isDuplicate {
-                    owner.nicknameAvailbleState.accept(.duplicated)
-                } else {
+                if response.data?.isDuplicate == false {
                     owner.nickname = nickname
                     owner.nicknameAvailbleState.accept(.available)
                     "사용할 수 있는 닉네임입니다.".toast(positionType: .withButton)
+                } else {
+                    owner.nicknameAvailbleState.accept(.duplicated)
                 }
             }, onError: { error in
                 print("\(error)")
@@ -60,6 +60,14 @@ class SignUpPersonalInfoViewModel: CommonViewModel {
 }
 
 extension SignUpPersonalInfoViewModel {
+    /// 닉네임을 형식에 맞게 수정하여 반환
+    /// - 8글자까지 입력 가능
+    func formatNickname(_ nickname: String?) -> String? {
+        guard let nickname = nickname else { return nil }
+        
+        return nickname.prefixString(8)
+    }
+    
     /// 생년월일을 형식에 맞게 수정하여 반환
     /// - 마지막은 숫자(유저가 직접 dash를 지우는 일이 없도록 함)
     /// - 4글자, 6글자 초과 시 dash 추가
@@ -94,5 +102,30 @@ extension SignUpPersonalInfoViewModel {
         } else {
             self.nicknameAvailbleState.accept(.cannotCheck)
         }
+    }
+}
+
+extension SignUpPersonalInfoViewModel {
+    func uploadProfileImage() {
+        // TODO: 이미지 업로드 API 후 url 저장
+        profileUrl = "<uploadedURL>"
+    }
+}
+
+extension SignUpPersonalInfoViewModel {
+    func moveToSignUpPhoneNumber() {
+        let sceneCoordinator = sceneCoordinator
+        let phoneNumberViewModel = SignUpPhoneNumberViewModel(sceneCoordinator: sceneCoordinator)
+        phoneNumberViewModel.signInInfo = signInInfo
+        phoneNumberViewModel.signUpSelectionInfo = signUpSelectionInfo
+        phoneNumberViewModel.signUpPersonalInfo = SignUpPersonalInfo(
+            nickname: nickname,
+            birthday: birthday,
+            gender: gender?.rawValue,
+            profileURL: profileUrl
+        )
+        
+        let signUpScene = Scene.signUpPhoneNumber(phoneNumberViewModel)
+        sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
     }
 }

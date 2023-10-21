@@ -37,9 +37,9 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
     
     // 현재 화면에서 사용하는 값
     var phoneNumber: String?
-    var agreeToTermsOfServiceTermsOfUse: Bool?
-    var agreeToPersonalInformation: Bool?
-    var isReceiveMarketing: Bool?
+    var agreeToTermsOfServiceTermsOfUse = false
+    var agreeToPersonalInformation = false
+    var isReceiveMarketing = false
     
     var phoneNumberAvailbleState = BehaviorRelay<PhoneNumberAvailableState>(value: .cannotCheck)
     
@@ -108,7 +108,7 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
     }
     
     func signUp() {
-        // TODO: 구조 고려해서 채우기
+        // TODO: name 채우기
         let emailSignUpInfo = EmailSignUpInfo(
 //            name: signInInfo?.name ?? "",
             name: "<SIGNININFO.NAME>",
@@ -123,12 +123,12 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
             gender: signUpPersonalInfo?.gender ?? "",
             profileUrl: signUpPersonalInfo?.profileURL ?? "",
             
-            phoneNumber: phoneNumber ?? "",
-            agreeToTermsOfServiceTermsOfUse: agreeToTermsOfServiceTermsOfUse ?? false,
-            agreeToPersonalInformation: agreeToPersonalInformation ?? false,
-            isReceiveMarketing: isReceiveMarketing ?? false,
-            token: "<ACCESSTOKEN?>", // accessToken?
-            identifier: "<USER.IDENTIFIER?>"// user.identifier
+            phoneNumber: phoneNumber?.phoneNumberFormatted() ?? "",
+            agreeToTermsOfServiceTermsOfUse: agreeToTermsOfServiceTermsOfUse,
+            agreeToPersonalInformation: agreeToPersonalInformation,
+            isReceiveMarketing: isReceiveMarketing,
+            token: "",
+            identifier: ""// FIXME: 어디서 가져오는 identifier?
         )
         
         userInfoProvider.rx.request(.emailSignUp(emailSignUpInfo))
@@ -140,13 +140,12 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
                 print("response: \(response)")
                 // TODO: 화면 이동 로직 위치 재고 - VC or VM
                 if response.result == "SUCCESS" {
-                    let successViewModel = SignUpSuccessViewModel(sceneCoordinator: self.sceneCoordinator)
-                    let signUpScene = Scene.signUpSuccess(successViewModel)
-                    self.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
+                    owner.moveToSignUpSuccess()
                 } else {
-                    response.message.toast(positionType: .withButton)
+                    response.message?.toast(positionType: .withButton)
                 }
             }, onError: { error in
+                print(error.localizedDescription)
                 "\(error)".toast(positionType: .withButton)
             }).disposed(by: disposeBag)
         
@@ -177,5 +176,29 @@ extension SignUpPhoneNumberViewModel {
             timer = nil
             stringLeftSeconds.accept("00:00")
         }
+    }
+}
+
+extension SignUpPhoneNumberViewModel {
+    func switchAgreeToTermsOfServiceTermsOfUse() {
+        agreeToTermsOfServiceTermsOfUse = !agreeToTermsOfServiceTermsOfUse
+        // TODO: cellModel 이용
+//        cellModel.isChecked = !cellModel.isChecked
+    }
+    
+    func switchAgreeToPersonalInformation() {
+        agreeToPersonalInformation = !agreeToPersonalInformation
+    }
+    
+    func switchIsReceiveMarketing() {
+        isReceiveMarketing = !isReceiveMarketing
+    }
+}
+
+extension SignUpPhoneNumberViewModel {
+    func moveToSignUpSuccess() {
+        let successViewModel = SignUpSuccessViewModel(sceneCoordinator: self.sceneCoordinator)
+        let signUpScene = Scene.signUpSuccess(successViewModel)
+        self.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
     }
 }

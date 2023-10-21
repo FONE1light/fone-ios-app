@@ -77,9 +77,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     
     private lazy var tableView = UITableView().then {
         $0.showsVerticalScrollIndicator = false
-//        $0.backgroundColor = .yellow
         $0.separatorStyle = .none
-        $0.delegate = self
         $0.dataSource = self
         $0.register(with: TermsCell.self)
     }
@@ -87,6 +85,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     private let button = CustomButton("회원가입", type: .bottom)
     
     func bindViewModel() {
+        // MARK: - Buttons
         sendAuthNumberButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
@@ -109,14 +108,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
                 owner.viewModel.signUp()
             }.disposed(by: rx.disposeBag)
         
-//        tableView.rx.itemSelected
-//            .withUnretained(self)
-//            .bind { owner, indexPath in
-//                guard let cell = owner.tableView.cellForRow(at: indexPath) as? TermsCell else { return }
-//                cell.expandableView.isHidden = !cell.expandableView.isHidden
-//                owner.tableView.reloadRows(at: [indexPath], with: .automatic)
-//            }.disposed(by: rx.disposeBag)
-        
+        // MARK: - TextFields
         phoneNumberTextField.rx.controlEvent(.editingChanged)
             .withUnretained(self)
             .bind { owner, _ in
@@ -333,18 +325,6 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     }
 }
 
-extension SignUpPhoneNumberViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = self.tableView.cellForRow(at: indexPath) as? TermsCell else { return }
-//        tableView.beginUpdates()
-        cell.expandableView.isHidden = !cell.expandableView.isHidden
-//        self.tableView.reloadRows(at: [indexPath], with: .automatic)
-//        tableView.reloadRows(at: [indexPath], with: .fade)
-        tableView.reloadData()
-    }
-}
-
 extension SignUpPhoneNumberViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -355,8 +335,33 @@ extension SignUpPhoneNumberViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as TermsCell
         let terms = SignUpTerms.allCases[indexPath.row]
-        cell.label.text = terms.title
-        cell.termsLabel.text = terms.content
+        cell.configure(title: terms.title, termsText: terms.content)
+        
+        // FIXME: index 방식 변경
+        switch indexPath.row {
+        case 0:
+            cell.checkBoxButtonTap
+                .withUnretained(self)
+                .bind { owner, _ in
+                    owner.viewModel.switchAgreeToTermsOfServiceTermsOfUse()
+                }.disposed(by: cell.disposeBag)
+            
+        case 1:
+            cell.checkBoxButtonTap
+                .withUnretained(self)
+                .bind { owner, _ in
+                    owner.viewModel.switchAgreeToPersonalInformation()
+                }.disposed(by: cell.disposeBag)
+        default: break
+        }
+        
+        cell.arrowDownButtonTap
+            .withUnretained(self)
+            .bind { owner, _ in
+                cell.switchHiddenState()
+                owner.tableView.reloadData()
+            }.disposed(by: cell.disposeBag)
+        
         return cell
     }
     
