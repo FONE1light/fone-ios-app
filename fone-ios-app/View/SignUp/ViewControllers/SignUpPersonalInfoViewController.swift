@@ -148,19 +148,7 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
         button.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let sceneCoordinator = owner.viewModel.sceneCoordinator
-                let phoneNumberViewModel = SignUpPhoneNumberViewModel(sceneCoordinator: sceneCoordinator)
-                phoneNumberViewModel.signInInfo = owner.viewModel.signInInfo
-                phoneNumberViewModel.signUpSelectionInfo = owner.viewModel.signUpSelectionInfo
-                phoneNumberViewModel.signUpPersonalInfo = SignUpPersonalInfo(
-                    nickname: owner.viewModel.nickname,
-                    birthday: owner.viewModel.birthday,
-                    gender: owner.viewModel.gender,
-                    profileURL: owner.viewModel.profileUrl
-                )
-                
-                let signUpScene = Scene.signUpPhoneNumber(phoneNumberViewModel)
-                owner.viewModel.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
+                owner.viewModel.moveToSignUpPhoneNumber()
             }.disposed(by: rx.disposeBag)
         
         // ViewModel

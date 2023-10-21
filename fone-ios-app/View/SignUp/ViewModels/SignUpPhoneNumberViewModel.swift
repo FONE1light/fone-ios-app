@@ -140,9 +140,7 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
                 print("response: \(response)")
                 // TODO: 화면 이동 로직 위치 재고 - VC or VM
                 if response.result == "SUCCESS" {
-                    let successViewModel = SignUpSuccessViewModel(sceneCoordinator: self.sceneCoordinator)
-                    let signUpScene = Scene.signUpSuccess(successViewModel)
-                    self.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
+                    owner.moveToSignUpSuccess()
                 } else {
                     response.message.toast(positionType: .withButton)
                 }
@@ -193,5 +191,13 @@ extension SignUpPhoneNumberViewModel {
     
     func switchIsReceiveMarketing() {
         isReceiveMarketing = !isReceiveMarketing
+    }
+}
+
+extension SignUpPhoneNumberViewModel {
+    func moveToSignUpSuccess() {
+        let successViewModel = SignUpSuccessViewModel(sceneCoordinator: self.sceneCoordinator)
+        let signUpScene = Scene.signUpSuccess(successViewModel)
+        self.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
     }
 }

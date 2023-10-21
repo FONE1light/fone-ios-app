@@ -103,3 +103,21 @@ extension SignUpPersonalInfoViewModel {
         profileUrl = "<uploadedURL>"
     }
 }
+
+extension SignUpPersonalInfoViewModel {
+    func moveToSignUpPhoneNumber() {
+        let sceneCoordinator = sceneCoordinator
+        let phoneNumberViewModel = SignUpPhoneNumberViewModel(sceneCoordinator: sceneCoordinator)
+        phoneNumberViewModel.signInInfo = signInInfo
+        phoneNumberViewModel.signUpSelectionInfo = signUpSelectionInfo
+        phoneNumberViewModel.signUpPersonalInfo = SignUpPersonalInfo(
+            nickname: nickname,
+            birthday: birthday,
+            gender: gender,
+            profileURL: profileUrl
+        )
+        
+        let signUpScene = Scene.signUpPhoneNumber(phoneNumberViewModel)
+        sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
+    }
+}
