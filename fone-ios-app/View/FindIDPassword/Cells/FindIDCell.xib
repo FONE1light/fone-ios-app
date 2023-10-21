@@ -214,7 +214,9 @@
                 <constraint firstAttribute="bottom" secondItem="Hca-We-MTT" secondAttribute="bottom" id="pbc-2s-VIK"/>
             </constraints>
             <connections>
+                <outlet property="authCodeTextField" destination="7MD-tX-MwO" id="51W-fV-nOj"/>
                 <outlet property="authCodeView" destination="W0z-0n-Qt5" id="JLN-e1-eOl"/>
+                <outlet property="checkAuthCodeButton" destination="zzR-uj-7Vi" id="9zM-N0-D3f"/>
                 <outlet property="phoneNumberTextField" destination="hEH-5s-cSF" id="WaH-ij-xEt"/>
                 <outlet property="sendButton" destination="sBO-49-bop" id="rmc-9G-tiT"/>
                 <outlet property="timeLabel" destination="knb-Ws-GfE" id="Mzv-2Q-rIj"/>

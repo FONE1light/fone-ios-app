@@ -12,9 +12,14 @@ class FindIDCell: UICollectionViewCell {
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var authCodeView: UIView!
+    @IBOutlet weak var authCodeTextField: UITextField!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var checkAuthCodeButton: UIButton!
+    
+    var viewModel: FindIDPasswordViewModel?
     var timer: Timer?
     var leftSeconds = 180
+    var smsSendedSubject = BehaviorSubject<Bool>(value: false)
     var phoneNumberSubject = BehaviorSubject<String>(value: "")
     
     lazy var phoneNumberIsValidSubject: Observable<Bool> = {
@@ -25,6 +30,10 @@ class FindIDCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    func configure(viewModel: FindIDPasswordViewModel) {
+        self.viewModel = viewModel
         
         phoneNumberTextField.rx.text.orEmpty
             .bind(to: phoneNumberSubject)
@@ -34,19 +43,41 @@ class FindIDCell: UICollectionViewCell {
             .distinctUntilChanged()
             .withUnretained(self)
             .subscribe(onNext: { (owner, isValid) in
-                owner.sendButton.isEnabled = isValid
-                let color: UIColor = isValid ? .red_F43663 : .gray_D9D9D9
-                owner.sendButton.setTitleColor(color, for: .normal)
-                owner.sendButton.borderColor = color
-                
+                owner.sendButton.setMediumButtonEnabled(isEnabled: isValid)
             }).disposed(by: rx.disposeBag)
         
         sendButton.rx.tap
             .withUnretained(self)
-            .subscribe(onNext: { _ in
-                self.sendButton.setTitle("재전송", for: .normal)
-                self.authCodeView.isHidden = false
-                self.startTimer()
+            .subscribe(onNext: { (owner, _) in
+                owner.phoneNumberTextField.resignFirstResponder()
+                let phoneNumberWithDash = owner.phoneNumberTextField.text?.insertDash()
+                owner.viewModel?.requestSMS(phoneNumber: phoneNumberWithDash, resultSubject: owner.smsSendedSubject)
+            }).disposed(by: rx.disposeBag)
+        
+        smsSendedSubject
+            .withUnretained(self)
+            .subscribe(onNext: { (owner, sended) in
+                if sended {
+                    owner.sendButton.setTitle("재전송", for: .normal)
+                    owner.authCodeView.isHidden = false
+                    owner.startTimer()
+                }
+            }).disposed(by: rx.disposeBag)
+        
+        authCodeTextField.rx.text.orEmpty
+            .map { $0.count == 6 }
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, isEnabled in
+                owner.checkAuthCodeButton.setMediumButtonEnabled(isEnabled: isEnabled)
+            }).disposed(by: rx.disposeBag)
+        
+        checkAuthCodeButton.rx.tap
+            .withUnretained(self)
+            .subscribe(onNext: { (owner, _) in
+                owner.timer?.invalidate()
+                owner.timer = nil
+                owner.validateAuthNumber()
             }).disposed(by: rx.disposeBag)
     }
     
@@ -54,6 +85,7 @@ class FindIDCell: UICollectionViewCell {
         //기존에 타이머 동작중이면 중지 처리
         if timer != nil && timer!.isValid {
             timer!.invalidate()
+            leftSeconds = 180
         }
         
         //1초 간격 타이머 시작
@@ -69,6 +101,23 @@ class FindIDCell: UICollectionViewCell {
             timer?.invalidate()
             timer = nil
             timeLabel.text = "00:00"
+        }
+    }
+    
+    /// 인증번호 유효성 확인
+    func validateAuthNumber() {
+        // TODO: 인증번호 확인 API, 결과 따라 분기
+        if authCodeTextField.text == "000000" {
+            timeLabel.text = ""
+            sendButton.setTitle("인증완료", for: .normal)
+            sendButton.setMediumButtonEnabled(isEnabled: false)
+            phoneNumberTextField.isUserInteractionEnabled = false
+            authCodeView.isHidden = true
+        } else {
+            ToastManager.show(
+                "올바른 인증번호를 입력해주세요.",
+                positionType: .withButton
+            )
         }
     }
 }

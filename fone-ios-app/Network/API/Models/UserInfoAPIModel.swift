@@ -87,3 +87,11 @@ struct TokenInfo: Codable {
     let accessToken: String
     let refreshToken: String
 }
+
+// MARK: - SendSMSResponseModel
+struct SendSMSResponseModel: Codable {
+    let result: String
+    let message: String
+    let errorCode: String?
+}
+

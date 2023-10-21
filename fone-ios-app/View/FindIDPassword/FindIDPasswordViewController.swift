@@ -10,7 +10,6 @@ import UIKit
 class FindIDPasswordViewController: UIViewController, ViewModelBindableType {
     var viewModel: FindIDPasswordViewModel!
     
-    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var selectedTabLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var idTabButton: UIButton!
     @IBOutlet weak var passwordTabButton: UIButton!
@@ -18,6 +17,8 @@ class FindIDPasswordViewController: UIViewController, ViewModelBindableType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationBar()
+        hideKeyboardWhenTapped()
 
         findScreenCollectionView.delegate = self
         findScreenCollectionView.dataSource = self
@@ -26,13 +27,15 @@ class FindIDPasswordViewController: UIViewController, ViewModelBindableType {
         findScreenCollectionView.decelerationRate = .fast
     }
     
+    private func setNavigationBar() {
+        navigationItem.titleView = NavigationTitleView(title: "아이디·비밀번호 찾기")
+        navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
+            type: .back,
+            viewController: self
+        )
+    }
+    
     func bindViewModel() {
-        backButton.rx.tap
-            .withUnretained(self)
-            .subscribe(onNext: { _ in
-                self.navigationController?.popViewController(animated: true)
-            }).disposed(by: rx.disposeBag)
-        
         idTabButton.rx.tap
             .withUnretained(self)
             .subscribe(onNext: { _ in
@@ -44,7 +47,7 @@ class FindIDPasswordViewController: UIViewController, ViewModelBindableType {
             .withUnretained(self)
             .subscribe(onNext: { _ in
                 self.findScreenCollectionView.scrollToItem(at: IndexPath(row: 1, section: 0), at: .left, animated: true)
-                self.seleectPasswordTab()
+                self.selectPasswordTab()
             }).disposed(by: rx.disposeBag)
     }
     
@@ -58,7 +61,7 @@ class FindIDPasswordViewController: UIViewController, ViewModelBindableType {
         })
     }
     
-    func seleectPasswordTab() {
+    func selectPasswordTab() {
         self.idTabButton.setTitleColor(.gray_9E9E9E, for: .normal)
         self.passwordTabButton.setTitleColor(.red_CE0B39, for: .normal)
         self.view.layoutIfNeeded()
@@ -79,9 +82,13 @@ extension FindIDPasswordViewController: UICollectionViewDataSource {
         switch indexPath.row {
         case 0:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as FindIDCell
+            guard let viewModel = self.viewModel else { return cell }
+            cell.configure(viewModel: viewModel)
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as FindPasswordCell
+            guard let viewModel = self.viewModel else { return cell }
+            cell.configure(viewModel: viewModel)
             return cell
         default:
             return UICollectionViewCell()
@@ -94,7 +101,7 @@ extension FindIDPasswordViewController: UICollectionViewDelegate {
         if scrollView.contentOffset.x < self.findScreenCollectionView.frame.width {
             self.selectIDTab()
         } else {
-            self.seleectPasswordTab()
+            self.selectPasswordTab()
         }
     }
 }

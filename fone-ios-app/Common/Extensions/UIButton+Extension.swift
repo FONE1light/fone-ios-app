@@ -18,4 +18,11 @@ extension UIButton {
             self.applyShadow(shadowType: .shadowIt2)
         }
     }
+    
+    func setMediumButtonEnabled(isEnabled: Bool) {
+        self.isEnabled = isEnabled
+        let color: UIColor = isEnabled ? .red_F43663 : .gray_D9D9D9
+        self.setTitleColor(color, for: .normal)
+        self.borderColor = color
+    }
 }
