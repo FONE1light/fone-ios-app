@@ -30,11 +30,11 @@ extension UserInfoTarget: TargetType {
             return "/api/v1/users"
         case .checkNicknameDuplication:
             return "/api/v1/users/check-nickname-duplication"
-        case .emailSignIn(_):
+        case .emailSignIn:
             return "/api/v1/users/email/sign-in"
-        case .reissueToken(_):
+        case .reissueToken:
             return "/api/v1/users/reissue"
-        case .sendSMS(_):
+        case .sendSMS:
             return "/api/v1/users/sms/send"
         case .emailSignUp:
             return "/api/v1/users/email/sign-up"
@@ -43,9 +43,9 @@ extension UserInfoTarget: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .fetchMyPage, .checkNicknameDuplication(_):
+        case .fetchMyPage, .checkNicknameDuplication:
             return .get
-        case .emailSignIn(_), .reissueToken(_), .sendSMS(_), .emailSignUp:
+        case .emailSignIn, .reissueToken, .sendSMS, .emailSignUp:
             return .post
         }
     }
@@ -77,7 +77,7 @@ extension UserInfoTarget: TargetType {
         switch self {
         case .fetchMyPage:
             commonHeaders[Tokens.shared.accessToken.key] = Tokens.shared.accessToken.value // TODO: MOCK,
-        case .emailSignIn(_), .reissueToken(_), .sendSMS(_), .emailSignUp:
+        case .emailSignIn, .reissueToken, .sendSMS, .emailSignUp:
             commonHeaders["Content-Type"] = "application/json"
         default:
             break

@@ -82,9 +82,10 @@ class FindIDCell: UICollectionViewCell {
     }
     
     func startTimer() {
+        leftSeconds = 180
         //기존에 타이머 동작중이면 중지 처리
-        if timer != nil && timer!.isValid {
-            timer!.invalidate()
+        if let timer = timer, timer.isValid {
+            timer.invalidate()
             leftSeconds = 180
         }
         
