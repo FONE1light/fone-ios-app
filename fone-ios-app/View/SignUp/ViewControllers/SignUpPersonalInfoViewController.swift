@@ -1,5 +1,5 @@
 //
-//  SignUpInfoViewController.swift
+//  SignUpPersonalInfoViewController.swift
 //  fone-ios-app
 //
 //  Created by 여나경 on 2023/09/02.
@@ -9,10 +9,10 @@ import UIKit
 import Then
 import RxSwift
 
-class SignUpInfoViewController: UIViewController, ViewModelBindableType {
+class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType {
 
     var disposeBag = DisposeBag()
-    var viewModel: SignUpViewModel!
+    var viewModel: SignUpPersonalInfoViewModel!
     
     let baseView = UIView().then {
         $0.backgroundColor = .white_FFFFFF
@@ -110,6 +110,7 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
             .bind { owner, _ in
                 let formattedBirth = owner.viewModel.formatBirthString(owner.birthTextField.text)
                 owner.birthTextField.text = formattedBirth
+                owner.viewModel.birthday = formattedBirth
             }.disposed(by: rx.disposeBag)
         
         // Buttons
@@ -127,6 +128,7 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
             .bind { owner, _ in
                 owner.maleButton.isActivated = !owner.maleButton.isActivated
                 owner.femaleButton.isActivated = !owner.maleButton.isActivated
+                owner.viewModel.gender = "MALE" // FIXME: 정확한 문자열 확인
             }.disposed(by: rx.disposeBag)
         
         femaleButton.rx.tap
@@ -134,6 +136,7 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
             .bind { owner, _ in
                 owner.femaleButton.isActivated = !owner.femaleButton.isActivated
                 owner.maleButton.isActivated = !owner.femaleButton.isActivated
+                owner.viewModel.gender = "FEMALE" // FIXME: 정확한 문자열 확인
             }.disposed(by: rx.disposeBag)
         
         profileButton.rx.tap
@@ -145,7 +148,17 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
         button.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let phoneNumberViewModel = SignUpPhoneNumberViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator)
+                let sceneCoordinator = owner.viewModel.sceneCoordinator
+                let phoneNumberViewModel = SignUpPhoneNumberViewModel(sceneCoordinator: sceneCoordinator)
+                phoneNumberViewModel.signInInfo = owner.viewModel.signInInfo
+                phoneNumberViewModel.signUpSelectionInfo = owner.viewModel.signUpSelectionInfo
+                phoneNumberViewModel.signUpPersonalInfo = SignUpPersonalInfo(
+                    nickname: owner.viewModel.nickname,
+                    birthday: owner.viewModel.birthday,
+                    gender: owner.viewModel.gender,
+                    profileURL: owner.viewModel.profileUrl
+                )
+                
                 let signUpScene = Scene.signUpPhoneNumber(phoneNumberViewModel)
                 owner.viewModel.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
             }.disposed(by: rx.disposeBag)
@@ -356,7 +369,7 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
     
 }
 
-extension SignUpInfoViewController: UIImagePickerControllerDelegate {
+extension SignUpPersonalInfoViewController: UIImagePickerControllerDelegate {
     
     private func showActionSheet() {
         let chooseImage = UIAlertAction(
@@ -412,4 +425,4 @@ extension SignUpInfoViewController: UIImagePickerControllerDelegate {
     }
 }
 
-extension SignUpInfoViewController: UINavigationControllerDelegate {}
+extension SignUpPersonalInfoViewController: UINavigationControllerDelegate {}

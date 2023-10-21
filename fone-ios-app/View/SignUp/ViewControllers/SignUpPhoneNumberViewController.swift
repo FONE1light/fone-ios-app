@@ -15,19 +15,19 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     var disposeBag = DisposeBag()
     var viewModel: SignUpPhoneNumberViewModel!
     
-    let baseView = UIView().then {
+    private let baseView = UIView().then {
         $0.backgroundColor = .white_FFFFFF
     }
     
-    let stepIndicator = StepIndicator(.third)
+    private let stepIndicator = StepIndicator(.third)
     
-    let titleLabel = UILabel().then {
+    private let titleLabel = UILabel().then {
         $0.text = "마지막으로\n휴대전화 번호를 인증해주세요."
         $0.font = .font_b(20)
         $0.numberOfLines = 0
     }
     
-    let phoneNumberBlock = UIView()
+    private let phoneNumberBlock = UIView()
     
     private let phoneNumberLabel = UILabel().then {
         $0.text = "휴대전화 번호"
@@ -35,7 +35,10 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         $0.textColor = .gray_161616
     }
     
-    private let phoneNumberTextField = DefaultTextField(placeHolder: "'-' 빼고 숫자만 입력").then {
+    private let phoneNumberTextField = DefaultTextField(
+        placeHolder: "'-' 빼고 숫자만 입력",
+        keyboardType: .numberPad
+    ).then {
         $0.keyboardType = .numberPad
     }
     
@@ -43,13 +46,20 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         $0.isEnabled = false
     }
     
-    let authNumberBlock = UIView().then {
+    private let authNumberBlock = UIView().then {
         $0.isHidden = true
     }
     
-    private let authNumberTextField = DefaultTextField(placeHolder: "인증번호 6자리")
+    private let authNumberTextField = DefaultTextField(
+        placeHolder: "인증번호 6자리",
+        keyboardType: .numberPad)
     
-    private let checkAuthNumberButton = CustomButton(type: .auth).then {
+    private let timeLabel = UILabel().then {
+        $0.font = .font_r(12)
+        $0.textColor = .crimson_FF5841
+    }
+    
+    private let validateAuthNumberButton = CustomButton(type: .auth).then {
         $0.setTitle("인증번호 확인", for: .normal)
         $0.isEnabled = false
     }
@@ -61,7 +71,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         $0.numberOfLines = 0
     }
     
-    let agreementBlock = UIView().then {
+    private let agreementBlock = UIView().then {
         $0.backgroundColor = .gray_161616
     }
     
@@ -80,17 +90,23 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         sendAuthNumberButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-            print("clicked")
-                owner.authNumberBlock.isHidden = false
-                
+                owner.viewModel.sendAuthNumber()
+                owner.showAuthNumberBlock()
         }.disposed(by: rx.disposeBag)
-        
+
+        validateAuthNumberButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.viewModel.validateAuthNumber(
+                    phoneNumber: owner.phoneNumberTextField.text,
+                    authNumber: owner.authNumberTextField.text
+                )
+        }.disposed(by: rx.disposeBag)
+
         button.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let successViewModel = SignUpViewModel(sceneCoordinator: self.viewModel.sceneCoordinator)
-                let signUpScene = Scene.signUpSuccess(successViewModel)
-                owner.viewModel.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
+                owner.viewModel.signUp()
             }.disposed(by: rx.disposeBag)
         
 //        tableView.rx.itemSelected
@@ -104,12 +120,21 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         phoneNumberTextField.rx.controlEvent(.editingChanged)
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.checkPhoneNumberState(owner.phoneNumberTextField.text)
+                let formattedString = owner.viewModel.formatPhoneNumberString(owner.phoneNumberTextField.text)
+                owner.phoneNumberTextField.text = formattedString
+                owner.viewModel.checkPhoneNumberState(formattedString)
             }.disposed(by: rx.disposeBag)
         
-        // ViewModel
+        authNumberTextField.rx.controlEvent(.editingChanged)
+            .withUnretained(self)
+            .bind { owner, _ in
+                let formattedString = owner.authNumberTextField.text?.prefixString(6)
+                owner.authNumberTextField.text = formattedString
+               owner.viewModel.checkAuthNumberState(formattedString)
+            }.disposed(by: rx.disposeBag)
+        
+        // MARK: - ViewModel
         viewModel.phoneNumberAvailbleState
-            .distinctUntilChanged()
             .withUnretained(self)
             .bind { owner, state in
                 switch state {
@@ -119,19 +144,40 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
                 case .canCheck:
                     owner.sendAuthNumberButton.setTitle("인증번호 발송", for: .normal)
                     owner.sendAuthNumberButton.isEnabled = true
-                case .resend:
+                case .sent:
                     owner.sendAuthNumberButton.setTitle("재전송", for: .normal)
-                    owner.sendAuthNumberButton.isEnabled = false
                 case .available:
                     owner.sendAuthNumberButton.setTitle("인증완료", for: .normal)
                     owner.sendAuthNumberButton.isEnabled = false
                 }
             }.disposed(by: self.disposeBag)
+
+        viewModel.authNumberState
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .bind { owner, state in
+                switch state {
+                case .cannotCheck:
+                    owner.validateAuthNumberButton.isEnabled = false
+                case .canCheck:
+                    owner.validateAuthNumberButton.isEnabled = true
+                case .authorized:
+                    owner.authNumberBlock.isHidden = true
+                }
+            }.disposed(by: self.disposeBag)
+        
+        viewModel.stringLeftSeconds
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .bind { owner, timeLeft in
+                owner.timeLabel.text = timeLeft
+            }.disposed(by: self.disposeBag)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.hideKeyboardWhenTapped()
+        
         setNavigationBar()
         setUI()
         setConstraints()
@@ -170,7 +216,8 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         [
             authNumberLabel,
             authNumberTextField,
-            checkAuthNumberButton,
+            timeLabel,
+            validateAuthNumberButton,
         ]
             .forEach { authNumberBlock.addSubview($0) }
         
@@ -251,7 +298,12 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
             $0.top.leading.equalToSuperview()
         }
         
-        checkAuthNumberButton.snp.makeConstraints {
+        timeLabel.snp.makeConstraints {
+            $0.centerY.equalTo(authNumberTextField)
+            $0.trailing.equalTo(authNumberTextField.snp.trailing).offset(-10)
+        }
+        
+        validateAuthNumberButton.snp.makeConstraints {
             $0.top.bottom.equalTo(authNumberTextField)
             $0.leading.equalTo(authNumberTextField.snp.trailing).offset(4)
             $0.trailing.equalToSuperview()
@@ -261,7 +313,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         authNumberLabel.snp.makeConstraints {
             $0.top.equalTo(authNumberTextField.snp.bottom).offset(4)
             $0.leading.equalTo(authNumberTextField.snp.leading)
-            $0.trailing.equalTo(checkAuthNumberButton.snp.trailing)
+            $0.trailing.equalTo(validateAuthNumberButton.snp.trailing)
             $0.bottom.equalToSuperview()
         }
     }
@@ -273,13 +325,19 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         }
     }
     
-    
+    private func showAuthNumberBlock() {
+        authNumberBlock.isHidden = false
+        authNumberTextField.text = ""
+        validateAuthNumberButton.isEnabled = false
+        timeLabel.text = "03:00"
+    }
 }
 
 extension SignUpPhoneNumberViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = self.tableView.cellForRow(at: indexPath) as? TermsCell else { return }
+//        tableView.beginUpdates()
         cell.expandableView.isHidden = !cell.expandableView.isHidden
 //        self.tableView.reloadRows(at: [indexPath], with: .automatic)
 //        tableView.reloadRows(at: [indexPath], with: .fade)
@@ -290,13 +348,15 @@ extension SignUpPhoneNumberViewController: UITableViewDelegate {
 extension SignUpPhoneNumberViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //        return self.arrDropDownDataSource.count
+//        return SignUpTerms.allCases.count
         return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as TermsCell
-        cell.label.text = "이용약관 동의(필수)"
+        let terms = SignUpTerms.allCases[indexPath.row]
+        cell.label.text = terms.title
+        cell.termsLabel.text = terms.content
         return cell
     }
     
