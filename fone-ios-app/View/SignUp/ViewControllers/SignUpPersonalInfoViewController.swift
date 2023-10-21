@@ -102,7 +102,9 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
         nicknameTextField.rx.controlEvent(.editingChanged)
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.checkNicknameAvailbleState(owner.nicknameTextField.text)
+                let formattedNickname = owner.viewModel.formatNickname(owner.nicknameTextField.text)
+                owner.nicknameTextField.text = formattedNickname
+                owner.viewModel.checkNicknameAvailbleState(formattedNickname)
             }.disposed(by: rx.disposeBag)
         
         birthTextField.rx.controlEvent(.editingChanged)
@@ -128,7 +130,7 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
             .bind { owner, _ in
                 owner.maleButton.isActivated = !owner.maleButton.isActivated
                 owner.femaleButton.isActivated = !owner.maleButton.isActivated
-                owner.viewModel.gender = "MALE" // FIXME: 정확한 문자열 확인
+                owner.viewModel.gender = .MAN
             }.disposed(by: rx.disposeBag)
         
         femaleButton.rx.tap
@@ -136,7 +138,7 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
             .bind { owner, _ in
                 owner.femaleButton.isActivated = !owner.femaleButton.isActivated
                 owner.maleButton.isActivated = !owner.femaleButton.isActivated
-                owner.viewModel.gender = "FEMALE" // FIXME: 정확한 문자열 확인
+                owner.viewModel.gender = .WOMAN
             }.disposed(by: rx.disposeBag)
         
         profileButton.rx.tap
@@ -161,18 +163,23 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
                     owner.duplicationCheckButton.setTitle("중복확인", for: .normal)
                     owner.duplicationCheckButton.isEnabled = false
                     owner.duplicatedWarningLabel.isHidden = true
+                    owner.nicknameTextField.borderWidth = 0
                 case .canCheck:
                     owner.duplicationCheckButton.setTitle("중복확인", for: .normal)
                     owner.duplicationCheckButton.isEnabled = true
                     owner.duplicatedWarningLabel.isHidden = true
+                    owner.nicknameTextField.borderWidth = 0
                 case .duplicated:
                     owner.duplicationCheckButton.setTitle("중복확인", for: .normal)
                     owner.duplicationCheckButton.isEnabled = false
                     owner.duplicatedWarningLabel.isHidden = false
+                    owner.nicknameTextField.borderWidth = 1
+                    owner.nicknameTextField.borderColor = .crimson_FF5841
                 case .available:
                     owner.duplicationCheckButton.setTitle("인증완료", for: .normal)
                     owner.duplicationCheckButton.isEnabled = false
                     owner.duplicatedWarningLabel.isHidden = true
+                    owner.nicknameTextField.borderWidth = 0
                 }
             }.disposed(by: self.disposeBag)
         

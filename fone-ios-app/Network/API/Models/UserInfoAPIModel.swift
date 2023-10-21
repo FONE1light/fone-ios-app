@@ -51,7 +51,7 @@ struct TokenModel: Codable {
 // MARK: - CheckNicknameDuplicationModel
 struct CheckNicknameDuplicationModel: Codable {
     let result: String
-    let data: NicknameInfo
+    let data: NicknameInfo?
     let message: String
     let errorCode: String?
 }
@@ -125,9 +125,9 @@ struct EmailSignUpInfo: Codable {
 
 // MARK: - EmailSignUpResponseModel
 struct EmailSignUpResponseModel: Codable {
-    let result: String
+    let result: String?
     let data: EmailSignUpData?
-    let message: String
+    let message: String?
     let errorCode: String?
 }
 

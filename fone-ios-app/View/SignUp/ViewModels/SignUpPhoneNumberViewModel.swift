@@ -108,7 +108,7 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
     }
     
     func signUp() {
-        // TODO: 구조 고려해서 채우기
+        // TODO: name 채우기
         let emailSignUpInfo = EmailSignUpInfo(
 //            name: signInInfo?.name ?? "",
             name: "<SIGNININFO.NAME>",
@@ -123,12 +123,12 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
             gender: signUpPersonalInfo?.gender ?? "",
             profileUrl: signUpPersonalInfo?.profileURL ?? "",
             
-            phoneNumber: phoneNumber ?? "",
+            phoneNumber: phoneNumber?.phoneNumberFormatted() ?? "",
             agreeToTermsOfServiceTermsOfUse: agreeToTermsOfServiceTermsOfUse,
             agreeToPersonalInformation: agreeToPersonalInformation,
             isReceiveMarketing: isReceiveMarketing,
-            token: "<ACCESSTOKEN?>", // accessToken?
-            identifier: "<USER.IDENTIFIER?>"// user.identifier
+            token: "",
+            identifier: ""// FIXME: 어디서 가져오는 identifier?
         )
         
         userInfoProvider.rx.request(.emailSignUp(emailSignUpInfo))
@@ -142,9 +142,10 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
                 if response.result == "SUCCESS" {
                     owner.moveToSignUpSuccess()
                 } else {
-                    response.message.toast(positionType: .withButton)
+                    response.message?.toast(positionType: .withButton)
                 }
             }, onError: { error in
+                print(error.localizedDescription)
                 "\(error)".toast(positionType: .withButton)
             }).disposed(by: disposeBag)
         
