@@ -10,10 +10,14 @@ import SnapKit
 
 class DefaultTextField: UITextField {
 
-    init(placeHolder: String? = nil) {
+    init(placeHolder: String? = nil, keyboardType: UIKeyboardType? = .default) {
         super.init(frame: .zero)
         self.setUI(placeHolder)
         self.setContraints()
+        
+        if let keyboardType = keyboardType {
+            self.keyboardType = keyboardType
+        }
     }
     
     required init?(coder: NSCoder) {

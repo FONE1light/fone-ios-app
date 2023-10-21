@@ -10,7 +10,7 @@ import Then
 
 class SignUpSuccessViewController: UIViewController, ViewModelBindableType {
 
-    var viewModel: SignUpViewModel!
+    var viewModel: SignUpSuccessViewModel!
     
     let checkView = UIView().then {
         $0.cornerRadius = 38
@@ -33,7 +33,7 @@ class SignUpSuccessViewController: UIViewController, ViewModelBindableType {
             .withUnretained(self)
             .bind { owner, _ in
             print("clicked")
-            owner.viewModel.checkNicknameDuplication("테스트닉네임")
+                // TODO: viewModel에서 login API
         }.disposed(by: rx.disposeBag)
     }
     
