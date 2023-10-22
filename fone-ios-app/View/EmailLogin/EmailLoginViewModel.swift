@@ -55,7 +55,8 @@ class EmailLoginViewModel: CommonViewModel {
     
     func moveToHome() {
         guard let coordinator = self.sceneCoordinator as? SceneCoordinator else { return }
+        
         let homeScene = Scene.home(coordinator)
-        self.sceneCoordinator.transition(to: homeScene, using: .root, animated: true)
+        coordinator.transition(to: homeScene, using: .root, animated: true)
     }
 }
