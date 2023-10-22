@@ -7,39 +7,63 @@
 
 import UIKit
 import SnapKit
+import RxCocoa
+import RxSwift
 
 class TermsCell: UITableViewCell {
 
     static let identifier = String(describing: TermsCell.self)
+    var disposeBag = DisposeBag()
     
-    let stackView = UIStackView().then {
+    /// 해당 약관에 동의했는지 아닌지
+    var isChecked = false {
+        didSet {
+            if isChecked {
+                checkBox.image = UIImage(named: "checkboxes_on")
+            } else {
+                checkBox.image = UIImage(named: "checkboxes_off")
+            }
+        }
+    }
+    
+    private let stackView = UIStackView().then {
         $0.axis = .vertical
     }
     
-    let visibleView = UIView()
+    private let visibleView = UIView()
     
-    let expandableView = UIView().then {
+    private let expandableView = UIView().then {
         $0.cornerRadius = 5
         $0.backgroundColor = .gray_EEEFEF
         $0.isHidden = true
     }
     
-    let scrollView = UIScrollView()
+    private let scrollView = UIScrollView()
     
-    let checkBox = UIImageView().then {
+    private let checkBox = UIImageView().then {
         $0.image = UIImage(named: "checkboxes_off")
     }
     
-    let label = UILabel().then {
+    private let checkBoxButton = UIButton()
+    var checkBoxButtonTap: ControlEvent<Void> {
+        checkBoxButton.rx.tap
+    }
+    
+    private let label = UILabel().then {
         $0.font = .font_r(16)
         $0.textColor = .gray_9E9E9E
     }
     
-    let arrowDown = UIImageView().then {
-        $0.image = UIImage(named: "arrow_down16")//?.withRenderingMode(.alwaysTemplate)
+    private let arrowDown = UIImageView().then {
+        $0.image = UIImage(named: "arrow_down16")
     }
     
-    let termsLabel = UILabel().then {
+    private let arrowDownButton = UIButton()
+    var arrowDownButtonTap: ControlEvent<Void> {
+        arrowDownButton.rx.tap
+    }
+    
+    private let termsLabel = UILabel().then {
         $0.numberOfLines = 0
         $0.font = .font_r(12)
         $0.textColor = .gray_9E9E9E
@@ -50,6 +74,38 @@ class TermsCell: UITableViewCell {
         
         self.selectionStyle = .none
         setupUI()
+        bindAction()
+    }
+    
+    // reload 했을 때 여러 번 바인딩 되지 않으려면 disposeBag 초기화 필요
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+    
+    func configure(
+        title: String?,
+        termsText: String?
+    ) {
+        label.text = title
+        termsLabel.text = termsText
+    }
+    
+    func switchHiddenState() {
+        expandableView.isHidden = !expandableView.isHidden
+    }
+    
+    private func switchCheckedState() {
+        isChecked = !isChecked
+    }
+    
+    private func bindAction() {
+        // TODO: button Tap 위치 확정 - 통일 혹은 분리(cell과 vc)
+        checkBoxButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.switchCheckedState()
+            }.disposed(by: rx.disposeBag)
     }
     
     private func setupUI() {
@@ -63,13 +119,17 @@ class TermsCell: UITableViewCell {
         }
         
         // visibleView
-        [checkBox, label, arrowDown]
+        [checkBox, label, arrowDown, checkBoxButton, arrowDownButton]
             .forEach { visibleView.addSubview($0) }
 
         checkBox.snp.makeConstraints {
             $0.top.bottom.equalToSuperview().inset(8).priority(.low)
             $0.leading.equalToSuperview()
             $0.size.equalTo(16)
+        }
+        
+        checkBoxButton.snp.makeConstraints {
+            $0.edges.equalTo(checkBox).inset(-2)
         }
         
         label.snp.makeConstraints {
@@ -80,6 +140,11 @@ class TermsCell: UITableViewCell {
         arrowDown.snp.makeConstraints {
             $0.centerY.equalTo(checkBox)
             $0.trailing.equalToSuperview()
+            $0.size.equalTo(16)
+        }
+        
+        arrowDownButton.snp.makeConstraints {
+            $0.edges.equalTo(arrowDown).inset(-2)
         }
         
         // expandableView
