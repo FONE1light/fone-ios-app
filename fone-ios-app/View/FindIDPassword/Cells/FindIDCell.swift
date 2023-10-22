@@ -15,6 +15,8 @@ class FindIDCell: UICollectionViewCell {
     @IBOutlet weak var authCodeTextField: UITextField!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var checkAuthCodeButton: UIButton!
+    @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak var goToLoginButton: UIButton!
     
     var viewModel: FindIDPasswordViewModel?
     var timer: Timer?
@@ -79,6 +81,15 @@ class FindIDCell: UICollectionViewCell {
                 owner.timer = nil
                 owner.validateAuthNumber()
             }).disposed(by: rx.disposeBag)
+        
+        goToLoginButton.rx.tap
+            .withUnretained(self)
+            .subscribe(onNext: { (owner, _) in
+                guard let sceneCoordinator = owner.viewModel?.sceneCoordinator else { return }
+                let loginViewModel = LoginViewModel(sceneCoordinator: sceneCoordinator)
+                let loginScene = Scene.login(loginViewModel)
+                sceneCoordinator.transition(to: loginScene, using: .root, animated: true)
+            }).disposed(by: rx.disposeBag)
     }
     
     func startTimer() {
@@ -108,17 +119,51 @@ class FindIDCell: UICollectionViewCell {
     /// 인증번호 유효성 확인
     func validateAuthNumber() {
         // TODO: 인증번호 확인 API, 결과 따라 분기
-        if authCodeTextField.text == "000000" {
-            timeLabel.text = ""
-            sendButton.setTitle("인증완료", for: .normal)
-            sendButton.setMediumButtonEnabled(isEnabled: false)
-            phoneNumberTextField.isUserInteractionEnabled = false
-            authCodeView.isHidden = true
-        } else {
-            ToastManager.show(
-                "올바른 인증번호를 입력해주세요.",
-                positionType: .withButton
-            )
+        let code = authCodeTextField.text ?? ""
+        let phoneNumber = phoneNumberTextField.text?.insertDash() ?? ""
+        
+        userInfoProvider.rx.request(.findID(code: code, phoneNumber: phoneNumber))
+            .mapObject(FindIDResponseModel.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, response in
+                if response.result == "SUCCESS" {
+                    if let data = response.data {
+                        owner.showFindIDResult(data: data)
+                    }
+                } else {
+                    ToastManager.show(
+                        "올바른 인증번호를 입력해주세요.",
+                        positionType: .withButton
+                    )
+                }
+            }, onError: { error in
+                print("\(error)")
+            }).disposed(by: rx.disposeBag)
+    }
+    
+    func showFindIDResult(data: FindIDResponseData) {
+        var resultString = ""
+        switch data.loginType {
+        case "PASSWORD": // FIXME: loginType enum으로 수정
+            resultString = "이메일은 \(data.email) 입니다."
+        case "KAKAO":
+            resultString = "이미 카카오톡 계정으로 가입한 회원입니다."
+        case "GOOGLE":
+            resultString = "이미 구글 계정으로 가입한 회원입니다."
+        case "APPLE":
+            resultString = "이미 애플 계정으로 가입한 회원입니다."
+        default:
+            resultString = ""
         }
+        
+        resultLabel.isHidden = false
+        resultLabel.text = resultString
+        sendButton.setTitle("인증완료", for: .normal)
+        sendButton.setMediumButtonEnabled(isEnabled: false)
+        phoneNumberTextField.isUserInteractionEnabled = false
+        authCodeView.isHidden = true
+        goToLoginButton.isHidden = false
+        goToLoginButton.setEnabled(isEnabled: true)
     }
 }
