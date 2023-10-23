@@ -53,6 +53,7 @@ extension Scene {
             
             DispatchQueue.main.async {
                 findIDPasswordVC.bind(viewModel: findIDPasswordViewModel)
+                findIDPasswordVC.findScreenCollectionView.reloadData()
             }
             
             return findIDPasswordVC

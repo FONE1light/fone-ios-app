@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -217,7 +217,9 @@
                 <outlet property="authCodeTextField" destination="7MD-tX-MwO" id="51W-fV-nOj"/>
                 <outlet property="authCodeView" destination="W0z-0n-Qt5" id="JLN-e1-eOl"/>
                 <outlet property="checkAuthCodeButton" destination="zzR-uj-7Vi" id="9zM-N0-D3f"/>
+                <outlet property="goToLoginButton" destination="zKQ-H2-n4r" id="slj-zJ-qsF"/>
                 <outlet property="phoneNumberTextField" destination="hEH-5s-cSF" id="WaH-ij-xEt"/>
+                <outlet property="resultLabel" destination="ABU-E4-6Kt" id="Q8F-ot-4YX"/>
                 <outlet property="sendButton" destination="sBO-49-bop" id="rmc-9G-tiT"/>
                 <outlet property="timeLabel" destination="knb-Ws-GfE" id="Mzv-2Q-rIj"/>
             </connections>

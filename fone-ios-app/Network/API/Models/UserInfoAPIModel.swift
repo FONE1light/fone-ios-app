@@ -96,6 +96,19 @@ struct SendSMSResponseModel: Codable {
     let errorCode: String?
 }
 
+// MARK: - FindIDResponseModel
+struct FindIDResponseModel: Codable {
+    let result: String
+    let data: FindIDResponseData?
+    let message: String
+    let errorCode: String?
+}
+
+// MARK: - FindIDResponseData
+struct FindIDResponseData: Codable {
+    let email, loginType: String
+}
+
 // MARK: - EmailSignUpInfo
 //struct EmailSignUpInfo: Codable {
 //    let agreeToPersonalInformation, agreeToTermsOfServiceTermsOfUse: Bool
