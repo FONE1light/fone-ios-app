@@ -17,6 +17,7 @@ enum UserInfoTarget {
     case reissueToken(tokenInfo: TokenInfo)
     case sendSMS(phoneNumber: String)
     case emailSignUp(EmailSignUpInfo)
+    case socialSignIn(accessToken: String, loginType: String)
 }
 
 extension UserInfoTarget: TargetType {
@@ -38,6 +39,8 @@ extension UserInfoTarget: TargetType {
             return "/api/v1/users/sms/send"
         case .emailSignUp:
             return "/api/v1/users/email/sign-up"
+        case .socialSignIn:
+            return "/api/v1/users/social/sign-in"
         }
     }
     
@@ -45,7 +48,7 @@ extension UserInfoTarget: TargetType {
         switch self {
         case .fetchMyPage, .checkNicknameDuplication:
             return .get
-        case .emailSignIn, .reissueToken, .sendSMS, .emailSignUp:
+        case .emailSignIn, .reissueToken, .sendSMS, .emailSignUp, .socialSignIn:
             return .post
         }
     }
@@ -63,6 +66,8 @@ extension UserInfoTarget: TargetType {
             return .requestParameters(parameters: ["phoneNumber": phoneNumber], encoding: JSONEncoding.default)
         case .emailSignUp(let emailSignUpInfo): // TODO: 확인 후 통일
             return .requestJSONEncodable(emailSignUpInfo)
+        case .socialSignIn(let accessToken, let loginType):
+            return .requestParameters(parameters: ["accessToken": accessToken, "loginType": loginType], encoding: JSONEncoding.default)
         default:
             return .requestPlain
         }
@@ -77,7 +82,7 @@ extension UserInfoTarget: TargetType {
         switch self {
         case .fetchMyPage:
             commonHeaders[Tokens.shared.accessToken.key] = Tokens.shared.accessToken.value // TODO: MOCK,
-        case .emailSignIn, .reissueToken, .sendSMS, .emailSignUp:
+        case .emailSignIn, .reissueToken, .sendSMS, .emailSignUp, .socialSignIn:
             commonHeaders["Content-Type"] = "application/json"
         default:
             break
