@@ -7,8 +7,13 @@
 
 import Foundation
 import RxSwift
+
 import KakaoSDKCommon
 import KakaoSDKUser
+
+import FirebaseCore
+import FirebaseAuth
+import GoogleSignIn
 
 enum SocialLoginType: String {
     case APPLE, GOOGLE, KAKAO
@@ -25,6 +30,8 @@ final class SocialLoginManager {
         let kakaoAppKey = "ee40509f29760cb723e4aa58c379f1da"
         KakaoSDK.initSDK(appKey: kakaoAppKey)
         
+        // MARK: GoogleLogin
+        FirebaseApp.configure()
     }
     
     func login(loginType: SocialLoginType) {
@@ -51,6 +58,26 @@ final class SocialLoginManager {
                     self.socialSignIn(accessToken: accessToken, loginType: SocialLoginType.KAKAO.rawValue)
                 }
             }
+        }
+    }
+    
+    func loginWithGoogle(presentingVC: UIViewController) {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        
+        // Start the sign in flow!
+        GIDSignIn.sharedInstance.signIn(withPresenting: presentingVC) { [unowned self] result, error in
+            guard error == nil else {
+                print(error as Any)
+                return
+            }
+            
+            guard let user = result?.user,
+                  let idToken = user.idToken?.tokenString else { return }
+            self.socialSignIn(accessToken: idToken, loginType: SocialLoginType.GOOGLE.rawValue)
         }
     }
     
