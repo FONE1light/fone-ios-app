@@ -106,6 +106,7 @@
 		AB2578A52AAF387F00328363 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2578A32AAF387F00328363 /* TabBarViewController.swift */; };
 		AB2578AA2AAF3C8F00328363 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2578A82AAF3C8F00328363 /* ChatViewController.swift */; };
 		AB2578AB2AAF3C8F00328363 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB2578A92AAF3C8F00328363 /* ChatViewController.xib */; };
+		AB3AE54D2ADBDA750048EDA2 /* SocialLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3AE54C2ADBDA750048EDA2 /* SocialLoginManager.swift */; };
 		AB3F07192AADAA9200E54A25 /* FindIDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3F07172AADAA9200E54A25 /* FindIDCell.swift */; };
 		AB3F071A2AADAA9200E54A25 /* FindIDCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB3F07182AADAA9200E54A25 /* FindIDCell.xib */; };
 		AB3F071D2AADADB700E54A25 /* FindPasswordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3F071B2AADADB700E54A25 /* FindPasswordCell.swift */; };
@@ -273,6 +274,7 @@
 		AB2578A32AAF387F00328363 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		AB2578A82AAF3C8F00328363 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		AB2578A92AAF3C8F00328363 /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
+		AB3AE54C2ADBDA750048EDA2 /* SocialLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginManager.swift; sourceTree = "<group>"; };
 		AB3F07172AADAA9200E54A25 /* FindIDCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIDCell.swift; sourceTree = "<group>"; };
 		AB3F07182AADAA9200E54A25 /* FindIDCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FindIDCell.xib; sourceTree = "<group>"; };
 		AB3F071B2AADADB700E54A25 /* FindPasswordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordCell.swift; sourceTree = "<group>"; };
@@ -797,6 +799,14 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		AB3AE54B2ADBDA510048EDA2 /* SocialLogin */ = {
+			isa = PBXGroup;
+			children = (
+				AB3AE54C2ADBDA750048EDA2 /* SocialLoginManager.swift */,
+			);
+			path = SocialLogin;
+			sourceTree = "<group>";
+		};
 		AB3F07162AADAA5D00E54A25 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -896,6 +906,7 @@
 		AB60024E2A7E42A6000CF1FD /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				AB3AE54B2ADBDA510048EDA2 /* SocialLogin */,
 				366F22AE2ADB645800FD00BD /* ViewControllers */,
 				36F50AA72A962C8D00991C9B /* Views */,
 				AB49A33B2A810CAA00748484 /* ViewModelBindableType.swift */,
@@ -1225,6 +1236,7 @@
 				AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */,
 				36AC7BD72AAE883500478030 /* UITableView+Extension.swift in Sources */,
 				362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */,
+				AB3AE54D2ADBDA750048EDA2 /* SocialLoginManager.swift in Sources */,
 				3628669A2A8E3E3700CD42BC /* UserInfoAPIModel.swift in Sources */,
 				ABAFA33B2A9F612900D50BAF /* QuestionInfoProvider.swift in Sources */,
 				36BCC7E42AA32B530060E35A /* SignUpSuccessViewController.swift in Sources */,
@@ -1405,6 +1417,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1435,6 +1448,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
