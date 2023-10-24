@@ -37,7 +37,7 @@ class LoginViewController: UIViewController, ViewModelBindableType {
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .subscribe(onNext: { _ in
-                
+                SocialLoginManager.shared.loginWithGoogle(presentingVC: self)
             })
             .disposed(by: rx.disposeBag)
         
