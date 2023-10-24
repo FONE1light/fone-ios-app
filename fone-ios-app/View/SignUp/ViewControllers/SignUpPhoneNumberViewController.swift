@@ -126,7 +126,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
             }.disposed(by: rx.disposeBag)
         
         // MARK: - ViewModel
-        viewModel.phoneNumberAvailbleState
+        viewModel.phoneNumberAvailableState
             .withUnretained(self)
             .bind { owner, state in
                 switch state {

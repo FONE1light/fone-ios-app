@@ -10,6 +10,7 @@
 		362419CF2AE319B1007D1AFB /* SignUpPersonalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362419CE2AE319B1007D1AFB /* SignUpPersonalInfoViewModel.swift */; };
 		362419D12AE319CF007D1AFB /* SignUpSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362419D02AE319CF007D1AFB /* SignUpSelectionViewModel.swift */; };
 		362419D32AE33158007D1AFB /* SignUpSuccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362419D22AE33158007D1AFB /* SignUpSuccessViewModel.swift */; };
+		362419D72AE7B6F7007D1AFB /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362419D62AE7B6F7007D1AFB /* UIAlertController+Extension.swift */; };
 		362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628667F2A8B688300CD42BC /* DefaultTextField.swift */; };
 		362866822A8B6B3600CD42BC /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362866812A8B6B3600CD42BC /* UILabel+Extension.swift */; };
 		3628668B2A8DF40F00CD42BC /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628668A2A8DF40F00CD42BC /* APIConfig.swift */; };
@@ -179,6 +180,7 @@
 		362419CE2AE319B1007D1AFB /* SignUpPersonalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPersonalInfoViewModel.swift; sourceTree = "<group>"; };
 		362419D02AE319CF007D1AFB /* SignUpSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSelectionViewModel.swift; sourceTree = "<group>"; };
 		362419D22AE33158007D1AFB /* SignUpSuccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSuccessViewModel.swift; sourceTree = "<group>"; };
+		362419D62AE7B6F7007D1AFB /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		3628667F2A8B688300CD42BC /* DefaultTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTextField.swift; sourceTree = "<group>"; };
 		362866812A8B6B3600CD42BC /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		3628668A2A8DF40F00CD42BC /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
@@ -487,6 +489,7 @@
 				367D9BB32AC11B4500DA6C96 /* UIImage+Extension.swift */,
 				367D9BFD2AD7583500DA6C96 /* UITabBar+Extension.swift */,
 				366F22AC2ADB5AF000FD00BD /* UIViewController+Extension.swift */,
+				362419D62AE7B6F7007D1AFB /* UIAlertController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1241,6 +1244,7 @@
 				ABAFA33B2A9F612900D50BAF /* QuestionInfoProvider.swift in Sources */,
 				36BCC7E42AA32B530060E35A /* SignUpSuccessViewController.swift in Sources */,
 				36B8FDE52AC0EDA20040AFB2 /* ScrapViewModel.swift in Sources */,
+				362419D72AE7B6F7007D1AFB /* UIAlertController+Extension.swift in Sources */,
 				AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */,
 				AB1CEABC2ABFD29C00E7E54F /* MainBannerCell.swift in Sources */,
 				367D9BD12AC3B98100DA6C96 /* CompetitionViewController.swift in Sources */,
