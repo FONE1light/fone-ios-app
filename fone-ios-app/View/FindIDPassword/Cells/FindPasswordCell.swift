@@ -84,7 +84,7 @@ class FindPasswordCell: UICollectionViewCell {
         
         checkAuthCodeButton.rx.tap
             .withUnretained(self)
-            .subscribe(onNext: { (owner, _) in
+            .subscribe(onNext: { owner, _ in
                 owner.timer?.invalidate()
                 owner.timer = nil
                 owner.validateAuthNumber()
@@ -92,14 +92,14 @@ class FindPasswordCell: UICollectionViewCell {
         
         passwordEyeButton.rx.tap
             .withUnretained(self)
-            .subscribe(onNext: { _ in
-                self.passwordEyeButton.eyeButtonTapped(textField: self.passwordTextField)
+            .subscribe(onNext: { owner, _ in
+                owner.passwordEyeButton.eyeButtonTapped(textField: owner.passwordTextField)
             }).disposed(by: rx.disposeBag)
         
         confirmPasswordEyeButton.rx.tap
             .withUnretained(self)
-            .subscribe(onNext: { _ in
-                self.confirmPasswordEyeButton.eyeButtonTapped(textField: self.confirmPasswordTextField)
+            .subscribe(onNext: { owner, _ in
+                owner.confirmPasswordEyeButton.eyeButtonTapped(textField: owner.confirmPasswordTextField)
             }).disposed(by: rx.disposeBag)
         
         confirmPasswordTextField.rx.text.orEmpty
@@ -113,8 +113,9 @@ class FindPasswordCell: UICollectionViewCell {
             }).disposed(by: rx.disposeBag)
         
         resetPasswordButton.rx.tap
-            .subscribe(onNext: {
-                self.resetPassword()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, _ in
+                owner.resetPassword()
             }).disposed(by: rx.disposeBag)
     }
     
