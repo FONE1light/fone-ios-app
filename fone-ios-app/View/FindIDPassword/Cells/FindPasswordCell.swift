@@ -194,12 +194,8 @@ class FindPasswordCell: UICollectionViewCell {
     }
     
     func showSuccessPopUp() {
-        let alert = UIAlertController.init(title: "", message: "비밀번호 변경이 완료되었습니다.", preferredStyle: .alert)
-        alert.view.tintColor = UIColor.gray_161616
-        let action = UIAlertAction(title: "확인", style: .default)
-        alert.addAction(action)
-        let sceneCoordinator = viewModel?.sceneCoordinator as? SceneCoordinator
-        let currentVC = sceneCoordinator?.currentVC
-        currentVC?.present(alert, animated: true)
+        let alert = UIAlertController.createOneButtonPopup(title: "비밀번호 변경이 완료되었습니다.")
+        guard let currentVC = (viewModel?.sceneCoordinator as? SceneCoordinator)?.currentVC else { return }
+        currentVC.present(alert, animated: true)
     }
 }
