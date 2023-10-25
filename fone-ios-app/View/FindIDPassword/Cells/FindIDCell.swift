@@ -118,7 +118,6 @@ class FindIDCell: UICollectionViewCell {
     
     /// 인증번호 유효성 확인
     func validateAuthNumber() {
-        // TODO: 인증번호 확인 API, 결과 따라 분기
         let code = authCodeTextField.text ?? ""
         let phoneNumber = phoneNumberTextField.text?.insertDash() ?? ""
         
