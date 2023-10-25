@@ -8,10 +8,28 @@
 import UIKit
 
 class CompetitionModule: UICollectionViewCell {
+    var competitionInfo: ModuleInfo?
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var errorView: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
+    func setModuelInfo(info: ModuleInfo?) {
+        titleLabel.text = info?.title ?? "인기 영화제"
+        self.competitionInfo = info
+        setModule()
+    }
+    
+    private func setModule() {
+        guard competitionInfo != nil else {
+            errorView.isHidden = false
+            collectionView.isHidden = true
+            return
+        }
+        collectionView.reloadData()
+    }
 }
