@@ -14,7 +14,7 @@ class SignUpSelectionViewModel: CommonViewModel {
     
     // 이전 화면에서 넘어온 데이터
     var signInInfo: EmailSignInInfo?
-    var socialSingUpInfo: (accessToken: String, loginType: String)? // FIXME: 회원가입에서 사용하기 좋은 형태로 구조 변경
+    var socialSingUpInfo: (accessToken: String, loginType: String, email: String)? // FIXME: 회원가입에서 사용하기 좋은 형태로 구조 변경
 }
 
 extension SignUpSelectionViewModel {

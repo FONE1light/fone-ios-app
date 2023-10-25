@@ -25,6 +25,7 @@ final class SocialLoginManager {
     static let shared: SocialLoginManager = SocialLoginManager()
     var disposeBag = DisposeBag()
     var sceneCoordinator: SceneCoordinatorType?
+    var email: String = ""
     
     func initailize(sceneCoordinator: SceneCoordinatorType) {
         self.sceneCoordinator = sceneCoordinator
@@ -46,6 +47,7 @@ final class SocialLoginManager {
                 else {
                     print("loginWithKakaoTalk() success.")
                     let accessToken = oauthToken?.accessToken ?? ""
+                    self.getKakaoUserEmail()
                     self.socialSignIn(accessToken: accessToken, loginType: SocialLoginType.KAKAO.rawValue)
                 }
             }
@@ -67,7 +69,9 @@ final class SocialLoginManager {
             }
             
             guard let user = result?.user,
-                  let idToken = user.idToken?.tokenString else { return }
+                  let idToken = user.idToken?.tokenString,
+                  let email = user.profile?.email else { return }
+            self.email = email
             self.socialSignIn(accessToken: idToken, loginType: SocialLoginType.GOOGLE.rawValue)
         }
     }
@@ -108,7 +112,7 @@ final class SocialLoginManager {
         guard let coordinator = self.sceneCoordinator as? SceneCoordinator else { return }
         
         let signUpSelectionViewModel = SignUpSelectionViewModel(sceneCoordinator: coordinator)
-        signUpSelectionViewModel.socialSingUpInfo = (accessToken, loginType)
+        signUpSelectionViewModel.socialSingUpInfo = (accessToken, loginType, email)
         
         let signUpScene = Scene.signUpSelection(signUpSelectionViewModel)
         coordinator.transition(to: signUpScene, using: .push, animated: true)
@@ -122,14 +126,28 @@ final class SocialLoginManager {
     }
 }
 
+// MARK: KakaoLogin
+extension SocialLoginManager {
+    /// 카카오 이메일 가져오기
+    private func getKakaoUserEmail() {
+        UserApi.shared.me() { (user, error) in
+            if let error = error {
+                print(error)
+            }
+            self.email = user?.kakaoAccount?.email ?? ""
+        }
+    }
+}
+
 // MARK: AppleLogin
 extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         //로그인 성공
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
-            if  let identityToken = appleIDCredential.identityToken,
+            if let identityToken = appleIDCredential.identityToken,
                 let identityTokenString = String(data: identityToken, encoding: .utf8) {
+                SocialLoginManager.shared.email = appleIDCredential.email ?? ""
                 SocialLoginManager.shared.socialSignIn(accessToken: identityTokenString, loginType: SocialLoginType.APPLE.rawValue)
             }
         default:
