@@ -14,6 +14,14 @@
 				<string>kakaoee40509f29760cb723e4aa58c379f1da</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.499416246374-p7en37f1mnskd7tml563qkbcsiger7tv</string>
+			</array>
+		</dict>
 	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
