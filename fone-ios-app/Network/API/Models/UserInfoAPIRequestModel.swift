@@ -7,10 +7,21 @@
 
 import Foundation
 
-// MARK: - SignInInfo. API 아닌 화면에서 사용하는 모델
+// MARK: - 로그인
+
+enum SignInType {
+    case email
+    case social
+}
+
+// API 아닌 화면에서 사용하는 모델
 struct SignInInfo {
+    var type: SignInType
     var name: String?
+    var email: String?
+    
     var emailSignInInfo: EmailSignInInfo?
+    var socialSignInfo: SocialSignInInfo?
 }
 
 // MARK: - EmailSignInInfo
@@ -19,9 +30,21 @@ struct EmailSignInInfo: Codable {
     let password: String
 }
 
+// MARK: - SocialSignInInfo
+struct SocialSignInInfo: Codable {
+    let accessToken: String
+    let loginType: String
+}
+
+// MARK: - 회원가입
+
+// FIXME: optional로 바꾸고 SocialSignUpInfo와 통합?
 // MARK: - EmailSignUpInfo
 struct EmailSignUpInfo: Codable {
-    let name, email, password: String
+    let name, password: String
+    let token: String
+    
+    let email: String
     
     let job: String
     let interests: [String]
@@ -34,7 +57,7 @@ struct EmailSignUpInfo: Codable {
     let agreeToPersonalInformation: Bool
     let isReceiveMarketing: Bool
     
-    let token, identifier: String
+    let identifier: String
 }
 
 struct SignUpSelectionInfo {
@@ -48,8 +71,32 @@ struct SignUpPersonalInfo {
 }
 
 struct SignUpPhoneNumberInfo {
-    var phoneNumber: String?
-    var agreeToTermsOfServiceTermsOfUse: Bool?
-    var agreeToPersonalInformation: Bool?
-    var isReceiveMarketing: Bool?
+    let phoneNumber: String?
+    let agreeToTermsOfServiceTermsOfUse: Bool?
+    let agreeToPersonalInformation: Bool?
+    let isReceiveMarketing: Bool?
 }
+
+// MARK: - SocialSignUpInfo
+struct SocialSignUpInfo: Codable {
+    let accessToken: String
+    let loginType: String
+    
+    let email: String
+    
+    let job: String
+    let interests: [String]
+    
+    let nickname, birthday, gender: String
+    let profileUrl: String
+    
+    let phoneNumber: String
+    let agreeToTermsOfServiceTermsOfUse: Bool
+    let agreeToPersonalInformation: Bool
+    let isReceiveMarketing: Bool
+    
+    let identifier: String
+}
+
+
+

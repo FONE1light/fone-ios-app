@@ -62,16 +62,16 @@ struct NicknameInfo: Codable {
     let isDuplicate: Bool
 }
 
-// MARK: - EmailSignInResponseModel
-struct EmailSignInResponseModel: Codable {
+// MARK: - SignInResponseModel (email, social login)
+struct SignInResponseModel: Codable {
     let result: String
-    let data: EmailSignInData?
+    let data: SignInData?
     let message: String
     let errorCode: String?
 }
 
-// MARK: - EmailSignInData
-struct EmailSignInData: Codable {
+// MARK: - SignInData (email, social login)
+struct SignInData: Codable {
     let user: User
     let token: TokenModel
 }
@@ -110,17 +110,17 @@ struct FindPasswordResponseModel: Codable {
     let errorCode: String?
 }
 
-// MARK: - EmailSignUpResponseModel
-struct EmailSignUpResponseModel: Codable {
+// MARK: - SignUpResponseModel (email, social login)
+struct SignUpResponseModel: Codable {
     let result: String?
-    let data: EmailSignUpData?
+    let data: SignUpData?
     let message: String?
     let errorCode: String?
 }
 
-// MARK: - EmailSignUpData
-struct EmailSignUpData: Codable {
-    let user: User
-    let token: TokenModel
+// MARK: - SignUpData (email, social login)
+struct SignUpData: Codable {
+    let user: User?
+    let token: TokenModel?
 }
 

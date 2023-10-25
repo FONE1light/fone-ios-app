@@ -32,7 +32,11 @@ class SignUpSuccessViewController: UIViewController, ViewModelBindableType {
         loginButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.signIn()
+                guard let type = owner.viewModel.signInInfo?.type else { return }
+                switch type {
+                case .email: owner.viewModel.emailSignIn()
+                case .social: owner.viewModel.socialSignIn()
+                }
         }.disposed(by: rx.disposeBag)
         
         let name = viewModel.signInInfo?.name ?? ""

@@ -25,6 +25,7 @@ final class SocialLoginManager {
     static let shared: SocialLoginManager = SocialLoginManager()
     var disposeBag = DisposeBag()
     var sceneCoordinator: SceneCoordinatorType?
+    var name: String?
     var email: String = ""
     
     func initailize(sceneCoordinator: SceneCoordinatorType) {
@@ -71,6 +72,7 @@ final class SocialLoginManager {
             guard let user = result?.user,
                   let idToken = user.idToken?.tokenString,
                   let email = user.profile?.email else { return }
+            self.name = user.profile?.name
             self.email = email
             self.socialSignIn(accessToken: idToken, loginType: SocialLoginType.GOOGLE.rawValue)
         }
@@ -90,7 +92,7 @@ final class SocialLoginManager {
     
     func socialSignIn(accessToken: String, loginType: String) {
         userInfoProvider.rx.request(.socialSignIn(accessToken: accessToken, loginType: loginType))
-            .mapObject(EmailSignInResponseModel.self)
+            .mapObject(SignInResponseModel.self)
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
@@ -112,7 +114,18 @@ final class SocialLoginManager {
         guard let coordinator = self.sceneCoordinator as? SceneCoordinator else { return }
         
         let signUpSelectionViewModel = SignUpSelectionViewModel(sceneCoordinator: coordinator)
-        signUpSelectionViewModel.socialSingUpInfo = (accessToken, loginType, email)
+        
+        let socialSignInInfo = SocialSignInInfo(
+            accessToken: accessToken,
+            loginType: loginType
+        )
+        
+        signUpSelectionViewModel.signInInfo = SignInInfo(
+            type: .social,
+            name: name,
+            email: email,
+            socialSignInfo: socialSignInInfo
+        )
         
         let signUpScene = Scene.signUpSelection(signUpSelectionViewModel)
         coordinator.transition(to: signUpScene, using: .push, animated: true)
