@@ -5,7 +5,7 @@
 //  Created by 여나경 on 2023/09/10.
 //
 
-import Foundation
+import UIKit
 import RxSwift
 import RxCocoa
 
@@ -41,7 +41,7 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
     var agreeToPersonalInformation = false
     var isReceiveMarketing = false
     
-    var phoneNumberAvailbleState = BehaviorRelay<PhoneNumberAvailableState>(value: .cannotCheck)
+    var phoneNumberAvailableState = BehaviorRelay<PhoneNumberAvailableState>(value: .cannotCheck)
     
     var authNumberState = BehaviorRelay<AuthNumberState>(value: .cannotCheck)
     var stringLeftSeconds = PublishRelay<String>()
@@ -53,9 +53,9 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
     func checkPhoneNumberState(_ phoneNumber: String?) {
         if let phoneNumber = phoneNumber,
            phoneNumber.count == 11 {
-            self.phoneNumberAvailbleState.accept(.canCheck)
+            self.phoneNumberAvailableState.accept(.canCheck)
         } else {
-            self.phoneNumberAvailbleState.accept(.cannotCheck)
+            self.phoneNumberAvailableState.accept(.cannotCheck)
         }
     }
     
@@ -89,22 +89,26 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
         
         startTimer()
         
-        phoneNumberAvailbleState.accept(.sent)
+        phoneNumberAvailableState.accept(.sent)
     }
     
     /// 인증번호 유효성 확인
     func validateAuthNumber(phoneNumber: String?, authNumber: String?) {
         // TODO: 인증번호 확인 API, 결과 따라 분기
-        if authNumber == "000000" {
-            phoneNumberAvailbleState.accept(.available)
-            authNumberState.accept(.authorized)
+        if authNumber == "000000" { // 성공
+            showAuthSuccessPopup()
             self.phoneNumber = phoneNumber
-        } else {
+        } else { // 실패
             ToastManager.show(
                 "올바른 인증번호를 입력해주세요.",
                 positionType: .withButton
             )
         }
+    }
+    
+    private func changeButtonState() {
+        phoneNumberAvailableState.accept(.available)
+        authNumberState.accept(.authorized)
     }
     
     func signUp() {
@@ -140,6 +144,7 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
                     owner.moveToSignUpSuccess()
                 } else {
                     response.message?.toast(positionType: .withButton)
+                    owner.showSignUpFailurePopup()
                 }
             }, onError: { error in
                 print(error.localizedDescription)
@@ -192,11 +197,30 @@ extension SignUpPhoneNumberViewModel {
     }
 }
 
+// MARK: - 화면 전환 관련
 extension SignUpPhoneNumberViewModel {
+    private func showAuthSuccessPopup() {
+        let alert = UIAlertController.createOneButtonPopup(title: "인증에 성공하였습니다") {
+            [weak self] _ in
+            guard let self = self else { return }
+            self.changeButtonState()
+        }
+        
+        guard let currentVC = (sceneCoordinator as? SceneCoordinator)?.currentVC else { return }
+        currentVC.present(alert, animated: true)
+    }
+
     private func moveToSignUpSuccess() {
         let successViewModel = SignUpSuccessViewModel(sceneCoordinator: self.sceneCoordinator)
         successViewModel.signInInfo = signInInfo
         let signUpScene = Scene.signUpSuccess(successViewModel)
         self.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
+    }
+    
+    private func showSignUpFailurePopup() {
+        let alert = UIAlertController.createOneButtonPopup(title: "회원가입에 실패하셨습니다.\n다시 시도해주세요")
+        
+        guard let currentVC = (sceneCoordinator as? SceneCoordinator)?.currentVC else { return }
+        currentVC.present(alert, animated: true)
     }
 }
