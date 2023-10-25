@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import NSObject_Rx
+import AuthenticationServices
 
 class LoginViewController: UIViewController, ViewModelBindableType {
     var viewModel: LoginViewModel!
@@ -45,7 +46,7 @@ class LoginViewController: UIViewController, ViewModelBindableType {
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .subscribe(onNext: { _ in
-                
+                SocialLoginManager.shared.loginWithApple(presentingVC: self)
             })
             .disposed(by: rx.disposeBag)
         

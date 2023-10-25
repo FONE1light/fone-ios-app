@@ -348,6 +348,7 @@
 		AB9885112AA476FF00282C07 /* Rx+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Extension.swift"; sourceTree = "<group>"; };
 		AB9DAAA72AB0A4F500B00016 /* HomeInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInfoProvider.swift; sourceTree = "<group>"; };
 		ABA47FF62A850AE600B64403 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		ABA597302AE7D94500E6F709 /* fone-ios-app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "fone-ios-app.entitlements"; sourceTree = "<group>"; };
 		ABAFA3382A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionInfoAPIModel.swift; sourceTree = "<group>"; };
 		ABAFA33A2A9F612900D50BAF /* QuestionInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionInfoProvider.swift; sourceTree = "<group>"; };
 		ABC1DBDB2AC0113800B9A6BF /* JobOpeningCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningCell.swift; sourceTree = "<group>"; };
@@ -929,6 +930,7 @@
 		AB6002342A7E375D000CF1FD /* fone-ios-app */ = {
 			isa = PBXGroup;
 			children = (
+				ABA597302AE7D94500E6F709 /* fone-ios-app.entitlements */,
 				3650F61C2A86710B0017645D /* Resources */,
 				AB60024E2A7E42A6000CF1FD /* Common */,
 				364482C92AB761DD00984507 /* Data */,
@@ -1499,6 +1501,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "fone-ios-app/fone-ios-app.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8T28CKNCH3;
@@ -1530,6 +1533,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "fone-ios-app/fone-ios-app.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8T28CKNCH3;
