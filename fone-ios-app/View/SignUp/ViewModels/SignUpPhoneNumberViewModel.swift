@@ -31,7 +31,7 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
     var disposeBag = DisposeBag()
     
     // 이전 화면에서 넘어온 데이터
-    var signInInfo: EmailSignInInfo?
+    var signInInfo: SignInInfo?
     var signUpSelectionInfo: SignUpSelectionInfo?
     var signUpPersonalInfo: SignUpPersonalInfo?
     
@@ -109,11 +109,11 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
     
     func signUp() {
         // TODO: name 채우기
+        let emailSignInInfo = signInInfo?.emailSignInInfo
         let emailSignUpInfo = EmailSignUpInfo(
-//            name: signInInfo?.name ?? "",
-            name: "<SIGNININFO.NAME>",
-            email: signInInfo?.email ?? "",
-            password: signInInfo?.password ?? "",
+            name: signInInfo?.name ?? "",
+            email: emailSignInInfo?.email ?? "",
+            password: emailSignInInfo?.password ?? "",
             
             job: signUpSelectionInfo?.job ?? "",
             interests: signUpSelectionInfo?.interests ?? [],
@@ -136,9 +136,6 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
-                print("received!")
-                print("response: \(response)")
-                // TODO: 화면 이동 로직 위치 재고 - VC or VM
                 if response.result == "SUCCESS" {
                     owner.moveToSignUpSuccess()
                 } else {
@@ -196,8 +193,9 @@ extension SignUpPhoneNumberViewModel {
 }
 
 extension SignUpPhoneNumberViewModel {
-    func moveToSignUpSuccess() {
+    private func moveToSignUpSuccess() {
         let successViewModel = SignUpSuccessViewModel(sceneCoordinator: self.sceneCoordinator)
+        successViewModel.signInInfo = signInInfo
         let signUpScene = Scene.signUpSuccess(successViewModel)
         self.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
     }

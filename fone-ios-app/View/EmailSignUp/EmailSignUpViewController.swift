@@ -12,6 +12,7 @@ class EmailSignUpViewController: UIViewController, ViewModelBindableType {
     var viewModel: EmailSignUpViewModel!
     
     @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var emailContainerView: UIView!
     @IBOutlet weak var emailErrorLabel: UILabel!
@@ -106,9 +107,14 @@ class EmailSignUpViewController: UIViewController, ViewModelBindableType {
         nextButton.rx.tap
             .withUnretained(self)
             .subscribe(onNext: { _ in
+                let name = self.nameTextField.text ?? ""
                 let email = self.emailTextField.text ?? ""
                 let password = self.passwordTextField.text ?? ""
-                self.viewModel.moveToSignUp(email: email, password: password)
+                self.viewModel.moveToSignUp(
+                    name: name,
+                    email: email,
+                    password: password
+                )
             }).disposed(by: rx.disposeBag)
     }
     
