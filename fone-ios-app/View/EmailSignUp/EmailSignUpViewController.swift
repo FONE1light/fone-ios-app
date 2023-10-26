@@ -11,7 +11,6 @@ class EmailSignUpViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: EmailSignUpViewModel!
     
-    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var emailContainerView: UIView!
@@ -34,12 +33,6 @@ class EmailSignUpViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
-//        closeButton.rx.tap
-//            .withUnretained(self)
-//            .subscribe(onNext: { _ in
-//                self.viewModel.sceneCoordinator.close(animated: true)
-//            }).disposed(by: rx.disposeBag)
-        
         emailTextField.rx.text.orEmpty
             .bind(to: viewModel.emailTextSubject)
             .disposed(by: rx.disposeBag)
@@ -68,7 +61,7 @@ class EmailSignUpViewController: UIViewController, ViewModelBindableType {
         passwordEyeButton.rx.tap
             .withUnretained(self)
             .subscribe(onNext: { _ in
-                self.eyeButtonTapped(textField: self.passwordTextField, eyeButton: self.passwordEyeButton)
+                self.passwordEyeButton.eyeButtonTapped(textField: self.passwordTextField)
             }).disposed(by: rx.disposeBag)
         
         viewModel.passwordIsValidSubject
@@ -86,7 +79,7 @@ class EmailSignUpViewController: UIViewController, ViewModelBindableType {
         confirmPasswordEyeButton.rx.tap
             .withUnretained(self)
             .subscribe(onNext: { _ in
-                self.eyeButtonTapped(textField: self.confirmPasswordTextField, eyeButton: self.confirmPasswordEyeButton)
+                self.confirmPasswordEyeButton.eyeButtonTapped(textField: self.confirmPasswordTextField)
             }).disposed(by: rx.disposeBag)
         
         viewModel.confirmPasswordIsValidSubject
@@ -121,13 +114,6 @@ class EmailSignUpViewController: UIViewController, ViewModelBindableType {
     private func setNavigationBar() {
         self.navigationItem.titleView = NavigationTitleView(title: "이메일 회원가입")
         self.navigationItem.rightBarButtonItem = NavigationRightBarButtonItem(type: .close, viewController: self)
-    }
-    
-    func eyeButtonTapped(textField: UITextField, eyeButton: UIButton) {
-        textField.isSecureTextEntry.toggle()
-        eyeButton.isSelected.toggle()
-        let eyeImage = eyeButton.isSelected ? UIImage(named: "show_filled") : UIImage(named: "hide_filled")
-        eyeButton.setImage(eyeImage, for: .normal)
     }
 }
 

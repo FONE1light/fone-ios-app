@@ -102,6 +102,14 @@ struct FindIDResponseData: Codable {
     let email, loginType: String
 }
 
+// MARK: - SendSMSResponseModel
+struct FindPasswordResponseModel: Codable {
+    let result: String
+    let data: [String: String]?
+    let message: String
+    let errorCode: String?
+}
+
 // MARK: - EmailSignUpResponseModel
 struct EmailSignUpResponseModel: Codable {
     let result: String?
