@@ -32,9 +32,11 @@ class SignUpSuccessViewController: UIViewController, ViewModelBindableType {
         loginButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-            print("clicked")
-                // TODO: viewModel에서 login API
+                owner.viewModel.signIn()
         }.disposed(by: rx.disposeBag)
+        
+        let name = viewModel.signInInfo?.name ?? ""
+        welcomeLabel.text = "\(name) 님!\n에프원 회원가입을 환영합니다."
     }
     
     override func viewDidLoad() {

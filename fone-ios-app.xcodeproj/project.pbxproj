@@ -10,6 +10,7 @@
 		362419CF2AE319B1007D1AFB /* SignUpPersonalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362419CE2AE319B1007D1AFB /* SignUpPersonalInfoViewModel.swift */; };
 		362419D12AE319CF007D1AFB /* SignUpSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362419D02AE319CF007D1AFB /* SignUpSelectionViewModel.swift */; };
 		362419D32AE33158007D1AFB /* SignUpSuccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362419D22AE33158007D1AFB /* SignUpSuccessViewModel.swift */; };
+		362419D92AE8A62C007D1AFB /* UserInfoAPIRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362419D82AE8A62C007D1AFB /* UserInfoAPIRequestModel.swift */; };
 		362419D72AE7B6F7007D1AFB /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362419D62AE7B6F7007D1AFB /* UIAlertController+Extension.swift */; };
 		362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628667F2A8B688300CD42BC /* DefaultTextField.swift */; };
 		362866822A8B6B3600CD42BC /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362866812A8B6B3600CD42BC /* UILabel+Extension.swift */; };
@@ -210,6 +211,7 @@
 		362419CE2AE319B1007D1AFB /* SignUpPersonalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPersonalInfoViewModel.swift; sourceTree = "<group>"; };
 		362419D02AE319CF007D1AFB /* SignUpSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSelectionViewModel.swift; sourceTree = "<group>"; };
 		362419D22AE33158007D1AFB /* SignUpSuccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSuccessViewModel.swift; sourceTree = "<group>"; };
+		362419D82AE8A62C007D1AFB /* UserInfoAPIRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoAPIRequestModel.swift; sourceTree = "<group>"; };
 		362419D62AE7B6F7007D1AFB /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		3628667F2A8B688300CD42BC /* DefaultTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTextField.swift; sourceTree = "<group>"; };
 		362866812A8B6B3600CD42BC /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -484,6 +486,7 @@
 				362866992A8E3E3700CD42BC /* UserInfoAPIModel.swift */,
 				ABAFA3382A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift */,
 				AB0F8E4B2AB324B7006D85F7 /* HomeInfoAPIModel.swift */,
+				362419D82AE8A62C007D1AFB /* UserInfoAPIRequestModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1326,6 +1329,7 @@
 				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,
 				367D9C032AD7636B00DA6C96 /* SavedProfilesContentViewModel.swift in Sources */,
 				364BCC702AB36A5900E14B25 /* Category.swift in Sources */,
+				362419D92AE8A62C007D1AFB /* UserInfoAPIRequestModel.swift in Sources */,
 				AB4546502AAB452D0019B27F /* UIButton+Extension.swift in Sources */,
 				ABAFA3392A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift in Sources */,
 				364BCC6C2AB3673900E14B25 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
