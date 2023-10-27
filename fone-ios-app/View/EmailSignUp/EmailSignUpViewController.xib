@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -30,6 +30,7 @@
                 <outlet property="emailContainerView" destination="eJz-7E-be2" id="kyJ-Ls-sGP"/>
                 <outlet property="emailErrorLabel" destination="THS-rq-43i" id="8EO-zQ-vBF"/>
                 <outlet property="emailTextField" destination="P4n-WZ-4ZX" id="sFU-Ch-Y0H"/>
+                <outlet property="nameTextField" destination="2SM-wY-NH4" id="UCH-OU-wr8"/>
                 <outlet property="nextButton" destination="YQY-q6-m7k" id="Q4m-Zz-4Qb"/>
                 <outlet property="passwordContainerView" destination="fyT-rt-ESj" id="9pW-VS-Z3U"/>
                 <outlet property="passwordErrorLabel" destination="Oe5-Wu-aLL" id="QKc-hk-L4L"/>
