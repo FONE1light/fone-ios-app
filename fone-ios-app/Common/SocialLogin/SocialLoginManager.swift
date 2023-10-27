@@ -15,6 +15,8 @@ import FirebaseCore
 import FirebaseAuth
 import GoogleSignIn
 
+import AuthenticationServices
+
 enum SocialLoginType: String {
     case APPLE, GOOGLE, KAKAO
 }
@@ -23,6 +25,7 @@ final class SocialLoginManager {
     static let shared: SocialLoginManager = SocialLoginManager()
     var disposeBag = DisposeBag()
     var sceneCoordinator: SceneCoordinatorType?
+    var email: String = ""
     
     func initailize(sceneCoordinator: SceneCoordinatorType) {
         self.sceneCoordinator = sceneCoordinator
@@ -32,17 +35,6 @@ final class SocialLoginManager {
         
         // MARK: GoogleLogin
         FirebaseApp.configure()
-    }
-    
-    func login(loginType: SocialLoginType) {
-        switch loginType {
-        case .KAKAO:
-            loginWithKakaoTalk()
-        case .GOOGLE:
-            break
-        case .APPLE:
-            break
-        }
     }
     
     func loginWithKakaoTalk() {
@@ -55,6 +47,7 @@ final class SocialLoginManager {
                 else {
                     print("loginWithKakaoTalk() success.")
                     let accessToken = oauthToken?.accessToken ?? ""
+                    self.getKakaoUserEmail()
                     self.socialSignIn(accessToken: accessToken, loginType: SocialLoginType.KAKAO.rawValue)
                 }
             }
@@ -76,9 +69,23 @@ final class SocialLoginManager {
             }
             
             guard let user = result?.user,
-                  let idToken = user.idToken?.tokenString else { return }
+                  let idToken = user.idToken?.tokenString,
+                  let email = user.profile?.email else { return }
+            self.email = email
             self.socialSignIn(accessToken: idToken, loginType: SocialLoginType.GOOGLE.rawValue)
         }
+    }
+    
+    func loginWithApple(presentingVC: UIViewController) {
+        guard let presentingVC = presentingVC as? ASAuthorizationControllerDelegate else { return }
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email] //유저로 부터 알 수 있는 정보들(name, email)
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = presentingVC
+        authorizationController.presentationContextProvider = presentingVC as? ASAuthorizationControllerPresentationContextProviding
+        authorizationController.performRequests()
     }
     
     func socialSignIn(accessToken: String, loginType: String) {
@@ -105,7 +112,7 @@ final class SocialLoginManager {
         guard let coordinator = self.sceneCoordinator as? SceneCoordinator else { return }
         
         let signUpSelectionViewModel = SignUpSelectionViewModel(sceneCoordinator: coordinator)
-        signUpSelectionViewModel.socialSingUpInfo = (accessToken, loginType)
+        signUpSelectionViewModel.socialSingUpInfo = (accessToken, loginType, email)
         
         let signUpScene = Scene.signUpSelection(signUpSelectionViewModel)
         coordinator.transition(to: signUpScene, using: .push, animated: true)
@@ -116,5 +123,40 @@ final class SocialLoginManager {
         
         let homeScene = Scene.home(coordinator)
         coordinator.transition(to: homeScene, using: .root, animated: true)
+    }
+}
+
+// MARK: KakaoLogin
+extension SocialLoginManager {
+    /// 카카오 이메일 가져오기
+    private func getKakaoUserEmail() {
+        UserApi.shared.me() { (user, error) in
+            if let error = error {
+                print(error)
+            }
+            self.email = user?.kakaoAccount?.email ?? ""
+        }
+    }
+}
+
+// MARK: AppleLogin
+extension LoginViewController: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        //로그인 성공
+        switch authorization.credential {
+        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            if let identityToken = appleIDCredential.identityToken,
+                let identityTokenString = String(data: identityToken, encoding: .utf8) {
+                SocialLoginManager.shared.email = appleIDCredential.email ?? ""
+                SocialLoginManager.shared.socialSignIn(accessToken: identityTokenString, loginType: SocialLoginType.APPLE.rawValue)
+            }
+        default:
+            break
+        }
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        // 로그인 실패(유저의 취소도 포함)
+        print("login failed - \(error.localizedDescription)")
     }
 }
