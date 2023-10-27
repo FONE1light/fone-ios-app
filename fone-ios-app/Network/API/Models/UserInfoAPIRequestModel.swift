@@ -18,6 +18,7 @@ enum SignInType {
 struct SignInInfo {
     var type: SignInType
     var name: String?
+    /// 소셜로그인 일 때 사용
     var email: String?
     
     var emailSignInInfo: EmailSignInInfo?

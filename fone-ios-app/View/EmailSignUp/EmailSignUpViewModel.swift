@@ -43,6 +43,7 @@ class EmailSignUpViewModel: CommonViewModel {
         let signInInfo = SignInInfo(
             type: .email,
             name: name,
+            email: email,
             emailSignInInfo: emailSignInInfo
         )
         signUpSelectionViewModel.signInInfo = signInInfo
