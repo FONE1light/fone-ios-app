@@ -79,6 +79,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         $0.showsVerticalScrollIndicator = false
         $0.separatorStyle = .none
         $0.dataSource = self
+        $0.isScrollEnabled = false
         $0.register(with: TermsCell.self)
     }
     
