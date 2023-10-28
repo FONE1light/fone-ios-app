@@ -175,7 +175,7 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
             agreeToTermsOfServiceTermsOfUse: agreeToTermsOfServiceTermsOfUse,
             agreeToPersonalInformation: agreeToPersonalInformation,
             isReceiveMarketing: isReceiveMarketing,
-            identifier: ""// FIXME: 어디서 가져오는 identifier?
+            identifier: signInInfo?.identifier ?? ""
         )
         
         userInfoProvider.rx.request(.socialSignUp(socialSignUpInfo))

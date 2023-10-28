@@ -15,11 +15,14 @@ enum SignInType {
 }
 
 // API 아닌 화면에서 사용하는 모델
+// 로그인 API의 response에서 받아올 데이터의 모음
 struct SignInInfo {
     var type: SignInType
     var name: String?
     /// 소셜로그인 일 때 사용
     var email: String?
+    // AppleID 로그인 시 사용하는 user identifier
+    var identifier: String?
     
     var emailSignInInfo: EmailSignInInfo?
     var socialSignInfo: SocialSignInInfo?

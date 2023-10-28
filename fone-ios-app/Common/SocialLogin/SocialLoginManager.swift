@@ -26,6 +26,7 @@ final class SocialLoginManager {
     var disposeBag = DisposeBag()
     var sceneCoordinator: SceneCoordinatorType?
     var name: String?
+    var identifier: String?
     var email: String = ""
     
     func initailize(sceneCoordinator: SceneCoordinatorType) {
@@ -129,6 +130,7 @@ final class SocialLoginManager {
             type: .social,
             name: name,
             email: email,
+            identifier: identifier,
             socialSignInfo: socialSignInInfo
         )
         
@@ -175,6 +177,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 let identityTokenString = String(data: identityToken, encoding: .utf8) {
                 SocialLoginManager.shared.email = appleIDCredential.email ?? ""
                 SocialLoginManager.shared.name = appleIDCredential.fullName?.toString()
+                SocialLoginManager.shared.identifier = appleIDCredential.user
                 SocialLoginManager.shared.socialSignIn(accessToken: identityTokenString, loginType: SocialLoginType.APPLE.rawValue)
             }
         default:
