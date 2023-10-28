@@ -48,7 +48,7 @@ final class SocialLoginManager {
                 else {
                     print("loginWithKakaoTalk() success.")
                     let accessToken = oauthToken?.accessToken ?? ""
-                    self.getKakaoUserEmail()
+                    self.getKakaoUserEmailAndName()
                     self.socialSignIn(accessToken: accessToken, loginType: SocialLoginType.KAKAO.rawValue)
                 }
             }
@@ -111,6 +111,11 @@ final class SocialLoginManager {
     }
     
     func moveToSocialSignUp(accessToken: String, loginType: String) {
+        guard !email.isEmpty else {
+            "이메일을 불러오지 못했습니다.".toast()
+            return
+        }
+        
         guard let coordinator = self.sceneCoordinator as? SceneCoordinator else { return }
         
         let signUpSelectionViewModel = SignUpSelectionViewModel(sceneCoordinator: coordinator)
@@ -141,13 +146,14 @@ final class SocialLoginManager {
 
 // MARK: KakaoLogin
 extension SocialLoginManager {
-    /// 카카오 이메일 가져오기
-    private func getKakaoUserEmail() {
+    /// 카카오 이메일, 이름 가져오기
+    private func getKakaoUserEmailAndName() {
         UserApi.shared.me() { (user, error) in
             if let error = error {
                 print(error)
             }
             self.email = user?.kakaoAccount?.email ?? ""
+            self.name = user?.kakaoAccount?.name ?? user?.kakaoAccount?.profile?.nickname
         }
     }
 }
@@ -161,6 +167,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             if let identityToken = appleIDCredential.identityToken,
                 let identityTokenString = String(data: identityToken, encoding: .utf8) {
                 SocialLoginManager.shared.email = appleIDCredential.email ?? ""
+                SocialLoginManager.shared.name = appleIDCredential.fullName?.toString()
                 SocialLoginManager.shared.socialSignIn(accessToken: identityTokenString, loginType: SocialLoginType.APPLE.rawValue)
             }
         default:
@@ -171,5 +178,14 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // 로그인 실패(유저의 취소도 포함)
         print("login failed - \(error.localizedDescription)")
+    }
+}
+
+extension PersonNameComponents {
+    func toString() -> String {
+        let familyName = self.familyName ?? ""
+        let middleName = self.middleName ?? ""
+        let givenName = self.givenName ?? ""
+        return familyName + middleName + givenName
     }
 }
