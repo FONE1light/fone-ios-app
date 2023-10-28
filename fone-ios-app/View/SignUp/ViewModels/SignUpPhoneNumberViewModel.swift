@@ -112,7 +112,6 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
     }
     
     func signUp() {
-        // TODO: name 채우기
         let emailSignInInfo = signInInfo?.emailSignInInfo
         let emailSignUpInfo = EmailSignUpInfo(
             name: signInInfo?.name ?? "",
