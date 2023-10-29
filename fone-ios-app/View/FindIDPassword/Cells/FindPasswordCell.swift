@@ -11,13 +11,16 @@ import RxSwift
 class FindPasswordCell: UICollectionViewCell {
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var authCodeView: UIView!
     @IBOutlet weak var authCodeTextField: UITextField!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var checkAuthCodeButton: UIButton!
     @IBOutlet weak var resetPasswordView: UIView!
+    @IBOutlet weak var passwordContainerView: UIView!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordEyeButton: UIButton!
+    @IBOutlet weak var passwordErrorLabel: UILabel!
     @IBOutlet weak var confirmPasswordContainerView: UIView!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var confirmPasswordEyeButton: UIButton!
@@ -90,6 +93,17 @@ class FindPasswordCell: UICollectionViewCell {
                 owner.validateAuthNumber()
             }).disposed(by: rx.disposeBag)
         
+        passwordTextField.rx.text.orEmpty
+            .filter { $0 != "" }
+            .map { $0.isValidPassword() }
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, isValid in
+                owner.passwordErrorLabel.isHidden = isValid
+                owner.passwordContainerView.setTextFieldErrorBorder(showError: !isValid)
+                owner.viewModel?.passwordIsValidSubject.onNext(isValid)
+            }).disposed(by: rx.disposeBag)
+        
         passwordEyeButton.rx.tap
             .withUnretained(self)
             .subscribe(onNext: { owner, _ in
@@ -109,7 +123,14 @@ class FindPasswordCell: UICollectionViewCell {
             .subscribe(onNext: { owner, isSame in
                 owner.errorLabel.isHidden = isSame
                 owner.confirmPasswordContainerView.setTextFieldErrorBorder(showError: !isSame)
-                owner.resetPasswordButton.setEnabled(isEnabled: isSame)
+                owner.viewModel?.confirmPasswordIsValidSubjext.onNext(isSame)
+            }).disposed(by: rx.disposeBag)
+        
+        viewModel.resetButtonEnableSubject
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, isEnabled in
+                owner.resetPasswordButton.setEnabled(isEnabled: isEnabled)
             }).disposed(by: rx.disposeBag)
         
         resetPasswordButton.rx.tap

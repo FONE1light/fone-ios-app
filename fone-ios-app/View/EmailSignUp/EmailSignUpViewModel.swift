@@ -40,7 +40,12 @@ class EmailSignUpViewModel: CommonViewModel {
     func moveToSignUp(name: String, email: String, password: String) {
         let signUpSelectionViewModel = SignUpSelectionViewModel(sceneCoordinator: self.sceneCoordinator)
         let emailSignInInfo = EmailSignInInfo(email: email, password: password)
-        let signInInfo = SignInInfo(name: name, emailSignInInfo: emailSignInInfo)
+        let signInInfo = SignInInfo(
+            type: .email,
+            name: name,
+            email: email,
+            emailSignInInfo: emailSignInInfo
+        )
         signUpSelectionViewModel.signInInfo = signInInfo
         
         let signUpScene = Scene.signUpSelection(signUpSelectionViewModel)

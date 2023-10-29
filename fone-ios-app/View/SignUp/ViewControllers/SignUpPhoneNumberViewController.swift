@@ -106,7 +106,11 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         button.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.signUp()
+                guard let type = owner.viewModel.signInInfo?.type else { return }
+                switch type {
+                case .email: owner.viewModel.emailSignUp()
+                case .social: owner.viewModel.socialSignUp()
+                }
             }.disposed(by: rx.disposeBag)
         
         // MARK: - TextFields

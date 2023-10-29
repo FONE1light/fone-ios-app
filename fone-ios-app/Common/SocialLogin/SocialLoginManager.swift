@@ -25,6 +25,8 @@ final class SocialLoginManager {
     static let shared: SocialLoginManager = SocialLoginManager()
     var disposeBag = DisposeBag()
     var sceneCoordinator: SceneCoordinatorType?
+    var name: String?
+    var identifier: String?
     var email: String = ""
     
     func initailize(sceneCoordinator: SceneCoordinatorType) {
@@ -47,7 +49,7 @@ final class SocialLoginManager {
                 else {
                     print("loginWithKakaoTalk() success.")
                     let accessToken = oauthToken?.accessToken ?? ""
-                    self.getKakaoUserEmail()
+                    self.getKakaoUserEmailAndName()
                     self.socialSignIn(accessToken: accessToken, loginType: SocialLoginType.KAKAO.rawValue)
                 }
             }
@@ -71,6 +73,7 @@ final class SocialLoginManager {
             guard let user = result?.user,
                   let idToken = user.idToken?.tokenString,
                   let email = user.profile?.email else { return }
+            self.name = user.profile?.name
             self.email = email
             self.socialSignIn(accessToken: idToken, loginType: SocialLoginType.GOOGLE.rawValue)
         }
@@ -90,7 +93,7 @@ final class SocialLoginManager {
     
     func socialSignIn(accessToken: String, loginType: String) {
         userInfoProvider.rx.request(.socialSignIn(accessToken: accessToken, loginType: loginType))
-            .mapObject(EmailSignInResponseModel.self)
+            .mapObject(SignInResponseModel.self)
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
@@ -109,10 +112,27 @@ final class SocialLoginManager {
     }
     
     func moveToSocialSignUp(accessToken: String, loginType: String) {
+        guard !email.isEmpty else {
+            showFailToLoadEmailPopup()
+            return
+        }
+        
         guard let coordinator = self.sceneCoordinator as? SceneCoordinator else { return }
         
         let signUpSelectionViewModel = SignUpSelectionViewModel(sceneCoordinator: coordinator)
-        signUpSelectionViewModel.socialSingUpInfo = (accessToken, loginType, email)
+        
+        let socialSignInInfo = SocialSignInInfo(
+            accessToken: accessToken,
+            loginType: loginType
+        )
+        
+        signUpSelectionViewModel.signInInfo = SignInInfo(
+            type: .social,
+            name: name,
+            email: email,
+            identifier: identifier,
+            socialSignInfo: socialSignInInfo
+        )
         
         let signUpScene = Scene.signUpSelection(signUpSelectionViewModel)
         coordinator.transition(to: signUpScene, using: .push, animated: true)
@@ -124,17 +144,25 @@ final class SocialLoginManager {
         let homeScene = Scene.home(coordinator)
         coordinator.transition(to: homeScene, using: .root, animated: true)
     }
+    
+    func showFailToLoadEmailPopup() {
+        let message = "이메일을 불러오지 못했습니다.\n\nApple로 로그인 시도 중이라면 다음과 같이 실행 후 다시 시도해주세요.\n\n* 설정 > Apple ID > 로그인 및 보안 > Apple로 로그인 > FONE > Apple ID 사용 중단"
+        let alert = UIAlertController.createOneButtonPopup(title: message)
+        guard let currentVC = (sceneCoordinator as? SceneCoordinator)?.currentVC else { return }
+        currentVC.present(alert, animated: true)
+    }
 }
 
 // MARK: KakaoLogin
 extension SocialLoginManager {
-    /// 카카오 이메일 가져오기
-    private func getKakaoUserEmail() {
+    /// 카카오 이메일, 이름 가져오기
+    private func getKakaoUserEmailAndName() {
         UserApi.shared.me() { (user, error) in
             if let error = error {
                 print(error)
             }
             self.email = user?.kakaoAccount?.email ?? ""
+            self.name = user?.kakaoAccount?.name ?? user?.kakaoAccount?.profile?.nickname
         }
     }
 }
@@ -148,6 +176,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             if let identityToken = appleIDCredential.identityToken,
                 let identityTokenString = String(data: identityToken, encoding: .utf8) {
                 SocialLoginManager.shared.email = appleIDCredential.email ?? ""
+                SocialLoginManager.shared.name = appleIDCredential.fullName?.toString()
+                SocialLoginManager.shared.identifier = appleIDCredential.user
                 SocialLoginManager.shared.socialSignIn(accessToken: identityTokenString, loginType: SocialLoginType.APPLE.rawValue)
             }
         default:
@@ -158,5 +188,14 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // 로그인 실패(유저의 취소도 포함)
         print("login failed - \(error.localizedDescription)")
+    }
+}
+
+extension PersonNameComponents {
+    func toString() -> String {
+        let familyName = self.familyName ?? ""
+        let middleName = self.middleName ?? ""
+        let givenName = self.givenName ?? ""
+        return familyName + middleName + givenName
     }
 }

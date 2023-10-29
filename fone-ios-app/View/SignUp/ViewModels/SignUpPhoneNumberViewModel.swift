@@ -111,12 +111,15 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
         authNumberState.accept(.authorized)
     }
     
-    func signUp() {
+    func emailSignUp() {
         let emailSignInInfo = signInInfo?.emailSignInInfo
+        
         let emailSignUpInfo = EmailSignUpInfo(
             name: signInInfo?.name ?? "",
-            email: emailSignInInfo?.email ?? "",
             password: emailSignInInfo?.password ?? "",
+            token: "",
+            
+            email: emailSignInInfo?.email ?? "",
             
             job: signUpSelectionInfo?.job ?? "",
             interests: signUpSelectionInfo?.interests ?? [],
@@ -130,12 +133,11 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
             agreeToTermsOfServiceTermsOfUse: agreeToTermsOfServiceTermsOfUse,
             agreeToPersonalInformation: agreeToPersonalInformation,
             isReceiveMarketing: isReceiveMarketing,
-            token: "",
-            identifier: ""// FIXME: 어디서 가져오는 identifier?
+            identifier: ""
         )
         
         userInfoProvider.rx.request(.emailSignUp(emailSignUpInfo))
-            .mapObject(EmailSignUpResponseModel.self)
+            .mapObject(SignUpResponseModel.self)
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
@@ -151,6 +153,49 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
             }).disposed(by: disposeBag)
         
     }
+    
+    func socialSignUp() {
+        guard let socialSignInInfo = signInInfo?.socialSignInfo else { return }
+        
+        let socialSignUpInfo = SocialSignUpInfo(
+            accessToken: socialSignInInfo.accessToken,
+            loginType: socialSignInInfo.loginType,
+            
+            email: signInInfo?.email ?? "",
+            
+            job: signUpSelectionInfo?.job ?? "",
+            interests: signUpSelectionInfo?.interests ?? [],
+            
+            nickname: signUpPersonalInfo?.nickname ?? "",
+            birthday: signUpPersonalInfo?.birthday ?? "",
+            gender: signUpPersonalInfo?.gender ?? "",
+            profileUrl: signUpPersonalInfo?.profileURL ?? "",
+            
+            phoneNumber: phoneNumber?.phoneNumberFormatted() ?? "",
+            agreeToTermsOfServiceTermsOfUse: agreeToTermsOfServiceTermsOfUse,
+            agreeToPersonalInformation: agreeToPersonalInformation,
+            isReceiveMarketing: isReceiveMarketing,
+            identifier: signInInfo?.identifier ?? ""
+        )
+        
+        userInfoProvider.rx.request(.socialSignUp(socialSignUpInfo))
+            .mapObject(SignUpResponseModel.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, response in
+                if response.result == "SUCCESS" {
+                    owner.moveToSignUpSuccess()
+                } else {
+                    response.message?.toast(positionType: .withButton)
+                    owner.showSignUpFailurePopup()
+                }
+            }, onError: { error in
+                print(error.localizedDescription)
+                "\(error)".toast(positionType: .withButton)
+            }).disposed(by: disposeBag)
+        
+    }
+    
 }
 
 extension SignUpPhoneNumberViewModel {
