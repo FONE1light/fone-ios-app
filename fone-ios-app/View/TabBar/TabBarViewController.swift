@@ -26,7 +26,7 @@ enum Tabs: Int, CaseIterable {
     var image: UIImage {
         switch self {
         case .home:
-            return UIImage(named: "home_selected") ?? UIImage()
+            return UIImage(named: "home_unselected") ?? UIImage()
         case .chat:
             return UIImage(named: "chat_unselected") ?? UIImage()
         case .myPage:
