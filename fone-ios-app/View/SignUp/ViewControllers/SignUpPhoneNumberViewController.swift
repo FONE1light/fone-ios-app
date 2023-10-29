@@ -79,6 +79,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         $0.showsVerticalScrollIndicator = false
         $0.separatorStyle = .none
         $0.dataSource = self
+        $0.isScrollEnabled = false
         $0.register(with: TermsCell.self)
     }
     
@@ -332,8 +333,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
 extension SignUpPhoneNumberViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return SignUpTerms.allCases.count
-        return 2
+        return SignUpTerms.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -356,14 +356,22 @@ extension SignUpPhoneNumberViewController: UITableViewDataSource {
                 .bind { owner, _ in
                     owner.viewModel.switchAgreeToPersonalInformation()
                 }.disposed(by: cell.disposeBag)
+            
+        case 2:
+            cell.checkBoxButtonTap
+                .withUnretained(self)
+                .bind { owner, _ in
+                    owner.viewModel.switchIsReceiveMarketing()
+                }.disposed(by: cell.disposeBag)
         default: break
         }
         
         cell.arrowDownButtonTap
             .withUnretained(self)
             .bind { owner, _ in
-                cell.switchHiddenState()
-                owner.tableView.reloadData()
+                owner.tableView.performBatchUpdates {
+                    cell.switchHiddenState()
+                }
             }.disposed(by: cell.disposeBag)
         
         return cell
