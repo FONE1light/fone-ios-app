@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,6 +11,9 @@
     <customFonts key="customFonts">
         <array key="Pretendard-Bold.ttf">
             <string>Pretendard-Bold</string>
+        </array>
+        <array key="Pretendard-Regular.ttf">
+            <string>Pretendard-Regular</string>
         </array>
     </customFonts>
     <objects>
@@ -27,7 +30,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="259"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="인기 공모전" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yqB-rT-lEN">
-                                <rect key="frame" x="16" y="0.0" width="73.666666666666671" height="19.333333333333332"/>
+                                <rect key="frame" x="16" y="0.0" width="73" height="19.333333333333332"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -51,6 +54,47 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                             </collectionView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kD1-9T-xzD">
+                                <rect key="frame" x="16" y="31.333333333333329" width="343" height="165"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="service-image2" translatesAutoresizingMaskIntoConstraints="NO" id="Tku-6V-LGo">
+                                        <rect key="frame" x="155.66666666666666" y="36" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="Dmo-Wf-IUL"/>
+                                            <constraint firstAttribute="width" constant="32" id="jAV-Re-qrd"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="불러오기에 실패했습니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pB-ZS-WVJ">
+                                        <rect key="frame" x="93.666666666666686" y="69" width="156" height="20"/>
+                                        <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="16"/>
+                                        <color key="textColor" red="0.21176470588235294" green="0.17254901960784313" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFy-ga-lV1">
+                                        <rect key="frame" x="36.333333333333343" y="94" width="270.33333333333326" height="28.666666666666671"/>
+                                        <string key="text">시스템 장애로 인하여 필요한 정보를 받아오지 못했습니다.
+문제가 계속되면 에프원에 문의해주세요.</string>
+                                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                        <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="lFy-ga-lV1" firstAttribute="top" secondItem="9pB-ZS-WVJ" secondAttribute="bottom" constant="5" id="60s-7w-iYh"/>
+                                    <constraint firstItem="Tku-6V-LGo" firstAttribute="centerX" secondItem="kD1-9T-xzD" secondAttribute="centerX" id="cXB-lU-rlY"/>
+                                    <constraint firstItem="9pB-ZS-WVJ" firstAttribute="centerX" secondItem="kD1-9T-xzD" secondAttribute="centerX" id="j8a-NH-RK5"/>
+                                    <constraint firstItem="Tku-6V-LGo" firstAttribute="top" secondItem="kD1-9T-xzD" secondAttribute="top" constant="36" id="kej-9v-5Y0"/>
+                                    <constraint firstAttribute="height" constant="165" id="mMe-eR-xEZ"/>
+                                    <constraint firstItem="9pB-ZS-WVJ" firstAttribute="top" secondItem="Tku-6V-LGo" secondAttribute="bottom" constant="1" id="wXH-DC-Zp5"/>
+                                    <constraint firstItem="lFy-ga-lV1" firstAttribute="centerX" secondItem="kD1-9T-xzD" secondAttribute="centerX" id="xoN-oy-pSk"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -58,7 +102,10 @@
                             <constraint firstItem="4HA-tK-Kf3" firstAttribute="leading" secondItem="3tu-vq-clZ" secondAttribute="leading" id="5lP-H2-hlr"/>
                             <constraint firstAttribute="trailing" secondItem="4HA-tK-Kf3" secondAttribute="trailing" id="8ff-ph-rcQ"/>
                             <constraint firstItem="yqB-rT-lEN" firstAttribute="top" secondItem="3tu-vq-clZ" secondAttribute="top" id="Dt8-7B-cRr"/>
+                            <constraint firstItem="kD1-9T-xzD" firstAttribute="leading" secondItem="3tu-vq-clZ" secondAttribute="leading" constant="16" id="HK5-ae-1Xu"/>
                             <constraint firstItem="4HA-tK-Kf3" firstAttribute="top" secondItem="yqB-rT-lEN" secondAttribute="bottom" constant="7" id="Tbz-ms-Unc"/>
+                            <constraint firstAttribute="trailing" secondItem="kD1-9T-xzD" secondAttribute="trailing" constant="16" id="aBs-JH-aNx"/>
+                            <constraint firstItem="kD1-9T-xzD" firstAttribute="top" secondItem="yqB-rT-lEN" secondAttribute="bottom" constant="12" id="iDs-Cn-D0z"/>
                             <constraint firstItem="TbZ-UK-IoS" firstAttribute="centerY" secondItem="yqB-rT-lEN" secondAttribute="centerY" id="rMe-5f-gsZ"/>
                             <constraint firstItem="yqB-rT-lEN" firstAttribute="leading" secondItem="3tu-vq-clZ" secondAttribute="leading" constant="16" id="sLK-bK-3ic"/>
                             <constraint firstAttribute="bottom" secondItem="4HA-tK-Kf3" secondAttribute="bottom" id="yFH-0I-Wfg"/>
@@ -73,11 +120,17 @@
                 <constraint firstItem="3tu-vq-clZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cFX-15-Z4I"/>
                 <constraint firstAttribute="bottom" secondItem="3tu-vq-clZ" secondAttribute="bottom" id="zmK-Pv-Bmt"/>
             </constraints>
+            <connections>
+                <outlet property="collectionView" destination="4HA-tK-Kf3" id="JlJ-3a-xYi"/>
+                <outlet property="errorView" destination="kD1-9T-xzD" id="Lpp-LH-czR"/>
+                <outlet property="titleLabel" destination="yqB-rT-lEN" id="RR2-Nk-gMK"/>
+            </connections>
             <point key="canvasLocation" x="21" y="21"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="arrow_right16" width="16" height="16"/>
+        <image name="service-image2" width="32" height="32"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
