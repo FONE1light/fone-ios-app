@@ -146,7 +146,7 @@ final class SocialLoginManager {
     }
     
     func showFailToLoadEmailPopup() {
-        let message = "이메일을 불러오지 못했습니다.\n\nApple로 로그인 시도 중이라면 다음과 같이 실행 후 다시 시도해주세요.\n\n* 설정 > Apple ID > 로그인 및 보안 > Apple로 로그인 > FONE > Apple ID 사용 중단\n* 이후 Apple로 로그인 시 '나의 이메일 공유하기' 선택"
+        let message = "이메일을 불러오지 못했습니다.\n\nApple로 로그인 시도 중이라면 다음과 같이 실행 후 다시 시도해주세요.\n\n* 설정 > Apple ID > 로그인 및 보안 > Apple로 로그인 > FONE > Apple ID 사용 중단"
         let alert = UIAlertController.createOneButtonPopup(title: message)
         guard let currentVC = (sceneCoordinator as? SceneCoordinator)?.currentVC else { return }
         currentVC.present(alert, animated: true)

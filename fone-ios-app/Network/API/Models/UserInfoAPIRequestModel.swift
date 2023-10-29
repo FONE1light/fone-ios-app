@@ -61,6 +61,7 @@ struct EmailSignUpInfo: Codable {
     let agreeToPersonalInformation: Bool
     let isReceiveMarketing: Bool
     
+    // AppleID 로그인 시에만 필요
     let identifier: String
 }
 
@@ -99,6 +100,7 @@ struct SocialSignUpInfo: Codable {
     let agreeToPersonalInformation: Bool
     let isReceiveMarketing: Bool
     
+    /// AppleID 로그인 시 필요
     let identifier: String
 }
 
