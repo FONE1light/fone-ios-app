@@ -77,6 +77,7 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell
         case ModuleSection.competition.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CompetitionModule
+            cell.setModuelInfo(info: nil)
             return cell
         case ModuleSection.profile.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as ProfileModule
@@ -106,7 +107,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         case ModuleSection.jobOpening.rawValue:
             height = 214
         case ModuleSection.competition.rawValue:
-            height = 259
+            height = 259 - 67 //FIXME: 영화제 데이터 들어오면 수정
         case ModuleSection.profile.rawValue:
             height = 249
         default:
