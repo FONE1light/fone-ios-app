@@ -19,7 +19,7 @@ class SignUpSuccessViewController: UIViewController, ViewModelBindableType {
     let checkImageView = UIImageView(image: UIImage(named: "Check_Big"))
 
     let welcomeLabel = UILabel().then {
-        $0.text = "황수철 님!\n에프원 회원가입을 환영합니다."
+        $0.text = "에프원 회원가입을 환영합니다."
         $0.textAlignment = .center
         $0.numberOfLines = 0
         $0.font = .font_b(19)
@@ -32,9 +32,16 @@ class SignUpSuccessViewController: UIViewController, ViewModelBindableType {
         loginButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-            print("clicked")
-                // TODO: viewModel에서 login API
+                guard let type = owner.viewModel.signInInfo?.type else { return }
+                switch type {
+                case .email: owner.viewModel.emailSignIn()
+                case .social: owner.viewModel.socialSignIn()
+                }
         }.disposed(by: rx.disposeBag)
+        
+        if let name = viewModel.signInInfo?.name {
+            welcomeLabel.text = "\(name) 님!\n에프원 회원가입을 환영합니다."
+        }
     }
     
     override func viewDidLoad() {

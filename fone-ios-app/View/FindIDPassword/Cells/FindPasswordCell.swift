@@ -11,16 +11,27 @@ import RxSwift
 class FindPasswordCell: UICollectionViewCell {
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var authCodeView: UIView!
     @IBOutlet weak var authCodeTextField: UITextField!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var checkAuthCodeButton: UIButton!
     @IBOutlet weak var resetPasswordView: UIView!
+    @IBOutlet weak var passwordContainerView: UIView!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var passwordEyeButton: UIButton!
+    @IBOutlet weak var passwordErrorLabel: UILabel!
+    @IBOutlet weak var confirmPasswordContainerView: UIView!
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
+    @IBOutlet weak var confirmPasswordEyeButton: UIButton!
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var resetPasswordButton: UIButton!
+    
     
     var viewModel: FindIDPasswordViewModel?
     var timer: Timer?
     var leftSeconds = 180
+    var token = ""
     var smsSendedSubject = BehaviorSubject<Bool>(value: false)
     var phoneNumberSubject = BehaviorSubject<String>(value: "")
     
@@ -76,18 +87,56 @@ class FindPasswordCell: UICollectionViewCell {
         
         checkAuthCodeButton.rx.tap
             .withUnretained(self)
-            .subscribe(onNext: { (owner, _) in
+            .subscribe(onNext: { owner, _ in
                 owner.timer?.invalidate()
                 owner.timer = nil
                 owner.validateAuthNumber()
-                owner.resetPasswordView.isHidden = false
-                owner.resetPasswordButton.isHidden = false
-                owner.resetPasswordButton.setEnabled(isEnabled: true)
+            }).disposed(by: rx.disposeBag)
+        
+        passwordTextField.rx.text.orEmpty
+            .filter { $0 != "" }
+            .map { $0.isValidPassword() }
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, isValid in
+                owner.passwordErrorLabel.isHidden = isValid
+                owner.passwordContainerView.setTextFieldErrorBorder(showError: !isValid)
+                owner.viewModel?.passwordIsValidSubject.onNext(isValid)
+            }).disposed(by: rx.disposeBag)
+        
+        passwordEyeButton.rx.tap
+            .withUnretained(self)
+            .subscribe(onNext: { owner, _ in
+                owner.passwordEyeButton.eyeButtonTapped(textField: owner.passwordTextField)
+            }).disposed(by: rx.disposeBag)
+        
+        confirmPasswordEyeButton.rx.tap
+            .withUnretained(self)
+            .subscribe(onNext: { owner, _ in
+                owner.confirmPasswordEyeButton.eyeButtonTapped(textField: owner.confirmPasswordTextField)
+            }).disposed(by: rx.disposeBag)
+        
+        confirmPasswordTextField.rx.text.orEmpty
+            .map { $0 == self.passwordTextField.text }
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, isSame in
+                owner.errorLabel.isHidden = isSame
+                owner.confirmPasswordContainerView.setTextFieldErrorBorder(showError: !isSame)
+                owner.viewModel?.confirmPasswordIsValidSubjext.onNext(isSame)
+            }).disposed(by: rx.disposeBag)
+        
+        viewModel.resetButtonEnableSubject
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, isEnabled in
+                owner.resetPasswordButton.setEnabled(isEnabled: isEnabled)
             }).disposed(by: rx.disposeBag)
         
         resetPasswordButton.rx.tap
-            .subscribe(onNext: {
-                self.showSuccessPopUp()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, _ in
+                owner.resetPassword()
             }).disposed(by: rx.disposeBag)
     }
     
@@ -116,28 +165,58 @@ class FindPasswordCell: UICollectionViewCell {
     
     /// 인증번호 유효성 확인
     func validateAuthNumber() {
-        // TODO: 인증번호 확인 API, 결과 따라 분기
-        if authCodeTextField.text == "000000" {
-            timeLabel.text = ""
-            sendButton.setTitle("인증완료", for: .normal)
-            sendButton.setMediumButtonEnabled(isEnabled: false)
-            phoneNumberTextField.isUserInteractionEnabled = false
-            authCodeView.isHidden = true
-        } else {
-            ToastManager.show(
-                "올바른 인증번호를 입력해주세요.",
-                positionType: .withButton
-            )
-        }
+        let code = authCodeTextField.text ?? ""
+        let phoneNumber = phoneNumberTextField.text?.insertDash() ?? ""
+        
+        userInfoProvider.rx.request(.findPassword(code: code, phoneNumber: phoneNumber))
+            .mapObject(FindPasswordResponseModel.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, response in
+                if response.result == "SUCCESS" {
+                    owner.authSuccess()
+                    owner.token = response.data?.first?.value ?? ""
+                } else {
+                    ToastManager.show(
+                        "올바른 인증번호를 입력해주세요.",
+                        positionType: .withButton
+                    )
+                }
+            }, onError: { error in
+                print("\(error)")
+            }).disposed(by: rx.disposeBag)
+    }
+    
+    func authSuccess() {
+        sendButton.setTitle("인증완료", for: .normal)
+        sendButton.setMediumButtonEnabled(isEnabled: false)
+        phoneNumberTextField.isUserInteractionEnabled = false
+        authCodeView.isHidden = true
+        resetPasswordView.isHidden = false
+        resetPasswordButton.isHidden = false
+        resetPasswordButton.setEnabled(isEnabled: false)
+    }
+    
+    func resetPassword() {
+        let password = passwordTextField.text ?? ""
+        let phoneNumber = phoneNumberTextField.text?.insertDash() ?? ""
+        
+        userInfoProvider.rx.request(.resetPassword(password: password, phoneNumber: phoneNumber, token: token))
+            .mapObject(SendSMSResponseModel.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, response in
+                if response.result == "SUCCESS" {
+                    owner.showSuccessPopUp()
+                } else {
+                    response.message.toast(positionType: .withButton)
+                }
+            }).disposed(by: rx.disposeBag)
     }
     
     func showSuccessPopUp() {
-        let alert = UIAlertController.init(title: "", message: "비밀번호 변경이 완료되었습니다.", preferredStyle: .alert)
-        alert.view.tintColor = UIColor.gray_161616
-        let action = UIAlertAction(title: "확인", style: .default)
-        alert.addAction(action)
-        let sceneCoordinator = viewModel?.sceneCoordinator as? SceneCoordinator
-        let currentVC = sceneCoordinator?.currentVC
-        currentVC?.present(alert, animated: true)
+        let alert = UIAlertController.createOneButtonPopup(title: "비밀번호 변경이 완료되었습니다.")
+        guard let currentVC = (viewModel?.sceneCoordinator as? SceneCoordinator)?.currentVC else { return }
+        currentVC.present(alert, animated: true)
     }
 }

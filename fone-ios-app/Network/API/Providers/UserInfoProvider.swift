@@ -17,7 +17,10 @@ enum UserInfoTarget {
     case reissueToken(tokenInfo: TokenInfo)
     case sendSMS(phoneNumber: String)
     case emailSignUp(EmailSignUpInfo)
+    case socialSignUp(SocialSignUpInfo)
     case findID(code: String, phoneNumber: String)
+    case findPassword(code: String, phoneNumber: String)
+    case resetPassword(password: String, phoneNumber: String, token: String)
     case socialSignIn(accessToken: String, loginType: String)
 }
 
@@ -40,8 +43,14 @@ extension UserInfoTarget: TargetType {
             return "/api/v1/users/sms/send"
         case .emailSignUp:
             return "/api/v1/users/email/sign-up"
+        case .socialSignUp:
+            return "/api/v1/users/social/sign-up"
         case .findID:
             return "/api/v1/users/sms/find-id"
+        case .findPassword:
+            return "/api/v1/users/sms/find-password"
+        case .resetPassword:
+            return "/api/v1/users/password"
         case .socialSignIn:
             return "/api/v1/users/social/sign-in"
         }
@@ -51,8 +60,10 @@ extension UserInfoTarget: TargetType {
         switch self {
         case .fetchMyPage, .checkNicknameDuplication:
             return .get
-        case .emailSignIn, .reissueToken, .sendSMS, .emailSignUp, .findID, .socialSignIn:
+        case .emailSignIn, .reissueToken, .sendSMS, .emailSignUp, .findID, .findPassword, .socialSignIn, .socialSignUp:
             return .post
+        case .resetPassword:
+            return .patch
         }
     }
     
@@ -69,8 +80,14 @@ extension UserInfoTarget: TargetType {
             return .requestParameters(parameters: ["phoneNumber": phoneNumber], encoding: JSONEncoding.default)
         case .emailSignUp(let emailSignUpInfo): // TODO: 확인 후 통일
             return .requestJSONEncodable(emailSignUpInfo)
+        case .socialSignUp(let socialSignUpInfo):
+            return .requestJSONEncodable(socialSignUpInfo)
         case .findID(let code, let phoneNumber):
             return .requestParameters(parameters: ["code": code, "phoneNumber": phoneNumber], encoding: JSONEncoding.default)
+        case .findPassword(let code, let phoneNumber):
+            return .requestParameters(parameters: ["code": code, "phoneNumber": phoneNumber], encoding: JSONEncoding.default)
+        case .resetPassword(let password, let phoneNumber, let token):
+            return .requestParameters(parameters: ["password": password, "phoneNumber": phoneNumber, "token": token], encoding: JSONEncoding.default)
         case .socialSignIn(let accessToken, let loginType):
             return .requestParameters(parameters: ["accessToken": accessToken, "loginType": loginType], encoding: JSONEncoding.default)
         default:
@@ -87,8 +104,8 @@ extension UserInfoTarget: TargetType {
         switch self {
         case .fetchMyPage:
             commonHeaders[Tokens.shared.accessToken.key] = Tokens.shared.accessToken.value // TODO: MOCK,
-        case .emailSignIn, .reissueToken, .sendSMS, .emailSignUp, .findID, .socialSignIn:
-            commonHeaders["Content-Type"] = "application/json"
+        case .emailSignIn, .reissueToken, .sendSMS, .emailSignUp, .findID, .findPassword, .resetPassword, .socialSignIn, .socialSignUp:
+            commonHeaders["Content-Type"] = "application/json;charset=UTF-8"
         default:
             break
         }
