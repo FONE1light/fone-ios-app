@@ -37,11 +37,18 @@ class EmailSignUpViewModel: CommonViewModel {
             .map{ $0 && $1 && $2}
     }()
     
-    func moveToSignUp(email: String, password: String) {
-        let signUpViewModel = SignUpViewModel(sceneCoordinator: self.sceneCoordinator)
-        signUpViewModel.signInInfo = EmailSignInInfo(email: email, password: password)
+    func moveToSignUp(name: String, email: String, password: String) {
+        let signUpSelectionViewModel = SignUpSelectionViewModel(sceneCoordinator: self.sceneCoordinator)
+        let emailSignInInfo = EmailSignInInfo(email: email, password: password)
+        let signInInfo = SignInInfo(
+            type: .email,
+            name: name,
+            email: email,
+            emailSignInInfo: emailSignInInfo
+        )
+        signUpSelectionViewModel.signInInfo = signInInfo
         
-        let signUpScene = Scene.signUpSelection(signUpViewModel)
+        let signUpScene = Scene.signUpSelection(signUpSelectionViewModel)
         self.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
     }
 }

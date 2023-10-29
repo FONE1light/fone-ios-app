@@ -1,5 +1,5 @@
 //
-//  UserInfoAPIModel.swift
+//  UserInfoAPIResponseModel.swift
 //  fone-ios-app
 //
 //  Created by 여나경 on 2023/08/17.
@@ -51,7 +51,7 @@ struct TokenModel: Codable {
 // MARK: - CheckNicknameDuplicationModel
 struct CheckNicknameDuplicationModel: Codable {
     let result: String
-    let data: NicknameInfo
+    let data: NicknameInfo?
     let message: String
     let errorCode: String?
 }
@@ -62,22 +62,16 @@ struct NicknameInfo: Codable {
     let isDuplicate: Bool
 }
 
-// MARK: - EmailSignInInfo
-struct EmailSignInInfo: Codable {
-    let email: String
-    let password: String
-}
-
-// MARK: - EmailSignInResponseModel
-struct EmailSignInResponseModel: Codable {
+// MARK: - SignInResponseModel (email, social login)
+struct SignInResponseModel: Codable {
     let result: String
-    let data: EmailSignInData?
+    let data: SignInData?
     let message: String
     let errorCode: String?
 }
 
-// MARK: - EmailSignInData
-struct EmailSignInData: Codable {
+// MARK: - SignInData (email, social login)
+struct SignInData: Codable {
     let user: User
     let token: TokenModel
 }
@@ -87,3 +81,46 @@ struct TokenInfo: Codable {
     let accessToken: String
     let refreshToken: String
 }
+
+// MARK: - SendSMSResponseModel
+struct SendSMSResponseModel: Codable {
+    let result: String
+    let message: String
+    let errorCode: String?
+}
+
+// MARK: - FindIDResponseModel
+struct FindIDResponseModel: Codable {
+    let result: String
+    let data: FindIDResponseData?
+    let message: String
+    let errorCode: String?
+}
+
+// MARK: - FindIDResponseData
+struct FindIDResponseData: Codable {
+    let email, loginType: String
+}
+
+// MARK: - SendSMSResponseModel
+struct FindPasswordResponseModel: Codable {
+    let result: String
+    let data: [String: String]?
+    let message: String
+    let errorCode: String?
+}
+
+// MARK: - SignUpResponseModel (email, social login)
+struct SignUpResponseModel: Codable {
+    let result: String?
+    let data: SignUpData?
+    let message: String?
+    let errorCode: String?
+}
+
+// MARK: - SignUpData (email, social login)
+struct SignUpData: Codable {
+    let user: User?
+    let token: TokenModel?
+}
+

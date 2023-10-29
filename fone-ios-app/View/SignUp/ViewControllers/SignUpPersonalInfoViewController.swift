@@ -1,5 +1,5 @@
 //
-//  SignUpInfoViewController.swift
+//  SignUpPersonalInfoViewController.swift
 //  fone-ios-app
 //
 //  Created by 여나경 on 2023/09/02.
@@ -9,10 +9,10 @@ import UIKit
 import Then
 import RxSwift
 
-class SignUpInfoViewController: UIViewController, ViewModelBindableType {
+class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType {
 
     var disposeBag = DisposeBag()
-    var viewModel: SignUpViewModel!
+    var viewModel: SignUpPersonalInfoViewModel!
     
     let baseView = UIView().then {
         $0.backgroundColor = .white_FFFFFF
@@ -91,6 +91,10 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
         $0.image = UIImage(named: "profileImage")
     }
     
+    private let imagePickerViewController = UIImagePickerController()
+    
+    private let profileButton = UIButton()
+    
     private let button = CustomButton("다음", type: .bottom)
     
     func bindViewModel() {
@@ -98,7 +102,9 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
         nicknameTextField.rx.controlEvent(.editingChanged)
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.checkNicknameAvailbleState(owner.nicknameTextField.text)
+                let formattedNickname = owner.viewModel.formatNickname(owner.nicknameTextField.text)
+                owner.nicknameTextField.text = formattedNickname
+                owner.viewModel.checkNicknameAvailbleState(formattedNickname)
             }.disposed(by: rx.disposeBag)
         
         birthTextField.rx.controlEvent(.editingChanged)
@@ -106,6 +112,7 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
             .bind { owner, _ in
                 let formattedBirth = owner.viewModel.formatBirthString(owner.birthTextField.text)
                 owner.birthTextField.text = formattedBirth
+                owner.viewModel.birthday = formattedBirth
             }.disposed(by: rx.disposeBag)
         
         // Buttons
@@ -123,6 +130,7 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
             .bind { owner, _ in
                 owner.maleButton.isActivated = !owner.maleButton.isActivated
                 owner.femaleButton.isActivated = !owner.maleButton.isActivated
+                owner.viewModel.gender = .MAN
             }.disposed(by: rx.disposeBag)
         
         femaleButton.rx.tap
@@ -130,14 +138,19 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
             .bind { owner, _ in
                 owner.femaleButton.isActivated = !owner.femaleButton.isActivated
                 owner.maleButton.isActivated = !owner.femaleButton.isActivated
+                owner.viewModel.gender = .WOMAN
+            }.disposed(by: rx.disposeBag)
+        
+        profileButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.showActionSheet()
             }.disposed(by: rx.disposeBag)
         
         button.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let phoneNumberViewModel = SignUpPhoneNumberViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator)
-                let signUpScene = Scene.signUpPhoneNumber(phoneNumberViewModel)
-                owner.viewModel.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
+                owner.viewModel.moveToSignUpPhoneNumber()
             }.disposed(by: rx.disposeBag)
         
         // ViewModel
@@ -150,18 +163,23 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
                     owner.duplicationCheckButton.setTitle("중복확인", for: .normal)
                     owner.duplicationCheckButton.isEnabled = false
                     owner.duplicatedWarningLabel.isHidden = true
+                    owner.nicknameTextField.borderWidth = 0
                 case .canCheck:
                     owner.duplicationCheckButton.setTitle("중복확인", for: .normal)
                     owner.duplicationCheckButton.isEnabled = true
                     owner.duplicatedWarningLabel.isHidden = true
+                    owner.nicknameTextField.borderWidth = 0
                 case .duplicated:
                     owner.duplicationCheckButton.setTitle("중복확인", for: .normal)
                     owner.duplicationCheckButton.isEnabled = false
                     owner.duplicatedWarningLabel.isHidden = false
+                    owner.nicknameTextField.borderWidth = 1
+                    owner.nicknameTextField.borderColor = .crimson_FF5841
                 case .available:
                     owner.duplicationCheckButton.setTitle("인증완료", for: .normal)
                     owner.duplicationCheckButton.isEnabled = false
                     owner.duplicatedWarningLabel.isHidden = true
+                    owner.nicknameTextField.borderWidth = 0
                 }
             }.disposed(by: self.disposeBag)
         
@@ -169,7 +187,8 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.hideKeyboardWhenTapped()
+        
         setUI()
         setNavigationBar()
         setConstraints()
@@ -230,7 +249,8 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
         [
             profileLabel,
             profileSubtitleLabel,
-            profileImage
+            profileImage,
+            profileButton
         ]
             .forEach { profileBlock.addSubview($0) }
         self.setupProfileBlock()
@@ -336,6 +356,66 @@ class SignUpInfoViewController: UIViewController, ViewModelBindableType {
             $0.leading.bottom.equalToSuperview()
             $0.size.equalTo(108)
         }
+        
+        profileButton.snp.makeConstraints {
+            $0.edges.equalTo(profileImage)
+        }
     }
     
 }
+
+extension SignUpPersonalInfoViewController: UIImagePickerControllerDelegate {
+    
+    private func showActionSheet() {
+        let chooseImage = UIAlertAction(
+            title: "앨범에서 사진 선택",
+            style: .default
+        ) { _ in
+            self.imagePickerViewController.delegate = self
+            self.imagePickerViewController.sourceType = .photoLibrary
+            self.present(self.imagePickerViewController, animated: true)
+        }
+        
+        let changeToDefaultImage = UIAlertAction(
+            title: "기본 이미지로 변경",
+            style: .default
+        ) { _ in
+            self.profileImage.image = UIImage(named: "profileImage")
+            self.viewModel.profileUrl = nil
+        }
+        
+        let cancel = UIAlertAction(
+            title: "취소",
+            style: .cancel
+        )
+        
+        let alert = UIAlertController(
+            title: "프로필 사진 설정",
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(chooseImage)
+        alert.addAction(changeToDefaultImage)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true)
+    }
+    
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
+    ) {
+        if let imageUrl = info[.imageURL] as? URL {
+            print(imageUrl)
+            viewModel.uploadProfileImage()
+        }
+        
+        if let pickedImage = info[.originalImage] as? UIImage {
+            profileImage.image = pickedImage
+        }
+        
+        imagePickerViewController.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension SignUpPersonalInfoViewController: UINavigationControllerDelegate {}

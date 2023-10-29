@@ -11,7 +11,7 @@ import RxSwift
 
 class SignUpSelectionViewController: UIViewController, ViewModelBindableType {
 
-    var viewModel: SignUpViewModel!
+    var viewModel: SignUpSelectionViewModel!
     var disposeBag = DisposeBag()
     
     let baseView = UIView().then {
@@ -49,8 +49,7 @@ class SignUpSelectionViewController: UIViewController, ViewModelBindableType {
         button.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let signUpScene = Scene.signUpInfo(owner.viewModel)
-                owner.viewModel.sceneCoordinator.transition(to: signUpScene, using: .push, animated: true)
+                owner.viewModel.moveToSignUpPersonalInfo()
             }.disposed(by: rx.disposeBag)
         
         jobSelectionBlock.selectedItems

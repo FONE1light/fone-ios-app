@@ -8,18 +8,17 @@
 import UIKit
 import RxSwift
 import NSObject_Rx
+import AuthenticationServices
 
 class LoginViewController: UIViewController, ViewModelBindableType {
     var viewModel: LoginViewModel!
     
    
     @IBOutlet weak var kakaoLoginView: UIView!
-    @IBOutlet weak var naverLoginView: UIView!
     @IBOutlet weak var googleLoginView: UIView!
     @IBOutlet weak var appleLoginView: UIView!
     
     @IBOutlet weak var kakaoLoginButton: UIButton!
-    @IBOutlet weak var naverLoginButton: UIButton!
     @IBOutlet weak var googleLoginButton: UIButton!
     @IBOutlet weak var appleLoginButton: UIButton!
     
@@ -29,17 +28,9 @@ class LoginViewController: UIViewController, ViewModelBindableType {
     
     func bindViewModel() {
         kakaoLoginButton.rx.tap
-            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .subscribe(onNext: { _ in
-            })
-            .disposed(by: rx.disposeBag)
-        
-        naverLoginButton.rx.tap
-            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
-            .withUnretained(self)
-            .subscribe(onNext: { _ in
-                
+                SocialLoginManager.shared.loginWithKakaoTalk()
             })
             .disposed(by: rx.disposeBag)
         
@@ -47,7 +38,7 @@ class LoginViewController: UIViewController, ViewModelBindableType {
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .subscribe(onNext: { _ in
-                
+                SocialLoginManager.shared.loginWithGoogle(presentingVC: self)
             })
             .disposed(by: rx.disposeBag)
         
@@ -55,7 +46,7 @@ class LoginViewController: UIViewController, ViewModelBindableType {
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .subscribe(onNext: { _ in
-                
+                SocialLoginManager.shared.loginWithApple(presentingVC: self)
             })
             .disposed(by: rx.disposeBag)
         
@@ -88,7 +79,7 @@ class LoginViewController: UIViewController, ViewModelBindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        [ kakaoLoginView, naverLoginView, googleLoginView, appleLoginView ].forEach {
+        [ kakaoLoginView, googleLoginView, appleLoginView ].forEach {
             $0.applyShadow(shadowType: .shadowIt2)
         }
     }

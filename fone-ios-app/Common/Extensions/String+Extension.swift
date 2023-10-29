@@ -29,4 +29,46 @@ extension String {
         let passwordTest = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
         return passwordTest.evaluate(with: self)
     }
+    
+    // 입력은 '-' 없이 받지만 서버에는 '-' 포함인 형태로 보내야함
+    func insertDash() -> String? {
+        guard self.count == 11 else { return nil }
+        
+        var phoneNumberWithDash = self
+        let index1 = phoneNumberWithDash.index(phoneNumberWithDash.startIndex, offsetBy: 3)
+        let index2 = phoneNumberWithDash.index(phoneNumberWithDash.startIndex, offsetBy: 7)
+        phoneNumberWithDash.insert("-", at: index2)
+        phoneNumberWithDash.insert("-", at: index1)
+        
+        return phoneNumberWithDash
+    }
+}
+
+extension String {
+    func prefixString(_ max: Int) -> String {
+        return String(self.prefix(max))
+    }
+    
+    func substring(_ r: Range<Int>) -> String {
+        guard self.count >= r.upperBound else {
+            return self
+        }
+        let fromIndex = self.index(self.startIndex, offsetBy: r.lowerBound)
+        let toIndex = self.index(self.startIndex, offsetBy: r.upperBound)
+        let indexRange = Range<String.Index>(uncheckedBounds: (lower: fromIndex, upper: toIndex))
+        return String(self[indexRange])
+    }
+    
+}
+
+extension String {
+    func phoneNumberFormatted() -> String {
+        guard self.count == 11 else { return self }
+        
+        let firstPart = self.substring(0..<3)
+        let secondPart = self.substring(3..<7)
+        let thirdPart = self.substring(7..<11)
+        
+        return firstPart + "-" + secondPart + "-" + thirdPart
+    }
 }

@@ -55,6 +55,7 @@ class QuestionViewController: UIViewController, ViewModelBindableType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTapped()
         
         submitButton.applyShadow(shadowType: .shadowIt2)
         agreeButton.setImage(UIImage(named: "checkboxes_off"), for: .normal)

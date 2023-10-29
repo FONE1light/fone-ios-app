@@ -21,7 +21,7 @@ class ProfileViewModel: CommonViewModel {
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
-                if response.data.isDuplicate {
+                if response.data?.isDuplicate == true {
                     owner.nicknameAvailbleState.accept(.duplicated)
                 } else {
                     owner.nicknameAvailbleState.accept(.available)
