@@ -14,10 +14,10 @@ class SignUpSuccessViewModel: CommonViewModel {
     // 이전 화면에서 넘어온 데이터
     var signInInfo: SignInInfo?
     
-    func signIn() {
+    func emailSignIn() {
         guard let emailSignInInfo = signInInfo?.emailSignInInfo else { return }
         userInfoProvider.rx.request(.emailSignIn(emailSignInInfo: emailSignInInfo))
-            .mapObject(EmailSignInResponseModel.self)
+            .mapObject(SignInResponseModel.self)
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
@@ -30,7 +30,27 @@ class SignUpSuccessViewModel: CommonViewModel {
                 print(error.localizedDescription)
                 "\(error)".toast(positionType: .withButton)
             }).disposed(by: disposeBag)
-        
+    }
+    
+    func socialSignIn() {
+        guard let socialSignInInfo = signInInfo?.socialSignInfo else { return }
+        userInfoProvider.rx.request(.socialSignIn(
+            accessToken: socialSignInInfo.accessToken,
+            loginType: socialSignInInfo.loginType
+        ))
+            .mapObject(SignInResponseModel.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, response in
+                if response.result == "SUCCESS" {
+                    owner.moveToHome()
+                } else {
+                    response.message.toast(positionType: .withButton)
+                }
+            }, onError: { error in
+                print(error.localizedDescription)
+                "\(error)".toast(positionType: .withButton)
+            }).disposed(by: disposeBag)
     }
     
     private func moveToHome() {

@@ -36,7 +36,7 @@ class EmailLoginViewModel: CommonViewModel {
     
     func emailLogin(emailSignInInfo: EmailSignInInfo) {
         userInfoProvider.rx.request(.emailSignIn(emailSignInInfo: emailSignInInfo))
-            .mapObject(EmailSignInResponseModel.self)
+            .mapObject(SignInResponseModel.self)
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
