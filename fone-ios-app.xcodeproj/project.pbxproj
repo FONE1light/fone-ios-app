@@ -83,6 +83,8 @@
 		36BCC7E22AA328AB0060E35A /* SignUpPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BCC7E12AA328AB0060E35A /* SignUpPhoneNumberViewController.swift */; };
 		36BCC7E42AA32B530060E35A /* SignUpSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BCC7E32AA32B530060E35A /* SignUpSuccessViewController.swift */; };
 		36BCC7E62AA5E0180060E35A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BCC7E52AA5E0180060E35A /* CustomButton.swift */; };
+		36BDA1402AEE3C71001AF777 /* ImageUploadProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BDA13F2AEE3C71001AF777 /* ImageUploadProvider.swift */; };
+		36BDA1422AEE3F08001AF777 /* ImageUploadAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BDA1412AEE3F08001AF777 /* ImageUploadAPIModel.swift */; };
 		36C8B7EE2ADC853D008B6F88 /* SignUpTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C8B7ED2ADC853D008B6F88 /* SignUpTerms.swift */; };
 		36D293D22A961E7300171C77 /* SignUpSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D293D12A961E7300171C77 /* SignUpSelectionViewController.swift */; };
 		36D293D42A961FDB00171C77 /* SelectionBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D293D32A961FDB00171C77 /* SelectionBlock.swift */; };
@@ -283,6 +285,8 @@
 		36BCC7E12AA328AB0060E35A /* SignUpPhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPhoneNumberViewController.swift; sourceTree = "<group>"; };
 		36BCC7E32AA32B530060E35A /* SignUpSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSuccessViewController.swift; sourceTree = "<group>"; };
 		36BCC7E52AA5E0180060E35A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		36BDA13F2AEE3C71001AF777 /* ImageUploadProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadProvider.swift; sourceTree = "<group>"; };
+		36BDA1412AEE3F08001AF777 /* ImageUploadAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadAPIModel.swift; sourceTree = "<group>"; };
 		36C8B7ED2ADC853D008B6F88 /* SignUpTerms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTerms.swift; sourceTree = "<group>"; };
 		36D293D12A961E7300171C77 /* SignUpSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSelectionViewController.swift; sourceTree = "<group>"; };
 		36D293D32A961FDB00171C77 /* SelectionBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionBlock.swift; sourceTree = "<group>"; };
@@ -468,6 +472,7 @@
 				3628668D2A8DF4EA00CD42BC /* UserInfoProvider.swift */,
 				ABAFA33A2A9F612900D50BAF /* QuestionInfoProvider.swift */,
 				AB9DAAA72AB0A4F500B00016 /* HomeInfoProvider.swift */,
+				36BDA13F2AEE3C71001AF777 /* ImageUploadProvider.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -488,6 +493,7 @@
 				362866992A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift */,
 				ABAFA3382A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift */,
 				AB0F8E4B2AB324B7006D85F7 /* HomeInfoAPIModel.swift */,
+				36BDA1412AEE3F08001AF777 /* ImageUploadAPIModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1273,6 +1279,7 @@
 				AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */,
 				AB0F8E4C2AB324B7006D85F7 /* HomeInfoAPIModel.swift in Sources */,
 				364BCC6E2AB36A4900E14B25 /* Job.swift in Sources */,
+				36BDA1402AEE3C71001AF777 /* ImageUploadProvider.swift in Sources */,
 				36BCC7E62AA5E0180060E35A /* CustomButton.swift in Sources */,
 				AB79B3BC2A9E29C4008EBAA2 /* QuestionViewController.swift in Sources */,
 				AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */,
@@ -1347,6 +1354,7 @@
 				AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */,
 				AB1CEABC2ABFD29C00E7E54F /* MainBannerCell.swift in Sources */,
 				367D9BD12AC3B98100DA6C96 /* CompetitionViewController.swift in Sources */,
+				36BDA1422AEE3F08001AF777 /* ImageUploadAPIModel.swift in Sources */,
 				AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */,
 				367D9BB82AC1204600DA6C96 /* MyPageTabBar.swift in Sources */,
 				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,

@@ -183,6 +183,11 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
                 }
             }.disposed(by: self.disposeBag)
         
+        viewModel.profileImage
+            .withUnretained(self)
+            .bind { owner, image in
+                owner.setProfileImage(image)
+            }.disposed(by: disposeBag)
     }
     
     override func viewDidLoad() {
@@ -380,7 +385,7 @@ extension SignUpPersonalInfoViewController: UIImagePickerControllerDelegate {
             title: "기본 이미지로 변경",
             style: .default
         ) { _ in
-            self.profileImage.image = UIImage(named: "profileImage")
+            self.setProfileImage(UIImage(named: "profileImage"))
             self.viewModel.profileUrl = nil
         }
         
@@ -405,16 +410,16 @@ extension SignUpPersonalInfoViewController: UIImagePickerControllerDelegate {
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
     ) {
-        if let imageUrl = info[.imageURL] as? URL {
-            print(imageUrl)
-            viewModel.uploadProfileImage()
-        }
         
         if let pickedImage = info[.originalImage] as? UIImage {
-            profileImage.image = pickedImage
+            viewModel.uploadProfileImage(pickedImage)
         }
         
         imagePickerViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    private func setProfileImage(_ image: UIImage?) {
+        profileImage.image = image
     }
 }
 
