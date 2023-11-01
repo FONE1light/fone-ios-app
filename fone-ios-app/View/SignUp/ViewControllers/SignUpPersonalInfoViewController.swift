@@ -187,7 +187,6 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTapped()
         
         setUI()
         setNavigationBar()
