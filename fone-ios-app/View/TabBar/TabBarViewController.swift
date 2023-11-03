@@ -8,7 +8,7 @@
 import UIKit
 enum Tabs: Int, CaseIterable {
     case home = 0
-    //    case 구인구직
+    case job
     case chat
     case myPage
     
@@ -16,6 +16,8 @@ enum Tabs: Int, CaseIterable {
         switch self {
         case .home:
             return UINavigationController(rootViewController: HomeViewController())
+        case .job:
+            return UINavigationController(rootViewController: JobOpeningHuntingViewController())
         case .chat:
             return UINavigationController(rootViewController: ChatViewController())
         case .myPage:
@@ -27,6 +29,8 @@ enum Tabs: Int, CaseIterable {
         switch self {
         case .home:
             return UIImage(named: "home_selected") ?? UIImage()
+        case .job:
+            return UIImage(named: "job-hunting_unselected") ?? UIImage()
         case .chat:
             return UIImage(named: "chat_unselected") ?? UIImage()
         case .myPage:
@@ -38,6 +42,8 @@ enum Tabs: Int, CaseIterable {
         switch self {
         case .home:
             return "홈"
+        case .job:
+            return "구인구직"
         case .chat:
             return "채팅"
         case .myPage:
@@ -49,6 +55,8 @@ enum Tabs: Int, CaseIterable {
         switch self {
         case .home:
             return UIImage(named: "home_selected") ?? UIImage()
+        case .job:
+            return UIImage(named: "job-hunting_selected") ?? UIImage()
         case .chat:
             return UIImage(named: "chat_selected") ?? UIImage()
         case .myPage:

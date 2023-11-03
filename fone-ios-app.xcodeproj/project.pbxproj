@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36031EC92AF4DC91006B57AE /* JobOpeningHuntingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36031EC82AF4DC91006B57AE /* JobOpeningHuntingViewController.swift */; };
+		36031ECB2AF4DCE4006B57AE /* JobOpeningHuntingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36031ECA2AF4DCE4006B57AE /* JobOpeningHuntingViewModel.swift */; };
 		362419CF2AE319B1007D1AFB /* SignUpPersonalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362419CE2AE319B1007D1AFB /* SignUpPersonalInfoViewModel.swift */; };
 		362419D12AE319CF007D1AFB /* SignUpSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362419D02AE319CF007D1AFB /* SignUpSelectionViewModel.swift */; };
 		362419D32AE33158007D1AFB /* SignUpSuccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362419D22AE33158007D1AFB /* SignUpSuccessViewModel.swift */; };
@@ -210,6 +212,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		36031EC82AF4DC91006B57AE /* JobOpeningHuntingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningHuntingViewController.swift; sourceTree = "<group>"; };
+		36031ECA2AF4DCE4006B57AE /* JobOpeningHuntingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningHuntingViewModel.swift; sourceTree = "<group>"; };
 		362419CE2AE319B1007D1AFB /* SignUpPersonalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPersonalInfoViewModel.swift; sourceTree = "<group>"; };
 		362419D02AE319CF007D1AFB /* SignUpSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSelectionViewModel.swift; sourceTree = "<group>"; };
 		362419D22AE33158007D1AFB /* SignUpSuccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSuccessViewModel.swift; sourceTree = "<group>"; };
@@ -426,6 +430,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		36031EC72AF4DC0B006B57AE /* JobOpeningHunting */ = {
+			isa = PBXGroup;
+			children = (
+				36031EC82AF4DC91006B57AE /* JobOpeningHuntingViewController.swift */,
+				36031ECA2AF4DCE4006B57AE /* JobOpeningHuntingViewModel.swift */,
+			);
+			path = JobOpeningHunting;
+			sourceTree = "<group>";
+		};
 		362866792A8B66B900CD42BC /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -965,6 +978,7 @@
 				AB7900B42AB5C989004DA4F3 /* Noti */,
 				AB2578A72AAF3C7A00328363 /* Chat */,
 				AB2578982AAF335F00328363 /* Home */,
+				36031EC72AF4DC0B006B57AE /* JobOpeningHunting */,
 				364482CA2AB7C74900984507 /* MyPage */,
 				AB6785592AA3373800ACD35C /* EmailSignUp */,
 				AB6785522AA3333100ACD35C /* EmailLogin */,
@@ -1286,6 +1300,7 @@
 				AB3F071D2AADADB700E54A25 /* FindPasswordCell.swift in Sources */,
 				367D9BD82ACB5CC900DA6C96 /* JobViewController.swift in Sources */,
 				364482D52AB8082E00984507 /* MyPageButtonStackViewContentView.swift in Sources */,
+				36031ECB2AF4DCE4006B57AE /* JobOpeningHuntingViewModel.swift in Sources */,
 				364482CE2AB7C76500984507 /* MyPageViewModel.swift in Sources */,
 				362419CF2AE319B1007D1AFB /* SignUpPersonalInfoViewModel.swift in Sources */,
 				AB1CEAA82ABFD1D700E7E54F /* MainBannerModule.swift in Sources */,
@@ -1317,6 +1332,7 @@
 				367D9C342ADA657200DA6C96 /* JobRegistrationViewModel.swift in Sources */,
 				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,
 				AB3F07192AADAA9200E54A25 /* FindIDCell.swift in Sources */,
+				36031EC92AF4DC91006B57AE /* JobOpeningHuntingViewController.swift in Sources */,
 				367D9C362ADA664700DA6C96 /* JobRegistrationCell.swift in Sources */,
 				36C8B7EE2ADC853D008B6F88 /* SignUpTerms.swift in Sources */,
 				36D293D42A961FDB00171C77 /* SelectionBlock.swift in Sources */,
