@@ -207,6 +207,8 @@
 		ABC1DBDD2AC0113800B9A6BF /* JobOpeningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1DBDB2AC0113800B9A6BF /* JobOpeningCell.swift */; };
 		ABC1DBDE2AC0113800B9A6BF /* JobOpeningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC1DBDC2AC0113800B9A6BF /* JobOpeningCell.xib */; };
 		ABF3034B2AA33E4A00C14AF7 /* EmailSignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF3034A2AA33E4A00C14AF7 /* EmailSignUpViewModel.swift */; };
+		ABF817292AF27B1D00625D55 /* RecruitBasicInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF817272AF27B1D00625D55 /* RecruitBasicInfoViewController.swift */; };
+		ABF8172A2AF27B1D00625D55 /* RecruitBasicInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABF817282AF27B1D00625D55 /* RecruitBasicInfoViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -362,6 +364,8 @@
 		ABC1DBDB2AC0113800B9A6BF /* JobOpeningCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningCell.swift; sourceTree = "<group>"; };
 		ABC1DBDC2AC0113800B9A6BF /* JobOpeningCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JobOpeningCell.xib; sourceTree = "<group>"; };
 		ABF3034A2AA33E4A00C14AF7 /* EmailSignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignUpViewModel.swift; sourceTree = "<group>"; };
+		ABF817272AF27B1D00625D55 /* RecruitBasicInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitBasicInfoViewController.swift; sourceTree = "<group>"; };
+		ABF817282AF27B1D00625D55 /* RecruitBasicInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitBasicInfoViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -961,6 +965,7 @@
 		AB60024C2A7E3B05000CF1FD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ABF817262AF27AE600625D55 /* Recruit */,
 				AB7900B92AB5D0E1004DA4F3 /* TabBar */,
 				AB7900B42AB5C989004DA4F3 /* Noti */,
 				AB2578A72AAF3C7A00328363 /* Chat */,
@@ -1055,6 +1060,15 @@
 				ABC1DBDC2AC0113800B9A6BF /* JobOpeningCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		ABF817262AF27AE600625D55 /* Recruit */ = {
+			isa = PBXGroup;
+			children = (
+				ABF817272AF27B1D00625D55 /* RecruitBasicInfoViewController.swift */,
+				ABF817282AF27B1D00625D55 /* RecruitBasicInfoViewController.xib */,
+			);
+			path = Recruit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1192,6 +1206,7 @@
 				AB49A3452A81158900748484 /* FindIDPasswordViewController.xib in Resources */,
 				AB6002452A7E375D000CF1FD /* LaunchScreen.storyboard in Resources */,
 				AB67855D2AA3374F00ACD35C /* EmailSignUpViewController.xib in Resources */,
+				ABF8172A2AF27B1D00625D55 /* RecruitBasicInfoViewController.xib in Resources */,
 				AB2578A22AAF36A900328363 /* HomeViewController.xib in Resources */,
 				AB2578AB2AAF3C8F00328363 /* ChatViewController.xib in Resources */,
 				AB6785582AA3336900ACD35C /* EmailLoginViewController.xib in Resources */,
@@ -1240,6 +1255,7 @@
 				366F22A82ADB2BFD00FD00BD /* DetailInfoBlock.swift in Sources */,
 				ABF3034B2AA33E4A00C14AF7 /* EmailSignUpViewModel.swift in Sources */,
 				362866942A8E3D4700CD42BC /* Single+Codable.swift in Sources */,
+				ABF817292AF27B1D00625D55 /* RecruitBasicInfoViewController.swift in Sources */,
 				36AC7BDD2AB1315700478030 /* ProfileViewController.swift in Sources */,
 				367D9C1A2ADA294E00DA6C96 /* MyRegistrationsViewModel.swift in Sources */,
 				36E269412AAAEF420034B485 /* NavigationLeftBarButtonItem.swift in Sources */,

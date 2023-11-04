@@ -49,7 +49,11 @@ class SelectionBlock: UIView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        
+        self.setUI()
+        self.setContraints()
+        self.bindViewModel()
     }
     
     private func setUI() {
