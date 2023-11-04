@@ -110,8 +110,19 @@ class TabBarViewController: UITabBarController {
                     vc.bind(viewModel: viewModel)
                     vc.hasViewModel = true
                 }
-            case 1:
                 
+            case 1:
+                guard var vc = nav.visibleViewController as? JobOpeningHuntingViewController else { return }
+                let viewModel = JobOpeningHuntingViewModel(sceneCoordinator: coordinator)
+                coordinator.currentVC = vc
+                
+                guard !vc.hasViewModel else { return }
+                DispatchQueue.main.async {
+                    vc.bind(viewModel: viewModel)
+                    vc.hasViewModel = true
+                }
+                
+            case 2:
                 guard var vc = nav.visibleViewController as? ChatViewController else { return }
                 let viewModel = ChatViewModel(sceneCoordinator: coordinator)
                 coordinator.currentVC = vc
@@ -122,7 +133,8 @@ class TabBarViewController: UITabBarController {
                     vc.hasViewModel = true
                 }
                 
-            case 2: // FIXME: 구인구직 탭 추가 후 case 3으로 변경
+                
+            case 3:
                 guard var vc = nav.visibleViewController as? MyPageViewController else { return }
                 let viewModel = MyPageViewModel(sceneCoordinator: coordinator)
                 coordinator.currentVC = vc
