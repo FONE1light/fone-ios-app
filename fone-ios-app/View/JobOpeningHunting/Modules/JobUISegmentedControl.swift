@@ -61,20 +61,7 @@ class JobUISegmentedControl: UISegmentedControl {
         let titles = JobSegmentType.allCases.map { $0.title ?? "" }
         super.init(items: titles)
         
-//        backgroundColor = .white//.yellow
         selectedSegmentTintColor = .red_CE0B39
-        
-        
-//        let backgroundImage0 = UIImage(named: "rangeRectangle")
-//        setBackgroundImage(backgroundImage0, for: .normal, barMetrics: .default)
-//        
-//        let backgroundImage1 = UIImage(named: "selectRectangle")
-//        setBackgroundImage(backgroundImage1, for: .selected, barMetrics: .default)
-        
-//        backgroundImage1.
-        
-//        subviews.forEach { $0.alpha = 0 }
-        
         
         setTitleTextAttributes(
             [
