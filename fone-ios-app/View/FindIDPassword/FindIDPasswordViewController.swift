@@ -18,7 +18,6 @@ class FindIDPasswordViewController: UIViewController, ViewModelBindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
-        hideKeyboardWhenTapped()
 
         findScreenCollectionView.delegate = self
         findScreenCollectionView.dataSource = self
