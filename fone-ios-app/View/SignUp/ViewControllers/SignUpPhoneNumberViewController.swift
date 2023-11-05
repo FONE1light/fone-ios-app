@@ -173,7 +173,6 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTapped()
         
         setNavigationBar()
         setUI()
