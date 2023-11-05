@@ -9,13 +9,14 @@ import UIKit
 import Then
 import SnapKit
 import RxSwift
-
+import DropDown
 
 class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: JobOpeningHuntingViewModel!
     var hasViewModel = false
     
+    private let dropDown = DropDown()
     private let segmentedControl = JobUISegmentedControl()
     
     private let sortButton = JobOpeningSortButton(width: 103)
@@ -68,6 +69,12 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
     }()
     
     func bindViewModel() {
+        navigationItem.leftBarButtonItem?.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.dropDown.show()
+            }.disposed(by: rx.disposeBag)
+        
         sortButton.tap
             .withUnretained(self)
             .bind { owner, _ in
@@ -91,12 +98,16 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
     }
     
     private func setNavigationBar() {
+        
         self.navigationItem.titleView = NavigationTitleView(title: "")
+        // TODO: LeftBarButtonItem 만들기
         self.navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
-            type: .back,
+            type: .close,
             viewController: self
         )
-//        self.navigationItem.leftBar
+        
+        setupDropdownButton()
+        
         self.navigationItem.rightBarButtonItem = NavigationRightBarButtonItem(
             type: .notification,
             viewController: self
@@ -111,6 +122,32 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         navigationItem.scrollEdgeAppearance = barAppearance
     }
     
+    private func setupDropdownButton() {
+        
+        let dropDownAnchorView = UIView()
+        view.addSubview(dropDownAnchorView)
+        dropDownAnchorView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(-11)
+            $0.leading.equalTo(view.snp.leading).inset(16)
+        }
+        
+        dropDown.do {
+            $0.dataSource = ["ACTOR", "STAFF"]
+            $0.width = 149
+            $0.anchorView = dropDownAnchorView
+        }
+        
+        DropDown.appearance().textFont = .font_b(17)
+        DropDown.appearance().textColor = .gray_161616
+        DropDown.appearance().selectionBackgroundColor = .gray_F8F8F8
+        DropDown.appearance().setupCornerRadius(5)
+        DropDown.appearance().cellHeight = 44
+        DropDown.appearance().backgroundColor = .white_FFFFFF
+        
+        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+          print("Selected item: \(item) at index: \(index)")
+        }
+    }
     private func setupUI() {
         self.view.backgroundColor = .gray_EEEFEF
         
