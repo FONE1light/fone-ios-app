@@ -8,7 +8,7 @@
 import UIKit
 
 class ProfileModule: UICollectionViewCell {
-    var profileInfo: ModuleInfo?
+    var profileInfo: ProfileModuleInfo?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -20,7 +20,7 @@ class ProfileModule: UICollectionViewCell {
         collectionView.register(ProfileCell.self)
     }
     
-    func setModuelInfo(info: ModuleInfo?) {
+    func setModuelInfo(info: ProfileModuleInfo?) {
         self.profileInfo = info
         collectionView.reloadData()
         setModule()

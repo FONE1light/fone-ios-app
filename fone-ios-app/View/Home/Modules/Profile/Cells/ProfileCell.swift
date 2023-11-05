@@ -19,11 +19,11 @@ class ProfileCell: UICollectionViewCell {
         super.awakeFromNib()
     }
 
-    func configure(item: Content) {
+    func configure(item: ProfileContent) {
         hookingCommentLabel.text = item.hookingComment
         profileImageView.kf.setImage(with: URL(string: item.profileURL))
         nicknameLabel.text = item.userNickname
-        let age = item.age?.description ?? ""
+        let age = item.age.description
         ageLabel.text = age + "살"
         genderLabel.text = GenderType(rawValue: item.gender)?.string
     }
