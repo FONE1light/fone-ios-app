@@ -94,6 +94,7 @@
 		36D293D22A961E7300171C77 /* SignUpSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D293D12A961E7300171C77 /* SignUpSelectionViewController.swift */; };
 		36D293D42A961FDB00171C77 /* SelectionBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D293D32A961FDB00171C77 /* SelectionBlock.swift */; };
 		36D293D62A96270900171C77 /* StepIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D293D52A96270900171C77 /* StepIndicator.swift */; };
+		36D61F822AF7A29D00E0C7E7 /* DropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 36D61F812AF7A29D00E0C7E7 /* DropDown */; };
 		36E2693F2AAAEEDA0034B485 /* NavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2693E2AAAEEDA0034B485 /* NavigationTitleView.swift */; };
 		36E269412AAAEF420034B485 /* NavigationLeftBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E269402AAAEF420034B485 /* NavigationLeftBarButtonItem.swift */; };
 		36F50AA92A962C9800991C9B /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F50AA82A962C9800991C9B /* EmptyView.swift */; };
@@ -404,6 +405,7 @@
 				AB382F312AE6186A000FFACA /* FirebaseFirestoreCombine-Community in Frameworks */,
 				AB382F332AE6186A000FFACA /* FirebaseFirestoreSwift in Frameworks */,
 				AB61491B2A90AA820079CEC9 /* Kingfisher in Frameworks */,
+				36D61F822AF7A29D00E0C7E7 /* DropDown in Frameworks */,
 				AB382F212AE6186A000FFACA /* FirebaseAppDistribution-Beta in Frameworks */,
 				AB6149182A90AA3E0079CEC9 /* SnapKit in Frameworks */,
 				AB382F412AE6186A000FFACA /* FirebaseMessaging in Frameworks */,
@@ -1164,6 +1166,7 @@
 				AB382F462AE6186A000FFACA /* FirebaseRemoteConfigSwift */,
 				AB382F482AE6186A000FFACA /* FirebaseStorage */,
 				AB382F4A2AE6186A000FFACA /* FirebaseStorageCombine-Community */,
+				36D61F812AF7A29D00E0C7E7 /* DropDown */,
 			);
 			productName = "fone-ios-app";
 			productReference = AB6002322A7E375D000CF1FD /* fone-ios-app.app */;
@@ -1208,6 +1211,7 @@
 				366F22A92ADB486E00FD00BD /* XCRemoteSwiftPackageReference "PanModal" */,
 				AB382F032AE614BC000FFACA /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				AB382F152AE6186A000FFACA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				36D61F802AF7A29D00E0C7E7 /* XCRemoteSwiftPackageReference "DropDown" */,
 			);
 			productRefGroup = AB6002332A7E375D000CF1FD /* Products */;
 			projectDirPath = "";
@@ -1652,6 +1656,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		36D61F802AF7A29D00E0C7E7 /* XCRemoteSwiftPackageReference "DropDown" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AssistoLab/DropDown.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		AB382F032AE614BC000FFACA /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
@@ -1763,6 +1775,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 366F22A92ADB486E00FD00BD /* XCRemoteSwiftPackageReference "PanModal" */;
 			productName = PanModal;
+		};
+		36D61F812AF7A29D00E0C7E7 /* DropDown */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36D61F802AF7A29D00E0C7E7 /* XCRemoteSwiftPackageReference "DropDown" */;
+			productName = DropDown;
 		};
 		AB382F042AE614BC000FFACA /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
