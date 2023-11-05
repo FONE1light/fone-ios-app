@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 /// 구인구직 탭에서 표시할 UISegmentedControl 타입
 /// - 노출 순서는 allCases 순서를 따르므로 정의된 순서대로 화면에 노출됨.
@@ -59,6 +60,36 @@ class JobUISegmentedControl: UISegmentedControl {
     init() {
         let titles = JobSegmentType.allCases.map { $0.title ?? "" }
         super.init(items: titles)
+        
+//        backgroundColor = .white//.yellow
+        selectedSegmentTintColor = .red_CE0B39
+        
+        
+//        let backgroundImage0 = UIImage(named: "rangeRectangle")
+//        setBackgroundImage(backgroundImage0, for: .normal, barMetrics: .default)
+//        
+//        let backgroundImage1 = UIImage(named: "selectRectangle")
+//        setBackgroundImage(backgroundImage1, for: .selected, barMetrics: .default)
+        
+//        backgroundImage1.
+        
+//        subviews.forEach { $0.alpha = 0 }
+        
+        
+        setTitleTextAttributes(
+            [
+                NSAttributedString.Key.foregroundColor: UIColor.gray_9E9E9E
+            ],
+            for: .normal
+        )
+        
+        setTitleTextAttributes(
+            [
+                NSAttributedString.Key.foregroundColor: UIColor.white_FFFFFF
+            ],
+            for: .selected
+        )
+        
     }
     
     required init?(coder: NSCoder) {
