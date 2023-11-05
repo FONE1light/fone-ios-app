@@ -8,7 +8,7 @@
 import UIKit
 
 class JobOpeningModule: UICollectionViewCell {
-    var jobOpeningInfo: JobOpeningModuleInfo?
+    var jobOpeningInfo: ModuleInfo?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -20,7 +20,7 @@ class JobOpeningModule: UICollectionViewCell {
         collectionView.register(JobOpeningCell.self)
     }
 
-    func setModuelInfo(info: JobOpeningModuleInfo?) {
+    func setModuelInfo(info: ModuleInfo?) {
         self.jobOpeningInfo = info
         collectionView.reloadData()
         setModule()
