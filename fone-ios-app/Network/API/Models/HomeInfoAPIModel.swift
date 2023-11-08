@@ -17,7 +17,8 @@ struct HomeInfo: Codable {
 struct HomeInfoData: Codable {
     let order: [String]
     let jobOpening: JobOpeningModuleInfo
-    let competition: CompetitionModuleInfo
+    // FIXME: 영화제 데이터 확정 전까지 모델링 제외
+//    let competition: CompetitionModuleInfo
     let profile: ProfileModuleInfo
 }
 
