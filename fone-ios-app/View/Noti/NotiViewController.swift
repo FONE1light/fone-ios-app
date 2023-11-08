@@ -16,6 +16,7 @@ class NotiViewController: UIViewController {
     }
     
     private func setNavigationBar() {
+        navigationController?.hidesBarsOnSwipe = false
         navigationItem.titleView = NavigationTitleView(title: "알림")
         navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
             type: .back,
