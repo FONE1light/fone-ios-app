@@ -38,6 +38,8 @@ enum JobSegmentType: CaseIterable {
             )
         }
     }
+    
+    // 필요 시 FloatingButtonStackView 추가
 }
 
 class JobUISegmentedControl: UISegmentedControl {
@@ -76,7 +78,6 @@ class JobUISegmentedControl: UISegmentedControl {
             ],
             for: .selected
         )
-        
     }
     
     required init?(coder: NSCoder) {

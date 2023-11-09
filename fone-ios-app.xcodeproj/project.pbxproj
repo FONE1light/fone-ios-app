@@ -95,6 +95,7 @@
 		36D293D42A961FDB00171C77 /* SelectionBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D293D32A961FDB00171C77 /* SelectionBlock.swift */; };
 		36D293D62A96270900171C77 /* StepIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D293D52A96270900171C77 /* StepIndicator.swift */; };
 		36D61F822AF7A29D00E0C7E7 /* DropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 36D61F812AF7A29D00E0C7E7 /* DropDown */; };
+		36D61F842AFCC54700E0C7E7 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D61F832AFCC54700E0C7E7 /* FloatingButton.swift */; };
 		36E2693F2AAAEEDA0034B485 /* NavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2693E2AAAEEDA0034B485 /* NavigationTitleView.swift */; };
 		36E269412AAAEF420034B485 /* NavigationLeftBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E269402AAAEF420034B485 /* NavigationLeftBarButtonItem.swift */; };
 		36F50AA92A962C9800991C9B /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F50AA82A962C9800991C9B /* EmptyView.swift */; };
@@ -302,6 +303,7 @@
 		36D293D12A961E7300171C77 /* SignUpSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSelectionViewController.swift; sourceTree = "<group>"; };
 		36D293D32A961FDB00171C77 /* SelectionBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionBlock.swift; sourceTree = "<group>"; };
 		36D293D52A96270900171C77 /* StepIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepIndicator.swift; sourceTree = "<group>"; };
+		36D61F832AFCC54700E0C7E7 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		36E2693E2AAAEEDA0034B485 /* NavigationTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTitleView.swift; sourceTree = "<group>"; };
 		36E269402AAAEF420034B485 /* NavigationLeftBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLeftBarButtonItem.swift; sourceTree = "<group>"; };
 		36F50AA82A962C9800991C9B /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
@@ -610,6 +612,7 @@
 				3663DB152AF69C01005899BF /* BottomSheets */,
 				3663DB112AF6843C005899BF /* JobUISegmentedControl.swift */,
 				3663DB132AF68845005899BF /* JobOpeningSortButtonView.swift */,
+				36D61F832AFCC54700E0C7E7 /* FloatingButton.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -1396,6 +1399,7 @@
 				AB3AE54D2ADBDA750048EDA2 /* SocialLoginManager.swift in Sources */,
 				3628669A2A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift in Sources */,
 				ABAFA33B2A9F612900D50BAF /* QuestionInfoProvider.swift in Sources */,
+				36D61F842AFCC54700E0C7E7 /* FloatingButton.swift in Sources */,
 				36BCC7E42AA32B530060E35A /* SignUpSuccessViewController.swift in Sources */,
 				36B8FDE52AC0EDA20040AFB2 /* ScrapViewModel.swift in Sources */,
 				362419D72AE7B6F7007D1AFB /* UIAlertController+Extension.swift in Sources */,
