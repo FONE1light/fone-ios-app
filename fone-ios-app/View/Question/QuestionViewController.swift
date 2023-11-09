@@ -55,7 +55,6 @@ class QuestionViewController: UIViewController, ViewModelBindableType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTapped()
         
         submitButton.applyShadow(shadowType: .shadowIt2)
         agreeButton.setImage(UIImage(named: "checkboxes_off"), for: .normal)
@@ -96,11 +95,6 @@ class QuestionViewController: UIViewController, ViewModelBindableType {
             .withUnretained(self)
             .subscribe(onNext: { (owner, isEnabled) in
                 owner.submitButton.setEnabled(isEnabled: isEnabled)
-                if isEnabled {
-                    print("====제출 가능👌")
-                } else {
-                    print("====제출 비활성화😵")
-                }
             }).disposed(by: rx.disposeBag)
         
         closeButton.rx.tap
@@ -132,18 +126,6 @@ extension QuestionViewController: UITextViewDelegate {
         if descriptionTextView.text == "" {
             textViewSetPlaceHolder()
         }
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if text == "\n" {
-            textView.resignFirstResponder()
-        }
-        return true
     }
     
     func textViewSetPlaceHolder() {

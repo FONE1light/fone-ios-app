@@ -39,7 +39,7 @@ class JobOpeningCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configureCell(item: Content, index: Int) {
+    func configureCell(item: JobOpeningContent, index: Int) {
         imageView.image = UIImage(named: "card\(index + 1)")
         
         setTextColors(index: index)

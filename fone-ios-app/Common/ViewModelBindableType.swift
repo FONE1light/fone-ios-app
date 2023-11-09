@@ -20,5 +20,6 @@ extension ViewModelBindableType where Self: UIViewController {
         loadViewIfNeeded()
         
         bindViewModel()
+        hideKeyboardWhenTapped()
     }
 }
