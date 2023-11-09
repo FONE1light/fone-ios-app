@@ -22,6 +22,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecruitBasicInfoViewController" customModule="fone_ios_app" customModuleProvider="target">
             <connections>
+                <outlet property="attachImageButton" destination="7uQ-aE-JgN" id="ERb-SF-mey"/>
+                <outlet property="imageCollectionView" destination="Nip-hb-MI3" id="lva-T0-BLc"/>
                 <outlet property="nextButton" destination="w8i-sA-bHv" id="SE6-IZ-0yP"/>
                 <outlet property="selectionBlock" destination="rBg-mt-64R" id="LQ2-K6-8Gc"/>
                 <outlet property="titleTextView" destination="xWo-q2-yev" id="Mfp-UZ-jaS"/>
@@ -205,7 +207,7 @@
                         <constraint firstAttribute="height" constant="80" id="qKo-W8-hNP"/>
                     </constraints>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="8" minimumInteritemSpacing="8" id="vh9-x2-Ocp">
-                        <size key="itemSize" width="128" height="128"/>
+                        <size key="itemSize" width="80" height="80"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -281,14 +283,22 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7uQ-aE-JgN">
+                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.77254901960784317" green="0.77254901960784317" blue="0.77254901960784317" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="11J-fH-gKe"/>
                         <constraint firstItem="4m4-32-mqm" firstAttribute="centerX" secondItem="HaJ-35-oYP" secondAttribute="centerX" id="CQF-is-tfg"/>
+                        <constraint firstAttribute="bottom" secondItem="7uQ-aE-JgN" secondAttribute="bottom" id="Dxo-at-dqE"/>
+                        <constraint firstItem="7uQ-aE-JgN" firstAttribute="top" secondItem="HaJ-35-oYP" secondAttribute="top" id="Nls-Yl-sT4"/>
                         <constraint firstAttribute="height" constant="80" id="USi-cK-gqb"/>
+                        <constraint firstItem="7uQ-aE-JgN" firstAttribute="leading" secondItem="HaJ-35-oYP" secondAttribute="leading" id="iWt-xI-wgT"/>
                         <constraint firstItem="tYH-jb-WF8" firstAttribute="centerX" secondItem="HaJ-35-oYP" secondAttribute="centerX" id="k5e-Np-RIr"/>
                         <constraint firstAttribute="bottom" secondItem="4m4-32-mqm" secondAttribute="bottom" constant="12" id="lHR-Qk-JaX"/>
+                        <constraint firstAttribute="trailing" secondItem="7uQ-aE-JgN" secondAttribute="trailing" id="ubU-27-lXw"/>
                         <constraint firstItem="tYH-jb-WF8" firstAttribute="top" secondItem="HaJ-35-oYP" secondAttribute="top" constant="12" id="ySB-Aq-oOG"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
