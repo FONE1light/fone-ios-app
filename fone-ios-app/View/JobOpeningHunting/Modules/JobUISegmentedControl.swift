@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 /// 구인구직 탭에서 표시할 UISegmentedControl 타입
 /// - 노출 순서는 allCases 순서를 따르므로 정의된 순서대로 화면에 노출됨.
@@ -37,6 +38,8 @@ enum JobSegmentType: CaseIterable {
             )
         }
     }
+    
+    // 필요 시 FloatingButtonStackView 추가
 }
 
 class JobUISegmentedControl: UISegmentedControl {
@@ -59,6 +62,22 @@ class JobUISegmentedControl: UISegmentedControl {
     init() {
         let titles = JobSegmentType.allCases.map { $0.title ?? "" }
         super.init(items: titles)
+        
+        selectedSegmentTintColor = .red_CE0B39
+        
+        setTitleTextAttributes(
+            [
+                NSAttributedString.Key.foregroundColor: UIColor.gray_9E9E9E
+            ],
+            for: .normal
+        )
+        
+        setTitleTextAttributes(
+            [
+                NSAttributedString.Key.foregroundColor: UIColor.white_FFFFFF
+            ],
+            for: .selected
+        )
     }
     
     required init?(coder: NSCoder) {

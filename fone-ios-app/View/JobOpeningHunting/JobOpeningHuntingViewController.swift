@@ -9,13 +9,15 @@ import UIKit
 import Then
 import SnapKit
 import RxSwift
-
+import DropDown
 
 class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: JobOpeningHuntingViewModel!
     var hasViewModel = false
+    var disposeBag = DisposeBag()
     
+    private let dropDown = DropDown()
     private let segmentedControl = JobUISegmentedControl()
     
     private let sortButton = JobOpeningSortButton(width: 103)
@@ -24,6 +26,20 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         let image = UIImage(named: "Slider")
         $0.setImage(image, for: .normal)
     }
+    
+    private var isShownFloating = false
+    private var floatingButton = FloatingButton()
+    
+    private lazy var floatingDimView: UIView = {
+        let view = UIView(frame: self.view.frame) // FIXME: 영역 재설정
+        view.backgroundColor = .black_000000
+        view.alpha = 0.3
+        view.isHidden = true
+
+        self.view.insertSubview(view, belowSubview: floatingButton)
+
+        return view
+    }()
     
     // TODO: API 재요청 시점 따라 refresh 조치
     private lazy var tableViewJob = UITableView().then {
@@ -68,6 +84,30 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
     }()
     
     func bindViewModel() {
+        viewModel.selectedTab.withUnretained(self)
+            .bind { (owner: JobOpeningHuntingViewController, tabType: JobSegmentType) in
+                owner.segmentedControl.selectedSegmentType = tabType
+                
+                // sortButton 상태(UI+연결화면), 플로팅 버튼 상태(UI+연결화면), tableView/collectionView 변경
+                owner.sortButton.setLabel(owner.viewModel.sortButtonStateDic[tabType]?.title)
+                owner.floatingButton.changeMode(tabType)
+                
+                switch tabType {
+                case .jobOpening:
+                    owner.tableViewJob.isHidden = false
+                    owner.collectionViewProfile.isHidden = true
+                case .profile:
+                    owner.tableViewJob.isHidden = true
+                    owner.collectionViewProfile.isHidden = false
+                }
+            }.disposed(by: self.disposeBag)
+        
+        navigationItem.leftBarButtonItem?.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.dropDown.show()
+            }.disposed(by: rx.disposeBag)
+        
         sortButton.tap
             .withUnretained(self)
             .bind { owner, _ in
@@ -77,6 +117,19 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                     // FIXME: 높이 늘어나는 것 해결(UIView-Encapsulated-Layout-Height)
                     owner.presentPanModal(view: bottomSheet)
                 }
+            }.disposed(by: rx.disposeBag)
+        
+        filterButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                print("filterButton is clicked")
+            }.disposed(by: disposeBag)
+        
+        floatingButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.floatingButton.switchHiddenState()
+                owner.floatingDimView.isHidden = !owner.floatingDimView.isHidden
             }.disposed(by: rx.disposeBag)
     }
     
@@ -91,12 +144,16 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
     }
     
     private func setNavigationBar() {
+        
         self.navigationItem.titleView = NavigationTitleView(title: "")
+        // TODO: LeftBarButtonItem 만들기
         self.navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
-            type: .back,
+            type: .close,
             viewController: self
         )
-//        self.navigationItem.leftBar
+        
+        setupDropdownButton()
+        
         self.navigationItem.rightBarButtonItem = NavigationRightBarButtonItem(
             type: .notification,
             viewController: self
@@ -111,20 +168,49 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         navigationItem.scrollEdgeAppearance = barAppearance
     }
     
+    private func setupDropdownButton() {
+        
+        let dropDownAnchorView = UIView()
+        view.addSubview(dropDownAnchorView)
+        dropDownAnchorView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(-11)
+            $0.leading.equalTo(view.snp.leading).inset(16)
+        }
+        
+        dropDown.do {
+            $0.dataSource = ["ACTOR", "STAFF"]
+            $0.width = 149
+            $0.anchorView = dropDownAnchorView
+        }
+        
+        DropDown.appearance().textFont = .font_b(17)
+        DropDown.appearance().textColor = .gray_161616
+        DropDown.appearance().selectionBackgroundColor = .gray_F8F8F8
+        DropDown.appearance().setupCornerRadius(5)
+        DropDown.appearance().cellHeight = 44
+        DropDown.appearance().backgroundColor = .white_FFFFFF
+        
+        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+          print("Selected item: \(item) at index: \(index)")
+        }
+    }
+    
     private func setupUI() {
-        self.view.backgroundColor = .gray_EEEFEF
+        view.backgroundColor = .gray_EEEFEF
+        segmentedControl.selectedSegmentType = .jobOpening
         
         [
             segmentedControl,
             filterButton,
             sortButton,
+            floatingButton,
             tableViewJob,
             collectionViewProfile
         ]
             .forEach { view.addSubview($0) }
         
+        view.bringSubviewToFront(floatingButton)
         
-        segmentedControl.selectedSegmentType = .jobOpening
         segmentedControl.addTarget(
             self,
             action: #selector(changeTab),
@@ -159,11 +245,22 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
             $0.top.bottom.equalTo(tableViewJob)
             $0.leading.trailing.equalTo(tableViewJob).inset(16)
         }
+        
+        floatingButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(15)
+            $0.bottom.equalToSuperview().inset(30)
+            $0.size.equalTo(48)
+        }
+        
+        
     }
 }
 
 extension JobOpeningHuntingViewController {
     @objc private func changeTab(segment: JobUISegmentedControl) {
+        if let type = segment.selectedSegmentType {
+            viewModel.selectedTab.accept(type)
+        }
         switch segment.selectedSegmentType {
         case .jobOpening:
             tableViewJob.isHidden = false
@@ -207,7 +304,6 @@ extension JobOpeningHuntingViewController: UITableViewDataSource {
                 period: "일주일",
                 casting: "수영선수"
             )
-            
         }
         
         return cell
