@@ -11,11 +11,13 @@ import PhotosUI
 class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     var viewModel: RecruitBasicInfoViewModel!
     
+    private var placeholderString = "모집 제목을 입력하세요"
     private var selections = [String: PHPickerResult]()
     private var selectedAssetIdentifiers = [String]()
     private var images = [UIImage]()
     
     @IBOutlet weak var titleTextView: UITextView!
+    @IBOutlet weak var titleCountLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var selectionBlock: SelectionBlock!
     @IBOutlet weak var attachImageButton: UIButton!
@@ -32,6 +34,19 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
+        titleTextView.rx.text.orEmpty
+            .map { $0 == self.placeholderString ? "" : $0 }
+            .map { $0.count }
+            .map { String($0) }
+            .map ({ count -> NSMutableAttributedString in
+                let formattedString = NSMutableAttributedString()
+                formattedString.setAttributeText("\(count)", .font_r(12), UIColor.gray_555555)
+                formattedString.setAttributeText("/50", .font_r(12), UIColor.gray_C5C5C5)
+                return formattedString
+            })
+            .bind(to: titleCountLabel.rx.attributedText)
+            .disposed(by: rx.disposeBag)
+        
         attachImageButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
@@ -48,6 +63,7 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     }
     
     private func setTextView() {
+        titleTextView.delegate = self
         titleTextView.textContainer.lineFragmentPadding = 0
         titleTextView.textContainerInset = .zero
     }
@@ -132,5 +148,27 @@ extension RecruitBasicInfoViewController: PHPickerViewControllerDelegate {
         selections = newSelections
         selectedAssetIdentifiers = results.compactMap { $0.assetIdentifier }
         setImageArray()
+    }
+}
+
+extension RecruitBasicInfoViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textViewSetPlaceHolder()
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if titleTextView.text == "" {
+            textViewSetPlaceHolder()
+        }
+    }
+    
+    func textViewSetPlaceHolder() {
+        if titleTextView.text == placeholderString {
+            titleTextView.text = ""
+            titleTextView.textColor = .black
+        } else if titleTextView.text == "" {
+            titleTextView.text = placeholderString
+            titleTextView.textColor = .gray_9E9E9E
+        }
     }
 }

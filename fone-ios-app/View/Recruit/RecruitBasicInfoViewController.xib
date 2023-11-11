@@ -26,6 +26,7 @@
                 <outlet property="imageCollectionView" destination="Nip-hb-MI3" id="lva-T0-BLc"/>
                 <outlet property="nextButton" destination="w8i-sA-bHv" id="SE6-IZ-0yP"/>
                 <outlet property="selectionBlock" destination="rBg-mt-64R" id="LQ2-K6-8Gc"/>
+                <outlet property="titleCountLabel" destination="Js2-X8-cfw" id="K3m-oA-Mbc"/>
                 <outlet property="titleTextView" destination="xWo-q2-yev" id="Mfp-UZ-jaS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -160,7 +161,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Js2-X8-cfw">
                                             <rect key="frame" x="324.66666666666669" y="51.666666666666657" width="26.333333333333314" height="14.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
