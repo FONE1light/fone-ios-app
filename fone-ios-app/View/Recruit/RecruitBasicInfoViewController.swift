@@ -24,6 +24,7 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNavigationBar()
         setTextView()
         setSelectionBlock()
         setCollectionView()
@@ -36,6 +37,14 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
             .bind { owner, _ in
                 owner.presentPicker()
             }.disposed(by: rx.disposeBag)
+    }
+    
+    private func setNavigationBar() {
+        navigationItem.titleView = NavigationTitleView(title: "배우 모집하기")
+        navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
+            type: .back,
+            viewController: self
+        )
     }
     
     private func setTextView() {
