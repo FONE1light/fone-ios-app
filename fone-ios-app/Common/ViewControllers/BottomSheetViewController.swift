@@ -25,16 +25,14 @@ class BottomSheetViewController: UIViewController {
             return .intrinsicHeight
         }
     }
+    
+    private let bottomSheetView: UIView
 
     init(view: UIView) {
+        bottomSheetView = view
         super.init(nibName: nil, bundle: nil)
 //        let height = view.frame.height
 //        self.customHeight = .contentHeight(height)
-        
-        self.view.addSubview(view)
-        view.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
     }
     
     required init?(coder: NSCoder) {
@@ -44,6 +42,10 @@ class BottomSheetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(bottomSheetView)
+        bottomSheetView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 }
 
