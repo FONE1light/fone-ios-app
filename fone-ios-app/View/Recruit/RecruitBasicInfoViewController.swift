@@ -74,6 +74,7 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     }
     
     private func setCollectionView() {
+        imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
         imageCollectionView.register(ImageCollectionViewCell.self)
     }
@@ -122,7 +123,7 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     }
 }
 
-extension RecruitBasicInfoViewController: UICollectionViewDataSource {
+extension RecruitBasicInfoViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count
     }
@@ -130,8 +131,15 @@ extension RecruitBasicInfoViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as ImageCollectionViewCell
         cell.imageView.image = images[indexPath.row]
-        
+        cell.dimView.isHidden = indexPath.row != 0
+        cell.thumbnailLabel.isHidden = indexPath.row != 0
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let index = indexPath.row
+        images.remove(at: index)
+        collectionView.reloadData()
     }
 }
 
