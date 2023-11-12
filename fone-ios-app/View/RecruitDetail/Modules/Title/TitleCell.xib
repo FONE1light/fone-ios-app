@@ -29,10 +29,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d5F-6l-43Q">
-                                <rect key="frame" x="15.999999999999993" y="18" width="96.333333333333314" height="20"/>
+                                <rect key="frame" x="15.999999999999993" y="18" width="96.333333333333314" height="18"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OTT/TV 드라마" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8e1-yi-Ru0">
-                                        <rect key="frame" x="10" y="3" width="76.333333333333329" height="14"/>
+                                        <rect key="frame" x="10" y="3" width="76.333333333333329" height="12"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -46,6 +46,7 @@
                                 <color key="backgroundColor" red="0.21176470588235294" green="0.17254901960784313" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="8e1-yi-Ru0" firstAttribute="top" secondItem="d5F-6l-43Q" secondAttribute="top" constant="3" id="AN7-C7-XDW"/>
+                                    <constraint firstAttribute="height" constant="18" id="Uzq-RU-1ca"/>
                                     <constraint firstItem="8e1-yi-Ru0" firstAttribute="leading" secondItem="d5F-6l-43Q" secondAttribute="leading" constant="10" id="b2s-5m-K4b"/>
                                     <constraint firstAttribute="bottom" secondItem="8e1-yi-Ru0" secondAttribute="bottom" constant="3" id="f53-2z-6Ax"/>
                                     <constraint firstAttribute="trailing" secondItem="8e1-yi-Ru0" secondAttribute="trailing" constant="10" id="mBV-I5-X9C"/>
@@ -57,10 +58,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUS-nQ-JY9">
-                                <rect key="frame" x="116.33333333333333" y="18" width="61.666666666666671" height="20"/>
+                                <rect key="frame" x="116.33333333333333" y="18" width="61.666666666666671" height="18"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="단편영화" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3UX-75-Hrh">
-                                        <rect key="frame" x="10" y="3" width="41.666666666666664" height="14"/>
+                                        <rect key="frame" x="10" y="3" width="41.666666666666664" height="12"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -77,6 +78,7 @@
                                     <constraint firstItem="3UX-75-Hrh" firstAttribute="top" secondItem="aUS-nQ-JY9" secondAttribute="top" constant="3" id="SdK-AM-6jw"/>
                                     <constraint firstItem="3UX-75-Hrh" firstAttribute="leading" secondItem="aUS-nQ-JY9" secondAttribute="leading" constant="10" id="YZ8-nY-18t"/>
                                     <constraint firstAttribute="bottom" secondItem="3UX-75-Hrh" secondAttribute="bottom" constant="3" id="aQZ-LN-kwL"/>
+                                    <constraint firstAttribute="height" constant="18" id="nBZ-AH-oPf"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -85,7 +87,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ra-T6-Qdi">
-                                <rect key="frame" x="16" y="46" width="343" height="45.666666666666657"/>
+                                <rect key="frame" x="16" y="44" width="343" height="52"/>
                                 <string key="text">성균관대 영상학과에서 단편영화 &lt;Duet&gt;
 배우 모집합니다.</string>
                                 <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="19"/>
@@ -98,7 +100,7 @@
                             <constraint firstItem="9ra-T6-Qdi" firstAttribute="top" secondItem="d5F-6l-43Q" secondAttribute="bottom" constant="8" id="3In-xk-98M"/>
                             <constraint firstItem="d5F-6l-43Q" firstAttribute="top" secondItem="4MR-aa-2ps" secondAttribute="top" constant="18" id="4fa-S5-HQ8"/>
                             <constraint firstItem="d5F-6l-43Q" firstAttribute="leading" secondItem="4MR-aa-2ps" secondAttribute="leading" constant="16" id="5KU-CQ-NT1"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="9ra-T6-Qdi" secondAttribute="bottom" constant="20" id="89s-5u-GUK"/>
+                            <constraint firstAttribute="bottom" secondItem="9ra-T6-Qdi" secondAttribute="bottom" constant="20" id="89s-5u-GUK"/>
                             <constraint firstAttribute="trailing" secondItem="9ra-T6-Qdi" secondAttribute="trailing" constant="16" id="9GG-In-RbS"/>
                             <constraint firstItem="9ra-T6-Qdi" firstAttribute="leading" secondItem="4MR-aa-2ps" secondAttribute="leading" constant="16" id="T7X-dO-R0y"/>
                             <constraint firstItem="aUS-nQ-JY9" firstAttribute="centerY" secondItem="d5F-6l-43Q" secondAttribute="centerY" id="tAr-Vd-9Hm"/>
