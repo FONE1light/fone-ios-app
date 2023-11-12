@@ -43,8 +43,10 @@ extension RightBarButtonType {
     func action(_ viewController: UIViewController?) {
         switch self {
         case .notification:
-            let notificationViewController = NotiViewController()
-            viewController?.navigationController?.pushViewController(notificationViewController, animated: true)
+            if let vc = viewController as? any ViewModelBindableType {
+                guard let viewModel = vc.viewModel as? CommonViewModel else { return }
+                viewModel.sceneCoordinator.transition(to: Scene.notification, using: .push, animated: true)
+            }
         case .close:
             if let vc = viewController as? any ViewModelBindableType {
                 guard let viewModel = vc.viewModel as? CommonViewModel else { return }

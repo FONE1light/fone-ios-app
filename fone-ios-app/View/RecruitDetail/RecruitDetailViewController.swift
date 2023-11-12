@@ -27,15 +27,15 @@ class RecruitDetailViewController: UIViewController, ViewModelBindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-    }
-    
-    func bindViewModel() {
         setNavigationBar()
         setCollectionView()
     }
     
+    func bindViewModel() {
+        
+    }
+    
     private func setNavigationBar() {
-        navigationController?.hidesBarsOnSwipe = false
         navigationItem.titleView = NavigationTitleView(title: "배우 모집")
         navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
             type: .back,
