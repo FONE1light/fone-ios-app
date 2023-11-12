@@ -24,6 +24,8 @@
             <connections>
                 <outlet property="attachImageButton" destination="7uQ-aE-JgN" id="ERb-SF-mey"/>
                 <outlet property="imageCollectionView" destination="Nip-hb-MI3" id="lva-T0-BLc"/>
+                <outlet property="imageCountLabel" destination="4m4-32-mqm" id="f2b-u3-Pic"/>
+                <outlet property="imageCountView" destination="HaJ-35-oYP" id="DRy-QQ-04D"/>
                 <outlet property="nextButton" destination="w8i-sA-bHv" id="SE6-IZ-0yP"/>
                 <outlet property="selectionBlock" destination="rBg-mt-64R" id="LQ2-K6-8Gc"/>
                 <outlet property="titleCountLabel" destination="Js2-X8-cfw" id="K3m-oA-Mbc"/>

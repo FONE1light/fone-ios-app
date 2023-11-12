@@ -22,6 +22,8 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var selectionBlock: SelectionBlock!
     @IBOutlet weak var attachImageButton: UIButton!
     @IBOutlet weak var imageCollectionView: UICollectionView!
+    @IBOutlet weak var imageCountLabel: UILabel!
+    @IBOutlet weak var imageCountView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,8 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
         setSelectionBlock()
         setCollectionView()
         nextButton.applyShadow(shadowType: .shadowBt)
+        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false // 스와이프백 안 되게
     }
     
     func bindViewModel() {
@@ -57,7 +61,7 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     private func setNavigationBar() {
         navigationItem.titleView = NavigationTitleView(title: "배우 모집하기")
         navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
-            type: .back,
+            type: .backWithAlert,
             viewController: self
         )
     }
@@ -79,6 +83,20 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
         imageCollectionView.register(ImageCollectionViewCell.self)
     }
     
+    private func updateImageCountLabel() {
+        let formattedString = NSMutableAttributedString()
+        formattedString.setAttributeText("\(images.count) / ", .font_r(13), UIColor.white_FFFFFF)
+        let color = images.count == 0 ? UIColor.gray_EEEFEF : UIColor.violet_AFA3CA
+        formattedString.setAttributeText("9", .font_r(13), color)
+        imageCountLabel.attributedText = formattedString
+        
+        if images.count == 0 {
+            imageCountView.backgroundColor = UIColor.gray_C5C5C5
+        } else {
+            imageCountView.backgroundColor = UIColor.violet_362C4C
+        }
+    }
+    
     private func presentPicker() {
         var config = PHPickerConfiguration(photoLibrary: .shared())
         config.filter = PHPickerFilter.any(of: [.images])
@@ -89,7 +107,6 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
         
         let imagePicker = PHPickerViewController(configuration: config)
         imagePicker.delegate = self
-        
         self.present(imagePicker, animated: true)
     }
     
@@ -119,6 +136,7 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
                 self.images.append(image)
             }
             self.imageCollectionView.reloadData()
+            updateImageCountLabel()
         }
     }
 }
@@ -139,7 +157,9 @@ extension RecruitBasicInfoViewController: UICollectionViewDataSource, UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let index = indexPath.row
         images.remove(at: index)
+        selectedAssetIdentifiers.remove(at: index)
         collectionView.reloadData()
+        updateImageCountLabel()
     }
 }
 

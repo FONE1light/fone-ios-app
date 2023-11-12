@@ -151,6 +151,10 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true // 스와이프백 다시 가능하게
+    }
+    
     private func setNavigationBar() {
         
         self.navigationItem.titleView = NavigationTitleView(title: "")

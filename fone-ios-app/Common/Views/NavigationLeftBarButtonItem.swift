@@ -11,6 +11,7 @@ import RxSwift
 
 enum LeftBarButtonType {
     case back
+    case backWithAlert
     case close
     case myPage
     case chat
@@ -23,14 +24,14 @@ extension LeftBarButtonType {
     /// `image`면 `tintColor`가 적용되고 `customView`면 적용되지 않음
     var tintColor: UIColor? {
         switch self {
-        case .back, .close: return .gray_555555
+        case .back, .backWithAlert, .close: return .gray_555555
         default: return nil
         }
     }
     /// 버튼 이미지
     var image: UIImage? {
         switch self {
-        case .back: return UIImage(named: "arrow_left24")
+        case .back, .backWithAlert: return UIImage(named: "arrow_left24")
         case .close: return UIImage(named: "close_MD")
         default: return nil
         }
@@ -70,6 +71,12 @@ extension LeftBarButtonType {
             viewController?.navigationController?.popViewController(animated: true)
         case .close:
             viewController?.dismiss(animated: true)
+        case .backWithAlert:
+            let message = "지금 중단할 시 모든 정보가 사라집니다.\n정말 중단 하시겠어요?"
+            let alert = UIAlertController.createTwoButtonPopup(title: message, buttonText: "나가기") { _ in
+                viewController?.navigationController?.popViewController(animated: true)
+            }
+            viewController?.present(alert, animated: true)
         default: return
         }
     }
