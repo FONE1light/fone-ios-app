@@ -45,7 +45,8 @@ extension UIAlertController {
     
     class func createTwoButtonPopup(
         title: String?,
-        buttonText: String? = "확인",
+        backButtonText: String?,
+        continueButtonText: String?,
         buttonHandler: ((UIAlertAction) -> Void)? = nil
     ) -> UIAlertController {
         let alert = UIAlertController(
@@ -66,7 +67,7 @@ extension UIAlertController {
         )
         
         let back = UIAlertAction(
-            title: buttonText,
+            title: backButtonText,
             style: .default,
             handler: buttonHandler
         )
@@ -75,7 +76,7 @@ extension UIAlertController {
         back.setValue(UIColor.gray_555555, forKey: "titleTextColor") // 색상 적용
         
         let continueAction = UIAlertAction(
-            title: "계속 작성",
+            title: continueButtonText,
             style: .destructive,
             handler: nil)
         alert.addAction(continueAction)

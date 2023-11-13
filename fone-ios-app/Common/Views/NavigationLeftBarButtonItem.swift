@@ -73,7 +73,7 @@ extension LeftBarButtonType {
             viewController?.dismiss(animated: true)
         case .backWithAlert:
             let message = "지금 중단할 시 모든 정보가 사라집니다.\n정말 중단 하시겠어요?"
-            let alert = UIAlertController.createTwoButtonPopup(title: message, buttonText: "나가기") { _ in
+            let alert = UIAlertController.createTwoButtonPopup(title: message, backButtonText: "나가기", continueButtonText: "계속 작성") { _ in
                 viewController?.navigationController?.popViewController(animated: true)
             }
             viewController?.present(alert, animated: true)
