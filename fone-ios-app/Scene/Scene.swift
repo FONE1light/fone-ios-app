@@ -27,8 +27,10 @@ enum Scene {
     case competition(CompetitionViewModel) // 공모전 // TODO: 구인구직, 공모전 뷰 컨 UI 범위 확인 후 삭제
     case savedProfiles(SavedProfilesTabBarViewModel) // 찜한 프로필
     case myRegistrations(MyRegistrationsViewModel) // 나의 등록내역
-    
+
+    // 구인구직
     case recruitDetail(RecruitDetailViewModel)
+    case recruitBasicInfo(RecruitBasicInfoViewModel)
 }
 
 extension Scene {
@@ -62,11 +64,11 @@ extension Scene {
             
         case .signUpSelection(let signUpViewModel):
             var signUpVC = SignUpSelectionViewController()
-
+            
             DispatchQueue.main.async {
                 signUpVC.bind(viewModel: signUpViewModel)
             }
-
+            
             return signUpVC
             
         case .signUpPersonalInfo(let signUpViewModel):
@@ -147,7 +149,7 @@ extension Scene {
             DispatchQueue.main.async {
                 profileVC.bind(viewModel: profileViewModel)
             }
-        
+            
             return profileVC
             
         case .scrap(let scrapViewModel):
@@ -194,6 +196,15 @@ extension Scene {
             }
             
             return recruitDetailVC
+            
+        case .recruitBasicInfo(let recruitBasicInfoViewModel):
+            var recruitBasicInfoVC = RecruitBasicInfoViewController()
+            
+            DispatchQueue.main.async {
+                recruitBasicInfoVC.bind(viewModel: recruitBasicInfoViewModel)
+            }
+            
+            return recruitBasicInfoVC
         }
     }
 }

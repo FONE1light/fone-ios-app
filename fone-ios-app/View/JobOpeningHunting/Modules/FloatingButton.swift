@@ -8,6 +8,7 @@
 import UIKit
 import Then
 import SnapKit
+import RxCocoa
 
 class FloatingButton: UIButton {
     
@@ -26,6 +27,10 @@ class FloatingButton: UIButton {
         $0.setTitle("배우 모집", for: .normal)
         $0.setTitleColor(.white_FFFFFF, for: .normal)
         $0.titleLabel?.font = .font_m(14)
+    }
+    
+    var actorButtonTap: ControlEvent<Void> {
+        actorButton.rx.tap
     }
     
     private let staffButton = UIButton().then {
@@ -83,7 +88,7 @@ class FloatingButton: UIButton {
             staffButton.setTitle("스태프 등록", for: .normal)
         }
     }
-    
+
     func switchHiddenState() {
         stackView.isHidden = !stackView.isHidden
     }
