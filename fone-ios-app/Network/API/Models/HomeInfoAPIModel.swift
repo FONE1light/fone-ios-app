@@ -27,7 +27,6 @@ struct JobOpeningModuleInfo: Codable {
     let data: JobOpeningModuleData
 }
 
-
 // MARK: - JobOpeningModuleData
 struct JobOpeningModuleData: Codable {
     let content: [JobOpeningContent]
@@ -53,16 +52,22 @@ struct JobOpeningContent: Codable {
     let career, type: String
     let domains: [String]
     let viewCount, scrapCount: Int
-    let work: [String: String?]
+    let work: Work
     let isScrap: Bool
     let nickname: String
     let profileURL: String
-    let createdAt, userJob, dday: String
+    let createdAt, userJob: String
+    let recruitmentStartDate, recruitmentEndDate: String?
+    let representativeImageURL: String
+    let imageUrls: [String]
+    let dday: String
     
     enum CodingKeys: String, CodingKey {
         case id, title, categories, deadline, casting, numberOfRecruits, gender, ageMax, ageMin, career, type, domains, viewCount, scrapCount, work, isScrap, nickname
         case profileURL = "profileUrl"
-        case createdAt, userJob, dday
+        case createdAt, userJob, recruitmentStartDate, recruitmentEndDate
+        case representativeImageURL = "representativeImageUrl"
+        case imageUrls, dday
     }
 }
 
@@ -94,14 +99,14 @@ struct CompetitionContent: Codable {
     let viewCount, scrapCount: Int
     let isScrap: Bool
     let linkURL: String
-    let screeningDDay, exhibitDDay: String
+    let screeningDDay, screeningDate, exhibitDate: String
     
     enum CodingKeys: String, CodingKey {
         case id, title
         case imageURL = "imageUrl"
         case screeningStartDate, screeningEndDate, exhibitStartDate, exhibitEndDate, showStartDate, agency, details, viewCount, scrapCount, isScrap
         case linkURL = "linkUrl"
-        case screeningDDay, exhibitDDay
+        case screeningDDay, screeningDate, exhibitDate
     }
 }
 
@@ -160,4 +165,18 @@ struct Pageable: Codable {
 // MARK: - Sort
 struct Sort: Codable {
     let empty, unsorted, sorted: Bool
+}
+
+// MARK: - Work
+struct Work: Codable {
+    let produce, workTitle, director, genre: String
+    let logline, location, period, pay: String?
+    let details, manager, email: String
+    let genres: [String]
+    let workingCity, workingDistrict: String
+    let workingStartDate, workingEndDate: String?
+    let selectedDays: [String]
+    let workingStartTime, workingEndTime: String?
+    let salaryType: String
+    let salary: Int
 }
