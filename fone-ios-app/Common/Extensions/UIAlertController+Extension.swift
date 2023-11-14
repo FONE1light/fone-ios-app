@@ -42,4 +42,47 @@ extension UIAlertController {
         
         return alert
     }
+    
+    class func createTwoButtonPopup(
+        title: String?,
+        backButtonText: String?,
+        continueButtonText: String?,
+        buttonHandler: ((UIAlertAction) -> Void)? = nil
+    ) -> UIAlertController {
+        let alert = UIAlertController(
+            title: title,
+            message: nil,
+            preferredStyle: .alert
+        ).then {
+            $0.view.tintColor = .gray_555555
+        }
+        
+        alert.setValue(
+            NSAttributedString(
+                string: alert.title!,
+                attributes: [
+                    NSAttributedString.Key.font : UIFont.font_r(16),
+                    NSAttributedString.Key.foregroundColor : UIColor.gray_161616]
+            ), forKey: "attributedTitle"
+        )
+        
+        let back = UIAlertAction(
+            title: backButtonText,
+            style: .default,
+            handler: buttonHandler
+        )
+        alert.addAction(back)
+        
+        back.setValue(UIColor.gray_555555, forKey: "titleTextColor") // 색상 적용
+        
+        let continueAction = UIAlertAction(
+            title: continueButtonText,
+            style: .destructive,
+            handler: nil)
+        alert.addAction(continueAction)
+        
+        continueAction.setValue(UIColor.red_CE0B39, forKey: "titleTextColor") // 색상 적용
+        
+        return alert
+    }
 }

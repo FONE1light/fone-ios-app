@@ -70,7 +70,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         let collectionView = UICollectionView(
             frame: .zero,
             collectionViewLayout: layout
-            )
+        )
         
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
@@ -130,6 +130,14 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
             .bind { owner, _ in
                 owner.floatingButton.switchHiddenState()
                 owner.floatingDimView.isHidden = !owner.floatingDimView.isHidden
+                owner.moveToRecruitBasicInfo()
+            }.disposed(by: rx.disposeBag)
+        
+        floatingButton.actorButtonTap
+            .withUnretained(self)
+            .bind { owner, _ in
+                // FIXME: 왜 안 될까요?ㅠㅠㅠ
+                owner.moveToRecruitBasicInfo()
             }.disposed(by: rx.disposeBag)
     }
     
@@ -141,6 +149,10 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         setupUI()
         setConstraints()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true // 스와이프백 다시 가능하게
     }
     
     private func setNavigationBar() {
@@ -271,6 +283,12 @@ extension JobOpeningHuntingViewController {
         default: break
         }
     }
+    
+    private func moveToRecruitBasicInfo() {
+        let recruitBasicInfoViewModel = RecruitBasicInfoViewModel(sceneCoordinator: viewModel.sceneCoordinator)
+        let recruitScene = Scene.recruitBasicInfo(recruitBasicInfoViewModel)
+        viewModel.sceneCoordinator.transition(to: recruitScene, using: .push, animated: true)
+    }
 }
 
 // MARK: - TableView
@@ -308,7 +326,7 @@ extension JobOpeningHuntingViewController: UITableViewDataSource {
         
         return cell
     }
-
+    
 }
 
 
@@ -333,7 +351,7 @@ extension JobOpeningHuntingViewController: UICollectionViewDataSource {
         
         return cell
     }
-
+    
 }
 
 // MARK: - CollectionView

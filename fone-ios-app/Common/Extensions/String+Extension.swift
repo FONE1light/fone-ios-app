@@ -5,7 +5,7 @@
 //  Created by 여나경 on 2023/08/17.
 //
 
-import Foundation
+import UIKit
 
 extension String {
     var url: URL? {
@@ -70,5 +70,15 @@ extension String {
         let thirdPart = self.substring(7..<11)
         
         return firstPart + "-" + secondPart + "-" + thirdPart
+    }
+}
+
+extension NSMutableAttributedString {
+    @discardableResult func setAttributeText(_ text: String, _ font : UIFont, _ color: UIColor) -> NSMutableAttributedString {
+        let attributes: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor : color]
+        let string = NSMutableAttributedString(string:text, attributes: attributes)
+        append(string)
+        
+        return self
     }
 }
