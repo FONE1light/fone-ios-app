@@ -20,6 +20,7 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var titleCountLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var selectionBlock: SelectionBlock!
+    @IBOutlet weak var calendarButton: UIButton!
     @IBOutlet weak var attachImageButton: UIButton!
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var imageCountLabel: UILabel!
@@ -50,6 +51,12 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
             })
             .bind(to: titleCountLabel.rx.attributedText)
             .disposed(by: rx.disposeBag)
+        
+        calendarButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.viewModel.sceneCoordinator.transition(to: Scene.calendar, using: .fullScreenModal, animated: true)
+            }.disposed(by: rx.disposeBag)
         
         attachImageButton.rx.tap
             .withUnretained(self)

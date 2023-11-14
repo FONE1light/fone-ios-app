@@ -31,6 +31,8 @@ enum Scene {
     // 구인구직
     case recruitDetail(RecruitDetailViewModel)
     case recruitBasicInfo(RecruitBasicInfoViewModel)
+    
+    case calendar
 }
 
 extension Scene {
@@ -205,6 +207,11 @@ extension Scene {
             }
             
             return recruitBasicInfoVC
+            
+        case .calendar:
+            let calendarVC = CalendarViewController()
+            
+            return calendarVC
         }
     }
 }

@@ -23,6 +23,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecruitBasicInfoViewController" customModule="fone_ios_app" customModuleProvider="target">
             <connections>
                 <outlet property="attachImageButton" destination="7uQ-aE-JgN" id="ERb-SF-mey"/>
+                <outlet property="calendarButton" destination="YWF-wO-sZ9" id="tVf-AM-x0J"/>
                 <outlet property="imageCollectionView" destination="Nip-hb-MI3" id="lva-T0-BLc"/>
                 <outlet property="imageCountLabel" destination="4m4-32-mqm" id="f2b-u3-Pic"/>
                 <outlet property="imageCountView" destination="HaJ-35-oYP" id="DRy-QQ-04D"/>
@@ -212,13 +213,22 @@
                                             <color key="textColor" red="0.77254901960784317" green="0.77254901960784317" blue="0.77254901960784317" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YWF-wO-sZ9">
+                                            <rect key="frame" x="0.0" y="0.0" width="361" height="44"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="YWF-wO-sZ9" secondAttribute="trailing" id="799-MH-2yn"/>
                                         <constraint firstItem="c6c-en-UQe" firstAttribute="centerY" secondItem="3Y9-uZ-GQE" secondAttribute="centerY" id="Iwc-vr-u2u"/>
                                         <constraint firstItem="ncC-Gt-ZUM" firstAttribute="centerY" secondItem="3Y9-uZ-GQE" secondAttribute="centerY" id="VeC-Zv-Km4"/>
+                                        <constraint firstItem="YWF-wO-sZ9" firstAttribute="top" secondItem="3Y9-uZ-GQE" secondAttribute="top" id="afa-ig-Tzd"/>
+                                        <constraint firstItem="YWF-wO-sZ9" firstAttribute="leading" secondItem="3Y9-uZ-GQE" secondAttribute="leading" id="cBy-Qa-ohc"/>
                                         <constraint firstItem="ncC-Gt-ZUM" firstAttribute="leading" secondItem="c6c-en-UQe" secondAttribute="trailing" constant="8" id="fLv-L2-84x"/>
                                         <constraint firstAttribute="height" constant="44" id="iDi-Gj-i3m"/>
+                                        <constraint firstAttribute="bottom" secondItem="YWF-wO-sZ9" secondAttribute="bottom" id="pKJ-G0-2bw"/>
                                         <constraint firstItem="c6c-en-UQe" firstAttribute="leading" secondItem="3Y9-uZ-GQE" secondAttribute="leading" constant="12" id="qdO-AY-8bh"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
