@@ -46,6 +46,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         $0.showsVerticalScrollIndicator = false
         $0.separatorStyle = .none
         $0.dataSource = self
+        $0.delegate = self
         $0.register(with: JobPostCell.self)
         $0.backgroundColor = .gray_EEEFEF
     }
@@ -329,6 +330,13 @@ extension JobOpeningHuntingViewController: UITableViewDataSource {
     
 }
 
+extension JobOpeningHuntingViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewModel = RecruitDetailViewModel(sceneCoordinator: viewModel.sceneCoordinator)
+        let detailScene = Scene.recruitDetail(viewModel)
+        viewModel.sceneCoordinator.transition(to: detailScene, using: .push, animated: true)
+    }
+}
 
 extension JobOpeningHuntingViewController: UICollectionViewDataSource {
     

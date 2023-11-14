@@ -46,7 +46,7 @@ class SceneCoordinator: SceneCoordinatorType {
                     coordinator.currentVC = evt.viewController.sceneViewController
                 })
                 .disposed(by: disposeBag)
-            
+            target.hidesBottomBarWhenPushed = true
             nav.pushViewController(target, animated: animated)
             currentVC = target.sceneViewController
             

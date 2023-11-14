@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Medium.ttf">
+            <string>Pretendard-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecruitDetailViewController" customModule="fone_ios_app" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="vBC-xJ-GtU" id="sTf-GB-2Nb"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hea-lU-9IO">
+                    <rect key="frame" x="0.0" y="734" width="393" height="84"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGb-MK-BKv">
+                            <rect key="frame" x="165" y="12" width="212" height="48"/>
+                            <color key="backgroundColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="jzg-id-SGo"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="16"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="연락하기"/>
+                            <state key="disabled" title="제출하기"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ax3-S7-U0E">
+                            <rect key="frame" x="16" y="12" width="140" height="48"/>
+                            <color key="backgroundColor" red="0.93333333333333335" green="0.93725490196078431" blue="0.93725490196078431" alpha="0.89803921568627454" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="ax3-S7-U0E" secondAttribute="height" multiplier="35:12" id="UIA-1B-ZU8"/>
+                                <constraint firstAttribute="height" constant="48" id="hPW-8F-VlV"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="스크랩" image="Bookmark_off">
+                                <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="0.89803921568627454" colorSpace="calibratedRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="oGb-MK-BKv" firstAttribute="leading" secondItem="ax3-S7-U0E" secondAttribute="trailing" constant="9" id="0UB-tk-ZqN"/>
+                        <constraint firstItem="ax3-S7-U0E" firstAttribute="leading" secondItem="hea-lU-9IO" secondAttribute="leading" constant="16" id="6AD-Uf-l5m"/>
+                        <constraint firstItem="ax3-S7-U0E" firstAttribute="top" secondItem="hea-lU-9IO" secondAttribute="top" constant="12" id="PAV-Ct-I8l"/>
+                        <constraint firstAttribute="height" constant="84" id="PAp-hE-44h"/>
+                        <constraint firstAttribute="trailing" secondItem="oGb-MK-BKv" secondAttribute="trailing" constant="16" id="Xc9-Sv-V0C"/>
+                        <constraint firstItem="oGb-MK-BKv" firstAttribute="top" secondItem="hea-lU-9IO" secondAttribute="top" constant="12" id="w0d-7X-6b4"/>
+                    </constraints>
+                </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="vBC-xJ-GtU">
+                    <rect key="frame" x="0.0" y="59" width="393" height="675"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="jlG-a5-q5E">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="bottomMargin" secondItem="hea-lU-9IO" secondAttribute="bottom" id="PMP-mj-xep"/>
+                <constraint firstItem="vBC-xJ-GtU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="lnz-0U-M1V"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vBC-xJ-GtU" secondAttribute="trailing" id="pac-zE-VWT"/>
+                <constraint firstItem="hea-lU-9IO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="q7i-st-299"/>
+                <constraint firstItem="vBC-xJ-GtU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qnM-Xc-wQX"/>
+                <constraint firstItem="hea-lU-9IO" firstAttribute="top" secondItem="vBC-xJ-GtU" secondAttribute="bottom" id="t7M-jL-piI"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hea-lU-9IO" secondAttribute="trailing" id="tAL-HU-on4"/>
+            </constraints>
+            <point key="canvasLocation" x="45" y="20"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Bookmark_off" width="24" height="24"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
