@@ -61,9 +61,6 @@ class JobOpeningSortBottomSheet: UIView {
         setConstraints()
         
         selectedOption = selectedItem
-        
-    
-            
     }
     
     required init?(coder: NSCoder) {
