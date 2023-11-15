@@ -27,12 +27,6 @@ enum JobOpeningSortOptions {
 }
 
 class JobOpeningSortBottomSheet: UIView {
-
-    private let options: [JobOpeningSortOptions] = [
-        .recent,
-        .view,
-        .deadline
-    ]
     
     private var selectedOption: JobOpeningSortOptions?
     
@@ -42,19 +36,27 @@ class JobOpeningSortBottomSheet: UIView {
         $0.text = "정렬"
     }
     
-//    private let contentLabel = UILabel().then {
-//        $0.font = .font_r(14)
-//        $0.textColor = .gray_555555
-//        $0.numberOfLines = 1
-//    }
+    private let list: UISortButtonStackView?
+    private let completionHandler: ((String) -> Void)?
     
-    // TODO: list - StackView 혹은 >>TableView<<
-    private let list = UIView().then {
-        $0.backgroundColor = .yellow
-    }
     init(
-        selectedItem: JobOpeningSortOptions?
+        list: [JobOpeningSortOptions],
+        selectedItem: JobOpeningSortOptions?,
+        completionHandler: ((String) -> Void)? = nil
     ) {
+        self.completionHandler = { selectedText in
+            completionHandler?(selectedText)
+            print(selectedText)
+            // TODO: Dismiss - BottomSheetViewController를 만드는 곳에서부터 해야할지도.
+            print("dismiss")
+        }
+        
+        self.list = UISortButtonStackView(
+            list,
+            selectedOption: selectedItem,
+            completionHandler: self.completionHandler
+        )
+        
         super.init(frame: .zero)
         
         setUI()
@@ -70,7 +72,9 @@ class JobOpeningSortBottomSheet: UIView {
     
     private func setUI() {
         backgroundColor = .white_FFFFFF
+        cornerRadius = 10
         
+        guard let list = list else { return }
         [
             titleLabel,
             list
@@ -86,17 +90,10 @@ class JobOpeningSortBottomSheet: UIView {
 //            $0.height.equalTo(26)
         }
         
-//        contentLabel.snp.makeConstraints {
-//            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
-//            $0.centerX.equalToSuperview()
-////            $0.height.equalTo(20)
-//        }
-        
-        list.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(44)
+        list?.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom)
             $0.leading.trailing.equalToSuperview().inset(22)
             $0.bottom.equalToSuperview().offset(-40)
-            $0.height.equalTo(48)
         }
         
         snp.makeConstraints {
