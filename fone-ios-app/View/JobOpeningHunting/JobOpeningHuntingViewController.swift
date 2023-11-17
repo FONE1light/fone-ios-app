@@ -50,7 +50,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         $0.separatorStyle = .none
         $0.dataSource = self
         $0.delegate = self
-        $0.register(with: JobPostCell.self)
+        $0.register(with: JobCell.self)
         $0.backgroundColor = .gray_EEEFEF
     }
     
@@ -346,11 +346,10 @@ extension JobOpeningHuntingViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(for: indexPath) as JobPostCell
+        let cell = tableView.dequeueReusableCell(for: indexPath) as JobCell
         
         if indexPath.row % 2 == 0 {
             cell.configure(
-                job: .staff,
                 categories: [.featureFilm, .youtube],
                 deadline: "2023.01.20",
                 coorporate: "성균관대학교 영상학과",
@@ -361,7 +360,6 @@ extension JobOpeningHuntingViewController: UITableViewDataSource {
         } else {
             
             cell.configure(
-                job: .actor,
                 categories: [.ottDrama, .shortFilm],
                 deadline: "2023.01.20",
                 coorporate: "성균관대학교 영상학과",
