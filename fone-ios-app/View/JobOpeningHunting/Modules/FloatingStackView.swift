@@ -29,7 +29,7 @@ class FloatingStackView: UIStackView {
     }
     
     var staffButtonTap: ControlEvent<Void> {
-        actorButton.rx.tap
+        staffButton.rx.tap
     }
     
     init() {
