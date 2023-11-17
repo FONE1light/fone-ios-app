@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import RxSwift
+import RxCocoa
 
 enum LeftBarButtonType {
     case back
@@ -16,6 +17,8 @@ enum LeftBarButtonType {
     case myPage
     case chat
     case home
+    /// ACTOR/STAFF
+    case jobType
 }
 
 extension LeftBarButtonType {
@@ -60,6 +63,8 @@ extension LeftBarButtonType {
                 $0.font = .font_b(22)
             }
             return label
+        case .jobType:
+            return JobTypeDropdown()
         default: return nil
         }
     }
@@ -81,6 +86,7 @@ extension LeftBarButtonType {
         }
     }
 }
+
 
 /// `navigationItem.leftBarButtonItem`에 설정할 BarButton 클래스
 class NavigationLeftBarButtonItem: UIBarButtonItem {

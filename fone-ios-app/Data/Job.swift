@@ -21,6 +21,10 @@ enum Job: Selection, CaseIterable {
     case normal
     case hunter
     
+    static func getType(name: String?) -> Job? {
+        Job.allCases.filter { $0.name == name }.first
+    }
+    
     var name: String {
         switch self {
         case .actor: return "ACTOR"

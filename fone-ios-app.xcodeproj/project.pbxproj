@@ -81,6 +81,7 @@
 		36AB6FC52B050E6400D9D6D0 /* FloatingStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FC42B050E6400D9D6D0 /* FloatingStackView.swift */; };
 		36AB6FC72B05263E00D9D6D0 /* UISortButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FC62B05263E00D9D6D0 /* UISortButtonStackView.swift */; };
 		36AB6FC92B05266200D9D6D0 /* UISortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FC82B05266200D9D6D0 /* UISortButton.swift */; };
+		36AB6FCC2B07528C00D9D6D0 /* JobTypeDropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FCB2B07528C00D9D6D0 /* JobTypeDropdown.swift */; };
 		36AC7BD52AAE852E00478030 /* SignUpPhoneNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AC7BD42AAE852E00478030 /* SignUpPhoneNumberViewModel.swift */; };
 		36AC7BD72AAE883500478030 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AC7BD62AAE883500478030 /* UITableView+Extension.swift */; };
 		36AC7BD92AAE88F400478030 /* TermsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AC7BD82AAE88F400478030 /* TermsCell.swift */; };
@@ -319,6 +320,7 @@
 		36AB6FC42B050E6400D9D6D0 /* FloatingStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingStackView.swift; sourceTree = "<group>"; };
 		36AB6FC62B05263E00D9D6D0 /* UISortButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISortButtonStackView.swift; sourceTree = "<group>"; };
 		36AB6FC82B05266200D9D6D0 /* UISortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISortButton.swift; sourceTree = "<group>"; };
+		36AB6FCB2B07528C00D9D6D0 /* JobTypeDropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTypeDropdown.swift; sourceTree = "<group>"; };
 		36AC7BD42AAE852E00478030 /* SignUpPhoneNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPhoneNumberViewModel.swift; sourceTree = "<group>"; };
 		36AC7BD62AAE883500478030 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		36AC7BD82AAE88F400478030 /* TermsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsCell.swift; sourceTree = "<group>"; };
@@ -828,6 +830,17 @@
 			path = Job;
 			sourceTree = "<group>";
 		};
+		36AB6FCA2B07527C00D9D6D0 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				36E2693E2AAAEEDA0034B485 /* NavigationTitleView.swift */,
+				36E269402AAAEF420034B485 /* NavigationLeftBarButtonItem.swift */,
+				364482CF2AB7D15F00984507 /* NavigationRightBarButton.swift */,
+				36AB6FCB2B07528C00D9D6D0 /* JobTypeDropdown.swift */,
+			);
+			path = NavigationBar;
+			sourceTree = "<group>";
+		};
 		36AC7BD32AAE851E00478030 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -873,14 +886,12 @@
 		36F50AA72A962C8D00991C9B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				36AB6FCA2B07527C00D9D6D0 /* NavigationBar */,
 				367D9BC02AC166D800DA6C96 /* PostTableView */,
 				36F50AA82A962C9800991C9B /* EmptyView.swift */,
 				36BCC7E52AA5E0180060E35A /* CustomButton.swift */,
-				36E2693E2AAAEEDA0034B485 /* NavigationTitleView.swift */,
-				36E269402AAAEF420034B485 /* NavigationLeftBarButtonItem.swift */,
 				364BCC692AB3672500E14B25 /* DynamicHeightCollectionView.swift */,
 				364BCC6B2AB3673900E14B25 /* LeftAlignedCollectionViewFlowLayout.swift */,
-				364482CF2AB7D15F00984507 /* NavigationRightBarButton.swift */,
 				367D9BBE2AC1572700DA6C96 /* Divider.swift */,
 				366F22A52ADB2AD600FD00BD /* OfficialMark.swift */,
 			);
@@ -1583,6 +1594,7 @@
 				3663DB122AF6843C005899BF /* JobUISegmentedControl.swift in Sources */,
 				36031EC92AF4DC91006B57AE /* JobOpeningHuntingViewController.swift in Sources */,
 				367D9C362ADA664700DA6C96 /* JobRegistrationCell.swift in Sources */,
+				36AB6FCC2B07528C00D9D6D0 /* JobTypeDropdown.swift in Sources */,
 				36C8B7EE2ADC853D008B6F88 /* SignUpTerms.swift in Sources */,
 				36D293D42A961FDB00171C77 /* SelectionBlock.swift in Sources */,
 				36D293D22A961E7300171C77 /* SignUpSelectionViewController.swift in Sources */,
