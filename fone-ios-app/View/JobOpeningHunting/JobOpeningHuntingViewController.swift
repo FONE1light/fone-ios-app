@@ -166,7 +166,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                 case .jobOpening:
                     owner.moveToRecruitBasicInfo()
                 case .profile:
-                    // TODO: 화면 이동
+                    owner.moveToRegisterActorProfile()
                     break
                 }
             }.disposed(by: rx.disposeBag)
@@ -335,6 +335,13 @@ extension JobOpeningHuntingViewController {
         let recruitBasicInfoViewModel = RecruitBasicInfoViewModel(sceneCoordinator: viewModel.sceneCoordinator)
         let recruitScene = Scene.recruitBasicInfo(recruitBasicInfoViewModel)
         viewModel.sceneCoordinator.transition(to: recruitScene, using: .push, animated: true)
+    }
+    
+    /// 프로필 등록 - 배우
+    private func moveToRegisterActorProfile() {
+        let registerBasicInfoViewModel = RegisterBasicInfoViewModel(sceneCoordinator: viewModel.sceneCoordinator)
+        let registerScene = Scene.registerBasicInfo(registerBasicInfoViewModel)
+        viewModel.sceneCoordinator.transition(to: registerScene, using: .push, animated: true)
     }
 }
 

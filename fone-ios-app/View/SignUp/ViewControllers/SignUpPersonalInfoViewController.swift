@@ -23,7 +23,7 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
         $0.alignment = .leading
     }
     
-    let stepIndicator = StepIndicator(.second)
+    let stepIndicator = StepIndicator(index: 1, totalCount: 3)
     
     let titleLabel = UILabel().then {
         $0.text = "기본 정보를 입력해 주세요"
