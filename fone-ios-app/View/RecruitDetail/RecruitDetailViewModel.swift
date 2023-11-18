@@ -8,5 +8,11 @@
 import Foundation
 
 final class RecruitDetailViewModel: CommonViewModel {
+    var jobOpeningDetail: JobOpeningContent?
     
+    init(sceneCoordinator: SceneCoordinatorType, jobOpeningDetail: JobOpeningContent) {
+        super.init(sceneCoordinator: sceneCoordinator)
+        
+        self.jobOpeningDetail = jobOpeningDetail
+    }
 }
