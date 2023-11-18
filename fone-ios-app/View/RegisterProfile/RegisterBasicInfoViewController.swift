@@ -18,19 +18,27 @@ class RegisterBasicInfoViewController: UIViewController, ViewModelBindableType {
     
     let stackView = UIStackView().then {
         $0.axis = .vertical
-        $0.alignment = .leading
     }
     
     private let stepIndicator = StepIndicator(index: 0, totalCount: 4)
     
     private let titleLabel = UILabel().then {
-        $0.text = "기본 정보를 입력해 주세요"
+        $0.text = "기본 정보를 입력해주세요"
         $0.font = .font_b(19)
         $0.textColor = .violet_362C4C
         $0.numberOfLines = 0
     }
     
-    private let nameBlock = UIView()
+    private let nameBlock = LabelTextField(
+        label: "이름",
+        placeholder: "실명을 입력해주세요",
+        isRequired: true
+    )
+    private let hookingBlock = LabelTextView(
+        label: "후킹멘트",
+        placeholder: "당신을 표현하는 한 줄을 적어주세요",
+        isRequired: true
+    )
     
     func bindViewModel() {
         
@@ -55,22 +63,28 @@ class RegisterBasicInfoViewController: UIViewController, ViewModelBindableType {
     private func setupUI() {
         self.view.backgroundColor = .white_FFFFFF
         
+        view.addSubview(stepIndicator)
         view.addSubview(stackView)
         
         [
-            stepIndicator,
-            EmptyView(height: 20),
             titleLabel,
             EmptyView(height: 12),
             nameBlock,
+            EmptyView(height: 30),
+            hookingBlock
         ]
             .forEach { stackView.addArrangedSubview($0) }
         
     }
     
     private func setConstraints() {
-        stackView.snp.makeConstraints {
+        stepIndicator.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(30)
+            $0.leading.equalToSuperview().offset(16)
+        }
+        
+        stackView.snp.makeConstraints {
+            $0.top.equalTo(stepIndicator.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(16)
         }
     }
