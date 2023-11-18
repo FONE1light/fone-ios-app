@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class RecruitDetailViewModel: CommonViewModel {
+final class JobOpeningDetailViewModel: CommonViewModel {
     var jobOpeningDetail: JobOpeningContent?
     
     init(sceneCoordinator: SceneCoordinatorType, jobOpeningDetail: JobOpeningContent) {

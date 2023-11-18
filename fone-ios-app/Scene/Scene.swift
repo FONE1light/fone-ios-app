@@ -29,7 +29,7 @@ enum Scene {
     case myRegistrations(MyRegistrationsViewModel) // 나의 등록내역
 
     // 구인구직
-    case recruitDetail(RecruitDetailViewModel)
+    case recruitDetail(JobOpeningDetailViewModel)
     case recruitBasicInfo(RecruitBasicInfoViewModel)
 }
 
@@ -189,7 +189,7 @@ extension Scene {
             return myRegistrationsVC
             
         case .recruitDetail(let recruitDetailViewModel):
-            var recruitDetailVC = RecruitDetailViewController()
+            var recruitDetailVC = JobOpeningDetailViewController()
             
             DispatchQueue.main.async {
                 recruitDetailVC.bind(viewModel: recruitDetailViewModel)
