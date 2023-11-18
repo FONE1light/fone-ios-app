@@ -86,6 +86,9 @@
 		36AB6FD22B08693B00D9D6D0 /* RegisterBasicInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FD12B08693B00D9D6D0 /* RegisterBasicInfoViewController.swift */; };
 		36AB6FD42B08694400D9D6D0 /* RegisterBasicInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FD32B08694400D9D6D0 /* RegisterBasicInfoViewModel.swift */; };
 		36AB6FD62B08842F00D9D6D0 /* StepIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FD52B08842F00D9D6D0 /* StepIndicator.swift */; };
+		36AB6FD82B088E6700D9D6D0 /* LabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FD72B088E6700D9D6D0 /* LabelTextField.swift */; };
+		36AB6FDA2B089DEA00D9D6D0 /* DefaultTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FD92B089DEA00D9D6D0 /* DefaultTextView.swift */; };
+		36AB6FDC2B08A6BA00D9D6D0 /* LabelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FDB2B08A6BA00D9D6D0 /* LabelTextView.swift */; };
 		36AC7BD52AAE852E00478030 /* SignUpPhoneNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AC7BD42AAE852E00478030 /* SignUpPhoneNumberViewModel.swift */; };
 		36AC7BD72AAE883500478030 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AC7BD62AAE883500478030 /* UITableView+Extension.swift */; };
 		36AC7BD92AAE88F400478030 /* TermsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AC7BD82AAE88F400478030 /* TermsCell.swift */; };
@@ -328,6 +331,9 @@
 		36AB6FD12B08693B00D9D6D0 /* RegisterBasicInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterBasicInfoViewController.swift; sourceTree = "<group>"; };
 		36AB6FD32B08694400D9D6D0 /* RegisterBasicInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterBasicInfoViewModel.swift; sourceTree = "<group>"; };
 		36AB6FD52B08842F00D9D6D0 /* StepIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepIndicator.swift; sourceTree = "<group>"; };
+		36AB6FD72B088E6700D9D6D0 /* LabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextField.swift; sourceTree = "<group>"; };
+		36AB6FD92B089DEA00D9D6D0 /* DefaultTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTextView.swift; sourceTree = "<group>"; };
+		36AB6FDB2B08A6BA00D9D6D0 /* LabelTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextView.swift; sourceTree = "<group>"; };
 		36AC7BD42AAE852E00478030 /* SignUpPhoneNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPhoneNumberViewModel.swift; sourceTree = "<group>"; };
 		36AC7BD62AAE883500478030 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		36AC7BD82AAE88F400478030 /* TermsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsCell.swift; sourceTree = "<group>"; };
@@ -531,8 +537,6 @@
 			isa = PBXGroup;
 			children = (
 				36F50AAA2A98978500991C9B /* Cells */,
-				3628667F2A8B688300CD42BC /* DefaultTextField.swift */,
-				36D293D32A961FDB00171C77 /* SelectionBlock.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -918,6 +922,11 @@
 				367D9BBE2AC1572700DA6C96 /* Divider.swift */,
 				366F22A52ADB2AD600FD00BD /* OfficialMark.swift */,
 				36AB6FD52B08842F00D9D6D0 /* StepIndicator.swift */,
+				3628667F2A8B688300CD42BC /* DefaultTextField.swift */,
+				36AB6FD92B089DEA00D9D6D0 /* DefaultTextView.swift */,
+				36AB6FD72B088E6700D9D6D0 /* LabelTextField.swift */,
+				36AB6FDB2B08A6BA00D9D6D0 /* LabelTextView.swift */,
+				36D293D32A961FDB00171C77 /* SelectionBlock.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1508,6 +1517,7 @@
 				366F22AD2ADB5AF000FD00BD /* UIViewController+Extension.swift in Sources */,
 				AB1CEAB72ABFD23A00E7E54F /* JobOpeningModule.swift in Sources */,
 				36AC7BD92AAE88F400478030 /* TermsCell.swift in Sources */,
+				36AB6FDA2B089DEA00D9D6D0 /* DefaultTextView.swift in Sources */,
 				362866902A8DF5C900CD42BC /* String+Extension.swift in Sources */,
 				36AC7BDF2AB1319500478030 /* ProfileViewModel.swift in Sources */,
 				36F50AAC2A9897AA00991C9B /* SelectionCell.swift in Sources */,
@@ -1641,6 +1651,7 @@
 				AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */,
 				367D9C0D2AD9F5AF00DA6C96 /* MyPagePageViewController.swift in Sources */,
 				36AC7BD52AAE852E00478030 /* SignUpPhoneNumberViewModel.swift in Sources */,
+				36AB6FDC2B08A6BA00D9D6D0 /* LabelTextView.swift in Sources */,
 				AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */,
 				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,
 				367D9C032AD7636B00DA6C96 /* SavedProfilesContentViewModel.swift in Sources */,
@@ -1685,6 +1696,7 @@
 				ABCDD1842B00E8E900A598A8 /* WorkInfoCell.swift in Sources */,
 				36BCC7E22AA328AB0060E35A /* SignUpPhoneNumberViewController.swift in Sources */,
 				AB1CEAB22ABFD22600E7E54F /* CompetitionModule.swift in Sources */,
+				36AB6FD82B088E6700D9D6D0 /* LabelTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -36,7 +36,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     }
     
     private let phoneNumberTextField = DefaultTextField(
-        placeHolder: "'-' 빼고 숫자만 입력",
+        placeholder: "'-' 빼고 숫자만 입력",
         keyboardType: .numberPad
     ).then {
         $0.keyboardType = .numberPad
@@ -51,7 +51,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     }
     
     private let authNumberTextField = DefaultTextField(
-        placeHolder: "인증번호 6자리",
+        placeholder: "인증번호 6자리",
         keyboardType: .numberPad)
     
     private let timeLabel = UILabel().then {
