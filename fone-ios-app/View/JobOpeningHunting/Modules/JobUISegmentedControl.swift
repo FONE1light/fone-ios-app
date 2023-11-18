@@ -30,10 +30,14 @@ enum JobSegmentType: CaseIterable {
         switch self {
         case .jobOpening:
             return JobOpeningSortBottomSheet(
+                list: [.recent, .view, .deadline],
                 selectedItem: .recent
-            )
+            ) { stringSelectedItem in
+                // TODO: Dismiss
+            }
         case .profile:
             return JobOpeningSortBottomSheet(
+                list: [.recent, .view],
                 selectedItem: .view
             )
         }

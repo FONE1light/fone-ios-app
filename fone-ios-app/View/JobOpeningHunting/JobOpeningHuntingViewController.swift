@@ -29,14 +29,17 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
     
     private var isShownFloating = false
     private var floatingButton = FloatingButton()
+    private var floatingSelectionView = FloatingStackView().then {
+        $0.isHidden = true
+    }
     
     private lazy var floatingDimView: UIView = {
-        let view = UIView(frame: self.view.frame) // FIXME: 영역 재설정
+        let view = UIView(frame: UIScreen.main.bounds) // FIXME: 영역 재설정 (self.view.frame도 X)
         view.backgroundColor = .black_000000
         view.alpha = 0.3
         view.isHidden = true
 
-        self.view.insertSubview(view, belowSubview: floatingButton)
+        self.view.insertSubview(view, belowSubview: floatingSelectionView)
 
         return view
     }()
@@ -92,6 +95,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                 // sortButton 상태(UI+연결화면), 플로팅 버튼 상태(UI+연결화면), tableView/collectionView 변경
                 owner.sortButton.setLabel(owner.viewModel.sortButtonStateDic[tabType]?.title)
                 owner.floatingButton.changeMode(tabType)
+                owner.floatingSelectionView.changeMode(tabType)
                 
                 switch tabType {
                 case .jobOpening:
@@ -129,16 +133,31 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         floatingButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.floatingButton.switchHiddenState()
                 owner.floatingDimView.isHidden = !owner.floatingDimView.isHidden
-                owner.moveToRecruitBasicInfo()
+                owner.floatingSelectionView.switchHiddenState()
             }.disposed(by: rx.disposeBag)
         
-        floatingButton.actorButtonTap
+        floatingSelectionView.actorButtonTap
             .withUnretained(self)
             .bind { owner, _ in
-                // FIXME: 왜 안 될까요?ㅠㅠㅠ
-                owner.moveToRecruitBasicInfo()
+                guard let tabType = owner.segmentedControl.selectedSegmentType else { return }
+                
+                switch tabType {
+                case .jobOpening:
+                    owner.moveToRecruitBasicInfo()
+                case .profile:
+                    // TODO: 화면 이동
+                    break
+                }
+            }.disposed(by: rx.disposeBag)
+        
+        floatingSelectionView.staffButtonTap
+            .withUnretained(self)
+            .bind { owner, _ in
+                guard let tabType = owner.segmentedControl.selectedSegmentType else { return }
+                
+                // TODO: 현재 tabType 따라 화면 이동
+                
             }.disposed(by: rx.disposeBag)
     }
     
@@ -216,9 +235,11 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
             segmentedControl,
             filterButton,
             sortButton,
-            floatingButton,
             tableViewJob,
-            collectionViewProfile
+            collectionViewProfile,
+            
+            floatingButton,
+            floatingSelectionView
         ]
             .forEach { view.addSubview($0) }
         
@@ -265,6 +286,10 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
             $0.size.equalTo(48)
         }
         
+        floatingSelectionView.snp.makeConstraints {
+            $0.bottom.equalTo(floatingButton.snp.top).offset(-6)
+            $0.trailing.equalTo(floatingButton.snp.trailing)
+        }
         
     }
 }
