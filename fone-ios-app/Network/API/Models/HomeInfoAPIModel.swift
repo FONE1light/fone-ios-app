@@ -44,8 +44,7 @@ struct JobOpeningContent: Codable {
     let id: Int
     let title: String
     let categories: [String]
-    let deadline: String
-    let casting: String?
+    let deadline, casting: String?
     let numberOfRecruits: Int
     let gender: String
     let ageMax, ageMin: Int
@@ -133,22 +132,23 @@ struct ProfileContent: Codable {
     let id: Int
     let name, hookingComment, birthday, gender: String
     let height, weight: Int
-    let email, sns, specialty, details: String
-    let type, career, careerDetail: String
+    let email, sns: String
+    let snsUrls: [String]
+    let specialty, details, type, career: String
+    let careerDetail: String
     let categories: [String]
     let domains: [String]
-    let profileUrls: [String]
+    let profileUrls, profileImages: [String]
     let viewCount: Int
-    let profileURL: String
+    let profileURL, representativeImageURL: String
     let isWant: Bool
     let age: Int
-    let createdAt, userNickname: String
-    let userProfileURL: String
-    let userJob: String
+    let createdAt, userNickname, userProfileURL, userJob: String
     
     enum CodingKeys: String, CodingKey {
-        case id, name, hookingComment, birthday, gender, height, weight, email, sns, specialty, details, type, career, careerDetail, categories, domains, profileUrls, viewCount
+        case id, name, hookingComment, birthday, gender, height, weight, email, sns, snsUrls, specialty, details, type, career, careerDetail, categories, domains, profileUrls, profileImages, viewCount
         case profileURL = "profileUrl"
+        case representativeImageURL = "representativeImageUrl"
         case isWant, age, createdAt, userNickname
         case userProfileURL = "userProfileUrl"
         case userJob
