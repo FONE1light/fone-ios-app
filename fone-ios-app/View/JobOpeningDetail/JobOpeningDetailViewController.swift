@@ -89,6 +89,8 @@ extension JobOpeningDetailViewController: UICollectionViewDataSource {
             return cell
         case JobOpeningDetailSection.summary.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as SummaryCell
+            let summary = viewModel.jobOpeningDetail?.work.details ?? ""
+            cell.configure(item: summary)
             return cell
         case JobOpeningDetailSection.contactInfo.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as ContactInfoCell
@@ -102,6 +104,8 @@ extension JobOpeningDetailViewController: UICollectionViewDataSource {
 
 extension JobOpeningDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        guard let viewModel = viewModel else { return .zero }
+        
         let width: Double = UIScreen.main.bounds.width
         var height: Double = 250
         switch indexPath.section {
@@ -118,9 +122,9 @@ extension JobOpeningDetailViewController: UICollectionViewDelegateFlowLayout {
         case JobOpeningDetailSection.workCondition.rawValue:
             height = 233
         case JobOpeningDetailSection.summary.rawValue:
-            height = 450
+            height = SummaryCell.cellHeight(viewModel.jobOpeningDetail?.work.details)
         case JobOpeningDetailSection.contactInfo.rawValue:
-            height = 118 // FIXME: 라벨 높이에 따라 높이 수정
+            height = 118
         case JobOpeningDetailSection.footer.rawValue:
             height = 187
         default:
