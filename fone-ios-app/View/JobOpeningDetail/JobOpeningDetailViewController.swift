@@ -99,6 +99,7 @@ extension JobOpeningDetailViewController: UICollectionViewDataSource {
             return cell
         case JobOpeningDetailSection.contactInfo.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as ContactInfoCell
+            cell.configure(manager: content.work.manager, email: content.work.email)
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as FooterCell

@@ -8,10 +8,15 @@
 import UIKit
 
 class ContactInfoCell: UICollectionViewCell {
-
+    @IBOutlet weak var managerLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
+    
+    func configure(manager: String, email: String) {
+        managerLabel.text = manager
+        emailLabel.text = email
+    }
 }
