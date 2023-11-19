@@ -17,7 +17,7 @@ class JobViewController: UIViewController, ViewModelBindableType {
         $0.separatorStyle = .none
 //        $0.delegate = self
         $0.dataSource = self
-        $0.register(with: JobPostCell.self)
+        $0.register(with: JobScrapCell.self)
     }
     
     func bindViewModel() {
@@ -64,7 +64,7 @@ extension JobViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(for: indexPath) as JobPostCell
+        let cell = tableView.dequeueReusableCell(for: indexPath) as JobScrapCell
         
 //        cell.configure(
 //            job: .staff,

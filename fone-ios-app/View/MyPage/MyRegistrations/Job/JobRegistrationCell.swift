@@ -11,6 +11,7 @@ import RxCocoa
 class JobRegistrationCell: UITableViewCell {
     
     private let mainContentView = PostCellMainContentView(hasBookmark: false)
+    private var jobTag = Tag()
     
     private let horizontalDivider = Divider(height: 1, color: .gray_D9D9D9)
     private let verticalDivider = Divider(width: 1, color: .gray_D9D9D9)
@@ -44,7 +45,6 @@ class JobRegistrationCell: UITableViewCell {
         field: String? = nil
     ) {
         mainContentView.configure(
-            job: job,
             categories: categories,
             deadline: deadline,
             coorporate: coorporate,
@@ -53,11 +53,14 @@ class JobRegistrationCell: UITableViewCell {
             casting: casting,
             field: field
         )
+        
+        jobTag.setType(as: job)
     }
     
     private func setupUI() {
         [
             mainContentView,
+            jobTag,
             horizontalDivider,
             modifyButton,
             deleteButton,
@@ -72,6 +75,10 @@ class JobRegistrationCell: UITableViewCell {
             $0.top.equalToSuperview().offset(12)
             $0.leading.equalToSuperview().offset(14)
             $0.trailing.equalToSuperview().offset(-12)
+        }
+        
+        jobTag.snp.makeConstraints {
+            $0.trailing.bottom.equalTo(mainContentView)
         }
         
         horizontalDivider.snp.makeConstraints {

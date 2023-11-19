@@ -50,7 +50,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         $0.separatorStyle = .none
         $0.dataSource = self
         $0.delegate = self
-        $0.register(with: JobPostCell.self)
+        $0.register(with: JobCell.self)
         $0.backgroundColor = .gray_EEEFEF
     }
     
@@ -88,6 +88,19 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
     }()
     
     func bindViewModel() {
+        // MARK: Bind viewModel
+        viewModel.selectedJobType
+            .withUnretained(self)
+            .bind { owner, jobType in
+                if let jobTypeDropdown = owner.navigationItem.leftBarButtonItem?.customView as? JobTypeDropdown {
+                    jobTypeDropdown.setLabel(jobType.name)
+                    jobTypeDropdown.switchSelectionState()
+                }
+                
+                // TODO: tableView 혹은 collectionView 세팅
+                //            owner.viewModel.fetchList()
+            }.disposed(by: disposeBag)
+        
         viewModel.selectedTab.withUnretained(self)
             .bind { (owner: JobOpeningHuntingViewController, tabType: JobSegmentType) in
                 owner.segmentedControl.selectedSegmentType = tabType
@@ -107,12 +120,19 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                 }
             }.disposed(by: self.disposeBag)
         
-        navigationItem.leftBarButtonItem?.rx.tap
-            .withUnretained(self)
-            .bind { owner, _ in
-                owner.dropDown.show()
-            }.disposed(by: rx.disposeBag)
-        
+        // MARK: Button tap
+        // customView로 설정한 UIBarButtonItem은
+        // barButtonItem에 설정하는 userInteraction이 응답하지 않아서
+        // customView 자체에 action을 적용해야함
+        if let jobTypeDropdown = navigationItem.leftBarButtonItem?.customView as? JobTypeDropdown {
+            jobTypeDropdown.buttonTap
+                .withUnretained(self)
+                .bind { owner, _ in
+                    owner.dropDown.show()
+                    jobTypeDropdown.switchSelectionState()
+                }.disposed(by: rx.disposeBag)
+        }
+
         sortButton.tap
             .withUnretained(self)
             .bind { owner, _ in
@@ -178,9 +198,9 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
     private func setNavigationBar() {
         
         self.navigationItem.titleView = NavigationTitleView(title: "")
-        // TODO: LeftBarButtonItem 만들기
+        
         self.navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
-            type: .close,
+            type: .jobType,
             viewController: self
         )
         
@@ -223,7 +243,8 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         DropDown.appearance().backgroundColor = .white_FFFFFF
         
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-          print("Selected item: \(item) at index: \(index)")
+            guard let jobType = Job.getType(name: item) else { return }
+            self.viewModel.selectedJobType.accept(jobType)
         }
     }
     
@@ -325,11 +346,10 @@ extension JobOpeningHuntingViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(for: indexPath) as JobPostCell
+        let cell = tableView.dequeueReusableCell(for: indexPath) as JobCell
         
         if indexPath.row % 2 == 0 {
             cell.configure(
-                job: .staff,
                 categories: [.featureFilm, .youtube],
                 deadline: "2023.01.20",
                 coorporate: "성균관대학교 영상학과",
@@ -340,7 +360,6 @@ extension JobOpeningHuntingViewController: UITableViewDataSource {
         } else {
             
             cell.configure(
-                job: .actor,
                 categories: [.ottDrama, .shortFilm],
                 deadline: "2023.01.20",
                 coorporate: "성균관대학교 영상학과",

@@ -50,7 +50,7 @@
 		367D9BB62AC1202A00DA6C96 /* MyPageTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BB52AC1202A00DA6C96 /* MyPageTabBarItem.swift */; };
 		367D9BB82AC1204600DA6C96 /* MyPageTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BB72AC1204600DA6C96 /* MyPageTabBar.swift */; };
 		367D9BBF2AC1572700DA6C96 /* Divider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BBE2AC1572700DA6C96 /* Divider.swift */; };
-		367D9BC22AC1675800DA6C96 /* JobPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BC12AC1675800DA6C96 /* JobPostCell.swift */; };
+		367D9BC22AC1675800DA6C96 /* JobScrapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BC12AC1675800DA6C96 /* JobScrapCell.swift */; };
 		367D9BC92AC2720000DA6C96 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BC82AC2720000DA6C96 /* Tag.swift */; };
 		367D9BCB2AC2A22700DA6C96 /* TagList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BCA2AC2A22700DA6C96 /* TagList.swift */; };
 		367D9BCD2AC2B19700DA6C96 /* PostCellMainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9BCC2AC2B19700DA6C96 /* PostCellMainContentView.swift */; };
@@ -81,6 +81,8 @@
 		36AB6FC52B050E6400D9D6D0 /* FloatingStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FC42B050E6400D9D6D0 /* FloatingStackView.swift */; };
 		36AB6FC72B05263E00D9D6D0 /* UISortButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FC62B05263E00D9D6D0 /* UISortButtonStackView.swift */; };
 		36AB6FC92B05266200D9D6D0 /* UISortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FC82B05266200D9D6D0 /* UISortButton.swift */; };
+		36AB6FCC2B07528C00D9D6D0 /* JobTypeDropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FCB2B07528C00D9D6D0 /* JobTypeDropdown.swift */; };
+		36AB6FCF2B07A02800D9D6D0 /* JobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FCE2B07A02800D9D6D0 /* JobCell.swift */; };
 		36AC7BD52AAE852E00478030 /* SignUpPhoneNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AC7BD42AAE852E00478030 /* SignUpPhoneNumberViewModel.swift */; };
 		36AC7BD72AAE883500478030 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AC7BD62AAE883500478030 /* UITableView+Extension.swift */; };
 		36AC7BD92AAE88F400478030 /* TermsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AC7BD82AAE88F400478030 /* TermsCell.swift */; };
@@ -288,7 +290,7 @@
 		367D9BB52AC1202A00DA6C96 /* MyPageTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTabBarItem.swift; sourceTree = "<group>"; };
 		367D9BB72AC1204600DA6C96 /* MyPageTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTabBar.swift; sourceTree = "<group>"; };
 		367D9BBE2AC1572700DA6C96 /* Divider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Divider.swift; sourceTree = "<group>"; };
-		367D9BC12AC1675800DA6C96 /* JobPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostCell.swift; sourceTree = "<group>"; };
+		367D9BC12AC1675800DA6C96 /* JobScrapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobScrapCell.swift; sourceTree = "<group>"; };
 		367D9BC82AC2720000DA6C96 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		367D9BCA2AC2A22700DA6C96 /* TagList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagList.swift; sourceTree = "<group>"; };
 		367D9BCC2AC2B19700DA6C96 /* PostCellMainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellMainContentView.swift; sourceTree = "<group>"; };
@@ -319,6 +321,8 @@
 		36AB6FC42B050E6400D9D6D0 /* FloatingStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingStackView.swift; sourceTree = "<group>"; };
 		36AB6FC62B05263E00D9D6D0 /* UISortButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISortButtonStackView.swift; sourceTree = "<group>"; };
 		36AB6FC82B05266200D9D6D0 /* UISortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISortButton.swift; sourceTree = "<group>"; };
+		36AB6FCB2B07528C00D9D6D0 /* JobTypeDropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTypeDropdown.swift; sourceTree = "<group>"; };
+		36AB6FCE2B07A02800D9D6D0 /* JobCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobCell.swift; sourceTree = "<group>"; };
 		36AC7BD42AAE852E00478030 /* SignUpPhoneNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPhoneNumberViewModel.swift; sourceTree = "<group>"; };
 		36AC7BD62AAE883500478030 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		36AC7BD82AAE88F400478030 /* TermsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsCell.swift; sourceTree = "<group>"; };
@@ -501,6 +505,7 @@
 		36031EC72AF4DC0B006B57AE /* JobOpeningHunting */ = {
 			isa = PBXGroup;
 			children = (
+				36AB6FCD2B07A01D00D9D6D0 /* Cells */,
 				3663DB102AF68422005899BF /* Modules */,
 				36031EC82AF4DC91006B57AE /* JobOpeningHuntingViewController.swift */,
 				36031ECA2AF4DCE4006B57AE /* JobOpeningHuntingViewModel.swift */,
@@ -724,7 +729,7 @@
 		367D9BCE2AC3B87500DA6C96 /* Job */ = {
 			isa = PBXGroup;
 			children = (
-				367D9BC12AC1675800DA6C96 /* JobPostCell.swift */,
+				367D9BC12AC1675800DA6C96 /* JobScrapCell.swift */,
 				367D9BD72ACB5CC900DA6C96 /* JobViewController.swift */,
 				367D9BD92ACB5D9F00DA6C96 /* JobViewModel.swift */,
 			);
@@ -828,6 +833,25 @@
 			path = Job;
 			sourceTree = "<group>";
 		};
+		36AB6FCA2B07527C00D9D6D0 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				36E2693E2AAAEEDA0034B485 /* NavigationTitleView.swift */,
+				36E269402AAAEF420034B485 /* NavigationLeftBarButtonItem.swift */,
+				364482CF2AB7D15F00984507 /* NavigationRightBarButton.swift */,
+				36AB6FCB2B07528C00D9D6D0 /* JobTypeDropdown.swift */,
+			);
+			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		36AB6FCD2B07A01D00D9D6D0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				36AB6FCE2B07A02800D9D6D0 /* JobCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		36AC7BD32AAE851E00478030 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -873,14 +897,12 @@
 		36F50AA72A962C8D00991C9B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				36AB6FCA2B07527C00D9D6D0 /* NavigationBar */,
 				367D9BC02AC166D800DA6C96 /* PostTableView */,
 				36F50AA82A962C9800991C9B /* EmptyView.swift */,
 				36BCC7E52AA5E0180060E35A /* CustomButton.swift */,
-				36E2693E2AAAEEDA0034B485 /* NavigationTitleView.swift */,
-				36E269402AAAEF420034B485 /* NavigationLeftBarButtonItem.swift */,
 				364BCC692AB3672500E14B25 /* DynamicHeightCollectionView.swift */,
 				364BCC6B2AB3673900E14B25 /* LeftAlignedCollectionViewFlowLayout.swift */,
-				364482CF2AB7D15F00984507 /* NavigationRightBarButton.swift */,
 				367D9BBE2AC1572700DA6C96 /* Divider.swift */,
 				366F22A52ADB2AD600FD00BD /* OfficialMark.swift */,
 			);
@@ -1562,8 +1584,9 @@
 				AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */,
 				ABCDD18D2B00EB1000A598A8 /* WorkConditionCell.swift in Sources */,
 				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,
+				36AB6FCF2B07A02800D9D6D0 /* JobCell.swift in Sources */,
 				AB4546502AAB452D0019B27F /* UIButton+Extension.swift in Sources */,
-				367D9BC22AC1675800DA6C96 /* JobPostCell.swift in Sources */,
+				367D9BC22AC1675800DA6C96 /* JobScrapCell.swift in Sources */,
 				ABAFA3392A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift in Sources */,
 				AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */,
 				362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */,
@@ -1583,6 +1606,7 @@
 				3663DB122AF6843C005899BF /* JobUISegmentedControl.swift in Sources */,
 				36031EC92AF4DC91006B57AE /* JobOpeningHuntingViewController.swift in Sources */,
 				367D9C362ADA664700DA6C96 /* JobRegistrationCell.swift in Sources */,
+				36AB6FCC2B07528C00D9D6D0 /* JobTypeDropdown.swift in Sources */,
 				36C8B7EE2ADC853D008B6F88 /* SignUpTerms.swift in Sources */,
 				36D293D42A961FDB00171C77 /* SelectionBlock.swift in Sources */,
 				36D293D22A961E7300171C77 /* SignUpSelectionViewController.swift in Sources */,
