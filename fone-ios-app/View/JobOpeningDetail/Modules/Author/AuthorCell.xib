@@ -102,6 +102,13 @@
                 <constraint firstItem="RVt-kF-z85" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="kCt-Sr-93B"/>
                 <constraint firstAttribute="bottom" secondItem="RVt-kF-z85" secondAttribute="bottom" id="nqn-1c-fqG"/>
             </constraints>
+            <connections>
+                <outlet property="createdAtLabel" destination="cCm-nU-Xt6" id="j0v-bW-7mB"/>
+                <outlet property="nicknameLabel" destination="LJp-ZQ-w6B" id="dHi-wp-VUV"/>
+                <outlet property="profileImageView" destination="BUb-qj-Eje" id="18B-Fu-XhU"/>
+                <outlet property="userJobLabel" destination="1eN-6c-vH8" id="Pxe-54-0VC"/>
+                <outlet property="viewCountLabel" destination="Mdb-gm-qDn" id="wjd-uS-NpV"/>
+            </connections>
             <point key="canvasLocation" x="43.511450381679388" y="19.366197183098592"/>
         </collectionViewCell>
     </objects>

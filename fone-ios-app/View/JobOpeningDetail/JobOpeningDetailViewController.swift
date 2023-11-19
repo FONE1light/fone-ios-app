@@ -71,6 +71,8 @@ extension JobOpeningDetailViewController: UICollectionViewDataSource {
         switch indexPath.section {
         case JobOpeningDetailSection.author.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as AuthorCell
+            guard let content = viewModel.jobOpeningDetail else { return cell }
+            cell.configure(createdAt: content.createdAt, viewCount: content.viewCount, profileUrl: content.profileURL, nickname: content.nickname, userJob: content.userJob)
             return cell
         case JobOpeningDetailSection.title.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as TitleCell
