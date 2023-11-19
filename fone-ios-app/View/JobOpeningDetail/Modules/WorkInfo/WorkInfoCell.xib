@@ -118,7 +118,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dxo-Pa-tFd">
-                                <rect key="frame" x="92" y="166" width="240" height="33.666666666666657"/>
+                                <rect key="frame" x="92" y="166" width="237" height="40"/>
                                 <string key="text">여대를 배경으로 20대 여성들이 겪는 교충과
 회복을 담는 일상 드라마 속 좀비 스릴러</string>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
@@ -129,6 +129,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="FD1-NG-6H8" firstAttribute="leading" secondItem="gs2-5y-we7" secondAttribute="leading" constant="92" id="0Jc-Sg-DHR"/>
+                            <constraint firstAttribute="trailing" secondItem="Dxo-Pa-tFd" secondAttribute="trailing" constant="46" id="19r-q5-eSb"/>
                             <constraint firstItem="7e8-GC-CY4" firstAttribute="leading" secondItem="gs2-5y-we7" secondAttribute="leading" constant="16" id="3JV-iP-6HO"/>
                             <constraint firstItem="sAr-J9-vXQ" firstAttribute="centerY" secondItem="7e8-GC-CY4" secondAttribute="centerY" id="7bg-oV-hdG"/>
                             <constraint firstItem="pHU-NY-vNJ" firstAttribute="leading" secondItem="gs2-5y-we7" secondAttribute="leading" constant="16" id="8p0-9S-TCj"/>
@@ -165,6 +166,13 @@
                 <constraint firstItem="gs2-5y-we7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cof-yM-Wlw"/>
                 <constraint firstAttribute="trailing" secondItem="gs2-5y-we7" secondAttribute="trailing" id="i5m-Xi-fi9"/>
             </constraints>
+            <connections>
+                <outlet property="directorLabel" destination="Bkg-ze-bNf" id="FI0-aU-TtJ"/>
+                <outlet property="genreLabel" destination="wic-If-WC8" id="5iS-Vw-MJZ"/>
+                <outlet property="logLineLabel" destination="Dxo-Pa-tFd" id="ncd-Hf-Mgv"/>
+                <outlet property="produceLabel" destination="sAr-J9-vXQ" id="u2J-XW-nJf"/>
+                <outlet property="titleLabel" destination="FD1-NG-6H8" id="fD7-p0-ykm"/>
+            </connections>
             <point key="canvasLocation" x="44" y="20"/>
         </collectionViewCell>
     </objects>

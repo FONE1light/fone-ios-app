@@ -87,6 +87,7 @@ extension JobOpeningDetailViewController: UICollectionViewDataSource {
             return cell
         case JobOpeningDetailSection.info.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as WorkInfoCell
+            cell.configure(produce: content.work.produce, title: content.work.workTitle, director: content.work.director, genre: content.work.genre, logline: content.work.logline ?? "")
             return cell
         case JobOpeningDetailSection.workCondition.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as WorkConditionCell
@@ -122,7 +123,7 @@ extension JobOpeningDetailViewController: UICollectionViewDelegateFlowLayout {
         case JobOpeningDetailSection.recruitCondition.rawValue:
             height = 244
         case JobOpeningDetailSection.info.rawValue:
-            height = 234
+            height = WorkInfoCell.cellHeight(viewModel.jobOpeningDetail?.work.logline)
         case JobOpeningDetailSection.workCondition.rawValue:
             height = 233
         case JobOpeningDetailSection.summary.rawValue:
