@@ -68,14 +68,15 @@ extension JobOpeningDetailViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let content = viewModel.jobOpeningDetail else { return UICollectionViewCell() }
         switch indexPath.section {
         case JobOpeningDetailSection.author.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as AuthorCell
-            guard let content = viewModel.jobOpeningDetail else { return cell }
             cell.configure(createdAt: content.createdAt, viewCount: content.viewCount, profileUrl: content.profileURL, nickname: content.nickname, userJob: content.userJob)
             return cell
         case JobOpeningDetailSection.title.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as TitleCell
+            cell.configrue(categories: content.categories, title: content.title)
             return cell
         case JobOpeningDetailSection.image.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as DetailImageCell
@@ -114,7 +115,7 @@ extension JobOpeningDetailViewController: UICollectionViewDelegateFlowLayout {
         case JobOpeningDetailSection.author.rawValue:
             height = 79
         case JobOpeningDetailSection.title.rawValue:
-            height = 116
+            height = TitleCell.cellHeight(viewModel.jobOpeningDetail?.title)
         case JobOpeningDetailSection.image.rawValue:
             height = width / 375 * 400
         case JobOpeningDetailSection.recruitCondition.rawValue:
