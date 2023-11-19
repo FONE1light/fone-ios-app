@@ -57,10 +57,10 @@
                                 <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="회차  150,000원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKh-Dv-Tnk">
-                                <rect key="frame" x="92" y="47.666666666666664" width="95" height="16.999999999999993"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="회차" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKh-Dv-Tnk">
+                                <rect key="frame" x="92" y="47.666666666666664" width="24.333333333333329" height="16.999999999999993"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
-                                <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.75294117647058822" green="0.0" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="근무지역" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JMz-2Q-uMb">
@@ -126,6 +126,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2023. 08. 18(금) ~ 2023. 10. 17(화)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zoP-0T-mDL">
                                 <rect key="frame" x="91.999999999999986" y="124.66666666666669" width="212.66666666666663" height="17"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="150,000원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8JC-rm-TCX">
+                                <rect key="frame" x="120.33333333333331" y="47.666666666666664" width="63" height="16.999999999999993"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                 <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -152,8 +158,10 @@
                             <constraint firstItem="6wy-Ib-p72" firstAttribute="leading" secondItem="ezP-pt-Ex7" secondAttribute="leading" constant="16" id="d8n-UO-wGj"/>
                             <constraint firstItem="5ef-cx-dl9" firstAttribute="leading" secondItem="ezP-pt-Ex7" secondAttribute="leading" constant="16" id="dOa-CN-cnc"/>
                             <constraint firstAttribute="trailing" secondItem="Ndt-si-Sar" secondAttribute="trailing" id="ei1-ZV-aKL"/>
+                            <constraint firstItem="8JC-rm-TCX" firstAttribute="leading" secondItem="HKh-Dv-Tnk" secondAttribute="trailing" constant="4" id="kh1-jB-bkd"/>
                             <constraint firstItem="zoP-0T-mDL" firstAttribute="leading" secondItem="JZS-ea-bZL" secondAttribute="leading" id="nMs-Nm-iPp"/>
                             <constraint firstItem="vP4-4O-sEM" firstAttribute="leading" secondItem="ezP-pt-Ex7" secondAttribute="leading" constant="16" id="oGg-f4-KLa"/>
+                            <constraint firstItem="8JC-rm-TCX" firstAttribute="centerY" secondItem="HKh-Dv-Tnk" secondAttribute="centerY" id="oLR-m0-4mP"/>
                             <constraint firstItem="NHw-Ra-AF4" firstAttribute="top" secondItem="JMz-2Q-uMb" secondAttribute="bottom" constant="10" id="qkB-r5-Bcm"/>
                             <constraint firstItem="JZS-ea-bZL" firstAttribute="centerY" secondItem="NHw-Ra-AF4" secondAttribute="centerY" id="s4T-wM-cbx"/>
                             <constraint firstItem="zoP-0T-mDL" firstAttribute="top" secondItem="JZS-ea-bZL" secondAttribute="bottom" id="tic-2V-4FH"/>
@@ -170,6 +178,13 @@
                 <constraint firstAttribute="bottom" secondItem="ezP-pt-Ex7" secondAttribute="bottom" id="YXe-HT-t26"/>
                 <constraint firstItem="ezP-pt-Ex7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="q2W-tB-sEZ"/>
             </constraints>
+            <connections>
+                <outlet property="locationLabel" destination="oDc-Jw-3f7" id="Ssr-OJ-Vg8"/>
+                <outlet property="periodLabel" destination="JZS-ea-bZL" id="1A4-iy-TRk"/>
+                <outlet property="salaryLabel" destination="8JC-rm-TCX" id="j60-FE-Y94"/>
+                <outlet property="salaryTypeLabel" destination="HKh-Dv-Tnk" id="OLQ-go-kfw"/>
+                <outlet property="workDaysLabel" destination="POB-y9-fDg" id="WD1-82-qxM"/>
+            </connections>
             <point key="canvasLocation" x="44" y="20"/>
         </collectionViewCell>
     </objects>
