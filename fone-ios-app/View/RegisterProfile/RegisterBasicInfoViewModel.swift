@@ -7,4 +7,13 @@
 
 import Foundation
 
-class RegisterBasicInfoViewModel: CommonViewModel { }
+class RegisterBasicInfoViewModel: CommonViewModel {
+    
+    func moveToRegisterDetailInfo() {
+        let sceneCoordinator = sceneCoordinator
+        let registerDetailInfoViewModel = RegisterDetailInfoViewModel(sceneCoordinator: sceneCoordinator)
+        
+        let scene = Scene.registerDetailInfo(registerDetailInfoViewModel)
+        sceneCoordinator.transition(to: scene, using: .push, animated: true)
+    }
+}

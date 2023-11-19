@@ -22,6 +22,8 @@
 		362866942A8E3D4700CD42BC /* Single+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362866932A8E3D4700CD42BC /* Single+Codable.swift */; };
 		362866972A8E3D8200CD42BC /* Response+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362866962A8E3D8200CD42BC /* Response+Codable.swift */; };
 		3628669A2A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362866992A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift */; };
+		362C802B2B0A4BFF00489E7D /* RegisterDetailInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362C802A2B0A4BFF00489E7D /* RegisterDetailInfoViewModel.swift */; };
+		362C802D2B0A4C1000489E7D /* RegisterDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362C802C2B0A4C1000489E7D /* RegisterDetailInfoViewController.swift */; };
 		364482CC2AB7C75E00984507 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482CB2AB7C75E00984507 /* MyPageViewController.swift */; };
 		364482CE2AB7C76500984507 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482CD2AB7C76500984507 /* MyPageViewModel.swift */; };
 		364482D02AB7D15F00984507 /* NavigationRightBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482CF2AB7D15F00984507 /* NavigationRightBarButton.swift */; };
@@ -268,6 +270,8 @@
 		362866932A8E3D4700CD42BC /* Single+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Single+Codable.swift"; sourceTree = "<group>"; };
 		362866962A8E3D8200CD42BC /* Response+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Response+Codable.swift"; sourceTree = "<group>"; };
 		362866992A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoAPIResponseModel.swift; sourceTree = "<group>"; };
+		362C802A2B0A4BFF00489E7D /* RegisterDetailInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailInfoViewModel.swift; sourceTree = "<group>"; };
+		362C802C2B0A4C1000489E7D /* RegisterDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailInfoViewController.swift; sourceTree = "<group>"; };
 		364482CB2AB7C75E00984507 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		364482CD2AB7C76500984507 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
 		364482CF2AB7D15F00984507 /* NavigationRightBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRightBarButton.swift; sourceTree = "<group>"; };
@@ -864,6 +868,8 @@
 			children = (
 				36AB6FD12B08693B00D9D6D0 /* RegisterBasicInfoViewController.swift */,
 				36AB6FD32B08694400D9D6D0 /* RegisterBasicInfoViewModel.swift */,
+				362C802A2B0A4BFF00489E7D /* RegisterDetailInfoViewModel.swift */,
+				362C802C2B0A4C1000489E7D /* RegisterDetailInfoViewController.swift */,
 			);
 			path = RegisterProfile;
 			sourceTree = "<group>";
@@ -1569,6 +1575,7 @@
 				367D9C2D2ADA5EC700DA6C96 /* ProfileRegistrationViewModel.swift in Sources */,
 				364BCC6A2AB3672500E14B25 /* DynamicHeightCollectionView.swift in Sources */,
 				AB77A6F52AF90A3800EF1C29 /* RecruitBasicInfoViewModel.swift in Sources */,
+				362C802D2B0A4C1000489E7D /* RegisterDetailInfoViewController.swift in Sources */,
 				362866972A8E3D8200CD42BC /* Response+Codable.swift in Sources */,
 				364482D82AB80EDA00984507 /* MyPageMenuCell.swift in Sources */,
 				AB9DAAA82AB0A4F500B00016 /* HomeInfoProvider.swift in Sources */,
@@ -1600,6 +1607,7 @@
 				367D9BD62AC3BC6200DA6C96 /* CompetitionCell.swift in Sources */,
 				367D9C072AD766E800DA6C96 /* SavedProfilesTabBarViewModel.swift in Sources */,
 				AB49A33A2A810B3500748484 /* LoginViewModel.swift in Sources */,
+				362C802B2B0A4BFF00489E7D /* RegisterDetailInfoViewModel.swift in Sources */,
 				366F22B22ADB649D00FD00BD /* MyPageBottomSheet.swift in Sources */,
 				AB6785572AA3336900ACD35C /* EmailLoginViewController.swift in Sources */,
 				367D9BDA2ACB5D9F00DA6C96 /* JobViewModel.swift in Sources */,
