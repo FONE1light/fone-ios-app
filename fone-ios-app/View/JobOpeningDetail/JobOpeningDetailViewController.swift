@@ -83,6 +83,7 @@ extension JobOpeningDetailViewController: UICollectionViewDataSource {
             return cell
         case JobOpeningDetailSection.recruitCondition.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as RecruitConditionCell
+            cell.configure(type: content.type, deadLine: content.deadline, dday: content.dday, casting: content.casting ?? "", domains: content.domains, numberOfRecruits: content.numberOfRecruits, gender: content.gender, ageMin: content.ageMin, ageMax: content.ageMax, career: content.career)
             return cell
         case JobOpeningDetailSection.info.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as WorkInfoCell

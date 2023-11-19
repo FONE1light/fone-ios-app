@@ -119,6 +119,7 @@
             <connections>
                 <outlet property="firstCategoryLabel" destination="8e1-yi-Ru0" id="edD-Ia-uLJ"/>
                 <outlet property="secondCategoryLabel" destination="3UX-75-Hrh" id="IKO-ba-Ptx"/>
+                <outlet property="secondCategoryView" destination="aUS-nQ-JY9" id="a1K-gT-BAI"/>
                 <outlet property="titleLabel" destination="9ra-T6-Qdi" id="b1J-WB-aIV"/>
             </connections>
             <point key="canvasLocation" x="44" y="20"/>

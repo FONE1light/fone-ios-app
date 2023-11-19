@@ -10,6 +10,7 @@ import UIKit
 class TitleCell: UICollectionViewCell {
     @IBOutlet weak var firstCategoryLabel: UILabel!
     @IBOutlet weak var secondCategoryLabel: UILabel!
+    @IBOutlet weak var secondCategoryView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     
     override func awakeFromNib() {
@@ -19,8 +20,13 @@ class TitleCell: UICollectionViewCell {
     func configrue(categories: [String], title: String) {
         let firstCategory = categories.first ?? ""
         firstCategoryLabel.text =  Category.getType(serverName: firstCategory)?.name
-        let secondCategory = categories.last ?? ""
-        secondCategoryLabel.text = Category.getType(serverName: secondCategory)?.name
+        if categories.count > 1 {
+            secondCategoryView.isHidden = false
+            let secondCategory = categories.last ?? ""
+            secondCategoryLabel.text = Category.getType(serverName: secondCategory)?.name
+        } else {
+            secondCategoryView.isHidden = true
+        }
         titleLabel.text = title
     }
 }

@@ -171,6 +171,8 @@
 		AB49A3452A81158900748484 /* FindIDPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB49A3432A81158900748484 /* FindIDPasswordViewController.xib */; };
 		AB49A3472A81159F00748484 /* FindIDPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A3462A81159F00748484 /* FindIDPasswordViewModel.swift */; };
 		AB49A3492A8119B900748484 /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A3482A8119B900748484 /* CommonViewModel.swift */; };
+		AB532B2D2B0A2774003A6A57 /* GenderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB532B2C2B0A2774003A6A57 /* GenderType.swift */; };
+		AB532B2F2B0A279C003A6A57 /* CareerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB532B2E2B0A279C003A6A57 /* CareerType.swift */; };
 		AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6002352A7E375D000CF1FD /* AppDelegate.swift */; };
 		AB60023A2A7E375D000CF1FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6002392A7E375D000CF1FD /* ViewController.swift */; };
 		AB60023D2A7E375D000CF1FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB60023B2A7E375D000CF1FD /* Main.storyboard */; };
@@ -381,6 +383,8 @@
 		AB49A3432A81158900748484 /* FindIDPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FindIDPasswordViewController.xib; sourceTree = "<group>"; };
 		AB49A3462A81159F00748484 /* FindIDPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIDPasswordViewModel.swift; sourceTree = "<group>"; };
 		AB49A3482A8119B900748484 /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
+		AB532B2C2B0A2774003A6A57 /* GenderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderType.swift; sourceTree = "<group>"; };
+		AB532B2E2B0A279C003A6A57 /* CareerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerType.swift; sourceTree = "<group>"; };
 		AB6002322A7E375D000CF1FD /* fone-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fone-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6002352A7E375D000CF1FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB6002392A7E375D000CF1FD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -592,6 +596,8 @@
 				364BCC6D2AB36A4900E14B25 /* Job.swift */,
 				364BCC6F2AB36A5900E14B25 /* Category.swift */,
 				36C8B7ED2ADC853D008B6F88 /* SignUpTerms.swift */,
+				AB532B2C2B0A2774003A6A57 /* GenderType.swift */,
+				AB532B2E2B0A279C003A6A57 /* CareerType.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1616,6 +1622,7 @@
 				AB4546502AAB452D0019B27F /* UIButton+Extension.swift in Sources */,
 				ABAFA3392A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift in Sources */,
 				ABCDD16E2B00BE1800A598A8 /* JobOpeningDetailViewModel.swift in Sources */,
+				AB532B2D2B0A2774003A6A57 /* GenderType.swift in Sources */,
 				364BCC6C2AB3673900E14B25 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */,
 				36AC7BD72AAE883500478030 /* UITableView+Extension.swift in Sources */,
@@ -1641,6 +1648,7 @@
 				367D9C182ADA292200DA6C96 /* MyRegistrationsViewController.swift in Sources */,
 				364482D02AB7D15F00984507 /* NavigationRightBarButton.swift in Sources */,
 				36D293D42A961FDB00171C77 /* SelectionBlock.swift in Sources */,
+				AB532B2F2B0A279C003A6A57 /* CareerType.swift in Sources */,
 				36D293D22A961E7300171C77 /* SignUpSelectionViewController.swift in Sources */,
 				AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */,
 				362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */,
