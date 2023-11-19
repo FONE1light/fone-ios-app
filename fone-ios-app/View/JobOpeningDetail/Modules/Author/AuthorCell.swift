@@ -13,6 +13,7 @@ class AuthorCell: UICollectionViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var userJobLabel: UILabel!
+    @IBOutlet weak var officialMarkImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,6 +25,7 @@ class AuthorCell: UICollectionViewCell {
         profileImageView.kf.setImage(with: URL(string: profileUrl))
         nicknameLabel.text = nickname
         userJobLabel.text = userJob
+        officialMarkImageView.isHidden = userJob != "OFFICIAL"
     }
     
     fileprivate func getDateAndTime(createdAt: String) -> String {

@@ -76,6 +76,13 @@
                                 <color key="textColor" red="0.80784313725490198" green="0.043137254901960784" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mark" translatesAutoresizingMaskIntoConstraints="NO" id="fV8-TW-s8z">
+                                <rect key="frame" x="147" y="38.666666666666664" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="G6D-IO-I2J"/>
+                                    <constraint firstAttribute="width" constant="16" id="hvq-Sb-dit"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -84,6 +91,7 @@
                             <constraint firstItem="cCm-nU-Xt6" firstAttribute="top" secondItem="RVt-kF-z85" secondAttribute="top" constant="9" id="8pq-07-dB1"/>
                             <constraint firstItem="LJp-ZQ-w6B" firstAttribute="leading" secondItem="BUb-qj-Eje" secondAttribute="trailing" constant="6" id="9gs-v6-sZy"/>
                             <constraint firstItem="Mdb-gm-qDn" firstAttribute="centerY" secondItem="cCm-nU-Xt6" secondAttribute="centerY" id="J1P-J7-LCM"/>
+                            <constraint firstItem="fV8-TW-s8z" firstAttribute="leading" secondItem="1eN-6c-vH8" secondAttribute="trailing" constant="4" id="RG3-ed-Dys"/>
                             <constraint firstItem="1eN-6c-vH8" firstAttribute="leading" secondItem="LJp-ZQ-w6B" secondAttribute="trailing" constant="4" id="RYx-IT-688"/>
                             <constraint firstItem="BUb-qj-Eje" firstAttribute="top" secondItem="cCm-nU-Xt6" secondAttribute="bottom" constant="6" id="VBy-RE-zh0"/>
                             <constraint firstItem="1eN-6c-vH8" firstAttribute="centerY" secondItem="LJp-ZQ-w6B" secondAttribute="centerY" id="WhO-v0-Sc7"/>
@@ -91,6 +99,7 @@
                             <constraint firstItem="LJp-ZQ-w6B" firstAttribute="centerY" secondItem="BUb-qj-Eje" secondAttribute="centerY" id="gKX-1d-LWd"/>
                             <constraint firstItem="Mdb-gm-qDn" firstAttribute="leading" secondItem="yEp-XW-2gC" secondAttribute="trailing" constant="2" id="ouw-ty-JIh"/>
                             <constraint firstItem="BUb-qj-Eje" firstAttribute="leading" secondItem="RVt-kF-z85" secondAttribute="leading" constant="16" id="vbY-MM-Adb"/>
+                            <constraint firstItem="fV8-TW-s8z" firstAttribute="centerY" secondItem="1eN-6c-vH8" secondAttribute="centerY" id="yTF-M7-oMa"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -105,6 +114,7 @@
             <connections>
                 <outlet property="createdAtLabel" destination="cCm-nU-Xt6" id="j0v-bW-7mB"/>
                 <outlet property="nicknameLabel" destination="LJp-ZQ-w6B" id="dHi-wp-VUV"/>
+                <outlet property="officialMarkImageView" destination="fV8-TW-s8z" id="f65-7o-VJj"/>
                 <outlet property="profileImageView" destination="BUb-qj-Eje" id="18B-Fu-XhU"/>
                 <outlet property="userJobLabel" destination="1eN-6c-vH8" id="Pxe-54-0VC"/>
                 <outlet property="viewCountLabel" destination="Mdb-gm-qDn" id="wjd-uS-NpV"/>
@@ -113,6 +123,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="mark" width="16" height="16"/>
         <image name="show_filled" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
