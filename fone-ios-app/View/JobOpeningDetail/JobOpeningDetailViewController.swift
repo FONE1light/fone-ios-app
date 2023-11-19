@@ -21,12 +21,12 @@ enum JobOpeningDetailSection: Int, CaseIterable {
 
 class JobOpeningDetailViewController: UIViewController, ViewModelBindableType {
     var viewModel: JobOpeningDetailViewModel!
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setNavigationBar()
         setCollectionView()
     }
@@ -64,6 +64,11 @@ extension JobOpeningDetailViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if section == JobOpeningDetailSection.image.rawValue {
+            guard let viewModel = viewModel else { return 0 }
+            let itemCount = viewModel.jobOpeningDetail?.imageUrls.count == 0 ? 0 : 1
+            return itemCount
+        }
         return 1
     }
     
