@@ -357,7 +357,7 @@ extension JobOpeningHuntingViewController: UITableViewDataSource {
 
 extension JobOpeningHuntingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        goJobOpeningDetail(jobOpeningId: 40, type: .actor) // FIXME: 우선 40, ACTOR로 고정, cell에서 id, job 가져오기
+        goJobOpeningDetail(jobOpeningId: 41, type: .actor) // FIXME: 우선 41, ACTOR로 고정, cell에서 id, job 가져오기
     }
     
     func goJobOpeningDetail(jobOpeningId: Int, type: Job) {

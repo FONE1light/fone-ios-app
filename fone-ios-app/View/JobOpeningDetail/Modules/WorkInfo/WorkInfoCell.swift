@@ -18,7 +18,7 @@ class WorkInfoCell: UICollectionViewCell {
         super.awakeFromNib()
     }
 
-    func configure(produce: String, title: String, director: String, genre: String, logline: String) {
+    func configure(produce: String?, title: String?, director: String?, genre: String?, logline: String?) {
         produceLabel.text = produce
         titleLabel.text = title
         directorLabel.text = director

@@ -118,7 +118,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19:00 ~ 04:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRb-a1-v5p">
-                                <rect key="frame" x="92" y="180" width="88.333333333333314" height="17"/>
+                                <rect key="frame" x="92" y="181.66666666666666" width="88.333333333333314" height="17"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                 <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -146,13 +146,13 @@
                             <constraint firstItem="HKh-Dv-Tnk" firstAttribute="leading" secondItem="ezP-pt-Ex7" secondAttribute="leading" constant="92" id="FJ4-lc-KPb"/>
                             <constraint firstItem="POB-y9-fDg" firstAttribute="leading" secondItem="JZS-ea-bZL" secondAttribute="leading" id="JmH-ux-xZA"/>
                             <constraint firstItem="JMz-2Q-uMb" firstAttribute="top" secondItem="vP4-4O-sEM" secondAttribute="bottom" constant="10" id="KGW-RB-Znm"/>
-                            <constraint firstItem="ZRb-a1-v5p" firstAttribute="top" secondItem="nOt-g5-3y8" secondAttribute="top" id="LXi-00-wEh"/>
                             <constraint firstItem="POB-y9-fDg" firstAttribute="top" secondItem="zoP-0T-mDL" secondAttribute="bottom" constant="10" id="MAG-4F-gNu"/>
                             <constraint firstItem="JZS-ea-bZL" firstAttribute="leading" secondItem="oDc-Jw-3f7" secondAttribute="leading" id="Mpo-VM-KPZ"/>
                             <constraint firstItem="nOt-g5-3y8" firstAttribute="leading" secondItem="ezP-pt-Ex7" secondAttribute="leading" constant="16" id="NIH-nY-UBI"/>
                             <constraint firstItem="nOt-g5-3y8" firstAttribute="top" secondItem="5ef-cx-dl9" secondAttribute="bottom" constant="10" id="ODP-fP-b2p"/>
                             <constraint firstItem="JMz-2Q-uMb" firstAttribute="leading" secondItem="ezP-pt-Ex7" secondAttribute="leading" constant="16" id="UHU-6F-uSv"/>
                             <constraint firstItem="vP4-4O-sEM" firstAttribute="top" secondItem="6wy-Ib-p72" secondAttribute="bottom" constant="8" id="ZTh-Ml-qZe"/>
+                            <constraint firstItem="ZRb-a1-v5p" firstAttribute="centerY" secondItem="nOt-g5-3y8" secondAttribute="centerY" id="aOb-pe-0OI"/>
                             <constraint firstAttribute="bottom" secondItem="Ndt-si-Sar" secondAttribute="bottom" id="aQA-Pa-PsU"/>
                             <constraint firstItem="NHw-Ra-AF4" firstAttribute="leading" secondItem="ezP-pt-Ex7" secondAttribute="leading" constant="16" id="btZ-E0-bBN"/>
                             <constraint firstItem="6wy-Ib-p72" firstAttribute="leading" secondItem="ezP-pt-Ex7" secondAttribute="leading" constant="16" id="d8n-UO-wGj"/>
@@ -180,10 +180,11 @@
             </constraints>
             <connections>
                 <outlet property="locationLabel" destination="oDc-Jw-3f7" id="Ssr-OJ-Vg8"/>
-                <outlet property="periodLabel" destination="JZS-ea-bZL" id="1A4-iy-TRk"/>
+                <outlet property="periodLabel" destination="zoP-0T-mDL" id="RWm-YJ-RVJ"/>
                 <outlet property="salaryLabel" destination="8JC-rm-TCX" id="j60-FE-Y94"/>
                 <outlet property="salaryTypeLabel" destination="HKh-Dv-Tnk" id="OLQ-go-kfw"/>
                 <outlet property="workDaysLabel" destination="POB-y9-fDg" id="WD1-82-qxM"/>
+                <outlet property="workingTimeLabel" destination="ZRb-a1-v5p" id="oF1-Yf-U9w"/>
             </connections>
             <point key="canvasLocation" x="44" y="20"/>
         </collectionViewCell>

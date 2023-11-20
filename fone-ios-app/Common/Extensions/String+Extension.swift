@@ -14,6 +14,36 @@ extension String {
         }
     }
     
+    /** 숫자형 문자열에 3자리수 마다 콤마 넣기 */
+    var insertComma: String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+
+        let price: Int = Int(Double(self) ?? 0.0)
+        return numberFormatter.string(from: NSNumber(value: price)) ?? self
+    }
+    
+    var weekDay: String {
+        switch self {
+        case "MON":
+            return "월"
+        case "TUE":
+            return "화"
+        case "WED":
+            return "수"
+        case "THU":
+            return "목"
+        case "FRI":
+            return "금"
+        case "SAT":
+            return "토"
+        case "SUN":
+            return "일"
+        default:
+            return ""
+        }
+    }
+    
     func toast(positionType: ToastPositionType = .withNothing, isKeyboardShowing: Bool = false, completion: (() -> Void)? = nil) {
         ToastManager.show(self, positionType: positionType, isKeyboardShowing: isKeyboardShowing, completion: completion)
     }

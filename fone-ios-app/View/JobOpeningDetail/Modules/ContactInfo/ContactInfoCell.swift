@@ -15,7 +15,7 @@ class ContactInfoCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configure(manager: String, email: String) {
+    func configure(manager: String?, email: String?) {
         managerLabel.text = manager
         emailLabel.text = email
     }
