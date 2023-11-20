@@ -19,7 +19,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         $0.backgroundColor = .white_FFFFFF
     }
     
-    private let stepIndicator = StepIndicator(.third)
+    private let stepIndicator = StepIndicator(index: 2, totalCount: 3)
     
     private let titleLabel = UILabel().then {
         $0.text = "마지막으로\n휴대전화 번호를 인증해주세요."
@@ -36,7 +36,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     }
     
     private let phoneNumberTextField = DefaultTextField(
-        placeHolder: "'-' 빼고 숫자만 입력",
+        placeholder: "'-' 빼고 숫자만 입력",
         keyboardType: .numberPad
     ).then {
         $0.keyboardType = .numberPad
@@ -51,7 +51,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
     }
     
     private let authNumberTextField = DefaultTextField(
-        placeHolder: "인증번호 6자리",
+        placeholder: "인증번호 6자리",
         keyboardType: .numberPad)
     
     private let timeLabel = UILabel().then {

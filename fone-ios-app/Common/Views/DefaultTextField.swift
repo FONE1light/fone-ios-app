@@ -10,9 +10,9 @@ import SnapKit
 
 class DefaultTextField: UITextField {
 
-    init(placeHolder: String? = nil, keyboardType: UIKeyboardType? = .default) {
+    init(placeholder: String? = nil, keyboardType: UIKeyboardType? = .default) {
         super.init(frame: .zero)
-        self.setUI(placeHolder)
+        self.setUI(placeholder)
         self.setContraints()
         
         if let keyboardType = keyboardType {
@@ -24,12 +24,16 @@ class DefaultTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setUI(_ placeHolder: String?) {
+    private func setUI(_ placeholder: String?) {
         self.backgroundColor = .gray_F8F8F8
-        self.placeholder = placeHolder
+        self.attributedPlaceholder = NSAttributedString(
+            string: placeholder ?? "",
+            attributes: [.foregroundColor: UIColor.gray_9E9E9E])
+    
         self.font = .font_r(14)
 //        self.lineHeight = 19 // TODO: lineHeight extension 추가
-        self.textColor = .gray_9E9E9E
+        self.textColor = .gray_161616
+        
         self.cornerRadius = 5
     }
     
@@ -42,12 +46,5 @@ class DefaultTextField: UITextField {
             $0.height.equalTo(40)
         }
     }
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
 
 }
