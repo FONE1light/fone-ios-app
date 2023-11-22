@@ -15,7 +15,7 @@ final class UserManager {
     func reissueToken(completion: @escaping(Bool) -> Void) {
         let tokenInfo = TokenInfo(accessToken: Tokens.shared.accessToken.value, refreshToken: Tokens.shared.refreshToken.value)
         
-        userInfoProvider.rx.request(.reissueToken(tokenInfo: tokenInfo))
+        tokenProvider.rx.request(.reissueToken(tokenInfo: tokenInfo))
             .mapObject(ReissueTokenModel.self)
             .asObservable()
             .withUnretained(self)

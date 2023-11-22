@@ -127,3 +127,4 @@ extension UserInfoTarget: TargetType {
 //        requestClosure: TimeoutClosure
     )
 #endif
+let tokenProvider = MoyaProvider<UserInfoTarget>()
