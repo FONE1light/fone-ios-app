@@ -383,9 +383,20 @@ extension JobOpeningHuntingViewController: UITableViewDataSource {
 
 extension JobOpeningHuntingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewModel = RecruitDetailViewModel(sceneCoordinator: viewModel.sceneCoordinator)
-        let detailScene = Scene.recruitDetail(viewModel)
-        viewModel.sceneCoordinator.transition(to: detailScene, using: .push, animated: true)
+        goJobOpeningDetail(jobOpeningId: 41, type: .actor) // FIXME: 우선 41, ACTOR로 고정, cell에서 id, job 가져오기
+    }
+    
+    func goJobOpeningDetail(jobOpeningId: Int, type: Job) {
+        jobOpeningInfoProvider.rx.request(.jobOpeningDetail(jobOpeningId: jobOpeningId, type: type))
+            .mapObject(JobOpeningInfo.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, response in
+                let viewModel = JobOpeningDetailViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator, jobOpeningDetail: response.data.jobOpening)
+                let detailScene = Scene.jobOpeningDetail(viewModel)
+                owner.viewModel.sceneCoordinator.transition(to: detailScene, using: .push, animated: true)
+                
+            }).disposed(by: rx.disposeBag)
     }
 }
 

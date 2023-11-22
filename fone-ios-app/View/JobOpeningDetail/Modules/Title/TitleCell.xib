@@ -116,6 +116,12 @@
                 <constraint firstItem="4MR-aa-2ps" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Tc8-nH-3s9"/>
                 <constraint firstAttribute="bottom" secondItem="4MR-aa-2ps" secondAttribute="bottom" id="Zpc-lg-D44"/>
             </constraints>
+            <connections>
+                <outlet property="firstCategoryLabel" destination="8e1-yi-Ru0" id="edD-Ia-uLJ"/>
+                <outlet property="secondCategoryLabel" destination="3UX-75-Hrh" id="IKO-ba-Ptx"/>
+                <outlet property="secondCategoryView" destination="aUS-nQ-JY9" id="a1K-gT-BAI"/>
+                <outlet property="titleLabel" destination="9ra-T6-Qdi" id="b1J-WB-aIV"/>
+            </connections>
             <point key="canvasLocation" x="44" y="20"/>
         </collectionViewCell>
     </objects>

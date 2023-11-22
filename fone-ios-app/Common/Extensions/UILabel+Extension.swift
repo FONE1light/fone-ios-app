@@ -18,4 +18,16 @@ extension UILabel {
 //            setParagraphStyleProperty(lineHeight, for: \.maximumLineHeight)
 //        }
 //    }
+    
+    static func getLabelHeight(width: CGFloat, text: String, font: UIFont, line: Int = 0) -> CGFloat {
+        if text.count == 0 {
+            return 0
+        }
+        
+        let constraintRect: CGSize = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = text.boundingRect(with: constraintRect,
+                                            options: [.usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: font],
+                                            context: nil)
+        return ceil(boundingBox.height)
+    }
 }

@@ -87,6 +87,9 @@
                 <constraint firstAttribute="trailing" secondItem="Fzb-Fd-1pw" secondAttribute="trailing" id="WJU-Rd-CAu"/>
                 <constraint firstAttribute="bottom" secondItem="Fzb-Fd-1pw" secondAttribute="bottom" id="n3u-cb-dyL"/>
             </constraints>
+            <connections>
+                <outlet property="detailsLabel" destination="dAb-X5-ldz" id="qT1-Hw-Ro1"/>
+            </connections>
             <point key="canvasLocation" x="44" y="20"/>
         </collectionViewCell>
     </objects>

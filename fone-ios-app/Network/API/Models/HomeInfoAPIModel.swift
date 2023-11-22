@@ -169,14 +169,17 @@ struct Sort: Codable {
 
 // MARK: - Work
 struct Work: Codable {
-    let produce, workTitle, director, genre: String
-    let logline, location, period, pay: String?
-    let details, manager, email: String
-    let genres: [String]
-    let workingCity, workingDistrict: String
+    let produce, workTitle, director, genre: String?
+    let logline: String?
+    let location: String?
+    let period, pay, details, manager: String?
+    let email: String?
+    let genres: [String]?
+    let workingCity, workingDistrict: String?
     let workingStartDate, workingEndDate: String?
-    let selectedDays: [String]
+    let selectedDays: [String]?
     let workingStartTime, workingEndTime: String?
-    let salaryType: String
-    let salary: Int
+    let salaryType: String?
+    let salary: Int?
+    let workingDate, workingLocation, workingTime: String?
 }

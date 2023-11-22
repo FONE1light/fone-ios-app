@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum RecruitDetailSection: Int, CaseIterable {
+enum JobOpeningDetailSection: Int, CaseIterable {
     case author = 0
     case title
     case image
@@ -19,14 +19,14 @@ enum RecruitDetailSection: Int, CaseIterable {
     case footer
 }
 
-class RecruitDetailViewController: UIViewController, ViewModelBindableType {
-    var viewModel: RecruitDetailViewModel!
-
+class JobOpeningDetailViewController: UIViewController, ViewModelBindableType {
+    var viewModel: JobOpeningDetailViewModel!
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setNavigationBar()
         setCollectionView()
     }
@@ -58,40 +58,54 @@ class RecruitDetailViewController: UIViewController, ViewModelBindableType {
     }
 }
 
-extension RecruitDetailViewController: UICollectionViewDataSource {
+extension JobOpeningDetailViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return RecruitDetailSection.allCases.count
+        return JobOpeningDetailSection.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if section == JobOpeningDetailSection.image.rawValue {
+            guard let viewModel = viewModel else { return 0 }
+            let itemCount = viewModel.jobOpeningDetail?.imageUrls.count == 0 ? 0 : 1
+            return itemCount
+        }
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let content = viewModel.jobOpeningDetail else { return UICollectionViewCell() }
         switch indexPath.section {
-        case RecruitDetailSection.author.rawValue:
+        case JobOpeningDetailSection.author.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as AuthorCell
+            cell.configure(createdAt: content.createdAt, viewCount: content.viewCount, profileUrl: content.profileURL, nickname: content.nickname, userJob: content.userJob)
             return cell
-        case RecruitDetailSection.title.rawValue:
+        case JobOpeningDetailSection.title.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as TitleCell
+            cell.configrue(categories: content.categories, title: content.title)
             return cell
-        case RecruitDetailSection.image.rawValue:
+        case JobOpeningDetailSection.image.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as DetailImageCell
             return cell
-        case RecruitDetailSection.recruitCondition.rawValue:
+        case JobOpeningDetailSection.recruitCondition.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as RecruitConditionCell
+            cell.configure(type: content.type, deadLine: content.deadline, dday: content.dday, casting: content.casting ?? "", domains: content.domains, numberOfRecruits: content.numberOfRecruits, gender: content.gender, ageMin: content.ageMin, ageMax: content.ageMax, career: content.career)
             return cell
-        case RecruitDetailSection.info.rawValue:
+        case JobOpeningDetailSection.info.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as WorkInfoCell
+            cell.configure(produce: content.work.produce, title: content.work.workTitle, director: content.work.director, genre: content.work.genre, logline: content.work.logline)
             return cell
-        case RecruitDetailSection.workCondition.rawValue:
+        case JobOpeningDetailSection.workCondition.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as WorkConditionCell
+            cell.configure(salaryType: content.work.salaryType, salary: content.work.salary, location: content.work.workingLocation, period: content.work.workingDate, workDays: content.work.selectedDays, workingTime: content.work.workingTime)
             return cell
-        case RecruitDetailSection.summary.rawValue:
+        case JobOpeningDetailSection.summary.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as SummaryCell
+            let summary = viewModel.jobOpeningDetail?.work.details ?? ""
+            cell.configure(item: summary)
             return cell
-        case RecruitDetailSection.contactInfo.rawValue:
+        case JobOpeningDetailSection.contactInfo.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as ContactInfoCell
+            cell.configure(manager: content.work.manager, email: content.work.email)
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as FooterCell
@@ -100,28 +114,30 @@ extension RecruitDetailViewController: UICollectionViewDataSource {
     }
 }
 
-extension RecruitDetailViewController: UICollectionViewDelegateFlowLayout {
+extension JobOpeningDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        guard let viewModel = viewModel else { return .zero }
+        
         let width: Double = UIScreen.main.bounds.width
         var height: Double = 250
         switch indexPath.section {
-        case RecruitDetailSection.author.rawValue:
+        case JobOpeningDetailSection.author.rawValue:
             height = 79
-        case RecruitDetailSection.title.rawValue:
-            height = 116
-        case RecruitDetailSection.image.rawValue:
+        case JobOpeningDetailSection.title.rawValue:
+            height = TitleCell.cellHeight(viewModel.jobOpeningDetail?.title)
+        case JobOpeningDetailSection.image.rawValue:
             height = width / 375 * 400
-        case RecruitDetailSection.recruitCondition.rawValue:
+        case JobOpeningDetailSection.recruitCondition.rawValue:
             height = 244
-        case RecruitDetailSection.info.rawValue:
-            height = 234
-        case RecruitDetailSection.workCondition.rawValue:
+        case JobOpeningDetailSection.info.rawValue:
+            height = WorkInfoCell.cellHeight(viewModel.jobOpeningDetail?.work.logline)
+        case JobOpeningDetailSection.workCondition.rawValue:
             height = 233
-        case RecruitDetailSection.summary.rawValue:
-            height = 450
-        case RecruitDetailSection.contactInfo.rawValue:
-            height = 118 // FIXME: 라벨 높이에 따라 높이 수정
-        case RecruitDetailSection.footer.rawValue:
+        case JobOpeningDetailSection.summary.rawValue:
+            height = SummaryCell.cellHeight(viewModel.jobOpeningDetail?.work.details)
+        case JobOpeningDetailSection.contactInfo.rawValue:
+            height = 118
+        case JobOpeningDetailSection.footer.rawValue:
             height = 187
         default:
             height = 0

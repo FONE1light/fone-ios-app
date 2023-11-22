@@ -51,6 +51,7 @@ class HomeViewModel: CommonViewModel {
                 self.fetchHome(isRetry: true)
             }, onError: { error in
                 print("\(error)")
+                self.moveToLogin()
             }).disposed(by: disposeBag)
     }
     
