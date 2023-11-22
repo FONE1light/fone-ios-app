@@ -112,11 +112,13 @@ extension UserInfoTarget: TargetType {
         return commonHeaders
     }
     
-    
+    var validationType: ValidationType {
+        return .successCodes
+    }
 }
 
 #if DEBUG
-    let userInfoProvider = MoyaProvider<UserInfoTarget>(
+    let userInfoProvider = MoyaProvider<UserInfoTarget>(session: Session(interceptor: AuthInterceptor.shared)
 //        requestClosure: TimeoutClosure,
 //        plugins: [NetworkLoggerPlugin(configuration: .init(formatter: .init(responseData: JSONResponseDataFormatter), logOptions: .verbose))]
     )
