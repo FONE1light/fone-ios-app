@@ -23,7 +23,7 @@ class SignUpSelectionViewController: UIViewController, ViewModelBindableType {
         $0.alignment = .leading
     }
     
-    let stepIndicator = StepIndicator(.first)
+    let stepIndicator = StepIndicator(index: 0, totalCount: 3)
     
     let titleLabel = UILabel().then {
         $0.text = "직업과 관심사 선택으로\n맞춤 설정 끝!"

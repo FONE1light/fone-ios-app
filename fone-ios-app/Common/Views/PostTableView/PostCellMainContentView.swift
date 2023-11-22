@@ -41,8 +41,6 @@ class PostCellMainContentView: UIView {
     
     private let detailInfoBlock = DetailInfoBlock()
     
-    private var jobTag = Tag()
-    
     init(hasBookmark: Bool = true) {
         self.hasBookmark = hasBookmark
         super.init(frame: .zero)
@@ -53,7 +51,6 @@ class PostCellMainContentView: UIView {
     
     func configure(
         isOfficial: Bool = false,
-        job: Job, // actor/staff
         categories: [Category], // 작품 성격 최대 2개
         deadline: String? = nil,
         coorporate: String? = nil,
@@ -72,8 +69,6 @@ class PostCellMainContentView: UIView {
             coorporate: coorporate,
             field: field ?? casting
         )
-        
-        jobTag.setType(as: job)
     }
     
     private func setupUI() {
@@ -81,8 +76,7 @@ class PostCellMainContentView: UIView {
         [
             imageView,
             horizontalStackView,
-            detailInfoBlock,
-            jobTag
+            detailInfoBlock
         ]
             .forEach {
                 self.addSubview($0)
@@ -120,12 +114,6 @@ class PostCellMainContentView: UIView {
         detailInfoBlock.snp.makeConstraints {
             $0.top.equalTo(horizontalStackView.snp.bottom).offset(6)
             $0.leading.equalTo(horizontalStackView)
-        }
-        
-        jobTag.snp.makeConstraints {
-            $0.leading.equalTo(detailInfoBlock.snp.trailing).offset(10) // FIXME: 디자인 확정 후 값 수정
-            $0.trailing.equalTo(horizontalStackView.snp.trailing)
-            $0.bottom.equalToSuperview()
         }
         
         bookmarkImageView.snp.makeConstraints {

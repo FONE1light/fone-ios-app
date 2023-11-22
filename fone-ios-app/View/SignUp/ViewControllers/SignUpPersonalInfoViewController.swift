@@ -23,7 +23,7 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
         $0.alignment = .leading
     }
     
-    let stepIndicator = StepIndicator(.second)
+    let stepIndicator = StepIndicator(index: 1, totalCount: 3)
     
     let titleLabel = UILabel().then {
         $0.text = "기본 정보를 입력해 주세요"
@@ -39,7 +39,7 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
         $0.textColor = .gray_161616
     }
     
-    private let nicknameTextField = DefaultTextField(placeHolder: "3~8자리의 숫자, 영어, 한글만 가능합니다")
+    private let nicknameTextField = DefaultTextField(placeholder: "3~8자리의 숫자, 영어, 한글만 가능합니다")
     
     private let duplicatedWarningLabel = UILabel().then {
         $0.text = "중복되는 닉네임입니다."
@@ -63,7 +63,7 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
         $0.textColor = .gray_9E9E9E
     }
     
-    private let birthTextField = DefaultTextField(placeHolder: "YYYY-MM-DD")
+    private let birthTextField = DefaultTextField(placeholder: "YYYY-MM-DD")
     
     private let maleButton = CustomButton("남자", type: .auth).then {
         $0.isActivated = false

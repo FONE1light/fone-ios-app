@@ -1,5 +1,5 @@
 //
-//  JobPostCell.swift
+//  JobScrapCell.swift
 //  fone-ios-app
 //
 //  Created by 여나경 on 2023/09/24.
@@ -7,11 +7,12 @@
 
 import UIKit
 
-class JobPostCell: UITableViewCell {
+class JobScrapCell: UITableViewCell {
     
     private let mainContentView = PostCellMainContentView(hasBookmark: true)
+    private var jobTag = Tag()
     
-    static let identifier = String(describing: JobPostCell.self)
+    static let identifier = String(describing: JobScrapCell.self)
     
     private let separator = Divider(
         width: UIScreen.main.bounds.width,
@@ -37,7 +38,6 @@ class JobPostCell: UITableViewCell {
         field: String? = nil
     ) {
         mainContentView.configure(
-            job: job,
             categories: categories,
             deadline: deadline,
             coorporate: coorporate,
@@ -46,10 +46,12 @@ class JobPostCell: UITableViewCell {
             casting: casting,
             field: field
         )
+        
+        jobTag.setType(as: job)
     }
     
     private func setupUI() {
-        [mainContentView, separator]
+        [mainContentView, jobTag, separator]
             .forEach { contentView.addSubview($0) }
     }
     
@@ -57,6 +59,10 @@ class JobPostCell: UITableViewCell {
         mainContentView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(12)
             $0.leading.trailing.equalToSuperview().inset(16)
+        }
+        
+        jobTag.snp.makeConstraints {
+            $0.trailing.bottom.equalTo(mainContentView)
         }
         
         separator.snp.makeConstraints {
