@@ -131,7 +131,6 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
                 let isIrrelevant = !owner.genderIrrelevantButton.isActivated
                 
                 owner.genderIrrelevantButton.isActivated = isIrrelevant
-                
                 owner.maleButton.isActivated = isIrrelevant
                 owner.femaleButton.isActivated = isIrrelevant
             }.disposed(by: rx.disposeBag)
@@ -143,6 +142,8 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
                 
                 if owner.maleButton.isActivated == false {
                     owner.genderIrrelevantButton.isActivated = false
+                } else {
+                    owner.checkAllActivated()
                 }
 //                owner.viewModel.gender = .MAN
             }.disposed(by: rx.disposeBag)
@@ -154,6 +155,8 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
                 
                 if owner.femaleButton.isActivated == false {
                     owner.genderIrrelevantButton.isActivated = false
+                } else {
+                    owner.checkAllActivated()
                 }
 //                owner.viewModel.gender = .WOMAN
             }.disposed(by: rx.disposeBag)
@@ -289,6 +292,12 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
             $0.leading.equalTo(maleButton.snp.trailing).offset(6)
             $0.trailing.equalToSuperview()
             $0.width.equalTo(58)
+        }
+    }
+    
+    private func checkAllActivated() {
+        if maleButton.isActivated && femaleButton.isActivated {
+            genderIrrelevantButton.isActivated = true
         }
     }
 }
