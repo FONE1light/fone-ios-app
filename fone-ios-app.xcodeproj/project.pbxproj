@@ -181,11 +181,10 @@
 		AB49A3452A81158900748484 /* FindIDPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB49A3432A81158900748484 /* FindIDPasswordViewController.xib */; };
 		AB49A3472A81159F00748484 /* FindIDPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A3462A81159F00748484 /* FindIDPasswordViewModel.swift */; };
 		AB49A3492A8119B900748484 /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A3482A8119B900748484 /* CommonViewModel.swift */; };
+		AB4E44472B0E222E001B3DB6 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E44462B0E222E001B3DB6 /* UserManager.swift */; };
 		AB532B2D2B0A2774003A6A57 /* GenderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB532B2C2B0A2774003A6A57 /* GenderType.swift */; };
 		AB532B2F2B0A279C003A6A57 /* CareerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB532B2E2B0A279C003A6A57 /* CareerType.swift */; };
 		AB532B312B0A306A003A6A57 /* SalaryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB532B302B0A306A003A6A57 /* SalaryType.swift */; };
-		AB4E44442B0E211E001B3DB6 /* AuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E44432B0E211E001B3DB6 /* AuthInterceptor.swift */; };
-		AB4E44472B0E222E001B3DB6 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E44462B0E222E001B3DB6 /* UserManager.swift */; };
 		AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6002352A7E375D000CF1FD /* AppDelegate.swift */; };
 		AB60023A2A7E375D000CF1FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6002392A7E375D000CF1FD /* ViewController.swift */; };
 		AB60023D2A7E375D000CF1FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB60023B2A7E375D000CF1FD /* Main.storyboard */; };
@@ -213,6 +212,7 @@
 		AB61493A2A90B6CC0079CEC9 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AB6149392A90B6CC0079CEC9 /* ReactiveMoya */; };
 		AB61493C2A90B6CC0079CEC9 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AB61493B2A90B6CC0079CEC9 /* RxMoya */; };
 		AB61493E2A90D4410079CEC9 /* ToastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB61493D2A90D4410079CEC9 /* ToastManager.swift */; };
+		AB6780F62B10C1F80074463E /* AuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6780F52B10C1F80074463E /* AuthInterceptor.swift */; };
 		AB6785542AA3335A00ACD35C /* EmailLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6785532AA3335A00ACD35C /* EmailLoginViewModel.swift */; };
 		AB6785572AA3336900ACD35C /* EmailLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6785552AA3336900ACD35C /* EmailLoginViewController.swift */; };
 		AB6785582AA3336900ACD35C /* EmailLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB6785562AA3336900ACD35C /* EmailLoginViewController.xib */; };
@@ -406,11 +406,10 @@
 		AB49A3432A81158900748484 /* FindIDPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FindIDPasswordViewController.xib; sourceTree = "<group>"; };
 		AB49A3462A81159F00748484 /* FindIDPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIDPasswordViewModel.swift; sourceTree = "<group>"; };
 		AB49A3482A8119B900748484 /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
+		AB4E44462B0E222E001B3DB6 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		AB532B2C2B0A2774003A6A57 /* GenderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderType.swift; sourceTree = "<group>"; };
 		AB532B2E2B0A279C003A6A57 /* CareerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerType.swift; sourceTree = "<group>"; };
 		AB532B302B0A306A003A6A57 /* SalaryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalaryType.swift; sourceTree = "<group>"; };
-		AB4E44432B0E211E001B3DB6 /* AuthInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthInterceptor.swift; path = ../../../../../../Documents/AuthInterceptor.swift; sourceTree = "<group>"; };
-		AB4E44462B0E222E001B3DB6 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		AB6002322A7E375D000CF1FD /* fone-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fone-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6002352A7E375D000CF1FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB6002392A7E375D000CF1FD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -419,6 +418,7 @@
 		AB6002442A7E375D000CF1FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB6002462A7E375D000CF1FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB61493D2A90D4410079CEC9 /* ToastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastManager.swift; sourceTree = "<group>"; };
+		AB6780F52B10C1F80074463E /* AuthInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
 		AB6785532AA3335A00ACD35C /* EmailLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginViewModel.swift; sourceTree = "<group>"; };
 		AB6785552AA3336900ACD35C /* EmailLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginViewController.swift; sourceTree = "<group>"; };
 		AB6785562AA3336900ACD35C /* EmailLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmailLoginViewController.xib; sourceTree = "<group>"; };
@@ -576,7 +576,7 @@
 				362866952A8E3D7500CD42BC /* Moya+Codable */,
 				3628668C2A8DF4C700CD42BC /* Providers */,
 				3628668A2A8DF40F00CD42BC /* APIConfig.swift */,
-				AB4E44432B0E211E001B3DB6 /* AuthInterceptor.swift */,
+				AB6780F52B10C1F80074463E /* AuthInterceptor.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1629,7 +1629,6 @@
 				AB79B3BC2A9E29C4008EBAA2 /* QuestionViewController.swift in Sources */,
 				AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */,
 				AB3F071D2AADADB700E54A25 /* FindPasswordCell.swift in Sources */,
-				AB4E44442B0E211E001B3DB6 /* AuthInterceptor.swift in Sources */,
 				367D9BD82ACB5CC900DA6C96 /* JobViewController.swift in Sources */,
 				ABCDD17C2B00DE8E00A598A8 /* DetailImageCell.swift in Sources */,
 				364482D52AB8082E00984507 /* MyPageButtonStackViewContentView.swift in Sources */,
@@ -1728,6 +1727,7 @@
 				AB77A6F92AF90F1100EF1C29 /* ImageCollectionViewCell.swift in Sources */,
 				ABC1DBDD2AC0113800B9A6BF /* JobOpeningCell.swift in Sources */,
 				AB3F07192AADAA9200E54A25 /* FindIDCell.swift in Sources */,
+				AB6780F62B10C1F80074463E /* AuthInterceptor.swift in Sources */,
 				367D9C182ADA292200DA6C96 /* MyRegistrationsViewController.swift in Sources */,
 				364482D02AB7D15F00984507 /* NavigationRightBarButton.swift in Sources */,
 				36D293D42A961FDB00171C77 /* SelectionBlock.swift in Sources */,
