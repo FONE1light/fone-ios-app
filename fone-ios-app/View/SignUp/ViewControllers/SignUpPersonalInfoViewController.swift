@@ -110,7 +110,7 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
         birthTextField.rx.controlEvent(.editingChanged)
             .withUnretained(self)
             .bind { owner, _ in
-                let formattedBirth = owner.viewModel.formatBirthString(owner.birthTextField.text)
+                let formattedBirth = owner.birthTextField.text?.birthFormatted()
                 owner.birthTextField.text = formattedBirth
                 owner.viewModel.birthday = formattedBirth
             }.disposed(by: rx.disposeBag)

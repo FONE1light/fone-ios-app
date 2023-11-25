@@ -11,6 +11,7 @@ import RxRelay
 enum ButtonDesignType {
     case auth // 회원가입 - 인증에 사용되는 버튼
     case bottom // 하단 버튼 - '다음', '로그인하기' 등
+    case clear // 초기화 버튼 - '성별 무관', '전체 선택' 등
 }
 
 extension ButtonDesignType {
@@ -19,6 +20,7 @@ extension ButtonDesignType {
         switch self {
         case .auth: return .font_r(14)
         case .bottom: return .font_m(16)
+        case .clear: return .font_r(12)
         }
     }
     
@@ -32,7 +34,7 @@ extension ButtonDesignType {
     var defaultTitleColor: UIColor? {
         switch self {
         case .auth: return .red_CE0B39
-        case .bottom: return .white_FFFFFF
+        case .bottom, .clear: return .white_FFFFFF
         }
     }
     
@@ -52,6 +54,7 @@ extension ButtonDesignType {
     
     var disabledBackgroundColor: UIColor? {
         switch self {
+        case .clear: return .gray_C5C5C5
         default: return nil
         }
     }
@@ -59,6 +62,7 @@ extension ButtonDesignType {
     var defaultBackgroundColor: UIColor? {
         switch self {
         case .bottom: return .red_C0002C
+        case .clear: return .violet_362C4C
         default: return nil
         }
     }
@@ -67,6 +71,13 @@ extension ButtonDesignType {
         switch self {
         case .bottom: return .shadowBt
         default: return nil
+        }
+    }
+    
+    var cornerRadius: CGFloat {
+        switch self {
+        case .clear: 12
+        default: 5
         }
     }
 }
@@ -162,10 +173,11 @@ class CustomButton: UIButton {
     init(_ title: String? = nil, type: ButtonDesignType? = nil) {
         super.init(frame: .zero)
         
-        cornerRadius = 5
         setTitle(title, for: .normal)
         
         guard let type = type else { return }
+        
+        cornerRadius = type.cornerRadius
         
         if let titleFont = type.titleFont {
             titleLabel?.font = titleFont

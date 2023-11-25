@@ -23,8 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SocialLoginManager.shared.initailize(sceneCoordinator: coordinator)
         
         var destinationScene: Scene
-        let refreshToken = Tokens.shared.refreshToken.value
-        if !refreshToken.isEmpty {
+        let accessToken = Tokens.shared.accessToken.value
+        if !accessToken.isEmpty {
+            // 사용 중 토큰 갱신 상황을 최소화하기 위해 자동 로그인 시 토큰 갱신
+            UserManager.shared.reissueToken { _ in }
             destinationScene = Scene.home(coordinator)
         } else {
             let loginViewModel = LoginViewModel(sceneCoordinator: coordinator)
