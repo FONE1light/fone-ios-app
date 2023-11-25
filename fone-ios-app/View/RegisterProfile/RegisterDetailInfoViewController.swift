@@ -9,6 +9,7 @@ import UIKit
 import Then
 import SnapKit
 import RxSwift
+import RxRelay
 
 class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType {
     
@@ -114,7 +115,25 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
         isRequired: false
     )
     
+    // SNS
     private let snsBlock = UIView()
+    
+    private let snsLabel = UILabel().then {
+        $0.text = "SNS"
+        $0.font = .font_b(16)
+        $0.textColor = .gray_161616
+    }
+    
+    private let instagramButton = UIButton().then {
+        $0.setImage(UIImage(named: "instagram_but_g"), for: .normal)
+        $0.setImage(UIImage(named: "instagram_but_c"), for: .selected)
+    }
+    
+    private let youtubeButton = UIButton().then {
+        $0.setImage(UIImage(named: "youtube_but_g"), for: .normal)
+        $0.setImage(UIImage(named: "youtube_but_c"), for: .selected)
+    }
+    
     private let nextButton = CustomButton("다음", type: .bottom)
     
     func bindViewModel() {
@@ -123,6 +142,28 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
         }
             .bind(to: birthTextField.rx.text)
             .disposed(by: rx.disposeBag)
+        
+        viewModel.instagramLink
+            .withUnretained(self)
+            .bind { owner, link in
+                guard let link = link else { return }
+                if link.isEmpty == false {
+                    owner.instagramButton.isSelected = true
+                } else {
+                    owner.instagramButton.isSelected = false
+                }
+            }.disposed(by: disposeBag)
+        
+        viewModel.youtubeLink
+            .withUnretained(self)
+            .bind { owner, link in
+                guard let link = link else { return }
+                if link.isEmpty == false {
+                    owner.youtubeButton.isSelected = true
+                } else {
+                    owner.youtubeButton.isSelected = false
+                }
+            }.disposed(by: disposeBag)
         
         // Buttons
         genderIrrelevantButton.rx.tap
@@ -161,6 +202,19 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
 //                owner.viewModel.gender = .WOMAN
             }.disposed(by: rx.disposeBag)
         
+        instagramButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                let bottomSheet = SNSBottomSheet(type: .instagram, link: owner.viewModel.instagramLink)
+                owner.presentPanModal(view: bottomSheet)
+            }.disposed(by: rx.disposeBag)
+        
+        youtubeButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                    let bottomSheet = SNSBottomSheet(type: .instagram, link: owner.viewModel.youtubeLink)
+                    owner.presentPanModal(view: bottomSheet)
+            }.disposed(by: rx.disposeBag)
     }
     
     override func viewDidLoad() {
@@ -219,6 +273,14 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
         
         heightBlock.addSubview(cmLabel)
         weightBlock.addSubview(kgLabel)
+        
+        [
+            snsLabel,
+            instagramButton,
+            youtubeButton
+        ]
+            .forEach { snsBlock.addSubview($0) }
+        setupSNSBlock()
     }
     
     private func setConstraints() {
@@ -295,6 +357,26 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
         }
     }
     
+    private func setupSNSBlock() {
+        snsLabel.snp.makeConstraints {
+            $0.top.leading.bottom.equalToSuperview()
+        }
+        
+        instagramButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(62)
+            $0.size.equalTo(40)
+        }
+        
+        youtubeButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(instagramButton.snp.trailing).offset(8)
+            $0.size.equalTo(40)
+        }
+        
+        
+    }
+    
     private func checkAllActivated() {
         if maleButton.isActivated && femaleButton.isActivated {
             genderIrrelevantButton.isActivated = true
@@ -302,3 +384,108 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
     }
 }
 
+enum SNSType {
+    case instagram
+    case youtube
+    
+    var title: String {
+        switch self {
+        case .instagram: "인스타그램"
+        case .youtube: "유튜브"
+        }
+    }
+    
+    func bottomSheet(link: BehaviorRelay<String?>) -> UIView {
+        SNSBottomSheet(type: self, link: link)
+    }
+}
+
+class SNSBottomSheet: UIView {
+    
+    private let snsLabel = UILabel().then {
+        $0.text = "SNS"
+        $0.font = .font_m(16)
+        $0.textColor = .gray_9E9E9E
+    }
+    
+    private let typeTitle = UILabel().then {
+        $0.font = .font_b(16)
+        $0.textColor = .gray_161616
+    }
+
+    private let textField: DefaultTextField
+    private let link: BehaviorRelay<String?>
+    
+    private let nextButton = CustomButton("등록하기", type: .bottom)
+    
+    init(type: SNSType, link: BehaviorRelay<String?>) {
+        textField = DefaultTextField(
+            placeholder: "\(type.title) 링크를 첨부할 수 있어요"
+        )
+        self.link = link
+        super.init(frame: .zero)
+        
+        typeTitle.text = type.title
+        textField.text = link.value
+        
+        setupUI()
+        setConstraints()
+        bind()
+    }
+    
+    private func setupUI() {
+        backgroundColor = .white_FFFFFF
+        [
+            snsLabel,
+            typeTitle,
+            textField,
+            // view
+            nextButton
+        ]
+            .forEach { addSubview($0) }
+        
+        nextButton.applyShadow(shadowType: .shadowBt)
+    }
+    
+    private func setConstraints() {
+        snsLabel.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(22)
+        }
+        
+        typeTitle.snp.makeConstraints {
+            $0.top.equalTo(snsLabel.snp.bottom).offset(13)
+            $0.leading.trailing.equalTo(snsLabel)
+        }
+        
+        textField.snp.makeConstraints {
+            $0.top.equalTo(typeTitle.snp.bottom).offset(8)
+            $0.leading.trailing.equalTo(snsLabel)
+        }
+        
+        nextButton.snp.makeConstraints {
+            $0.top.equalTo(textField.snp.bottom).offset(132) // TODO: 추후 삭제
+            $0.height.equalTo(48)
+            $0.leading.trailing.equalTo(snsLabel)
+            $0.bottom.equalToSuperview().inset(38)
+        }
+        
+        snp.makeConstraints {
+            $0.width.equalTo(UIScreen.main.bounds.width)
+        }
+    }
+    
+    private func bind() {
+        nextButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.link.accept(owner.textField.text)
+                // TODO: dismiss bottomSheet
+            }.disposed(by: rx.disposeBag)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}

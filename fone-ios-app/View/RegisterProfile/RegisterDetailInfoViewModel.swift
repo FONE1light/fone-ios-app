@@ -5,6 +5,11 @@
 //  Created by 여나경 on 11/19/23.
 //
 
-import Foundation
+import UIKit
+import RxRelay
 
-class RegisterDetailInfoViewModel: CommonViewModel {}
+class RegisterDetailInfoViewModel: CommonViewModel {
+    
+    var instagramLink = BehaviorRelay<String?>(value: nil)
+    var youtubeLink = BehaviorRelay<String?>(value: nil)
+}
