@@ -8,7 +8,7 @@
 // MARK: - HomeInfo
 struct HomeInfo: Codable {
     let result: String
-    let data: HomeInfoData
+    let data: HomeInfoData?
     let message: String
     let errorCode: String?
 }
