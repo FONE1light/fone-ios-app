@@ -36,11 +36,14 @@ class LabelTextView: UIView, UITextViewDelegate {
         label text: String?,
         placeholder: String?,
         textViewHeight: CGFloat = 74,
-        maximumLetterCount: Int = 50,
-        isRequired: Bool? = false
+        isRequired: Bool? = false,
+        maximumLetterCount: Int = 50
     ) {
         placeholderString = placeholder
-        textView = DefaultTextView(placeholder: placeholder, height: textViewHeight)
+        textView = DefaultTextView(
+            placeholder: placeholder,
+            height: textViewHeight
+        )
         
         super.init(frame: .zero)
         

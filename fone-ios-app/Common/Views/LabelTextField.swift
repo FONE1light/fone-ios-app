@@ -22,7 +22,7 @@ class LabelTextField: UIView {
         $0.isHidden = true
     }
     
-    private let textField: DefaultTextField
+    let textField: DefaultTextField
     
     private let textFieldLeadingOffset: CGFloat
     
@@ -32,12 +32,19 @@ class LabelTextField: UIView {
     ///   - isRequired: 필수 항목인지 아닌지
     ///   - textFieldLeadingOffset: 현재 뷰의 leading 기준으로 textField의 leading offset. 보통 62, 경우에 따라 50
     init(
-        label text: String?, 
+        label text: String?,
         placeholder: String?,
+        textFieldHeight: CGFloat = 40,
         isRequired: Bool? = false,
-        textFieldLeadingOffset: CGFloat? = 62
+        maximumLetterCount: Int? = nil,
+        textFieldLeadingOffset: CGFloat? = 62,
+        textFieldKeyboardType: UIKeyboardType? = .default
     ) {
-        textField = DefaultTextField(placeholder: placeholder)
+        textField = DefaultTextField(
+            placeholder: placeholder,
+            height: textFieldHeight,
+            keyboardType: textFieldKeyboardType
+        )
         textField.font = .font_r(16)
         
         self.textFieldLeadingOffset = textFieldLeadingOffset ?? 62
@@ -51,6 +58,7 @@ class LabelTextField: UIView {
         
         setupUI()
         setConstraints()
+        bindText(maximumLetterCount: maximumLetterCount)
     }
     
     private func setupUI() {
@@ -76,8 +84,27 @@ class LabelTextField: UIView {
         }
     }
     
+    private func bindText(maximumLetterCount: Int?) {
+        guard let maximumLetterCount = maximumLetterCount else { return }
+        
+        textField.rx.text.map { String($0?.prefix(maximumLetterCount) ?? "") }
+            .bind(to: textField.rx.text)
+            .disposed(by: rx.disposeBag)
+            
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+
+extension LabelTextField {
+    func setTrailingPadding(_ trailingOffset: CGFloat) {
+        textField.setTrailingPadding(trailingOffset)
+    }
     
+    func setTextAlignment(_ alignment: NSTextAlignment) {
+        textField.setTextAlignment(alignment)
+    }
 }

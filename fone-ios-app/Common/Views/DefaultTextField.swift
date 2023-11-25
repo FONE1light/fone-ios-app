@@ -10,10 +10,17 @@ import SnapKit
 
 class DefaultTextField: UITextField {
 
-    init(placeholder: String? = nil, keyboardType: UIKeyboardType? = .default) {
+    private let height: CGFloat
+    
+    init(
+        placeholder: String? = nil,
+        height: CGFloat = 40,
+        keyboardType: UIKeyboardType? = .default
+    ) {
+        self.height = height
         super.init(frame: .zero)
         self.setUI(placeholder)
-        self.setContraints()
+        self.setContraints(height: height)
         
         if let keyboardType = keyboardType {
             self.keyboardType = keyboardType
@@ -37,14 +44,24 @@ class DefaultTextField: UITextField {
         self.cornerRadius = 5
     }
     
-    private func setContraints() {
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
+    private func setContraints(height: CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: height))
         self.leftView = paddingView
         self.leftViewMode = .always
         
         self.snp.makeConstraints {
-            $0.height.equalTo(40)
+            $0.height.equalTo(height)
         }
+    }
+    
+    func setTrailingPadding(_ offset: CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: offset, height: height))
+        self.rightView = paddingView
+        self.rightViewMode = .always
+    }
+    
+    func setTextAlignment(_ alignment: NSTextAlignment) {
+        textAlignment = alignment
     }
 
 }
