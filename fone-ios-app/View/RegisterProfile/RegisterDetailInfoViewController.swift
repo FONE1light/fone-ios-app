@@ -212,7 +212,7 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
         youtubeButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                    let bottomSheet = SNSBottomSheet(type: .instagram, link: owner.viewModel.youtubeLink)
+                    let bottomSheet = SNSBottomSheet(type: .youtube, link: owner.viewModel.youtubeLink)
                     owner.presentPanModal(view: bottomSheet)
             }.disposed(by: rx.disposeBag)
     }
