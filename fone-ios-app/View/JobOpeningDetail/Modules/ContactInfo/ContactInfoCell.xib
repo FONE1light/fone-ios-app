@@ -95,6 +95,10 @@
                 <constraint firstAttribute="bottom" secondItem="29G-9v-R7n" secondAttribute="bottom" id="WYr-pC-Dzw"/>
                 <constraint firstItem="29G-9v-R7n" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="t1b-SZ-W1K"/>
             </constraints>
+            <connections>
+                <outlet property="emailLabel" destination="VOA-iY-QbS" id="Rfs-JH-qvr"/>
+                <outlet property="managerLabel" destination="30K-A3-bnk" id="FCe-10-gcU"/>
+            </connections>
             <point key="canvasLocation" x="81" y="21"/>
         </collectionViewCell>
     </objects>
