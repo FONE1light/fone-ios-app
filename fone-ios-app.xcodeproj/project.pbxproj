@@ -210,6 +210,8 @@
 		AB61493A2A90B6CC0079CEC9 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AB6149392A90B6CC0079CEC9 /* ReactiveMoya */; };
 		AB61493C2A90B6CC0079CEC9 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = AB61493B2A90B6CC0079CEC9 /* RxMoya */; };
 		AB61493E2A90D4410079CEC9 /* ToastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB61493D2A90D4410079CEC9 /* ToastManager.swift */; };
+		AB6780FB2B10F2220074463E /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6780F92B10F2220074463E /* DatePickerViewController.swift */; };
+		AB6780FC2B10F2220074463E /* DatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB6780FA2B10F2220074463E /* DatePickerViewController.xib */; };
 		AB6785542AA3335A00ACD35C /* EmailLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6785532AA3335A00ACD35C /* EmailLoginViewModel.swift */; };
 		AB6785572AA3336900ACD35C /* EmailLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6785552AA3336900ACD35C /* EmailLoginViewController.swift */; };
 		AB6785582AA3336900ACD35C /* EmailLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB6785562AA3336900ACD35C /* EmailLoginViewController.xib */; };
@@ -413,6 +415,8 @@
 		AB6002442A7E375D000CF1FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB6002462A7E375D000CF1FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB61493D2A90D4410079CEC9 /* ToastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastManager.swift; sourceTree = "<group>"; };
+		AB6780F92B10F2220074463E /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
+		AB6780FA2B10F2220074463E /* DatePickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerViewController.xib; sourceTree = "<group>"; };
 		AB6785532AA3335A00ACD35C /* EmailLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginViewModel.swift; sourceTree = "<group>"; };
 		AB6785552AA3336900ACD35C /* EmailLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginViewController.swift; sourceTree = "<group>"; };
 		AB6785562AA3336900ACD35C /* EmailLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmailLoginViewController.xib; sourceTree = "<group>"; };
@@ -721,6 +725,8 @@
 			isa = PBXGroup;
 			children = (
 				366F22AF2ADB646400FD00BD /* BottomSheetViewController.swift */,
+				AB6780F92B10F2220074463E /* DatePickerViewController.swift */,
+				AB6780FA2B10F2220074463E /* DatePickerViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1502,6 +1508,7 @@
 				AB2578A22AAF36A900328363 /* HomeViewController.xib in Resources */,
 				AB2578AB2AAF3C8F00328363 /* ChatViewController.xib in Resources */,
 				AB6785582AA3336900ACD35C /* EmailLoginViewController.xib in Resources */,
+				AB6780FC2B10F2220074463E /* DatePickerViewController.xib in Resources */,
 				3650F6222A86715C0017645D /* Pretendard-Medium.ttf in Resources */,
 				ABCDD1922B00F23000A598A8 /* SummaryCell.xib in Resources */,
 				AB1CEAA92ABFD1D700E7E54F /* MainBannerModule.xib in Resources */,
@@ -1544,6 +1551,7 @@
 				36F50AAC2A9897AA00991C9B /* SelectionCell.swift in Sources */,
 				3650F6262A8672010017645D /* UIFont+Extension.swift in Sources */,
 				367D9C2B2ADA5EC700DA6C96 /* ProfileRegistrationCell.swift in Sources */,
+				AB6780FB2B10F2220074463E /* DatePickerViewController.swift in Sources */,
 				367D9BCD2AC2B19700DA6C96 /* PostCellMainContentView.swift in Sources */,
 				367D9C222ADA4AA700DA6C96 /* TabBarType.swift in Sources */,
 				36AB6FD42B08694400D9D6D0 /* RegisterBasicInfoViewModel.swift in Sources */,
