@@ -19,7 +19,7 @@ class StepIndicator: UIStackView {
         setUI(index: index, totalCount: totalCount)
     }
     
-    private func setUI(index: Int, totalCount: Int) {
+    func setUI(index: Int, totalCount: Int) {
         axis = .horizontal
         spacing = 8
         
@@ -35,7 +35,7 @@ class StepIndicator: UIStackView {
     
     
     required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
 }
 

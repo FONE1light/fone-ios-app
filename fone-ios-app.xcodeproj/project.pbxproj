@@ -229,6 +229,8 @@
 		AB79B3B92A9E298B008EBAA2 /* QuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB79B3B82A9E298B008EBAA2 /* QuestionViewModel.swift */; };
 		AB79B3BC2A9E29C4008EBAA2 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB79B3BA2A9E29C4008EBAA2 /* QuestionViewController.swift */; };
 		AB79B3BD2A9E29C4008EBAA2 /* QuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB79B3BB2A9E29C4008EBAA2 /* QuestionViewController.xib */; };
+		AB80BBEB2B12E13D0016D2AB /* RecruitConditionInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB80BBE92B12E13D0016D2AB /* RecruitConditionInfoViewController.swift */; };
+		AB80BBEC2B12E13D0016D2AB /* RecruitConditionInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB80BBEA2B12E13D0016D2AB /* RecruitConditionInfoViewController.xib */; };
 		AB9885122AA476FF00282C07 /* Rx+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9885112AA476FF00282C07 /* Rx+Extension.swift */; };
 		AB9DAAA82AB0A4F500B00016 /* HomeInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9DAAA72AB0A4F500B00016 /* HomeInfoProvider.swift */; };
 		ABA47FF72A850AE600B64403 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA47FF62A850AE600B64403 /* UIView+Extension.swift */; };
@@ -435,6 +437,8 @@
 		AB79B3B82A9E298B008EBAA2 /* QuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewModel.swift; sourceTree = "<group>"; };
 		AB79B3BA2A9E29C4008EBAA2 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		AB79B3BB2A9E29C4008EBAA2 /* QuestionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionViewController.xib; sourceTree = "<group>"; };
+		AB80BBE92B12E13D0016D2AB /* RecruitConditionInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitConditionInfoViewController.swift; sourceTree = "<group>"; };
+		AB80BBEA2B12E13D0016D2AB /* RecruitConditionInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitConditionInfoViewController.xib; sourceTree = "<group>"; };
 		AB9885112AA476FF00282C07 /* Rx+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Extension.swift"; sourceTree = "<group>"; };
 		AB9DAAA72AB0A4F500B00016 /* HomeInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInfoProvider.swift; sourceTree = "<group>"; };
 		ABA47FF62A850AE600B64403 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -1248,6 +1252,25 @@
 			path = Question;
 			sourceTree = "<group>";
 		};
+		AB80BBE82B12E10E0016D2AB /* RecruitBasicInfo */ = {
+			isa = PBXGroup;
+			children = (
+				ABF817272AF27B1D00625D55 /* RecruitBasicInfoViewController.swift */,
+				ABF817282AF27B1D00625D55 /* RecruitBasicInfoViewController.xib */,
+				AB77A6F42AF90A3800EF1C29 /* RecruitBasicInfoViewModel.swift */,
+			);
+			path = RecruitBasicInfo;
+			sourceTree = "<group>";
+		};
+		AB80BBED2B12E1420016D2AB /* RecruitConditionInfo */ = {
+			isa = PBXGroup;
+			children = (
+				AB80BBE92B12E13D0016D2AB /* RecruitConditionInfoViewController.swift */,
+				AB80BBEA2B12E13D0016D2AB /* RecruitConditionInfoViewController.xib */,
+			);
+			path = RecruitConditionInfo;
+			sourceTree = "<group>";
+		};
 		ABC1DBDA2AC00F0D00B9A6BF /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1368,9 +1391,8 @@
 		ABF817262AF27AE600625D55 /* Recruit */ = {
 			isa = PBXGroup;
 			children = (
-				ABF817272AF27B1D00625D55 /* RecruitBasicInfoViewController.swift */,
-				ABF817282AF27B1D00625D55 /* RecruitBasicInfoViewController.xib */,
-				AB77A6F42AF90A3800EF1C29 /* RecruitBasicInfoViewModel.swift */,
+				AB80BBE82B12E10E0016D2AB /* RecruitBasicInfo */,
+				AB80BBED2B12E1420016D2AB /* RecruitConditionInfo */,
 			);
 			path = Recruit;
 			sourceTree = "<group>";
@@ -1508,6 +1530,7 @@
 				AB1CEAB32ABFD22600E7E54F /* CompetitionModule.xib in Resources */,
 				AB1CEABD2ABFD29C00E7E54F /* MainBannerCell.xib in Resources */,
 				AB7900B82AB5C99A004DA4F3 /* NotiViewController.xib in Resources */,
+				AB80BBEC2B12E13D0016D2AB /* RecruitConditionInfoViewController.xib in Resources */,
 				AB49A3402A810FE000748484 /* LoginViewController.xib in Resources */,
 				ABCDD1812B00E05800A598A8 /* RecruitConditionCell.xib in Resources */,
 				AB3F071A2AADAA9200E54A25 /* FindIDCell.xib in Resources */,
@@ -1685,6 +1708,7 @@
 				AB6992242AB6E87100B67455 /* ChatViewModel.swift in Sources */,
 				3628669A2A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift in Sources */,
 				367D9C052AD765C800DA6C96 /* SavedProfilesContentViewController.swift in Sources */,
+				AB80BBEB2B12E13D0016D2AB /* RecruitConditionInfoViewController.swift in Sources */,
 				AB3F07202AADB72500E54A25 /* UICollectionView+Extension.swift in Sources */,
 				36BCC7E22AA328AB0060E35A /* SignUpPhoneNumberViewController.swift in Sources */,
 				AB4E44472B0E222E001B3DB6 /* UserManager.swift in Sources */,

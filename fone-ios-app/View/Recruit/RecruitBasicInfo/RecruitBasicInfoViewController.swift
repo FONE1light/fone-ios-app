@@ -33,8 +33,14 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
         setSelectionBlock()
         setCollectionView()
         nextButton.applyShadow(shadowType: .shadowBt)
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false // 스와이프백 안 되게
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true // 스와이프백 다시 가능하게
     }
     
     func bindViewModel() {
@@ -55,6 +61,12 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
             .withUnretained(self)
             .bind { owner, _ in
                 owner.presentPicker()
+            }.disposed(by: rx.disposeBag)
+        
+        nextButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.viewModel.sceneCoordinator.transition(to: .recruitConditionInfo, using: .push, animated: true)
             }.disposed(by: rx.disposeBag)
     }
     
