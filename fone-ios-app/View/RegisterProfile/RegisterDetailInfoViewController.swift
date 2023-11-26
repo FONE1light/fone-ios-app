@@ -134,7 +134,9 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
         $0.setImage(UIImage(named: "youtube_but_c"), for: .selected)
     }
     
-    private let nextButton = CustomButton("다음", type: .bottom)
+    private let nextButton = CustomButton("다음", type: .bottom).then {
+            $0.applyShadow(shadowType: .shadowBt)
+    }
     
     func bindViewModel() {
         birthTextField.rx.text.map {
@@ -214,6 +216,12 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
             .bind { owner, _ in
                     let bottomSheet = SNSBottomSheet(type: .youtube, link: owner.viewModel.youtubeLink)
                     owner.presentPanModal(view: bottomSheet)
+            }.disposed(by: rx.disposeBag)
+        
+        nextButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.viewModel.moveToRegisterDetailContent()
             }.disposed(by: rx.disposeBag)
     }
     

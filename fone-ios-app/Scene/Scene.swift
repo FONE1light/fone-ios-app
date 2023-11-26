@@ -33,6 +33,7 @@ enum Scene {
     case recruitBasicInfo(RecruitBasicInfoViewModel)
     case registerBasicInfo(RegisterBasicInfoViewModel) // 프로필 등록하기1
     case registerDetailInfo(RegisterDetailInfoViewModel) // 프로필 등록하기2
+    case registerDetailContent(RegisterDetailContentViewModel) // 프로필 등록하기3
 }
 
 extension Scene {
@@ -226,6 +227,15 @@ extension Scene {
             }
             
             return registerDetailInfoVC
+            
+        case .registerDetailContent(let registerDetailContentViewModel):
+            var registerDetailContentVC = RegisterDetailContentViewController()
+            
+            DispatchQueue.main.async {
+                registerDetailContentVC.bind(viewModel: registerDetailContentViewModel)
+            }
+            
+            return registerDetailContentVC
         }
     }
 }
