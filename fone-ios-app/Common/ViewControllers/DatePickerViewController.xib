@@ -26,6 +26,7 @@
                 </view>
                 <datePicker clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="rw8-g5-1xH">
                     <rect key="frame" x="36.666666666666657" y="272.66666666666663" width="320" height="306.66666666666663"/>
+                    <color key="tintColor" red="0.80784313725490198" green="0.043137254901960784" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                             <real key="value" value="10"/>
