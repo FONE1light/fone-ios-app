@@ -20,6 +20,11 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var titleCountLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var selectionBlock: SelectionBlock!
+    @IBOutlet weak var startDateButton: UIButton!
+    @IBOutlet weak var startDateLabel: UILabel!
+    @IBOutlet weak var endDateButton: UIButton!
+    @IBOutlet weak var endDateLabel: UILabel!
+    @IBOutlet weak var alwaysButton: UIButton!
     @IBOutlet weak var attachImageButton: UIButton!
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var imageCountLabel: UILabel!
@@ -50,6 +55,36 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
             })
             .bind(to: titleCountLabel.rx.attributedText)
             .disposed(by: rx.disposeBag)
+        
+        startDateButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                let vc = DatePickerViewController()
+                vc.resultLabel = owner.startDateLabel
+                vc.delegate = self
+                vc.modalPresentationStyle = .overFullScreen
+                self.present(vc, animated: false)
+            }.disposed(by: rx.disposeBag)
+        
+        endDateButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                let vc = DatePickerViewController()
+                vc.resultLabel = owner.endDateLabel
+                vc.delegate = self
+                vc.modalPresentationStyle = .overFullScreen
+                self.present(vc, animated: false)
+            }.disposed(by: rx.disposeBag)
+        
+        alwaysButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.startDateLabel.text = "시작일"
+                owner.startDateLabel.textColor = .gray_9E9E9E
+                owner.endDateLabel.text = "마감일"
+                owner.endDateLabel.textColor = .gray_9E9E9E
+                owner.alwaysButton.backgroundColor = .violet_362C4C
+            }.disposed(by: rx.disposeBag)
         
         attachImageButton.rx.tap
             .withUnretained(self)
@@ -138,6 +173,14 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
             self.imageCollectionView.reloadData()
             updateImageCountLabel()
         }
+    }
+}
+
+extension RecruitBasicInfoViewController: DateTimePickerVCDelegate {
+    func updateDateTime(_ dateTime: String, label: UILabel?) {
+        label?.text = dateTime
+        label?.textColor = .gray_161616
+        alwaysButton.backgroundColor = .gray_C5C5C5
     }
 }
 

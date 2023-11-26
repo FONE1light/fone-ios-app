@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DatePickerViewController" customModule="fone_ios_app" customModuleProvider="target">
+            <connections>
+                <outlet property="datePicker" destination="rw8-g5-1xH" id="01Y-PN-PIR"/>
+                <outlet property="dimView" destination="9dI-AW-36C" id="ba9-FW-JxF"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9dI-AW-36C">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <datePicker clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="rw8-g5-1xH">
+                    <rect key="frame" x="36.666666666666657" y="272.66666666666663" width="320" height="306.66666666666663"/>
+                    <color key="tintColor" red="0.80784313725490198" green="0.043137254901960784" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </datePicker>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <constraints>
+                <constraint firstItem="9dI-AW-36C" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="URe-Jj-RG7"/>
+                <constraint firstAttribute="trailing" secondItem="9dI-AW-36C" secondAttribute="trailing" id="dGi-6M-CnP"/>
+                <constraint firstItem="9dI-AW-36C" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gun-EB-Jjp"/>
+                <constraint firstItem="rw8-g5-1xH" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="k7H-pe-Nuu"/>
+                <constraint firstAttribute="bottom" secondItem="9dI-AW-36C" secondAttribute="bottom" id="uVH-mK-AsQ"/>
+                <constraint firstItem="rw8-g5-1xH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="uvA-hX-1iK"/>
+            </constraints>
+            <point key="canvasLocation" x="7" y="20"/>
+        </view>
+    </objects>
+</document>
