@@ -22,9 +22,9 @@ class LabelTextField: UIView {
         $0.isHidden = true
     }
     
-    let textField: DefaultTextField
+    var textField: DefaultTextField?
     
-    private let textFieldLeadingOffset: CGFloat
+    private var textFieldLeadingOffset: CGFloat?
     
     /// - Parameters:
     ///   - label: UILabel에 들어갈 텍스트
@@ -45,7 +45,6 @@ class LabelTextField: UIView {
             height: textFieldHeight,
             keyboardType: textFieldKeyboardType
         )
-        textField.font = .font_r(16)
         
         self.textFieldLeadingOffset = textFieldLeadingOffset ?? 62
         
@@ -61,7 +60,46 @@ class LabelTextField: UIView {
         bindText(maximumLetterCount: maximumLetterCount)
     }
     
+    /// xib에서 사용 시 필요한 초기화 함수
+    /// - top, leading, trailing constraints 잡으면 되고 textField의 높이를 바꾸고 싶다면 textFieldHeight로 조정해야 함
+    ///
+    /// - Parameters:
+    ///   - label: UILabel에 들어갈 텍스트
+    ///   - placeholder: UITextField에 들어갈 placeholder
+    ///   - isRequired: 필수 항목인지 아닌지(* 표기)
+    ///   - textFieldLeadingOffset: 현재 뷰의 leading 기준으로 textField의 leading offset. 보통 62, 경우에 따라 50
+    func xibInit(
+        label text: String?,
+        placeholder: String?,
+        textFieldHeight: CGFloat = 40,
+        isRequired: Bool? = false,
+        maximumLetterCount: Int? = nil,
+        textFieldLeadingOffset: CGFloat? = 62,
+        textFieldKeyboardType: UIKeyboardType? = .default
+    ) {
+        textField = DefaultTextField(
+            placeholder: placeholder,
+            height: textFieldHeight,
+            keyboardType: textFieldKeyboardType
+        )
+        
+        self.textFieldLeadingOffset = textFieldLeadingOffset ?? 62
+        
+        label.text = text
+        if isRequired == true {
+            starImageView.isHidden = false
+        }
+        
+        setupUI()
+        setConstraints()
+        bindText(maximumLetterCount: maximumLetterCount)
+    }
+    
     private func setupUI() {
+        guard let textField = textField else { return }
+        
+        textField.font = .font_r(16)
+        
         [label, starImageView, textField]
             .forEach { addSubview($0) }
     }
@@ -78,6 +116,8 @@ class LabelTextField: UIView {
             $0.size.equalTo(8)
         }
         
+        guard let textField = textField,
+              let textFieldLeadingOffset = textFieldLeadingOffset else { return }
         textField.snp.makeConstraints {
             $0.top.trailing.bottom.equalToSuperview()
             $0.leading.equalToSuperview().offset(textFieldLeadingOffset)
@@ -86,6 +126,7 @@ class LabelTextField: UIView {
     
     private func bindText(maximumLetterCount: Int?) {
         guard let maximumLetterCount = maximumLetterCount else { return }
+        guard let textField = textField else { return }
         
         textField.rx.text.map { String($0?.prefix(maximumLetterCount) ?? "") }
             .bind(to: textField.rx.text)
@@ -94,17 +135,17 @@ class LabelTextField: UIView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
 }
 
 
 extension LabelTextField {
     func setTrailingPadding(_ trailingOffset: CGFloat) {
-        textField.setTrailingPadding(trailingOffset)
+        textField?.setTrailingPadding(trailingOffset)
     }
     
     func setTextAlignment(_ alignment: NSTextAlignment) {
-        textField.setTextAlignment(alignment)
+        textField?.setTextAlignment(alignment)
     }
 }
