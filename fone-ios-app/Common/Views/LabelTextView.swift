@@ -22,11 +22,11 @@ class LabelTextView: UIView, UITextViewDelegate {
         $0.isHidden = true
     }
     
-    private let textView: DefaultTextView
+    private var textView: DefaultTextView?
     
     private let letterCountLabel = UILabel()
     
-    private let placeholderString: String?
+    private var placeholderString: String?
     
     /// - Parameters:
     ///   - label: UILabel에 들어갈 텍스트
@@ -58,12 +58,46 @@ class LabelTextView: UIView, UITextViewDelegate {
         bindText(maximumLetterCount: maximumLetterCount)
     }
     
+    /// xib에서 사용 시 필요한 초기화 함수
+    /// - top, leading, trailing constraints 잡으면 되고 textView의 높이를 바꾸고 싶다면 textViewHeight로 조정해야 함
+    ///
+    /// - Parameters:
+    ///   - label: UILabel에 들어갈 텍스트
+    ///   - placeholder: UITextView에 들어갈 placeholder
+    ///   - isRequired: 필수 항목인지 아닌지(* 표기)
+    func xibInit(
+        label text: String?,
+        placeholder: String?,
+        textViewHeight: CGFloat = 74,
+        isRequired: Bool? = false,
+        maximumLetterCount: Int = 50
+    ) {
+        placeholderString = placeholder
+        textView = DefaultTextView(
+            placeholder: placeholder,
+            height: textViewHeight
+        )
+        
+        label.text = text
+        
+        if isRequired == true {
+            starImageView.isHidden = false
+        }
+        
+        setupUI()
+        setConstraints()
+        bindText(maximumLetterCount: maximumLetterCount)
+    }
+    
     private func setupUI() {
+        guard let textView = textView else { return }
         [label, starImageView, textView, letterCountLabel]
             .forEach { addSubview($0) }
     }
     
     private func setConstraints() {
+        guard let textView = textView else { return }
+        
         label.snp.makeConstraints {
             $0.top.leading.equalToSuperview()
         }
@@ -87,6 +121,8 @@ class LabelTextView: UIView, UITextViewDelegate {
     }
     
     private func bindText(maximumLetterCount: Int) {
+        guard let textView = textView else { return }
+        
         // 글자수 제한
         textView.rx.text
             .map { String($0?.prefix(maximumLetterCount) ?? "") }
@@ -109,7 +145,7 @@ class LabelTextView: UIView, UITextViewDelegate {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
     
 }
