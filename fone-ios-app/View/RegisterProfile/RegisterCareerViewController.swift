@@ -1,8 +1,8 @@
 //
-//  RegisterDetailContentViewController.swift
+//  RegisterCareerViewController.swift
 //  fone-ios-app
 //
-//  Created by 여나경 on 11/26/23.
+//  Created by 여나경 on 11/27/23.
 //
 
 import UIKit
@@ -10,41 +10,33 @@ import Then
 import SnapKit
 import RxSwift
 
-class RegisterDetailContentViewController: UIViewController, ViewModelBindableType {
+class RegisterCareerViewController: UIViewController, ViewModelBindableType {
     
-    var viewModel: RegisterDetailContentViewModel!
+    var viewModel: RegisterCareerViewModel!
     var disposeBag = DisposeBag()
     
-    private let stepIndicator = StepIndicator(index: 2, totalCount: 5)
+    private let stepIndicator = StepIndicator(index: 3, totalCount: 5)
     
     private let titleLabel = UILabel().then {
-        $0.text = "상세 요강을 입력해주세요"
+        $0.text = "주요 경력을 입력해 주세요"
         $0.font = .font_b(19)
         $0.textColor = .violet_362C4C
     }
     
-    private let detailContentLabel = UILabel().then {
-        $0.text = "상세요강"
-        $0.font = .font_b(16)
-        $0.textColor = .gray_161616
-    }
-    
-    private let starImageView = UIImageView().then {
-        $0.image = UIImage(named: "star")
-    }
-    
     private let descriptionLabel = UILabel().then {
-        $0.text = "본인의 경험을 기반으로 핵심역량과 강점, 목표, 관심분야 등을 간단히 작성해주세요."
+        $0.text = "담당하신 업무의 역할과 성과를 선별하여 최신순으로 작성해주세요."
         $0.font = .font_m(12)
         $0.textColor = .gray_C5C5C5
         $0.numberOfLines = 0
     }
     
     private let letterCountedTextView = LetterCountedTextView(
-        placeholder: "배우 프로필에 올릴 게시글 내용을 작성해주세요. 부적절한 내용이 포함된 게시글은 게시가 제한될 수 있어요.",
-        textViewHeight: 172,
-        maximumLetterCount: 200
+        placeholder: "작품 참여 경험이나 맡은 역할을 자유롭게 알려주세요.",
+        textViewHeight: 159,
+        maximumLetterCount: 500
     )
+    
+    private let selectionBlock = CareerSelectionBlock()
     
     private let nextButton = CustomButton("다음", type: .bottom).then {
         $0.applyShadow(shadowType: .shadowBt)
@@ -55,7 +47,9 @@ class RegisterDetailContentViewController: UIViewController, ViewModelBindableTy
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.moveToRegisterCareer()
+//                owner.viewModel.moveToRegisterDetailContent()
+                
+                owner.selectionBlock.selectItem(.NEWCOMER)
             }.disposed(by: rx.disposeBag)
     }
     
@@ -66,6 +60,11 @@ class RegisterDetailContentViewController: UIViewController, ViewModelBindableTy
         setupUI()
         setConstraints()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        selectionBlock.selectItem(.NEWCOMER)
     }
     
     private func setNavigationBar() {
@@ -82,9 +81,8 @@ class RegisterDetailContentViewController: UIViewController, ViewModelBindableTy
         [
             stepIndicator,
             titleLabel,
-            detailContentLabel,
-            starImageView,
             descriptionLabel,
+            selectionBlock,
             letterCountedTextView,
             nextButton
         ]
@@ -102,24 +100,18 @@ class RegisterDetailContentViewController: UIViewController, ViewModelBindableTy
             $0.leading.equalToSuperview().offset(16)
         }
         
-        detailContentLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(20)
-            $0.leading.equalToSuperview().inset(16)
-        }
-        
-        starImageView.snp.makeConstraints {
-            $0.centerY.equalTo(detailContentLabel)
-            $0.leading.equalTo(detailContentLabel.snp.trailing).offset(2)
-            $0.size.equalTo(8)
-        }
-        
         descriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(detailContentLabel.snp.bottom).offset(4)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(5)
+            $0.leading.trailing.equalToSuperview().inset(16)
+        }
+        
+        selectionBlock.snp.makeConstraints {
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(12)
             $0.leading.trailing.equalToSuperview().inset(16)
         }
         
         letterCountedTextView.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).offset(12)
+            $0.top.equalTo(selectionBlock.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(16)
         }
         

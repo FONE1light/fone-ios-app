@@ -8,7 +8,12 @@
 import Foundation
 
 class RegisterDetailContentViewModel: CommonViewModel {
-    func moveToRegisterDetailContent() {
+    func moveToRegisterCareer() {
+        let sceneCoordinator = sceneCoordinator
+        let registerCareerViewModel = RegisterCareerViewModel(sceneCoordinator: sceneCoordinator)
+        
+        let scene = Scene.registerCareer(registerCareerViewModel)
+        sceneCoordinator.transition(to: scene, using: .push, animated: true)
         
     }
 }
