@@ -114,9 +114,9 @@ extension CareerSelectionBlock {
                 owner.collectionView.visibleCells
                     .compactMap { $0 as? CareerSelectionCell }
                     .forEach {
-                    $0.isChosen = false
+                    $0.isSelected = false
                 }
-                cell.changeSelectedState()
+                cell.toggle()
                 
                 // 2. 선택된 item 업데이트
                 guard let item = cell.item else { return }
@@ -126,18 +126,10 @@ extension CareerSelectionBlock {
             }.disposed(by: rx.disposeBag)
         
         collectionView.rx.setDelegate(self).disposed(by: rx.disposeBag)
-        
     }
     
-    // FIXME: 삭제
-    func selectItem(_ career: CareerType) {
-//        let itemToSelect = collectionView.dequeueReusableCell(withReuseIdentifier: "\(CareerSelectionCell.self)", for: IndexPath(row: 0, section: 0)) as? CareerSelectionCell
-        let itemToSelect = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? CareerSelectionCell
-        
-//        let itemToSelect = collectionView.visibleCells.compactMap { $0 as? CareerSelectionCell }.filter {
-//            $0.item as? CareerType == career
-//        }.first
-        itemToSelect?.isChosen = true
+    func selectItem(at indexPath: IndexPath) {
+        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
     }
 }
 
@@ -155,7 +147,6 @@ extension CareerSelectionBlock: UICollectionViewDataSource {
         }
         
         cell.setItem(items[indexPath.row])
-        cell.backgroundColor = .gray_EEEFEF
         
         return cell
     }

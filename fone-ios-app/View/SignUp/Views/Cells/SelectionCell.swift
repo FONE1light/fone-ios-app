@@ -63,7 +63,8 @@ extension SelectionCell {
         item = selection
     }
     
-    func changeSelectedState() {
+    /// 선택 상태(isChosen) 변경
+    func toggle() {
         changeColor()
         isChosen = !isChosen
     }

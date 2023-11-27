@@ -24,7 +24,7 @@ class CareerSelectionCell: UICollectionViewCell {
     static let identifier = "CareerSelectionCell"
     var disposeBag = DisposeBag()
     
-    var isChosen = false {
+    override var isSelected: Bool {
         didSet {
             changeColor()
         }
@@ -52,8 +52,9 @@ class CareerSelectionCell: UICollectionViewCell {
     }
     
     private func setupUI() {
-        self.addSubview(label)
-        self.cornerRadius = 16
+        backgroundColor = .gray_EEEFEF
+        addSubview(label)
+        cornerRadius = 16
         
         label.snp.makeConstraints {
             $0.top.bottom.equalToSuperview().inset(Constants.topInset)
@@ -67,12 +68,13 @@ extension CareerSelectionCell {
         item = selection
     }
     
-    func changeSelectedState() {
-        isChosen = !isChosen
+    /// 선택 상태(isSelected) 변경
+    func toggle() {
+        isSelected = !isSelected
     }
     
     private func changeColor() {
-        if isChosen {
+        if isSelected {
             self.backgroundColor = .red_FFEBF0
             self.label.textColor = .red_CE0B39
             

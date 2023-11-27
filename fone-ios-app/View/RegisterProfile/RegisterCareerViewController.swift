@@ -36,7 +36,9 @@ class RegisterCareerViewController: UIViewController, ViewModelBindableType {
         maximumLetterCount: 500
     )
     
-    private let selectionBlock = CareerSelectionBlock()
+    private let selectionBlock = CareerSelectionBlock().then {
+        $0.selectItem(at: IndexPath(row: 0, section: 0) )
+    }
     
     private let nextButton = CustomButton("다음", type: .bottom).then {
         $0.applyShadow(shadowType: .shadowBt)
@@ -48,8 +50,6 @@ class RegisterCareerViewController: UIViewController, ViewModelBindableType {
             .withUnretained(self)
             .bind { owner, _ in
 //                owner.viewModel.moveToRegisterDetailContent()
-                
-                owner.selectionBlock.selectItem(.NEWCOMER)
             }.disposed(by: rx.disposeBag)
     }
     
@@ -59,12 +59,6 @@ class RegisterCareerViewController: UIViewController, ViewModelBindableType {
         setNavigationBar()
         setupUI()
         setConstraints()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        selectionBlock.selectItem(.NEWCOMER)
     }
     
     private func setNavigationBar() {
