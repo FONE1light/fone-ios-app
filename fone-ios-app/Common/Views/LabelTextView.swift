@@ -22,9 +22,7 @@ class LabelTextView: UIView {
         $0.isHidden = true
     }
     
-    private var textView: DefaultTextView?
-    
-    private let letterCountLabel = UILabel()
+    private var letterCountedTextView: LetterCountedTextView?
     
     private var placeholderString: String?
     
@@ -40,9 +38,10 @@ class LabelTextView: UIView {
         maximumLetterCount: Int = 50
     ) {
         placeholderString = placeholder
-        textView = DefaultTextView(
+        letterCountedTextView = LetterCountedTextView(
             placeholder: placeholder,
-            height: textViewHeight
+            textViewHeight: textViewHeight,
+            maximumLetterCount: maximumLetterCount
         )
         
         super.init(frame: .zero)
@@ -55,7 +54,6 @@ class LabelTextView: UIView {
         
         setupUI()
         setConstraints()
-        bindText(maximumLetterCount: maximumLetterCount)
     }
     
     /// xib에서 사용 시 필요한 초기화 함수
@@ -73,9 +71,10 @@ class LabelTextView: UIView {
         maximumLetterCount: Int = 50
     ) {
         placeholderString = placeholder
-        textView = DefaultTextView(
+        letterCountedTextView = LetterCountedTextView(
             placeholder: placeholder,
-            height: textViewHeight
+            textViewHeight: textViewHeight,
+            maximumLetterCount: maximumLetterCount
         )
         
         label.text = text
@@ -86,17 +85,16 @@ class LabelTextView: UIView {
         
         setupUI()
         setConstraints()
-        bindText(maximumLetterCount: maximumLetterCount)
     }
     
     private func setupUI() {
-        guard let textView = textView else { return }
-        [label, starImageView, textView, letterCountLabel]
+        guard let letterCountedTextView = letterCountedTextView else { return }
+        [label, starImageView, letterCountedTextView]
             .forEach { addSubview($0) }
     }
     
     private func setConstraints() {
-        guard let textView = textView else { return }
+        guard let letterCountedTextView = letterCountedTextView else { return }
         
         label.snp.makeConstraints {
             $0.top.leading.equalToSuperview()
@@ -108,39 +106,10 @@ class LabelTextView: UIView {
             $0.size.equalTo(8)
         }
         
-        textView.snp.makeConstraints {
+        letterCountedTextView.snp.makeConstraints {
             $0.top.equalTo(label.snp.bottom).offset(8)
-            $0.leading.trailing.equalToSuperview()
+            $0.leading.trailing.bottom.equalToSuperview()
         }
-        
-        letterCountLabel.snp.makeConstraints {
-            $0.top.equalTo(textView.snp.bottom).offset(2)
-            $0.trailing.bottom.equalToSuperview()
-        }
-    }
-    
-    private func bindText(maximumLetterCount: Int) {
-        guard let textView = textView else { return }
-        
-        // 글자수 제한
-        textView.rx.text
-            .map { String($0?.prefix(maximumLetterCount) ?? "") }
-            .bind(to: textView.rx.text)
-            .disposed(by: rx.disposeBag)
-        
-        // 우측 하단 letterCountLabel 글자수 표시
-        textView.rx.text.orEmpty
-            .map { $0 == self.placeholderString ? "" : $0 }
-            .map { $0.count }
-            .map { String($0) }
-            .map ({ count -> NSMutableAttributedString in
-                let formattedString = NSMutableAttributedString()
-                formattedString.setAttributeText("\(count)", .font_r(12), UIColor.gray_555555)
-                formattedString.setAttributeText("/\(maximumLetterCount)", .font_r(12), UIColor.gray_C5C5C5)
-                return formattedString
-            })
-            .bind(to: letterCountLabel.rx.attributedText)
-            .disposed(by: rx.disposeBag)
     }
     
     required init?(coder: NSCoder) {

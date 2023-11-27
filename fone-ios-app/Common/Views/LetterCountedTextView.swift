@@ -30,9 +30,6 @@ class LetterCountedTextView: UIView, UITextViewDelegate {
             height: textViewHeight
         )
         
-        // FIXME: delegate 함수 실행 X
-//        textView?.delegate = self
-        
         placeholderString = placeholder
         
         setupUI()
@@ -43,7 +40,6 @@ class LetterCountedTextView: UIView, UITextViewDelegate {
     /// - Parameters:
     ///   - placeholder: UITextView에 들어갈 placeholder
     func xibInit(
-        label text: String?,
         placeholder: String?,
         textViewHeight: CGFloat = 74,
         maximumLetterCount: Int = 50
@@ -78,9 +74,7 @@ class LetterCountedTextView: UIView, UITextViewDelegate {
             $0.top.equalTo(textView.snp.bottom).offset(2)
             $0.trailing.bottom.equalToSuperview()
         }
-        
     }
-    
     
     private func bindText(maximumLetterCount: Int) {
         guard let textView = textView else { return }
