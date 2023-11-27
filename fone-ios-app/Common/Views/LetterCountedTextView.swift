@@ -76,7 +76,7 @@ class LetterCountedTextView: UIView, UITextViewDelegate {
         
         letterCountLabel.snp.makeConstraints {
             $0.top.equalTo(textView.snp.bottom).offset(2)
-            $0.trailing.equalToSuperview()
+            $0.trailing.bottom.equalToSuperview()
         }
         
     }

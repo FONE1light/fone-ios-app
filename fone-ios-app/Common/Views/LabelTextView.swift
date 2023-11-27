@@ -10,7 +10,7 @@ import Then
 import SnapKit
 
 /// UILabel과 UITextView로 구성된 뷰
-class LabelTextView: UIView, UITextViewDelegate {
+class LabelTextView: UIView {
     
     private let label = UILabel().then {
         $0.font = .font_b(16)
@@ -117,7 +117,6 @@ class LabelTextView: UIView, UITextViewDelegate {
             $0.top.equalTo(textView.snp.bottom).offset(2)
             $0.trailing.bottom.equalToSuperview()
         }
-        
     }
     
     private func bindText(maximumLetterCount: Int) {
