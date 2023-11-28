@@ -1,8 +1,8 @@
 //
-//  RegisterCareerViewController.swift
+//  RegisterInterestViewController.swift
 //  fone-ios-app
 //
-//  Created by 여나경 on 11/27/23.
+//  Created by 여나경 on 11/28/23.
 //
 
 import UIKit
@@ -10,46 +10,44 @@ import Then
 import SnapKit
 import RxSwift
 
-class RegisterCareerViewController: UIViewController, ViewModelBindableType {
+class RegisterInterestViewController: UIViewController, ViewModelBindableType {
     
-    var viewModel: RegisterCareerViewModel!
+    var viewModel: RegisterInterestViewModel!
     var disposeBag = DisposeBag()
     
-    private let stepIndicator = StepIndicator(index: 3, totalCount: 5)
+    private let stepIndicator = StepIndicator(index: 4, totalCount: 5)
     
     private let titleLabel = UILabel().then {
-        $0.text = "주요 경력을 입력해 주세요"
+        $0.text = "관심사를 선택해 주세요"
         $0.font = .font_b(19)
         $0.textColor = .violet_362C4C
     }
     
-    private let descriptionLabel = UILabel().then {
-        $0.text = "담당하신 업무의 역할과 성과를 선별하여 최신순으로 작성해주세요."
-        $0.font = .font_m(12)
-        $0.textColor = .gray_C5C5C5
-        $0.numberOfLines = 0
+    private let selectAllButton = CustomButton("전체선택", type: .clear).then {
+        $0.isActivated = false
     }
     
-    private let letterCountedTextView = LetterCountedTextView(
-        placeholder: "작품 참여 경험이나 맡은 역할을 자유롭게 알려주세요.",
-        textViewHeight: 159,
-        maximumLetterCount: 500
-    )
-    
-    private let selectionBlock = CareerSelectionBlock().then {
-        $0.selectItem(at: IndexPath(row: 0, section: 0) )
+    private let selectionBlock = SelectionBlock().then {
+        $0.setSelections(Category.allCases)
     }
     
-    private let nextButton = CustomButton("다음", type: .bottom).then {
+    private let nextButton = CustomButton("등록하기", type: .bottom).then {
         $0.applyShadow(shadowType: .shadowBt)
     }
     
     func bindViewModel() {
         // Buttons
+        selectAllButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.selectAllButton.isActivated = !owner.selectAllButton.isActivated
+             
+            }.disposed(by: rx.disposeBag)
+        
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.moveToRegisterInterest()
+//                owner.viewModel.moveToRegisterDetailContent()
             }.disposed(by: rx.disposeBag)
     }
     
@@ -75,9 +73,8 @@ class RegisterCareerViewController: UIViewController, ViewModelBindableType {
         [
             stepIndicator,
             titleLabel,
-            descriptionLabel,
+            selectAllButton,
             selectionBlock,
-            letterCountedTextView,
             nextButton
         ]
             .forEach { view.addSubview($0) }
@@ -94,18 +91,15 @@ class RegisterCareerViewController: UIViewController, ViewModelBindableType {
             $0.leading.equalToSuperview().offset(16)
         }
         
-        descriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(5)
-            $0.leading.trailing.equalToSuperview().inset(16)
+        selectAllButton.snp.makeConstraints {
+            $0.centerY.equalTo(titleLabel)
+            $0.trailing.equalToSuperview().inset(16)
+            $0.width.equalTo(72)
+            $0.height.equalTo(24)
         }
         
         selectionBlock.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).offset(12)
-            $0.leading.trailing.equalToSuperview().inset(16)
-        }
-        
-        letterCountedTextView.snp.makeConstraints {
-            $0.top.equalTo(selectionBlock.snp.bottom).offset(20)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(16)
             $0.leading.trailing.equalToSuperview().inset(16)
         }
         
@@ -116,4 +110,3 @@ class RegisterCareerViewController: UIViewController, ViewModelBindableType {
         }
     }
 }
-

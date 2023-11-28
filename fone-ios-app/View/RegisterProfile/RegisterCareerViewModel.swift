@@ -7,4 +7,13 @@
 
 import Foundation
 
-class RegisterCareerViewModel: CommonViewModel {}
+class RegisterCareerViewModel: CommonViewModel {
+    
+    func moveToRegisterInterest() {
+        let sceneCoordinator = sceneCoordinator
+        let registerInterestViewModel = RegisterInterestViewModel(sceneCoordinator: sceneCoordinator)
+        
+        let scene = Scene.registerInterest(registerInterestViewModel)
+        sceneCoordinator.transition(to: scene, using: .push, animated: true)
+    }
+}
