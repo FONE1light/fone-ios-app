@@ -31,11 +31,16 @@ class StepIndicator: UIStackView {
         
         var steps: [UIView] = []
         
-        for _ in 0..<totalCount-1 {
-            steps.append(OtherStep())
+        for _ in 0..<index {
+            steps.append(OtherStep(isPassed: true))
         }
         
         steps.insert(CurrentStep(), at: index)
+        
+        for _ in 0..<totalCount-index-1 {
+            steps.append(OtherStep(isPassed: false))
+        }
+    
         steps.forEach { self.addArrangedSubview($0) }
     }
     
@@ -74,15 +79,15 @@ class CurrentStep: UIView {
 
 class OtherStep: UIView {
     
-    init() {
+    init(isPassed: Bool = false) {
         super.init(frame: .zero)
         
-        setupUI()
+        setupUI(isPassed: isPassed)
         setConstraints()
     }
     
-    private func setupUI() {
-        backgroundColor = .gray_D9D9D9
+    private func setupUI(isPassed: Bool) {
+        backgroundColor = isPassed ? .red_CE0B39 : .gray_D9D9D9
         cornerRadius = 3
     }
     

@@ -24,6 +24,9 @@
 		3628669A2A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362866992A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift */; };
 		362C802B2B0A4BFF00489E7D /* RegisterDetailInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362C802A2B0A4BFF00489E7D /* RegisterDetailInfoViewModel.swift */; };
 		362C802D2B0A4C1000489E7D /* RegisterDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362C802C2B0A4C1000489E7D /* RegisterDetailInfoViewController.swift */; };
+		362C80312B13672200489E7D /* RegisterDetailContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362C80302B13672200489E7D /* RegisterDetailContentViewModel.swift */; };
+		362C80332B13673C00489E7D /* RegisterDetailContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362C80322B13673C00489E7D /* RegisterDetailContentViewController.swift */; };
+		362C80352B139D8000489E7D /* LetterCountedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362C80342B139D7F00489E7D /* LetterCountedTextView.swift */; };
 		364482CC2AB7C75E00984507 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482CB2AB7C75E00984507 /* MyPageViewController.swift */; };
 		364482CE2AB7C76500984507 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482CD2AB7C76500984507 /* MyPageViewModel.swift */; };
 		364482D02AB7D15F00984507 /* NavigationRightBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482CF2AB7D15F00984507 /* NavigationRightBarButton.swift */; };
@@ -282,6 +285,9 @@
 		362866992A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoAPIResponseModel.swift; sourceTree = "<group>"; };
 		362C802A2B0A4BFF00489E7D /* RegisterDetailInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailInfoViewModel.swift; sourceTree = "<group>"; };
 		362C802C2B0A4C1000489E7D /* RegisterDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailInfoViewController.swift; sourceTree = "<group>"; };
+		362C80302B13672200489E7D /* RegisterDetailContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailContentViewModel.swift; sourceTree = "<group>"; };
+		362C80322B13673C00489E7D /* RegisterDetailContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailContentViewController.swift; sourceTree = "<group>"; };
+		362C80342B139D7F00489E7D /* LetterCountedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterCountedTextView.swift; sourceTree = "<group>"; };
 		364482CB2AB7C75E00984507 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		364482CD2AB7C76500984507 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
 		364482CF2AB7D15F00984507 /* NavigationRightBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRightBarButton.swift; sourceTree = "<group>"; };
@@ -899,6 +905,8 @@
 				36AB6FD32B08694400D9D6D0 /* RegisterBasicInfoViewModel.swift */,
 				362C802A2B0A4BFF00489E7D /* RegisterDetailInfoViewModel.swift */,
 				362C802C2B0A4C1000489E7D /* RegisterDetailInfoViewController.swift */,
+				362C80302B13672200489E7D /* RegisterDetailContentViewModel.swift */,
+				362C80322B13673C00489E7D /* RegisterDetailContentViewController.swift */,
 			);
 			path = RegisterProfile;
 			sourceTree = "<group>";
@@ -962,6 +970,7 @@
 				36AB6FD72B088E6700D9D6D0 /* LabelTextField.swift */,
 				36AB6FDB2B08A6BA00D9D6D0 /* LabelTextView.swift */,
 				36D293D32A961FDB00171C77 /* SelectionBlock.swift */,
+				362C80342B139D7F00489E7D /* LetterCountedTextView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1643,6 +1652,7 @@
 				36AB6FD62B08842F00D9D6D0 /* StepIndicator.swift in Sources */,
 				36031ECB2AF4DCE4006B57AE /* JobOpeningHuntingViewModel.swift in Sources */,
 				36AB6FD22B08693B00D9D6D0 /* RegisterBasicInfoViewController.swift in Sources */,
+				362C80332B13673C00489E7D /* RegisterDetailContentViewController.swift in Sources */,
 				364482CE2AB7C76500984507 /* MyPageViewModel.swift in Sources */,
 				362419CF2AE319B1007D1AFB /* SignUpPersonalInfoViewModel.swift in Sources */,
 				AB1CEAA82ABFD1D700E7E54F /* MainBannerModule.swift in Sources */,
@@ -1660,6 +1670,7 @@
 				AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */,
 				AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */,
 				ABCDD18D2B00EB1000A598A8 /* WorkConditionCell.swift in Sources */,
+				362C80312B13672200489E7D /* RegisterDetailContentViewModel.swift in Sources */,
 				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,
 				36AB6FCF2B07A02800D9D6D0 /* JobCell.swift in Sources */,
 				AB4546502AAB452D0019B27F /* UIButton+Extension.swift in Sources */,
@@ -1692,6 +1703,7 @@
 				362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */,
 				AB6992242AB6E87100B67455 /* ChatViewModel.swift in Sources */,
 				3628669A2A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift in Sources */,
+				362C80352B139D8000489E7D /* LetterCountedTextView.swift in Sources */,
 				367D9C052AD765C800DA6C96 /* SavedProfilesContentViewController.swift in Sources */,
 				AB3F07202AADB72500E54A25 /* UICollectionView+Extension.swift in Sources */,
 				36BCC7E22AA328AB0060E35A /* SignUpPhoneNumberViewController.swift in Sources */,
