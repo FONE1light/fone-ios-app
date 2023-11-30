@@ -101,7 +101,7 @@ extension SelectionBlock {
             .subscribe { owner, indexPath in
                 guard let cell = owner.collectionView.cellForItem(at: indexPath) as? SelectionCell else { return }
                 // 1. design properties 변경
-                cell.changeSelectedState()
+                cell.toggle()
                 
                 // 2. 선택된 item 업데이트
                 guard let item = cell.item else { return }

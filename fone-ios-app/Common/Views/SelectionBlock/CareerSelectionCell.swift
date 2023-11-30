@@ -1,14 +1,14 @@
 //
-//  SelectionCell.swift
+//  CareerSelectionCell.swift
 //  fone-ios-app
 //
-//  Created by 여나경 on 2023/08/25.
+//  Created by 여나경 on 11/27/23.
 //
 
 import UIKit
 import RxSwift
 
-extension SelectionCell {
+extension CareerSelectionCell {
     struct Constants {
         /// leading, trailing inset
         static let leadingInset: CGFloat = 20
@@ -19,12 +19,16 @@ extension SelectionCell {
     }
 }
 
-class SelectionCell: UICollectionViewCell {
+class CareerSelectionCell: UICollectionViewCell {
     
-    static let identifier = "SelectionCell"
+    static let identifier = "CareerSelectionCell"
     var disposeBag = DisposeBag()
     
-    var isChosen = false
+    override var isSelected: Bool {
+        didSet {
+            changeColor()
+        }
+    }
     
     var item: Selection? {
         didSet {
@@ -48,43 +52,36 @@ class SelectionCell: UICollectionViewCell {
     }
     
     private func setupUI() {
-        self.addSubview(label)
-        self.cornerRadius = 16
+        backgroundColor = .gray_EEEFEF
+        addSubview(label)
+        cornerRadius = 16
         
         label.snp.makeConstraints {
             $0.top.bottom.equalToSuperview().inset(Constants.topInset)
-            $0.leading.trailing.equalToSuperview().inset(Constants.leadingInset)
+            $0.centerX.equalToSuperview()
         }
     }
 }
 
-extension SelectionCell {
+extension CareerSelectionCell {
     func setItem(_ selection: Selection) {
         item = selection
     }
     
-    /// 선택 상태(isChosen) 변경
+    /// 선택 상태(isSelected) 변경
     func toggle() {
-        changeColor()
-        isChosen = !isChosen
+        isSelected = !isSelected
     }
     
     private func changeColor() {
-        if isChosen {
-            self.backgroundColor = .gray_EEEFEF
-            self.label.textColor = .gray_9E9E9E
-        } else {
+        if isSelected {
             self.backgroundColor = .red_FFEBF0
             self.label.textColor = .red_CE0B39
+            
+        } else {
+            self.backgroundColor = .gray_EEEFEF
+            self.label.textColor = .gray_9E9E9E
         }
     }
     
-    static func fittingSize(height: CGFloat, name: String?) -> CGSize {
-        let cell = SelectionCell().then {
-            $0.label.text = name
-        }
-        
-        let targetSize = CGSize(width: UIView.layoutFittingCompressedSize.width, height: height)
-        return cell.contentView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .fittingSizeLevel, verticalFittingPriority: .required)
-    }
 }
