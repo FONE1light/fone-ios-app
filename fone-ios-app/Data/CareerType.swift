@@ -48,13 +48,6 @@ enum CareerType: String, Selection, CaseIterable {
         }
     }
     
-    // TODO: 서버 연결 시 완성
-    var serverName: String {
-        switch self {
-        default: "<서버enum>"
-        }
-    }
-    
     var tagTextColor: UIColor? {
         UIColor.violet_6D5999
     }
@@ -68,6 +61,6 @@ enum CareerType: String, Selection, CaseIterable {
     }
     
     static func getType(serverName: String) -> CareerType? {
-        return CareerType.allCases.filter { $0.serverName == serverName }.first
+        return CareerType.allCases.filter { $0.rawValue == serverName }.first
     }
 }
