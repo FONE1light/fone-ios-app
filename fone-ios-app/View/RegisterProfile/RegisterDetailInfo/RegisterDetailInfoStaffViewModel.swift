@@ -1,16 +1,15 @@
 //
-//  RegisterDetailInfoViewModel.swift
+//  RegisterDetailInfoStaffViewModel.swift
 //  fone-ios-app
 //
-//  Created by 여나경 on 11/19/23.
+//  Created by 여나경 on 11/28/23.
 //
 
 import UIKit
 import RxRelay
 
-class RegisterDetailInfoViewModel: CommonViewModel {
+class RegisterDetailInfoStaffViewModel: CommonViewModel {
     
-    var jobType: Job?
     var instagramLink = BehaviorRelay<String?>(value: nil)
     var youtubeLink = BehaviorRelay<String?>(value: nil)
 }

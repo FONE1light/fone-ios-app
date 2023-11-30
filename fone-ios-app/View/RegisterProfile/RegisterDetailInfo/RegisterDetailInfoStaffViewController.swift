@@ -1,8 +1,8 @@
 //
-//  RegisterDetailInfoViewController.swift
+//  RegisterDetailInfoStaffViewController.swift
 //  fone-ios-app
 //
-//  Created by 여나경 on 11/19/23.
+//  Created by 여나경 on 11/28/23.
 //
 
 import UIKit
@@ -11,9 +11,9 @@ import SnapKit
 import RxSwift
 import RxRelay
 
-class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType {
+class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindableType {
     
-    var viewModel: RegisterDetailInfoViewModel!
+    var viewModel: RegisterDetailInfoStaffViewModel!
     var disposeBag = DisposeBag()
     
     let stackView = UIStackView().then {
@@ -54,51 +54,6 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
         $0.isActivated = false
     }
     
-    // 신장, 체중
-    private let heightWeightStackView = UIStackView().then {
-        $0.axis = .horizontal
-        $0.spacing = 32
-        $0.distribution = .fillEqually
-    }
-    
-    private let heightBlock = LabelTextField(
-        label: "신장",
-        placeholder: "",
-        textFieldHeight: 44,
-        isRequired: true,
-        maximumLetterCount: 3,
-        textFieldLeadingOffset: 50,
-        textFieldKeyboardType: .numberPad
-    ).then {
-        $0.setTrailingPadding(34)
-        $0.setTextAlignment(.right)
-    }
-    
-    private let cmLabel = UILabel().then {
-        $0.text = "cm"
-        $0.font = .font_r(14)
-        $0.textColor = .gray_9E9E9E
-    }
-    
-    private let weightBlock = LabelTextField(
-        label: "체중",
-        placeholder: "",
-        textFieldHeight: 44,
-        isRequired: true,
-        maximumLetterCount: 3,
-        textFieldLeadingOffset: 50,
-        textFieldKeyboardType: .numberPad
-    ).then {
-        $0.setTrailingPadding(29)
-        $0.setTextAlignment(.right)
-    }
-    
-    private let kgLabel = UILabel().then {
-        $0.text = "kg"
-        $0.font = .font_r(14)
-        $0.textColor = .gray_9E9E9E
-    }
-    
     // 이메일
     private let emailBlock = LabelTextField(
         label: "이메일",
@@ -106,6 +61,25 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
         textFieldHeight: 44,
         isRequired: true
     )
+    
+    // 분야
+    private let fieldBlock = UIView()
+    
+    private let fieldLabel = UILabel().then {
+        $0.text = "분야"
+        $0.font = .font_b(16)
+        $0.textColor = .gray_161616
+    }
+    
+    private let fieldRequiredStar = UIImageView(image: UIImage(named: "star"))
+    
+    private let fieldContentView = UIView().then {
+        $0.cornerRadius = 5
+        $0.borderWidth = 1
+        $0.borderColor = .gray_EEEFEF
+    }
+    
+    private let fieldContentButton = UIButton()
     
     // 특기
     private let specialtyBlock = LabelTextField(
@@ -137,6 +111,8 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
     private let nextButton = CustomButton("다음", type: .bottom)
     
     func bindViewModel() {
+        setNavigationBar()
+        
         birthTextField.rx.text.map {
             $0?.birthFormatted()
         }
@@ -202,6 +178,13 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
 //                owner.viewModel.gender = .WOMAN
             }.disposed(by: rx.disposeBag)
         
+        fieldContentButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                print("clicked")
+//                owner.present(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: <#T##Bool#>)
+            }.disposed(by: rx.disposeBag)
+        
         instagramButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
@@ -220,14 +203,13 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setNavigationBar()
         setupUI()
         setConstraints()
         
     }
     
     private func setNavigationBar() {
-        navigationItem.titleView = NavigationTitleView(title: "배우 등록하기")
+        navigationItem.titleView = NavigationTitleView(title: "스태프 등록하기")
         navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
             type: .back,
             viewController: self
@@ -248,8 +230,8 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
         
         [
             birthBlock,
-            heightWeightStackView,
             emailBlock,
+            fieldBlock,
             specialtyBlock
         ]
             .forEach { stackView.addArrangedSubview($0) }
@@ -266,13 +248,13 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
         self.setupBirthBlock()
         
         [
-            heightBlock,
-            weightBlock
+            fieldLabel,
+            fieldRequiredStar,
+            fieldContentView,
+            fieldContentButton
         ]
-            .forEach { heightWeightStackView.addArrangedSubview($0) }
-        
-        heightBlock.addSubview(cmLabel)
-        weightBlock.addSubview(kgLabel)
+            .forEach { fieldBlock.addSubview($0) }
+        setupFieldBlock()
         
         [
             snsLabel,
@@ -297,16 +279,6 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
         stackView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(12)
             $0.leading.trailing.equalToSuperview().inset(16)
-        }
-    
-        cmLabel.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(12)
-        }
-        
-        kgLabel.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(12)
         }
         
         snsBlock.snp.makeConstraints {
@@ -357,6 +329,31 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
         }
     }
     
+    private func setupFieldBlock() {
+        fieldLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview()
+        }
+        fieldLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        
+        fieldRequiredStar.snp.makeConstraints {
+            $0.centerY.equalTo(fieldLabel)
+            $0.leading.equalTo(fieldLabel.snp.trailing).offset(2)
+            $0.size.equalTo(8)
+        }
+        
+        fieldContentView.snp.makeConstraints {
+            $0.top.bottom.trailing.equalToSuperview()
+            $0.height.equalTo(44)
+            $0.leading.equalTo(fieldRequiredStar.snp.trailing).offset(24)
+        }
+        
+        fieldContentButton.snp.makeConstraints {
+            $0.edges.equalTo(fieldContentView)
+        }
+        
+    }
+    
     private func setupSNSBlock() {
         snsLabel.snp.makeConstraints {
             $0.top.leading.bottom.equalToSuperview()
@@ -383,4 +380,3 @@ class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType 
         }
     }
 }
-
