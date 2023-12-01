@@ -9,9 +9,12 @@ import Foundation
 
 class RegisterCareerViewModel: CommonViewModel {
     
+    var jobType: Job?
+    
     func moveToRegisterInterest() {
         let sceneCoordinator = sceneCoordinator
         let registerInterestViewModel = RegisterInterestViewModel(sceneCoordinator: sceneCoordinator)
+        registerInterestViewModel.jobType = jobType
         
         let scene = Scene.registerInterest(registerInterestViewModel)
         sceneCoordinator.transition(to: scene, using: .push, animated: true)

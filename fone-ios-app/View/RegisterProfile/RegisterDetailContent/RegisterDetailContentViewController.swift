@@ -51,6 +51,8 @@ class RegisterDetailContentViewController: UIViewController, ViewModelBindableTy
     }
     
     func bindViewModel() {
+        setNavigationBar() // viewModel 바인딩 된 후 navigationBar의 title 설정
+        
         // Buttons
         nextButton.rx.tap
             .withUnretained(self)
@@ -62,14 +64,13 @@ class RegisterDetailContentViewController: UIViewController, ViewModelBindableTy
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setNavigationBar()
         setupUI()
         setConstraints()
         
     }
     
     private func setNavigationBar() {
-        navigationItem.titleView = NavigationTitleView(title: "배우 등록하기")
+        navigationItem.titleView = NavigationTitleView(title: "\(viewModel.jobType?.koreanName ?? "") 등록하기")
         navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
             type: .back,
             viewController: self

@@ -198,6 +198,12 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
                     let bottomSheet = SNSBottomSheet(type: .youtube, link: owner.viewModel.youtubeLink)
                     owner.presentPanModal(view: bottomSheet)
             }.disposed(by: rx.disposeBag)
+        
+        nextButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.viewModel.moveToRegisterDetailContent()
+            }.disposed(by: rx.disposeBag)
     }
     
     override func viewDidLoad() {

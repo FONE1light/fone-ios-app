@@ -18,8 +18,8 @@ class RegisterBasicInfoViewModel: CommonViewModel {
         
         switch jobType {
         case .actor:
-            let registerDetailInfoViewModel = RegisterDetailInfoViewModel(sceneCoordinator: sceneCoordinator)
-            scene = Scene.registerDetailInfo(registerDetailInfoViewModel)
+            let registerDetailInfoViewModel = RegisterDetailInfoActorViewModel(sceneCoordinator: sceneCoordinator)
+            scene = Scene.registerDetailInfoActor(registerDetailInfoViewModel)
         case .staff:
             let registerDetailInfoStaffViewModel = RegisterDetailInfoStaffViewModel(sceneCoordinator: sceneCoordinator)
             scene = Scene.registerDetailInfoStaff(registerDetailInfoStaffViewModel)

@@ -22,8 +22,8 @@
 		362866942A8E3D4700CD42BC /* Single+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362866932A8E3D4700CD42BC /* Single+Codable.swift */; };
 		362866972A8E3D8200CD42BC /* Response+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362866962A8E3D8200CD42BC /* Response+Codable.swift */; };
 		3628669A2A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362866992A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift */; };
-		362C802B2B0A4BFF00489E7D /* RegisterDetailInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362C802A2B0A4BFF00489E7D /* RegisterDetailInfoViewModel.swift */; };
-		362C802D2B0A4C1000489E7D /* RegisterDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362C802C2B0A4C1000489E7D /* RegisterDetailInfoViewController.swift */; };
+		362C802B2B0A4BFF00489E7D /* RegisterDetailInfoActorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362C802A2B0A4BFF00489E7D /* RegisterDetailInfoActorViewModel.swift */; };
+		362C802D2B0A4C1000489E7D /* RegisterDetailInfoActorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362C802C2B0A4C1000489E7D /* RegisterDetailInfoActorViewController.swift */; };
 		362C80312B13672200489E7D /* RegisterDetailContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362C80302B13672200489E7D /* RegisterDetailContentViewModel.swift */; };
 		362C80332B13673C00489E7D /* RegisterDetailContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362C80322B13673C00489E7D /* RegisterDetailContentViewController.swift */; };
 		362C80352B139D8000489E7D /* LetterCountedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362C80342B139D7F00489E7D /* LetterCountedTextView.swift */; };
@@ -86,12 +86,12 @@
 		367D9C322ADA652300DA6C96 /* JobRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C312ADA652300DA6C96 /* JobRegistrationViewController.swift */; };
 		367D9C342ADA657200DA6C96 /* JobRegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C332ADA657200DA6C96 /* JobRegistrationViewModel.swift */; };
 		367D9C362ADA664700DA6C96 /* JobRegistrationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C352ADA664700DA6C96 /* JobRegistrationCell.swift */; };
-		36A4D49E2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D49D2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift */; };
-		36A4D4A02B15CFC9008541E9 /* RegisterDetailInfoStaffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D49F2B15CFC9008541E9 /* RegisterDetailInfoStaffViewController.swift */; };
-		36A4D4A22B15D065008541E9 /* SNSBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4A12B15D065008541E9 /* SNSBottomSheet.swift */; };
 		36A4D4972B14E572008541E9 /* CareerSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4962B14E572008541E9 /* CareerSelectionCell.swift */; };
 		36A4D4992B15C158008541E9 /* RegisterInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4982B15C158008541E9 /* RegisterInterestViewController.swift */; };
 		36A4D49B2B15C164008541E9 /* RegisterInterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D49A2B15C164008541E9 /* RegisterInterestViewModel.swift */; };
+		36A4D49E2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D49D2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift */; };
+		36A4D4A02B15CFC9008541E9 /* RegisterDetailInfoStaffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D49F2B15CFC9008541E9 /* RegisterDetailInfoStaffViewController.swift */; };
+		36A4D4A22B15D065008541E9 /* SNSBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4A12B15D065008541E9 /* SNSBottomSheet.swift */; };
 		36AB6FC52B050E6400D9D6D0 /* FloatingStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FC42B050E6400D9D6D0 /* FloatingStackView.swift */; };
 		36AB6FC72B05263E00D9D6D0 /* UISortButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FC62B05263E00D9D6D0 /* UISortButtonStackView.swift */; };
 		36AB6FC92B05266200D9D6D0 /* UISortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FC82B05266200D9D6D0 /* UISortButton.swift */; };
@@ -292,8 +292,8 @@
 		362866932A8E3D4700CD42BC /* Single+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Single+Codable.swift"; sourceTree = "<group>"; };
 		362866962A8E3D8200CD42BC /* Response+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Response+Codable.swift"; sourceTree = "<group>"; };
 		362866992A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoAPIResponseModel.swift; sourceTree = "<group>"; };
-		362C802A2B0A4BFF00489E7D /* RegisterDetailInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailInfoViewModel.swift; sourceTree = "<group>"; };
-		362C802C2B0A4C1000489E7D /* RegisterDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailInfoViewController.swift; sourceTree = "<group>"; };
+		362C802A2B0A4BFF00489E7D /* RegisterDetailInfoActorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailInfoActorViewModel.swift; sourceTree = "<group>"; };
+		362C802C2B0A4C1000489E7D /* RegisterDetailInfoActorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailInfoActorViewController.swift; sourceTree = "<group>"; };
 		362C80302B13672200489E7D /* RegisterDetailContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailContentViewModel.swift; sourceTree = "<group>"; };
 		362C80322B13673C00489E7D /* RegisterDetailContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailContentViewController.swift; sourceTree = "<group>"; };
 		362C80342B139D7F00489E7D /* LetterCountedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterCountedTextView.swift; sourceTree = "<group>"; };
@@ -355,12 +355,12 @@
 		367D9C312ADA652300DA6C96 /* JobRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobRegistrationViewController.swift; sourceTree = "<group>"; };
 		367D9C332ADA657200DA6C96 /* JobRegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobRegistrationViewModel.swift; sourceTree = "<group>"; };
 		367D9C352ADA664700DA6C96 /* JobRegistrationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobRegistrationCell.swift; sourceTree = "<group>"; };
-		36A4D49D2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailInfoStaffViewModel.swift; sourceTree = "<group>"; };
-		36A4D49F2B15CFC9008541E9 /* RegisterDetailInfoStaffViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailInfoStaffViewController.swift; sourceTree = "<group>"; };
-		36A4D4A12B15D065008541E9 /* SNSBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSBottomSheet.swift; sourceTree = "<group>"; };
 		36A4D4962B14E572008541E9 /* CareerSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerSelectionCell.swift; sourceTree = "<group>"; };
 		36A4D4982B15C158008541E9 /* RegisterInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInterestViewController.swift; sourceTree = "<group>"; };
 		36A4D49A2B15C164008541E9 /* RegisterInterestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInterestViewModel.swift; sourceTree = "<group>"; };
+		36A4D49D2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailInfoStaffViewModel.swift; sourceTree = "<group>"; };
+		36A4D49F2B15CFC9008541E9 /* RegisterDetailInfoStaffViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailInfoStaffViewController.swift; sourceTree = "<group>"; };
+		36A4D4A12B15D065008541E9 /* SNSBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSBottomSheet.swift; sourceTree = "<group>"; };
 		36AB6FC42B050E6400D9D6D0 /* FloatingStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingStackView.swift; sourceTree = "<group>"; };
 		36AB6FC62B05263E00D9D6D0 /* UISortButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISortButtonStackView.swift; sourceTree = "<group>"; };
 		36AB6FC82B05266200D9D6D0 /* UISortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISortButton.swift; sourceTree = "<group>"; };
@@ -753,6 +753,42 @@
 			path = BottomSheets;
 			sourceTree = "<group>";
 		};
+		366E85042B1990DF00CB7681 /* RegisterBasicInfo */ = {
+			isa = PBXGroup;
+			children = (
+				36AB6FD32B08694400D9D6D0 /* RegisterBasicInfoViewModel.swift */,
+				36AB6FD12B08693B00D9D6D0 /* RegisterBasicInfoViewController.swift */,
+			);
+			path = RegisterBasicInfo;
+			sourceTree = "<group>";
+		};
+		366E85052B1990FC00CB7681 /* RegisterDetailContent */ = {
+			isa = PBXGroup;
+			children = (
+				362C80302B13672200489E7D /* RegisterDetailContentViewModel.swift */,
+				362C80322B13673C00489E7D /* RegisterDetailContentViewController.swift */,
+			);
+			path = RegisterDetailContent;
+			sourceTree = "<group>";
+		};
+		366E85062B19910A00CB7681 /* RegisterCareer */ = {
+			isa = PBXGroup;
+			children = (
+				367AA8FE2B14CE160004F9D3 /* RegisterCareerViewModel.swift */,
+				367AA9002B14CE280004F9D3 /* RegisterCareerViewController.swift */,
+			);
+			path = RegisterCareer;
+			sourceTree = "<group>";
+		};
+		366E85072B19911300CB7681 /* RegisterInterest */ = {
+			isa = PBXGroup;
+			children = (
+				36A4D49A2B15C164008541E9 /* RegisterInterestViewModel.swift */,
+				36A4D4982B15C158008541E9 /* RegisterInterestViewController.swift */,
+			);
+			path = RegisterInterest;
+			sourceTree = "<group>";
+		};
 		366F22AE2ADB645800FD00BD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -897,10 +933,22 @@
 			path = Job;
 			sourceTree = "<group>";
 		};
+		36A4D4952B14E4E9008541E9 /* SelectionBlock */ = {
+			isa = PBXGroup;
+			children = (
+				36D293D32A961FDB00171C77 /* SelectionBlock.swift */,
+				367AA9042B14D7E30004F9D3 /* CareerSelectionBlock.swift */,
+				36A4D4962B14E572008541E9 /* CareerSelectionCell.swift */,
+			);
+			path = SelectionBlock;
+			sourceTree = "<group>";
+		};
 		36A4D49C2B15CF7B008541E9 /* RegisterDetailInfo */ = {
 			isa = PBXGroup;
 			children = (
 				36A4D4A32B15D093008541E9 /* Views */,
+				362C802A2B0A4BFF00489E7D /* RegisterDetailInfoActorViewModel.swift */,
+				362C802C2B0A4C1000489E7D /* RegisterDetailInfoActorViewController.swift */,
 				36A4D49D2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift */,
 				36A4D49F2B15CFC9008541E9 /* RegisterDetailInfoStaffViewController.swift */,
 			);
@@ -913,16 +961,6 @@
 				36A4D4A12B15D065008541E9 /* SNSBottomSheet.swift */,
 			);
 			path = Views;
-            sourceTree = "<group>";
-        };
-		36A4D4952B14E4E9008541E9 /* SelectionBlock */ = {
-			isa = PBXGroup;
-			children = (
-				36D293D32A961FDB00171C77 /* SelectionBlock.swift */,
-				367AA9042B14D7E30004F9D3 /* CareerSelectionBlock.swift */,
-				36A4D4962B14E572008541E9 /* CareerSelectionCell.swift */,
-			);
-			path = SelectionBlock;
 			sourceTree = "<group>";
 		};
 		36AB6FCA2B07527C00D9D6D0 /* NavigationBar */ = {
@@ -947,17 +985,11 @@
 		36AB6FD02B08690600D9D6D0 /* RegisterProfile */ = {
 			isa = PBXGroup;
 			children = (
+				366E85042B1990DF00CB7681 /* RegisterBasicInfo */,
 				36A4D49C2B15CF7B008541E9 /* RegisterDetailInfo */,
-				36AB6FD12B08693B00D9D6D0 /* RegisterBasicInfoViewController.swift */,
-				36AB6FD32B08694400D9D6D0 /* RegisterBasicInfoViewModel.swift */,
-				362C802A2B0A4BFF00489E7D /* RegisterDetailInfoViewModel.swift */,
-				362C802C2B0A4C1000489E7D /* RegisterDetailInfoViewController.swift */,
-				362C80302B13672200489E7D /* RegisterDetailContentViewModel.swift */,
-				362C80322B13673C00489E7D /* RegisterDetailContentViewController.swift */,
-				367AA8FE2B14CE160004F9D3 /* RegisterCareerViewModel.swift */,
-				367AA9002B14CE280004F9D3 /* RegisterCareerViewController.swift */,
-				36A4D4982B15C158008541E9 /* RegisterInterestViewController.swift */,
-				36A4D49A2B15C164008541E9 /* RegisterInterestViewModel.swift */,
+				366E85052B1990FC00CB7681 /* RegisterDetailContent */,
+				366E85062B19910A00CB7681 /* RegisterCareer */,
+				366E85072B19911300CB7681 /* RegisterInterest */,
 			);
 			path = RegisterProfile;
 			sourceTree = "<group>";
@@ -1680,7 +1712,7 @@
 				367D9C2D2ADA5EC700DA6C96 /* ProfileRegistrationViewModel.swift in Sources */,
 				364BCC6A2AB3672500E14B25 /* DynamicHeightCollectionView.swift in Sources */,
 				AB77A6F52AF90A3800EF1C29 /* RecruitBasicInfoViewModel.swift in Sources */,
-				362C802D2B0A4C1000489E7D /* RegisterDetailInfoViewController.swift in Sources */,
+				362C802D2B0A4C1000489E7D /* RegisterDetailInfoActorViewController.swift in Sources */,
 				362866972A8E3D8200CD42BC /* Response+Codable.swift in Sources */,
 				364482D82AB80EDA00984507 /* MyPageMenuCell.swift in Sources */,
 				AB9DAAA82AB0A4F500B00016 /* HomeInfoProvider.swift in Sources */,
@@ -1714,7 +1746,7 @@
 				367D9BD62AC3BC6200DA6C96 /* CompetitionCell.swift in Sources */,
 				367D9C072AD766E800DA6C96 /* SavedProfilesTabBarViewModel.swift in Sources */,
 				AB49A33A2A810B3500748484 /* LoginViewModel.swift in Sources */,
-				362C802B2B0A4BFF00489E7D /* RegisterDetailInfoViewModel.swift in Sources */,
+				362C802B2B0A4BFF00489E7D /* RegisterDetailInfoActorViewModel.swift in Sources */,
 				366F22B22ADB649D00FD00BD /* MyPageBottomSheet.swift in Sources */,
 				AB6785572AA3336900ACD35C /* EmailLoginViewController.swift in Sources */,
 				367D9BDA2ACB5D9F00DA6C96 /* JobViewModel.swift in Sources */,

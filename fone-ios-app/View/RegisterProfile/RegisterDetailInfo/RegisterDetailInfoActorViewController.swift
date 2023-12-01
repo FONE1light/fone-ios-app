@@ -1,5 +1,5 @@
 //
-//  RegisterDetailInfoViewController.swift
+//  RegisterDetailInfoActorViewController.swift
 //  fone-ios-app
 //
 //  Created by 여나경 on 11/19/23.
@@ -11,9 +11,9 @@ import SnapKit
 import RxSwift
 import RxRelay
 
-class RegisterDetailInfoViewController: UIViewController, ViewModelBindableType {
+class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindableType {
     
-    var viewModel: RegisterDetailInfoViewModel!
+    var viewModel: RegisterDetailInfoActorViewModel!
     var disposeBag = DisposeBag()
     
     let stackView = UIStackView().then {
