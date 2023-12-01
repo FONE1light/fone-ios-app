@@ -45,7 +45,7 @@
 		3663DB122AF6843C005899BF /* JobUISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663DB112AF6843C005899BF /* JobUISegmentedControl.swift */; };
 		3663DB142AF68845005899BF /* JobOpeningSortButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663DB132AF68845005899BF /* JobOpeningSortButtonView.swift */; };
 		3663DB172AF69C0B005899BF /* JobOpeningSortBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663DB162AF69C0B005899BF /* JobOpeningSortBottomSheet.swift */; };
-		366E85092B19ECC200CB7681 /* FullWidthSelectionBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E85082B19ECC200CB7681 /* FullWidthSelectionBlock.swift */; };
+		366E85092B19ECC200CB7681 /* FullWidthSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E85082B19ECC200CB7681 /* FullWidthSelectionView.swift */; };
 		366E850B2B19F50A00CB7681 /* Domain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E850A2B19F50A00CB7681 /* Domain.swift */; };
 		366E850D2B19FBE400CB7681 /* DomainSelectionPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E850C2B19FBE400CB7681 /* DomainSelectionPopupViewController.swift */; };
 		366F22A62ADB2AD600FD00BD /* OfficialMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366F22A52ADB2AD600FD00BD /* OfficialMark.swift */; };
@@ -318,7 +318,7 @@
 		3663DB112AF6843C005899BF /* JobUISegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobUISegmentedControl.swift; sourceTree = "<group>"; };
 		3663DB132AF68845005899BF /* JobOpeningSortButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningSortButtonView.swift; sourceTree = "<group>"; };
 		3663DB162AF69C0B005899BF /* JobOpeningSortBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningSortBottomSheet.swift; sourceTree = "<group>"; };
-		366E85082B19ECC200CB7681 /* FullWidthSelectionBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthSelectionBlock.swift; sourceTree = "<group>"; };
+		366E85082B19ECC200CB7681 /* FullWidthSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthSelectionView.swift; sourceTree = "<group>"; };
 		366E850A2B19F50A00CB7681 /* Domain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain.swift; sourceTree = "<group>"; };
 		366E850C2B19FBE400CB7681 /* DomainSelectionPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainSelectionPopupViewController.swift; sourceTree = "<group>"; };
 		366F22A52ADB2AD600FD00BD /* OfficialMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialMark.swift; sourceTree = "<group>"; };
@@ -946,7 +946,7 @@
 				36D293D32A961FDB00171C77 /* SelectionBlock.swift */,
 				367AA9042B14D7E30004F9D3 /* CareerSelectionBlock.swift */,
 				36A4D4962B14E572008541E9 /* CareerSelectionCell.swift */,
-				366E85082B19ECC200CB7681 /* FullWidthSelectionBlock.swift */,
+				366E85082B19ECC200CB7681 /* FullWidthSelectionView.swift */,
 			);
 			path = SelectionBlock;
 			sourceTree = "<group>";
@@ -1749,7 +1749,7 @@
 				36031ECB2AF4DCE4006B57AE /* JobOpeningHuntingViewModel.swift in Sources */,
 				36AB6FD22B08693B00D9D6D0 /* RegisterBasicInfoViewController.swift in Sources */,
 				362C80332B13673C00489E7D /* RegisterDetailContentViewController.swift in Sources */,
-				366E85092B19ECC200CB7681 /* FullWidthSelectionBlock.swift in Sources */,
+				366E85092B19ECC200CB7681 /* FullWidthSelectionView.swift in Sources */,
 				364482CE2AB7C76500984507 /* MyPageViewModel.swift in Sources */,
 				362419CF2AE319B1007D1AFB /* SignUpPersonalInfoViewModel.swift in Sources */,
 				AB1CEAA82ABFD1D700E7E54F /* MainBannerModule.swift in Sources */,

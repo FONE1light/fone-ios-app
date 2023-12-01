@@ -108,17 +108,10 @@ extension CareerSelectionBlock {
             .withUnretained(self)
             .subscribe { owner, indexPath in
                 guard let cell = owner.collectionView.cellForItem(at: indexPath) as? CareerSelectionCell else { return }
-                // 1. design properties 변경
-                owner.collectionView.visibleCells
-                    .compactMap { $0 as? CareerSelectionCell }
-                    .forEach {
-                    $0.isSelected = false
-                }
-                cell.toggle()
+                // collectionView의 allowsMultipleSelection이 false이므로 다른 cell을 선택 해제하지 않아도 됨
                 
-                // 2. 선택된 item 업데이트
+                // 선택(isSelected=true)된 item 업데이트
                 guard let item = cell.item else { return }
-                
                 owner.selectedItem.accept(item)
                 
             }.disposed(by: rx.disposeBag)

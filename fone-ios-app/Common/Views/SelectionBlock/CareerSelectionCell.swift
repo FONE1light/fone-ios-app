@@ -67,11 +67,6 @@ extension CareerSelectionCell {
         item = selection
     }
     
-    /// 선택 상태(isSelected) 변경
-    func toggle() {
-        isSelected = !isSelected
-    }
-    
     private func changeColor() {
         if isSelected {
             self.backgroundColor = .red_FFEBF0

@@ -83,6 +83,7 @@ class FullWidthSelectionView: UIView {
     
     private func setupUI() {
         addSubview(collectionView)
+        collectionView.allowsMultipleSelection = true
     }
     
     private func setContraints() {
@@ -99,10 +100,7 @@ extension FullWidthSelectionView {
             .withUnretained(self)
             .subscribe { owner, indexPath in
                 guard let cell = owner.collectionView.cellForItem(at: indexPath) as? CareerSelectionCell else { return }
-                // 1. design properties 변경
-                cell.toggle()
-                
-                // 2. 선택된 item 업데이트
+                // 선택(isSelected=true)된 item 업데이트
                 guard let item = cell.item else { return }
                 var items = owner.selectedItems.value
                 
