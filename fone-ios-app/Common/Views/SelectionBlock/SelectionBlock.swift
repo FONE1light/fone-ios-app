@@ -20,6 +20,14 @@ class SelectionBlock: UIView {
         $0.textColor = .gray_9E9E9E
     }
     
+    private var titlesAreEmpty: Bool {
+        guard let titleLabelText = titleLabel.text,
+              let subtitleLabelText = subtitleLabel.text else {
+            return true
+        }
+        return titleLabelText.isEmpty && subtitleLabelText.isEmpty
+    }
+    
     private var items: [Selection] = []
     
     private lazy var collectionView: DynamicHeightCollectionView = {
@@ -72,10 +80,13 @@ class SelectionBlock: UIView {
             $0.bottom.equalTo(titleLabel)
         }
         
+        var topOffset: CGFloat = 8
+        if titlesAreEmpty {
+            topOffset = 0
+        }
         collectionView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
-            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
-//            $0.height.greaterThanOrEqualTo(75) // DynamicHeightCollectionView 사용해서 불필요
+            $0.top.equalTo(titleLabel.snp.bottom).offset(topOffset)
             $0.bottom.equalToSuperview()
         }
     }
