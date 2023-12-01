@@ -21,8 +21,6 @@ class CareerSelectionBlock: UIView {
         /// cell 사이 여백
         static let minimumInteritemSpacing: CGFloat = 8
     }
-
-    private var fullWidth = false
     
     private let titleLabel = UILabel().then {
         $0.font = .font_b(15)
@@ -54,7 +52,7 @@ class CareerSelectionBlock: UIView {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
         
-        collectionView.register(CareerSelectionCell.self, forCellWithReuseIdentifier: CareerSelectionCell.identifier)
+        collectionView.register(with: CareerSelectionCell.self)
         collectionView.dataSource = self
         
         return collectionView
@@ -70,7 +68,7 @@ class CareerSelectionBlock: UIView {
         self.bindViewModel()
     }
     
-    func xibInit(constants: CareerSelectionBlock) {
+    func xibInit() {
         self.setupUI()
         self.setContraints()
         self.bindViewModel()
@@ -142,9 +140,7 @@ extension CareerSelectionBlock: UICollectionViewDataSource {
     
     // MARK: cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell: CareerSelectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(CareerSelectionCell.self)", for: indexPath) as? CareerSelectionCell else {
-            return UICollectionViewCell()
-        }
+        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CareerSelectionCell
         
         cell.setItem(items[indexPath.row])
         
