@@ -13,4 +13,12 @@ class RegisterDetailInfoViewModel: CommonViewModel {
     var jobType: Job?
     var instagramLink = BehaviorRelay<String?>(value: nil)
     var youtubeLink = BehaviorRelay<String?>(value: nil)
+    
+    func moveToRegisterDetailContent() {
+        let sceneCoordinator = sceneCoordinator
+        let registerDetailContentViewModel = RegisterDetailContentViewModel(sceneCoordinator: sceneCoordinator)
+        
+        let scene = Scene.registerDetailContent(registerDetailContentViewModel)
+        sceneCoordinator.transition(to: scene, using: .push, animated: true)
+    }
 }
