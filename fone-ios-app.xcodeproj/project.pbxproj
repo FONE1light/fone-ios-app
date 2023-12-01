@@ -89,7 +89,7 @@
 		367D9C322ADA652300DA6C96 /* JobRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C312ADA652300DA6C96 /* JobRegistrationViewController.swift */; };
 		367D9C342ADA657200DA6C96 /* JobRegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C332ADA657200DA6C96 /* JobRegistrationViewModel.swift */; };
 		367D9C362ADA664700DA6C96 /* JobRegistrationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C352ADA664700DA6C96 /* JobRegistrationCell.swift */; };
-		36A4D4972B14E572008541E9 /* CareerSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4962B14E572008541E9 /* CareerSelectionCell.swift */; };
+		36A4D4972B14E572008541E9 /* DynamicSizeSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4962B14E572008541E9 /* DynamicSizeSelectionCell.swift */; };
 		36A4D4992B15C158008541E9 /* RegisterInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4982B15C158008541E9 /* RegisterInterestViewController.swift */; };
 		36A4D49B2B15C164008541E9 /* RegisterInterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D49A2B15C164008541E9 /* RegisterInterestViewModel.swift */; };
 		36A4D49E2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D49D2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift */; };
@@ -361,7 +361,7 @@
 		367D9C312ADA652300DA6C96 /* JobRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobRegistrationViewController.swift; sourceTree = "<group>"; };
 		367D9C332ADA657200DA6C96 /* JobRegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobRegistrationViewModel.swift; sourceTree = "<group>"; };
 		367D9C352ADA664700DA6C96 /* JobRegistrationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobRegistrationCell.swift; sourceTree = "<group>"; };
-		36A4D4962B14E572008541E9 /* CareerSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerSelectionCell.swift; sourceTree = "<group>"; };
+		36A4D4962B14E572008541E9 /* DynamicSizeSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicSizeSelectionCell.swift; sourceTree = "<group>"; };
 		36A4D4982B15C158008541E9 /* RegisterInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInterestViewController.swift; sourceTree = "<group>"; };
 		36A4D49A2B15C164008541E9 /* RegisterInterestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInterestViewModel.swift; sourceTree = "<group>"; };
 		36A4D49D2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailInfoStaffViewModel.swift; sourceTree = "<group>"; };
@@ -781,6 +781,7 @@
 		366E85062B19910A00CB7681 /* RegisterCareer */ = {
 			isa = PBXGroup;
 			children = (
+				366E850E2B1A134E00CB7681 /* Views */,
 				367AA8FE2B14CE160004F9D3 /* RegisterCareerViewModel.swift */,
 				367AA9002B14CE280004F9D3 /* RegisterCareerViewController.swift */,
 			);
@@ -794,6 +795,14 @@
 				36A4D4982B15C158008541E9 /* RegisterInterestViewController.swift */,
 			);
 			path = RegisterInterest;
+			sourceTree = "<group>";
+		};
+		366E850E2B1A134E00CB7681 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				367AA9042B14D7E30004F9D3 /* CareerSelectionBlock.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		366F22AE2ADB645800FD00BD /* ViewControllers */ = {
@@ -943,9 +952,9 @@
 		36A4D4952B14E4E9008541E9 /* SelectionBlock */ = {
 			isa = PBXGroup;
 			children = (
+				36F50AAB2A9897AA00991C9B /* SelectionCell.swift */,
 				36D293D32A961FDB00171C77 /* SelectionBlock.swift */,
-				367AA9042B14D7E30004F9D3 /* CareerSelectionBlock.swift */,
-				36A4D4962B14E572008541E9 /* CareerSelectionCell.swift */,
+				36A4D4962B14E572008541E9 /* DynamicSizeSelectionCell.swift */,
 				366E85082B19ECC200CB7681 /* FullWidthSelectionView.swift */,
 			);
 			path = SelectionBlock;
@@ -1070,7 +1079,6 @@
 		36F50AAA2A98978500991C9B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				36F50AAB2A9897AA00991C9B /* SelectionCell.swift */,
 				36AC7BD82AAE88F400478030 /* TermsCell.swift */,
 			);
 			path = Cells;
@@ -1832,7 +1840,7 @@
 				362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */,
 				ABCDD16B2B00B73300A598A8 /* JobOpeningDetailViewController.swift in Sources */,
 				AB3AE54D2ADBDA750048EDA2 /* SocialLoginManager.swift in Sources */,
-				36A4D4972B14E572008541E9 /* CareerSelectionCell.swift in Sources */,
+				36A4D4972B14E572008541E9 /* DynamicSizeSelectionCell.swift in Sources */,
 				3628669A2A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift in Sources */,
 				ABAFA33B2A9F612900D50BAF /* QuestionInfoProvider.swift in Sources */,
 				36D61F842AFCC54700E0C7E7 /* FloatingButton.swift in Sources */,

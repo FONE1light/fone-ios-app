@@ -9,7 +9,6 @@ import UIKit
 import Then
 import RxRelay
 
-
 /// 직업 or 관심사 선택 label + UICollectionView 영역
 class CareerSelectionBlock: UIView {
     
@@ -31,32 +30,21 @@ class CareerSelectionBlock: UIView {
         $0.textColor = .gray_9E9E9E
     }
     
-    private let items: [Selection] = [
-        CareerType.NEWCOMER,
-        CareerType.LESS_THAN_1YEARS,
-        CareerType.LESS_THAN_3YEARS,
-        CareerType.LESS_THAN_6YEARS,
-        CareerType.LESS_THAN_10YEARS,
-        CareerType.MORE_THAN_10YEARS,
-    ]
-    
-    private lazy var collectionView: DynamicHeightCollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 9
-        
-        layout.scrollDirection = .vertical
-        let collectionView = DynamicHeightCollectionView(
-            frame: .zero,
-            collectionViewLayout: layout
-        )
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = false
-        
-        collectionView.register(with: CareerSelectionCell.self)
-        collectionView.dataSource = self
-        
-        return collectionView
-    }()
+    private let collectionView = FullWidthSelectionView(
+        width: UIScreen.main.bounds.width - Constants.leadingMargin * 2,
+        numberOfItemsInARow: Constants.numberOfItemsInARow,
+        minimumInteritemSpacing: Constants.minimumInteritemSpacing
+    ).then {
+        $0.setSelections([
+            CareerType.NEWCOMER,
+            CareerType.LESS_THAN_1YEARS,
+            CareerType.LESS_THAN_3YEARS,
+            CareerType.LESS_THAN_6YEARS,
+            CareerType.LESS_THAN_10YEARS,
+            CareerType.MORE_THAN_10YEARS,
+        ])
+        $0.allowsMultipleSelection = false
+    }
     
     let selectedItem = BehaviorRelay<Selection>(value: CareerType.NEWCOMER)
     
@@ -107,7 +95,8 @@ extension CareerSelectionBlock {
         collectionView.rx.itemSelected
             .withUnretained(self)
             .subscribe { owner, indexPath in
-                guard let cell = owner.collectionView.cellForItem(at: indexPath) as? CareerSelectionCell else { return }
+                guard let cell = owner.collectionView.cellForItem(at: indexPath) as? DynamicSizeSelectionCell
+ else { return }
                 // collectionView의 allowsMultipleSelection이 false이므로 다른 cell을 선택 해제하지 않아도 됨
                 
                 // 선택(isSelected=true)된 item 업데이트
@@ -115,42 +104,9 @@ extension CareerSelectionBlock {
                 owner.selectedItem.accept(item)
                 
             }.disposed(by: rx.disposeBag)
-        
-        collectionView.rx.setDelegate(self).disposed(by: rx.disposeBag)
     }
     
     func selectItem(at indexPath: IndexPath) {
         collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
-    }
-}
-
-extension CareerSelectionBlock: UICollectionViewDataSource {
-    
-    // MARK: cell count
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items.count
-    }
-    
-    // MARK: cell
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CareerSelectionCell
-        
-        cell.setItem(items[indexPath.row])
-        
-        return cell
-    }
-}
-
-extension CareerSelectionBlock: UICollectionViewDelegateFlowLayout {
-    // MARK: cellSize
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let defaultHeight = 33.0
-        
-        let floatNumberOfItemsInARow = CGFloat(Constants.numberOfItemsInARow)
-        let leadingMargins = Constants.leadingMargin * 2
-        let spacesBetweenItems = Constants.minimumInteritemSpacing * (floatNumberOfItemsInARow - 1)
-        let itemWidth = (UIScreen.main.bounds.width - leadingMargins - spacesBetweenItems) / floatNumberOfItemsInARow - 2 // TODO: 2 빼야 하는 이유
-        return CGSize(width: itemWidth, height: defaultHeight)
     }
 }

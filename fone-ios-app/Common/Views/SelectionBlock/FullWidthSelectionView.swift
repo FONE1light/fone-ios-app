@@ -9,8 +9,8 @@ import UIKit
 import Then
 import RxRelay
 
-/// `width` 너비를 가지는 UICollectionView
-class FullWidthSelectionView: UIView {
+/// `width` 너비에 꽉 차도록 [Selection]을 표시하는 UICollectionView
+class FullWidthSelectionView: DynamicHeightCollectionView {
     
     struct Constants {
         /// collectionView의 width
@@ -25,24 +25,6 @@ class FullWidthSelectionView: UIView {
     
     private var items: [Selection] = []
     
-    private lazy var collectionView: DynamicHeightCollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 9
-        
-        layout.scrollDirection = .vertical
-        let collectionView = DynamicHeightCollectionView(
-            frame: .zero,
-            collectionViewLayout: layout
-        )
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = false
-        
-        collectionView.register(with: CareerSelectionCell.self)
-        collectionView.dataSource = self
-        
-        return collectionView
-    }()
-    
     let selectedItems = BehaviorRelay<[Selection]>(value: [])
     
     init(
@@ -50,15 +32,25 @@ class FullWidthSelectionView: UIView {
         numberOfItemsInARow: Int = 3,
         minimumInteritemSpacing: CGFloat = 8
     ) {
-        super.init(frame: .zero)
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 9
+        layout.scrollDirection = .vertical
+        
+        super.init(frame: .zero, collectionViewLayout: layout)
+        showsHorizontalScrollIndicator = false
+        showsVerticalScrollIndicator = false
+        allowsMultipleSelection = true // default: true로 변경
+        
+        register(with: DynamicSizeSelectionCell.self)
+        dataSource = self
         
         self.constants = Constants(
             width: width,
             numberOfItemsInARow: numberOfItemsInARow,
             minimumInteritemSpacing: minimumInteritemSpacing
         )
-        self.setupUI()
-        self.setContraints()
+        
         self.bindViewModel()
     }
     
@@ -67,58 +59,35 @@ class FullWidthSelectionView: UIView {
         numberOfItemsInARow: Int = 3,
         minimumInteritemSpacing: CGFloat = 8
     ) {
+        showsHorizontalScrollIndicator = false
+        showsVerticalScrollIndicator = false
+        allowsMultipleSelection = true // default: true로 변경
+        
+        register(with: DynamicSizeSelectionCell.self)
+        dataSource = self
+        
         self.constants = Constants(
             width: width,
             numberOfItemsInARow: numberOfItemsInARow,
             minimumInteritemSpacing: minimumInteritemSpacing
         )
-        self.setupUI()
-        self.setContraints()
+        
         self.bindViewModel()
     }
     
     required init?(coder: NSCoder) {
+        // TODO: UICollectionViewFlowLayout 지정
         super.init(coder: coder)
-    }
-    
-    private func setupUI() {
-        addSubview(collectionView)
-        collectionView.allowsMultipleSelection = true
-    }
-    
-    private func setContraints() {
-        collectionView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
     }
 }
 
 extension FullWidthSelectionView {
     private func bindViewModel() {
-        
-        collectionView.rx.itemSelected
-            .withUnretained(self)
-            .subscribe { owner, indexPath in
-                guard let cell = owner.collectionView.cellForItem(at: indexPath) as? CareerSelectionCell else { return }
-                // 선택(isSelected=true)된 item 업데이트
-                guard let item = cell.item else { return }
-                var items = owner.selectedItems.value
-                
-                if cell.isSelected {
-                    items.append(item)
-                } else {
-                    items.removeAll { $0.name == item.name }
-                }
-                
-                owner.selectedItems.accept(items)
-                
-            }.disposed(by: rx.disposeBag)
-        
-        collectionView.rx.setDelegate(self).disposed(by: rx.disposeBag)
+        rx.setDelegate(self).disposed(by: rx.disposeBag)
     }
     
     func selectItem(at indexPath: IndexPath) {
-        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
+        selectItem(at: indexPath, animated: false, scrollPosition: [])
     }
 }
 
@@ -139,9 +108,8 @@ extension FullWidthSelectionView: UICollectionViewDataSource {
     // MARK: cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-//        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as SelectionCell
-        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CareerSelectionCell
-        
+        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as DynamicSizeSelectionCell
+
         cell.setItem(items[indexPath.row])
         
         return cell

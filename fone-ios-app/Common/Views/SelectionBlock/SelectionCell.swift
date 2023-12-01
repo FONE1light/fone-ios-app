@@ -19,9 +19,10 @@ extension SelectionCell {
     }
 }
 
+/// `label`의 inset이 고정된 `UICollectionViewCell`
 class SelectionCell: UICollectionViewCell {
     
-    static let identifier = "SelectionCell"
+    static let identifier = String(describing: SelectionCell.self)
     var disposeBag = DisposeBag()
     
     var isChosen = false
