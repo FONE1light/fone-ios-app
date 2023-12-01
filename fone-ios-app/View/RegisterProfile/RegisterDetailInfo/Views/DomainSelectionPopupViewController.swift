@@ -26,9 +26,7 @@ class DomainSelectionPopupViewController: UIViewController {
         $0.setImage(UIImage(named: "close_MD"), for: .normal)
     }
     
-    private let domains = FullWidthSelectionView().then {
-        $0.setSelections(Domain.allCases)
-    }
+    private let domains = FullWidthSelectionView(of: Domain.allCases)
     
     private let confirmButton = UIButton().then {
         $0.setTitle("확인", for: .normal)

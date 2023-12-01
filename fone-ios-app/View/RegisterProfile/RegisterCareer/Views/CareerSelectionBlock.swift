@@ -30,21 +30,26 @@ class CareerSelectionBlock: UIView {
         $0.textColor = .gray_9E9E9E
     }
     
-    private let collectionView = FullWidthSelectionView(
-        width: UIScreen.main.bounds.width - Constants.leadingMargin * 2,
-        numberOfItemsInARow: Constants.numberOfItemsInARow,
-        minimumInteritemSpacing: Constants.minimumInteritemSpacing
-    ).then {
-        $0.setSelections([
+    private let collectionView: FullWidthSelectionView = {
+        let selections = [
             CareerType.NEWCOMER,
             CareerType.LESS_THAN_1YEARS,
             CareerType.LESS_THAN_3YEARS,
             CareerType.LESS_THAN_6YEARS,
             CareerType.LESS_THAN_10YEARS,
             CareerType.MORE_THAN_10YEARS,
-        ])
-        $0.allowsMultipleSelection = false
-    }
+        ]
+        let width = UIScreen.main.bounds.width - Constants.leadingMargin * 2
+        
+        let fullWidthSelectionView = FullWidthSelectionView(
+            of: selections,
+            width: width,
+            numberOfItemsInARow: Constants.numberOfItemsInARow,
+            minimumInteritemSpacing: Constants.minimumInteritemSpacing
+        )
+        fullWidthSelectionView.allowsMultipleSelection = false
+        return fullWidthSelectionView
+    }()
     
     let selectedItem = BehaviorRelay<Selection>(value: CareerType.NEWCOMER)
     

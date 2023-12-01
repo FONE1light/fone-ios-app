@@ -28,6 +28,7 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
     let selectedItems = BehaviorRelay<[Selection]>(value: [])
     
     init(
+        of selections: [Selection],
         width: CGFloat = 307,
         numberOfItemsInARow: Int = 3,
         minimumInteritemSpacing: CGFloat = 8
@@ -45,6 +46,7 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
         register(with: DynamicSizeSelectionCell.self)
         dataSource = self
         
+        self.items = selections
         self.constants = Constants(
             width: width,
             numberOfItemsInARow: numberOfItemsInARow,
@@ -55,6 +57,7 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
     }
     
     func xibInit(
+        of selections: [Selection],
         width: CGFloat = 307,
         numberOfItemsInARow: Int = 3,
         minimumInteritemSpacing: CGFloat = 8
@@ -66,6 +69,7 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
         register(with: DynamicSizeSelectionCell.self)
         dataSource = self
         
+        self.items = selections
         self.constants = Constants(
             width: width,
             numberOfItemsInARow: numberOfItemsInARow,
@@ -91,12 +95,12 @@ extension FullWidthSelectionView {
     }
 }
 
-extension FullWidthSelectionView {
-    
-    func setSelections(_ list: [Selection]) {
-        items = list
-    }
-}
+//extension FullWidthSelectionView {
+//    
+//    func setSelections(_ list: [Selection]) {
+//        items = list
+//    }
+//}
 
 extension FullWidthSelectionView: UICollectionViewDataSource {
     
