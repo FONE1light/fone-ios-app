@@ -120,6 +120,8 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
             .bind(to: birthTextField.rx.text)
             .disposed(by: rx.disposeBag)
         
+        // TODO: 분야 팝업 dismiss 후 선택된 것들 이용해 뷰 대응
+        
         viewModel.instagramLink
             .withUnretained(self)
             .bind { owner, link in

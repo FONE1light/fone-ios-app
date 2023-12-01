@@ -12,6 +12,10 @@ import RxSwift
 import RxRelay
 
 class DomainSelectionPopupViewController: UIViewController {
+    var disposeBag = DisposeBag()
+    
+    let selectedItems = BehaviorRelay<[Selection]>(value: [])
+    
     private let contentView = UIView().then {
         $0.backgroundColor = .white_FFFFFF
     }
@@ -28,12 +32,8 @@ class DomainSelectionPopupViewController: UIViewController {
     
     private let domains = FullWidthSelectionView(of: Domain.allCases)
     
-    private let confirmButton = UIButton().then {
-        $0.setTitle("확인", for: .normal)
-        $0.setTitleColor(.gray_555555, for: .normal)
-        $0.titleLabel?.font = .font_r(14)
-        $0.backgroundColor = .gray_EEEFEF
-        $0.cornerRadius = 5
+    private let confirmButton = CustomButton("확인", type: .bottom14).then {
+        $0.isEnabled = false
     }
     
     override func viewDidLoad() {
@@ -41,18 +41,7 @@ class DomainSelectionPopupViewController: UIViewController {
         
         setupUI()
         setConstraints()
-        
-        closeButton.rx.tap
-            .withUnretained(self)
-            .bind { owner, _ in
-                owner.dismiss(animated: false)
-            }.disposed(by: rx.disposeBag)
-        
-        confirmButton.rx.tap
-            .withUnretained(self)
-            .bind { owner, _ in
-                owner.dismiss(animated: false)
-            }.disposed(by: rx.disposeBag)
+        bindActions()
     }
     
     private func setupUI() {
@@ -100,5 +89,56 @@ class DomainSelectionPopupViewController: UIViewController {
             $0.height.equalTo(34)
             $0.centerX.equalToSuperview()
         }
+    }
+    
+    private func bindActions() {
+        domains.rx.itemDeselected
+            .withUnretained(self)
+            .subscribe { owner, indexPath in
+                guard let cell = owner.domains.cellForItem(at: indexPath) as? DynamicSizeSelectionCell else { return }
+                // 선택(isSelected=true)된 item 업데이트
+                guard let item = cell.item else { return }
+                var items = owner.selectedItems.value
+                items.removeAll { $0.name == item.name }
+                
+                owner.selectedItems.accept(items)
+                
+            }.disposed(by: rx.disposeBag)
+        
+        domains.rx.itemSelected
+            .withUnretained(self)
+            .subscribe { owner, indexPath in
+                guard let cell = owner.domains.cellForItem(at: indexPath) as? DynamicSizeSelectionCell else { return }
+                // 선택(isSelected=true)된 item 업데이트
+                guard let item = cell.item else { return }
+                var items = owner.selectedItems.value
+                items.append(item)
+                
+                owner.selectedItems.accept(items)
+                
+            }.disposed(by: rx.disposeBag)
+
+        selectedItems.withUnretained(self)
+            .bind { owner, items in
+                if !items.isEmpty {
+                    owner.confirmButton.isEnabled = true
+                } else {
+                    owner.confirmButton.isEnabled = false
+                }
+            }.disposed(by: disposeBag)
+        
+        // Buttons
+        closeButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.dismiss(animated: false)
+            }.disposed(by: rx.disposeBag)
+        
+        confirmButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                // TODO: 선택된 Domains 넘기기
+                owner.dismiss(animated: false)
+            }.disposed(by: rx.disposeBag)
     }
 }

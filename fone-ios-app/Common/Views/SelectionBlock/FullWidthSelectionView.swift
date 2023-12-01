@@ -25,8 +25,6 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
     
     private var items: [Selection] = []
     
-    let selectedItems = BehaviorRelay<[Selection]>(value: [])
-    
     init(
         of selections: [Selection],
         width: CGFloat = 307,
@@ -94,13 +92,6 @@ extension FullWidthSelectionView {
         selectItem(at: indexPath, animated: false, scrollPosition: [])
     }
 }
-
-//extension FullWidthSelectionView {
-//    
-//    func setSelections(_ list: [Selection]) {
-//        items = list
-//    }
-//}
 
 extension FullWidthSelectionView: UICollectionViewDataSource {
     
