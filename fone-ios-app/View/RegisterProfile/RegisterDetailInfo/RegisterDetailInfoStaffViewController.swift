@@ -32,6 +32,7 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
     
     // 출생연도
     private let birthBlock = UIView()
+    
     private let birthLabel = UILabel().then {
         $0.text = "출생연도"
         $0.font = .font_b(16)
@@ -63,23 +64,23 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
     )
     
     // 분야
-    private let fieldBlock = UIView()
+    private let domainBlock = UIView()
     
-    private let fieldLabel = UILabel().then {
+    private let domainLabel = UILabel().then {
         $0.text = "분야"
         $0.font = .font_b(16)
         $0.textColor = .gray_161616
     }
     
-    private let fieldRequiredStar = UIImageView(image: UIImage(named: "star"))
+    private let domainRequiredStar = UIImageView(image: UIImage(named: "star"))
     
-    private let fieldContentView = UIView().then {
+    private let domainContentView = UIView().then {
         $0.cornerRadius = 5
         $0.borderWidth = 1
         $0.borderColor = .gray_EEEFEF
     }
     
-    private let fieldContentButton = UIButton()
+    private let domainContentButton = UIButton()
     
     // 특기
     private let specialtyBlock = LabelTextField(
@@ -178,11 +179,15 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
 //                owner.viewModel.gender = .WOMAN
             }.disposed(by: rx.disposeBag)
         
-        fieldContentButton.rx.tap
+        domainContentButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                print("clicked")
-//                owner.present(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: <#T##Bool#>)
+                let popup = DomainSelectionPopupViewController()
+                
+                popup.modalPresentationStyle = .overFullScreen
+                
+                owner.present(popup, animated: false)
+                
             }.disposed(by: rx.disposeBag)
         
         instagramButton.rx.tap
@@ -237,7 +242,7 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
         [
             birthBlock,
             emailBlock,
-            fieldBlock,
+            domainBlock,
             specialtyBlock
         ]
             .forEach { stackView.addArrangedSubview($0) }
@@ -254,12 +259,12 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
         self.setupBirthBlock()
         
         [
-            fieldLabel,
-            fieldRequiredStar,
-            fieldContentView,
-            fieldContentButton
+            domainLabel,
+            domainRequiredStar,
+            domainContentView,
+            domainContentButton
         ]
-            .forEach { fieldBlock.addSubview($0) }
+            .forEach { domainBlock.addSubview($0) }
         setupFieldBlock()
         
         [
@@ -336,26 +341,26 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
     }
     
     private func setupFieldBlock() {
-        fieldLabel.snp.makeConstraints {
+        domainLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview()
         }
-        fieldLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        domainLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         
-        fieldRequiredStar.snp.makeConstraints {
-            $0.centerY.equalTo(fieldLabel)
-            $0.leading.equalTo(fieldLabel.snp.trailing).offset(2)
+        domainRequiredStar.snp.makeConstraints {
+            $0.centerY.equalTo(domainLabel)
+            $0.leading.equalTo(domainLabel.snp.trailing).offset(2)
             $0.size.equalTo(8)
         }
         
-        fieldContentView.snp.makeConstraints {
+        domainContentView.snp.makeConstraints {
             $0.top.bottom.trailing.equalToSuperview()
             $0.height.equalTo(44)
-            $0.leading.equalTo(fieldRequiredStar.snp.trailing).offset(24)
+            $0.leading.equalTo(domainRequiredStar.snp.trailing).offset(24)
         }
         
-        fieldContentButton.snp.makeConstraints {
-            $0.edges.equalTo(fieldContentView)
+        domainContentButton.snp.makeConstraints {
+            $0.edges.equalTo(domainContentView)
         }
         
     }

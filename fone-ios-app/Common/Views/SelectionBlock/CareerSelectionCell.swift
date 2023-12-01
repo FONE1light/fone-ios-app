@@ -57,8 +57,7 @@ class CareerSelectionCell: UICollectionViewCell {
         cornerRadius = 16
         
         label.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview().inset(Constants.topInset)
-            $0.centerX.equalToSuperview()
+            $0.center.equalToSuperview()
         }
     }
 }

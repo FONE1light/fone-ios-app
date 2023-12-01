@@ -50,6 +50,7 @@ class SelectionCell: UICollectionViewCell {
     private func setupUI() {
         self.addSubview(label)
         self.cornerRadius = 16
+        self.backgroundColor = .gray_EEEFEF
         
         label.snp.makeConstraints {
             $0.top.bottom.equalToSuperview().inset(Constants.topInset)
