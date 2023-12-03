@@ -9,16 +9,21 @@ import UIKit
 import RxRelay
 
 enum ButtonDesignType {
-    case auth // 회원가입 - 인증에 사용되는 버튼
-    case bottom // 하단 버튼 - '다음', '로그인하기' 등
-    case clear // 초기화 버튼 - '성별 무관', '전체 선택' 등
+    /// 회원가입 - 인증에 사용되는 버튼
+    case auth
+    /// 하단 버튼 - '다음', '로그인하기' 등
+    case bottom
+    /// label의 폰트 크기가 14인 하단 버튼 - 분야 선택 팝업의 '확인''
+    case bottom14
+    /// 초기화 버튼 - '성별 무관', '전체 선택' 등
+    case clear
 }
 
 extension ButtonDesignType {
     
     var titleFont: UIFont? {
         switch self {
-        case .auth: return .font_r(14)
+        case .auth, .bottom14: return .font_r(14)
         case .bottom: return .font_m(16)
         case .clear: return .font_r(12)
         }
@@ -27,6 +32,7 @@ extension ButtonDesignType {
     var disabledTitleColor: UIColor? {
         switch self {
         case .auth: return .gray_9E9E9E
+        case .bottom14: return .gray_555555
         default: return nil
         }
     }
@@ -34,7 +40,7 @@ extension ButtonDesignType {
     var defaultTitleColor: UIColor? {
         switch self {
         case .auth: return .red_CE0B39
-        case .bottom, .clear: return .white_FFFFFF
+        case .bottom, .bottom14, .clear: return .white_FFFFFF
         }
     }
     
@@ -55,6 +61,7 @@ extension ButtonDesignType {
     var disabledBackgroundColor: UIColor? {
         switch self {
         case .clear: return .gray_C5C5C5
+        case .bottom14: return .gray_EEEFEF
         default: return nil
         }
     }
@@ -63,6 +70,7 @@ extension ButtonDesignType {
         switch self {
         case .bottom: return .red_C0002C
         case .clear: return .violet_362C4C
+        case .bottom14: return .red_CE0B39
         default: return nil
         }
     }

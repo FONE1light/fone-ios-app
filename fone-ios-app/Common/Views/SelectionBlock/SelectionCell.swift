@@ -19,9 +19,10 @@ extension SelectionCell {
     }
 }
 
+/// `label`의 inset이 고정된 `UICollectionViewCell`
 class SelectionCell: UICollectionViewCell {
     
-    static let identifier = "SelectionCell"
+    static let identifier = String(describing: SelectionCell.self)
     var disposeBag = DisposeBag()
     
     var isChosen = false
@@ -50,6 +51,7 @@ class SelectionCell: UICollectionViewCell {
     private func setupUI() {
         self.addSubview(label)
         self.cornerRadius = 16
+        self.backgroundColor = .gray_EEEFEF
         
         label.snp.makeConstraints {
             $0.top.bottom.equalToSuperview().inset(Constants.topInset)

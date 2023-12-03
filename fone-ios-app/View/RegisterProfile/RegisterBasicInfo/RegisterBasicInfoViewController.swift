@@ -103,6 +103,8 @@ class RegisterBasicInfoViewController: UIViewController, ViewModelBindableType {
     private let nextButton = CustomButton("다음", type: .bottom)
     
     func bindViewModel() {
+        setNavigationBar() // viewModel 바인딩 된 후 navigationBar의 title 설정
+        
         attachImageButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
@@ -119,15 +121,14 @@ class RegisterBasicInfoViewController: UIViewController, ViewModelBindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setNavigationBar()
         addSubviews()
         setConstraints()
     }
     
     private func setNavigationBar() {
-        navigationItem.titleView = NavigationTitleView(title: "배우 등록하기")
+        navigationItem.titleView = NavigationTitleView(title: "\(viewModel.jobType?.koreanName ?? "") 등록하기")
         navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
-            type: .back,
+            type: .backWithAlert,
             viewController: self
         )
     }
