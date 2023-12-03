@@ -76,6 +76,11 @@ class CareerSelectionBlock: UIView {
         self.bindViewModel()
     }
     
+    func xibInit() {
+        self.setupUI()
+        self.setContraints()
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
