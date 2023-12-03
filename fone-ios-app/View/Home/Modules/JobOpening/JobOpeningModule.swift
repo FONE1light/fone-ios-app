@@ -34,13 +34,13 @@ class JobOpeningModule: UICollectionViewCell {
 extension JobOpeningModule: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let maxCount = 6
-        let itemCount = jobOpeningInfo?.data.content.count ?? 0
+        let itemCount = jobOpeningInfo?.data?.content?.count ?? 0
         return min(itemCount, maxCount)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as JobOpeningCell
-        if let item = jobOpeningInfo?.data.content[indexPath.item] {
+        if let item = jobOpeningInfo?.data?.content?[indexPath.item] {
             cell.configureCell(item: item, index: indexPath.item)
         }
         return cell
