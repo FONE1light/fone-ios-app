@@ -8,4 +8,5 @@
 import Foundation
 
 class RegisterInterestViewModel: CommonViewModel {
+    var jobType: Job?
 }

@@ -21,11 +21,11 @@ class ProfileCell: UICollectionViewCell {
     
     func configure(item: ProfileContent) {
         hookingCommentLabel.text = item.hookingComment
-        profileImageView.kf.setImage(with: URL(string: item.profileURL))
+        profileImageView.kf.setImage(with: URL(string: item.profileURL ?? ""))
         nameLabel.text = item.name
-        let year = item.birthday.split(separator: "-").first ?? ""
-        let age = item.age.description
+        let year = item.birthday?.split(separator: "-").first ?? ""
+        let age = item.age?.description ?? ""
         ageLabel.text = "\(year)년생 (\(age)살)"
-        genderLabel.text = GenderType(rawValue: item.gender)?.string
+        genderLabel.text = GenderType(rawValue: item.gender ?? "")?.string
     }
 }

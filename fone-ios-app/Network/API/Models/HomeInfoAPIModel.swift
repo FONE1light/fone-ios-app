@@ -7,60 +7,59 @@
 
 // MARK: - HomeInfo
 struct HomeInfo: Codable {
-    let result: String
+    let result: String?
     let data: HomeInfoData?
-    let message: String
+    let message: String?
     let errorCode: String?
 }
 
 // MARK: - HomeInfoData
 struct HomeInfoData: Codable {
-    let order: [String]
-    let jobOpening: JobOpeningModuleInfo
-    let competition: CompetitionModuleInfo
-    let profile: ProfileModuleInfo
+    let order: [String]?
+    let jobOpening: JobOpeningModuleInfo?
+    let competition: CompetitionModuleInfo?
+    let profile: ProfileModuleInfo?
 }
 
 // MARK: - JobOpeningModuleInfo
 struct JobOpeningModuleInfo: Codable {
-    let title, subTitle: String
-    let data: JobOpeningModuleData
+    let title, subTitle: String?
+    let data: JobOpeningModuleData?
 }
 
 // MARK: - JobOpeningModuleData
 struct JobOpeningModuleData: Codable {
-    let content: [JobOpeningContent]
-    let pageable: Pageable
-    let totalPages, totalElements: Int
-    let last: Bool
-    let size, number: Int
-    let sort: Sort
-    let numberOfElements: Int
-    let first, empty: Bool
+    let content: [JobOpeningContent]?
+    let pageable: Pageable?
+    let totalPages, totalElements: Int?
+    let last: Bool?
+    let size, number: Int?
+    let sort: Sort?
+    let numberOfElements: Int?
+    let first, empty: Bool?
 }
 
 // MARK: - JobOpeningContent
 struct JobOpeningContent: Codable {
-    let id: Int
-    let title: String
-    let categories: [String]
-    let deadline: String
-    let casting: String?
-    let numberOfRecruits: Int
-    let gender: String
-    let ageMax, ageMin: Int
-    let career, type: String
-    let domains: [String]
-    let viewCount, scrapCount: Int
-    let work: Work
-    let isScrap: Bool
-    let nickname: String
-    let profileURL: String
-    let createdAt, userJob: String
+    let id: Int?
+    let title: String?
+    let categories: [String]?
+    let deadline, casting: String?
+    let numberOfRecruits: Int?
+    let gender: String?
+    let ageMax, ageMin: Int?
+    let career, type: String?
+    let domains: [String]?
+    let viewCount, scrapCount: Int?
+    let work: Work?
+    let isScrap: Bool?
+    let nickname: String?
+    let profileURL: String?
+    let createdAt, userJob: String?
     let recruitmentStartDate, recruitmentEndDate: String?
-    let representativeImageURL: String
-    let imageUrls: [String]
-    let dday: String
+    let representativeImageURL: String?
+    let imageUrls: [String]?
+    let dday: String?
     
     enum CodingKeys: String, CodingKey {
         case id, title, categories, deadline, casting, numberOfRecruits, gender, ageMax, ageMin, career, type, domains, viewCount, scrapCount, work, isScrap, nickname
@@ -73,33 +72,33 @@ struct JobOpeningContent: Codable {
 
 // MARK: - CompetitionModuleInfo
 struct CompetitionModuleInfo: Codable {
-    let title, subTitle: String
-    let data: CompetitionModuleData
+    let title, subTitle: String?
+    let data: CompetitionModuleData?
 }
 
 // MARK: - CompetitionModuleData
 struct CompetitionModuleData: Codable {
-    let content: [CompetitionContent]
-    let pageable: Pageable
-    let totalPages, totalElements: Int
-    let last: Bool
-    let size, number: Int
-    let sort: Sort
-    let numberOfElements: Int
-    let first, empty: Bool
+    let content: [CompetitionContent]?
+    let pageable: Pageable?
+    let totalPages, totalElements: Int?
+    let last: Bool?
+    let size, number: Int?
+    let sort: Sort?
+    let numberOfElements: Int?
+    let first, empty: Bool?
 }
 
 // MARK: - CompetitionContent
 struct CompetitionContent: Codable {
-    let id: Int
-    let title: String
-    let imageURL: String
-    let screeningStartDate, screeningEndDate, exhibitStartDate, exhibitEndDate: String
-    let showStartDate, agency, details: String
-    let viewCount, scrapCount: Int
-    let isScrap: Bool
-    let linkURL: String
-    let screeningDDay, screeningDate, exhibitDate: String
+    let id: Int?
+    let title: String?
+    let imageURL: String?
+    let screeningStartDate, screeningEndDate, exhibitStartDate, exhibitEndDate: String?
+    let showStartDate, agency, details: String?
+    let viewCount, scrapCount: Int?
+    let isScrap: Bool?
+    let linkURL: String?
+    let screeningDDay, screeningDate, exhibitDate: String?
     
     enum CodingKeys: String, CodingKey {
         case id, title
@@ -112,43 +111,43 @@ struct CompetitionContent: Codable {
 
 // MARK: - ProfileModuleInfo
 struct ProfileModuleInfo: Codable {
-    let title, subTitle: String
-    let data: ProfileModuleData
+    let title, subTitle: String?
+    let data: ProfileModuleData?
 }
 
 // MARK: - ProfileModuleData
 struct ProfileModuleData: Codable {
-    let content: [ProfileContent]
-    let pageable: Pageable
-    let totalPages, totalElements: Int
-    let last: Bool
-    let size, number: Int
-    let sort: Sort
-    let numberOfElements: Int
-    let first, empty: Bool
+    let content: [ProfileContent]?
+    let pageable: Pageable?
+    let totalPages, totalElements: Int?
+    let last: Bool?
+    let size, number: Int?
+    let sort: Sort?
+    let numberOfElements: Int?
+    let first, empty: Bool?
 }
 
 // MARK: - ProfileContent
 struct ProfileContent: Codable {
-    let id: Int
-    let name, hookingComment, birthday, gender: String
-    let height, weight: Int
-    let email, sns, specialty, details: String
-    let type, career, careerDetail: String
-    let categories: [String]
-    let domains: [String]
-    let profileUrls: [String]
-    let viewCount: Int
-    let profileURL: String
-    let isWant: Bool
-    let age: Int
-    let createdAt, userNickname: String
-    let userProfileURL: String
-    let userJob: String
+    let id: Int?
+    let name, hookingComment, birthday, gender: String?
+    let height, weight: Int?
+    let email, sns: String?
+    let snsUrls: [String]?
+    let specialty, details, type, career: String?
+    let careerDetail: String?
+    let categories: [String]?
+    let domains, profileUrls, profileImages: [String]?
+    let viewCount: Int?
+    let profileURL, representativeImageURL: String?
+    let isWant: Bool?
+    let age: Int?
+    let createdAt, userNickname, userProfileURL, userJob: String?
     
     enum CodingKeys: String, CodingKey {
-        case id, name, hookingComment, birthday, gender, height, weight, email, sns, specialty, details, type, career, careerDetail, categories, domains, profileUrls, viewCount
+        case id, name, hookingComment, birthday, gender, height, weight, email, sns, snsUrls, specialty, details, type, career, careerDetail, categories, domains, profileUrls, profileImages, viewCount
         case profileURL = "profileUrl"
+        case representativeImageURL = "representativeImageUrl"
         case isWant, age, createdAt, userNickname
         case userProfileURL = "userProfileUrl"
         case userJob
@@ -157,14 +156,14 @@ struct ProfileContent: Codable {
 
 // MARK: - Pageable
 struct Pageable: Codable {
-    let sort: Sort
-    let offset, pageNumber, pageSize: Int
-    let paged, unpaged: Bool
+    let sort: Sort?
+    let offset, pageNumber, pageSize: Int?
+    let paged, unpaged: Bool?
 }
 
 // MARK: - Sort
 struct Sort: Codable {
-    let empty, unsorted, sorted: Bool
+    let empty, unsorted, sorted: Bool?
 }
 
 // MARK: - Work

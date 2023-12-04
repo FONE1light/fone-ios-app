@@ -1,5 +1,5 @@
 //
-//  CareerSelectionCell.swift
+//  DynamicSizeSelectionCell.swift
 //  fone-ios-app
 //
 //  Created by 여나경 on 11/27/23.
@@ -8,20 +8,17 @@
 import UIKit
 import RxSwift
 
-extension CareerSelectionCell {
+extension DynamicSizeSelectionCell {
     struct Constants {
-        /// leading, trailing inset
-        static let leadingInset: CGFloat = 20
-        /// top, bottom inset
-        static let topInset: CGFloat = 8
         /// `label`의 fontSize
         static let fontSize: CGFloat = 14
     }
 }
 
-class CareerSelectionCell: UICollectionViewCell {
+/// 크기가 고정되지 않은 `UICollectionViewCell`
+class DynamicSizeSelectionCell: UICollectionViewCell {
     
-    static let identifier = "CareerSelectionCell"
+    static let identifier = String(describing: DynamicSizeSelectionCell.self)
     var disposeBag = DisposeBag()
     
     override var isSelected: Bool {
@@ -57,20 +54,14 @@ class CareerSelectionCell: UICollectionViewCell {
         cornerRadius = 16
         
         label.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview().inset(Constants.topInset)
-            $0.centerX.equalToSuperview()
+            $0.center.equalToSuperview()
         }
     }
 }
 
-extension CareerSelectionCell {
+extension DynamicSizeSelectionCell {
     func setItem(_ selection: Selection) {
         item = selection
-    }
-    
-    /// 선택 상태(isSelected) 변경
-    func toggle() {
-        isSelected = !isSelected
     }
     
     private func changeColor() {

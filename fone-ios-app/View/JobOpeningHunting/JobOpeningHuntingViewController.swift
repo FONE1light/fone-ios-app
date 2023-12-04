@@ -166,8 +166,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                 case .jobOpening:
                     owner.moveToRecruitBasicInfo()
                 case .profile:
-                    owner.moveToRegisterActorProfile()
-                    break
+                    owner.moveToRegisterProfile(of: .actor)
                 }
             }.disposed(by: rx.disposeBag)
         
@@ -176,7 +175,13 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
             .bind { owner, _ in
                 guard let tabType = owner.segmentedControl.selectedSegmentType else { return }
                 
-                // TODO: 현재 tabType 따라 화면 이동
+                switch tabType {
+//                case .jobOpening:
+//                    owner.moveToRecruitBasicInfo()
+                case .profile:
+                    owner.moveToRegisterProfile(of: .staff)
+                default: break
+                }
                 
             }.disposed(by: rx.disposeBag)
     }
@@ -334,8 +339,10 @@ extension JobOpeningHuntingViewController {
     }
     
     /// 프로필 등록 - 배우
-    private func moveToRegisterActorProfile() {
+    private func moveToRegisterProfile(of jobType: Job) {
         let registerBasicInfoViewModel = RegisterBasicInfoViewModel(sceneCoordinator: viewModel.sceneCoordinator)
+        registerBasicInfoViewModel.jobType = jobType
+        
         let registerScene = Scene.registerBasicInfo(registerBasicInfoViewModel)
         viewModel.sceneCoordinator.transition(to: registerScene, using: .push, animated: true)
     }

@@ -34,6 +34,14 @@ enum Job: Selection, CaseIterable {
         }
     }
     
+    // 프로필 등록하기 화면의 navigationBar에 사용
+    var koreanName: String {
+        switch self {
+        case .actor: return "배우"
+        case .staff: return "스태프"
+        default: return ""
+        }
+    }
     var serverName: String {
         return self.name
     }
