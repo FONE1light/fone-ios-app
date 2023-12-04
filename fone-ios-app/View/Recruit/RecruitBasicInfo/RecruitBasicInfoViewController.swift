@@ -101,7 +101,7 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.sceneCoordinator.transition(to: .recruitConditionInfo, using: .push, animated: true)
+                owner.viewModel.moveToNextStep()
             }.disposed(by: rx.disposeBag)
     }
     

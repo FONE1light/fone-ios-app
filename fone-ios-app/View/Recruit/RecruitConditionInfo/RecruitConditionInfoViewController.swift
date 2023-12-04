@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecruitConditionInfoViewController: UIViewController {
+class RecruitConditionInfoViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var stepIndicator: StepIndicator!
     @IBOutlet weak var castingTextField: LabelTextField!
     @IBOutlet weak var numberTextField: LabelTextField!
@@ -18,12 +18,22 @@ class RecruitConditionInfoViewController: UIViewController {
     @IBOutlet weak var careerSelectionBlock: CareerSelectionBlock!
     @IBOutlet weak var nextButton: UIButton!
     
+    var viewModel: RecruitConditionInfoViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setNavigationBar()
         setUI()
         setButtons()
+    }
+    
+    func bindViewModel() {
+        nextButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.viewModel.sceneCoordinator.transition(to: .recruitWorkInfo, using: .push, animated: true)
+            }.disposed(by: rx.disposeBag)
     }
     
     private func setNavigationBar() {
