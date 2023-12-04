@@ -15,6 +15,7 @@ class RecruitConditionInfoViewController: UIViewController {
     @IBOutlet weak var startAgeButton: UIButton!
     @IBOutlet weak var endAgeLabel: UILabel!
     @IBOutlet weak var endAgeButton: UIButton!
+    @IBOutlet weak var careerSelectionBlock: CareerSelectionBlock!
     @IBOutlet weak var nextButton: UIButton!
     
     override func viewDidLoad() {
@@ -37,6 +38,8 @@ class RecruitConditionInfoViewController: UIViewController {
         stepIndicator.xibInit(index: 1, totalCount: 6)
         castingTextField.xibInit(label: "모집배역", placeholder: "ex) 30대 중반 경찰", textFieldHeight: 44, isRequired: true, textFieldLeadingOffset: 76)
         numberTextField.xibInit(label: nil, placeholder: nil, textFieldLeadingOffset: 0, textFieldKeyboardType: .numberPad)
+        careerSelectionBlock.xibInit()
+        careerSelectionBlock.collectionView.allowsMultipleSelection = true
     }
     
     private func setButtons() {

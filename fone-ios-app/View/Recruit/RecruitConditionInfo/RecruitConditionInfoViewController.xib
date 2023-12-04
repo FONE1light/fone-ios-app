@@ -22,6 +22,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecruitConditionInfoViewController" customModule="fone_ios_app" customModuleProvider="target">
             <connections>
+                <outlet property="careerSelectionBlock" destination="j5b-om-xiz" id="Rgx-sI-H6o"/>
                 <outlet property="castingTextField" destination="6DR-dF-PyS" id="MX7-PC-wBt"/>
                 <outlet property="endAgeButton" destination="r90-wv-lm9" id="wx6-GE-DqY"/>
                 <outlet property="endAgeLabel" destination="Ave-xd-g7x" id="bIJ-Ls-33W"/>
@@ -310,6 +311,13 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j5b-om-xiz" customClass="CareerSelectionBlock" customModule="fone_ios_app" customModuleProvider="target">
+                            <rect key="frame" x="16" y="398" width="361" height="82"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="82" id="vXr-Mb-Y6m"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
@@ -324,6 +332,8 @@
                         <constraint firstItem="c9d-Az-gwT" firstAttribute="centerY" secondItem="beQ-Yh-2Ab" secondAttribute="centerY" id="Anj-2K-t8q"/>
                         <constraint firstItem="PBv-e0-MHf" firstAttribute="centerY" secondItem="F12-o8-k6n" secondAttribute="centerY" id="B8g-8H-Gbt"/>
                         <constraint firstItem="88h-kY-8Z2" firstAttribute="centerY" secondItem="F12-o8-k6n" secondAttribute="centerY" id="DAM-dy-SRU"/>
+                        <constraint firstItem="j5b-om-xiz" firstAttribute="top" secondItem="yZo-BS-Jlv" secondAttribute="bottom" id="Dma-47-x60"/>
+                        <constraint firstItem="j5b-om-xiz" firstAttribute="leading" secondItem="n94-PU-eMl" secondAttribute="leading" constant="16" id="Ila-FW-4zS"/>
                         <constraint firstItem="Us3-23-fUS" firstAttribute="leading" secondItem="n94-PU-eMl" secondAttribute="leading" constant="16" id="J2S-dP-5XC"/>
                         <constraint firstAttribute="trailing" secondItem="6DR-dF-PyS" secondAttribute="trailing" constant="16" id="K2W-qV-0US"/>
                         <constraint firstItem="Us3-23-fUS" firstAttribute="top" secondItem="fFM-4l-oQF" secondAttribute="bottom" constant="32" id="Mte-o7-QE2"/>
@@ -340,6 +350,7 @@
                         <constraint firstItem="fFM-4l-oQF" firstAttribute="leading" secondItem="n94-PU-eMl" secondAttribute="leading" constant="16" id="WJC-Wn-RbY"/>
                         <constraint firstItem="8CV-Vb-vUe" firstAttribute="top" secondItem="2o5-k2-Tx4" secondAttribute="bottom" constant="20" id="WiJ-W3-uAf"/>
                         <constraint firstItem="vAg-RK-2v0" firstAttribute="centerY" secondItem="Us3-23-fUS" secondAttribute="centerY" id="XMY-aV-L8G"/>
+                        <constraint firstAttribute="trailing" secondItem="j5b-om-xiz" secondAttribute="trailing" constant="16" id="a44-pb-gwF"/>
                         <constraint firstAttribute="trailing" secondItem="vAg-RK-2v0" secondAttribute="trailing" constant="16" id="b6M-4q-NvP"/>
                         <constraint firstItem="PBv-e0-MHf" firstAttribute="leading" secondItem="F12-o8-k6n" secondAttribute="trailing" constant="2" id="cPt-t4-KOP"/>
                         <constraint firstItem="FZ7-yN-4Ac" firstAttribute="centerY" secondItem="beQ-Yh-2Ab" secondAttribute="centerY" id="ckT-ld-iEt"/>
