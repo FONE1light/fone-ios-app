@@ -66,7 +66,7 @@ extension JobOpeningDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == JobOpeningDetailSection.image.rawValue {
             guard let viewModel = viewModel else { return 0 }
-            let itemCount = viewModel.jobOpeningDetail?.imageUrls.count == 0 ? 0 : 1
+            let itemCount = viewModel.jobOpeningDetail?.imageUrls?.count == 0 ? 0 : 1
             return itemCount
         }
         return 1
@@ -76,36 +76,39 @@ extension JobOpeningDetailViewController: UICollectionViewDataSource {
         guard let content = viewModel.jobOpeningDetail else { return UICollectionViewCell() }
         switch indexPath.section {
         case JobOpeningDetailSection.author.rawValue:
+            guard let authorInfo = viewModel.authorInfo else { return UICollectionViewCell() }
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as AuthorCell
-            cell.configure(createdAt: content.createdAt, viewCount: content.viewCount, profileUrl: content.profileURL, nickname: content.nickname, userJob: content.userJob)
+            cell.configure(authorInfo: authorInfo)
             return cell
         case JobOpeningDetailSection.title.rawValue:
+            guard let titleInfo = viewModel.titleInfo else { return UICollectionViewCell() }
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as TitleCell
-            cell.configrue(categories: content.categories, title: content.title)
+            cell.configrue(titleInfo: titleInfo)
             return cell
         case JobOpeningDetailSection.image.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as DetailImageCell
             return cell
         case JobOpeningDetailSection.recruitCondition.rawValue:
+            guard let recruitCondition = viewModel.recruitCondition else { return UICollectionViewCell() }
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as RecruitConditionCell
-            cell.configure(type: content.type, deadLine: content.deadline, dday: content.dday, casting: content.casting ?? "", domains: content.domains, numberOfRecruits: content.numberOfRecruits, gender: content.gender, ageMin: content.ageMin, ageMax: content.ageMax, career: content.career)
+            cell.configure(recruitCondition: recruitCondition)
             return cell
         case JobOpeningDetailSection.info.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as WorkInfoCell
-            cell.configure(produce: content.work.produce, title: content.work.workTitle, director: content.work.director, genre: content.work.genre, logline: content.work.logline)
+            cell.configure(produce: content.work?.produce, title: content.work?.workTitle, director: content.work?.director, genre: content.work?.genre, logline: content.work?.logline)
             return cell
         case JobOpeningDetailSection.workCondition.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as WorkConditionCell
-            cell.configure(salaryType: content.work.salaryType, salary: content.work.salary, location: content.work.workingLocation, period: content.work.workingDate, workDays: content.work.selectedDays, workingTime: content.work.workingTime)
+            cell.configure(salaryType: content.work?.salaryType, salary: content.work?.salary, location: content.work?.workingLocation, period: content.work?.workingDate, workDays: content.work?.selectedDays, workingTime: content.work?.workingTime)
             return cell
         case JobOpeningDetailSection.summary.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as SummaryCell
-            let summary = viewModel.jobOpeningDetail?.work.details ?? ""
+            let summary = viewModel.jobOpeningDetail?.work?.details ?? ""
             cell.configure(item: summary)
             return cell
         case JobOpeningDetailSection.contactInfo.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as ContactInfoCell
-            cell.configure(manager: content.work.manager, email: content.work.email)
+            cell.configure(manager: content.work?.manager, email: content.work?.email)
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as FooterCell
@@ -130,11 +133,11 @@ extension JobOpeningDetailViewController: UICollectionViewDelegateFlowLayout {
         case JobOpeningDetailSection.recruitCondition.rawValue:
             height = 244
         case JobOpeningDetailSection.info.rawValue:
-            height = WorkInfoCell.cellHeight(viewModel.jobOpeningDetail?.work.logline)
+            height = WorkInfoCell.cellHeight(viewModel.jobOpeningDetail?.work?.logline)
         case JobOpeningDetailSection.workCondition.rawValue:
             height = 233
         case JobOpeningDetailSection.summary.rawValue:
-            height = SummaryCell.cellHeight(viewModel.jobOpeningDetail?.work.details)
+            height = SummaryCell.cellHeight(viewModel.jobOpeningDetail?.work?.details)
         case JobOpeningDetailSection.contactInfo.rawValue:
             height = 118
         case JobOpeningDetailSection.footer.rawValue:

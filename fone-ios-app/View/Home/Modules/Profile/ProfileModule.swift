@@ -34,13 +34,13 @@ class ProfileModule: UICollectionViewCell {
 extension ProfileModule: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let maxCount = 8
-        let itemCount = profileInfo?.data.content.count ?? 0
+        let itemCount = profileInfo?.data?.content?.count ?? 0
         return min(itemCount, maxCount)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as ProfileCell
-        if let item = profileInfo?.data.content[indexPath.item] {
+        if let item = profileInfo?.data?.content?[indexPath.item] {
             cell.configure(item: item)
         }
         return cell

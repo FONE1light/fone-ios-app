@@ -7,6 +7,17 @@
 
 import UIKit
 
+struct TitleInfo {
+    let categories: [String]
+    let title: String
+    
+    init?(categories: [String]?, title: String?) {
+        guard let categories = categories, let title = title else { return nil }
+        self.categories = categories
+        self.title = title
+    }
+}
+
 class TitleCell: UICollectionViewCell {
     @IBOutlet weak var firstCategoryLabel: UILabel!
     @IBOutlet weak var secondCategoryLabel: UILabel!
@@ -17,17 +28,17 @@ class TitleCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configrue(categories: [String], title: String) {
-        let firstCategory = categories.first ?? ""
+    func configrue(titleInfo: TitleInfo) {
+        let firstCategory = titleInfo.categories.first ?? ""
         firstCategoryLabel.text =  Category.getType(serverName: firstCategory)?.name
-        if categories.count > 1 {
+        if titleInfo.categories.count > 1 {
             secondCategoryView.isHidden = false
-            let secondCategory = categories.last ?? ""
+            let secondCategory = titleInfo.categories.last ?? ""
             secondCategoryLabel.text = Category.getType(serverName: secondCategory)?.name
         } else {
             secondCategoryView.isHidden = true
         }
-        titleLabel.text = title
+        titleLabel.text = titleInfo.title
     }
 }
 

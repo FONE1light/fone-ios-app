@@ -30,17 +30,19 @@ class JobOpeningCell: UICollectionViewCell {
         titleLabel.text = item.title
         nicknameLabel.text = item.nickname
         dDayLabel.text = item.dday
-        let gender = GenderType(rawValue: item.gender)
+        let gender = GenderType(rawValue: item.gender ?? "")
         genderLabel.text = gender?.string
         
         var filteredCategory: [String] = []
         var hasOTT = false
-        for category in item.categories {
-            if category == Category.ottDrama.serverName {
-                hasOTT = true
-            } else {
-                if let categoryName = Category.getType(serverName: category)?.name, !categoryName.isEmpty {
-                    filteredCategory.append(categoryName)
+        if let categories = item.categories {
+            for category in categories {
+                if category == Category.ottDrama.serverName {
+                    hasOTT = true
+                } else {
+                    if let categoryName = Category.getType(serverName: category)?.name, !categoryName.isEmpty {
+                        filteredCategory.append(categoryName)
+                    }
                 }
             }
         }
