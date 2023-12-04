@@ -30,7 +30,7 @@ class CareerSelectionBlock: UIView {
         $0.textColor = .gray_9E9E9E
     }
     
-    private let collectionView: FullWidthSelectionView = {
+    let collectionView: FullWidthSelectionView = {
         let selections = [
             CareerType.NEWCOMER,
             CareerType.LESS_THAN_1YEARS,
