@@ -101,12 +101,13 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.sceneCoordinator.transition(to: .recruitConditionInfo, using: .push, animated: true)
+                owner.viewModel.moveToNextStep()
             }.disposed(by: rx.disposeBag)
     }
     
     private func setNavigationBar() {
-        navigationItem.titleView = NavigationTitleView(title: "배우 모집하기")
+        guard let jobType = viewModel.jobType else { return }
+        navigationItem.titleView = NavigationTitleView(title: "\(jobType.koreanName) 모집하기")
         navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
             type: .backWithAlert,
             viewController: self

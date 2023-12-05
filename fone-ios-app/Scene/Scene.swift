@@ -27,11 +27,11 @@ enum Scene {
     case competition(CompetitionViewModel) // 공모전 // TODO: 구인구직, 공모전 뷰 컨 UI 범위 확인 후 삭제
     case savedProfiles(SavedProfilesTabBarViewModel) // 찜한 프로필
     case myRegistrations(MyRegistrationsViewModel) // 나의 등록내역
-
+    
     // 구인구직
     case jobOpeningDetail(JobOpeningDetailViewModel)
     case recruitBasicInfo(RecruitBasicInfoViewModel) // 모집 글쓰기1
-    case recruitConditionInfo // 모집 글쓰기2
+    case recruitConditionInfo(RecruitConditionInfoViewModel) // 모집 글쓰기2
     case registerBasicInfo(RegisterBasicInfoViewModel) // 프로필 등록하기1
     case registerDetailInfoActor(RegisterDetailInfoActorViewModel) // 프로필 등록하기2 - 배우
     case registerDetailInfoStaff(RegisterDetailInfoStaffViewModel) // 프로필 등록하기2 - 스태프
@@ -214,8 +214,12 @@ extension Scene {
             
             return recruitBasicInfoVC
             
-        case .recruitConditionInfo:
+        case .recruitConditionInfo(let recruitConditionInfoViewModel):
             var recruitConditionInfoVC = RecruitConditionInfoViewController()
+            
+            DispatchQueue.main.async {
+                recruitConditionInfoVC.bind(viewModel: recruitConditionInfoViewModel)
+            }
             
             return recruitConditionInfoVC
             

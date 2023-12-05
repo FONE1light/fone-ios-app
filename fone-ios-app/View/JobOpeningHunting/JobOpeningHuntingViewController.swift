@@ -164,7 +164,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                 
                 switch tabType {
                 case .jobOpening:
-                    owner.moveToRecruitBasicInfo()
+                    owner.moveToRecruitBasicInfo(of: .actor)
                 case .profile:
                     owner.moveToRegisterProfile(of: .actor)
                 }
@@ -176,11 +176,10 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                 guard let tabType = owner.segmentedControl.selectedSegmentType else { return }
                 
                 switch tabType {
-//                case .jobOpening:
-//                    owner.moveToRecruitBasicInfo()
+                case .jobOpening:
+                    owner.moveToRecruitBasicInfo(of: .staff)
                 case .profile:
                     owner.moveToRegisterProfile(of: .staff)
-                default: break
                 }
                 
             }.disposed(by: rx.disposeBag)
@@ -332,8 +331,10 @@ extension JobOpeningHuntingViewController {
         }
     }
     
-    private func moveToRecruitBasicInfo() {
+    private func moveToRecruitBasicInfo(of jobType: Job) {
         let recruitBasicInfoViewModel = RecruitBasicInfoViewModel(sceneCoordinator: viewModel.sceneCoordinator)
+        recruitBasicInfoViewModel.jobType = jobType
+        
         let recruitScene = Scene.recruitBasicInfo(recruitBasicInfoViewModel)
         viewModel.sceneCoordinator.transition(to: recruitScene, using: .push, animated: true)
     }
