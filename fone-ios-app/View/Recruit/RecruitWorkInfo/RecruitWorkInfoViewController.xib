@@ -25,6 +25,7 @@
                 <outlet property="directorTextField" destination="QSC-c6-YO9" id="vNj-lY-gMT"/>
                 <outlet property="genreCollectionView" destination="Mn6-s2-lsS" id="w0t-tp-SRX"/>
                 <outlet property="loglineTextView" destination="ul0-5F-MGv" id="6f1-H8-ioY"/>
+                <outlet property="nextButton" destination="dgy-h2-A9m" id="LZW-oZ-NLd"/>
                 <outlet property="produceTextField" destination="wgA-AL-TDv" id="4ow-II-1mD"/>
                 <outlet property="stepIndicator" destination="uTH-qR-VeE" id="eLK-bL-aNe"/>
                 <outlet property="titleTextField" destination="jgs-og-9BB" id="fSI-VX-P8e"/>

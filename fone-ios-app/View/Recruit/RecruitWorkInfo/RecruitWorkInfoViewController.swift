@@ -14,6 +14,7 @@ class RecruitWorkInfoViewController: UIViewController {
     @IBOutlet weak var directorTextField: LabelTextField!
     @IBOutlet weak var genreCollectionView: UICollectionView!
     @IBOutlet weak var loglineTextView: LetterCountedTextView!
+    @IBOutlet weak var nextButton: UIButton!
     
     private let genres: [Genre] = [.ACTION, .DRAMA, .THRILLER, .MUSICAL, .ROMANCE, .FANTASY, .DOCUMENTARY, .ETC]
     
@@ -42,6 +43,7 @@ class RecruitWorkInfoViewController: UIViewController {
         titleTextField.xibInit(label: "제목", placeholder: "작품 제목", textFieldHeight: 44, isRequired: true, textFieldLeadingOffset: 54)
         directorTextField.xibInit(label: "연출", placeholder: "연출자 이름", textFieldHeight: 44, isRequired: true, textFieldLeadingOffset: 54)
         loglineTextView.xibInit(placeholder: "이야기의 방향을 알 수 있는 요약된 줄거리를 적어주세요.", textViewHeight: 187, maximumLetterCount: 200)
+        nextButton.applyShadow(shadowType: .shadowBt)
     }
 }
 
