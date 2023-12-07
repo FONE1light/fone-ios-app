@@ -34,7 +34,7 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.sceneCoordinator.transition(to: .recruitWorkInfo, using: .push, animated: true)
+                owner.viewModel.moveToNextStep()
             }.disposed(by: rx.disposeBag)
             
         domainSelectButton.rx.tap

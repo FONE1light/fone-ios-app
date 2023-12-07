@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Bold.ttf">
+            <string>Pretendard-Bold</string>
+        </array>
+        <array key="Pretendard-Medium.ttf">
+            <string>Pretendard-Medium</string>
+        </array>
+        <array key="Pretendard-Regular.ttf">
+            <string>Pretendard-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecruitWorkConditionViewController" customModule="fone_ios_app" customModuleProvider="target">
+            <connections>
+                <outlet property="nextButton" destination="hGW-ns-pwr" id="t0X-v6-oGZ"/>
+                <outlet property="stepIndicator" destination="Xx1-4W-Wda" id="bQV-zd-qLG"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xaS-km-QYL">
+                    <rect key="frame" x="0.0" y="59" width="393" height="673"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTd-mb-BTN">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="721"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xx1-4W-Wda" customClass="StepIndicator" customModule="fone_ios_app" customModuleProvider="target">
+                                    <rect key="frame" x="16" y="30" width="88" height="6"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="88" id="QkZ-ep-kAx"/>
+                                        <constraint firstAttribute="height" constant="6" id="US6-3D-gV0"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="근무조건을 선택해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvD-kA-bKc">
+                                    <rect key="frame" x="16" y="56" width="189.66666666666666" height="26"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="26" id="wQX-pR-dPL"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="19"/>
+                                    <color key="textColor" red="0.21176470589999999" green="0.17254901959999999" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="근무지역" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5h-da-F7X">
+                                    <rect key="frame" x="16.000000000000004" y="96" width="55.333333333333343" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="Caq-IN-tFy"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="16"/>
+                                    <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qlz-jf-cDh">
+                                    <rect key="frame" x="16" y="124" width="124" height="44"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y0h-0w-v2d">
+                                            <rect key="frame" x="12" y="12.333333333333341" width="14" height="19.333333333333329"/>
+                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
+                                            <color key="textColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="bst-V1-jUN">
+                                            <rect key="frame" x="94" y="14" width="16" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="16" id="JYp-VJ-cnI"/>
+                                                <constraint firstAttribute="width" constant="16" id="cQ8-O6-UtO"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUg-oL-0FA">
+                                            <rect key="frame" x="0.0" y="0.0" width="124" height="44"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="12h-EP-EbN"/>
+                                        <constraint firstItem="Y0h-0w-v2d" firstAttribute="centerY" secondItem="Qlz-jf-cDh" secondAttribute="centerY" id="7Sg-cc-11J"/>
+                                        <constraint firstAttribute="width" constant="124" id="8RZ-EE-j2F"/>
+                                        <constraint firstItem="wUg-oL-0FA" firstAttribute="top" secondItem="Qlz-jf-cDh" secondAttribute="top" id="KNh-u4-xQJ"/>
+                                        <constraint firstItem="bst-V1-jUN" firstAttribute="centerY" secondItem="Qlz-jf-cDh" secondAttribute="centerY" id="V48-We-f1m"/>
+                                        <constraint firstAttribute="trailing" secondItem="wUg-oL-0FA" secondAttribute="trailing" id="ZpA-uQ-biP"/>
+                                        <constraint firstAttribute="trailing" secondItem="bst-V1-jUN" secondAttribute="trailing" constant="14" id="bNO-1R-mN3"/>
+                                        <constraint firstItem="Y0h-0w-v2d" firstAttribute="leading" secondItem="Qlz-jf-cDh" secondAttribute="leading" constant="12" id="cfY-Or-rBU"/>
+                                        <constraint firstItem="wUg-oL-0FA" firstAttribute="leading" secondItem="Qlz-jf-cDh" secondAttribute="leading" id="gYC-SV-R7g"/>
+                                        <constraint firstAttribute="bottom" secondItem="wUg-oL-0FA" secondAttribute="bottom" id="iXs-lY-eVs"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fLX-nX-zi8">
+                                    <rect key="frame" x="152" y="124" width="225" height="44"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="구" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sH-Eq-cYs">
+                                            <rect key="frame" x="12" y="12.333333333333341" width="14" height="19.333333333333329"/>
+                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
+                                            <color key="textColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="TK2-rQ-M73">
+                                            <rect key="frame" x="195" y="14" width="16" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="16" id="6YM-5M-FiF"/>
+                                                <constraint firstAttribute="width" constant="16" id="RXE-3M-kLV"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9K-b5-nvO">
+                                            <rect key="frame" x="0.0" y="0.0" width="225" height="44"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="w9K-b5-nvO" firstAttribute="top" secondItem="fLX-nX-zi8" secondAttribute="top" id="2Yz-43-6hQ"/>
+                                        <constraint firstAttribute="height" constant="44" id="Oxh-lm-Y7h"/>
+                                        <constraint firstAttribute="trailing" secondItem="w9K-b5-nvO" secondAttribute="trailing" id="ROh-Ud-6ri"/>
+                                        <constraint firstItem="w9K-b5-nvO" firstAttribute="leading" secondItem="fLX-nX-zi8" secondAttribute="leading" id="Y1g-vR-7CT"/>
+                                        <constraint firstAttribute="trailing" secondItem="TK2-rQ-M73" secondAttribute="trailing" constant="14" id="adx-zv-VG8"/>
+                                        <constraint firstAttribute="bottom" secondItem="w9K-b5-nvO" secondAttribute="bottom" id="dZ9-ad-gax"/>
+                                        <constraint firstItem="4sH-Eq-cYs" firstAttribute="leading" secondItem="fLX-nX-zi8" secondAttribute="leading" constant="12" id="eb9-Y8-qIg"/>
+                                        <constraint firstItem="4sH-Eq-cYs" firstAttribute="centerY" secondItem="fLX-nX-zi8" secondAttribute="centerY" id="mdv-Ft-3wh"/>
+                                        <constraint firstItem="TK2-rQ-M73" firstAttribute="centerY" secondItem="fLX-nX-zi8" secondAttribute="centerY" id="tOY-yb-0Ag"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moR-ZX-iR0">
+                                    <rect key="frame" x="326" y="94" width="51" height="24"/>
+                                    <color key="backgroundColor" red="0.21176470589999999" green="0.17254901959999999" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="6ik-38-VQL"/>
+                                        <constraint firstAttribute="width" constant="51" id="rU8-XM-NFx"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="미정">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="12"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="근무기간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wvv-FG-ZXb">
+                                    <rect key="frame" x="16.000000000000004" y="200" width="55.333333333333343" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="OZL-cD-duA"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="16"/>
+                                    <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ca0-1c-PGE">
+                                    <rect key="frame" x="16" y="228" width="157.66666666666666" height="44"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Calendar" translatesAutoresizingMaskIntoConstraints="NO" id="BDF-X9-zWn">
+                                            <rect key="frame" x="12" y="14" width="16" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="16" id="T0y-J2-Qpr"/>
+                                                <constraint firstAttribute="height" constant="16" id="sJS-5N-4im"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w1z-0a-dBz">
+                                            <rect key="frame" x="36" y="12.333333333333313" width="41.666666666666657" height="19.333333333333329"/>
+                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
+                                            <color key="textColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8f9-pi-TzR">
+                                            <rect key="frame" x="0.0" y="0.0" width="157.66666666666666" height="44"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="BDF-X9-zWn" firstAttribute="centerY" secondItem="ca0-1c-PGE" secondAttribute="centerY" id="1Zr-1T-an5"/>
+                                        <constraint firstItem="8f9-pi-TzR" firstAttribute="leading" secondItem="ca0-1c-PGE" secondAttribute="leading" id="AXX-HO-tVt"/>
+                                        <constraint firstAttribute="bottom" secondItem="8f9-pi-TzR" secondAttribute="bottom" id="F1F-iJ-RQm"/>
+                                        <constraint firstAttribute="height" constant="44" id="HPj-41-0vI"/>
+                                        <constraint firstItem="w1z-0a-dBz" firstAttribute="leading" secondItem="BDF-X9-zWn" secondAttribute="trailing" constant="8" id="JiX-eQ-LnN"/>
+                                        <constraint firstAttribute="trailing" secondItem="8f9-pi-TzR" secondAttribute="trailing" id="KuX-2o-lWp"/>
+                                        <constraint firstItem="BDF-X9-zWn" firstAttribute="leading" secondItem="ca0-1c-PGE" secondAttribute="leading" constant="12" id="S6Y-Nf-9IG"/>
+                                        <constraint firstItem="w1z-0a-dBz" firstAttribute="centerY" secondItem="ca0-1c-PGE" secondAttribute="centerY" id="eyd-gS-bf2"/>
+                                        <constraint firstItem="8f9-pi-TzR" firstAttribute="top" secondItem="ca0-1c-PGE" secondAttribute="top" id="iTb-8I-SKr"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tilde" translatesAutoresizingMaskIntoConstraints="NO" id="qG6-dq-lYf">
+                                    <rect key="frame" x="179.66666666666666" y="242" width="16" height="16"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="16" id="HBd-ft-MgD"/>
+                                        <constraint firstAttribute="width" constant="16" id="KjP-ul-Lur"/>
+                                    </constraints>
+                                </imageView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DIY-wg-weD">
+                                    <rect key="frame" x="201.66666666666663" y="228" width="175.33333333333337" height="44"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Calendar" translatesAutoresizingMaskIntoConstraints="NO" id="AoM-Ce-aJL">
+                                            <rect key="frame" x="12" y="14" width="16" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="16" id="FN3-O1-1fv"/>
+                                                <constraint firstAttribute="width" constant="16" id="Qcl-Ns-BPT"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마감일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRt-3G-WmM">
+                                            <rect key="frame" x="36" y="12.333333333333313" width="41.666666666666657" height="19.333333333333329"/>
+                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
+                                            <color key="textColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4CG-T2-grr">
+                                            <rect key="frame" x="0.0" y="0.0" width="175.33333333333334" height="44"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="4CG-T2-grr" secondAttribute="bottom" id="0Am-Gl-aL4"/>
+                                        <constraint firstItem="AoM-Ce-aJL" firstAttribute="centerY" secondItem="DIY-wg-weD" secondAttribute="centerY" id="ASF-n3-c4z"/>
+                                        <constraint firstAttribute="trailing" secondItem="4CG-T2-grr" secondAttribute="trailing" id="XI5-La-Jtp"/>
+                                        <constraint firstAttribute="height" constant="44" id="Zbu-Sm-axV"/>
+                                        <constraint firstItem="AoM-Ce-aJL" firstAttribute="leading" secondItem="DIY-wg-weD" secondAttribute="leading" constant="12" id="bGB-Ck-NyO"/>
+                                        <constraint firstItem="4CG-T2-grr" firstAttribute="top" secondItem="DIY-wg-weD" secondAttribute="top" id="hXh-G4-Xfs"/>
+                                        <constraint firstItem="4CG-T2-grr" firstAttribute="leading" secondItem="DIY-wg-weD" secondAttribute="leading" id="pt4-Ts-jfy"/>
+                                        <constraint firstItem="xRt-3G-WmM" firstAttribute="leading" secondItem="AoM-Ce-aJL" secondAttribute="trailing" constant="8" id="ucz-cS-jJ3"/>
+                                        <constraint firstItem="xRt-3G-WmM" firstAttribute="centerY" secondItem="DIY-wg-weD" secondAttribute="centerY" id="whA-GQ-Bns"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ius-ps-ff3">
+                                    <rect key="frame" x="326" y="198" width="51" height="24"/>
+                                    <color key="backgroundColor" red="0.21176470589999999" green="0.17254901959999999" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="Bcl-Po-Mkh"/>
+                                        <constraint firstAttribute="width" constant="51" id="dG0-tn-cEO"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="미정">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="12"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="근무요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PL-WD-ebe">
+                                    <rect key="frame" x="16.000000000000004" y="304" width="55.333333333333343" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="zQB-wV-8dx"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="16"/>
+                                    <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlc-Aq-pCl">
+                                    <rect key="frame" x="305" y="302" width="72" height="24"/>
+                                    <color key="backgroundColor" red="0.21176470589999999" green="0.17254901959999999" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="72" id="cU2-d7-nXa"/>
+                                        <constraint firstAttribute="height" constant="24" id="sYR-jg-5io"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="추후협의">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="12"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="U6z-mc-bgj">
+                                    <rect key="frame" x="16" y="332" width="361" height="53"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2z-rR-RC6">
+                                            <rect key="frame" x="0.0" y="0.0" width="45.666666666666664" height="53"/>
+                                            <color key="backgroundColor" red="0.93333333333333335" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="t2z-rR-RC6" secondAttribute="height" multiplier="43:50" id="5pm-0Y-QXn"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="월">
+                                                <color key="titleColor" red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXL-0g-s11">
+                                            <rect key="frame" x="52.666666666666671" y="0.0" width="45.333333333333329" height="53"/>
+                                            <color key="backgroundColor" red="0.93333333330000001" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="화">
+                                                <color key="titleColor" red="0.61960784310000006" green="0.61960784310000006" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1OQ-nC-Uwo">
+                                            <rect key="frame" x="105" y="0.0" width="45.666666666666657" height="53"/>
+                                            <color key="backgroundColor" red="0.93333333330000001" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="수">
+                                                <color key="titleColor" red="0.61960784310000006" green="0.61960784310000006" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LuN-03-q9V">
+                                            <rect key="frame" x="157.66666666666666" y="0.0" width="45.666666666666657" height="53"/>
+                                            <color key="backgroundColor" red="0.93333333330000001" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="목">
+                                                <color key="titleColor" red="0.61960784310000006" green="0.61960784310000006" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c3k-wd-qT7">
+                                            <rect key="frame" x="210.33333333333334" y="0.0" width="45.666666666666657" height="53"/>
+                                            <color key="backgroundColor" red="0.93333333330000001" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="금">
+                                                <color key="titleColor" red="0.61960784310000006" green="0.61960784310000006" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VO0-IG-PSp">
+                                            <rect key="frame" x="263" y="0.0" width="45.333333333333314" height="53"/>
+                                            <color key="backgroundColor" red="0.93333333330000001" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="토">
+                                                <color key="titleColor" red="0.61960784310000006" green="0.61960784310000006" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRx-sG-cHs">
+                                            <rect key="frame" x="315.33333333333331" y="0.0" width="45.666666666666686" height="53"/>
+                                            <color key="backgroundColor" red="0.93333333330000001" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="일">
+                                                <color key="titleColor" red="0.61960784310000006" green="0.61960784310000006" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="XXL-0g-s11" firstAttribute="width" secondItem="XXL-0g-s11" secondAttribute="height" multiplier="43:50" id="6rS-Wg-Lu6"/>
+                                        <constraint firstItem="c3k-wd-qT7" firstAttribute="width" secondItem="c3k-wd-qT7" secondAttribute="height" multiplier="43:50" id="PEy-2w-GE6"/>
+                                        <constraint firstItem="VO0-IG-PSp" firstAttribute="width" secondItem="VO0-IG-PSp" secondAttribute="height" multiplier="43:50" id="QFa-Uo-gMm"/>
+                                        <constraint firstItem="1OQ-nC-Uwo" firstAttribute="width" secondItem="1OQ-nC-Uwo" secondAttribute="height" multiplier="43:50" id="ccv-wY-1S8"/>
+                                        <constraint firstItem="LuN-03-q9V" firstAttribute="width" secondItem="LuN-03-q9V" secondAttribute="height" multiplier="43:50" id="pc3-Gb-l0K"/>
+                                        <constraint firstItem="gRx-sG-cHs" firstAttribute="width" secondItem="gRx-sG-cHs" secondAttribute="height" multiplier="43:50" id="vQW-Ev-igN"/>
+                                    </constraints>
+                                </stackView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="근무시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aSI-5G-cq9">
+                                    <rect key="frame" x="16.000000000000004" y="419" width="55.333333333333343" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="fnY-Oi-UGX"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="16"/>
+                                    <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wta-bv-WiL">
+                                    <rect key="frame" x="305" y="417" width="72" height="24"/>
+                                    <color key="backgroundColor" red="0.21176470589999999" green="0.17254901959999999" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="72" id="ndI-DO-Bj5"/>
+                                        <constraint firstAttribute="height" constant="24" id="zcp-WU-bYv"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="추후협의">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="12"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PYo-2n-Bu2">
+                                    <rect key="frame" x="210" y="447" width="167" height="44"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마감" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9E-Pe-0Lt">
+                                            <rect key="frame" x="12.000000000000002" y="12.333333333333369" width="27.666666666666671" height="19.333333333333329"/>
+                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
+                                            <color key="textColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="HNn-1d-5l3">
+                                            <rect key="frame" x="139" y="14" width="16" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="16" id="ET1-HD-OXl"/>
+                                                <constraint firstAttribute="height" constant="16" id="KfE-qd-wct"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkN-ay-apP">
+                                            <rect key="frame" x="0.0" y="0.0" width="167" height="44"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="Cjy-7C-Jt0"/>
+                                        <constraint firstAttribute="trailing" secondItem="rkN-ay-apP" secondAttribute="trailing" id="DEn-aN-fQb"/>
+                                        <constraint firstAttribute="trailing" secondItem="HNn-1d-5l3" secondAttribute="trailing" constant="12" id="IER-yZ-q7O"/>
+                                        <constraint firstItem="l9E-Pe-0Lt" firstAttribute="centerY" secondItem="PYo-2n-Bu2" secondAttribute="centerY" id="UPt-Ma-XdM"/>
+                                        <constraint firstItem="rkN-ay-apP" firstAttribute="top" secondItem="PYo-2n-Bu2" secondAttribute="top" id="VrM-xp-0Kz"/>
+                                        <constraint firstItem="HNn-1d-5l3" firstAttribute="centerY" secondItem="PYo-2n-Bu2" secondAttribute="centerY" id="WAe-od-lTx"/>
+                                        <constraint firstAttribute="bottom" secondItem="rkN-ay-apP" secondAttribute="bottom" id="adI-sw-0Hx"/>
+                                        <constraint firstItem="rkN-ay-apP" firstAttribute="leading" secondItem="PYo-2n-Bu2" secondAttribute="leading" id="j4Q-g6-fRg"/>
+                                        <constraint firstItem="l9E-Pe-0Lt" firstAttribute="leading" secondItem="PYo-2n-Bu2" secondAttribute="leading" constant="12" id="peP-KW-iF2"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WSb-WR-By3">
+                                    <rect key="frame" x="16" y="447" width="150" height="44"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bb-vt-sZy">
+                                            <rect key="frame" x="12.000000000000002" y="12.333333333333369" width="27.666666666666671" height="19.333333333333329"/>
+                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
+                                            <color key="textColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="Zld-9w-wKo">
+                                            <rect key="frame" x="122" y="14" width="16" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="16" id="aSD-dj-qBx"/>
+                                                <constraint firstAttribute="width" constant="16" id="jjk-gX-ln7"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGa-sn-wBG">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="Zld-9w-wKo" secondAttribute="trailing" constant="12" id="81v-Um-nyc"/>
+                                        <constraint firstItem="1bb-vt-sZy" firstAttribute="leading" secondItem="WSb-WR-By3" secondAttribute="leading" constant="12" id="K1n-Cd-zUz"/>
+                                        <constraint firstItem="rGa-sn-wBG" firstAttribute="top" secondItem="WSb-WR-By3" secondAttribute="top" id="K9D-V4-6vF"/>
+                                        <constraint firstAttribute="height" constant="44" id="c6F-EK-5gT"/>
+                                        <constraint firstItem="rGa-sn-wBG" firstAttribute="leading" secondItem="WSb-WR-By3" secondAttribute="leading" id="cml-yu-42V"/>
+                                        <constraint firstItem="Zld-9w-wKo" firstAttribute="centerY" secondItem="WSb-WR-By3" secondAttribute="centerY" id="feP-9s-u11"/>
+                                        <constraint firstItem="1bb-vt-sZy" firstAttribute="centerY" secondItem="WSb-WR-By3" secondAttribute="centerY" id="m0t-8z-EBC"/>
+                                        <constraint firstAttribute="bottom" secondItem="rGa-sn-wBG" secondAttribute="bottom" id="q7i-eD-WA3"/>
+                                        <constraint firstAttribute="trailing" secondItem="rGa-sn-wBG" secondAttribute="trailing" id="vCm-WK-g12"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tilde" translatesAutoresizingMaskIntoConstraints="NO" id="ec2-V0-x7N">
+                                    <rect key="frame" x="180" y="461" width="16" height="16"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="16" id="34Y-vd-aHr"/>
+                                        <constraint firstAttribute="width" constant="16" id="YMj-RJ-q5J"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="근무지역" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hex-OH-VQe">
+                                    <rect key="frame" x="16.000000000000004" y="523" width="55.333333333333343" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="CqN-Q1-10g"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="16"/>
+                                    <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3JM-jX-DuH">
+                                    <rect key="frame" x="16" y="551" width="124" height="44"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시급" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGC-rM-lfM">
+                                            <rect key="frame" x="12.000000000000002" y="12.333333333333369" width="27.666666666666671" height="19.333333333333329"/>
+                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
+                                            <color key="textColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="pEd-De-4Jg">
+                                            <rect key="frame" x="94" y="14" width="16" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="16" id="E2J-yw-eVG"/>
+                                                <constraint firstAttribute="width" constant="16" id="Mcc-Dk-gji"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EC9-gj-8n9">
+                                            <rect key="frame" x="0.0" y="0.0" width="124" height="44"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="124" id="2PR-y7-m6b"/>
+                                        <constraint firstAttribute="height" constant="44" id="EV8-LA-sE0"/>
+                                        <constraint firstItem="pEd-De-4Jg" firstAttribute="centerY" secondItem="3JM-jX-DuH" secondAttribute="centerY" id="Hsw-BL-EVd"/>
+                                        <constraint firstItem="EC9-gj-8n9" firstAttribute="leading" secondItem="3JM-jX-DuH" secondAttribute="leading" id="Ykt-Cl-8y7"/>
+                                        <constraint firstAttribute="trailing" secondItem="pEd-De-4Jg" secondAttribute="trailing" constant="14" id="ZbP-6P-o1M"/>
+                                        <constraint firstItem="YGC-rM-lfM" firstAttribute="centerY" secondItem="3JM-jX-DuH" secondAttribute="centerY" id="coh-99-pwN"/>
+                                        <constraint firstItem="YGC-rM-lfM" firstAttribute="leading" secondItem="3JM-jX-DuH" secondAttribute="leading" constant="12" id="csA-uf-5uF"/>
+                                        <constraint firstAttribute="trailing" secondItem="EC9-gj-8n9" secondAttribute="trailing" id="nCn-Hv-1Wz"/>
+                                        <constraint firstAttribute="bottom" secondItem="EC9-gj-8n9" secondAttribute="bottom" id="w3w-Xv-c40"/>
+                                        <constraint firstItem="EC9-gj-8n9" firstAttribute="top" secondItem="3JM-jX-DuH" secondAttribute="top" id="xxW-Ge-5qO"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9y-VB-ICY">
+                                    <rect key="frame" x="152" y="551" width="225" height="44"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UU6-OD-mL2">
+                                            <rect key="frame" x="199" y="12.333333333333369" width="14" height="19.333333333333329"/>
+                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
+                                            <color key="textColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2CT-aZ-aIG">
+                                            <rect key="frame" x="0.0" y="0.0" width="225" height="44"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="2CT-aZ-aIG" secondAttribute="trailing" id="59z-l8-WXj"/>
+                                        <constraint firstItem="2CT-aZ-aIG" firstAttribute="leading" secondItem="w9y-VB-ICY" secondAttribute="leading" id="Lit-ej-nf7"/>
+                                        <constraint firstAttribute="bottom" secondItem="2CT-aZ-aIG" secondAttribute="bottom" id="Lvi-Wd-8Oo"/>
+                                        <constraint firstItem="UU6-OD-mL2" firstAttribute="centerY" secondItem="w9y-VB-ICY" secondAttribute="centerY" id="MTB-EU-iM6"/>
+                                        <constraint firstAttribute="height" constant="44" id="NIr-89-ZdB"/>
+                                        <constraint firstAttribute="trailing" secondItem="UU6-OD-mL2" secondAttribute="trailing" constant="12" id="S6S-kS-HvR"/>
+                                        <constraint firstItem="2CT-aZ-aIG" firstAttribute="top" secondItem="w9y-VB-ICY" secondAttribute="top" id="fa5-5L-Pun"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vJJ-fU-8ds">
+                                    <rect key="frame" x="326" y="521" width="51" height="24"/>
+                                    <color key="backgroundColor" red="0.21176470589999999" green="0.17254901959999999" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="51" id="vzo-Wb-4u8"/>
+                                        <constraint firstAttribute="height" constant="24" id="wyV-8L-QEo"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="미정">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="12"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="DIY-wg-weD" firstAttribute="leading" secondItem="qG6-dq-lYf" secondAttribute="trailing" constant="6" id="0R8-2D-SrS"/>
+                                <constraint firstItem="PYo-2n-Bu2" firstAttribute="width" secondItem="WSb-WR-By3" secondAttribute="width" multiplier="1.11333" id="0vJ-x5-yoH"/>
+                                <constraint firstItem="0PL-WD-ebe" firstAttribute="top" secondItem="ca0-1c-PGE" secondAttribute="bottom" constant="32" id="1k6-A4-nza"/>
+                                <constraint firstItem="Xx1-4W-Wda" firstAttribute="leading" secondItem="qTd-mb-BTN" secondAttribute="leading" constant="16" id="1mb-c5-2ZM"/>
+                                <constraint firstItem="ec2-V0-x7N" firstAttribute="centerY" secondItem="WSb-WR-By3" secondAttribute="centerY" id="1nC-Va-KG9"/>
+                                <constraint firstItem="U6z-mc-bgj" firstAttribute="leading" secondItem="qTd-mb-BTN" secondAttribute="leading" constant="16" id="3Rf-92-y5d"/>
+                                <constraint firstItem="Ius-ps-ff3" firstAttribute="centerY" secondItem="Wvv-FG-ZXb" secondAttribute="centerY" id="45o-hN-MRp"/>
+                                <constraint firstAttribute="trailing" secondItem="DIY-wg-weD" secondAttribute="trailing" constant="16" id="6YS-ic-V1T"/>
+                                <constraint firstItem="ca0-1c-PGE" firstAttribute="top" secondItem="Wvv-FG-ZXb" secondAttribute="bottom" constant="8" id="C2i-Jo-xum"/>
+                                <constraint firstItem="T5h-da-F7X" firstAttribute="top" secondItem="yvD-kA-bKc" secondAttribute="bottom" constant="14" id="CFl-mf-W7Y"/>
+                                <constraint firstItem="WSb-WR-By3" firstAttribute="top" secondItem="aSI-5G-cq9" secondAttribute="bottom" constant="8" id="CyG-eG-CpI"/>
+                                <constraint firstItem="fLX-nX-zi8" firstAttribute="centerY" secondItem="wUg-oL-0FA" secondAttribute="centerY" id="DhP-dK-yiB"/>
+                                <constraint firstAttribute="trailing" secondItem="w9y-VB-ICY" secondAttribute="trailing" constant="16" id="FCl-rl-qsg"/>
+                                <constraint firstItem="hlc-Aq-pCl" firstAttribute="centerY" secondItem="0PL-WD-ebe" secondAttribute="centerY" id="GJ6-Ad-4yk"/>
+                                <constraint firstItem="DIY-wg-weD" firstAttribute="centerY" secondItem="ca0-1c-PGE" secondAttribute="centerY" id="J26-yr-ghr"/>
+                                <constraint firstItem="w9y-VB-ICY" firstAttribute="leading" secondItem="3JM-jX-DuH" secondAttribute="trailing" constant="12" id="L6o-jz-7Im"/>
+                                <constraint firstItem="ca0-1c-PGE" firstAttribute="leading" secondItem="qTd-mb-BTN" secondAttribute="leading" constant="16" id="LE5-1K-fLj"/>
+                                <constraint firstAttribute="trailing" secondItem="fLX-nX-zi8" secondAttribute="trailing" constant="16" id="MTe-pX-7NX"/>
+                                <constraint firstAttribute="trailing" secondItem="PYo-2n-Bu2" secondAttribute="trailing" constant="16" id="OhW-yX-lKl"/>
+                                <constraint firstItem="fLX-nX-zi8" firstAttribute="leading" secondItem="Qlz-jf-cDh" secondAttribute="trailing" constant="12" id="Ppc-d8-DlI"/>
+                                <constraint firstItem="T5h-da-F7X" firstAttribute="leading" secondItem="qTd-mb-BTN" secondAttribute="leading" constant="16" id="RWI-mG-I2o"/>
+                                <constraint firstAttribute="trailing" secondItem="vJJ-fU-8ds" secondAttribute="trailing" constant="16" id="W0O-5c-7tN"/>
+                                <constraint firstItem="moR-ZX-iR0" firstAttribute="centerY" secondItem="T5h-da-F7X" secondAttribute="centerY" id="Z5h-fn-3Tk"/>
+                                <constraint firstItem="yvD-kA-bKc" firstAttribute="top" secondItem="Xx1-4W-Wda" secondAttribute="bottom" constant="20" id="ajM-gs-n2M"/>
+                                <constraint firstItem="Qlz-jf-cDh" firstAttribute="leading" secondItem="qTd-mb-BTN" secondAttribute="leading" constant="16" id="b1h-uw-4A5"/>
+                                <constraint firstItem="hex-OH-VQe" firstAttribute="leading" secondItem="qTd-mb-BTN" secondAttribute="leading" constant="16" id="b9J-rO-TL0"/>
+                                <constraint firstItem="Wvv-FG-ZXb" firstAttribute="leading" secondItem="qTd-mb-BTN" secondAttribute="leading" constant="16" id="bgk-LQ-9Wx"/>
+                                <constraint firstItem="PYo-2n-Bu2" firstAttribute="centerY" secondItem="WSb-WR-By3" secondAttribute="centerY" id="d1L-Ea-T4g"/>
+                                <constraint firstAttribute="trailing" secondItem="moR-ZX-iR0" secondAttribute="trailing" constant="16" id="dwB-WB-Yxi"/>
+                                <constraint firstAttribute="trailing" secondItem="Wta-bv-WiL" secondAttribute="trailing" constant="16" id="fLf-Qu-nQe"/>
+                                <constraint firstItem="3JM-jX-DuH" firstAttribute="leading" secondItem="qTd-mb-BTN" secondAttribute="leading" constant="16" id="g3r-0k-Eqa"/>
+                                <constraint firstItem="PYo-2n-Bu2" firstAttribute="leading" secondItem="ec2-V0-x7N" secondAttribute="trailing" constant="14" id="g8P-eW-eGl"/>
+                                <constraint firstItem="3JM-jX-DuH" firstAttribute="top" secondItem="hex-OH-VQe" secondAttribute="bottom" constant="8" id="gIH-fD-ib1"/>
+                                <constraint firstItem="hex-OH-VQe" firstAttribute="top" secondItem="WSb-WR-By3" secondAttribute="bottom" constant="32" id="gTO-q8-WT5"/>
+                                <constraint firstItem="0PL-WD-ebe" firstAttribute="leading" secondItem="qTd-mb-BTN" secondAttribute="leading" constant="16" id="gp0-Gk-45L"/>
+                                <constraint firstAttribute="trailing" secondItem="U6z-mc-bgj" secondAttribute="trailing" constant="16" id="gwK-Wz-qaV"/>
+                                <constraint firstItem="yvD-kA-bKc" firstAttribute="leading" secondItem="qTd-mb-BTN" secondAttribute="leading" constant="16" id="gwe-b5-5zl"/>
+                                <constraint firstItem="DIY-wg-weD" firstAttribute="width" secondItem="ca0-1c-PGE" secondAttribute="width" multiplier="1.11333" id="hcG-n3-0V9"/>
+                                <constraint firstItem="Xx1-4W-Wda" firstAttribute="top" secondItem="qTd-mb-BTN" secondAttribute="top" constant="30" id="iA2-Jg-7Dr"/>
+                                <constraint firstItem="Qlz-jf-cDh" firstAttribute="top" secondItem="T5h-da-F7X" secondAttribute="bottom" constant="8" id="k9J-Uw-F6u"/>
+                                <constraint firstItem="Wta-bv-WiL" firstAttribute="centerY" secondItem="aSI-5G-cq9" secondAttribute="centerY" id="kct-y7-7dO"/>
+                                <constraint firstAttribute="bottom" secondItem="w9y-VB-ICY" secondAttribute="bottom" constant="126" id="l0N-NZ-6Yp"/>
+                                <constraint firstItem="qG6-dq-lYf" firstAttribute="leading" secondItem="ca0-1c-PGE" secondAttribute="trailing" constant="6" id="lnn-9a-uc0"/>
+                                <constraint firstItem="qG6-dq-lYf" firstAttribute="centerY" secondItem="ca0-1c-PGE" secondAttribute="centerY" id="nH5-AQ-Vvd"/>
+                                <constraint firstItem="ec2-V0-x7N" firstAttribute="leading" secondItem="WSb-WR-By3" secondAttribute="trailing" constant="14" id="oSb-Zx-Oy4"/>
+                                <constraint firstAttribute="trailing" secondItem="hlc-Aq-pCl" secondAttribute="trailing" constant="16" id="oo0-q1-NDU"/>
+                                <constraint firstAttribute="trailing" secondItem="Ius-ps-ff3" secondAttribute="trailing" constant="16" id="pnj-Wg-AQs"/>
+                                <constraint firstItem="Wta-bv-WiL" firstAttribute="top" secondItem="U6z-mc-bgj" secondAttribute="bottom" constant="32" id="q4L-ya-h4R"/>
+                                <constraint firstItem="aSI-5G-cq9" firstAttribute="leading" secondItem="qTd-mb-BTN" secondAttribute="leading" constant="16" id="rke-Ui-yxR"/>
+                                <constraint firstItem="Wvv-FG-ZXb" firstAttribute="top" secondItem="Qlz-jf-cDh" secondAttribute="bottom" constant="32" id="sYN-I3-er4"/>
+                                <constraint firstItem="U6z-mc-bgj" firstAttribute="top" secondItem="0PL-WD-ebe" secondAttribute="bottom" constant="8" id="t5X-Sj-8tL"/>
+                                <constraint firstItem="w9y-VB-ICY" firstAttribute="centerY" secondItem="3JM-jX-DuH" secondAttribute="centerY" id="xWM-vz-Adt"/>
+                                <constraint firstItem="vJJ-fU-8ds" firstAttribute="centerY" secondItem="hex-OH-VQe" secondAttribute="centerY" id="yny-fT-nQk"/>
+                                <constraint firstItem="WSb-WR-By3" firstAttribute="leading" secondItem="qTd-mb-BTN" secondAttribute="leading" constant="16" id="zvy-lg-E8c"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="qTd-mb-BTN" firstAttribute="trailing" secondItem="YVe-Xp-sS4" secondAttribute="trailing" id="ChL-Po-Kso"/>
+                        <constraint firstItem="qTd-mb-BTN" firstAttribute="top" secondItem="YVe-Xp-sS4" secondAttribute="top" id="H6y-fA-DUf"/>
+                        <constraint firstItem="qTd-mb-BTN" firstAttribute="leading" secondItem="YVe-Xp-sS4" secondAttribute="leading" id="H8O-E1-5ay"/>
+                        <constraint firstItem="qTd-mb-BTN" firstAttribute="bottom" secondItem="YVe-Xp-sS4" secondAttribute="bottom" id="TXH-h9-8kG"/>
+                        <constraint firstItem="qTd-mb-BTN" firstAttribute="width" secondItem="xaS-km-QYL" secondAttribute="width" id="jWC-Fx-HZm"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="YVe-Xp-sS4"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="gDc-0t-OaI"/>
+                </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hGW-ns-pwr">
+                    <rect key="frame" x="16" y="732" width="361" height="48"/>
+                    <color key="backgroundColor" red="0.80784313730000001" green="0.043137254899999998" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="6OE-FF-sRY"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="16"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="다음"/>
+                    <state key="disabled" title="제출하기"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="xaS-km-QYL" secondAttribute="trailing" id="9Lw-v4-3Ln"/>
+                <constraint firstItem="hGW-ns-pwr" firstAttribute="top" secondItem="xaS-km-QYL" secondAttribute="bottom" id="A5k-4e-fiP"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="hGW-ns-pwr" secondAttribute="bottom" constant="38" id="BP5-vQ-LwR"/>
+                <constraint firstItem="hGW-ns-pwr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="E3j-KE-aQc"/>
+                <constraint firstItem="hGW-ns-pwr" firstAttribute="top" secondItem="xaS-km-QYL" secondAttribute="bottom" id="GwO-Th-hMM"/>
+                <constraint firstItem="xaS-km-QYL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="HVy-9a-JUK"/>
+                <constraint firstItem="xaS-km-QYL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="QSV-Bn-dpV"/>
+                <constraint firstAttribute="trailing" secondItem="hGW-ns-pwr" secondAttribute="trailing" constant="16" id="VkF-bC-JGo"/>
+            </constraints>
+            <point key="canvasLocation" x="2" y="20"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Calendar" width="16" height="16"/>
+        <image name="arrow_down" width="16" height="16"/>
+        <image name="tilde" width="16" height="16"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

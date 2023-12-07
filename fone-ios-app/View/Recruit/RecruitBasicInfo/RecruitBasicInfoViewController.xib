@@ -217,7 +217,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Y9-uZ-GQE">
-                                    <rect key="frame" x="16" y="430.33333333333331" width="150" height="44"/>
+                                    <rect key="frame" x="16" y="430.33333333333331" width="157.66666666666666" height="44"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Calendar" translatesAutoresizingMaskIntoConstraints="NO" id="c6c-en-UQe">
                                             <rect key="frame" x="12" y="14" width="16" height="16"/>
@@ -233,7 +233,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ERX-lI-wec">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="157.66666666666666" height="44"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         </button>
                                     </subviews>
@@ -360,14 +360,14 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tilde" translatesAutoresizingMaskIntoConstraints="NO" id="RjL-r0-nMb">
-                                    <rect key="frame" x="180" y="444.33333333333331" width="16" height="16"/>
+                                    <rect key="frame" x="179.66666666666666" y="444.33333333333331" width="16" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="16" id="5hl-aB-EJb"/>
                                         <constraint firstAttribute="height" constant="16" id="Y4r-iU-2BJ"/>
                                     </constraints>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hxL-5w-RR5">
-                                    <rect key="frame" x="210" y="430.33333333333331" width="167" height="44"/>
+                                    <rect key="frame" x="201.66666666666663" y="430.33333333333331" width="175.33333333333337" height="44"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Calendar" translatesAutoresizingMaskIntoConstraints="NO" id="yLj-Qp-Plq">
                                             <rect key="frame" x="12" y="14" width="16" height="16"/>
@@ -383,7 +383,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LKi-dX-kUp">
-                                            <rect key="frame" x="0.0" y="0.0" width="167" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="175.33333333333334" height="44"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         </button>
                                     </subviews>
@@ -449,13 +449,13 @@
                                 <constraint firstItem="dbO-rR-18M" firstAttribute="top" secondItem="BeK-Kf-LSS" secondAttribute="bottom" constant="12" id="Umt-h8-Kh2"/>
                                 <constraint firstItem="dbO-rR-18M" firstAttribute="leading" secondItem="gRE-EQ-Sug" secondAttribute="leading" constant="16" id="XEc-59-oli"/>
                                 <constraint firstItem="rBg-mt-64R" firstAttribute="top" secondItem="sDe-p8-dBH" secondAttribute="bottom" constant="8" id="YKn-Pr-S7p"/>
-                                <constraint firstItem="RjL-r0-nMb" firstAttribute="leading" secondItem="3Y9-uZ-GQE" secondAttribute="trailing" constant="14" id="YVg-02-cSr"/>
+                                <constraint firstItem="RjL-r0-nMb" firstAttribute="leading" secondItem="3Y9-uZ-GQE" secondAttribute="trailing" constant="6" id="YVg-02-cSr"/>
                                 <constraint firstItem="0ga-rp-K8k" firstAttribute="top" secondItem="3Y9-uZ-GQE" secondAttribute="bottom" constant="4" id="bAd-nF-R4C"/>
                                 <constraint firstItem="hxL-5w-RR5" firstAttribute="width" secondItem="3Y9-uZ-GQE" secondAttribute="width" multiplier="1.11333" id="eyY-1a-kqd"/>
                                 <constraint firstItem="onv-eg-XX2" firstAttribute="centerY" secondItem="Zhw-Lc-xjJ" secondAttribute="centerY" id="f9W-N3-2nr"/>
                                 <constraint firstItem="H55-f3-0Na" firstAttribute="centerY" secondItem="Zhw-Lc-xjJ" secondAttribute="centerY" id="g1J-qz-ghF"/>
                                 <constraint firstItem="RjL-r0-nMb" firstAttribute="centerY" secondItem="3Y9-uZ-GQE" secondAttribute="centerY" id="hsi-LQ-yWY"/>
-                                <constraint firstItem="hxL-5w-RR5" firstAttribute="leading" secondItem="RjL-r0-nMb" secondAttribute="trailing" constant="14" id="lQf-sR-z35"/>
+                                <constraint firstItem="hxL-5w-RR5" firstAttribute="leading" secondItem="RjL-r0-nMb" secondAttribute="trailing" constant="6" id="lQf-sR-z35"/>
                                 <constraint firstItem="qD8-pL-29b" firstAttribute="top" secondItem="Nip-hb-MI3" secondAttribute="bottom" constant="4" id="lnc-OO-icJ"/>
                                 <constraint firstAttribute="trailing" secondItem="rBg-mt-64R" secondAttribute="trailing" constant="16" id="lwG-ng-BW6"/>
                                 <constraint firstItem="BeK-Kf-LSS" firstAttribute="leading" secondItem="gRE-EQ-Sug" secondAttribute="leading" constant="16" id="moN-DV-WJG"/>
