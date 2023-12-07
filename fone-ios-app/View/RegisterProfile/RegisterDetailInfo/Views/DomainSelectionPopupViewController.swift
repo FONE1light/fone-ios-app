@@ -15,6 +15,7 @@ class DomainSelectionPopupViewController: UIViewController {
     var disposeBag = DisposeBag()
     
     let selectedItems = BehaviorRelay<[Selection]>(value: [])
+    let dimViewButton = UIButton()
     
     private let contentView = UIView().then {
         $0.backgroundColor = .white_FFFFFF
@@ -46,6 +47,7 @@ class DomainSelectionPopupViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .black_000000.withAlphaComponent(0.3)
+        view.addSubview(dimViewButton)
         
         view.addSubview(contentView)
         contentView.cornerRadius = 10
@@ -60,12 +62,16 @@ class DomainSelectionPopupViewController: UIViewController {
     }
     
     private func setConstraints() {
+        dimViewButton.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
         
         contentView.snp.makeConstraints {
             $0.width.equalTo(347)
             $0.height.equalTo(342)
             $0.center.equalToSuperview()
         }
+        
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(12)
             $0.centerX.equalToSuperview()
@@ -138,6 +144,12 @@ class DomainSelectionPopupViewController: UIViewController {
             .withUnretained(self)
             .bind { owner, _ in
                 // TODO: 선택된 Domains 넘기기
+                owner.dismiss(animated: false)
+            }.disposed(by: rx.disposeBag)
+            
+        dimViewButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
                 owner.dismiss(animated: false)
             }.disposed(by: rx.disposeBag)
     }
