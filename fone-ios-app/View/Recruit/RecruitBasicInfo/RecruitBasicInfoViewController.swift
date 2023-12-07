@@ -106,7 +106,8 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     }
     
     private func setNavigationBar() {
-        navigationItem.titleView = NavigationTitleView(title: "배우 모집하기")
+        guard let jobType = viewModel.jobType else { return }
+        navigationItem.titleView = NavigationTitleView(title: "\(jobType.koreanName) 모집하기")
         navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
             type: .backWithAlert,
             viewController: self

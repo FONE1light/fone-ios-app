@@ -10,6 +10,8 @@ import UIKit
 class RecruitConditionInfoViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var stepIndicator: StepIndicator!
     @IBOutlet weak var castingTextField: LabelTextField!
+    @IBOutlet weak var domainView: UIView!
+    @IBOutlet weak var domainSelectButton: UIButton!
     @IBOutlet weak var numberTextField: LabelTextField!
     @IBOutlet weak var startAgeLabel: UILabel!
     @IBOutlet weak var startAgeButton: UIButton!
@@ -34,10 +36,22 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
             .bind { owner, _ in
                 owner.viewModel.sceneCoordinator.transition(to: .recruitWorkInfo, using: .push, animated: true)
             }.disposed(by: rx.disposeBag)
+            
+        domainSelectButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                let popup = DomainSelectionPopupViewController()
+                
+                popup.modalPresentationStyle = .overFullScreen
+                
+                owner.present(popup, animated: false)
+                
+            }.disposed(by: rx.disposeBag)
     }
     
     private func setNavigationBar() {
-        navigationItem.titleView = NavigationTitleView(title: "배우 모집하기")
+        guard let jobType = viewModel.jobType else { return }
+        navigationItem.titleView = NavigationTitleView(title: "\(jobType.koreanName) 모집하기")
         navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
             type: .back,
             viewController: self
@@ -46,7 +60,17 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
     
     private func setUI() {
         stepIndicator.xibInit(index: 1, totalCount: 6)
-        castingTextField.xibInit(label: "모집배역", placeholder: "ex) 30대 중반 경찰", textFieldHeight: 44, isRequired: true, textFieldLeadingOffset: 76)
+        switch viewModel.jobType {
+        case .actor:
+            castingTextField.isHidden = false
+            domainView.isHidden = true
+            castingTextField.xibInit(label: "모집배역", placeholder: "ex) 30대 중반 경찰", textFieldHeight: 44, isRequired: true, textFieldLeadingOffset: 76)
+        case .staff:
+            castingTextField.isHidden = true
+            domainView.isHidden = false
+        default: break
+        }
+        
         numberTextField.xibInit(label: nil, placeholder: nil, textFieldLeadingOffset: 0, textFieldKeyboardType: .numberPad)
         careerSelectionBlock.xibInit()
         careerSelectionBlock.collectionView.allowsMultipleSelection = true
@@ -79,8 +103,8 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
             endActions.append(action)
         }
         endAgeButton.menu = UIMenu(title: "",
-                                     options: .singleSelection,
-                                     children: endActions)
+                                   options: .singleSelection,
+                                   children: endActions)
         endAgeButton.showsMenuAsPrimaryAction = true
     }
 }

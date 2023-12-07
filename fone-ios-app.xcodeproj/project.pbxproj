@@ -1840,6 +1840,7 @@
 				AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */,
 				362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */,
 				367D9C092AD774CD00DA6C96 /* MyPageProfileCell.swift in Sources */,
+				AB6E14812B1F5CAF008B8FE6 /* RecruitConditionInfoViewModel.swift in Sources */,
 				3628669A2A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift in Sources */,
 				366F22A62ADB2AD600FD00BD /* OfficialMark.swift in Sources */,
 				ABAFA33B2A9F612900D50BAF /* QuestionInfoProvider.swift in Sources */,
