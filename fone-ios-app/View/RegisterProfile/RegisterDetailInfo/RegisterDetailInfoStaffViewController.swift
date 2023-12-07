@@ -80,6 +80,15 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
         $0.borderColor = .gray_EEEFEF
     }
     
+    private let domainStackView = UIStackView().then {
+        $0.axis = .horizontal
+        $0.spacing = 6
+    }
+    
+    private let rightArrowImageView = UIImageView().then {
+        $0.image = UIImage(named: "arrow_right")?.withTintColor(.gray_9E9E9E)
+    }
+    
     private let domainContentButton = UIButton()
     
     // 특기
@@ -124,8 +133,8 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
         viewModel.selectedDomains
             .withUnretained(self)
             .bind { owner, domains in
-                print("✅\(domains)")
-                // TODO: 뷰 대응
+                guard let domains = domains as? [Domain] else { return }
+                owner.setupDomainStackView(with: domains)
             }.disposed(by: disposeBag)
         
         viewModel.instagramLink
@@ -273,10 +282,12 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
             domainLabel,
             domainRequiredStar,
             domainContentView,
+            domainStackView,
+            rightArrowImageView,
             domainContentButton
         ]
             .forEach { domainBlock.addSubview($0) }
-        setupFieldBlock()
+        setupDomainBlock()
         
         [
             snsLabel,
@@ -351,7 +362,7 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
         }
     }
     
-    private func setupFieldBlock() {
+    private func setupDomainBlock() {
         domainLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview()
@@ -370,10 +381,44 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
             $0.leading.equalTo(domainRequiredStar.snp.trailing).offset(24)
         }
         
+        domainStackView.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview().inset(11)
+            $0.trailing.equalTo(rightArrowImageView.snp.leading).offset(-6)
+        }
+        
+        rightArrowImageView.snp.makeConstraints {
+            $0.size.equalTo(16)
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(12)
+        }
+        
         domainContentButton.snp.makeConstraints {
             $0.edges.equalTo(domainContentView)
         }
         
+    }
+    
+    private func setupDomainStackView(with selectedDomains: [Domain]) {
+        domainStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        var views: [UIView] = []
+        switch selectedDomains.count {
+        case 0:
+            let label = UILabel().then {
+                $0.text = "분야 선택"
+                $0.font = .font_r(12)
+                $0.textColor = .gray_9E9E9E
+            }
+            views.append(label)
+            
+        case 1, 2:
+            views.append(contentsOf: selectedDomains.map { DomainPreviewTag($0) })
+        case Domain.allCases.count:
+            views.append(DomainPreviewTag(title: "전체선택"))
+        default:
+            views.append(DomainPreviewTag(title: "\(selectedDomains.count)개 선택"))
+        }
+        
+        views.forEach { domainStackView.addArrangedSubview($0) }
     }
     
     private func setupSNSBlock() {
