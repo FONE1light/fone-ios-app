@@ -49,7 +49,8 @@ class RegisterInterestViewController: UIViewController, ViewModelBindableType {
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-//                owner.viewModel.moveToRegisterDetailContent()
+                // FIXME: API 호출
+                owner.viewModel.register()
             }.disposed(by: rx.disposeBag)
     }
     
