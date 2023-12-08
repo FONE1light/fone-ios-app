@@ -27,7 +27,7 @@ class MyPageProfileCell: UICollectionViewCell {
             if isSaved {
                 heartImageView.image = UIImage(named: "heart_on")
             } else {
-                heartImageView.image = UIImage(named: "heart_off")
+                heartImageView.image = UIImage(named: "heart_01_off")
             }
         }
     }
@@ -48,7 +48,7 @@ class MyPageProfileCell: UICollectionViewCell {
     }
     
     private let heartImageView = UIImageView().then {
-        $0.image = UIImage(named: "heart_off")
+        $0.image = UIImage(named: "heart_01_off")
     }
     
     override init(frame: CGRect) {
