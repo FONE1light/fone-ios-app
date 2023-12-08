@@ -73,13 +73,7 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
     }
     
     private let domainRequiredStar = UIImageView(image: UIImage(named: "star"))
-    
-    private let domainContentView = UIView().then {
-        $0.cornerRadius = 5
-        $0.borderWidth = 1
-        $0.borderColor = .gray_EEEFEF
-    }
-    
+    private let domainContentView = DomainContentView()
     private let domainContentButton = UIButton()
     
     // 특기
@@ -120,7 +114,13 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
             .bind(to: birthTextField.rx.text)
             .disposed(by: rx.disposeBag)
         
-        // TODO: 분야 팝업 dismiss 후 선택된 것들 이용해 뷰 대응
+        // 분야 팝업 dismiss 후 선택된 것들 이용해 뷰 대응
+        viewModel.selectedDomains
+            .withUnretained(self)
+            .bind { owner, domains in
+                guard let domains = domains as? [Domain] else { return }
+                owner.domainContentView.setupDomainStackView(with: domains)
+            }.disposed(by: disposeBag)
         
         viewModel.instagramLink
             .withUnretained(self)
@@ -184,7 +184,10 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
         domainContentButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let popup = DomainSelectionPopupViewController()
+//                owner.viewModel.sceneCoordinator.transition(to: .domainSelectionPopup, using: .overFullScreen, animated: false)
+                let popup = DomainSelectionPopupViewController(
+                    selectionRelay: owner.viewModel.selectedDomains
+                )
                 
                 popup.modalPresentationStyle = .overFullScreen
                 
@@ -267,7 +270,7 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
             domainContentButton
         ]
             .forEach { domainBlock.addSubview($0) }
-        setupFieldBlock()
+        setupDomainBlock()
         
         [
             snsLabel,
@@ -342,7 +345,7 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
         }
     }
     
-    private func setupFieldBlock() {
+    private func setupDomainBlock() {
         domainLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview()

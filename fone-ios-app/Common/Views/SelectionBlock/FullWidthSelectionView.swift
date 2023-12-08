@@ -25,11 +25,15 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
     
     private var items: [Selection] = []
     
+    private var selectedItems: [Selection]?
+    
+    /// selectedItems: 초기화 시 선택되어 있어야 하는 항목들
     init(
         of selections: [Selection],
         width: CGFloat = 307,
         numberOfItemsInARow: Int = 3,
-        minimumInteritemSpacing: CGFloat = 8
+        minimumInteritemSpacing: CGFloat = 8,
+        selectedItems: [Selection]? = nil
     ) {
         
         let layout = UICollectionViewFlowLayout()
@@ -42,7 +46,7 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
         allowsMultipleSelection = true // default: true로 변경
         
         register(with: DynamicSizeSelectionCell.self)
-        dataSource = self
+        dataSource = self        
         
         self.items = selections
         self.constants = Constants(
@@ -50,6 +54,7 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
             numberOfItemsInARow: numberOfItemsInARow,
             minimumInteritemSpacing: minimumInteritemSpacing
         )
+        self.selectedItems = selectedItems
         
         self.bindViewModel()
     }
@@ -58,7 +63,8 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
         of selections: [Selection],
         width: CGFloat = 307,
         numberOfItemsInARow: Int = 3,
-        minimumInteritemSpacing: CGFloat = 8
+        minimumInteritemSpacing: CGFloat = 8,
+        selectedItems: [Selection]? = nil
     ) {
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
@@ -73,6 +79,7 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
             numberOfItemsInARow: numberOfItemsInARow,
             minimumInteritemSpacing: minimumInteritemSpacing
         )
+        self.selectedItems = selectedItems
         
         self.bindViewModel()
     }
@@ -103,13 +110,25 @@ extension FullWidthSelectionView: UICollectionViewDataSource {
     // MARK: cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        
+        // configure
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as DynamicSizeSelectionCell
-
-        cell.setItem(items[indexPath.row])
+        let selectionItem = items[indexPath.row]
+        cell.configure(selectionItem)
+        
+        // 초기화 시 선택 처리
+        let shouldBeSelected = selectedItems?.contains(where: {
+            $0.name == selectionItem.name
+        }) ?? false
+        
+        if shouldBeSelected {
+            selectItem(at: indexPath)
+        }
         
         return cell
     }
 }
+
 
 extension FullWidthSelectionView: UICollectionViewDelegateFlowLayout {
     // MARK: cellSize

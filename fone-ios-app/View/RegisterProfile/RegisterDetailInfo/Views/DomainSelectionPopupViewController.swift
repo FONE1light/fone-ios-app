@@ -12,9 +12,10 @@ import RxSwift
 import RxRelay
 
 class DomainSelectionPopupViewController: UIViewController {
+    
     var disposeBag = DisposeBag()
     
-    let selectedItems = BehaviorRelay<[Selection]>(value: [])
+    let dimViewButton = UIButton()
     
     private let contentView = UIView().then {
         $0.backgroundColor = .white_FFFFFF
@@ -30,10 +31,34 @@ class DomainSelectionPopupViewController: UIViewController {
         $0.setImage(UIImage(named: "close_MD"), for: .normal)
     }
     
-    private let domains = FullWidthSelectionView(of: Domain.allCases)
+    private let domains: FullWidthSelectionView
+    
+    /// 내부에서 사용할 BehaviorRelay
+    private let selectionRelay: BehaviorRelay<[Selection]>
+    
+    /// 외부에서 받은 BehaviorRelay
+    private let superSelectionRelay: BehaviorRelay<[Selection]>?
     
     private let confirmButton = CustomButton("확인", type: .bottom14).then {
         $0.isEnabled = false
+    }
+    
+    init(selectionRelay superSelectionRelay: BehaviorRelay<[Selection]>? = nil) {
+        let selectedItems = superSelectionRelay?.value ?? []
+        
+        domains = FullWidthSelectionView(
+            of: Domain.allCases,
+            selectedItems: selectedItems
+        )
+        self.selectionRelay = BehaviorRelay<[Selection]>(value: selectedItems)
+        self.superSelectionRelay = superSelectionRelay
+        
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -46,6 +71,7 @@ class DomainSelectionPopupViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .black_000000.withAlphaComponent(0.3)
+        view.addSubview(dimViewButton)
         
         view.addSubview(contentView)
         contentView.cornerRadius = 10
@@ -60,12 +86,16 @@ class DomainSelectionPopupViewController: UIViewController {
     }
     
     private func setConstraints() {
+        dimViewButton.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
         
         contentView.snp.makeConstraints {
             $0.width.equalTo(347)
             $0.height.equalTo(342)
             $0.center.equalToSuperview()
         }
+        
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(12)
             $0.centerX.equalToSuperview()
@@ -98,10 +128,10 @@ class DomainSelectionPopupViewController: UIViewController {
                 guard let cell = owner.domains.cellForItem(at: indexPath) as? DynamicSizeSelectionCell else { return }
                 // 선택(isSelected=true)된 item 업데이트
                 guard let item = cell.item else { return }
-                var items = owner.selectedItems.value
+                var items = owner.selectionRelay.value
                 items.removeAll { $0.name == item.name }
                 
-                owner.selectedItems.accept(items)
+                owner.selectionRelay.accept(items)
                 
             }.disposed(by: rx.disposeBag)
         
@@ -111,16 +141,16 @@ class DomainSelectionPopupViewController: UIViewController {
                 guard let cell = owner.domains.cellForItem(at: indexPath) as? DynamicSizeSelectionCell else { return }
                 // 선택(isSelected=true)된 item 업데이트
                 guard let item = cell.item else { return }
-                var items = owner.selectedItems.value
+                var items = owner.selectionRelay.value
                 items.append(item)
                 
-                owner.selectedItems.accept(items)
+                owner.selectionRelay.accept(items)
                 
             }.disposed(by: rx.disposeBag)
 
-        selectedItems.withUnretained(self)
+        selectionRelay.withUnretained(self)
             .bind { owner, items in
-                if !items.isEmpty {
+                if items.isEmpty == false {
                     owner.confirmButton.isEnabled = true
                 } else {
                     owner.confirmButton.isEnabled = false
@@ -137,7 +167,14 @@ class DomainSelectionPopupViewController: UIViewController {
         confirmButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                // TODO: 선택된 Domains 넘기기
+                // 선택된 Domains 넘기기
+                owner.superSelectionRelay?.accept(owner.selectionRelay.value)
+                owner.dismiss(animated: false)
+            }.disposed(by: rx.disposeBag)
+            
+        dimViewButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
                 owner.dismiss(animated: false)
             }.disposed(by: rx.disposeBag)
     }

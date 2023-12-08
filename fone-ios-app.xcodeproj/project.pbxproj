@@ -48,6 +48,8 @@
 		366E85092B19ECC200CB7681 /* FullWidthSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E85082B19ECC200CB7681 /* FullWidthSelectionView.swift */; };
 		366E850B2B19F50A00CB7681 /* Domain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E850A2B19F50A00CB7681 /* Domain.swift */; };
 		366E850D2B19FBE400CB7681 /* DomainSelectionPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E850C2B19FBE400CB7681 /* DomainSelectionPopupViewController.swift */; };
+		366E85122B22042700CB7681 /* DomainPreviewTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E85112B22042700CB7681 /* DomainPreviewTag.swift */; };
+		366E85142B220CBE00CB7681 /* DomainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E85132B220CBE00CB7681 /* DomainContentView.swift */; };
 		366F22A62ADB2AD600FD00BD /* OfficialMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366F22A52ADB2AD600FD00BD /* OfficialMark.swift */; };
 		366F22A82ADB2BFD00FD00BD /* DetailInfoBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366F22A72ADB2BFD00FD00BD /* DetailInfoBlock.swift */; };
 		366F22AB2ADB486E00FD00BD /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = 366F22AA2ADB486E00FD00BD /* PanModal */; };
@@ -329,6 +331,8 @@
 		366E85082B19ECC200CB7681 /* FullWidthSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthSelectionView.swift; sourceTree = "<group>"; };
 		366E850A2B19F50A00CB7681 /* Domain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain.swift; sourceTree = "<group>"; };
 		366E850C2B19FBE400CB7681 /* DomainSelectionPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainSelectionPopupViewController.swift; sourceTree = "<group>"; };
+		366E85112B22042700CB7681 /* DomainPreviewTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainPreviewTag.swift; sourceTree = "<group>"; };
+		366E85132B220CBE00CB7681 /* DomainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainContentView.swift; sourceTree = "<group>"; };
 		366F22A52ADB2AD600FD00BD /* OfficialMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialMark.swift; sourceTree = "<group>"; };
 		366F22A72ADB2BFD00FD00BD /* DetailInfoBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoBlock.swift; sourceTree = "<group>"; };
 		366F22AC2ADB5AF000FD00BD /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -994,6 +998,8 @@
 			children = (
 				36A4D4A12B15D065008541E9 /* SNSBottomSheet.swift */,
 				366E850C2B19FBE400CB7681 /* DomainSelectionPopupViewController.swift */,
+				366E85112B22042700CB7681 /* DomainPreviewTag.swift */,
+				366E85132B220CBE00CB7681 /* DomainContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1770,6 +1776,7 @@
 				AB2578A12AAF36A900328363 /* HomeViewController.swift in Sources */,
 				AB6785542AA3335A00ACD35C /* EmailLoginViewModel.swift in Sources */,
 				367D9C122AD9FE2600DA6C96 /* MyPageTabBarCell.swift in Sources */,
+				366E85142B220CBE00CB7681 /* DomainContentView.swift in Sources */,
 				366F22B02ADB646400FD00BD /* BottomSheetViewController.swift in Sources */,
 				3650F61B2A849BF10017645D /* UIColor+Extension.swift in Sources */,
 				367D9BC92AC2720000DA6C96 /* Tag.swift in Sources */,
@@ -1785,6 +1792,7 @@
 				362866972A8E3D8200CD42BC /* Response+Codable.swift in Sources */,
 				364482D82AB80EDA00984507 /* MyPageMenuCell.swift in Sources */,
 				AB9DAAA82AB0A4F500B00016 /* HomeInfoProvider.swift in Sources */,
+				366E85122B22042700CB7681 /* DomainPreviewTag.swift in Sources */,
 				AB532B312B0A306A003A6A57 /* SalaryType.swift in Sources */,
 				ABA47FF72A850AE600B64403 /* UIView+Extension.swift in Sources */,
 				AB2578A52AAF387F00328363 /* TabBarViewController.swift in Sources */,

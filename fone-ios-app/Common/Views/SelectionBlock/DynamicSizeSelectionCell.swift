@@ -60,7 +60,7 @@ class DynamicSizeSelectionCell: UICollectionViewCell {
 }
 
 extension DynamicSizeSelectionCell {
-    func setItem(_ selection: Selection) {
+    func configure(_ selection: Selection) {
         item = selection
     }
     
