@@ -242,6 +242,8 @@
 		AB68DF2B2ACC0EA1003BADE1 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB68DF292ACC0EA1003BADE1 /* ProfileCell.swift */; };
 		AB68DF2C2ACC0EA1003BADE1 /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB68DF2A2ACC0EA1003BADE1 /* ProfileCell.xib */; };
 		AB6992242AB6E87100B67455 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6992232AB6E87100B67455 /* ChatViewModel.swift */; };
+		AB6E432F2B2205CB001960E7 /* RecruitWorkInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E432E2B2205CB001960E7 /* RecruitWorkInfoViewModel.swift */; };
+		AB6E43312B2205ED001960E7 /* RecruitWorkConditionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E43302B2205ED001960E7 /* RecruitWorkConditionViewModel.swift */; };
 		AB72BC882B1E03FF00EB02FE /* RecruitConditionInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB72BC872B1E03FF00EB02FE /* RecruitConditionInfoViewModel.swift */; };
 		AB72BC8D2B1E073900EB02FE /* GenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB72BC8B2B1E073900EB02FE /* GenreCell.swift */; };
 		AB72BC8E2B1E073900EB02FE /* GenreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB72BC8C2B1E073900EB02FE /* GenreCell.xib */; };
@@ -257,6 +259,8 @@
 		AB80BBEB2B12E13D0016D2AB /* RecruitConditionInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB80BBE92B12E13D0016D2AB /* RecruitConditionInfoViewController.swift */; };
 		AB80BBEC2B12E13D0016D2AB /* RecruitConditionInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB80BBEA2B12E13D0016D2AB /* RecruitConditionInfoViewController.xib */; };
 		AB9885122AA476FF00282C07 /* Rx+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9885112AA476FF00282C07 /* Rx+Extension.swift */; };
+		AB998AFF2B21F976007E6214 /* RecruitWorkConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB998AFD2B21F976007E6214 /* RecruitWorkConditionViewController.swift */; };
+		AB998B002B21F976007E6214 /* RecruitWorkConditionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB998AFE2B21F976007E6214 /* RecruitWorkConditionViewController.xib */; };
 		AB9DAAA82AB0A4F500B00016 /* HomeInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9DAAA72AB0A4F500B00016 /* HomeInfoProvider.swift */; };
 		ABA47FF72A850AE600B64403 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA47FF62A850AE600B64403 /* UIView+Extension.swift */; };
 		ABAFA3392A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAFA3382A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift */; };
@@ -475,6 +479,8 @@
 		AB68DF292ACC0EA1003BADE1 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		AB68DF2A2ACC0EA1003BADE1 /* ProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
 		AB6992232AB6E87100B67455 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		AB6E432E2B2205CB001960E7 /* RecruitWorkInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitWorkInfoViewModel.swift; sourceTree = "<group>"; };
+		AB6E43302B2205ED001960E7 /* RecruitWorkConditionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitWorkConditionViewModel.swift; sourceTree = "<group>"; };
 		AB72BC872B1E03FF00EB02FE /* RecruitConditionInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitConditionInfoViewModel.swift; sourceTree = "<group>"; };
 		AB72BC8B2B1E073900EB02FE /* GenreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCell.swift; sourceTree = "<group>"; };
 		AB72BC8C2B1E073900EB02FE /* GenreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenreCell.xib; sourceTree = "<group>"; };
@@ -490,6 +496,8 @@
 		AB80BBE92B12E13D0016D2AB /* RecruitConditionInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitConditionInfoViewController.swift; sourceTree = "<group>"; };
 		AB80BBEA2B12E13D0016D2AB /* RecruitConditionInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitConditionInfoViewController.xib; sourceTree = "<group>"; };
 		AB9885112AA476FF00282C07 /* Rx+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Extension.swift"; sourceTree = "<group>"; };
+		AB998AFD2B21F976007E6214 /* RecruitWorkConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitWorkConditionViewController.swift; sourceTree = "<group>"; };
+		AB998AFE2B21F976007E6214 /* RecruitWorkConditionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitWorkConditionViewController.xib; sourceTree = "<group>"; };
 		AB9DAAA72AB0A4F500B00016 /* HomeInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInfoProvider.swift; sourceTree = "<group>"; };
 		ABA47FF62A850AE600B64403 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		ABA597302AE7D94500E6F709 /* fone-ios-app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "fone-ios-app.entitlements"; sourceTree = "<group>"; };
@@ -1112,6 +1120,7 @@
 			children = (
 				AB1ADF292B1E016900C2F2DD /* RecruitWorkInfoViewController.swift */,
 				AB1ADF2A2B1E016900C2F2DD /* RecruitWorkInfoViewController.xib */,
+				AB6E432E2B2205CB001960E7 /* RecruitWorkInfoViewModel.swift */,
 			);
 			path = RecruitWorkInfo;
 			sourceTree = "<group>";
@@ -1417,6 +1426,16 @@
 			path = RecruitConditionInfo;
 			sourceTree = "<group>";
 		};
+		AB998B012B21F97E007E6214 /* RecruitWorkCondition */ = {
+			isa = PBXGroup;
+			children = (
+				AB998AFD2B21F976007E6214 /* RecruitWorkConditionViewController.swift */,
+				AB998AFE2B21F976007E6214 /* RecruitWorkConditionViewController.xib */,
+				AB6E43302B2205ED001960E7 /* RecruitWorkConditionViewModel.swift */,
+			);
+			path = RecruitWorkCondition;
+			sourceTree = "<group>";
+		};
 		ABC1DBDA2AC00F0D00B9A6BF /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1540,6 +1559,7 @@
 				AB80BBE82B12E10E0016D2AB /* RecruitBasicInfo */,
 				AB80BBED2B12E1420016D2AB /* RecruitConditionInfo */,
 				AB1ADF2D2B1E016E00C2F2DD /* RecruitWorkInfo */,
+				AB998B012B21F97E007E6214 /* RecruitWorkCondition */,
 			);
 			path = Recruit;
 			sourceTree = "<group>";
@@ -1683,6 +1703,7 @@
 				AB3F071A2AADAA9200E54A25 /* FindIDCell.xib in Resources */,
 				ABCDD1852B00E8E900A598A8 /* WorkInfoCell.xib in Resources */,
 				AB49A3452A81158900748484 /* FindIDPasswordViewController.xib in Resources */,
+				AB998B002B21F976007E6214 /* RecruitWorkConditionViewController.xib in Resources */,
 				AB6002452A7E375D000CF1FD /* LaunchScreen.storyboard in Resources */,
 				AB67855D2AA3374F00ACD35C /* EmailSignUpViewController.xib in Resources */,
 				ABF8172A2AF27B1D00625D55 /* RecruitBasicInfoViewController.xib in Resources */,
@@ -1759,6 +1780,7 @@
 				36AC7BDD2AB1315700478030 /* ProfileViewController.swift in Sources */,
 				367D9C1A2ADA294E00DA6C96 /* MyRegistrationsViewModel.swift in Sources */,
 				36E269412AAAEF420034B485 /* NavigationLeftBarButtonItem.swift in Sources */,
+				AB6E432F2B2205CB001960E7 /* RecruitWorkInfoViewModel.swift in Sources */,
 				AB49A3492A8119B900748484 /* CommonViewModel.swift in Sources */,
 				36F50AA92A962C9800991C9B /* EmptyView.swift in Sources */,
 				3663DB142AF68845005899BF /* JobOpeningSortButtonView.swift in Sources */,
@@ -1848,7 +1870,6 @@
 				AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */,
 				362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */,
 				367D9C092AD774CD00DA6C96 /* MyPageProfileCell.swift in Sources */,
-				AB6E14812B1F5CAF008B8FE6 /* RecruitConditionInfoViewModel.swift in Sources */,
 				3628669A2A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift in Sources */,
 				366F22A62ADB2AD600FD00BD /* OfficialMark.swift in Sources */,
 				ABAFA33B2A9F612900D50BAF /* QuestionInfoProvider.swift in Sources */,
@@ -1871,6 +1892,7 @@
 				36C8B7EE2ADC853D008B6F88 /* SignUpTerms.swift in Sources */,
 				36D293D42A961FDB00171C77 /* SelectionBlock.swift in Sources */,
 				36D293D22A961E7300171C77 /* SignUpSelectionViewController.swift in Sources */,
+				AB998AFF2B21F976007E6214 /* RecruitWorkConditionViewController.swift in Sources */,
 				AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */,
 				367D9C322ADA652300DA6C96 /* JobRegistrationViewController.swift in Sources */,
 				362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */,
@@ -1916,6 +1938,7 @@
 				AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */,
 				AB1CEABC2ABFD29C00E7E54F /* MainBannerCell.swift in Sources */,
 				367D9BD12AC3B98100DA6C96 /* CompetitionViewController.swift in Sources */,
+				AB6E43312B2205ED001960E7 /* RecruitWorkConditionViewModel.swift in Sources */,
 				36BDA1422AEE3F08001AF777 /* ImageUploadAPIModel.swift in Sources */,
 				AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */,
 				367AA9052B14D7E30004F9D3 /* CareerSelectionBlock.swift in Sources */,

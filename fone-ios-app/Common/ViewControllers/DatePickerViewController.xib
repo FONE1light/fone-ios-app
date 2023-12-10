@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,26 +25,63 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <datePicker clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="rw8-g5-1xH">
-                    <rect key="frame" x="36.666666666666657" y="272.66666666666663" width="320" height="306.66666666666663"/>
-                    <color key="tintColor" red="0.80784313725490198" green="0.043137254901960784" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GGA-Qw-AVZ">
+                    <rect key="frame" x="36.666666666666657" y="250.66666666666666" width="320" height="350.66666666666674"/>
+                    <subviews>
+                        <datePicker clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="rw8-g5-1xH">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="306.66666666666669"/>
+                            <color key="tintColor" red="0.80784313725490198" green="0.043137254901960784" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </datePicker>
+                        <toolbar opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMp-Mv-iDB">
+                            <rect key="frame" x="0.0" y="306.66666666666674" width="320" height="44"/>
+                            <items>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="Gfc-Bf-2ZR"/>
+                                <barButtonItem style="done" systemItem="done" id="Tm9-Co-8sM">
+                                    <color key="tintColor" red="0.80784313725490198" green="0.043137254901960784" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <action selector="handleDatePicker:" destination="-1" id="bY0-iT-4rb"/>
+                                    </connections>
+                                </barButtonItem>
+                            </items>
+                        </toolbar>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="EMp-Mv-iDB" firstAttribute="top" secondItem="rw8-g5-1xH" secondAttribute="bottom" id="5Zs-g1-HJy"/>
+                        <constraint firstAttribute="trailing" secondItem="EMp-Mv-iDB" secondAttribute="trailing" id="CHA-iP-rEi"/>
+                        <constraint firstAttribute="trailing" secondItem="rw8-g5-1xH" secondAttribute="trailing" id="Cgd-Vb-afQ"/>
+                        <constraint firstItem="rw8-g5-1xH" firstAttribute="top" secondItem="GGA-Qw-AVZ" secondAttribute="top" id="Tol-nX-PuO"/>
+                        <constraint firstItem="EMp-Mv-iDB" firstAttribute="leading" secondItem="GGA-Qw-AVZ" secondAttribute="leading" id="qg7-6t-Kd5"/>
+                        <constraint firstItem="rw8-g5-1xH" firstAttribute="leading" secondItem="GGA-Qw-AVZ" secondAttribute="leading" id="rrt-Cx-3HX"/>
+                        <constraint firstAttribute="bottom" secondItem="EMp-Mv-iDB" secondAttribute="bottom" id="xed-sh-Avh"/>
+                    </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                             <real key="value" value="10"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
-                </datePicker>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <constraints>
                 <constraint firstItem="9dI-AW-36C" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="URe-Jj-RG7"/>
+                <constraint firstItem="GGA-Qw-AVZ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Wcv-AM-BSY"/>
+                <constraint firstItem="GGA-Qw-AVZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Zdo-s5-mg5"/>
                 <constraint firstAttribute="trailing" secondItem="9dI-AW-36C" secondAttribute="trailing" id="dGi-6M-CnP"/>
                 <constraint firstItem="9dI-AW-36C" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gun-EB-Jjp"/>
-                <constraint firstItem="rw8-g5-1xH" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="k7H-pe-Nuu"/>
                 <constraint firstAttribute="bottom" secondItem="9dI-AW-36C" secondAttribute="bottom" id="uVH-mK-AsQ"/>
-                <constraint firstItem="rw8-g5-1xH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="uvA-hX-1iK"/>
             </constraints>
             <point key="canvasLocation" x="7" y="20"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

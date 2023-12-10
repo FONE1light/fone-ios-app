@@ -19,8 +19,10 @@ extension String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
 
-        let price: Int = Int(Double(self) ?? 0.0)
-        return numberFormatter.string(from: NSNumber(value: price)) ?? self
+        if let price: Int = Int(self) {
+            return numberFormatter.string(from: NSNumber(value: price)) ?? self
+        }
+        return self
     }
     
     var weekDay: String {
