@@ -64,19 +64,31 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
     }
     
     private func setupDatePicker() {
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .time
-        datePicker.preferredDatePickerStyle = .wheels
-        datePicker.locale = Locale(identifier: "ko-KR")
-        datePicker.addTarget(self, action: #selector(getStartTime), for: .valueChanged)
-        startTimeTextField.inputView = datePicker
-        endTimeTextField.inputView = datePicker
+        let startDatePicker = UIDatePicker()
+        startDatePicker.datePickerMode = .time
+        startDatePicker.preferredDatePickerStyle = .wheels
+        startDatePicker.locale = Locale(identifier: "ko-KR")
+        startDatePicker.addTarget(self, action: #selector(getStartTime), for: .valueChanged)
+        startTimeTextField.inputView = startDatePicker
+        
+        let endDatePicker = UIDatePicker()
+        endDatePicker.datePickerMode = .time
+        endDatePicker.preferredDatePickerStyle = .wheels
+        endDatePicker.locale = Locale(identifier: "ko-KR")
+        endDatePicker.addTarget(self, action: #selector(getEndTime), for: .valueChanged)
+        endTimeTextField.inputView = endDatePicker
     }
     
     @objc func getStartTime(_ sender: UIDatePicker) {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         startTimeTextField.text = formatter.string(from: sender.date)
+    }
+    
+    @objc func getEndTime(_ sender: UIDatePicker) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        endTimeTextField.text = formatter.string(from: sender.date)
     }
 }
 
