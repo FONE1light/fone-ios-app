@@ -15,9 +15,9 @@ enum JobHuntingDetailSection: Int, CaseIterable {
 //    /// 상세 요강
     case summary
 //    /// 주요 경력
-//    case career // ADDED
-//    /// 분야
-//    case domains // ADDED
+    case mainCareer // ADDED
+    /// 분야
+    case categories // ADDED
     /// 본 정보는 ~
     case footer
 }
@@ -56,6 +56,8 @@ class JobHuntingDetailViewController: UIViewController, ViewModelBindableType {
 //        collectionView.register(WorkInfoCell.self)
 //        collectionView.register(WorkConditionCell.self)
         collectionView.register(SummaryCell.self)
+        collectionView.register(MainCareerCell.self)
+        collectionView.register(CategoriesCell.self)
 //        collectionView.register(ContactInfoCell.self)
         collectionView.register(FooterCell.self)
     }
@@ -63,6 +65,7 @@ class JobHuntingDetailViewController: UIViewController, ViewModelBindableType {
 
 extension JobHuntingDetailViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
+        // FIXME: 값 없는 경우 섹션 삭제.
         return JobHuntingDetailSection.allCases.count
     }
     
@@ -109,6 +112,20 @@ extension JobHuntingDetailViewController: UICollectionViewDataSource {
             let summary = viewModel.jobHuntingDetail?.work?.details ?? ""
             cell.configure(item: summary)
             return cell
+            
+        case JobHuntingDetailSection.mainCareer.rawValue:
+            let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as MainCareerCell
+            let mainCareer = viewModel.jobHuntingDetail?.work?.details ?? ""
+            cell.configure(item: mainCareer)
+            return cell
+            
+        case JobHuntingDetailSection.categories.rawValue:
+            let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CategoriesCell
+//            let categories = content.categories
+            let categories: [Category] = [.shortFilm, .viral, .independentFilm, .webDrama]
+            cell.configure(categories)
+            return cell
+            
 //        case JobHuntingDetailSection.contactInfo.rawValue:
 //            let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as ContactInfoCell
 //            cell.configure(manager: content.work?.manager, email: content.work?.email)
@@ -141,8 +158,19 @@ extension JobHuntingDetailViewController: UICollectionViewDelegateFlowLayout {
 //            height = 233
         case JobHuntingDetailSection.summary.rawValue:
             height = SummaryCell.cellHeight(viewModel.jobHuntingDetail?.work?.details)
-//        case JobHuntingDetailSection.contactInfo.rawValue:
-//            height = 118
+        case JobHuntingDetailSection.mainCareer.rawValue:
+            height = MainCareerCell.cellHeight(viewModel.jobHuntingDetail?.work?.details)
+        case JobHuntingDetailSection.categories.rawValue:
+            let categories = viewModel.jobHuntingDetail?.categories?
+                .compactMap { Category.getType(serverName: $0) }
+            guard let categories = categories else { return CGSize(width: width, height: 0) }
+            height = CategoriesCell.cellHeight(categories)
+            // FIXME: height 자동 계산 방법, 혹은 tableView로 변경 혹은 tableView로 새로 만들며 코드로 짜기
+            
+//            let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CategoriesCell
+//            cell.selectionBlock.setSelections([Category.shortFilm, Category.viral])
+//            let estimatedSize = cell.systemLayoutSizeFitting(CGSize(width: 50, height: 50))
+//            height = estimatedSize.height
         case JobHuntingDetailSection.footer.rawValue:
             height = 187
         default:
