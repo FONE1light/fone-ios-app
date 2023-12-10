@@ -15,6 +15,16 @@ class DatePickerViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dimView: UIView!
     
+    @IBAction func handleDatePicker(_ sender: Any) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        dateFormatter.dateFormat = "yyyy.MM.dd(EEEEE)"
+        
+        dateFormatter.string(from: self.datePicker.date)
+        
+        self.delegate?.updateDateTime(dateFormatter.string(from: self.datePicker.date),label: resultLabel)
+        self.dismiss(animated: false)
+    }
     weak var delegate: DateTimePickerVCDelegate?
     var resultLabel: UILabel?
     
@@ -32,7 +42,6 @@ class DatePickerViewController: UIViewController, UIGestureRecognizerDelegate {
         
         datePicker.timeZone = .autoupdatingCurrent
         datePicker.setValue(UIColor.white, forKey: "backgroundColor")
-        datePicker.addTarget(self, action: #selector(handleDatePicker(_:)), for: .valueChanged)
         datePicker.minimumDate = Date()
     }
     
@@ -42,17 +51,6 @@ class DatePickerViewController: UIViewController, UIGestureRecognizerDelegate {
         self.dimView.addGestureRecognizer(tapGesture)
         
         setDatePicker()
-    }
-    
-    @objc func handleDatePicker(_ sender: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ko_KR")
-        dateFormatter.dateFormat = "yyyy.MM.dd(EEEEE)"
-        
-        dateFormatter.string(from: self.datePicker.date)
-        
-        self.delegate?.updateDateTime(dateFormatter.string(from: self.datePicker.date),label: resultLabel)
-        self.dismiss(animated: false)
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive event: UIEvent) -> Bool {
