@@ -16,6 +16,7 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
     @IBOutlet weak var startTimeTextField: UITextField!
     @IBOutlet weak var endTimeTextField: UITextField!
     @IBOutlet weak var salaryTypeButton: UIButton!
+    @IBOutlet weak var salaryTextField: UITextField!
     @IBOutlet weak var nextButton: UIButton!
     
     @IBAction func weekDayTapped(_ sender: UIButton) {
@@ -58,6 +59,15 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
             .withUnretained(self)
             .bind { owner, _ in
             }.disposed(by: rx.disposeBag)
+        
+        salaryTextField.rx.text.orEmpty
+            .filter { $0 != "" }
+            .map({ salary in
+                return salary.replacingOccurrences(of: ",", with: "")
+            })
+            .map { $0.insertComma }
+            .bind(to: salaryTextField.rx.text)
+            .disposed(by: rx.disposeBag)
     }
     
     private func setNavigationBar() {
