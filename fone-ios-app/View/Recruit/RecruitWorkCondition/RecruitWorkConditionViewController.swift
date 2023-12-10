@@ -15,6 +15,7 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
     @IBOutlet weak var endDateLabel: UILabel!
     @IBOutlet weak var startTimeTextField: UITextField!
     @IBOutlet weak var endTimeTextField: UITextField!
+    @IBOutlet weak var salaryTypeButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
     @IBAction func weekDayTapped(_ sender: UIButton) {
@@ -51,6 +52,11 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
                 vc.delegate = self
                 vc.modalPresentationStyle = .overFullScreen
                 self.present(vc, animated: false)
+            }.disposed(by: rx.disposeBag)
+        
+        salaryTypeButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
             }.disposed(by: rx.disposeBag)
     }
     

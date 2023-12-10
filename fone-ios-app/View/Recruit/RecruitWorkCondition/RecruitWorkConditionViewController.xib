@@ -26,6 +26,7 @@
                 <outlet property="endDateLabel" destination="xRt-3G-WmM" id="eUx-DU-G08"/>
                 <outlet property="endTimeTextField" destination="uYs-pL-NfJ" id="wpq-En-PFD"/>
                 <outlet property="nextButton" destination="hGW-ns-pwr" id="t0X-v6-oGZ"/>
+                <outlet property="salaryTypeButton" destination="EC9-gj-8n9" id="ygi-TQ-APG"/>
                 <outlet property="startDateButton" destination="8f9-pi-TzR" id="TE1-fN-TI9"/>
                 <outlet property="startDateLabel" destination="w1z-0a-dBz" id="ktO-YT-z06"/>
                 <outlet property="startTimeTextField" destination="SZL-xe-CjJ" id="xBV-Bl-ORh"/>
@@ -549,8 +550,8 @@
                                         <constraint firstAttribute="width" constant="16" id="YMj-RJ-q5J"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="근무지역" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hex-OH-VQe">
-                                    <rect key="frame" x="16.000000000000004" y="523" width="55.333333333333343" height="20"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="급여" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hex-OH-VQe">
+                                    <rect key="frame" x="16" y="523" width="27.666666666666671" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="CqN-Q1-10g"/>
                                     </constraints>
