@@ -17,6 +17,11 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
     @IBOutlet weak var endTimeTextField: UITextField!
     @IBOutlet weak var nextButton: UIButton!
     
+    @IBAction func weekDayTapped(_ sender: UIButton) {
+        sender.isSelected.toggle()
+        sender.setTitleColor(sender.isSelected ? .red_CE0B39 : .gray_9E9E9E, for: .normal)
+        sender.backgroundColor = sender.isSelected ? .red_FFEBF0 : .gray_EEEFEF
+    }
     var viewModel: RecruitWorkConditionViewModel!
     
     override func viewDidLoad() {
@@ -96,6 +101,5 @@ extension RecruitWorkConditionViewController: DateTimePickerVCDelegate {
     func updateDateTime(_ dateTime: String, label: UILabel?) {
         label?.text = dateTime
         label?.textColor = .gray_161616
-        //        alwaysButton.backgroundColor = .gray_C5C5C5
     }
 }
