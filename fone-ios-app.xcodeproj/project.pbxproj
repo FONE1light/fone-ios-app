@@ -101,6 +101,7 @@
 		3682736B2B27179200EB0629 /* SummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682736A2B27179200EB0629 /* SummaryTableViewCell.swift */; };
 		3682736F2B2724DF00EB0629 /* ActorInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682736E2B2724DF00EB0629 /* ActorInfoTableViewCell.swift */; };
 		368273722B272D6200EB0629 /* StaffInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368273712B272D6200EB0629 /* StaffInfoTableViewCell.swift */; };
+		368273742B27338E00EB0629 /* ProfileListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368273732B27338E00EB0629 /* ProfileListTableViewCell.swift */; };
 		36A4D4972B14E572008541E9 /* DynamicSizeSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4962B14E572008541E9 /* DynamicSizeSelectionCell.swift */; };
 		36A4D4992B15C158008541E9 /* RegisterInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4982B15C158008541E9 /* RegisterInterestViewController.swift */; };
 		36A4D49B2B15C164008541E9 /* RegisterInterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D49A2B15C164008541E9 /* RegisterInterestViewModel.swift */; };
@@ -393,6 +394,7 @@
 		3682736A2B27179200EB0629 /* SummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTableViewCell.swift; sourceTree = "<group>"; };
 		3682736E2B2724DF00EB0629 /* ActorInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorInfoTableViewCell.swift; sourceTree = "<group>"; };
 		368273712B272D6200EB0629 /* StaffInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffInfoTableViewCell.swift; sourceTree = "<group>"; };
+		368273732B27338E00EB0629 /* ProfileListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileListTableViewCell.swift; sourceTree = "<group>"; };
 		36A4D4962B14E572008541E9 /* DynamicSizeSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicSizeSelectionCell.swift; sourceTree = "<group>"; };
 		36A4D4982B15C158008541E9 /* RegisterInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInterestViewController.swift; sourceTree = "<group>"; };
 		36A4D49A2B15C164008541E9 /* RegisterInterestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInterestViewModel.swift; sourceTree = "<group>"; };
@@ -860,8 +862,9 @@
 		366E85162B230DB200CB7681 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				368273702B272D4700EB0629 /* ActorStaffInfoTableViewCell */,
 				368273682B27178700EB0629 /* AuthorTableViewCell.swift */,
+				368273732B27338E00EB0629 /* ProfileListTableViewCell.swift */,
+				368273702B272D4700EB0629 /* ActorStaffInfoTableViewCell */,
 				3682736A2B27179200EB0629 /* SummaryTableViewCell.swift */,
 				368273642B270D8500EB0629 /* MainCareerTableViewCell.swift */,
 				368273622B270CD800EB0629 /* CategoriesTableViewCell.swift */,
@@ -1943,6 +1946,7 @@
 				AB4E44472B0E222E001B3DB6 /* UserManager.swift in Sources */,
 				367D9BCB2AC2A22700DA6C96 /* TagList.swift in Sources */,
 				AB2578AA2AAF3C8F00328363 /* ChatViewController.swift in Sources */,
+				368273742B27338E00EB0629 /* ProfileListTableViewCell.swift in Sources */,
 				3663DB172AF69C0B005899BF /* JobOpeningSortBottomSheet.swift in Sources */,
 				AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */,
 				367D9C0D2AD9F5AF00DA6C96 /* MyPagePageViewController.swift in Sources */,

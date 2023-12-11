@@ -9,8 +9,8 @@ import UIKit
 
 enum JobHuntingDetailSection: Int, CaseIterable {
     case author = 0
-//    /// 프로필 이미지 리스트
-//    case profileList // ADDED
+    /// 프로필 이미지 리스트
+    case profileList // ADDED
     /// 배우 정보 / 스태프 정보
     case actorStaffInfo // ADDED TODO: actor/staff 처리
     /// 상세 요강
@@ -54,6 +54,7 @@ class JobHuntingDetailViewController: UIViewController, ViewModelBindableType {
     private func setCollectionView() {
         tableView.dataSource = self
         tableView.register(with: AuthorTableViewCell.self)
+        tableView.register(with: ProfileListTableViewCell.self)
         tableView.register(with: ActorInfoTableViewCell.self)
         tableView.register(with: StaffInfoTableViewCell.self)
         tableView.register(with: SummaryTableViewCell.self)
@@ -76,6 +77,12 @@ extension JobHuntingDetailViewController: UITableViewDataSource {
             guard let authorInfo = viewModel.authorInfo else { return UITableViewCell() }
             let cell = tableView.dequeueReusableCell(for: indexPath) as AuthorTableViewCell
             cell.configure(authorInfo: authorInfo)
+            return cell
+            
+        case JobHuntingDetailSection.profileList.rawValue:
+            
+            let cell = tableView.dequeueReusableCell(for: indexPath) as ProfileListTableViewCell
+            cell.configure(title: "제가 평범한 할머니로 보이시나요?", imageUrls: nil)
             return cell
             
         case JobHuntingDetailSection.actorStaffInfo.rawValue:
