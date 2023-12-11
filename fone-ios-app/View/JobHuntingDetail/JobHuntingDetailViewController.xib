@@ -16,8 +16,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JobHuntingDetailViewController" customModule="fone_ios_app" customModuleProvider="target">
             <connections>
-                <outlet property="collectionView" destination="vBC-xJ-GtU" id="sTf-GB-2Nb"/>
                 <outlet property="saveButton" destination="ax3-S7-U0E" id="JbN-Nh-44L"/>
+                <outlet property="tableView" destination="qJQ-o2-XW9" id="5HZ-D9-8yg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -73,27 +73,21 @@
                         <constraint firstItem="oGb-MK-BKv" firstAttribute="top" secondItem="hea-lU-9IO" secondAttribute="top" constant="12" id="w0d-7X-6b4"/>
                     </constraints>
                 </view>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="vBC-xJ-GtU">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qJQ-o2-XW9">
                     <rect key="frame" x="0.0" y="59" width="393" height="675"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="jlG-a5-q5E">
-                        <size key="itemSize" width="128" height="128"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                </collectionView>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="qJQ-o2-XW9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="34P-8Q-k6B"/>
                 <constraint firstAttribute="bottomMargin" secondItem="hea-lU-9IO" secondAttribute="bottom" id="PMP-mj-xep"/>
-                <constraint firstItem="vBC-xJ-GtU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="lnz-0U-M1V"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vBC-xJ-GtU" secondAttribute="trailing" id="pac-zE-VWT"/>
+                <constraint firstItem="hea-lU-9IO" firstAttribute="top" secondItem="qJQ-o2-XW9" secondAttribute="bottom" id="eiW-OI-A2b"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qJQ-o2-XW9" secondAttribute="trailing" id="m8m-3T-af8"/>
                 <constraint firstItem="hea-lU-9IO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="q7i-st-299"/>
-                <constraint firstItem="vBC-xJ-GtU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qnM-Xc-wQX"/>
-                <constraint firstItem="hea-lU-9IO" firstAttribute="top" secondItem="vBC-xJ-GtU" secondAttribute="bottom" id="t7M-jL-piI"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hea-lU-9IO" secondAttribute="trailing" id="tAL-HU-on4"/>
+                <constraint firstItem="qJQ-o2-XW9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="zo4-S9-S48"/>
             </constraints>
             <point key="canvasLocation" x="45" y="20"/>
         </view>

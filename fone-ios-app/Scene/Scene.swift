@@ -234,10 +234,7 @@ extension Scene {
         case .jobHuntingDetail(let jobHuntingDetailViewModel):
             var jobHuntingDetailVC = JobHuntingDetailViewController()
             
-            DispatchQueue.main.async {
-                jobHuntingDetailVC.bind(viewModel: jobHuntingDetailViewModel)
-                jobHuntingDetailVC.collectionView.reloadData()
-            }
+            jobHuntingDetailVC.bind(viewModel: jobHuntingDetailViewModel)
             
             return jobHuntingDetailVC
             
