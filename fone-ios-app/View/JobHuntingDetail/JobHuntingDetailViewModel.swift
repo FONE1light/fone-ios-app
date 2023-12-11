@@ -8,6 +8,7 @@
 import Foundation
 
 final class JobHuntingDetailViewModel: CommonViewModel {
+    var jobType: Job?
     var jobHuntingDetail: JobOpeningContent? // FIXME: JobHuntingContent?
     
     lazy var authorInfo = AuthorInfo(createdAt: jobHuntingDetail?.createdAt, profileUrl: jobHuntingDetail?.profileURL, nickname: jobHuntingDetail?.nickname, userJob: jobHuntingDetail?.userJob, viewCount: jobHuntingDetail?.viewCount)

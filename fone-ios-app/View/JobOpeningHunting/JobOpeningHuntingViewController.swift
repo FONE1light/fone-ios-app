@@ -422,6 +422,9 @@ extension JobOpeningHuntingViewController {
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
                 let viewModel = JobHuntingDetailViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator, jobHuntingDetail: response.data.jobOpening)
+                // FIXME: API 응답 따라서 JobHuntingDetailViewModel 내부에서 jobType 식별, 혹은 밖(여기)에서 selectedJobType으로 지정
+                viewModel.jobType = .actor
+//                viewModel.jobType = owner.viewModel.selectedJobType.value
                 let detailScene = Scene.jobHuntingDetail(viewModel)
                 owner.viewModel.sceneCoordinator.transition(to: detailScene, using: .push, animated: true)
                 

@@ -9,10 +9,11 @@ import UIKit
 
 enum JobHuntingDetailSection: Int, CaseIterable {
     case author = 0
+//    /// 프로필 이미지 리스트
 //    case profileList // ADDED
-//    /// 배우 정보 / 스태프 정보
-//    case actorStaffInfo // ADDED TODO: actor/staff 처리
-//    /// 상세 요강
+    /// 배우 정보 / 스태프 정보
+    case actorStaffInfo // ADDED TODO: actor/staff 처리
+    /// 상세 요강
     case summary
     /// 주요 경력
     case mainCareer // ADDED
@@ -25,7 +26,11 @@ enum JobHuntingDetailSection: Int, CaseIterable {
 class JobHuntingDetailViewController: UIViewController, ViewModelBindableType {
     var viewModel: JobHuntingDetailViewModel!
     @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.backgroundColor = .gray_F8F8F8
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +44,7 @@ class JobHuntingDetailViewController: UIViewController, ViewModelBindableType {
     }
     
     private func setNavigationBar() {
-        navigationItem.titleView = NavigationTitleView(title: "배우 모집")
+        navigationItem.titleView = NavigationTitleView(title: "\(viewModel.jobType?.koreanName ?? "") 모집")
         navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
             type: .back,
             viewController: self
@@ -49,6 +54,8 @@ class JobHuntingDetailViewController: UIViewController, ViewModelBindableType {
     private func setCollectionView() {
         tableView.dataSource = self
         tableView.register(with: AuthorTableViewCell.self)
+        tableView.register(with: ActorInfoTableViewCell.self)
+        tableView.register(with: StaffInfoTableViewCell.self)
         tableView.register(with: SummaryTableViewCell.self)
         tableView.register(with: MainCareerTableViewCell.self)
         tableView.register(with: CategoriesTableViewCell.self)
@@ -70,6 +77,39 @@ extension JobHuntingDetailViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(for: indexPath) as AuthorTableViewCell
             cell.configure(authorInfo: authorInfo)
             return cell
+            
+        case JobHuntingDetailSection.actorStaffInfo.rawValue:
+//            guard let authorInfo = viewModel.authorInfo else { return UITableViewCell() }
+            switch viewModel.jobType {
+            case .actor:
+                let cell = tableView.dequeueReusableCell(for: indexPath) as ActorInfoTableViewCell
+                // FIXME: 실 데이터 넣기
+                cell.configure(
+                    name: "박신혜",
+                    gender: .WOMAN,
+                    birthYear: "2002년 (21살)",
+                    height: "170cm",
+                    weight: "60kg",
+                    email: "de91jko@naver.com",
+                    specialty: "줄넘기/실뜨기/달리기"
+                )
+                return cell
+            case .staff:
+                
+                let cell = tableView.dequeueReusableCell(for: indexPath) as StaffInfoTableViewCell
+                // FIXME: 실 데이터 넣기
+                cell.configure(
+                    name: "박신혜",
+                    gender: .WOMAN,
+                    birthYear: "2002년 (21살)",
+                    domain: "음악",
+                    email: "de91jko@naver.com",
+                    specialty: "줄넘기/실뜨기/달리기"
+                )
+                return cell
+                
+            default: return UITableViewCell()
+            }
             
         case JobHuntingDetailSection.summary.rawValue:
             let cell = tableView.dequeueReusableCell(for: indexPath) as SummaryTableViewCell

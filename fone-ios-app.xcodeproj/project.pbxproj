@@ -99,6 +99,8 @@
 		368273672B27175600EB0629 /* FooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368273662B27175600EB0629 /* FooterTableViewCell.swift */; };
 		368273692B27178700EB0629 /* AuthorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368273682B27178700EB0629 /* AuthorTableViewCell.swift */; };
 		3682736B2B27179200EB0629 /* SummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682736A2B27179200EB0629 /* SummaryTableViewCell.swift */; };
+		3682736F2B2724DF00EB0629 /* ActorInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682736E2B2724DF00EB0629 /* ActorInfoTableViewCell.swift */; };
+		368273722B272D6200EB0629 /* StaffInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368273712B272D6200EB0629 /* StaffInfoTableViewCell.swift */; };
 		36A4D4972B14E572008541E9 /* DynamicSizeSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4962B14E572008541E9 /* DynamicSizeSelectionCell.swift */; };
 		36A4D4992B15C158008541E9 /* RegisterInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4982B15C158008541E9 /* RegisterInterestViewController.swift */; };
 		36A4D49B2B15C164008541E9 /* RegisterInterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D49A2B15C164008541E9 /* RegisterInterestViewModel.swift */; };
@@ -389,6 +391,8 @@
 		368273662B27175600EB0629 /* FooterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterTableViewCell.swift; sourceTree = "<group>"; };
 		368273682B27178700EB0629 /* AuthorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorTableViewCell.swift; sourceTree = "<group>"; };
 		3682736A2B27179200EB0629 /* SummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTableViewCell.swift; sourceTree = "<group>"; };
+		3682736E2B2724DF00EB0629 /* ActorInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorInfoTableViewCell.swift; sourceTree = "<group>"; };
+		368273712B272D6200EB0629 /* StaffInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffInfoTableViewCell.swift; sourceTree = "<group>"; };
 		36A4D4962B14E572008541E9 /* DynamicSizeSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicSizeSelectionCell.swift; sourceTree = "<group>"; };
 		36A4D4982B15C158008541E9 /* RegisterInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInterestViewController.swift; sourceTree = "<group>"; };
 		36A4D49A2B15C164008541E9 /* RegisterInterestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInterestViewModel.swift; sourceTree = "<group>"; };
@@ -856,6 +860,7 @@
 		366E85162B230DB200CB7681 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				368273702B272D4700EB0629 /* ActorStaffInfoTableViewCell */,
 				368273682B27178700EB0629 /* AuthorTableViewCell.swift */,
 				3682736A2B27179200EB0629 /* SummaryTableViewCell.swift */,
 				368273642B270D8500EB0629 /* MainCareerTableViewCell.swift */,
@@ -1007,6 +1012,15 @@
 				367D9C352ADA664700DA6C96 /* JobRegistrationCell.swift */,
 			);
 			path = Job;
+			sourceTree = "<group>";
+		};
+		368273702B272D4700EB0629 /* ActorStaffInfoTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3682736E2B2724DF00EB0629 /* ActorInfoTableViewCell.swift */,
+				368273712B272D6200EB0629 /* StaffInfoTableViewCell.swift */,
+			);
+			path = ActorStaffInfoTableViewCell;
 			sourceTree = "<group>";
 		};
 		36A4D4952B14E4E9008541E9 /* SelectionBlock */ = {
@@ -1829,6 +1843,7 @@
 				367D9BB62AC1202A00DA6C96 /* MyPageTabBarItem.swift in Sources */,
 				36BCC7E02AA31A350060E35A /* SignUpPersonalInfoViewController.swift in Sources */,
 				367D9C2D2ADA5EC700DA6C96 /* ProfileRegistrationViewModel.swift in Sources */,
+				368273722B272D6200EB0629 /* StaffInfoTableViewCell.swift in Sources */,
 				364BCC6A2AB3672500E14B25 /* DynamicHeightCollectionView.swift in Sources */,
 				AB77A6F52AF90A3800EF1C29 /* RecruitBasicInfoViewModel.swift in Sources */,
 				362C802D2B0A4C1000489E7D /* RegisterDetailInfoActorViewController.swift in Sources */,
@@ -1961,6 +1976,7 @@
 				AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */,
 				AB1CEABC2ABFD29C00E7E54F /* MainBannerCell.swift in Sources */,
 				367D9BD12AC3B98100DA6C96 /* CompetitionViewController.swift in Sources */,
+				3682736F2B2724DF00EB0629 /* ActorInfoTableViewCell.swift in Sources */,
 				366E85482B230DB200CB7681 /* JobHuntingDetailViewModel.swift in Sources */,
 				36BDA1422AEE3F08001AF777 /* ImageUploadAPIModel.swift in Sources */,
 				AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */,
