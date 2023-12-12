@@ -68,6 +68,12 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
             .map { $0.insertComma }
             .bind(to: salaryTextField.rx.text)
             .disposed(by: rx.disposeBag)
+        
+        nextButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.viewModel.moveToNextStep()
+            }.disposed(by: rx.disposeBag)
     }
     
     private func setNavigationBar() {

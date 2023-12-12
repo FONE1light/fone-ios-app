@@ -132,6 +132,8 @@
 		AB04760F2B08F851003DF5EF /* JobOpeningInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB04760E2B08F851003DF5EF /* JobOpeningInfoProvider.swift */; };
 		AB0476112B08FB11003DF5EF /* JobInfoAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0476102B08FB11003DF5EF /* JobInfoAPIModel.swift */; };
 		AB0F8E4C2AB324B7006D85F7 /* HomeInfoAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0F8E4B2AB324B7006D85F7 /* HomeInfoAPIModel.swift */; };
+		AB1851462B1CA1110051D0DC /* RecruitDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1851442B1CA1110051D0DC /* RecruitDetailInfoViewController.swift */; };
+		AB1851472B1CA1110051D0DC /* RecruitDetailInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB1851452B1CA1110051D0DC /* RecruitDetailInfoViewController.xib */; };
 		AB1ADF2B2B1E016900C2F2DD /* RecruitWorkInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1ADF292B1E016900C2F2DD /* RecruitWorkInfoViewController.swift */; };
 		AB1ADF2C2B1E016900C2F2DD /* RecruitWorkInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB1ADF2A2B1E016900C2F2DD /* RecruitWorkInfoViewController.xib */; };
 		AB1CEAA82ABFD1D700E7E54F /* MainBannerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1CEAA62ABFD1D700E7E54F /* MainBannerModule.swift */; };
@@ -242,6 +244,7 @@
 		AB68DF2B2ACC0EA1003BADE1 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB68DF292ACC0EA1003BADE1 /* ProfileCell.swift */; };
 		AB68DF2C2ACC0EA1003BADE1 /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB68DF2A2ACC0EA1003BADE1 /* ProfileCell.xib */; };
 		AB6992242AB6E87100B67455 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6992232AB6E87100B67455 /* ChatViewModel.swift */; };
+		AB6E1C002B25D41C00594E69 /* RecruitDetailInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E1BFF2B25D41C00594E69 /* RecruitDetailInfoViewModel.swift */; };
 		AB6E432F2B2205CB001960E7 /* RecruitWorkInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E432E2B2205CB001960E7 /* RecruitWorkInfoViewModel.swift */; };
 		AB6E43312B2205ED001960E7 /* RecruitWorkConditionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E43302B2205ED001960E7 /* RecruitWorkConditionViewModel.swift */; };
 		AB72BC882B1E03FF00EB02FE /* RecruitConditionInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB72BC872B1E03FF00EB02FE /* RecruitConditionInfoViewModel.swift */; };
@@ -417,6 +420,8 @@
 		AB04760E2B08F851003DF5EF /* JobOpeningInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningInfoProvider.swift; sourceTree = "<group>"; };
 		AB0476102B08FB11003DF5EF /* JobInfoAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoAPIModel.swift; sourceTree = "<group>"; };
 		AB0F8E4B2AB324B7006D85F7 /* HomeInfoAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInfoAPIModel.swift; sourceTree = "<group>"; };
+		AB1851442B1CA1110051D0DC /* RecruitDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitDetailInfoViewController.swift; sourceTree = "<group>"; };
+		AB1851452B1CA1110051D0DC /* RecruitDetailInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitDetailInfoViewController.xib; sourceTree = "<group>"; };
 		AB1ADF292B1E016900C2F2DD /* RecruitWorkInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitWorkInfoViewController.swift; sourceTree = "<group>"; };
 		AB1ADF2A2B1E016900C2F2DD /* RecruitWorkInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitWorkInfoViewController.xib; sourceTree = "<group>"; };
 		AB1CEAA62ABFD1D700E7E54F /* MainBannerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBannerModule.swift; sourceTree = "<group>"; };
@@ -479,6 +484,7 @@
 		AB68DF292ACC0EA1003BADE1 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		AB68DF2A2ACC0EA1003BADE1 /* ProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
 		AB6992232AB6E87100B67455 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		AB6E1BFF2B25D41C00594E69 /* RecruitDetailInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitDetailInfoViewModel.swift; sourceTree = "<group>"; };
 		AB6E432E2B2205CB001960E7 /* RecruitWorkInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitWorkInfoViewModel.swift; sourceTree = "<group>"; };
 		AB6E43302B2205ED001960E7 /* RecruitWorkConditionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitWorkConditionViewModel.swift; sourceTree = "<group>"; };
 		AB72BC872B1E03FF00EB02FE /* RecruitConditionInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitConditionInfoViewModel.swift; sourceTree = "<group>"; };
@@ -1115,6 +1121,16 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		AB1851432B1CA0F20051D0DC /* RecruitDetailInfo */ = {
+			isa = PBXGroup;
+			children = (
+				AB1851442B1CA1110051D0DC /* RecruitDetailInfoViewController.swift */,
+				AB1851452B1CA1110051D0DC /* RecruitDetailInfoViewController.xib */,
+				AB6E1BFF2B25D41C00594E69 /* RecruitDetailInfoViewModel.swift */,
+			);
+			path = RecruitDetailInfo;
+			sourceTree = "<group>";
+		};
 		AB1ADF2D2B1E016E00C2F2DD /* RecruitWorkInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1560,6 +1576,7 @@
 				AB80BBED2B12E1420016D2AB /* RecruitConditionInfo */,
 				AB1ADF2D2B1E016E00C2F2DD /* RecruitWorkInfo */,
 				AB998B012B21F97E007E6214 /* RecruitWorkCondition */,
+				AB1851432B1CA0F20051D0DC /* RecruitDetailInfo */,
 			);
 			path = Recruit;
 			sourceTree = "<group>";
@@ -1733,6 +1750,7 @@
 				ABC1DBDE2AC0113800B9A6BF /* JobOpeningCell.xib in Resources */,
 				AB79B3BD2A9E29C4008EBAA2 /* QuestionViewController.xib in Resources */,
 				ABCDD18E2B00EB1000A598A8 /* WorkConditionCell.xib in Resources */,
+				AB1851472B1CA1110051D0DC /* RecruitDetailInfoViewController.xib in Resources */,
 				AB68DF2C2ACC0EA1003BADE1 /* ProfileCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1768,6 +1786,7 @@
 				364482D32AB804E100984507 /* MyPageButtonStackView.swift in Sources */,
 				36E2693F2AAAEEDA0034B485 /* NavigationTitleView.swift in Sources */,
 				36A4D49E2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift in Sources */,
+				AB1851462B1CA1110051D0DC /* RecruitDetailInfoViewController.swift in Sources */,
 				36A4D49B2B15C164008541E9 /* RegisterInterestViewModel.swift in Sources */,
 				362419D32AE33158007D1AFB /* SignUpSuccessViewModel.swift in Sources */,
 				AB49A33F2A810FE000748484 /* LoginViewController.swift in Sources */,
@@ -1955,6 +1974,7 @@
 				36D293D22A961E7300171C77 /* SignUpSelectionViewController.swift in Sources */,
 				AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */,
 				AB3458782B0CDB4400F4833D /* Result.swift in Sources */,
+				AB6E1C002B25D41C00594E69 /* RecruitDetailInfoViewModel.swift in Sources */,
 				362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */,
 				367D9BB42AC11B4500DA6C96 /* UIImage+Extension.swift in Sources */,
 				AB68DF2B2ACC0EA1003BADE1 /* ProfileCell.swift in Sources */,
