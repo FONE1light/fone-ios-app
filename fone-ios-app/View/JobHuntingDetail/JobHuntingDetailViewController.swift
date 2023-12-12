@@ -28,8 +28,8 @@ class JobHuntingDetailViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var tableView: UITableView! {
         didSet {
-            tableView.backgroundColor = .gray_F8F8F8
             tableView.bounces = false
+            tableView.separatorStyle = .none
         }
     }
     

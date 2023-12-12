@@ -19,7 +19,6 @@ class StaffInfoTableViewCell: UITableViewCell {
         $0.textColor = .gray_161616
         $0.text = "스태프 정보"
     }
-    
     private let keyStackView = UIStackView().then {
         $0.axis = .vertical
         $0.spacing = 10
@@ -28,6 +27,7 @@ class StaffInfoTableViewCell: UITableViewCell {
         $0.axis = .vertical
         $0.spacing = 10
     }
+    private let divider = Divider(height: 8, color: .gray_F8F8F8)
     
     private let nameLabel = ActorStaffInfoValueLabel()
     private let genderLabel = ActorStaffInfoValueLabel()
@@ -64,7 +64,8 @@ class StaffInfoTableViewCell: UITableViewCell {
         [
             titleLabel,
             keyStackView,
-            valueStackView
+            valueStackView,
+            divider
         ]
             .forEach { contentView.addSubview($0) }
         
@@ -77,13 +78,17 @@ class StaffInfoTableViewCell: UITableViewCell {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.leading.equalToSuperview().inset(16)
             $0.width.equalTo(68)
-            $0.bottom.equalToSuperview().offset(-20)
         }
         
         valueStackView.snp.makeConstraints {
             $0.top.bottom.equalTo(keyStackView)
             $0.leading.equalTo(keyStackView.snp.trailing).offset(8)
             $0.trailing.equalToSuperview().inset(16)
+        }
+        
+        divider.snp.makeConstraints {
+            $0.top.equalTo(keyStackView.snp.bottom).offset(20)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
         
         setupStackView()

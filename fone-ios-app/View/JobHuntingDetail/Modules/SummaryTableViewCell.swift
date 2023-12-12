@@ -26,6 +26,8 @@ class SummaryTableViewCell: UITableViewCell {
         $0.numberOfLines = 0
     }
     
+    private let divider = Divider(height: 8, color: .gray_F8F8F8)
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
@@ -38,7 +40,7 @@ class SummaryTableViewCell: UITableViewCell {
     }
     
     private func setupUI() {
-        [titleLabel, detailsLabel]
+        [titleLabel, detailsLabel, divider]
             .forEach { contentView.addSubview($0) }
         
         titleLabel.snp.makeConstraints {
@@ -49,7 +51,11 @@ class SummaryTableViewCell: UITableViewCell {
         detailsLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview().inset(16)
-            $0.bottom.equalToSuperview().offset(-20)
+        }
+        
+        divider.snp.makeConstraints {
+            $0.top.equalTo(detailsLabel.snp.bottom).offset(20)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
     
