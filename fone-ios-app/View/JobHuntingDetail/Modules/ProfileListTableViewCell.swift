@@ -46,15 +46,7 @@ class ProfileListTableViewCell: UITableViewCell {
         imageUrls: [String]?
     ) {
         titleLabel.text = title
-        imageUrls?
-            .compactMap { _ in
-                // FIXME: URL로 이미지 생성
-                UIImageView(image: UIImage(named: "heart_on")).then {
-                    $0.backgroundColor = .gray_D9D9D9
-                    $0.cornerRadius = 5
-                }
-            }
-            .forEach { imageStackView.addArrangedSubview($0)}
+        setupImageStackView(with: imageUrls)
     }
     
     private func setupUI () {
@@ -95,6 +87,23 @@ class ProfileListTableViewCell: UITableViewCell {
             $0.top.trailing.bottom.equalTo(rightArrowImageView)
             $0.leading.equalTo(viewMoreLabel.snp.leading)
         }
+    }
+    
+    private func setupImageStackView(with imageUrls: [String]?) {
+        imageStackView.arrangedSubviews
+            .forEach { $0.removeFromSuperview() }
+        
+        imageUrls?
+            .compactMap { _ in
+                // FIXME: URL로 이미지 생성
+                UIImageView(image: UIImage(named: "heart_on")).then {
+                    $0.backgroundColor = .gray_D9D9D9
+                    $0.cornerRadius = 5
+                }
+            }
+            .forEach {
+                imageStackView.addArrangedSubview($0)
+            }
     }
     
     required init?(coder: NSCoder) {

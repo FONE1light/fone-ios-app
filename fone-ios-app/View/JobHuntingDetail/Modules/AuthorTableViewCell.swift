@@ -51,7 +51,6 @@ class AuthorTableViewCell: UITableViewCell {
     private let snsStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.spacing = 6
-        $0.backgroundColor = .gray
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -69,6 +68,8 @@ class AuthorTableViewCell: UITableViewCell {
         nicknameLabel.text = authorInfo.nickname
         userJobLabel.text = authorInfo.userJob
         officialMarkImageView.isHidden = authorInfo.userJob != "OFFICIAL"
+        // FIXME: 실제 url로 호출
+        setupSnsStackView(instagramUrl: "qwer", youtubeUrl: "12345")
     }
     
     private func setupUI() {
@@ -119,9 +120,37 @@ class AuthorTableViewCell: UITableViewCell {
         
         snsStackView.snp.makeConstraints {
             $0.top.equalTo(viewCountLabel.snp.bottom).offset(6)
-            $0.trailing.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(32)
-//            $0.width.equalTo(100)
+        }
+    }
+    
+    private func setupSnsStackView(instagramUrl: String?, youtubeUrl: String?) {
+        snsStackView.arrangedSubviews
+            .forEach { $0.removeFromSuperview() }
+        
+        if let url = instagramUrl, !url.isEmpty {
+            let instagramButton = UIButton().then {
+                $0.setImage(UIImage(named: "instagram_but"), for: .normal)
+            }
+            instagramButton.rx.tap
+                .withUnretained(self)
+                .bind { owner, _ in
+                    print("instagramButton is clicked")
+                }.disposed(by: rx.disposeBag)
+            snsStackView.addArrangedSubview(instagramButton)
+        }
+        
+        if let url = youtubeUrl, !url.isEmpty {
+            let youtubeButton = UIButton().then {
+                $0.setImage(UIImage(named: "youtube_but"), for: .normal)
+            }
+            youtubeButton.rx.tap
+                .withUnretained(self)
+                .bind { owner, _ in
+                    print("youtubeButton is clicked")
+                }.disposed(by: rx.disposeBag)
+            snsStackView.addArrangedSubview(youtubeButton)
         }
     }
     
