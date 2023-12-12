@@ -17,7 +17,6 @@ class JobHuntingProfilesViewController: UIViewController, ViewModelBindableType 
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 114, height: 132)
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 1
@@ -31,6 +30,7 @@ class JobHuntingProfilesViewController: UIViewController, ViewModelBindableType 
         collectionView.showsVerticalScrollIndicator = false
         collectionView.register(with: JobHuntingProfileCollectionViewCell.self)
         collectionView.dataSource = self
+        collectionView.delegate = self
         
         return collectionView
     }()
@@ -121,5 +121,24 @@ extension JobHuntingProfilesViewController: UICollectionViewDataSource {
         cell.configure(viewModel.imageUrls?[indexPath.row])
         
         return cell
+    }
+}
+
+extension JobHuntingProfilesViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let defaultSize = CGSize(width: 114, height: 132)
+        // width 계산
+        guard let screenWidth = view.window?.windowScene?.screen.bounds.width else { return defaultSize }
+        let interitemSpacing = 1
+        let numberOfItemsInARow = 3
+        let totalInteritemSpacing = interitemSpacing * (numberOfItemsInARow - 1)
+        let totalCellsWidth = screenWidth - 16*2 - CGFloat(totalInteritemSpacing)
+        
+        let width = totalCellsWidth/CGFloat(numberOfItemsInARow)
+        
+        // height는 비율에 맞춰 계산
+        let height = width * (defaultSize.height/defaultSize.width)
+        
+        return CGSize(width: width, height: height)
     }
 }
