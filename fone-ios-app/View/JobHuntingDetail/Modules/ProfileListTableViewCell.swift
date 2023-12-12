@@ -22,6 +22,7 @@ class ProfileListTableViewCell: UITableViewCell {
     private let imageStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.spacing = 17
+        $0.distribution = .fillEqually
     }
     
     private let viewMoreLabel = UILabel().then {
@@ -45,9 +46,19 @@ class ProfileListTableViewCell: UITableViewCell {
         imageUrls: [String]?
     ) {
         titleLabel.text = title
+        imageUrls?
+            .compactMap { _ in
+                // FIXME: URL로 이미지 생성
+                UIImageView(image: UIImage(named: "heart_on")).then {
+                    $0.backgroundColor = .gray_D9D9D9
+                    $0.cornerRadius = 5
+                }
+            }
+            .forEach { imageStackView.addArrangedSubview($0)}
     }
     
     private func setupUI () {
+        backgroundColor = .gray_F8F8F8
         [
             titleLabel,
             imageStackView,
@@ -65,6 +76,7 @@ class ProfileListTableViewCell: UITableViewCell {
         imageStackView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(131)
         }
         
         viewMoreLabel.snp.makeConstraints {

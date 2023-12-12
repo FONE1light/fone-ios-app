@@ -29,6 +29,7 @@ class JobHuntingDetailViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.backgroundColor = .gray_F8F8F8
+            tableView.bounces = false
         }
     }
     
@@ -82,7 +83,10 @@ extension JobHuntingDetailViewController: UITableViewDataSource {
         case JobHuntingDetailSection.profileList.rawValue:
             
             let cell = tableView.dequeueReusableCell(for: indexPath) as ProfileListTableViewCell
-            cell.configure(title: "제가 평범한 할머니로 보이시나요?", imageUrls: nil)
+            cell.configure(
+                title: "제가 평범한 할머니로 보이시나요?",
+                imageUrls: ["imageURL1", "imageURL1", "imageURL1"]
+            )
             return cell
             
         case JobHuntingDetailSection.actorStaffInfo.rawValue:
