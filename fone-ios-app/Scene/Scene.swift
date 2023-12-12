@@ -42,6 +42,8 @@ enum Scene {
     case registerDetailContent(RegisterDetailContentViewModel) // 프로필 등록하기3
     case registerCareer(RegisterCareerViewModel) // 프로필 등록하기4
     case registerInterest(RegisterInterestViewModel) // 프로필 등록하기5
+    
+    case jobHuntingProfiles(JobHuntingProfilesViewModel) // 프로필 상세 > 이미지 더보기
 }
 
 extension Scene {
@@ -308,6 +310,12 @@ extension Scene {
             
             return registerInterestVC
 
+        case .jobHuntingProfiles(let jobHuntingProfilesViewModel):
+            var jobHuntingProfilesVC = JobHuntingProfilesViewController()
+            
+            jobHuntingProfilesVC.bind(viewModel: jobHuntingProfilesViewModel)
+            
+            return jobHuntingProfilesVC
         }
     }
 }

@@ -106,3 +106,14 @@ extension UIView {
         }
     }
 }
+
+extension UIView {
+    /// 디바이스 상단의 노치 여백 반환
+    static var notchTop: CGFloat {
+        return UIApplication
+            .getKeyWindow()?
+            .windowScene?
+            .statusBarManager?
+            .statusBarFrame.size.height ?? 0
+    }
+}
