@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIImageView {
-    /// `url`로부터 이미지를 로드함
+    /// `url` 문자열로부터 이미지를 로드
     func load(url stringUrl: String?) {
         guard let url = stringUrl?.url else { return }
         

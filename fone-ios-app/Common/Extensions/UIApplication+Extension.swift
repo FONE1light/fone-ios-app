@@ -8,7 +8,8 @@
 import UIKit
 
 extension UIApplication {
-    static func getKeyWindow() -> UIWindow? {
+    /// deprecated 되지 않은 값 이용해 keyWindow 추출
+    static var keyWindow: UIWindow? {
         return UIApplication
             .shared
             .connectedScenes
