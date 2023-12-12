@@ -6,7 +6,16 @@
 //
 
 import Foundation
+import RxRelay
 
 final class RecruitConditionInfoViewModel: CommonViewModel {
     var jobType: Job?
+    let selectedDomains = BehaviorRelay<[Selection]>(value: [])
+    
+    func moveToNextStep() {
+        let recruitWorkInfoViewModel = RecruitWorkInfoViewModel(sceneCoordinator: sceneCoordinator)
+        recruitWorkInfoViewModel.jobType = jobType
+        let recuirtWorkInfoScene = Scene.recruitWorkInfo(recruitWorkInfoViewModel)
+        sceneCoordinator.transition(to: recuirtWorkInfoScene, using: .push, animated: true)
+    }
 }

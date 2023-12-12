@@ -32,7 +32,9 @@ enum Scene {
     case jobOpeningDetail(JobOpeningDetailViewModel) // 모집 상세
     case recruitBasicInfo(RecruitBasicInfoViewModel) // 모집 글쓰기1
     case recruitConditionInfo(RecruitConditionInfoViewModel) // 모집 글쓰기2
-    case recruitWorkInfo // 모집 글쓰기3
+    case recruitWorkInfo(RecruitWorkInfoViewModel) // 모집 글쓰기3
+    case recruitWorkCondition(RecruitWorkConditionViewModel) // 모집 글쓰기4
+    case recruitDetailInfo(RecruitDetailInfoViewModel) // 모집 글쓰기5
     
     case jobHuntingDetail(JobHuntingDetailViewModel) // 프로필 상세
     case registerBasicInfo(RegisterBasicInfoViewModel) // 프로필 등록하기1
@@ -226,10 +228,32 @@ extension Scene {
             
             return recruitConditionInfoVC
             
-        case .recruitWorkInfo:
+        case .recruitWorkInfo(let recruitWorkInfoViewModel):
             var recruitWorkInfoVC = RecruitWorkInfoViewController()
             
+            DispatchQueue.main.async {
+                recruitWorkInfoVC.bind(viewModel: recruitWorkInfoViewModel)
+            }
+            
             return recruitWorkInfoVC
+            
+        case .recruitWorkCondition(let recruitWorkConditionViewModel):
+            var recruitWorkConditionVC = RecruitWorkConditionViewController()
+            
+            DispatchQueue.main.async {
+                recruitWorkConditionVC.bind(viewModel: recruitWorkConditionViewModel)
+            }
+            
+            return recruitWorkConditionVC
+            
+        case .recruitDetailInfo(let recruitDetailInfoViewModel):
+            var recruitDetailInfoVC = RecruitDetailInfoViewController()
+            
+            DispatchQueue.main.async {
+                recruitDetailInfoVC.bind(viewModel: recruitDetailInfoViewModel)
+            }
+            
+            return recruitDetailInfoVC
             
         case .jobHuntingDetail(let jobHuntingDetailViewModel):
             var jobHuntingDetailVC = JobHuntingDetailViewController()

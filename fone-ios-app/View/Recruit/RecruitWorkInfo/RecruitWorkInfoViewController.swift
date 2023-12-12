@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecruitWorkInfoViewController: UIViewController {
+class RecruitWorkInfoViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var stepIndicator: StepIndicator!
     @IBOutlet weak var produceTextField: LabelTextField!
     @IBOutlet weak var titleTextField: LabelTextField!
@@ -16,6 +16,7 @@ class RecruitWorkInfoViewController: UIViewController {
     @IBOutlet weak var loglineTextView: LetterCountedTextView!
     @IBOutlet weak var nextButton: UIButton!
     
+    var viewModel: RecruitWorkInfoViewModel!
     private let genres: [Genre] = [.ACTION, .DRAMA, .THRILLER, .MUSICAL, .ROMANCE, .FANTASY, .DOCUMENTARY, .ETC]
     
     override func viewDidLoad() {
@@ -29,8 +30,17 @@ class RecruitWorkInfoViewController: UIViewController {
         genreCollectionView.register(GenreCell.self)
     }
     
+    func bindViewModel() {
+        nextButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.viewModel.moveToNextStep()
+            }.disposed(by: rx.disposeBag)
+    }
+    
     private func setNavigationBar() {
-        navigationItem.titleView = NavigationTitleView(title: "배우 모집하기")
+        guard let jobType = viewModel.jobType else { return }
+        navigationItem.titleView = NavigationTitleView(title: "\(jobType.koreanName) 모집하기")
         navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
             type: .back,
             viewController: self

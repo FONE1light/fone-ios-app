@@ -11,6 +11,7 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
     @IBOutlet weak var stepIndicator: StepIndicator!
     @IBOutlet weak var castingTextField: LabelTextField!
     @IBOutlet weak var domainView: UIView!
+    @IBOutlet weak var domainContentView: DomainContentView!
     @IBOutlet weak var domainSelectButton: UIButton!
     @IBOutlet weak var numberTextField: LabelTextField!
     @IBOutlet weak var startAgeLabel: UILabel!
@@ -34,18 +35,25 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.sceneCoordinator.transition(to: .recruitWorkInfo, using: .push, animated: true)
+                owner.viewModel.moveToNextStep()
             }.disposed(by: rx.disposeBag)
-            
+        
         domainSelectButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let popup = DomainSelectionPopupViewController()
+                let popup = DomainSelectionPopupViewController(selectionRelay: owner.viewModel.selectedDomains)
                 
                 popup.modalPresentationStyle = .overFullScreen
                 
                 owner.present(popup, animated: false)
                 
+            }.disposed(by: rx.disposeBag)
+        
+        viewModel.selectedDomains
+            .withUnretained(self)
+            .bind { owner, domains in
+                guard let domains = domains as? [Domain] else { return }
+                owner.domainContentView.setupDomainStackView(with: domains)
             }.disposed(by: rx.disposeBag)
     }
     
