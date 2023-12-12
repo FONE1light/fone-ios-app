@@ -24,6 +24,7 @@
             <connections>
                 <outlet property="careerSelectionBlock" destination="j5b-om-xiz" id="Rgx-sI-H6o"/>
                 <outlet property="castingTextField" destination="6DR-dF-PyS" id="MX7-PC-wBt"/>
+                <outlet property="domainContentView" destination="3bg-Bq-S8y" id="PQf-us-kVo"/>
                 <outlet property="domainSelectButton" destination="dIf-bY-LaO" id="WSh-dU-5um"/>
                 <outlet property="domainView" destination="qvq-vz-CU1" id="YlH-7c-Ebt"/>
                 <outlet property="endAgeButton" destination="r90-wv-lm9" id="wx6-GE-DqY"/>
@@ -106,42 +107,14 @@
                                                 <constraint firstAttribute="width" constant="8" id="XnN-EV-bUm"/>
                                             </constraints>
                                         </imageView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3bg-Bq-S8y">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3bg-Bq-S8y" customClass="DomainContentView" customModule="fone_ios_app" customModuleProvider="target">
                                             <rect key="frame" x="61.666666666666657" y="0.0" width="299.33333333333337" height="44"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_right16" translatesAutoresizingMaskIntoConstraints="NO" id="Lqs-1G-0oA">
-                                                    <rect key="frame" x="271.33333333333331" y="14" width="16" height="16"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="16" id="r6P-Gi-Xyv"/>
-                                                        <constraint firstAttribute="width" constant="16" id="x3E-Bx-UTN"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dIf-bY-LaO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="299.33333333333331" height="44"/>
-                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                </button>
-                                            </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            <constraints>
-                                                <constraint firstItem="dIf-bY-LaO" firstAttribute="top" secondItem="3bg-Bq-S8y" secondAttribute="top" id="8aQ-cz-mEz"/>
-                                                <constraint firstItem="dIf-bY-LaO" firstAttribute="leading" secondItem="3bg-Bq-S8y" secondAttribute="leading" id="XHW-3w-nuS"/>
-                                                <constraint firstAttribute="bottom" secondItem="dIf-bY-LaO" secondAttribute="bottom" id="jcI-ud-Hdo"/>
-                                                <constraint firstAttribute="trailing" secondItem="dIf-bY-LaO" secondAttribute="trailing" id="p4d-dk-qI8"/>
-                                                <constraint firstAttribute="trailing" secondItem="Lqs-1G-0oA" secondAttribute="trailing" constant="12" id="vRH-aQ-SWB"/>
-                                                <constraint firstItem="Lqs-1G-0oA" firstAttribute="centerY" secondItem="3bg-Bq-S8y" secondAttribute="centerY" id="xfT-Sp-OfA"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="5"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" red="0.93333333333333335" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dIf-bY-LaO">
+                                            <rect key="frame" x="61.666666666666657" y="0.0" width="299.33333333333337" height="44"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
@@ -150,10 +123,14 @@
                                         <constraint firstAttribute="trailing" secondItem="3bg-Bq-S8y" secondAttribute="trailing" id="LJw-Tc-h4k"/>
                                         <constraint firstItem="3bg-Bq-S8y" firstAttribute="leading" secondItem="Hhp-IU-SWb" secondAttribute="trailing" constant="24" id="OqA-vg-wwU"/>
                                         <constraint firstItem="Hhp-IU-SWb" firstAttribute="leading" secondItem="iAV-21-MyV" secondAttribute="trailing" constant="2" id="Wih-ez-1T7"/>
+                                        <constraint firstItem="dIf-bY-LaO" firstAttribute="trailing" secondItem="3bg-Bq-S8y" secondAttribute="trailing" id="YNc-gN-UFE"/>
+                                        <constraint firstItem="dIf-bY-LaO" firstAttribute="bottom" secondItem="3bg-Bq-S8y" secondAttribute="bottom" id="mNS-GH-Z1i"/>
                                         <constraint firstItem="iAV-21-MyV" firstAttribute="centerY" secondItem="qvq-vz-CU1" secondAttribute="centerY" id="meS-v1-SOg"/>
                                         <constraint firstAttribute="bottom" secondItem="3bg-Bq-S8y" secondAttribute="bottom" id="u68-Cy-goO"/>
                                         <constraint firstItem="Hhp-IU-SWb" firstAttribute="centerY" secondItem="iAV-21-MyV" secondAttribute="centerY" id="unP-SC-HLz"/>
                                         <constraint firstItem="3bg-Bq-S8y" firstAttribute="top" secondItem="qvq-vz-CU1" secondAttribute="top" id="yO1-ig-FA7"/>
+                                        <constraint firstItem="dIf-bY-LaO" firstAttribute="top" secondItem="3bg-Bq-S8y" secondAttribute="top" id="zF6-cf-iIV"/>
+                                        <constraint firstItem="dIf-bY-LaO" firstAttribute="leading" secondItem="3bg-Bq-S8y" secondAttribute="leading" id="zvl-b1-Jgy"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -455,7 +432,6 @@
     </objects>
     <resources>
         <image name="arrow_down" width="16" height="16"/>
-        <image name="arrow_right16" width="16" height="16"/>
         <image name="star" width="8" height="8"/>
         <image name="tilde" width="16" height="16"/>
         <systemColor name="systemBackgroundColor">
