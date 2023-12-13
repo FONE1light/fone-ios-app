@@ -40,6 +40,7 @@ class SelectionBlock: UIView {
         )
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.bounces = false
         
         collectionView.register(SelectionCell.self, forCellWithReuseIdentifier: SelectionCell.identifier)
         collectionView.dataSource = self
