@@ -9,10 +9,12 @@ import UIKit
 import RxSwift
 import Then
 import SnapKit
+import RxCocoa
 
 class ProfileListTableViewCell: UITableViewCell {
     
     static let identifier = String(String(describing: ProfileListTableViewCell.self))
+    var disposeBag = DisposeBag()
     
     private let titleLabel = UILabel().then {
         $0.font = .font_b(19)
@@ -33,6 +35,9 @@ class ProfileListTableViewCell: UITableViewCell {
     
     private let rightArrowImageView = UIImageView(image: UIImage(named: "arrow_right16")?.withTintColor(.gray_9E9E9E))
     private let viewMoreButton = UIButton()
+    var viewMoreButtonTap: ControlEvent<Void> {
+        viewMoreButton.rx.tap
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

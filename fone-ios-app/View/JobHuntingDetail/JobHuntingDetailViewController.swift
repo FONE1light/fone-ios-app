@@ -87,6 +87,18 @@ extension JobHuntingDetailViewController: UITableViewDataSource {
                 title: "제가 평범한 할머니로 보이시나요?",
                 imageUrls: ["imageURL1", "imageURL1", "imageURL1"]
             )
+            cell.viewMoreButtonTap
+                .withUnretained(self)
+                .bind { owner, _ in
+                    let jobHuntingProfilesViewModel = JobHuntingProfilesViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator)
+                    jobHuntingProfilesViewModel.name = owner.viewModel.authorInfo?.nickname
+                    let testUrl = "https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_"
+                    jobHuntingProfilesViewModel.imageUrls = [testUrl, testUrl, testUrl, testUrl, testUrl, testUrl, testUrl, testUrl, testUrl]
+                    let scene = Scene.jobHuntingProfiles(jobHuntingProfilesViewModel)
+                    owner.viewModel.sceneCoordinator.transition(to: scene, using: .fullScreenModal, animated: false)
+                    
+                }.disposed(by: cell.disposeBag)
+            
             return cell
             
         case JobHuntingDetailSection.actorStaffInfo.rawValue:
