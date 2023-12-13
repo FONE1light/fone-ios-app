@@ -95,11 +95,6 @@
 		367D9C322ADA652300DA6C96 /* JobRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C312ADA652300DA6C96 /* JobRegistrationViewController.swift */; };
 		367D9C342ADA657200DA6C96 /* JobRegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C332ADA657200DA6C96 /* JobRegistrationViewModel.swift */; };
 		367D9C362ADA664700DA6C96 /* JobRegistrationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367D9C352ADA664700DA6C96 /* JobRegistrationCell.swift */; };
-		368273772B2863CF00EB0629 /* JobHuntingProfilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368273762B2863CF00EB0629 /* JobHuntingProfilesViewController.swift */; };
-		368273792B28641800EB0629 /* JobHuntingProfilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368273782B28641800EB0629 /* JobHuntingProfilesViewModel.swift */; };
-		3682737B2B28660B00EB0629 /* JobHuntingProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682737A2B28660B00EB0629 /* JobHuntingProfileCollectionViewCell.swift */; };
-		3682737D2B28681C00EB0629 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682737C2B28681C00EB0629 /* UIImageView+Extension.swift */; };
-		3682737F2B2878B200EB0629 /* ProfilePreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682737E2B2878B200EB0629 /* ProfilePreviewController.swift */; };
 		368273632B270CD800EB0629 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368273622B270CD800EB0629 /* CategoriesTableViewCell.swift */; };
 		368273652B270D8500EB0629 /* MainCareerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368273642B270D8500EB0629 /* MainCareerTableViewCell.swift */; };
 		368273672B27175600EB0629 /* FooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368273662B27175600EB0629 /* FooterTableViewCell.swift */; };
@@ -108,6 +103,11 @@
 		3682736F2B2724DF00EB0629 /* ActorInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682736E2B2724DF00EB0629 /* ActorInfoTableViewCell.swift */; };
 		368273722B272D6200EB0629 /* StaffInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368273712B272D6200EB0629 /* StaffInfoTableViewCell.swift */; };
 		368273742B27338E00EB0629 /* ProfileListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368273732B27338E00EB0629 /* ProfileListTableViewCell.swift */; };
+		368273772B2863CF00EB0629 /* JobHuntingProfilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368273762B2863CF00EB0629 /* JobHuntingProfilesViewController.swift */; };
+		368273792B28641800EB0629 /* JobHuntingProfilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368273782B28641800EB0629 /* JobHuntingProfilesViewModel.swift */; };
+		3682737B2B28660B00EB0629 /* JobHuntingProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682737A2B28660B00EB0629 /* JobHuntingProfileCollectionViewCell.swift */; };
+		3682737D2B28681C00EB0629 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682737C2B28681C00EB0629 /* UIImageView+Extension.swift */; };
+		3682737F2B2878B200EB0629 /* ProfilePreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682737E2B2878B200EB0629 /* ProfilePreviewController.swift */; };
 		36A4D4972B14E572008541E9 /* DynamicSizeSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4962B14E572008541E9 /* DynamicSizeSelectionCell.swift */; };
 		36A4D4992B15C158008541E9 /* RegisterInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4982B15C158008541E9 /* RegisterInterestViewController.swift */; };
 		36A4D49B2B15C164008541E9 /* RegisterInterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D49A2B15C164008541E9 /* RegisterInterestViewModel.swift */; };
@@ -220,6 +220,7 @@
 		AB49A3472A81159F00748484 /* FindIDPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A3462A81159F00748484 /* FindIDPasswordViewModel.swift */; };
 		AB49A3492A8119B900748484 /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A3482A8119B900748484 /* CommonViewModel.swift */; };
 		AB4E44472B0E222E001B3DB6 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E44462B0E222E001B3DB6 /* UserManager.swift */; };
+		AB53282A2B29D7FE00F2A014 /* RecruitContactInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5328292B29D7FE00F2A014 /* RecruitContactInfoViewModel.swift */; };
 		AB532B2D2B0A2774003A6A57 /* GenderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB532B2C2B0A2774003A6A57 /* GenderType.swift */; };
 		AB532B2F2B0A279C003A6A57 /* CareerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB532B2E2B0A279C003A6A57 /* CareerType.swift */; };
 		AB532B312B0A306A003A6A57 /* SalaryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB532B302B0A306A003A6A57 /* SalaryType.swift */; };
@@ -278,6 +279,8 @@
 		AB79B3BD2A9E29C4008EBAA2 /* QuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB79B3BB2A9E29C4008EBAA2 /* QuestionViewController.xib */; };
 		AB80BBEB2B12E13D0016D2AB /* RecruitConditionInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB80BBE92B12E13D0016D2AB /* RecruitConditionInfoViewController.swift */; };
 		AB80BBEC2B12E13D0016D2AB /* RecruitConditionInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB80BBEA2B12E13D0016D2AB /* RecruitConditionInfoViewController.xib */; };
+		AB849DDB2B1C9ACD00B58B9A /* RecruitContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB849DD92B1C9ACD00B58B9A /* RecruitContactInfoViewController.swift */; };
+		AB849DDC2B1C9ACD00B58B9A /* RecruitContactInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB849DDA2B1C9ACD00B58B9A /* RecruitContactInfoViewController.xib */; };
 		AB9885122AA476FF00282C07 /* Rx+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9885112AA476FF00282C07 /* Rx+Extension.swift */; };
 		AB998AFF2B21F976007E6214 /* RecruitWorkConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB998AFD2B21F976007E6214 /* RecruitWorkConditionViewController.swift */; };
 		AB998B002B21F976007E6214 /* RecruitWorkConditionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB998AFE2B21F976007E6214 /* RecruitWorkConditionViewController.xib */; };
@@ -401,11 +404,6 @@
 		367D9C312ADA652300DA6C96 /* JobRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobRegistrationViewController.swift; sourceTree = "<group>"; };
 		367D9C332ADA657200DA6C96 /* JobRegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobRegistrationViewModel.swift; sourceTree = "<group>"; };
 		367D9C352ADA664700DA6C96 /* JobRegistrationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobRegistrationCell.swift; sourceTree = "<group>"; };
-		368273762B2863CF00EB0629 /* JobHuntingProfilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobHuntingProfilesViewController.swift; sourceTree = "<group>"; };
-		368273782B28641800EB0629 /* JobHuntingProfilesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobHuntingProfilesViewModel.swift; sourceTree = "<group>"; };
-		3682737A2B28660B00EB0629 /* JobHuntingProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobHuntingProfileCollectionViewCell.swift; sourceTree = "<group>"; };
-		3682737C2B28681C00EB0629 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
-		3682737E2B2878B200EB0629 /* ProfilePreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePreviewController.swift; sourceTree = "<group>"; };
 		368273622B270CD800EB0629 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
 		368273642B270D8500EB0629 /* MainCareerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCareerTableViewCell.swift; sourceTree = "<group>"; };
 		368273662B27175600EB0629 /* FooterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterTableViewCell.swift; sourceTree = "<group>"; };
@@ -414,6 +412,11 @@
 		3682736E2B2724DF00EB0629 /* ActorInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorInfoTableViewCell.swift; sourceTree = "<group>"; };
 		368273712B272D6200EB0629 /* StaffInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffInfoTableViewCell.swift; sourceTree = "<group>"; };
 		368273732B27338E00EB0629 /* ProfileListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileListTableViewCell.swift; sourceTree = "<group>"; };
+		368273762B2863CF00EB0629 /* JobHuntingProfilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobHuntingProfilesViewController.swift; sourceTree = "<group>"; };
+		368273782B28641800EB0629 /* JobHuntingProfilesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobHuntingProfilesViewModel.swift; sourceTree = "<group>"; };
+		3682737A2B28660B00EB0629 /* JobHuntingProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobHuntingProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		3682737C2B28681C00EB0629 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		3682737E2B2878B200EB0629 /* ProfilePreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePreviewController.swift; sourceTree = "<group>"; };
 		36A4D4962B14E572008541E9 /* DynamicSizeSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicSizeSelectionCell.swift; sourceTree = "<group>"; };
 		36A4D4982B15C158008541E9 /* RegisterInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInterestViewController.swift; sourceTree = "<group>"; };
 		36A4D49A2B15C164008541E9 /* RegisterInterestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInterestViewModel.swift; sourceTree = "<group>"; };
@@ -496,6 +499,7 @@
 		AB49A3462A81159F00748484 /* FindIDPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIDPasswordViewModel.swift; sourceTree = "<group>"; };
 		AB49A3482A8119B900748484 /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		AB4E44462B0E222E001B3DB6 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		AB5328292B29D7FE00F2A014 /* RecruitContactInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitContactInfoViewModel.swift; sourceTree = "<group>"; };
 		AB532B2C2B0A2774003A6A57 /* GenderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderType.swift; sourceTree = "<group>"; };
 		AB532B2E2B0A279C003A6A57 /* CareerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerType.swift; sourceTree = "<group>"; };
 		AB532B302B0A306A003A6A57 /* SalaryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalaryType.swift; sourceTree = "<group>"; };
@@ -535,6 +539,8 @@
 		AB79B3BB2A9E29C4008EBAA2 /* QuestionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionViewController.xib; sourceTree = "<group>"; };
 		AB80BBE92B12E13D0016D2AB /* RecruitConditionInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitConditionInfoViewController.swift; sourceTree = "<group>"; };
 		AB80BBEA2B12E13D0016D2AB /* RecruitConditionInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitConditionInfoViewController.xib; sourceTree = "<group>"; };
+		AB849DD92B1C9ACD00B58B9A /* RecruitContactInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitContactInfoViewController.swift; sourceTree = "<group>"; };
+		AB849DDA2B1C9ACD00B58B9A /* RecruitContactInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitContactInfoViewController.xib; sourceTree = "<group>"; };
 		AB9885112AA476FF00282C07 /* Rx+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Extension.swift"; sourceTree = "<group>"; };
 		AB998AFD2B21F976007E6214 /* RecruitWorkConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitWorkConditionViewController.swift; sourceTree = "<group>"; };
 		AB998AFE2B21F976007E6214 /* RecruitWorkConditionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitWorkConditionViewController.xib; sourceTree = "<group>"; };
@@ -1045,6 +1051,15 @@
 			path = Job;
 			sourceTree = "<group>";
 		};
+		368273702B272D4700EB0629 /* ActorStaffInfoTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3682736E2B2724DF00EB0629 /* ActorInfoTableViewCell.swift */,
+				368273712B272D6200EB0629 /* StaffInfoTableViewCell.swift */,
+			);
+			path = ActorStaffInfoTableViewCell;
+			sourceTree = "<group>";
+		};
 		368273752B28636F00EB0629 /* JobHuntingImages */ = {
 			isa = PBXGroup;
 			children = (
@@ -1054,15 +1069,6 @@
 				3682737E2B2878B200EB0629 /* ProfilePreviewController.swift */,
 			);
 			path = JobHuntingImages;
-               sourceTree = "<group>";
-        };
-		368273702B272D4700EB0629 /* ActorStaffInfoTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				3682736E2B2724DF00EB0629 /* ActorInfoTableViewCell.swift */,
-				368273712B272D6200EB0629 /* StaffInfoTableViewCell.swift */,
-			);
-			path = ActorStaffInfoTableViewCell;
 			sourceTree = "<group>";
 		};
 		36A4D4952B14E4E9008541E9 /* SelectionBlock */ = {
@@ -1525,6 +1531,16 @@
 			path = RecruitConditionInfo;
 			sourceTree = "<group>";
 		};
+		AB849DD82B1C9AAF00B58B9A /* RecruitContactInfo */ = {
+			isa = PBXGroup;
+			children = (
+				AB849DD92B1C9ACD00B58B9A /* RecruitContactInfoViewController.swift */,
+				AB849DDA2B1C9ACD00B58B9A /* RecruitContactInfoViewController.xib */,
+				AB5328292B29D7FE00F2A014 /* RecruitContactInfoViewModel.swift */,
+			);
+			path = RecruitContactInfo;
+			sourceTree = "<group>";
+		};
 		AB998B012B21F97E007E6214 /* RecruitWorkCondition */ = {
 			isa = PBXGroup;
 			children = (
@@ -1660,6 +1676,7 @@
 				AB1ADF2D2B1E016E00C2F2DD /* RecruitWorkInfo */,
 				AB998B012B21F97E007E6214 /* RecruitWorkCondition */,
 				AB1851432B1CA0F20051D0DC /* RecruitDetailInfo */,
+				AB849DD82B1C9AAF00B58B9A /* RecruitContactInfo */,
 			);
 			path = Recruit;
 			sourceTree = "<group>";
@@ -1830,6 +1847,7 @@
 				ABCDD16C2B00B73300A598A8 /* JobOpeningDetailViewController.xib in Resources */,
 				AB1CEAB82ABFD23A00E7E54F /* JobOpeningModule.xib in Resources */,
 				AB72BC8E2B1E073900EB02FE /* GenreCell.xib in Resources */,
+				AB849DDC2B1C9ACD00B58B9A /* RecruitContactInfoViewController.xib in Resources */,
 				ABCDD1752B00D60F00A598A8 /* AuthorCell.xib in Resources */,
 				ABC1DBDE2AC0113800B9A6BF /* JobOpeningCell.xib in Resources */,
 				AB79B3BD2A9E29C4008EBAA2 /* QuestionViewController.xib in Resources */,
@@ -1864,6 +1882,7 @@
 				366E85472B230DB200CB7681 /* JobHuntingDetailViewController.swift in Sources */,
 				367D9C222ADA4AA700DA6C96 /* TabBarType.swift in Sources */,
 				36AB6FD42B08694400D9D6D0 /* RegisterBasicInfoViewModel.swift in Sources */,
+				AB849DDB2B1C9ACD00B58B9A /* RecruitContactInfoViewController.swift in Sources */,
 				ABCDD1782B00DA4F00A598A8 /* TitleCell.swift in Sources */,
 				AB72BC8D2B1E073900EB02FE /* GenreCell.swift in Sources */,
 				367D9C0B2AD9F03900DA6C96 /* SavedProfilesTabBarController.swift in Sources */,
@@ -1909,6 +1928,7 @@
 				3650F61B2A849BF10017645D /* UIColor+Extension.swift in Sources */,
 				367D9BC92AC2720000DA6C96 /* Tag.swift in Sources */,
 				AB60023A2A7E375D000CF1FD /* ViewController.swift in Sources */,
+				AB53282A2B29D7FE00F2A014 /* RecruitContactInfoViewModel.swift in Sources */,
 				3628668B2A8DF40F00CD42BC /* APIConfig.swift in Sources */,
 				ABCDD1742B00D60F00A598A8 /* AuthorCell.swift in Sources */,
 				367D9BB62AC1202A00DA6C96 /* MyPageTabBarItem.swift in Sources */,
