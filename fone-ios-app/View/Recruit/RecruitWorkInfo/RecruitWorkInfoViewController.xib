@@ -52,7 +52,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="작품 정보를 입력해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCD-Fl-0QZ">
-                                    <rect key="frame" x="16" y="56" width="196.66666666666666" height="26"/>
+                                    <rect key="frame" x="16" y="56" width="194" height="26"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="26" id="xIt-Ra-LdF"/>
                                     </constraints>
@@ -191,7 +191,7 @@
                 </scrollView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgy-h2-A9m">
                     <rect key="frame" x="16" y="732" width="361" height="48"/>
-                    <color key="backgroundColor" red="0.80784313730000001" green="0.043137254899999998" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.75294117647058822" green="0.0" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="Q8W-ij-0Hk"/>
                     </constraints>

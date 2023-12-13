@@ -484,7 +484,7 @@
                 </scrollView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8i-sA-bHv">
                     <rect key="frame" x="16" y="732" width="361" height="48"/>
-                    <color key="backgroundColor" red="0.80784313725490198" green="0.043137254901960784" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.75294117647058822" green="0.0" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="eXR-Ap-pvx"/>
                     </constraints>
