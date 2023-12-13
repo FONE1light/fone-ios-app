@@ -120,6 +120,15 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                 }
             }.disposed(by: self.disposeBag)
         
+        collectionViewProfile.rx.itemSelected
+            .withUnretained(self)
+            .bind { owner, indexPath in
+                guard let cell = owner.collectionViewProfile.cellForItem(at: indexPath) 
+                        as? MyPageProfileCell else { return }
+                
+                owner.goJobHuntingDetail(jobHuntingId: 41, type: .actor) // FIXME: 우선 41, ACTOR로 고정, cell에서 id, job 가져오기
+            }.disposed(by: rx.disposeBag)
+        
         // MARK: Button tap
         // customView로 설정한 UIBarButtonItem은
         // barButtonItem에 설정하는 userInteraction이 응답하지 않아서
@@ -398,6 +407,25 @@ extension JobOpeningHuntingViewController: UITableViewDelegate {
             .subscribe(onNext: { owner, response in
                 let viewModel = JobOpeningDetailViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator, jobOpeningDetail: response.data.jobOpening)
                 let detailScene = Scene.jobOpeningDetail(viewModel)
+                owner.viewModel.sceneCoordinator.transition(to: detailScene, using: .push, animated: true)
+                
+            }).disposed(by: rx.disposeBag)
+    }
+}
+
+extension JobOpeningHuntingViewController {
+    // FIXME: jobHuntingInfoProvider 제작(API 연결)
+    func goJobHuntingDetail(jobHuntingId: Int, type: Job) {
+        jobOpeningInfoProvider.rx.request(.jobOpeningDetail(jobOpeningId: jobHuntingId, type: type))
+            .mapObject(JobOpeningInfo.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, response in
+                let viewModel = JobHuntingDetailViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator, jobHuntingDetail: response.data.jobOpening)
+                // FIXME: API 응답 따라서 JobHuntingDetailViewModel 내부에서 jobType 식별, 혹은 밖(여기)에서 selectedJobType으로 지정
+                viewModel.jobType = .actor
+//                viewModel.jobType = owner.viewModel.selectedJobType.value
+                let detailScene = Scene.jobHuntingDetail(viewModel)
                 owner.viewModel.sceneCoordinator.transition(to: detailScene, using: .push, animated: true)
                 
             }).disposed(by: rx.disposeBag)
