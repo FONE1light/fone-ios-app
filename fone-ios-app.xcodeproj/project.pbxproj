@@ -10,6 +10,7 @@
 		36031EC92AF4DC91006B57AE /* JobOpeningHuntingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36031EC82AF4DC91006B57AE /* JobOpeningHuntingViewController.swift */; };
 		36031ECB2AF4DCE4006B57AE /* JobOpeningHuntingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36031ECA2AF4DCE4006B57AE /* JobOpeningHuntingViewModel.swift */; };
 		360E843C2B28850100D4A540 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360E843B2B28850100D4A540 /* UIApplication+Extension.swift */; };
+		360E843E2B2984C000D4A540 /* ReportBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360E843D2B2984C000D4A540 /* ReportBottomSheet.swift */; };
 		362419CF2AE319B1007D1AFB /* SignUpPersonalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362419CE2AE319B1007D1AFB /* SignUpPersonalInfoViewModel.swift */; };
 		362419D12AE319CF007D1AFB /* SignUpSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362419D02AE319CF007D1AFB /* SignUpSelectionViewModel.swift */; };
 		362419D32AE33158007D1AFB /* SignUpSuccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362419D22AE33158007D1AFB /* SignUpSuccessViewModel.swift */; };
@@ -320,6 +321,7 @@
 		36031EC82AF4DC91006B57AE /* JobOpeningHuntingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningHuntingViewController.swift; sourceTree = "<group>"; };
 		36031ECA2AF4DCE4006B57AE /* JobOpeningHuntingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningHuntingViewModel.swift; sourceTree = "<group>"; };
 		360E843B2B28850100D4A540 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
+		360E843D2B2984C000D4A540 /* ReportBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportBottomSheet.swift; sourceTree = "<group>"; };
 		362419CE2AE319B1007D1AFB /* SignUpPersonalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPersonalInfoViewModel.swift; sourceTree = "<group>"; };
 		362419D02AE319CF007D1AFB /* SignUpSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSelectionViewModel.swift; sourceTree = "<group>"; };
 		362419D22AE33158007D1AFB /* SignUpSuccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSuccessViewModel.swift; sourceTree = "<group>"; };
@@ -1196,6 +1198,7 @@
 				36AB6FD72B088E6700D9D6D0 /* LabelTextField.swift */,
 				36AB6FDB2B08A6BA00D9D6D0 /* LabelTextView.swift */,
 				362C80342B139D7F00489E7D /* LetterCountedTextView.swift */,
+				360E843D2B2984C000D4A540 /* ReportBottomSheet.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2025,6 +2028,7 @@
 				367D9C322ADA652300DA6C96 /* JobRegistrationViewController.swift in Sources */,
 				362866802A8B688300CD42BC /* DefaultTextField.swift in Sources */,
 				AB6992242AB6E87100B67455 /* ChatViewModel.swift in Sources */,
+				360E843E2B2984C000D4A540 /* ReportBottomSheet.swift in Sources */,
 				3628669A2A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift in Sources */,
 				362C80352B139D8000489E7D /* LetterCountedTextView.swift in Sources */,
 				367D9C052AD765C800DA6C96 /* SavedProfilesContentViewController.swift in Sources */,
