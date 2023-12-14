@@ -209,9 +209,37 @@ class CustomButton: UIButton {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
     
+    func xibInit(_ title: String? = nil, type: ButtonDesignType? = nil) {
+        
+        setTitle(title, for: .normal)
+        
+        guard let type = type else { return }
+        
+        cornerRadius = type.cornerRadius
+        
+        if let titleFont = type.titleFont {
+            titleLabel?.font = titleFont
+        }
+        
+        if let shadowType = type.shadowType {
+            applyShadow(shadowType: shadowType)
+        }
+        
+        // properties 초기화
+        setBackgroundColor(type.defaultBackgroundColor, for: .normal)
+        setBackgroundColor(type.disabledBackgroundColor, for: .disabled)
+        
+        defaultTitleColor = type.defaultTitleColor
+        disabledTitleColor = type.disabledTitleColor
+        
+        guard type.defaultBorderColor != nil else { return }
+        self.borderWidth = 1
+        setBorderColor(type.defaultBorderColor, for: .normal)
+        setBorderColor(type.disabledBorderColor, for: .disabled)
+    }
 }
 
 extension CustomButton {
