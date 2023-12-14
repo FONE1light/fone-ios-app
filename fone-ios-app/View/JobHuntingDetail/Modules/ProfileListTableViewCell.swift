@@ -98,17 +98,44 @@ class ProfileListTableViewCell: UITableViewCell {
         imageStackView.arrangedSubviews
             .forEach { $0.removeFromSuperview() }
         
+        guard let imageCount = imageUrls?.count else { return }
+        
         imageUrls?
-            .compactMap { _ in
-                // FIXME: URL로 이미지 생성
-                UIImageView(image: UIImage(named: "heart_on")).then {
-                    $0.backgroundColor = .gray_D9D9D9
+            .compactMap { imageUrl in
+                UIImageView().then {
+                    $0.load(url: imageUrl)
                     $0.cornerRadius = 5
+                    $0.clipsToBounds = true
+                    $0.contentMode = .scaleAspectFill
                 }
             }
             .forEach {
                 imageStackView.addArrangedSubview($0)
             }
+        
+        // 가로 계산 후 세로 높이 및 stackView 높이 지정
+        var spacing: CGFloat
+        var heightWidthRatio: CGFloat
+        switch imageCount {
+        case 2:
+            spacing = 27
+            heightWidthRatio = 201/158
+        case 3:
+            spacing = 17
+            heightWidthRatio = 131/103
+        default:
+            spacing = 0
+            heightWidthRatio = 378/343
+        }
+        imageStackView.spacing = spacing
+
+        let stackViewWidth = UIScreen.main.bounds.width - 16 * 2
+        let width = (stackViewWidth - spacing * CGFloat(imageCount-1)) / CGFloat(imageCount)
+        let height = width * heightWidthRatio
+        
+        imageStackView.snp.updateConstraints {
+            $0.height.equalTo(height)
+        }
     }
     
     required init?(coder: NSCoder) {

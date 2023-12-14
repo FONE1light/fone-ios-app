@@ -24,6 +24,7 @@ enum JobHuntingDetailSection: Int, CaseIterable {
 }
 
 class JobHuntingDetailViewController: UIViewController, ViewModelBindableType {
+    private let mockUrl = "https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_"
     var viewModel: JobHuntingDetailViewModel!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var tableView: UITableView! {
@@ -85,15 +86,14 @@ extension JobHuntingDetailViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(for: indexPath) as ProfileListTableViewCell
             cell.configure(
                 title: "제가 평범한 할머니로 보이시나요?",
-                imageUrls: ["imageURL1", "imageURL1", "imageURL1"]
+                imageUrls: [mockUrl, mockUrl, mockUrl]
             )
             cell.viewMoreButtonTap
                 .withUnretained(self)
                 .bind { owner, _ in
                     let jobHuntingProfilesViewModel = JobHuntingProfilesViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator)
                     jobHuntingProfilesViewModel.name = owner.viewModel.authorInfo?.nickname
-                    let testUrl = "https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_"
-                    jobHuntingProfilesViewModel.imageUrls = [testUrl, testUrl, testUrl, testUrl, testUrl, testUrl, testUrl, testUrl, testUrl]
+                    jobHuntingProfilesViewModel.imageUrls = [owner.mockUrl, owner.mockUrl, owner.mockUrl, owner.mockUrl, owner.mockUrl, owner.mockUrl, owner.mockUrl, owner.mockUrl, owner.mockUrl]
                     let scene = Scene.jobHuntingProfiles(jobHuntingProfilesViewModel)
                     owner.viewModel.sceneCoordinator.transition(to: scene, using: .fullScreenModal, animated: false)
                     
