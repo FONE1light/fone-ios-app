@@ -42,11 +42,9 @@ class JobHuntingProfilesViewController: UIViewController, ViewModelBindableType 
                 // TODO: cell의 데이터/imageView 이용하도록 수정할지?
 //                let cell = owner.collectionView.dequeueReusableCell(forIndexPath: indexPath) as JobHuntingProfileCollectionViewCell
                 
-                let modal = ProfilePreviewController(imageUrl: owner.viewModel.imageUrls?[indexPath.row])
-                modal.modalPresentationStyle = .pageSheet
-                owner.present(modal, animated: true)
+                let imageUrl = owner.viewModel.imageUrls?[indexPath.row]
+                owner.viewModel.sceneCoordinator.transition(to: .profilePreviewBottomSheet(imageUrl), using: .pageSheetModal, animated: true)
             }.disposed(by: rx.disposeBag)
-        
     }
     
     override func viewDidLoad() {

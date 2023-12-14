@@ -47,7 +47,8 @@ enum Scene {
     case jobHuntingProfiles(JobHuntingProfilesViewModel) // 프로필 상세 > 이미지 더보기
 
     // 바텀시트
-    case reportBottomSheet// 신고하기 바텀시트
+    case reportBottomSheet // 신고하기 바텀시트
+    case profilePreviewBottomSheet(String?) // 프로필 이미지 크게 보기 바텀시트
 
 }
 
@@ -334,6 +335,12 @@ extension Scene {
             let bottomSheetVC = BottomSheetViewController(view: bottomSheet)
 
             return bottomSheetVC
+            
+        case .profilePreviewBottomSheet(let imageUrl):
+            let bottomSheetVC = ProfilePreviewController(imageUrl: imageUrl)
+            
+            return bottomSheetVC
+            
         }
     }
 }
