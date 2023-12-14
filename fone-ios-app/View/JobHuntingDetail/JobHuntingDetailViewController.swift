@@ -95,12 +95,7 @@ extension JobHuntingDetailViewController: UITableViewDataSource {
             cell.viewMoreButtonTap
                 .withUnretained(self)
                 .bind { owner, _ in
-                    let jobHuntingProfilesViewModel = JobHuntingProfilesViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator)
-                    jobHuntingProfilesViewModel.name = owner.viewModel.authorInfo?.nickname
-                    jobHuntingProfilesViewModel.imageUrls = [owner.mockUrl, owner.mockUrl, owner.mockUrl, owner.mockUrl, owner.mockUrl, owner.mockUrl, owner.mockUrl, owner.mockUrl, owner.mockUrl]
-                    let scene = Scene.jobHuntingProfiles(jobHuntingProfilesViewModel)
-                    owner.viewModel.sceneCoordinator.transition(to: scene, using: .fullScreenModal, animated: false)
-                    
+                    owner.viewModel.moveToJobHuntingProfiles()
                 }.disposed(by: cell.disposeBag)
             
             return cell
