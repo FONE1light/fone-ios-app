@@ -16,13 +16,17 @@ class RecruitDetailInfoViewController: UIViewController, ViewModelBindableType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setNavigationBar()
         setUI()
     }
     
     func bindViewModel() {
-        
+        nextButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.viewModel.moveToNextStep()
+            }.disposed(by: rx.disposeBag)
     }
     
     private func setNavigationBar() {
