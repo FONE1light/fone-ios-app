@@ -27,6 +27,8 @@ class ProfileListTableViewCell: UITableViewCell {
         $0.distribution = .fillEqually
     }
     
+    var imageButtonTaps: [ControlEvent<Void>] = []
+    
     private let viewMoreLabel = UILabel().then {
         $0.text = "더보기"
         $0.font = .font_m(12)
@@ -98,7 +100,7 @@ class ProfileListTableViewCell: UITableViewCell {
         imageStackView.arrangedSubviews
             .forEach { $0.removeFromSuperview() }
         
-        guard let imageCount = imageUrls?.count else { return }
+        guard let imageCount = imageUrls?.count, imageCount != 0 else { return }
         
         imageUrls?
             .compactMap { imageUrl in
@@ -109,8 +111,19 @@ class ProfileListTableViewCell: UITableViewCell {
                     $0.contentMode = .scaleAspectFill
                 }
             }
-            .forEach {
-                imageStackView.addArrangedSubview($0)
+            .forEach { imageView in
+                imageStackView.addArrangedSubview(imageView)
+                
+                // button 생성
+                let button = UIButton()
+                imageStackView.addSubview(button)
+                button.snp.makeConstraints {
+                    $0.edges.equalTo(imageView)
+                }
+                
+                // button ControlEvent 연결
+                let buttonTap = button.rx.tap
+                imageButtonTaps.append(buttonTap)
             }
         
         // 가로 계산 후 세로 높이 및 stackView 높이 지정
