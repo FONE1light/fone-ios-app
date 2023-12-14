@@ -46,9 +46,13 @@ class JobHuntingDetailViewController: UIViewController, ViewModelBindableType {
     }
     
     private func setNavigationBar() {
-        navigationItem.titleView = NavigationTitleView(title: "\(viewModel.jobType?.koreanName ?? "") 모집")
+        navigationItem.titleView = NavigationTitleView(title: "\(viewModel.jobType?.koreanName ?? "") 프로필")
         navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
             type: .back,
+            viewController: self
+        )
+        navigationItem.rightBarButtonItem = NavigationRightBarButtonItem(
+            type: .more,
             viewController: self
         )
     }

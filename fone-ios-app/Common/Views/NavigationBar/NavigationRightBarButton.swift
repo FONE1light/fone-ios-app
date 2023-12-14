@@ -10,6 +10,7 @@ import UIKit
 enum RightBarButtonType {
     case notification
     case close
+    case more
 }
 
 extension RightBarButtonType {
@@ -18,9 +19,8 @@ extension RightBarButtonType {
     /// `image`면 `tintColor`가 적용되고 `customView`면 적용되지 않음
     var tintColor: UIColor? {
         switch self {
-        case .notification: return .gray_9E9E9E
+        case .notification, .more: return .gray_9E9E9E
         case .close: return .gray_555555
-        default: return nil
         }
     }
     
@@ -29,7 +29,7 @@ extension RightBarButtonType {
         switch self {
         case .notification: return UIImage(named: "bell")
         case .close: return UIImage(named: "close_MD")
-        default: return nil
+        case .more: return UIImage(named: "More_Vertical")
         }
     }
     
@@ -52,7 +52,11 @@ extension RightBarButtonType {
                 guard let viewModel = vc.viewModel as? CommonViewModel else { return }
                 viewModel.sceneCoordinator.close(animated: true)
             }
-        default: return
+        case .more:
+            if let vc = viewController as? any ViewModelBindableType {
+                guard let viewModel = vc.viewModel as? CommonViewModel else { return }
+                viewModel.sceneCoordinator.transition(to: .reportBottomSheet, using: .customModal, animated: true)
+            }
         }
     }
 }
