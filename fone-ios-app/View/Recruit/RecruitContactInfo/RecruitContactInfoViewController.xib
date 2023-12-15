@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Bold.ttf">
+            <string>Pretendard-Bold</string>
+        </array>
+        <array key="Pretendard-Medium.ttf">
+            <string>Pretendard-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecruitContactInfoViewController" customModule="fone_ios_app" customModuleProvider="target">
+            <connections>
+                <outlet property="emailTextField" destination="hQ5-Ly-oIi" id="DM3-Wo-hMD"/>
+                <outlet property="managerTextField" destination="FfF-FW-Vg9" id="SLj-BB-2vd"/>
+                <outlet property="registerButton" destination="9Fc-Oe-xiU" id="ntX-cA-S5Y"/>
+                <outlet property="stepIndicator" destination="FhD-0m-sxw" id="2rM-SB-1ez"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FhD-0m-sxw" customClass="StepIndicator" customModule="fone_ios_app" customModuleProvider="target">
+                    <rect key="frame" x="16" y="89" width="88" height="6"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="88" id="0vK-x4-eZN"/>
+                        <constraint firstAttribute="height" constant="6" id="n0z-nc-7O8"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="담당자 정보를 입력해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xwd-jE-WLf">
+                    <rect key="frame" x="16" y="115" width="210.33333333333334" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="26" id="FqU-LJ-LfD"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="19"/>
+                    <color key="textColor" red="0.21176470589999999" green="0.17254901959999999" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FfF-FW-Vg9" customClass="LabelTextField" customModule="fone_ios_app" customModuleProvider="target">
+                    <rect key="frame" x="16" y="153" width="361" height="44"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="LsI-Mq-2OI"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hQ5-Ly-oIi" customClass="LabelTextField" customModule="fone_ios_app" customModuleProvider="target">
+                    <rect key="frame" x="16" y="217" width="361" height="44"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="wad-Hl-gPp"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Fc-Oe-xiU">
+                    <rect key="frame" x="16" y="732" width="361" height="48"/>
+                    <color key="backgroundColor" red="0.75294117647058822" green="0.0" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="Va6-qv-Jh2"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="16"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="등록하기"/>
+                    <state key="disabled" title="제출하기"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="FfF-FW-Vg9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="AYN-Yn-NJB"/>
+                <constraint firstItem="hQ5-Ly-oIi" firstAttribute="top" secondItem="FfF-FW-Vg9" secondAttribute="bottom" constant="20" id="F0o-P8-18z"/>
+                <constraint firstItem="hQ5-Ly-oIi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="KHb-xK-9jh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hQ5-Ly-oIi" secondAttribute="trailing" constant="16" id="KgM-QI-PfZ"/>
+                <constraint firstItem="Xwd-jE-WLf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Mxg-OC-UgA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="9Fc-Oe-xiU" secondAttribute="bottom" constant="38" id="TC0-8l-gZL"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FfF-FW-Vg9" secondAttribute="trailing" constant="16" id="XsN-lf-vT4"/>
+                <constraint firstItem="9Fc-Oe-xiU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="aSH-j0-I8u"/>
+                <constraint firstItem="FhD-0m-sxw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="apn-na-wOc"/>
+                <constraint firstItem="FhD-0m-sxw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="cZr-A3-KWn"/>
+                <constraint firstItem="FfF-FW-Vg9" firstAttribute="top" secondItem="Xwd-jE-WLf" secondAttribute="bottom" constant="12" id="dBH-JK-ylM"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9Fc-Oe-xiU" secondAttribute="trailing" constant="16" id="fYB-3S-tIa"/>
+                <constraint firstItem="Xwd-jE-WLf" firstAttribute="top" secondItem="FhD-0m-sxw" secondAttribute="bottom" constant="20" id="iUO-So-C8X"/>
+            </constraints>
+            <point key="canvasLocation" x="4" y="20"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

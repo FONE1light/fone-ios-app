@@ -42,7 +42,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="상세 요강을 입력해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RXI-Do-3wt">
-                    <rect key="frame" x="16" y="115" width="196.66666666666666" height="26"/>
+                    <rect key="frame" x="16" y="115" width="194" height="26"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="26" id="uI5-1E-Y6D"/>
                     </constraints>
@@ -67,7 +67,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ex) 업무 예시, 근무 여건, 지원자가 갖추어야할 능력, 우대 사항 등" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9y-s4-o08">
-                    <rect key="frame" x="16" y="185" width="308.33333333333331" height="14"/>
+                    <rect key="frame" x="16" y="185" width="305" height="14"/>
                     <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                     <color key="textColor" red="0.77254901960784317" green="0.77254901960784317" blue="0.77254901960784317" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -81,7 +81,7 @@
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jy8-0x-mOs">
                     <rect key="frame" x="16" y="732" width="361" height="48"/>
-                    <color key="backgroundColor" red="0.80784313730000001" green="0.043137254899999998" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.75294117647058822" green="0.0" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="hkd-OH-XRY"/>
                     </constraints>

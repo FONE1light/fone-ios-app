@@ -9,4 +9,11 @@ import Foundation
 
 final class RecruitDetailInfoViewModel: CommonViewModel {
     var jobType: Job?
+    
+    func moveToNextStep() {
+        let recruitContactInfoViewModel = RecruitContactInfoViewModel(sceneCoordinator: sceneCoordinator)
+        recruitContactInfoViewModel.jobType = jobType
+        let recuirtContactInfoScene = Scene.recruitContactInfo(recruitContactInfoViewModel)
+        sceneCoordinator.transition(to: recuirtContactInfoScene, using: .push, animated: true)
+    }
 }
