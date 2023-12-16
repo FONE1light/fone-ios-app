@@ -12,4 +12,5 @@ enum TransitionStyle {
     case push
     case fullScreenModal
     case customModal
+    case pageSheetModal
 }
