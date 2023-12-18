@@ -5,12 +5,11 @@
 //  Created by 여나경 on 12/11/23.
 //
 
-import Foundation
-
 import UIKit
 import RxSwift
 import Then
 import SnapKit
+import RxCocoa
 
 class AuthorTableViewCell: UITableViewCell {
     
@@ -53,6 +52,23 @@ class AuthorTableViewCell: UITableViewCell {
         $0.spacing = 6
     }
     
+    private let instagramButton = UIButton().then {
+        $0.setImage(UIImage(named: "instagram_but"), for: .normal)
+    }
+    
+    var instagramButtonTap: ControlEvent<Void> {
+        instagramButton.rx.tap
+    }
+    
+    
+    private let youtubeButton = UIButton().then {
+        $0.setImage(UIImage(named: "youtube_but"), for: .normal)
+    }
+    
+    var youtubeButtonTap: ControlEvent<Void> {
+        youtubeButton.rx.tap
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
@@ -68,8 +84,8 @@ class AuthorTableViewCell: UITableViewCell {
         nicknameLabel.text = authorInfo.nickname
         userJobLabel.text = authorInfo.userJob
         officialMarkImageView.isHidden = authorInfo.userJob != "OFFICIAL"
-        // FIXME: 실제 url로 호출
-        setupSnsStackView(instagramUrl: "qwer", youtubeUrl: "12345")
+        setupSnsStackView(instagramUrl: authorInfo.instagramUrl, youtubeUrl: authorInfo.youtubeUrl)
+        
     }
     
     private func setupUI() {
@@ -130,26 +146,27 @@ class AuthorTableViewCell: UITableViewCell {
             .forEach { $0.removeFromSuperview() }
         
         if let url = instagramUrl, !url.isEmpty {
-            let instagramButton = UIButton().then {
-                $0.setImage(UIImage(named: "instagram_but"), for: .normal)
-            }
-            instagramButton.rx.tap
-                .withUnretained(self)
-                .bind { owner, _ in
-                    print("instagramButton is clicked")
-                }.disposed(by: rx.disposeBag)
+//            let instagramButton = UIButton().then {
+//                $0.setImage(UIImage(named: "instagram_but"), for: .normal)
+//            }
+//            instagramButton.rx.tap
+//                .withUnretained(self)
+//                .bind { owner, _ in
+//                    print("instagram: \(url)")
+//                    
+//                }.disposed(by: rx.disposeBag)
             snsStackView.addArrangedSubview(instagramButton)
         }
         
         if let url = youtubeUrl, !url.isEmpty {
-            let youtubeButton = UIButton().then {
-                $0.setImage(UIImage(named: "youtube_but"), for: .normal)
-            }
-            youtubeButton.rx.tap
-                .withUnretained(self)
-                .bind { owner, _ in
-                    print("youtubeButton is clicked")
-                }.disposed(by: rx.disposeBag)
+//            let youtubeButton = UIButton().then {
+//                $0.setImage(UIImage(named: "youtube_but"), for: .normal)
+//            }
+//            youtubeButton.rx.tap
+//                .withUnretained(self)
+//                .bind { owner, _ in
+//                    print("youtube: \(url)")
+//                }.disposed(by: rx.disposeBag)
             snsStackView.addArrangedSubview(youtubeButton)
         }
     }

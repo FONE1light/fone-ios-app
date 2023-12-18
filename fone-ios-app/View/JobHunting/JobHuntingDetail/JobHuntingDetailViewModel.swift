@@ -2,7 +2,7 @@
 //  JobHuntingDetailViewModel.swift
 //  fone-ios-app
 //
-//  Created by Yukyung Huh on 11/12/23.
+//  Created by 여나경 on 12/13/23.
 //
 
 import Foundation
@@ -21,5 +21,26 @@ final class JobHuntingDetailViewModel: CommonViewModel {
         super.init(sceneCoordinator: sceneCoordinator)
         
         self.jobHuntingDetail = jobHuntingDetail
+    }
+    
+    func fetchJobHuntingContent() {
+        authorInfo = AuthorInfo(
+            createdAt: jobHuntingDetail?.createdAt, 
+            profileUrl: jobHuntingDetail?.profileURL,
+            nickname: jobHuntingDetail?.nickname,
+            userJob: jobHuntingDetail?.userJob,
+            viewCount: jobHuntingDetail?.viewCount,
+            instagramUrl: "",
+            youtubeUrl: "https://youtu.be/RuORKyaDPCo?si=9AkP2UkPg6XkaZZr"
+        )
+    }
+    
+    func moveToSNSWebView(_ url: String?) {
+        guard let url = url else { return }
+//        let sNSWebViewModel = SNSWebViewModel(sceneCoordinator: sceneCoordinator)
+//        SNSWebViewModel.url = url
+        
+        let scene = Scene.snsWebViewController
+        sceneCoordinator.transition(to: scene, using: .push, animated: true)
     }
 }

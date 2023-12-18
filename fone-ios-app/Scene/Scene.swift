@@ -47,9 +47,10 @@ enum Scene {
     
     case jobHuntingProfiles(JobHuntingProfilesViewModel) // 프로필 상세 > 이미지 더보기
 
-    // 바텀시트
+    // 바텀시트/모달
     case reportBottomSheet// 신고하기 바텀시트
-
+    
+    case snsWebViewController
 }
 
 extension Scene {
@@ -344,6 +345,12 @@ extension Scene {
             let bottomSheetVC = BottomSheetViewController(view: bottomSheet)
 
             return bottomSheetVC
+            
+        case .snsWebViewController:
+            let viewController = SNSWebViewController()
+            let navControlller = UINavigationController(rootViewController: viewController)
+            
+            return navControlller
         }
     }
 }
