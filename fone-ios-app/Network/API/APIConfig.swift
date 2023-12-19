@@ -17,7 +17,11 @@ enum APIConfig {
 
 extension APIConfig {
     var baseURL: String {
-        "http://3.39.0.194"
+        switch self {
+        case .DEV: return "http://3.37.114.103"
+        case .STAGING, .PRODUCT: return "http://3.39.0.194"
+        }
+        
     }
     var imageUploadBaseURL: String {
         "https://du646e9qh1.execute-api.ap-northeast-2.amazonaws.com"

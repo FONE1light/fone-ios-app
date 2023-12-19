@@ -396,7 +396,7 @@ extension JobOpeningHuntingViewController: UITableViewDataSource {
 
 extension JobOpeningHuntingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        goJobOpeningDetail(jobOpeningId: 41, type: .actor) // FIXME: 우선 41, ACTOR로 고정, cell에서 id, job 가져오기
+        goJobOpeningDetail(jobOpeningId: 1, type: .actor) // FIXME: 우선 41, ACTOR로 고정, cell에서 id, job 가져오기
     }
     
     func goJobOpeningDetail(jobOpeningId: Int, type: Job) {
@@ -405,10 +405,16 @@ extension JobOpeningHuntingViewController: UITableViewDelegate {
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
-                let viewModel = JobOpeningDetailViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator, jobOpeningDetail: response.data.jobOpening)
+                guard let jobOpening = response.data?.jobOpening else {
+                    response.message.toast()
+                    return }
+                let viewModel = JobOpeningDetailViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator, jobOpeningDetail: jobOpening)
                 let detailScene = Scene.jobOpeningDetail(viewModel)
                 owner.viewModel.sceneCoordinator.transition(to: detailScene, using: .push, animated: true)
                 
+            },
+            onError: { error in
+                print(error)
             }).disposed(by: rx.disposeBag)
     }
 }
@@ -421,7 +427,8 @@ extension JobOpeningHuntingViewController {
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
-                let viewModel = JobHuntingDetailViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator, jobHuntingDetail: response.data.jobOpening)
+                guard let jobOpening = response.data?.jobOpening else { return }
+                let viewModel = JobHuntingDetailViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator, jobHuntingDetail: jobOpening)
                 // FIXME: API 응답 따라서 JobHuntingDetailViewModel 내부에서 jobType 식별, 혹은 밖(여기)에서 selectedJobType으로 지정
                 viewModel.jobType = .actor
 //                viewModel.jobType = owner.viewModel.selectedJobType.value
