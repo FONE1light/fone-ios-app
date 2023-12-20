@@ -11,6 +11,9 @@ final class JobHuntingDetailViewModel: CommonViewModel {
     var jobType: Job?
     var jobHuntingDetail: JobOpeningContent? // FIXME: JobHuntingContent?
     
+    // FIXME: 아마도 jobHuntingDetail 하나로 통합
+    var mockUrls: [String]?
+    
     lazy var authorInfo = AuthorInfo(
         createdAt: jobHuntingDetail?.createdAt,
         profileUrl: jobHuntingDetail?.profileURL,
@@ -29,9 +32,10 @@ final class JobHuntingDetailViewModel: CommonViewModel {
         self.jobHuntingDetail = jobHuntingDetail
     }
     
-    func fetchJobHuntingContent() {
+    // TODO: API 통신
+    func fetchJobHuntingDetail() {
         authorInfo = AuthorInfo(
-            createdAt: jobHuntingDetail?.createdAt, 
+            createdAt: jobHuntingDetail?.createdAt,
             profileUrl: jobHuntingDetail?.profileURL,
             nickname: jobHuntingDetail?.nickname,
             userJob: jobHuntingDetail?.userJob,
@@ -39,6 +43,18 @@ final class JobHuntingDetailViewModel: CommonViewModel {
             instagramUrl: "https://www.instagram.com/fone.wing/",
             youtubeUrl: "https://www.youtube.com/"
         )
+        let mockUrlCat = "https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_"
+        let mockUrlDog = "https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/advisor/wp-content/uploads/2023/07/top-20-small-dog-breeds.jpeg.jpg"
+        
+        mockUrls = [mockUrlCat, mockUrlDog, mockUrlCat, mockUrlCat, mockUrlCat, mockUrlCat, mockUrlCat, mockUrlCat, mockUrlCat]
+    }
+    
+    func moveToJobHuntingProfiles() {
+        let jobHuntingProfilesViewModel = JobHuntingProfilesViewModel(sceneCoordinator: sceneCoordinator)
+        jobHuntingProfilesViewModel.name = authorInfo?.nickname
+        jobHuntingProfilesViewModel.imageUrls = mockUrls
+        let scene = Scene.jobHuntingProfiles(jobHuntingProfilesViewModel)
+        sceneCoordinator.transition(to: scene, using: .fullScreenModal, animated: false)
     }
     
     func moveToSNSWebView(_ url: String?) {
@@ -46,5 +62,10 @@ final class JobHuntingDetailViewModel: CommonViewModel {
         let viewModel = SNSWebViewModel(sceneCoordinator: sceneCoordinator, url: url)
         let scene = Scene.snsWebViewController(viewModel)
         sceneCoordinator.transition(to: scene, using: .fullScreenModal, animated: true)
+    }
+    
+    func showProfilePreviewBottomSheet(of index: Int) {
+        guard let imageUrl = mockUrls?[index] else { return }
+        sceneCoordinator.transition(to: .profilePreviewBottomSheet(imageUrl), using: .pageSheetModal, animated: true)
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 enum JobHuntingDetailSection: Int, CaseIterable {
     case author = 0
@@ -24,7 +25,10 @@ enum JobHuntingDetailSection: Int, CaseIterable {
 }
 
 class JobHuntingDetailViewController: UIViewController, ViewModelBindableType {
+    
     var viewModel: JobHuntingDetailViewModel!
+    var disposeBag = DisposeBag()
+    
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -39,7 +43,7 @@ class JobHuntingDetailViewController: UIViewController, ViewModelBindableType {
         setNavigationBar()
         setCollectionView()
         
-        viewModel.fetchJobHuntingContent()
+        viewModel.fetchJobHuntingDetail()
     }
     
     func bindViewModel() {
@@ -99,10 +103,28 @@ extension JobHuntingDetailViewController: UITableViewDataSource {
         case JobHuntingDetailSection.profileList.rawValue:
             
             let cell = tableView.dequeueReusableCell(for: indexPath) as ProfileListTableViewCell
+            let urls = viewModel.mockUrls?.prefix(3) ?? []
+            
             cell.configure(
                 title: "제가 평범한 할머니로 보이시나요?",
-                imageUrls: ["imageURL1", "imageURL1", "imageURL1"]
+                imageUrls: Array(urls)
             )
+            cell.viewMoreButtonTap
+                .withUnretained(self)
+                .bind { owner, _ in
+                    owner.viewModel.moveToJobHuntingProfiles()
+                }.disposed(by: cell.disposeBag)
+            
+            cell.imageButtonTaps
+                .enumerated()
+                .forEach { index, buttonTap in
+                    buttonTap
+                        .withUnretained(self)
+                        .bind { owner, _ in
+                            owner.viewModel.showProfilePreviewBottomSheet(of: index)
+                        }.disposed(by: cell.disposeBag)
+                }
+            
             return cell
             
         case JobHuntingDetailSection.actorStaffInfo.rawValue:
