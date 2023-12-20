@@ -11,104 +11,43 @@ import SnapKit
 import RxSwift
 import WebKit
 
-class SNSWebViewController: UIViewController, WKUIDelegate/*, WKNavigationDelegate*/ {
+class SNSWebViewController: UIViewController, ViewModelBindableType, WKUIDelegate {
     
-//    var viewModel: SNSWebViewModel!
+    var viewModel: SNSWebViewModel!
     private var webView = WKWebView()
     
-    private lazy var backButtonImage: UIImage? = {
+    private let backButtonImage: UIImage? = {
         return UIImage(named: "arrow_left24")?.withTintColor(.gray_555555, renderingMode: .alwaysOriginal)
     }()
 
-    private lazy var forwardButtonImage: UIImage? = {
+    private let forwardButtonImage: UIImage? = {
         return UIImage(named: "arrow_right")?.withTintColor(.gray_555555, renderingMode: .alwaysOriginal)
     }()
 
-    private lazy var reloadButtonImage: UIImage? = {
+    private let reloadButtonImage: UIImage? = {
         return UIImage(named: "Redo")?.withTintColor(.gray_555555, renderingMode: .alwaysOriginal)
     }()
 
-    private lazy var shareButtonImage: UIImage? = {
+    private let shareButtonImage: UIImage? = {
         return UIImage(named: "External_Link")?.withTintColor(.gray_555555, renderingMode: .alwaysOriginal)
     }()
 
     lazy var barBackButtonItem: UIBarButtonItem = {
-        // 주의: UIBarButtonItem을 생성할 때 CustomView로 button을 넣을경우 하나만 표출되므로 image로 넣어서 사용
         return UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(didTapToolBarBackButton))
-//            .then {
-//            $0.isEnabled = webView.canGoBack
-//        }
     }()
-//    var barBackButtonItem: UIBarButtonItem {
-//        let button = UIButton().then {
-//            $0.setImage(backButtonImage, for: .normal)
-//        }
-//        let barButtonItem = UIBarButtonItem(customView: button)
-////        barButtonItem.isEnabled = webView.canGoBack
-//        barButtonItem.rx.tap.withUnretained(self)
-//            .bind { owner, _ in
-//                owner.webView.goBack()
-//            }.disposed(by: rx.disposeBag)
-//        
-//        return barButtonItem
-//    }
 
     lazy var barForwardButtonItem: UIBarButtonItem = {
-        // 주의: UIBarButtonItem을 생성할 때 CustomView로 button을 넣을경우 하나만 표출되므로 image로 넣어서 사용
-//        let button = UIButton().then {
-//            $0.setImage(forwardButtonImage, for: .normal)
-//        }
-//        
-//        let barButtonItem = UIBarButtonItem(customView: button)
-////        barButtonItem.setBackgroundImage(forwardButtonImage, for: .normal, barMetrics: .default)
-////        barButtonItem.setBackgroundImage(backButtonImage?.withTintColor(.red), for: .disabled, barMetrics: .default)
-//        barButtonItem.isEnabled = webView.canGoForward
-//        return barButtonItem
-        
-        let buttonItem = UIBarButtonItem(image: forwardButtonImage, style: .plain, target: self, action: #selector(didTapToolBarForwardButton))
-//        if webView.canGoForward {
-//            buttonItem.isEnabled = true
-//            buttonItem.tintColor = .red
-//        } else {
-//            buttonItem.isEnabled = false
-//            buttonItem.tintColor = .yellow
-//            buttonItem.image?.withTintColor(.yellow)
-//            buttonItem.image?.withTintColor(.yellow, renderingMode: .alwaysOriginal)
-//        }
-        return buttonItem
+        return UIBarButtonItem(image: forwardButtonImage, style: .plain, target: self, action: #selector(didTapToolBarForwardButton))
     }()
     
     lazy var reloadButtonItem: UIBarButtonItem = {
-        // 주의: UIBarButtonItem을 생성할 때 CustomView로 button을 넣을경우 하나만 표출되므로 image로 넣어서 사용
         return UIBarButtonItem(image: reloadButtonImage, style: .plain, target: self, action: #selector(didTapToolBarReloadButton))
     }()
 
+    // customView로 생성하면 마지막에 flexibleSpace가 균등하게 공간을 차지하지 않아서 image로 생성
     lazy var shareButtonItem: UIBarButtonItem = {
-        // 주의: UIBarButtonItem을 생성할 때 CustomView로 button을 넣을경우 하나만 표출되므로 image로 넣어서 사용
         return UIBarButtonItem(image: shareButtonImage, style: .plain, target: self, action: #selector(didTapToolBarShareButton))
     }()
-    
-    @objc func didTapToolBarBackButton() {
-        // override this method
-        if webView.canGoBack {
-            webView.goBack()
-        }
-    }
-
-    @objc func didTapToolBarForwardButton() {
-        // override this method
-        if webView.canGoForward {
-            webView.goForward()
-        }
-    }
-    @objc func didTapToolBarReloadButton() {
-        // override this method
-        webView.reload()
-    }
-
-    @objc func didTapToolBarShareButton() {
-        // override this method
-    }
     
     func bindViewModel() {
         
@@ -122,7 +61,8 @@ class SNSWebViewController: UIViewController, WKUIDelegate/*, WKNavigationDelega
         setConstraints()
         addBottomToolBar()
         
-        let myURL = URL(string: "https://www.apple.com")
+        guard let url = viewModel.url else { return }
+        let myURL = URL(string: url)
         let myRequest = URLRequest(url: myURL!)
         webView.load(myRequest)
     }
@@ -151,19 +91,61 @@ class SNSWebViewController: UIViewController, WKUIDelegate/*, WKNavigationDelega
     }
     
     private func addBottomToolBar() {
-        let paddingButtonItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        paddingButtonItem.width = 24.0 // TODO: 간격 계산
-        toolbarItems = [
+        /// 공간 균등 배분
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+
+        let toolbarItems = [
+            flexibleSpace,
             barBackButtonItem,
-            paddingButtonItem,
+            flexibleSpace,
+            flexibleSpace,
             barForwardButtonItem,
-            paddingButtonItem,
+            flexibleSpace,
+            flexibleSpace,
             reloadButtonItem,
-            paddingButtonItem,
-            shareButtonItem
+            flexibleSpace,
+            flexibleSpace,
+            shareButtonItem,
+            flexibleSpace
         ]
+        
+        setToolbarItems(toolbarItems, animated: false)
         
         navigationController?.isToolbarHidden = false
     }
 }
 
+
+extension SNSWebViewController {
+
+    @objc func didTapToolBarBackButton() {
+        if webView.canGoBack {
+            webView.goBack()
+        }
+    }
+
+    @objc func didTapToolBarForwardButton() {
+        if webView.canGoForward {
+            webView.goForward()
+        }
+    }
+    @objc func didTapToolBarReloadButton() {
+        webView.reload()
+    }
+
+    @objc func didTapToolBarShareButton() {
+        presentShareModal()
+    }
+
+    private func presentShareModal() {
+        // FIXME: 현재 띄우고 있는 url을 공유
+        let shareObject: [Any] = [viewModel.url as Any]
+        
+        let activityViewController = UIActivityViewController(activityItems : shareObject, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        
+        //activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook,UIActivity.ActivityType.postToTwitter,UIActivity.ActivityType.mail]
+        
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+}

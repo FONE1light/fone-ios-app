@@ -9,4 +9,10 @@ import Foundation
 
 class SNSWebViewModel: CommonViewModel {
     
+    var url: String?
+    
+    init(sceneCoordinator: SceneCoordinatorType, url: String) {
+        super.init(sceneCoordinator: sceneCoordinator)
+        self.url = url
+    }
 }

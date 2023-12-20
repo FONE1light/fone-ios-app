@@ -84,7 +84,10 @@ class AuthorTableViewCell: UITableViewCell {
         nicknameLabel.text = authorInfo.nickname
         userJobLabel.text = authorInfo.userJob
         officialMarkImageView.isHidden = authorInfo.userJob != "OFFICIAL"
-        setupSnsStackView(instagramUrl: authorInfo.instagramUrl, youtubeUrl: authorInfo.youtubeUrl)
+        // 정확한 url 필요 없고 존재 유무만 전달
+        let hasInstagram = authorInfo.instagramUrl != nil
+        let hasYoutube = authorInfo.youtubeUrl != nil
+        setupSnsStackView(hasInstagram: hasInstagram, hasYoutube: hasYoutube)
         
     }
     
@@ -141,32 +144,15 @@ class AuthorTableViewCell: UITableViewCell {
         }
     }
     
-    private func setupSnsStackView(instagramUrl: String?, youtubeUrl: String?) {
+    private func setupSnsStackView(hasInstagram: Bool, hasYoutube: Bool) {
         snsStackView.arrangedSubviews
             .forEach { $0.removeFromSuperview() }
         
-        if let url = instagramUrl, !url.isEmpty {
-//            let instagramButton = UIButton().then {
-//                $0.setImage(UIImage(named: "instagram_but"), for: .normal)
-//            }
-//            instagramButton.rx.tap
-//                .withUnretained(self)
-//                .bind { owner, _ in
-//                    print("instagram: \(url)")
-//                    
-//                }.disposed(by: rx.disposeBag)
+        if hasInstagram {
             snsStackView.addArrangedSubview(instagramButton)
         }
         
-        if let url = youtubeUrl, !url.isEmpty {
-//            let youtubeButton = UIButton().then {
-//                $0.setImage(UIImage(named: "youtube_but"), for: .normal)
-//            }
-//            youtubeButton.rx.tap
-//                .withUnretained(self)
-//                .bind { owner, _ in
-//                    print("youtube: \(url)")
-//                }.disposed(by: rx.disposeBag)
+        if hasYoutube {
             snsStackView.addArrangedSubview(youtubeButton)
         }
     }

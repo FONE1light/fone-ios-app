@@ -50,7 +50,7 @@ enum Scene {
     // 바텀시트/모달
     case reportBottomSheet// 신고하기 바텀시트
     
-    case snsWebViewController
+    case snsWebViewController(SNSWebViewModel) // 개인 SNS(웹)
 }
 
 extension Scene {
@@ -346,10 +346,11 @@ extension Scene {
 
             return bottomSheetVC
             
-        case .snsWebViewController:
-            let viewController = SNSWebViewController()
+        case .snsWebViewController(let snsWebViewModel):
+            var viewController = SNSWebViewController()
             let navControlller = UINavigationController(rootViewController: viewController)
             
+            viewController.bind(viewModel: snsWebViewModel)
             return navControlller
         }
     }

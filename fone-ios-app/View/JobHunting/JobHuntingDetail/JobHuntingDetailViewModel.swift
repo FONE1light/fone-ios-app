@@ -11,7 +11,13 @@ final class JobHuntingDetailViewModel: CommonViewModel {
     var jobType: Job?
     var jobHuntingDetail: JobOpeningContent? // FIXME: JobHuntingContent?
     
-    lazy var authorInfo = AuthorInfo(createdAt: jobHuntingDetail?.createdAt, profileUrl: jobHuntingDetail?.profileURL, nickname: jobHuntingDetail?.nickname, userJob: jobHuntingDetail?.userJob, viewCount: jobHuntingDetail?.viewCount)
+    lazy var authorInfo = AuthorInfo(
+        createdAt: jobHuntingDetail?.createdAt,
+        profileUrl: jobHuntingDetail?.profileURL,
+        nickname: jobHuntingDetail?.nickname,
+        userJob: jobHuntingDetail?.userJob,
+        viewCount: jobHuntingDetail?.viewCount
+    )
     
     lazy var titleInfo = TitleInfo(categories: jobHuntingDetail?.categories, title: jobHuntingDetail?.title)
     
@@ -30,17 +36,15 @@ final class JobHuntingDetailViewModel: CommonViewModel {
             nickname: jobHuntingDetail?.nickname,
             userJob: jobHuntingDetail?.userJob,
             viewCount: jobHuntingDetail?.viewCount,
-            instagramUrl: "",
-            youtubeUrl: "https://youtu.be/RuORKyaDPCo?si=9AkP2UkPg6XkaZZr"
+            instagramUrl: "https://www.instagram.com/fone.wing/",
+            youtubeUrl: "https://www.youtube.com/"
         )
     }
     
     func moveToSNSWebView(_ url: String?) {
         guard let url = url else { return }
-//        let sNSWebViewModel = SNSWebViewModel(sceneCoordinator: sceneCoordinator)
-//        SNSWebViewModel.url = url
-        
-        let scene = Scene.snsWebViewController
-        sceneCoordinator.transition(to: scene, using: .push, animated: true)
+        let viewModel = SNSWebViewModel(sceneCoordinator: sceneCoordinator, url: url)
+        let scene = Scene.snsWebViewController(viewModel)
+        sceneCoordinator.transition(to: scene, using: .fullScreenModal, animated: true)
     }
 }
