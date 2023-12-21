@@ -111,7 +111,9 @@ final class SocialLoginManager {
                 // TODO: 에러처리. 어떤 에러까지 signUp 화면으로 보낼지.
                 guard let statusCode = (error as? MoyaError)?.response?.statusCode else { return }
                 switch statusCode {
-                case 400...401: self.moveToSocialSignUp(accessToken: accessToken, loginType: loginType)
+                case 400...401: 
+                    self.moveToSocialSignUp(accessToken: accessToken, loginType: loginType)
+                    return
                 default: break
                 }
                 
