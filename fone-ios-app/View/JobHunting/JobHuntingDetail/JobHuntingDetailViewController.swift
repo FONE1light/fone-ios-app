@@ -1,5 +1,5 @@
 //
-//  JobHuntingDetailSection.swift
+//  JobHuntingDetailViewController.swift
 //  fone-ios-app
 //
 //  Created by 여나경 on 12/13/23.
@@ -88,6 +88,16 @@ extension JobHuntingDetailViewController: UITableViewDataSource {
             guard let authorInfo = viewModel.authorInfo else { return UITableViewCell() }
             let cell = tableView.dequeueReusableCell(for: indexPath) as AuthorTableViewCell
             cell.configure(authorInfo: authorInfo)
+            cell.instagramButtonTap
+                .withUnretained(self)
+                .bind { owner, _ in
+                    owner.viewModel.moveToSNSWebView(authorInfo.instagramUrl)
+                }.disposed(by: cell.disposeBag)
+            cell.youtubeButtonTap
+                .withUnretained(self)
+                .bind { owner, _ in
+                    owner.viewModel.moveToSNSWebView(authorInfo.youtubeUrl)
+                }.disposed(by: cell.disposeBag)
             return cell
             
         case JobHuntingDetailSection.profileList.rawValue:

@@ -17,10 +17,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="zgG-3D-6ZT">
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="zgG-3D-6ZT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
                         <color key="backgroundColor" red="0.57647058823529407" green="0.57647058823529407" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7Qc-mH-3AG">
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="7Qc-mH-3AG">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -43,6 +43,10 @@
                 <constraint firstAttribute="bottom" secondItem="zgG-3D-6ZT" secondAttribute="bottom" id="ayS-o5-0GJ"/>
                 <constraint firstItem="zgG-3D-6ZT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="kAH-b5-wg7"/>
             </constraints>
+            <connections>
+                <outlet property="collectionView" destination="zgG-3D-6ZT" id="eCy-9t-m5m"/>
+                <outlet property="pageControl" destination="nIa-Lp-CwA" id="DIY-DE-8eO"/>
+            </connections>
             <point key="canvasLocation" x="44" y="20"/>
         </collectionViewCell>
     </objects>

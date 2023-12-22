@@ -36,3 +36,11 @@ extension UINavigationController: UIGestureRecognizerDelegate {
         return viewControllers.count > 1
     }
 }
+
+extension UIViewController {
+    /// Height of status bar + navigation bar (if navigation bar exist)
+    var topbarHeight: CGFloat {
+        return (UIView.notchTop) +
+            (self.navigationController?.navigationBar.frame.height ?? 0.0)
+    }
+}
