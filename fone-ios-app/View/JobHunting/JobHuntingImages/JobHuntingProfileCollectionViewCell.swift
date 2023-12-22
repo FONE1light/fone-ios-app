@@ -10,7 +10,10 @@ import UIKit
 class JobHuntingProfileCollectionViewCell: UICollectionViewCell {
     
     static let identifier = String(describing: JobHuntingProfileCollectionViewCell.self)
-    let imageView = UIImageView()
+    let imageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

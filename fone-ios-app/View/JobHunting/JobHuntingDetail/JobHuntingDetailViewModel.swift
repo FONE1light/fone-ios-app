@@ -66,6 +66,7 @@ final class JobHuntingDetailViewModel: CommonViewModel {
     
     func showProfilePreviewBottomSheet(of index: Int) {
         guard let imageUrl = mockUrls?[index] else { return }
-        sceneCoordinator.transition(to: .profilePreviewBottomSheet(imageUrl), using: .pageSheetModal, animated: true)
+        let profileViewModel = ProfilePreviewViewModel(sceneCoordinator: sceneCoordinator, imageUrl: imageUrl)
+        sceneCoordinator.transition(to: .profilePreview(profileViewModel), using: .fullScreenModal, animated: true)
     }
 }

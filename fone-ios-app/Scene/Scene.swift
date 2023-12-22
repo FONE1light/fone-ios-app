@@ -49,7 +49,7 @@ enum Scene {
 
     // 바텀시트/모달
     case reportBottomSheet // 신고하기 바텀시트
-    case profilePreviewBottomSheet(String?) // 프로필 이미지 크게 보기 바텀시트
+    case profilePreview(ProfilePreviewViewModel) // 프로필 이미지 크게 보기 바텀시트
     case snsWebViewController(SNSWebViewModel) // 개인 SNS(웹)
 }
 
@@ -346,10 +346,13 @@ extension Scene {
 
             return bottomSheetVC
             
-        case .profilePreviewBottomSheet(let imageUrl):
-            let bottomSheetVC = ProfilePreviewController(imageUrl: imageUrl)
+        case .profilePreview(let profilePreviewViewModel):
+            var profilePreviewVC = ProfilePreviewViewController()
+            let navControlller = UINavigationController(rootViewController: profilePreviewVC)
             
-            return bottomSheetVC
+            profilePreviewVC.bind(viewModel: profilePreviewViewModel)
+            
+            return navControlller
             
         case .snsWebViewController(let snsWebViewModel):
             var viewController = SNSWebViewController()
