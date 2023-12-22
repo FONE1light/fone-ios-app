@@ -10,7 +10,7 @@ import UIKit
 class JobHuntingProfileCollectionViewCell: UICollectionViewCell {
     
     static let identifier = String(describing: JobHuntingProfileCollectionViewCell.self)
-    private let imageView = UIImageView().then {
+    let imageView = UIImageView().then {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
     }
