@@ -16,6 +16,7 @@ import FirebaseAuth
 import GoogleSignIn
 
 import AuthenticationServices
+import Moya
 
 enum SocialLoginType: String {
     case APPLE, GOOGLE, KAKAO
@@ -105,7 +106,17 @@ final class SocialLoginManager {
                 } else {
                     owner.moveToSocialSignUp(accessToken: accessToken, loginType: loginType)
                 }
-            }, onError: { error in
+            }, onError: { [weak self] error in
+                guard let self = self else { return }
+                // TODO: 에러처리. 어떤 에러까지 signUp 화면으로 보낼지.
+                guard let statusCode = (error as? MoyaError)?.response?.statusCode else { return }
+                switch statusCode {
+                case 400...401: 
+                    self.moveToSocialSignUp(accessToken: accessToken, loginType: loginType)
+                    return
+                default: break
+                }
+                
                 print(error.localizedDescription)
                 "\(error)".toast(positionType: .withButton)
             }).disposed(by: disposeBag)

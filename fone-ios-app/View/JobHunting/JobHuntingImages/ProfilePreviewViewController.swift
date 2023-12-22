@@ -1,5 +1,5 @@
 //
-//  ProfilePreviewController.swift
+//  ProfilePreviewViewController.swift
 //  fone-ios-app
 //
 //  Created by 여나경 on 12/12/23.
@@ -10,16 +10,14 @@ import Then
 import SnapKit
 import RxSwift
 
-// FIXME: 좌우 스와이프 기능 및 이미지 추가
-class ProfilePreviewController: UIViewController {
+class ProfilePreviewViewController: UIViewController, ViewModelBindableType {
     
-    private let imageView: UIImageView
+    var viewModel: ProfilePreviewViewModel!
+    private var imageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+    }
     
-    init(imageUrl: String?) {
-        imageView = UIImageView().then {
-            $0.load(url: imageUrl)
-            $0.contentMode = .scaleAspectFit
-        }
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -30,9 +28,21 @@ class ProfilePreviewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNavigationBar()
         setupUI()
         setConstraints()
-        
+    }
+    
+    func bindViewModel() {
+        imageView.load(url: viewModel.imageUrl)
+    }
+    
+    private func setNavigationBar() {
+        navigationItem.rightBarButtonItem = NavigationRightBarButtonItem(
+            type: .close,
+            viewController: self
+        )
+        navigationItem.hidesBackButton = true
     }
     
     private func setupUI() {

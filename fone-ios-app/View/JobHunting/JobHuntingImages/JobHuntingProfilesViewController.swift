@@ -42,8 +42,7 @@ class JobHuntingProfilesViewController: UIViewController, ViewModelBindableType 
                 // TODO: cell의 데이터/imageView 이용하도록 수정할지?
 //                let cell = owner.collectionView.dequeueReusableCell(forIndexPath: indexPath) as JobHuntingProfileCollectionViewCell
                 
-                let imageUrl = owner.viewModel.imageUrls?[indexPath.row]
-                owner.viewModel.sceneCoordinator.transition(to: .profilePreviewBottomSheet(imageUrl), using: .pageSheetModal, animated: true)
+                owner.viewModel.showProfilePreviewBottomSheet(of: indexPath.row)
             }.disposed(by: rx.disposeBag)
     }
     
