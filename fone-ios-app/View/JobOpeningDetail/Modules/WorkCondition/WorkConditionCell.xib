@@ -23,17 +23,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="WorkConditionCell" customModule="fone_ios_app" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="233"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="213"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="233"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="213"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ezP-pt-Ex7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="233"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="213"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ndt-si-Sar">
-                                <rect key="frame" x="0.0" y="225" width="375" height="8"/>
+                                <rect key="frame" x="0.0" y="205" width="375" height="8"/>
                                 <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="8" id="GoH-8w-BVc"/>
@@ -87,14 +87,8 @@
                                 <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15개월" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZS-ea-bZL">
-                                <rect key="frame" x="92" y="107.66666666666667" width="39" height="17"/>
-                                <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="14"/>
-                                <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="근무요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ef-cx-dl9">
-                                <rect key="frame" x="15.999999999999996" y="150" width="48.666666666666657" height="20"/>
+                                <rect key="frame" x="15.999999999999996" y="136" width="48.666666666666657" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="kBj-6L-egB"/>
                                 </constraints>
@@ -103,13 +97,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="월, 수, 금" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POB-y9-fDg">
-                                <rect key="frame" x="92" y="151.66666666666666" width="50.666666666666657" height="17"/>
+                                <rect key="frame" x="92" y="137.66666666666666" width="50.666666666666657" height="17"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                 <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="근무시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOt-g5-3y8">
-                                <rect key="frame" x="15.999999999999996" y="180" width="48.666666666666657" height="20"/>
+                                <rect key="frame" x="15.999999999999996" y="166" width="48.666666666666657" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="uf3-SI-N7s"/>
                                 </constraints>
@@ -118,13 +112,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19:00 ~ 04:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRb-a1-v5p">
-                                <rect key="frame" x="92" y="181.66666666666666" width="88.333333333333314" height="17"/>
+                                <rect key="frame" x="92" y="167.66666666666666" width="88.333333333333314" height="17"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                 <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2023. 08. 18(금) ~ 2023. 10. 17(화)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zoP-0T-mDL">
-                                <rect key="frame" x="91.999999999999986" y="124.66666666666669" width="212.66666666666663" height="17"/>
+                                <rect key="frame" x="91.999999999999986" y="107.66666666666667" width="212.66666666666663" height="17"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                 <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -144,12 +138,10 @@
                             <constraint firstItem="oDc-Jw-3f7" firstAttribute="leading" secondItem="ezP-pt-Ex7" secondAttribute="leading" constant="92" id="9PW-Lu-xE3"/>
                             <constraint firstItem="ZRb-a1-v5p" firstAttribute="leading" secondItem="POB-y9-fDg" secondAttribute="leading" id="Cl1-Jo-FRC"/>
                             <constraint firstItem="HKh-Dv-Tnk" firstAttribute="leading" secondItem="ezP-pt-Ex7" secondAttribute="leading" constant="92" id="FJ4-lc-KPb"/>
-                            <constraint firstItem="POB-y9-fDg" firstAttribute="leading" secondItem="JZS-ea-bZL" secondAttribute="leading" id="JmH-ux-xZA"/>
                             <constraint firstItem="JMz-2Q-uMb" firstAttribute="top" secondItem="vP4-4O-sEM" secondAttribute="bottom" constant="10" id="KGW-RB-Znm"/>
-                            <constraint firstItem="POB-y9-fDg" firstAttribute="top" secondItem="zoP-0T-mDL" secondAttribute="bottom" constant="10" id="MAG-4F-gNu"/>
-                            <constraint firstItem="JZS-ea-bZL" firstAttribute="leading" secondItem="oDc-Jw-3f7" secondAttribute="leading" id="Mpo-VM-KPZ"/>
                             <constraint firstItem="nOt-g5-3y8" firstAttribute="leading" secondItem="ezP-pt-Ex7" secondAttribute="leading" constant="16" id="NIH-nY-UBI"/>
                             <constraint firstItem="nOt-g5-3y8" firstAttribute="top" secondItem="5ef-cx-dl9" secondAttribute="bottom" constant="10" id="ODP-fP-b2p"/>
+                            <constraint firstItem="zoP-0T-mDL" firstAttribute="leading" secondItem="oDc-Jw-3f7" secondAttribute="leading" id="T6s-c6-P6X"/>
                             <constraint firstItem="JMz-2Q-uMb" firstAttribute="leading" secondItem="ezP-pt-Ex7" secondAttribute="leading" constant="16" id="UHU-6F-uSv"/>
                             <constraint firstItem="vP4-4O-sEM" firstAttribute="top" secondItem="6wy-Ib-p72" secondAttribute="bottom" constant="8" id="ZTh-Ml-qZe"/>
                             <constraint firstItem="ZRb-a1-v5p" firstAttribute="centerY" secondItem="nOt-g5-3y8" secondAttribute="centerY" id="aOb-pe-0OI"/>
@@ -159,12 +151,12 @@
                             <constraint firstItem="5ef-cx-dl9" firstAttribute="leading" secondItem="ezP-pt-Ex7" secondAttribute="leading" constant="16" id="dOa-CN-cnc"/>
                             <constraint firstAttribute="trailing" secondItem="Ndt-si-Sar" secondAttribute="trailing" id="ei1-ZV-aKL"/>
                             <constraint firstItem="8JC-rm-TCX" firstAttribute="leading" secondItem="HKh-Dv-Tnk" secondAttribute="trailing" constant="4" id="kh1-jB-bkd"/>
-                            <constraint firstItem="zoP-0T-mDL" firstAttribute="leading" secondItem="JZS-ea-bZL" secondAttribute="leading" id="nMs-Nm-iPp"/>
                             <constraint firstItem="vP4-4O-sEM" firstAttribute="leading" secondItem="ezP-pt-Ex7" secondAttribute="leading" constant="16" id="oGg-f4-KLa"/>
                             <constraint firstItem="8JC-rm-TCX" firstAttribute="centerY" secondItem="HKh-Dv-Tnk" secondAttribute="centerY" id="oLR-m0-4mP"/>
+                            <constraint firstItem="POB-y9-fDg" firstAttribute="leading" secondItem="zoP-0T-mDL" secondAttribute="leading" id="oMa-30-nCr"/>
+                            <constraint firstItem="zoP-0T-mDL" firstAttribute="centerY" secondItem="NHw-Ra-AF4" secondAttribute="centerY" id="ob3-MG-Kul"/>
                             <constraint firstItem="NHw-Ra-AF4" firstAttribute="top" secondItem="JMz-2Q-uMb" secondAttribute="bottom" constant="10" id="qkB-r5-Bcm"/>
-                            <constraint firstItem="JZS-ea-bZL" firstAttribute="centerY" secondItem="NHw-Ra-AF4" secondAttribute="centerY" id="s4T-wM-cbx"/>
-                            <constraint firstItem="zoP-0T-mDL" firstAttribute="top" secondItem="JZS-ea-bZL" secondAttribute="bottom" id="tic-2V-4FH"/>
+                            <constraint firstItem="5ef-cx-dl9" firstAttribute="top" secondItem="NHw-Ra-AF4" secondAttribute="bottom" constant="10" id="wRc-SO-Dku"/>
                             <constraint firstItem="Ndt-si-Sar" firstAttribute="leading" secondItem="ezP-pt-Ex7" secondAttribute="leading" id="zi2-vX-x0o"/>
                             <constraint firstItem="POB-y9-fDg" firstAttribute="centerY" secondItem="5ef-cx-dl9" secondAttribute="centerY" id="zwc-5I-mvq"/>
                         </constraints>

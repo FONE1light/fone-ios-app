@@ -146,7 +146,7 @@ extension JobOpeningDetailViewController: UICollectionViewDelegateFlowLayout {
         case JobOpeningDetailSection.info.rawValue:
             height = WorkInfoCell.cellHeight(viewModel.jobOpeningDetail?.work?.logline)
         case JobOpeningDetailSection.workCondition.rawValue:
-            height = 233
+            height = 213
         case JobOpeningDetailSection.summary.rawValue:
             height = SummaryCell.cellHeight(viewModel.jobOpeningDetail?.work?.details)
         case JobOpeningDetailSection.contactInfo.rawValue:
