@@ -18,11 +18,15 @@ class WorkInfoCell: UICollectionViewCell {
         super.awakeFromNib()
     }
 
-    func configure(produce: String?, title: String?, director: String?, genre: String?, logline: String?) {
+    func configure(produce: String?, title: String?, director: String?, genres: [String]?, logline: String?) {
         produceLabel.text = produce
         titleLabel.text = title
         directorLabel.text = director
-        genreLabel.text = genre
+        var genreString = ""
+        for genre in genres ?? [] {
+            genreString.append(Genre(rawValue: genre)?.koreanName ?? "")
+        }
+//        genreLabel.text = genre
         logLineLabel.text = logline
     }
 }

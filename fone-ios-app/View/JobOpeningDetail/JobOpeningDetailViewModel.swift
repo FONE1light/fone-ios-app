@@ -14,7 +14,7 @@ final class JobOpeningDetailViewModel: CommonViewModel {
     
     lazy var titleInfo = TitleInfo(categories: jobOpeningDetail?.categories, title: jobOpeningDetail?.title)
     
-    lazy var recruitCondition = RecruitCondition(type: jobOpeningDetail?.type, deadLine: jobOpeningDetail?.deadline, dday: jobOpeningDetail?.dday, casting: jobOpeningDetail?.casting, gender: jobOpeningDetail?.gender, career: jobOpeningDetail?.career, domains: jobOpeningDetail?.domains, numberOfRecruits: jobOpeningDetail?.numberOfRecruits, ageMin: jobOpeningDetail?.ageMin, ageMax: jobOpeningDetail?.ageMax)
+    lazy var recruitCondition = RecruitCondition(type: jobOpeningDetail?.type, recruitmentEndDate: jobOpeningDetail?.recruitmentEndDate, dday: jobOpeningDetail?.dday, casting: jobOpeningDetail?.casting, gender: jobOpeningDetail?.gender, career: jobOpeningDetail?.career, domains: jobOpeningDetail?.domains, numberOfRecruits: jobOpeningDetail?.numberOfRecruits, ageMin: jobOpeningDetail?.ageMin, ageMax: jobOpeningDetail?.ageMax)
     
     init(sceneCoordinator: SceneCoordinatorType, jobOpeningDetail: JobOpeningContent) {
         super.init(sceneCoordinator: sceneCoordinator)

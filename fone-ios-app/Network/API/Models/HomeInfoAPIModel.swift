@@ -41,32 +41,31 @@ struct JobOpeningModuleData: Codable {
 
 // MARK: - JobOpeningContent
 struct JobOpeningContent: Codable {
-    let id: Int?
-    let title: String?
-    let categories: [String]?
-    let deadline, casting: String?
-    let numberOfRecruits: Int?
-    let gender: String?
     let ageMax, ageMin: Int?
-    let career, type: String?
+    let career, casting: String?
+    let categories: [String]?
+    let createdAt, dday: String?
     let domains: [String]?
-    let viewCount, scrapCount: Int?
-    let work: Work?
-    let isScrap: Bool?
-    let nickname: String?
-    let profileURL: String?
-    let createdAt, userJob: String?
-    let recruitmentStartDate, recruitmentEndDate: String?
-    let representativeImageURL: String?
+    let gender: String?
+    let id: Int?
     let imageUrls: [String]?
-    let dday: String?
-    
+    let isScrap, isVerified: Bool?
+    let nickname: String?
+    let numberOfRecruits: Int?
+    let profileURL: String?
+    let recruitmentEndDate, recruitmentStartDate: String?
+    let representativeImageURL: String?
+    let scrapCount: Int?
+    let title, type, userJob: String?
+    let viewCount: Int?
+    let work: Work?
+
     enum CodingKeys: String, CodingKey {
-        case id, title, categories, deadline, casting, numberOfRecruits, gender, ageMax, ageMin, career, type, domains, viewCount, scrapCount, work, isScrap, nickname
+        case ageMax, ageMin, career, casting, categories, createdAt, dday, domains, gender, id, imageUrls, isScrap, isVerified, nickname, numberOfRecruits
         case profileURL = "profileUrl"
-        case createdAt, userJob, recruitmentStartDate, recruitmentEndDate
+        case recruitmentEndDate, recruitmentStartDate
         case representativeImageURL = "representativeImageUrl"
-        case imageUrls, dday
+        case scrapCount, title, type, userJob, viewCount, work
     }
 }
 
@@ -168,17 +167,16 @@ struct Sort: Codable {
 
 // MARK: - Work
 struct Work: Codable {
-    let produce, workTitle, director, genre: String?
-    let logline: String?
-    let location: String?
-    let period, pay, details, manager: String?
-    let email: String?
+    let details, director, email: String?
     let genres: [String]?
-    let workingCity, workingDistrict: String?
-    let workingStartDate, workingEndDate: String?
-    let selectedDays: [String]?
-    let workingStartTime, workingEndTime: String?
-    let salaryType: String?
+    let logline, manager, produce: String?
     let salary: Int?
-    let workingDate, workingLocation, workingTime: String?
+    let salaryType: String?
+    let selectedDays: [String]?
+    let workTitle, workingCity, workingDate, workingDistrict: String?
+    let workingEndDate: String?
+//    let workingEndTime: WorkingTime?
+    let workingLocation, workingStartDate: String?
+//    let workingStartTime: WorkingTime?
+    let workingTime: String?
 }

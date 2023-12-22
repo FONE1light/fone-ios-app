@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum Genre {
+enum Genre: String {
     case ACTION,DOCUMENTARY, DRAMA, ETC, FANTASY, MUSICAL, ROMANCE, THRILLER
     
     var koreanName: String {
