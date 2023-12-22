@@ -14,6 +14,7 @@ enum APIError: Error {
 }
 
 enum JobOpeningInfoTarget {
+    case jobOpenings(type: Job)
     case jobOpeningDetail(jobOpeningId: Int, type: Job)
 }
 
@@ -24,6 +25,8 @@ extension JobOpeningInfoTarget: TargetType {
     
     var path: String {
         switch self {
+        case .jobOpenings:
+            return "/api/v1/job-openings"
         case .jobOpeningDetail(let jopOpeningId, _):
             return "/api/v1/job-openings/\(jopOpeningId)" //
         }
@@ -35,6 +38,8 @@ extension JobOpeningInfoTarget: TargetType {
     
     var task: Moya.Task {
         switch self {
+        case .jobOpenings(let type):
+            return .requestParameters(parameters: ["type": type.name], encoding: URLEncoding.default)
         case .jobOpeningDetail(_, let type):
             return .requestParameters(parameters: ["type": type.name], encoding: URLEncoding.default)
         }
@@ -42,7 +47,7 @@ extension JobOpeningInfoTarget: TargetType {
     
     var headers: [String : String]? {
         switch self {
-        case .jobOpeningDetail:
+        case .jobOpenings, .jobOpeningDetail:
             let accessToken = Tokens.shared.accessToken.value
             let authorization = "Bearer \(accessToken)"
             return ["Authorization": authorization]

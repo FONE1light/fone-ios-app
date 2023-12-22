@@ -129,6 +129,12 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                 owner.goJobHuntingDetail(jobHuntingId: 41, type: .actor) // FIXME: 우선 41, ACTOR로 고정, cell에서 id, job 가져오기
             }.disposed(by: rx.disposeBag)
         
+        viewModel.reloadTableView
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.tableViewJob.reloadData()
+            }.disposed(by: disposeBag)
+        
         // MARK: Button tap
         // customView로 설정한 UIBarButtonItem은
         // barButtonItem에 설정하는 userInteraction이 응답하지 않아서
@@ -201,6 +207,8 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         
         setupUI()
         setConstraints()
+        
+        viewModel.fetchList()
         
     }
     
@@ -362,32 +370,21 @@ extension JobOpeningHuntingViewController {
 extension JobOpeningHuntingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 4 // FIXME: api 개수 따라서.
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as JobCell
         
-        if indexPath.row % 2 == 0 {
-            cell.configure(
-                categories: [.featureFilm, .youtube],
-                deadline: "2023.01.20",
-                coorporate: "성균관대학교 영상학과",
-                gender: "남자",
-                period: "일주일",
-                field: "미술"
-            )
-        } else {
-            
-            cell.configure(
-                categories: [.ottDrama, .shortFilm],
-                deadline: "2023.01.20",
-                coorporate: "성균관대학교 영상학과",
-                gender: "남자",
-                period: "일주일",
-                casting: "수영선수"
-            )
-        }
+        guard let content = viewModel.jobOpeningsContent, content.count > 0 else { return cell }
+        cell.configure(
+            isVerified: content[indexPath.row].isVerified,
+            categories: content[indexPath.row].categories,
+            title: content[indexPath.row].title,
+            dDay: content[indexPath.row].dday,
+            coorporate: content[indexPath.row].work?.produce,
+            field: content[indexPath.row].domains?.first
+        )
         
         return cell
     }

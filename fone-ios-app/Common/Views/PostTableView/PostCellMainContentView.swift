@@ -32,7 +32,6 @@ class PostCellMainContentView: UIView {
         $0.font = .font_b(14)
         $0.textColor = .gray_161616
         $0.numberOfLines = 2
-        $0.text = "성균관대 영상학과에서 단편영화<Duet>배우 모집합니다."
     }
     
     private let bookmarkImageView = UIImageView().then {
@@ -50,22 +49,23 @@ class PostCellMainContentView: UIView {
     }
     
     func configure(
-        isOfficial: Bool = false,
+        isVerified: Bool? = false,
         categories: [Category], // 작품 성격 최대 2개
-        deadline: String? = nil,
+        title: String? = nil,
+        dDay: String? = nil,
         coorporate: String? = nil,
-        gender: String? = nil,
-        period: String? = nil,
         casting: String? = nil,
         field: String? = nil
     ) {
         tagList.setValues(
-            isOfficial: isOfficial,
+            isOfficial: isVerified ?? false,
             categories: categories
         )
         
+        titleLabel.text = title
+        
         detailInfoBlock.setValues(
-            dDay: "D-15",
+            dDay: dDay,
             coorporate: coorporate,
             field: field ?? casting
         )
@@ -114,6 +114,7 @@ class PostCellMainContentView: UIView {
         detailInfoBlock.snp.makeConstraints {
             $0.top.equalTo(horizontalStackView.snp.bottom).offset(6)
             $0.leading.equalTo(horizontalStackView)
+            $0.trailing.equalTo(bookmarkImageView.snp.leading).offset(-9)
         }
         
         bookmarkImageView.snp.makeConstraints {

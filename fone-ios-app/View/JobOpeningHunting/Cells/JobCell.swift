@@ -26,23 +26,27 @@ class JobCell: UITableViewCell {
         setConstraints()
     }
     
+    // TODO: 빠진 것 채우기(북마크, profileUrl 등)
     func configure(
-        categories: [Category], // 작품 성격 최대 2개
-        deadline: String? = nil,
+        isVerified: Bool? = nil,
+        categories: [String]?, // 작품 성격 최대 2개
+        title: String? = nil,
+        dDay: String? = nil,
         coorporate: String? = nil,
-        gender: String? = nil,
-        period: String? = nil,
         casting: String? = nil,
         field: String? = nil
     ) {
+        let categories = categories?.compactMap { Category.getType(serverName: $0) } ?? []
+        // TODO: domain 복수??
+        let domain = Domain.getType(serverName: field ?? "")?.name
         mainContentView.configure(
+            isVerified: isVerified,
             categories: categories,
-            deadline: deadline,
+            title: title,
+            dDay: dDay,
             coorporate: coorporate,
-            gender: gender,
-            period: period,
             casting: casting,
-            field: field
+            field: domain
         )
     }
     
