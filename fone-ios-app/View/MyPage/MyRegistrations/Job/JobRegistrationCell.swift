@@ -42,13 +42,14 @@ class JobRegistrationCell: UITableViewCell {
         casting: String? = nil,
         field: String? = nil
     ) {
+        // FIXME: 현행화
         mainContentView.configure(
             categories: categories,
 //            title: title,
-            dDay: dDay,
-            coorporate: coorporate,
-            casting: casting,
-            field: field
+            dDay: dDay
+//            coorporate: coorporate,
+//            casting: casting,
+//            field: field
         )
         
         jobTag.setType(as: job)

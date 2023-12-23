@@ -370,7 +370,7 @@ extension JobOpeningHuntingViewController {
 extension JobOpeningHuntingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4 // FIXME: api 개수 따라서.
+        return viewModel.jobOpeningsContent?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -378,12 +378,15 @@ extension JobOpeningHuntingViewController: UITableViewDataSource {
         
         guard let content = viewModel.jobOpeningsContent, content.count > 0 else { return cell }
         cell.configure(
+            profileUrl: content[indexPath.row].profileURL,
             isVerified: content[indexPath.row].isVerified,
             categories: content[indexPath.row].categories,
+            isScrap: content[indexPath.row].isScrap,
             title: content[indexPath.row].title,
             dDay: content[indexPath.row].dday,
-            coorporate: content[indexPath.row].work?.produce,
-            field: content[indexPath.row].domains?.first
+            genre: content[indexPath.row].work?.genres?.first,
+            domain: content[indexPath.row].domains?.first,
+            produce: content[indexPath.row].work?.produce
         )
         
         return cell

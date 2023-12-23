@@ -76,12 +76,14 @@ extension JobViewController: UITableViewDataSource {
 //            field: "미술"
 //        )
         
+        
+        // FIXME: configure 호출 현행화
         cell.configure(
             job: .actor,
             categories: [.ottDrama, .shortFilm],
-            dDay: "D-12",
-            coorporate: "성균관대학교 영상학과",
-            casting: "수영선수"
+            dDay: "D-12"
+//            coorporate: "성균관대학교 영상학과",
+//            casting: "수영선수"
         )
         
         return cell

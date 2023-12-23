@@ -16,8 +16,10 @@ class TagList: UIStackView {
     }
     
     /// 해당 함수를 호출해서 값 세팅, 초기화.
-    func setValues(isOfficial: Bool = false, categories: [Category]) {
-        if isOfficial {
+    func setValues(isVerified: Bool = false, categories: [Category]) {
+        tagList = []
+        
+        if isVerified {
             tagList.append(OfficialMark())
         }
         categories.forEach { category in
@@ -33,8 +35,10 @@ class TagList: UIStackView {
         spacing = 4
         alignment = .center
         
+        arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
         tagList.forEach {
-            self.addArrangedSubview($0)
+            addArrangedSubview($0)
         }
     }
     

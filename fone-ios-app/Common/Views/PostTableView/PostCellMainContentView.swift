@@ -16,6 +16,9 @@ class PostCellMainContentView: UIView {
     private let imageView = UIImageView().then {
         $0.cornerRadius = 5
         $0.backgroundColor = .gray_D9D9D9
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
+        $0.image = UIImage(named: "default_profile")
     }
     
     private let horizontalStackView = UIStackView().then {
@@ -49,25 +52,32 @@ class PostCellMainContentView: UIView {
     }
     
     func configure(
-        isVerified: Bool? = false,
+        profileUrl: String? = nil,
+        isVerified: Bool? = nil,
         categories: [Category], // 작품 성격 최대 2개
+        isScrap: Bool? = nil,
         title: String? = nil,
         dDay: String? = nil,
-        coorporate: String? = nil,
-        casting: String? = nil,
-        field: String? = nil
+        genre: String? = nil, // 배우 - 장르 중 첫 번째 값
+        domain: String? = nil, // 스태프 - 분야 중 첫 번째 값
+        produce: String? = nil
     ) {
+        imageView.load(url: profileUrl)
+        
         tagList.setValues(
-            isOfficial: isVerified ?? false,
+            isVerified: isVerified ?? false,
             categories: categories
         )
+        
+        // TODO: button, selected/unselected 표시
+//        bookmarkImageView.
         
         titleLabel.text = title
         
         detailInfoBlock.setValues(
             dDay: dDay,
-            coorporate: coorporate,
-            field: field ?? casting
+            domainOrGenre: domain ?? genre,
+            produce: produce
         )
     }
     

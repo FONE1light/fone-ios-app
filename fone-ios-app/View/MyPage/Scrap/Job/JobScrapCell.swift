@@ -29,19 +29,26 @@ class JobScrapCell: UITableViewCell {
     
     func configure(
         job: Job, // actor/staff
+        profileUrl: String? = nil,
+        isVerified: Bool? = nil,
         categories: [Category], // 작품 성격 최대 2개
+        isScrap: Bool? = nil,
+        title: String? = nil,
         dDay: String? = nil,
-        coorporate: String? = nil,
-        casting: String? = nil,
-        field: String? = nil
+        genre: String? = nil, // 배우 - 장르 중 첫 번째 값
+        domain: String? = nil, // 스태프 - 분야 중 첫 번째 값
+        produce: String? = nil
     ) {
         mainContentView.configure(
+            profileUrl: profileUrl,
+            isVerified: isVerified,
             categories: categories,
-//            title: title,
+            isScrap: isScrap,
+            title: title,
             dDay: dDay,
-            coorporate: coorporate,
-            casting: casting,
-            field: field
+            genre: genre,
+            domain: domain,
+            produce: produce
         )
         
         jobTag.setType(as: job)
