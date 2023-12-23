@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class JobCell: UITableViewCell {
     
     private let mainContentView = PostCellMainContentView(hasBookmark: true)
+    var disposeBag = DisposeBag()
     
     static let identifier = String(describing: JobCell.self)
     
@@ -18,12 +21,21 @@ class JobCell: UITableViewCell {
         height: 6, color: .gray_F8F8F8
     )
     
+    var bookmarkButtonTap: ControlEvent<Void> {
+        mainContentView.bookmarkButtonTap
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.selectionStyle = .none
         setupUI()
         setConstraints()
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag() // 버튼(bookmarkButtonTap) 바인딩을 한 번만 하기 위해 필요
     }
     
     func configure(
@@ -72,5 +84,11 @@ class JobCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension JobCell {
+    func toggleBookmarkButton() {
+        mainContentView.toggleBookmarkButton()
     }
 }

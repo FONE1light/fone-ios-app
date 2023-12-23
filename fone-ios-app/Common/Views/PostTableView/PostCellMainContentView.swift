@@ -8,6 +8,7 @@
 import UIKit
 import Then
 import SnapKit
+import RxCocoa
 
 class PostCellMainContentView: UIView {
     
@@ -37,8 +38,10 @@ class PostCellMainContentView: UIView {
         $0.numberOfLines = 2
     }
     
-    private let bookmarkImageView = UIImageView().then {
-        $0.image = UIImage(named: "Bookmark")
+    private let bookmarkButton = BookmarkButton()
+    
+    var bookmarkButtonTap: ControlEvent<Void> {
+        bookmarkButton.rx.tap
     }
     
     private let detailInfoBlock = DetailInfoBlock()
@@ -69,8 +72,7 @@ class PostCellMainContentView: UIView {
             categories: categories
         )
         
-        // TODO: button, selected/unselected 표시
-//        bookmarkImageView.
+        bookmarkButton.isSelected = isScrap ?? false
         
         titleLabel.text = title
         
@@ -98,7 +100,7 @@ class PostCellMainContentView: UIView {
             }
         
         if hasBookmark {
-            horizontalStackView.addArrangedSubview(bookmarkImageView)
+            horizontalStackView.addArrangedSubview(bookmarkButton)
         }
         
         [tagList, titleLabel]
@@ -124,10 +126,10 @@ class PostCellMainContentView: UIView {
         detailInfoBlock.snp.makeConstraints {
             $0.top.equalTo(horizontalStackView.snp.bottom).offset(6)
             $0.leading.equalTo(horizontalStackView)
-            $0.trailing.equalTo(bookmarkImageView.snp.leading).offset(-9)
+            $0.trailing.equalTo(bookmarkButton.snp.leading).offset(-9)
         }
         
-        bookmarkImageView.snp.makeConstraints {
+        bookmarkButton.snp.makeConstraints {
             $0.size.equalTo(24)
         }
         
@@ -150,3 +152,8 @@ class PostCellMainContentView: UIView {
     }
 }
 
+extension PostCellMainContentView {
+    func toggleBookmarkButton() {
+        bookmarkButton.toggle()
+    }
+}

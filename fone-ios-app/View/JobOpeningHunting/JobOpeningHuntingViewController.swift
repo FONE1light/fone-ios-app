@@ -389,6 +389,13 @@ extension JobOpeningHuntingViewController: UITableViewDataSource {
             produce: content[indexPath.row].work?.produce
         )
         
+        cell.bookmarkButtonTap
+            .withUnretained(self)
+            .bind { owner, _ in
+                cell.toggleBookmarkButton()
+                // TODO: jobOpeningID 이용 북마크(스크랩) api 호출
+            }.disposed(by: cell.disposeBag)
+
         return cell
     }
     
