@@ -29,7 +29,7 @@ extension RightBarButtonType {
         switch self {
         case .notification: return UIImage(named: "bell")
         case .close: return UIImage(named: "close_MD")
-        case .more: return UIImage(named: "More_Vertical")
+        case .more: return UIImage(named: "more_Vertical")
         }
     }
     

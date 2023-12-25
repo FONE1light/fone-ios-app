@@ -18,6 +18,7 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     // Dropdown에서 선택한 jobType(ACTOR 혹은 STAFF)
     var selectedJobType = BehaviorRelay<Job>(value: .actor)
     
+    var selectedSortOption = BehaviorRelay<JobOpeningSortOptions>(value: .recent)
     // sortButton 상태(UI+연결화면), filterButton 연결 화면, 플로팅 버튼 상태(UI+연결화면)
     let sortButtonStateDic: [JobSegmentType: JobOpeningSortOptions] = [
         .jobOpening: .recent,
@@ -35,11 +36,20 @@ class JobOpeningHuntingViewModel: CommonViewModel {
             .bind { owner, jobType in
                 owner.fetchList()
             }.disposed(by: disposeBag)
+        
+        selectedSortOption
+            .withUnretained(self)
+            .bind { owner, type in
+                print(type)
+                // TODO: sort 옵션 넣기
+                owner.fetchList()
+            }.disposed(by: disposeBag)
     }
     
     // JobSegmentType(프로필/모집)과 JobType(ACTOR/STAFF)을 알아야 api 쏘므로 ViewModel에  selectedTab, selectedJobType 필요
     func fetchList() {
-        jobOpeningInfoProvider.rx.request(.jobOpenings(type: selectedJobType.value))
+        let sort = selectedSortOption.value.serverName ?? ""
+        jobOpeningInfoProvider.rx.request(.jobOpenings(type: selectedJobType.value/*, sort: sort*/))
             .mapObject(JobOpeningsInfo.self)
             .asObservable()
             .withUnretained(self)
@@ -52,5 +62,22 @@ class JobOpeningHuntingViewModel: CommonViewModel {
                 print(error.localizedDescription)
             }).disposed(by: disposeBag)
         
+    }
+}
+
+extension JobOpeningHuntingViewModel {
+    func showSortBottomSheet(segmentType: JobSegmentType) {
+        let jobOpeningSortBottomSheetViewModel = JobOpeningSortBottomSheetViewModel(
+            sceneCoordinator: sceneCoordinator,
+            selectedItem: selectedSortOption.value,
+            list: segmentType.sortList
+        ) { [weak self] selectedText in
+            guard let self = self else { return }
+            guard let option = JobOpeningSortOptions.getType(title: selectedText) else { return }
+            self.selectedSortOption.accept(option)
+            self.sceneCoordinator.close(animated: true)
+        }
+        let scene = Scene.jobOpeningSortBottomSheet(jobOpeningSortBottomSheetViewModel)
+        sceneCoordinator.transition(to: scene, using: .customModal, animated: true)
     }
 }
