@@ -11,12 +11,19 @@ class FilterViewController: UIViewController, ViewModelBindableType {
     var viewModel: FilterViewModel!
     
     @IBOutlet weak var closeButton: UIButton!
+    
+    @IBOutlet weak var genderClearButton: CustomButton!
+    @IBOutlet weak var genderSelectionBlock: SelectionBlock!
+    
     @IBOutlet weak var confirmButton: CustomButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        genderClearButton.xibInit("전체선택", type: .clear)
         confirmButton.xibInit("보러가기", type: .bottom)
+        
+        genderSelectionBlock.setSelections(GenderType.allCases)
     }
     
     func bindViewModel() {

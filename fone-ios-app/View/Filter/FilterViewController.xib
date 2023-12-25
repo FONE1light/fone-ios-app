@@ -18,6 +18,8 @@
             <connections>
                 <outlet property="closeButton" destination="eHc-t3-fmi" id="51c-hc-Hkf"/>
                 <outlet property="confirmButton" destination="xyx-Cw-e6I" id="TmE-N6-8ws"/>
+                <outlet property="genderClearButton" destination="LOi-cA-8t8" id="yfg-z2-YeZ"/>
+                <outlet property="genderSelectionBlock" destination="Xtd-Gz-ztC" id="572-5K-qD8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -40,7 +42,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="맞춤 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFZ-Io-YX3">
                             <rect key="frame" x="161.33333333333334" y="13.666666666666671" width="70.666666666666657" height="23"/>
                             <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="19"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" red="0.086274509803921567" green="0.086274509803921567" blue="0.086274509803921567" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qtV-j4-r9c">
@@ -73,14 +75,42 @@
                         <constraint firstItem="qtV-j4-r9c" firstAttribute="centerY" secondItem="d4T-qv-5A8" secondAttribute="centerY" id="s4X-DN-qZi"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="성별" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIE-D8-7f8">
+                    <rect key="frame" x="16" y="136" width="26" height="18"/>
+                    <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="15"/>
+                    <color key="textColor" red="0.086274509803921567" green="0.086274509803921567" blue="0.086274509803921567" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOi-cA-8t8" customClass="CustomButton" customModule="fone_ios_app" customModuleProvider="target">
+                    <rect key="frame" x="305" y="133" width="72" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="Y5G-9O-gGs"/>
+                        <constraint firstAttribute="width" constant="72" id="uqz-LV-zFA"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xtd-Gz-ztC" customClass="SelectionBlock" customModule="fone_ios_app" customModuleProvider="target">
+                    <rect key="frame" x="16" y="162" width="361" height="33"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="33" id="zM7-Ob-kDd"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="LOi-cA-8t8" firstAttribute="top" secondItem="d4T-qv-5A8" secondAttribute="bottom" constant="24" id="1De-YU-PuF"/>
                 <constraint firstItem="d4T-qv-5A8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="31p-6y-8jh"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="d4T-qv-5A8" secondAttribute="trailing" id="7A0-wI-meE"/>
+                <constraint firstItem="Xtd-Gz-ztC" firstAttribute="top" secondItem="aIE-D8-7f8" secondAttribute="bottom" constant="8" id="7bK-JP-8en"/>
                 <constraint firstItem="d4T-qv-5A8" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Krp-T1-Why"/>
+                <constraint firstItem="Xtd-Gz-ztC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="RHb-th-h8Q"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xyx-Cw-e6I" secondAttribute="trailing" constant="16" id="T7B-Zb-YEJ"/>
+                <constraint firstItem="aIE-D8-7f8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="YM1-x0-kIp"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Xtd-Gz-ztC" secondAttribute="trailing" constant="16" id="Zd0-5a-mWc"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LOi-cA-8t8" secondAttribute="trailing" constant="16" id="jIE-Qi-itR"/>
+                <constraint firstItem="aIE-D8-7f8" firstAttribute="centerY" secondItem="LOi-cA-8t8" secondAttribute="centerY" id="jIz-ly-QGC"/>
                 <constraint firstItem="xyx-Cw-e6I" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="mY3-bd-XK0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="xyx-Cw-e6I" secondAttribute="bottom" constant="38" id="nRj-Ov-19Y"/>
             </constraints>
