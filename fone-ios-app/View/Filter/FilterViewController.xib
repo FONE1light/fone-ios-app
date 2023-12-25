@@ -8,9 +8,15 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Bold.ttf">
+            <string>Pretendard-Bold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilterViewController" customModule="fone_ios_app" customModuleProvider="target">
             <connections>
+                <outlet property="closeButton" destination="eHc-t3-fmi" id="51c-hc-Hkf"/>
                 <outlet property="confirmButton" destination="xyx-Cw-e6I" id="TmE-N6-8ws"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -28,10 +34,52 @@
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain"/>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d4T-qv-5A8">
+                    <rect key="frame" x="0.0" y="59" width="393" height="50"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="맞춤 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFZ-Io-YX3">
+                            <rect key="frame" x="161.33333333333334" y="13.666666666666671" width="70.666666666666657" height="23"/>
+                            <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="19"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qtV-j4-r9c">
+                            <rect key="frame" x="16" y="13" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="65w-eg-h3U"/>
+                                <constraint firstAttribute="height" constant="24" id="Q8T-hf-Wt1"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="Refresh"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHc-t3-fmi">
+                            <rect key="frame" x="353" y="13" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="7Fl-xs-eIP"/>
+                                <constraint firstAttribute="width" constant="24" id="G13-L5-ZKd"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="close_MD"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="eHc-t3-fmi" secondAttribute="trailing" constant="16" id="HHB-DP-Q1X"/>
+                        <constraint firstAttribute="height" constant="50" id="JLE-l6-wzD"/>
+                        <constraint firstItem="qtV-j4-r9c" firstAttribute="leading" secondItem="d4T-qv-5A8" secondAttribute="leading" constant="16" id="cDe-Ix-Ibj"/>
+                        <constraint firstItem="uFZ-Io-YX3" firstAttribute="centerX" secondItem="d4T-qv-5A8" secondAttribute="centerX" id="ep5-LW-ERW"/>
+                        <constraint firstItem="eHc-t3-fmi" firstAttribute="centerY" secondItem="d4T-qv-5A8" secondAttribute="centerY" id="gGB-e7-DCf"/>
+                        <constraint firstItem="uFZ-Io-YX3" firstAttribute="centerY" secondItem="d4T-qv-5A8" secondAttribute="centerY" id="kET-q5-sNI"/>
+                        <constraint firstItem="qtV-j4-r9c" firstAttribute="centerY" secondItem="d4T-qv-5A8" secondAttribute="centerY" id="s4X-DN-qZi"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="d4T-qv-5A8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="31p-6y-8jh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="d4T-qv-5A8" secondAttribute="trailing" id="7A0-wI-meE"/>
+                <constraint firstItem="d4T-qv-5A8" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Krp-T1-Why"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xyx-Cw-e6I" secondAttribute="trailing" constant="16" id="T7B-Zb-YEJ"/>
                 <constraint firstItem="xyx-Cw-e6I" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="mY3-bd-XK0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="xyx-Cw-e6I" secondAttribute="bottom" constant="38" id="nRj-Ov-19Y"/>
@@ -40,6 +88,8 @@
         </view>
     </objects>
     <resources>
+        <image name="Refresh" width="24" height="24"/>
+        <image name="close_MD" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
