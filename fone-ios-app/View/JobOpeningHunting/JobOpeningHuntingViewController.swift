@@ -156,7 +156,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         filterButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                print("filterButton is clicked")
+                owner.viewModel.showFilter()
             }.disposed(by: disposeBag)
         
         floatingButton.rx.tap
