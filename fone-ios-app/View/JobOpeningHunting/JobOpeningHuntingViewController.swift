@@ -378,6 +378,8 @@ extension JobOpeningHuntingViewController: UITableViewDataSource {
         
         guard let content = viewModel.jobOpeningsContent, content.count > 0 else { return cell }
         cell.configure(
+            id: content[indexPath.row].id,
+            jobType: content[indexPath.row].type,
             profileUrl: content[indexPath.row].profileURL,
             isVerified: content[indexPath.row].isVerified,
             categories: content[indexPath.row].categories,
@@ -403,7 +405,9 @@ extension JobOpeningHuntingViewController: UITableViewDataSource {
 
 extension JobOpeningHuntingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        goJobOpeningDetail(jobOpeningId: 1, type: .actor) // FIXME: 우선 41, ACTOR로 고정, cell에서 id, job 가져오기
+        let cell = tableView.dequeueReusableCell(for: indexPath) as JobCell
+        guard let id = cell.id, let type = cell.jobType else { return }
+        goJobOpeningDetail(jobOpeningId: id, type: type)
     }
     
     func goJobOpeningDetail(jobOpeningId: Int, type: Job) {

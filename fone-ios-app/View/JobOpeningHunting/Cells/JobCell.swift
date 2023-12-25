@@ -11,6 +11,9 @@ import RxCocoa
 
 class JobCell: UITableViewCell {
     
+    var id: Int?
+    var jobType: Job?
+    
     private let mainContentView = PostCellMainContentView(hasBookmark: true)
     var disposeBag = DisposeBag()
     
@@ -39,6 +42,8 @@ class JobCell: UITableViewCell {
     }
     
     func configure(
+        id: Int? = nil,
+        jobType: String? = nil, // ACTOR 혹은 STAFF
         profileUrl: String? = nil,
         isVerified: Bool? = nil,
         categories: [String]?, // 작품 성격 최대 2개
@@ -49,6 +54,9 @@ class JobCell: UITableViewCell {
         domain: String? = nil, // 스태프 - 분야 중 첫 번째 값
         produce: String? = nil
     ) {
+        self.id = id
+        self.jobType = Job.getType(name: jobType)
+        
         let categories = categories?.compactMap { Category.getType(serverName: $0) } ?? []
         let domain = Domain.getType(serverName: domain ?? "")?.name
         
