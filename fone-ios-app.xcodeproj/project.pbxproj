@@ -48,7 +48,6 @@
 		3650F6262A8672010017645D /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3650F6252A8672010017645D /* UIFont+Extension.swift */; };
 		3663DB122AF6843C005899BF /* JobUISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663DB112AF6843C005899BF /* JobUISegmentedControl.swift */; };
 		3663DB142AF68845005899BF /* JobOpeningSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663DB132AF68845005899BF /* JobOpeningSortButton.swift */; };
-		3663DB172AF69C0B005899BF /* JobOpeningSortBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663DB162AF69C0B005899BF /* JobOpeningSortBottomSheet.swift */; };
 		366E85092B19ECC200CB7681 /* FullWidthSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E85082B19ECC200CB7681 /* FullWidthSelectionView.swift */; };
 		366E850B2B19F50A00CB7681 /* Domain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E850A2B19F50A00CB7681 /* Domain.swift */; };
 		366E850D2B19FBE400CB7681 /* DomainSelectionPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E850C2B19FBE400CB7681 /* DomainSelectionPopupViewController.swift */; };
@@ -365,7 +364,6 @@
 		3650F6252A8672010017645D /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		3663DB112AF6843C005899BF /* JobUISegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobUISegmentedControl.swift; sourceTree = "<group>"; };
 		3663DB132AF68845005899BF /* JobOpeningSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningSortButton.swift; sourceTree = "<group>"; };
-		3663DB162AF69C0B005899BF /* JobOpeningSortBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningSortBottomSheet.swift; sourceTree = "<group>"; };
 		366E85082B19ECC200CB7681 /* FullWidthSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthSelectionView.swift; sourceTree = "<group>"; };
 		366E850A2B19F50A00CB7681 /* Domain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain.swift; sourceTree = "<group>"; };
 		366E850C2B19FBE400CB7681 /* DomainSelectionPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainSelectionPopupViewController.swift; sourceTree = "<group>"; };
@@ -855,7 +853,6 @@
 		3663DB152AF69C01005899BF /* JobOpeningSortBottomSheet */ = {
 			isa = PBXGroup;
 			children = (
-				3663DB162AF69C0B005899BF /* JobOpeningSortBottomSheet.swift */,
 				36AB6FC62B05263E00D9D6D0 /* UISortButtonStackView.swift */,
 				36AB6FC82B05266200D9D6D0 /* UISortButton.swift */,
 				36A554452B39B8B800C87751 /* JobOpeningSortBottomSheetViewController.swift */,
@@ -2073,7 +2070,6 @@
 				367D9BCB2AC2A22700DA6C96 /* TagList.swift in Sources */,
 				AB2578AA2AAF3C8F00328363 /* ChatViewController.swift in Sources */,
 				368273742B27338E00EB0629 /* ProfileListTableViewCell.swift in Sources */,
-				3663DB172AF69C0B005899BF /* JobOpeningSortBottomSheet.swift in Sources */,
 				AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */,
 				367D9C0D2AD9F5AF00DA6C96 /* MyPagePageViewController.swift in Sources */,
 				36AC7BD52AAE852E00478030 /* SignUpPhoneNumberViewModel.swift in Sources */,

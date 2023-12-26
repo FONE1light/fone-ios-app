@@ -32,24 +32,6 @@ enum JobSegmentType: CaseIterable {
         }
     }
     
-//    // TODO: 바텀시트 완성, 노출 확인
-//    var bottomSheet: UIView? {
-//        switch self {
-//        case .jobOpening:
-//            return JobOpeningSortBottomSheet(
-//                list: [.recent, .view, .deadline],
-//                selectedItem: .recent
-//            ) { stringSelectedItem in
-//                // TODO: Dismiss
-//            }
-//        case .profile:
-//            return JobOpeningSortBottomSheet(
-//                list: [.recent, .view],
-//                selectedItem: .view
-//            )
-//        }
-//    }
-    
     // 필요 시 FloatingButtonStackView 추가
 }
 
