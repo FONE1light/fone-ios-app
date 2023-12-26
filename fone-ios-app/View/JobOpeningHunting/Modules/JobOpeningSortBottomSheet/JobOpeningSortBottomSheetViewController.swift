@@ -67,7 +67,6 @@ class JobOpeningSortBottomSheetViewController: UIViewController, ViewModelBindab
         
         setupUI()
         setConstraints()
-        
     }
     
     private func setupUI() {
@@ -94,10 +93,6 @@ class JobOpeningSortBottomSheetViewController: UIViewController, ViewModelBindab
             $0.leading.trailing.equalToSuperview().inset(22)
             $0.bottom.equalToSuperview().offset(-40)
         }
-        
-//        view.snp.makeConstraints {
-//            $0.width.equalTo(UIScreen.main.bounds.width)
-//        }
     }
 }
 
@@ -116,9 +111,4 @@ extension JobOpeningSortBottomSheetViewController: PanModalPresentable {
         
         sceneCoordinator.currentVC = presentingVC.sceneViewController
     }
-    
-    // currentVC: JobOpeningSortBottomSheetViewController
-    // presentingVC: TabBarViewController
-    // presentingVC.sceneViewController: JobOpeningHuntingViewController
-    
 }

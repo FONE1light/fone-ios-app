@@ -152,33 +152,9 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
             .withUnretained(self)
             .bind { owner, _ in
                 guard let selectedSegmentType = owner.segmentedControl.selectedSegmentType else { return }
-                // (1)
+                
                 owner.viewModel.showSortBottomSheet(segmentType: selectedSegmentType)
                 
-                
-                var vc = JobOpeningSortBottomSheetViewController()
-                let jobOpeningSortBottomSheetViewModel = JobOpeningSortBottomSheetViewModel(
-                    sceneCoordinator: owner.viewModel.sceneCoordinator,
-                    selectedItem: owner.viewModel.selectedSortOption.value,
-                    list: owner.segmentedControl.selectedSegmentType?.sortList ?? []
-                ) { [weak self] selectedText in
-                    guard let self = self else { return }
-                    guard let option = JobOpeningSortOptions.getType(title: selectedText) else { return }
-                    self.viewModel.selectedSortOption.accept(option)
-//                    self.viewModel.sceneCoordinator.close(animated: true)
-//                    vc.dismiss(animated: true)
-                }
-                
-                // (2) (아마 1과 동일)
-//                DispatchQueue.main.async {
-//                    vc.bind(viewModel: jobOpeningSortBottomSheetViewModel)
-//                }
-//                owner.presentPanModal(vc)
-                
-                // (3)
-//                vc.bind(viewModel: jobOpeningSortBottomSheetViewModel)
-//                owner.presentPanModal(view: vc.view)
-  
             }.disposed(by: rx.disposeBag)
         
         viewModel.selectedSortOption
