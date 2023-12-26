@@ -55,7 +55,8 @@ extension RightBarButtonType {
         case .more:
             if let vc = viewController as? any ViewModelBindableType {
                 guard let viewModel = vc.viewModel as? CommonViewModel else { return }
-                viewModel.sceneCoordinator.transition(to: .reportBottomSheet, using: .customModal, animated: true)
+                let sceneCoordinator = viewModel.sceneCoordinator
+                sceneCoordinator.transition(to: .reportBottomSheet(sceneCoordinator), using: .customModal, animated: true)
             }
         }
     }
