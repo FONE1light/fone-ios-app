@@ -153,7 +153,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
             .bind { owner, _ in
                 guard let selectedSegmentType = owner.segmentedControl.selectedSegmentType else { return }
                 // (1)
-//                owner.viewModel.showSortBottomSheet(segmentType: selectedSegmentType)
+                owner.viewModel.showSortBottomSheet(segmentType: selectedSegmentType)
                 
                 
                 var vc = JobOpeningSortBottomSheetViewController()
@@ -176,8 +176,8 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
 //                owner.presentPanModal(vc)
                 
                 // (3)
-                vc.bind(viewModel: jobOpeningSortBottomSheetViewModel)
-                owner.presentPanModal(view: vc.view)
+//                vc.bind(viewModel: jobOpeningSortBottomSheetViewModel)
+//                owner.presentPanModal(view: vc.view)
   
             }.disposed(by: rx.disposeBag)
         

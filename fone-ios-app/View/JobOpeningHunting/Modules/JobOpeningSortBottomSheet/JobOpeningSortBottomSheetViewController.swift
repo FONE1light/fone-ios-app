@@ -60,9 +60,6 @@ class JobOpeningSortBottomSheetViewController: UIViewController, ViewModelBindab
                 selectedOption: viewModel.selectedItem,
                 completionHandler: viewModel.completionHandler
                 )
-        
-//        view.layoutIfNeeded()
-            
     }
     
     override func viewDidLoad() {
@@ -98,9 +95,9 @@ class JobOpeningSortBottomSheetViewController: UIViewController, ViewModelBindab
             $0.bottom.equalToSuperview().offset(-40)
         }
         
-        view.snp.makeConstraints {
-            $0.width.equalTo(UIScreen.main.bounds.width)
-        }
+//        view.snp.makeConstraints {
+//            $0.width.equalTo(UIScreen.main.bounds.width)
+//        }
     }
 }
 
@@ -109,9 +106,19 @@ extension JobOpeningSortBottomSheetViewController: PanModalPresentable {
         nil
     }
     
-//    func panModalWillDismiss() {
-//        (viewModel.sceneCoordinator as? SceneCoordinator)?.currentVC = self.sceneViewController
-//    }
+    // SceneCoordinator의 close가 호출되지 않고 dismiss 되는 경우(=항목 누르지 않고 dimmedView 눌러서 닫는 경우) currentVC가 업데이트 되지 않으므로 아래 함수에서 수동으로 업데이트
+    func panModalDidDismiss() {
+        guard let sceneCoordinator = viewModel.sceneCoordinator as? SceneCoordinator,
+              let presentingVC = sceneCoordinator.currentVC.presentingViewController
+        else { return }
+        
+        guard sceneCoordinator.currentVC != presentingVC.sceneViewController else { return }
+        
+        sceneCoordinator.currentVC = presentingVC.sceneViewController
+    }
     
+    // currentVC: JobOpeningSortBottomSheetViewController
+    // presentingVC: TabBarViewController
+    // presentingVC.sceneViewController: JobOpeningHuntingViewController
     
 }

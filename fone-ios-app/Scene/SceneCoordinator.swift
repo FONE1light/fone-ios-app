@@ -56,11 +56,26 @@ class SceneCoordinator: SceneCoordinatorType {
             currentVC.present(target, animated: animated)
             currentVC = target.sceneViewController
             
-        case .customModal:
+        case .customModal: // customPanModal
             target.modalPresentationStyle = .custom
             target.transitioningDelegate = PanModalPresentationDelegate.default
             // TODO: dimmed view 수정하려면(alpha값) PanModal 없애고 커스텀 해야할 수 있음
+//            let vc = BottomSheetViewController(view: target.view)
+//            vc.modalPresentationStyle = .custom
+//            vc.transitioningDelegate = PanModalPresentationDelegate.default
+//            currentVC.present(vc/*target*/, animated: animated)
+            
+//            let navigationController = UINavigationController()
+////            let testVC = UIViewController()
+////            testVC.view = target.view
+//            
+//            navigationController.setViewControllers([target], animated: false)
+//            navigationController.modalPresentationStyle = .custom
+//            navigationController.transitioningDelegate = PanModalPresentationDelegate.default
+            
             currentVC.present(target, animated: animated)
+//            currentVC.presentPanModal(target as! UIViewController & PanModalPresentable)
+//            currentVC.presentPanModal(view: target.view)
             currentVC = target.sceneViewController
             
         case .pageSheetModal:
