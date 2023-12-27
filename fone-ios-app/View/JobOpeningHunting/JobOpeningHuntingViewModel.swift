@@ -10,44 +10,61 @@ import RxCocoa
 import RxSwift
 
 class JobOpeningHuntingViewModel: CommonViewModel {
-    // TODO: API 호출 넣어도 아래 `selectedTab` 필요 없으면 삭제
-    var selectedTab = PublishRelay<JobSegmentType>()
     var disposeBag = DisposeBag()
     
     // TODO: 회원가입시 자신이 직업 선택한 분야로 초기값 지정(STAFF->STAFF, 나머지는 ACTOR)
     // Dropdown에서 선택한 jobType(ACTOR 혹은 STAFF)
     var selectedJobType = BehaviorRelay<Job>(value: .actor)
     
+    var selectedTab = BehaviorRelay<JobSegmentType>(value: .jobOpening)
+    
     var selectedSortOption = BehaviorRelay<JobOpeningSortOptions>(value: .recent)
-    // sortButton 상태(UI+연결화면), filterButton 연결 화면, 플로팅 버튼 상태(UI+연결화면)
-    let sortButtonStateDic: [JobSegmentType: JobOpeningSortOptions] = [
+    
+    var sortButtonStateDic: [JobSegmentType: JobOpeningSortOptions] = [
         .jobOpening: .recent,
         .profile: .recent
     ]
     
     var jobOpeningsContent: [JobOpeningContent]?
+    var profilesContent: [ProfileContent]?
     var reloadTableView = PublishSubject<Void>()
+    var reloadCollectionView = PublishSubject<Void>()
     
     override init(sceneCoordinator: SceneCoordinatorType) {
         super.init(sceneCoordinator: sceneCoordinator)
         
-        selectedJobType
+        Observable
+            .combineLatest(selectedJobType, selectedSortOption)
             .withUnretained(self)
-            .bind { owner, jobType in
-                owner.fetchList()
+            .bind { owner, result in
+                let (jobType, option) = result
+                
+                print("✅\(jobType), \(owner.selectedTab.value), \(option)")
+                owner.fetchList(
+                    jobType: jobType,
+                    segmentType: owner.selectedTab.value,
+                    sortOption: option
+                )
             }.disposed(by: disposeBag)
-        
-        selectedSortOption
-            .withUnretained(self)
-            .bind { owner, type in
-                owner.fetchList()
-            }.disposed(by: disposeBag)
+            
     }
     
     // JobSegmentType(프로필/모집)과 JobType(ACTOR/STAFF)을 알아야 api 쏘므로 ViewModel에  selectedTab, selectedJobType 필요
-    func fetchList() {
-        let sort = selectedSortOption.value.serverParameter ?? []
-        jobOpeningInfoProvider.rx.request(.jobOpenings(type: selectedJobType.value, sort: sort))
+    func fetchList(
+        jobType: Job,
+        segmentType selectedTab: JobSegmentType,
+        sortOption: JobOpeningSortOptions
+    ) {
+        let sort = sortOption.serverParameter ?? []
+        
+        switch selectedTab {
+        case .jobOpening: fetchJobOpenings(jobType: jobType, sort: sort)
+        case .profile: fetchProfiles(jobType: jobType, sort: sort)
+        }
+    }
+    
+    private func fetchJobOpenings(jobType: Job, sort: [String]) {
+        jobOpeningInfoProvider.rx.request(.jobOpenings(type: jobType, sort: sort))
             .mapObject(JobOpeningsInfo.self)
             .asObservable()
             .withUnretained(self)
@@ -59,7 +76,21 @@ class JobOpeningHuntingViewModel: CommonViewModel {
                        onError: { error in
                 print(error.localizedDescription)
             }).disposed(by: disposeBag)
-        
+    }
+    
+    private func fetchProfiles(jobType: Job, sort: [String]) {
+        profileInfoProvider.rx.request(.profiles(type: jobType, sort: sort))
+            .mapObject(Result<ProfileData>.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, response in
+                print(response)
+                owner.profilesContent = response.data?.profiles?.content
+                owner.reloadCollectionView.onNext(())
+            },
+                       onError: { error in
+                print(error.localizedDescription)
+            }).disposed(by: disposeBag)
     }
 }
 

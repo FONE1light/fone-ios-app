@@ -128,6 +128,14 @@ extension String {
         
         return newBirthString
     }
+    
+    /// 생년월일 문자열에서 연도를 반환.
+    ///
+    /// e.g. `separator`가 "-"라면, "2023-01-01"에서 "2023"을 반환
+    func birthYear(separator: String) -> String? {
+        let characterSet = CharacterSet(charactersIn: separator)
+        return components(separatedBy: characterSet).first
+    }
 }
 
 extension NSMutableAttributedString {

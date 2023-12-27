@@ -19,7 +19,7 @@ class PostCellMainContentView: UIView {
         $0.backgroundColor = .gray_D9D9D9
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
-        $0.image = UIImage(named: "default_profile")
+        $0.image = UIImage(resource: .defaultProfile)
     }
     
     private let horizontalStackView = UIStackView().then {

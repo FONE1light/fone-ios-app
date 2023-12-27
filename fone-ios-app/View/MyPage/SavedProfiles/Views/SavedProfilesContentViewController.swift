@@ -99,10 +99,13 @@ extension SavedProfilesContentViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as MyPageProfileCell
         let profile = profiles[indexPath.row]
         
+        // FIXME: API response 모델 따라서 현행화
         cell.configure(
             image: nil,
             name: profile.name,
-            age: profile.age,
+            birthYear: profile.birthYear,
+//            age: profile.age,
+            age: Int(profile.age ?? ""),
             isSaved: profile.isSaved
         )
         
