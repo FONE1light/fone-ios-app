@@ -24,9 +24,12 @@ enum JobOpeningSortOptions: CaseIterable {
         }
     }
     
-    var serverName: String? {
-        // TODO: 구현
-        "\(self)"
+    var serverParameter: [String]? {
+        switch self {
+        case .recent: ["createdAt", "DESC"]
+        case .view: ["viewCount", "DESC"]
+        case .deadline: ["deadline", "ASC"]
+        }
     }
     
     static func getType(title: String?) -> JobOpeningSortOptions? {

@@ -40,16 +40,14 @@ class JobOpeningHuntingViewModel: CommonViewModel {
         selectedSortOption
             .withUnretained(self)
             .bind { owner, type in
-                print(type)
-                // TODO: sort 옵션 넣기
                 owner.fetchList()
             }.disposed(by: disposeBag)
     }
     
     // JobSegmentType(프로필/모집)과 JobType(ACTOR/STAFF)을 알아야 api 쏘므로 ViewModel에  selectedTab, selectedJobType 필요
     func fetchList() {
-        let sort = selectedSortOption.value.serverName ?? ""
-        jobOpeningInfoProvider.rx.request(.jobOpenings(type: selectedJobType.value/*, sort: sort*/))
+        let sort = selectedSortOption.value.serverParameter ?? []
+        jobOpeningInfoProvider.rx.request(.jobOpenings(type: selectedJobType.value, sort: sort))
             .mapObject(JobOpeningsInfo.self)
             .asObservable()
             .withUnretained(self)
