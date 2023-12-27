@@ -25,21 +25,10 @@ enum JobSegmentType: CaseIterable {
         JobSegmentType.allCases.firstIndex(of: self)
     }
     
-    // TODO: 바텀시트 완성, 노출 확인
-    var bottomSheet: UIView? {
+    var sortList: [JobOpeningSortOptions] {
         switch self {
-        case .jobOpening:
-            return JobOpeningSortBottomSheet(
-                list: [.recent, .view, .deadline],
-                selectedItem: .recent
-            ) { stringSelectedItem in
-                // TODO: Dismiss
-            }
-        case .profile:
-            return JobOpeningSortBottomSheet(
-                list: [.recent, .view],
-                selectedItem: .view
-            )
+        case .jobOpening: [.recent, .view, .deadline]
+        case .profile: [.recent, .view]
         }
     }
     

@@ -56,16 +56,17 @@ class SceneCoordinator: SceneCoordinatorType {
             currentVC.present(target, animated: animated)
             currentVC = target.sceneViewController
             
-        case .customModal:
+        case .customModal: // customPanModal
             target.modalPresentationStyle = .custom
             target.transitioningDelegate = PanModalPresentationDelegate.default
             // TODO: dimmed view 수정하려면(alpha값) PanModal 없애고 커스텀 해야할 수 있음
             currentVC.present(target, animated: animated)
+            currentVC = target.sceneViewController
             
         case .pageSheetModal:
             target.modalPresentationStyle = .pageSheet
             currentVC.present(target, animated: animated)
-            
+            currentVC = target.sceneViewController
         }
     }
     

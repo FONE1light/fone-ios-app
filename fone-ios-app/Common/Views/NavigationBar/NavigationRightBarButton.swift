@@ -29,7 +29,7 @@ extension RightBarButtonType {
         switch self {
         case .notification: return UIImage(named: "bell")
         case .close: return UIImage(named: "close_MD")
-        case .more: return UIImage(named: "More_Vertical")
+        case .more: return UIImage(named: "more_Vertical")
         }
     }
     
@@ -55,7 +55,8 @@ extension RightBarButtonType {
         case .more:
             if let vc = viewController as? any ViewModelBindableType {
                 guard let viewModel = vc.viewModel as? CommonViewModel else { return }
-                viewModel.sceneCoordinator.transition(to: .reportBottomSheet, using: .customModal, animated: true)
+                let sceneCoordinator = viewModel.sceneCoordinator
+                sceneCoordinator.transition(to: .reportBottomSheet(sceneCoordinator), using: .customModal, animated: true)
             }
         }
     }

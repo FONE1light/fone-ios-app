@@ -37,21 +37,19 @@ class JobRegistrationCell: UITableViewCell {
     func configure(
         job: Job, // actor/staff
         categories: [Category], // 작품 성격 최대 2개
-        deadline: String? = nil,
+        dDay: String? = nil,
         coorporate: String? = nil,
-        gender: String? = nil,
-        period: String? = nil,
         casting: String? = nil,
         field: String? = nil
     ) {
+        // FIXME: 현행화
         mainContentView.configure(
             categories: categories,
-            deadline: deadline,
-            coorporate: coorporate,
-            gender: gender,
-            period: period,
-            casting: casting,
-            field: field
+//            title: title,
+            dDay: dDay
+//            coorporate: coorporate,
+//            casting: casting,
+//            field: field
         )
         
         jobTag.setType(as: job)

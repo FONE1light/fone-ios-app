@@ -47,8 +47,7 @@
 		3650F6232A86715C0017645D /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3650F6202A86715C0017645D /* Pretendard-Bold.ttf */; };
 		3650F6262A8672010017645D /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3650F6252A8672010017645D /* UIFont+Extension.swift */; };
 		3663DB122AF6843C005899BF /* JobUISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663DB112AF6843C005899BF /* JobUISegmentedControl.swift */; };
-		3663DB142AF68845005899BF /* JobOpeningSortButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663DB132AF68845005899BF /* JobOpeningSortButtonView.swift */; };
-		3663DB172AF69C0B005899BF /* JobOpeningSortBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663DB162AF69C0B005899BF /* JobOpeningSortBottomSheet.swift */; };
+		3663DB142AF68845005899BF /* JobOpeningSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663DB132AF68845005899BF /* JobOpeningSortButton.swift */; };
 		366E85092B19ECC200CB7681 /* FullWidthSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E85082B19ECC200CB7681 /* FullWidthSelectionView.swift */; };
 		366E850B2B19F50A00CB7681 /* Domain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E850A2B19F50A00CB7681 /* Domain.swift */; };
 		366E850D2B19FBE400CB7681 /* DomainSelectionPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E850C2B19FBE400CB7681 /* DomainSelectionPopupViewController.swift */; };
@@ -117,6 +116,8 @@
 		36A4D49E2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D49D2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift */; };
 		36A4D4A02B15CFC9008541E9 /* RegisterDetailInfoStaffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D49F2B15CFC9008541E9 /* RegisterDetailInfoStaffViewController.swift */; };
 		36A4D4A22B15D065008541E9 /* SNSBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4A12B15D065008541E9 /* SNSBottomSheet.swift */; };
+		36A554462B39B8B800C87751 /* JobOpeningSortBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A554452B39B8B800C87751 /* JobOpeningSortBottomSheetViewController.swift */; };
+		36A554482B39B8C100C87751 /* JobOpeningSortBottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A554472B39B8C100C87751 /* JobOpeningSortBottomSheetViewModel.swift */; };
 		36AB6FC52B050E6400D9D6D0 /* FloatingStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FC42B050E6400D9D6D0 /* FloatingStackView.swift */; };
 		36AB6FC72B05263E00D9D6D0 /* UISortButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FC62B05263E00D9D6D0 /* UISortButtonStackView.swift */; };
 		36AB6FC92B05266200D9D6D0 /* UISortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FC82B05266200D9D6D0 /* UISortButton.swift */; };
@@ -150,6 +151,7 @@
 		36F50AA92A962C9800991C9B /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F50AA82A962C9800991C9B /* EmptyView.swift */; };
 		36F50AAC2A9897AA00991C9B /* SelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F50AAB2A9897AA00991C9B /* SelectionCell.swift */; };
 		36FB11882B341C570093C5CB /* ProfilePreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB11872B341C570093C5CB /* ProfilePreviewViewModel.swift */; };
+		36FB6B912B374D9900715EE9 /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB6B902B374D9900715EE9 /* BookmarkButton.swift */; };
 		AB04760F2B08F851003DF5EF /* JobOpeningInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB04760E2B08F851003DF5EF /* JobOpeningInfoProvider.swift */; };
 		AB0476112B08FB11003DF5EF /* JobInfoAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0476102B08FB11003DF5EF /* JobInfoAPIModel.swift */; };
 		AB0F8E4C2AB324B7006D85F7 /* HomeInfoAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0F8E4B2AB324B7006D85F7 /* HomeInfoAPIModel.swift */; };
@@ -361,8 +363,7 @@
 		3650F6202A86715C0017645D /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
 		3650F6252A8672010017645D /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		3663DB112AF6843C005899BF /* JobUISegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobUISegmentedControl.swift; sourceTree = "<group>"; };
-		3663DB132AF68845005899BF /* JobOpeningSortButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningSortButtonView.swift; sourceTree = "<group>"; };
-		3663DB162AF69C0B005899BF /* JobOpeningSortBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningSortBottomSheet.swift; sourceTree = "<group>"; };
+		3663DB132AF68845005899BF /* JobOpeningSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningSortButton.swift; sourceTree = "<group>"; };
 		366E85082B19ECC200CB7681 /* FullWidthSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthSelectionView.swift; sourceTree = "<group>"; };
 		366E850A2B19F50A00CB7681 /* Domain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain.swift; sourceTree = "<group>"; };
 		366E850C2B19FBE400CB7681 /* DomainSelectionPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainSelectionPopupViewController.swift; sourceTree = "<group>"; };
@@ -430,6 +431,8 @@
 		36A4D49D2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailInfoStaffViewModel.swift; sourceTree = "<group>"; };
 		36A4D49F2B15CFC9008541E9 /* RegisterDetailInfoStaffViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailInfoStaffViewController.swift; sourceTree = "<group>"; };
 		36A4D4A12B15D065008541E9 /* SNSBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSBottomSheet.swift; sourceTree = "<group>"; };
+		36A554452B39B8B800C87751 /* JobOpeningSortBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningSortBottomSheetViewController.swift; sourceTree = "<group>"; };
+		36A554472B39B8C100C87751 /* JobOpeningSortBottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningSortBottomSheetViewModel.swift; sourceTree = "<group>"; };
 		36AB6FC42B050E6400D9D6D0 /* FloatingStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingStackView.swift; sourceTree = "<group>"; };
 		36AB6FC62B05263E00D9D6D0 /* UISortButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISortButtonStackView.swift; sourceTree = "<group>"; };
 		36AB6FC82B05266200D9D6D0 /* UISortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISortButton.swift; sourceTree = "<group>"; };
@@ -462,6 +465,7 @@
 		36F50AA82A962C9800991C9B /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		36F50AAB2A9897AA00991C9B /* SelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionCell.swift; sourceTree = "<group>"; };
 		36FB11872B341C570093C5CB /* ProfilePreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePreviewViewModel.swift; sourceTree = "<group>"; };
+		36FB6B902B374D9900715EE9 /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
 		AB04760E2B08F851003DF5EF /* JobOpeningInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningInfoProvider.swift; sourceTree = "<group>"; };
 		AB0476102B08FB11003DF5EF /* JobInfoAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoAPIModel.swift; sourceTree = "<group>"; };
 		AB0F8E4B2AB324B7006D85F7 /* HomeInfoAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInfoAPIModel.swift; sourceTree = "<group>"; };
@@ -837,23 +841,24 @@
 		3663DB102AF68422005899BF /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				3663DB152AF69C01005899BF /* BottomSheets */,
+				3663DB152AF69C01005899BF /* JobOpeningSortBottomSheet */,
 				3663DB112AF6843C005899BF /* JobUISegmentedControl.swift */,
-				3663DB132AF68845005899BF /* JobOpeningSortButtonView.swift */,
+				3663DB132AF68845005899BF /* JobOpeningSortButton.swift */,
 				36D61F832AFCC54700E0C7E7 /* FloatingButton.swift */,
 				36AB6FC42B050E6400D9D6D0 /* FloatingStackView.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
 		};
-		3663DB152AF69C01005899BF /* BottomSheets */ = {
+		3663DB152AF69C01005899BF /* JobOpeningSortBottomSheet */ = {
 			isa = PBXGroup;
 			children = (
-				3663DB162AF69C0B005899BF /* JobOpeningSortBottomSheet.swift */,
 				36AB6FC62B05263E00D9D6D0 /* UISortButtonStackView.swift */,
 				36AB6FC82B05266200D9D6D0 /* UISortButton.swift */,
+				36A554452B39B8B800C87751 /* JobOpeningSortBottomSheetViewController.swift */,
+				36A554472B39B8C100C87751 /* JobOpeningSortBottomSheetViewModel.swift */,
 			);
-			path = BottomSheets;
+			path = JobOpeningSortBottomSheet;
 			sourceTree = "<group>";
 		};
 		366E85042B1990DF00CB7681 /* RegisterBasicInfo */ = {
@@ -1217,6 +1222,7 @@
 				36AB6FDB2B08A6BA00D9D6D0 /* LabelTextView.swift */,
 				362C80342B139D7F00489E7D /* LetterCountedTextView.swift */,
 				360E843D2B2984C000D4A540 /* ReportBottomSheet.swift */,
+				36FB6B902B374D9900715EE9 /* BookmarkButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1928,7 +1934,7 @@
 				AB6E432F2B2205CB001960E7 /* RecruitWorkInfoViewModel.swift in Sources */,
 				AB49A3492A8119B900748484 /* CommonViewModel.swift in Sources */,
 				36F50AA92A962C9800991C9B /* EmptyView.swift in Sources */,
-				3663DB142AF68845005899BF /* JobOpeningSortButtonView.swift in Sources */,
+				3663DB142AF68845005899BF /* JobOpeningSortButton.swift in Sources */,
 				AB61493E2A90D4410079CEC9 /* ToastManager.swift in Sources */,
 				AB25789E2AAF341900328363 /* HomeViewModel.swift in Sources */,
 				362419D12AE319CF007D1AFB /* SignUpSelectionViewModel.swift in Sources */,
@@ -1963,6 +1969,7 @@
 				364482D82AB80EDA00984507 /* MyPageMenuCell.swift in Sources */,
 				AB9DAAA82AB0A4F500B00016 /* HomeInfoProvider.swift in Sources */,
 				366E85122B22042700CB7681 /* DomainPreviewTag.swift in Sources */,
+				36A554462B39B8B800C87751 /* JobOpeningSortBottomSheetViewController.swift in Sources */,
 				AB532B312B0A306A003A6A57 /* SalaryType.swift in Sources */,
 				ABA47FF72A850AE600B64403 /* UIView+Extension.swift in Sources */,
 				AB2578A52AAF387F00328363 /* TabBarViewController.swift in Sources */,
@@ -1979,6 +1986,7 @@
 				36BCC7E62AA5E0180060E35A /* CustomButton.swift in Sources */,
 				AB79B3BC2A9E29C4008EBAA2 /* QuestionViewController.swift in Sources */,
 				AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */,
+				36A554482B39B8C100C87751 /* JobOpeningSortBottomSheetViewModel.swift in Sources */,
 				AB3F071D2AADADB700E54A25 /* FindPasswordCell.swift in Sources */,
 				367D9BD82ACB5CC900DA6C96 /* JobViewController.swift in Sources */,
 				ABCDD17C2B00DE8E00A598A8 /* DetailImageCell.swift in Sources */,
@@ -2021,6 +2029,7 @@
 				367D9C092AD774CD00DA6C96 /* MyPageProfileCell.swift in Sources */,
 				3628669A2A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift in Sources */,
 				366F22A62ADB2AD600FD00BD /* OfficialMark.swift in Sources */,
+				36FB6B912B374D9900715EE9 /* BookmarkButton.swift in Sources */,
 				ABAFA33B2A9F612900D50BAF /* QuestionInfoProvider.swift in Sources */,
 				36AB6FC52B050E6400D9D6D0 /* FloatingStackView.swift in Sources */,
 				3608447E2B2C1DEF00A9776F /* SNSWebViewModel.swift in Sources */,
@@ -2061,7 +2070,6 @@
 				367D9BCB2AC2A22700DA6C96 /* TagList.swift in Sources */,
 				AB2578AA2AAF3C8F00328363 /* ChatViewController.swift in Sources */,
 				368273742B27338E00EB0629 /* ProfileListTableViewCell.swift in Sources */,
-				3663DB172AF69C0B005899BF /* JobOpeningSortBottomSheet.swift in Sources */,
 				AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */,
 				367D9C0D2AD9F5AF00DA6C96 /* MyPagePageViewController.swift in Sources */,
 				36AC7BD52AAE852E00478030 /* SignUpPhoneNumberViewModel.swift in Sources */,

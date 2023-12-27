@@ -47,9 +47,10 @@ enum Scene {
     
     case jobHuntingProfiles(JobHuntingProfilesViewModel) // 프로필 상세 > 이미지 더보기
 
-    // 바텀시트/모달
-    case reportBottomSheet // 신고하기 바텀시트
-    case profilePreview(ProfilePreviewViewModel) // 프로필 이미지 크게 보기 바텀시트
+    // 모달
+    case reportBottomSheet(SceneCoordinatorType) // 신고하기 바텀시트
+    case jobOpeningSortBottomSheet(JobOpeningSortBottomSheetViewModel) // 구인구직 탭 > 정렬 바텀시트
+    case profilePreview(ProfilePreviewViewModel) // 프로필 이미지 크게 보기
     case snsWebViewController(SNSWebViewModel) // 개인 SNS(웹)
 }
 
@@ -340,10 +341,20 @@ extension Scene {
             
             return jobHuntingProfilesVC
 
-        case .reportBottomSheet:
+        case .reportBottomSheet(let sceneCoordinator):
             let bottomSheet = ReportBottomSheet()
-            let bottomSheetVC = BottomSheetViewController(view: bottomSheet)
+            let bottomSheetVC = BottomSheetViewController(view: bottomSheet, sceneCoordinator: sceneCoordinator)
 
+            return bottomSheetVC
+            
+        case .jobOpeningSortBottomSheet(let jobOpeningSortBottomSheetViewModel):
+            var jobOpeningSortBottomSheetVC = JobOpeningSortBottomSheetViewController()
+            
+            jobOpeningSortBottomSheetVC.bind(viewModel: jobOpeningSortBottomSheetViewModel)
+            
+//            return jobOpeningSortBottomSheetVC // 노출X
+            let bottomSheetVC = BottomSheetViewController(view: jobOpeningSortBottomSheetVC.view, sceneCoordinator: jobOpeningSortBottomSheetViewModel.sceneCoordinator)
+            
             return bottomSheetVC
             
         case .profilePreview(let profilePreviewViewModel):

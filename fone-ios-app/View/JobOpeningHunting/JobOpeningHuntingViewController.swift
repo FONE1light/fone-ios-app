@@ -129,6 +129,12 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                 owner.goJobHuntingDetail(jobHuntingId: 41, type: .actor) // FIXME: 우선 41, ACTOR로 고정, cell에서 id, job 가져오기
             }.disposed(by: rx.disposeBag)
         
+        viewModel.reloadTableView
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.tableViewJob.reloadData()
+            }.disposed(by: disposeBag)
+        
         // MARK: Button tap
         // customView로 설정한 UIBarButtonItem은
         // barButtonItem에 설정하는 userInteraction이 응답하지 않아서
@@ -145,13 +151,17 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         sortButton.tap
             .withUnretained(self)
             .bind { owner, _ in
-                print("open BottomSheet")
-                if let bottomSheet = owner.segmentedControl.selectedSegmentType?.bottomSheet {
-                    // FIXME: 실기기 iOS 17.1에서 미노출, Simulator iOS 17.0에서 노출
-                    // FIXME: 높이 늘어나는 것 해결(UIView-Encapsulated-Layout-Height)
-                    owner.presentPanModal(view: bottomSheet)
-                }
+                guard let selectedSegmentType = owner.segmentedControl.selectedSegmentType else { return }
+                
+                owner.viewModel.showSortBottomSheet(segmentType: selectedSegmentType)
+                
             }.disposed(by: rx.disposeBag)
+        
+        viewModel.selectedSortOption
+            .withUnretained(self)
+            .bind { owner, option in
+                owner.sortButton.setLabel(option.title)
+            }.disposed(by: disposeBag)
         
         filterButton.rx.tap
             .withUnretained(self)
@@ -201,6 +211,8 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         
         setupUI()
         setConstraints()
+        
+        viewModel.fetchList()
         
     }
     
@@ -362,41 +374,43 @@ extension JobOpeningHuntingViewController {
 extension JobOpeningHuntingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return viewModel.jobOpeningsContent?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as JobCell
         
-        if indexPath.row % 2 == 0 {
-            cell.configure(
-                categories: [.featureFilm, .youtube],
-                deadline: "2023.01.20",
-                coorporate: "성균관대학교 영상학과",
-                gender: "남자",
-                period: "일주일",
-                field: "미술"
-            )
-        } else {
-            
-            cell.configure(
-                categories: [.ottDrama, .shortFilm],
-                deadline: "2023.01.20",
-                coorporate: "성균관대학교 영상학과",
-                gender: "남자",
-                period: "일주일",
-                casting: "수영선수"
-            )
-        }
+        guard let content = viewModel.jobOpeningsContent, content.count > 0 else { return cell }
+        cell.configure(
+            id: content[indexPath.row].id,
+            jobType: content[indexPath.row].type,
+            profileUrl: content[indexPath.row].profileURL,
+            isVerified: content[indexPath.row].isVerified,
+            categories: content[indexPath.row].categories,
+            isScrap: content[indexPath.row].isScrap,
+            title: content[indexPath.row].title,
+            dDay: content[indexPath.row].dday,
+            genre: content[indexPath.row].work?.genres?.first,
+            domain: content[indexPath.row].domains?.first,
+            produce: content[indexPath.row].work?.produce
+        )
         
+        cell.bookmarkButtonTap
+            .withUnretained(self)
+            .bind { owner, _ in
+                cell.toggleBookmarkButton()
+                // TODO: jobOpeningID 이용 북마크(스크랩) api 호출
+            }.disposed(by: cell.disposeBag)
+
         return cell
     }
-    
 }
 
 extension JobOpeningHuntingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        goJobOpeningDetail(jobOpeningId: 1, type: .actor) // FIXME: 우선 41, ACTOR로 고정, cell에서 id, job 가져오기
+        let cell = tableView.dequeueReusableCell(for: indexPath) as JobCell
+        guard let id = cell.id, let type = cell.jobType else { return }
+        goJobOpeningDetail(jobOpeningId: id, type: type)
     }
     
     func goJobOpeningDetail(jobOpeningId: Int, type: Job) {

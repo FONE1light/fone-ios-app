@@ -117,10 +117,8 @@ class TabBarViewController: UITabBarController {
                 coordinator.currentVC = vc
                 
                 guard !vc.hasViewModel else { return }
-                DispatchQueue.main.async {
-                    vc.bind(viewModel: viewModel)
-                    vc.hasViewModel = true
-                }
+                vc.bind(viewModel: viewModel)
+                vc.hasViewModel = true
                 
             case 2:
                 guard var vc = nav.visibleViewController as? ChatViewController else { return }
