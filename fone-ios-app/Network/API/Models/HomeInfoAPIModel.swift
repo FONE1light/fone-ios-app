@@ -132,7 +132,6 @@ struct ProfileContent: Codable {
     let name, hookingComment, birthday, gender: String?
     let height, weight: Int?
     let email: String?
-    let sns: String?
     let snsUrls: [SnsURL]?
     let specialty, details, type, career: String?
     let careerDetail: String?
@@ -145,7 +144,7 @@ struct ProfileContent: Codable {
     let createdAt, userNickname, userProfileURL, userJob: String?
     
     enum CodingKeys: String, CodingKey {
-        case id, name, hookingComment, birthday, gender, height, weight, email, sns, snsUrls, specialty, details, type, career, careerDetail, categories, domains, profileImages, viewCount
+        case id, name, hookingComment, birthday, gender, height, weight, email, snsUrls, specialty, details, type, career, careerDetail, categories, domains, profileImages, viewCount
         case representativeImageURL = "representativeImageUrl"
         case isWant, age, createdAt, userNickname
         case userProfileURL = "userProfileUrl"
