@@ -15,8 +15,8 @@ final class JobHuntingDetailViewModel: CommonViewModel {
         nickname: jobHuntingDetail.name,
         userJob: jobHuntingDetail.userJob,
         viewCount: jobHuntingDetail.viewCount,
-        instagramUrl: jobHuntingDetail.snsUrls?.filter { $0.url == "INSTAGRAM" }.first?.sns,
-        youtubeUrl: jobHuntingDetail.snsUrls?.filter { $0.url == "YOUTUBE" }.first?.sns
+        instagramUrl: jobHuntingDetail.snsUrls?.filter { $0.sns == "INSTAGRAM" }.first?.url,
+        youtubeUrl: jobHuntingDetail.snsUrls?.filter { $0.sns == "YOUTUBE" }.first?.url
     )
     
     var actorInfo: ActorInfo?
