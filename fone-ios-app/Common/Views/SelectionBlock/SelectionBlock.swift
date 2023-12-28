@@ -48,6 +48,12 @@ class SelectionBlock: UIView {
         return collectionView
     }()
     
+    var allowsSelection: Bool = true {
+        didSet {
+            collectionView.allowsSelection = allowsSelection
+        }
+    }
+    
     let selectedItems = BehaviorRelay<[Selection]>(value: [])
     
     init() {

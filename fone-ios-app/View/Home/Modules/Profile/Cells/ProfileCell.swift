@@ -21,7 +21,7 @@ class ProfileCell: UICollectionViewCell {
     
     func configure(item: ProfileContent) {
         hookingCommentLabel.text = item.hookingComment
-        profileImageView.kf.setImage(with: URL(string: item.profileURL ?? ""))
+        profileImageView.kf.setImage(with: URL(string: item.userProfileURL ?? ""))
         nameLabel.text = item.name
         let year = item.birthday?.split(separator: "-").first ?? ""
         let age = item.age?.description ?? ""

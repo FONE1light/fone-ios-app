@@ -44,7 +44,6 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         return view
     }()
     
-    // TODO: API 재요청 시점 따라 refresh 조치
     private lazy var tableViewJob = UITableView().then {
         $0.showsVerticalScrollIndicator = false
         $0.separatorStyle = .none
@@ -54,19 +53,6 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         $0.backgroundColor = .gray_EEEFEF
     }
     
-    private var profiles: [Profile] = [
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true, birthYear: nil, job: nil),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: false, birthYear: nil, job: nil),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true, birthYear: nil, job: nil),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: false, birthYear: nil, job: nil),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true, birthYear: nil, job: nil),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true, birthYear: nil, job: nil),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: false, birthYear: nil, job: nil),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true, birthYear: nil, job: nil),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true, birthYear: nil, job: nil)
-    ]
-    
-    // TODO: API 재요청 시점 따라 refresh 조치
     private lazy var collectionViewProfile: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
@@ -123,10 +109,12 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         collectionViewProfile.rx.itemSelected
             .withUnretained(self)
             .bind { owner, indexPath in
-                guard owner.collectionViewProfile.cellForItem(at: indexPath) 
-                        is MyPageProfileCell else { return }
+                guard let cell = owner.collectionViewProfile.cellForItem(at: indexPath)
+                        as? MyPageProfileCell,
+                let id = cell.id,
+                let jobType = Job.getType(name: cell.jobType) else { return }
                 
-                owner.goJobHuntingDetail(jobHuntingId: 41, type: .actor) // FIXME: 우선 41, ACTOR로 고정, cell에서 id, job 가져오기
+                owner.viewModel.goJobHuntingDetail(jobHuntingId: id, type: jobType)
             }.disposed(by: rx.disposeBag)
         
         viewModel.reloadTableView
@@ -415,46 +403,7 @@ extension JobOpeningHuntingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.dequeueReusableCell(for: indexPath) as JobCell
         guard let id = cell.id, let type = cell.jobType else { return }
-        goJobOpeningDetail(jobOpeningId: id, type: type)
-    }
-    
-    func goJobOpeningDetail(jobOpeningId: Int, type: Job) {
-        jobOpeningInfoProvider.rx.request(.jobOpeningDetail(jobOpeningId: jobOpeningId, type: type))
-            .mapObject(JobOpeningInfo.self)
-            .asObservable()
-            .withUnretained(self)
-            .subscribe(onNext: { owner, response in
-                guard let jobOpening = response.data?.jobOpening else {
-                    response.message.toast()
-                    return }
-                let viewModel = JobOpeningDetailViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator, jobOpeningDetail: jobOpening)
-                let detailScene = Scene.jobOpeningDetail(viewModel)
-                owner.viewModel.sceneCoordinator.transition(to: detailScene, using: .push, animated: true)
-                
-            },
-            onError: { error in
-                print(error)
-            }).disposed(by: rx.disposeBag)
-    }
-}
-
-extension JobOpeningHuntingViewController {
-    // FIXME: jobHuntingInfoProvider 제작(API 연결)
-    func goJobHuntingDetail(jobHuntingId: Int, type: Job) {
-        jobOpeningInfoProvider.rx.request(.jobOpeningDetail(jobOpeningId: jobHuntingId, type: type))
-            .mapObject(JobOpeningInfo.self)
-            .asObservable()
-            .withUnretained(self)
-            .subscribe(onNext: { owner, response in
-                guard let jobOpening = response.data?.jobOpening else { return }
-                let viewModel = JobHuntingDetailViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator, jobHuntingDetail: jobOpening)
-                // FIXME: API 응답 따라서 JobHuntingDetailViewModel 내부에서 jobType 식별, 혹은 밖(여기)에서 selectedJobType으로 지정
-                viewModel.jobType = .actor
-//                viewModel.jobType = owner.viewModel.selectedJobType.value
-                let detailScene = Scene.jobHuntingDetail(viewModel)
-                owner.viewModel.sceneCoordinator.transition(to: detailScene, using: .push, animated: true)
-                
-            }).disposed(by: rx.disposeBag)
+        viewModel.goJobOpeningDetail(jobOpeningId: id, type: type)
     }
 }
 
@@ -473,7 +422,9 @@ extension JobOpeningHuntingViewController: UICollectionViewDataSource {
         
         let birthYear = profile.birthday?.birthYear(separator: "-")
         cell.configure(
-            image: profile.profileURL,
+            id: profile.id,
+            jobType: profile.type,
+            image: profile.representativeImageURL,
             name: profile.name,
             birthYear: birthYear,
             age: profile.age,

@@ -10,6 +10,34 @@ import RxSwift
 import Then
 import SnapKit
 
+struct StaffInfo {
+    let name: String?
+    let gender: GenderType?
+    let birthYear: String?
+    let age: String?
+    let domains: [String]?
+    let email: String?
+    let specialty: String?
+    
+    init(
+        name: String?,
+        gender: GenderType?,
+        birthYear: String?,
+        age: String?,
+        domains: [String]?,
+        email: String?,
+        specialty: String?
+    ) {
+        self.name = name
+        self.gender = gender
+        self.birthYear = birthYear
+        self.age = age
+        self.domains = domains
+        self.email = email
+        self.specialty = specialty
+    }
+}
+
 class StaffInfoTableViewCell: UITableViewCell {
     
     static let identifier = String(String(describing: StaffInfoTableViewCell.self))
@@ -26,6 +54,7 @@ class StaffInfoTableViewCell: UITableViewCell {
     private let valueStackView = UIStackView().then {
         $0.axis = .vertical
         $0.spacing = 10
+        $0.distribution = .fillEqually
     }
     private let divider = Divider(height: 8, color: .gray_F8F8F8)
     
@@ -46,15 +75,22 @@ class StaffInfoTableViewCell: UITableViewCell {
     
     func configure(
         name: String?,
-        gender: GenderType?, // TODO: String으로 내려주면 그대로 뿌리기
+        gender: GenderType?,
         birthYear: String?,
-        domain: String?,
+        age: String?,
+        domains: [String]?,
         email: String?,
         specialty: String?
     ) {
         nameLabel.text = name
         genderLabel.text = gender?.string
-        birthYearLabel.text = birthYear
+        birthYearLabel.text = "\(birthYear ?? "")년 (\(age ?? "")살)"
+        var domain = domains?
+            .compactMap { Domain.getType(serverName: $0)?.name }
+            .reduce("") { (domain1: String, domain2: String) -> String in
+            domain1 + "/" + domain2
+        }
+        domain?.removeFirst()
         domainLabel.text = domain
         emailLabel.text = email
         specialtyLabel.text = specialty

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum GenderType: String {
+enum GenderType: String, CaseIterable {
     case IRRELEVANT
     case MAN
     case WOMAN
@@ -21,5 +21,9 @@ enum GenderType: String {
         case .WOMAN:
             "여자"
         }
+    }
+    
+    static func getType(rawValue: String?) -> GenderType? {
+        GenderType.allCases.filter { $0.rawValue == rawValue }.first
     }
 }

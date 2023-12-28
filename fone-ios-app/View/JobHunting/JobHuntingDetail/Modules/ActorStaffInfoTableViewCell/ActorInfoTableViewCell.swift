@@ -10,6 +10,38 @@ import RxSwift
 import Then
 import SnapKit
 
+
+struct ActorInfo {
+    let name: String?
+    let gender: GenderType?
+    let birthYear: String?
+    let age: String?
+    let height: String?
+    let weight: String?
+    let email: String?
+    let specialty: String?
+    
+    init(
+        name: String?,
+        gender: GenderType?,
+        birthYear: String?,
+        age: String?,
+        height: String?,
+        weight: String?,
+        email: String?,
+        specialty: String?
+    ) {
+        self.name = name
+        self.gender = gender
+        self.birthYear = birthYear
+        self.age = age
+        self.height = height
+        self.weight = weight
+        self.email = email
+        self.specialty = specialty
+    }
+}
+
 class ActorInfoTableViewCell: UITableViewCell {
     
     static let identifier = String(String(describing: ActorInfoTableViewCell.self))
@@ -26,6 +58,7 @@ class ActorInfoTableViewCell: UITableViewCell {
     private let valueStackView = UIStackView().then {
         $0.axis = .vertical
         $0.spacing = 10
+        $0.distribution = .fillEqually
     }
     private let divider = Divider(height: 8, color: .gray_F8F8F8)
     
@@ -46,8 +79,9 @@ class ActorInfoTableViewCell: UITableViewCell {
     
     func configure(
         name: String?,
-        gender: GenderType?, // TODO: String으로 내려주면 그대로 뿌리기
+        gender: GenderType?,
         birthYear: String?,
+        age: String?,
         height: String?,
         weight: String?,
         email: String?,
@@ -55,8 +89,8 @@ class ActorInfoTableViewCell: UITableViewCell {
     ) {
         nameLabel.text = name
         genderLabel.text = gender?.string
-        birthYearLabel.text = birthYear
-        heightWeightLabel.text = "\(height ?? "") ㅣ \(weight ?? "")"
+        birthYearLabel.text = "\(birthYear ?? "")년 (\(age ?? "")살)"
+        heightWeightLabel.text = "\(height ?? "")cm ㅣ \(weight ?? "")kg"
         emailLabel.text = email
         specialtyLabel.text = specialty
     }
