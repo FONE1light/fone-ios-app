@@ -44,6 +44,10 @@ extension ProfileInfoTarget: TargetType {
             return ["Authorization": authorization]
         }
     }
+    
+    var validationType: ValidationType {
+        return .successCodes
+    }
 }
 
-let profileInfoProvider = MoyaProvider<ProfileInfoTarget>()
+let profileInfoProvider = MoyaProvider<ProfileInfoTarget>(session: Session(interceptor: AuthInterceptor.shared))
