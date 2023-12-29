@@ -16,10 +16,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilterViewController" customModule="fone_ios_app" customModuleProvider="target">
             <connections>
+                <outlet property="ageClearButton" destination="Mqk-DU-DhV" id="hML-79-tN9"/>
+                <outlet property="ageSelectionView" destination="pHb-sg-jgV" id="cKs-nX-jQq"/>
+                <outlet property="categoryClearButton" destination="3St-xM-cge" id="euT-3e-6mh"/>
+                <outlet property="categorySelectionBlock" destination="mUu-iT-x3C" id="04f-9f-LA3"/>
                 <outlet property="closeButton" destination="eHc-t3-fmi" id="51c-hc-Hkf"/>
                 <outlet property="confirmButton" destination="xyx-Cw-e6I" id="TmE-N6-8ws"/>
                 <outlet property="genderClearButton" destination="LOi-cA-8t8" id="yfg-z2-YeZ"/>
                 <outlet property="genderSelectionBlock" destination="Xtd-Gz-ztC" id="572-5K-qD8"/>
+                <outlet property="resetButton" destination="qtV-j4-r9c" id="c6d-j0-3nb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -96,23 +101,79 @@
                         <constraint firstAttribute="height" constant="33" id="zM7-Ob-kDd"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나이" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3Q-YI-qDG">
+                    <rect key="frame" x="16" y="227" width="26" height="18"/>
+                    <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="15"/>
+                    <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mqk-DU-DhV" customClass="CustomButton" customModule="fone_ios_app" customModuleProvider="target">
+                    <rect key="frame" x="305" y="224" width="72" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="72" id="ZiO-yV-08z"/>
+                        <constraint firstAttribute="height" constant="24" id="koL-hE-Kl2"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pHb-sg-jgV" customClass="FullWidthSelectionView" customModule="fone_ios_app" customModuleProvider="target">
+                    <rect key="frame" x="16" y="254" width="361" height="117"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="117" id="HgR-Rk-fKt"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="관심사 선택" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nx-CG-Xu3">
+                    <rect key="frame" x="16" y="403" width="68.333333333333329" height="18"/>
+                    <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="15"/>
+                    <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3St-xM-cge" customClass="CustomButton" customModule="fone_ios_app" customModuleProvider="target">
+                    <rect key="frame" x="305" y="400" width="72" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="72" id="c3j-Cb-HAh"/>
+                        <constraint firstAttribute="height" constant="24" id="kQ8-gM-xQp"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mUu-iT-x3C" customClass="SelectionBlock" customModule="fone_ios_app" customModuleProvider="target">
+                    <rect key="frame" x="16" y="430" width="361" height="117"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="117" id="ToZ-dw-nrA"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="mUu-iT-x3C" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="0t3-dR-dp1"/>
                 <constraint firstItem="LOi-cA-8t8" firstAttribute="top" secondItem="d4T-qv-5A8" secondAttribute="bottom" constant="24" id="1De-YU-PuF"/>
                 <constraint firstItem="d4T-qv-5A8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="31p-6y-8jh"/>
+                <constraint firstItem="mUu-iT-x3C" firstAttribute="top" secondItem="3St-xM-cge" secondAttribute="bottom" constant="6" id="4dB-Gj-DtT"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="d4T-qv-5A8" secondAttribute="trailing" id="7A0-wI-meE"/>
                 <constraint firstItem="Xtd-Gz-ztC" firstAttribute="top" secondItem="aIE-D8-7f8" secondAttribute="bottom" constant="8" id="7bK-JP-8en"/>
+                <constraint firstItem="W3Q-YI-qDG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="9Sb-K2-ILB"/>
+                <constraint firstItem="pHb-sg-jgV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Bgk-cd-GTJ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3St-xM-cge" secondAttribute="trailing" constant="16" id="CRd-K5-H4X"/>
                 <constraint firstItem="d4T-qv-5A8" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Krp-T1-Why"/>
+                <constraint firstItem="W3Q-YI-qDG" firstAttribute="top" secondItem="Xtd-Gz-ztC" secondAttribute="bottom" constant="32" id="LvJ-hD-eNw"/>
+                <constraint firstAttribute="trailing" secondItem="pHb-sg-jgV" secondAttribute="trailing" constant="16" id="QNh-Kv-l58"/>
                 <constraint firstItem="Xtd-Gz-ztC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="RHb-th-h8Q"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xyx-Cw-e6I" secondAttribute="trailing" constant="16" id="T7B-Zb-YEJ"/>
                 <constraint firstItem="aIE-D8-7f8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="YM1-x0-kIp"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Xtd-Gz-ztC" secondAttribute="trailing" constant="16" id="Zd0-5a-mWc"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Mqk-DU-DhV" secondAttribute="trailing" constant="16" id="eFI-K9-gO9"/>
+                <constraint firstItem="9nx-CG-Xu3" firstAttribute="top" secondItem="pHb-sg-jgV" secondAttribute="bottom" constant="32" id="fmJ-hD-MCC"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mUu-iT-x3C" secondAttribute="trailing" constant="16" id="iB0-tc-RNk"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LOi-cA-8t8" secondAttribute="trailing" constant="16" id="jIE-Qi-itR"/>
                 <constraint firstItem="aIE-D8-7f8" firstAttribute="centerY" secondItem="LOi-cA-8t8" secondAttribute="centerY" id="jIz-ly-QGC"/>
+                <constraint firstItem="3St-xM-cge" firstAttribute="centerY" secondItem="9nx-CG-Xu3" secondAttribute="centerY" id="jnq-Hc-lkz"/>
+                <constraint firstItem="pHb-sg-jgV" firstAttribute="top" secondItem="Mqk-DU-DhV" secondAttribute="bottom" constant="6" id="kjM-W9-qZG"/>
                 <constraint firstItem="xyx-Cw-e6I" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="mY3-bd-XK0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="xyx-Cw-e6I" secondAttribute="bottom" constant="38" id="nRj-Ov-19Y"/>
+                <constraint firstItem="Mqk-DU-DhV" firstAttribute="centerY" secondItem="W3Q-YI-qDG" secondAttribute="centerY" id="qXq-Ga-oUo"/>
+                <constraint firstItem="9nx-CG-Xu3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="qux-KT-KpX"/>
             </constraints>
             <point key="canvasLocation" x="6" y="21"/>
         </view>

@@ -85,8 +85,12 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
     }
     
     required init?(coder: NSCoder) {
-        // TODO: UICollectionViewFlowLayout 지정
         super.init(coder: coder)
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 9
+        layout.scrollDirection = .vertical
+        collectionViewLayout = layout
     }
 }
 
