@@ -70,10 +70,8 @@ extension JobRegistrationViewController: UITableViewDataSource {
         cell.configure(
             job: .actor,
             categories: [.ottDrama, .shortFilm],
-            deadline: "2023.01.20",
+            dDay: "D-11",
             coorporate: "성균관대학교 영상학과",
-            gender: "남자",
-            period: "일주일",
             casting: "수영선수"
         )
         

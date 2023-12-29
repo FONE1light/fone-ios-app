@@ -8,6 +8,7 @@
 import UIKit
 import Then
 import SnapKit
+import RxCocoa
 
 class PostCellMainContentView: UIView {
     
@@ -16,6 +17,9 @@ class PostCellMainContentView: UIView {
     private let imageView = UIImageView().then {
         $0.cornerRadius = 5
         $0.backgroundColor = .gray_D9D9D9
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
+        $0.image = UIImage(named: "default_profile")
     }
     
     private let horizontalStackView = UIStackView().then {
@@ -32,11 +36,12 @@ class PostCellMainContentView: UIView {
         $0.font = .font_b(14)
         $0.textColor = .gray_161616
         $0.numberOfLines = 2
-        $0.text = "성균관대 영상학과에서 단편영화<Duet>배우 모집합니다."
     }
     
-    private let bookmarkImageView = UIImageView().then {
-        $0.image = UIImage(named: "Bookmark")
+    private let bookmarkButton = BookmarkButton()
+    
+    var bookmarkButtonTap: ControlEvent<Void> {
+        bookmarkButton.rx.tap
     }
     
     private let detailInfoBlock = DetailInfoBlock()
@@ -50,24 +55,31 @@ class PostCellMainContentView: UIView {
     }
     
     func configure(
-        isOfficial: Bool = false,
+        profileUrl: String? = nil,
+        isVerified: Bool? = nil,
         categories: [Category], // 작품 성격 최대 2개
-        deadline: String? = nil,
-        coorporate: String? = nil,
-        gender: String? = nil,
-        period: String? = nil,
-        casting: String? = nil,
-        field: String? = nil
+        isScrap: Bool? = nil,
+        title: String? = nil,
+        dDay: String? = nil,
+        genre: String? = nil, // 배우 - 장르 중 첫 번째 값
+        domain: String? = nil, // 스태프 - 분야 중 첫 번째 값
+        produce: String? = nil
     ) {
+        imageView.load(url: profileUrl)
+        
         tagList.setValues(
-            isOfficial: isOfficial,
+            isVerified: isVerified ?? false,
             categories: categories
         )
         
+        bookmarkButton.isSelected = isScrap ?? false
+        
+        titleLabel.text = title
+        
         detailInfoBlock.setValues(
-            dDay: "D-15",
-            coorporate: coorporate,
-            field: field ?? casting
+            dDay: dDay,
+            domainOrGenre: domain ?? genre,
+            produce: produce
         )
     }
     
@@ -88,7 +100,7 @@ class PostCellMainContentView: UIView {
             }
         
         if hasBookmark {
-            horizontalStackView.addArrangedSubview(bookmarkImageView)
+            horizontalStackView.addArrangedSubview(bookmarkButton)
         }
         
         [tagList, titleLabel]
@@ -114,9 +126,10 @@ class PostCellMainContentView: UIView {
         detailInfoBlock.snp.makeConstraints {
             $0.top.equalTo(horizontalStackView.snp.bottom).offset(6)
             $0.leading.equalTo(horizontalStackView)
+            $0.trailing.equalTo(bookmarkButton.snp.leading).offset(-9)
         }
         
-        bookmarkImageView.snp.makeConstraints {
+        bookmarkButton.snp.makeConstraints {
             $0.size.equalTo(24)
         }
         
@@ -139,3 +152,8 @@ class PostCellMainContentView: UIView {
     }
 }
 
+extension PostCellMainContentView {
+    func toggleBookmarkButton() {
+        bookmarkButton.toggle()
+    }
+}

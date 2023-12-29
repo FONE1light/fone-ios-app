@@ -29,7 +29,7 @@ class FilterViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
-        resetButtonrx.tap
+        resetButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
                 //TODO: 초기화

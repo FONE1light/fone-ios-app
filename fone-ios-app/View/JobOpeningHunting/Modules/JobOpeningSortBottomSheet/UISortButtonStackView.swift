@@ -13,33 +13,7 @@ class UISortButtonStackView: UIStackView {
     
     private var buttons: [UISortButton] = []
     
-    private let completionHandler: ((String) -> Void)?
-    
-    init(
-        _ options: [JobOpeningSortOptions],
-        selectedOption: JobOpeningSortOptions?,
-        completionHandler: ((String) -> Void)? = nil
-    ) {
-        self.completionHandler = completionHandler
-        
-        super.init(frame: .zero)
-        
-        options.forEach {
-            let button = UISortButton()
-            button.setTitle($0.title, for: .normal)
-            
-            if $0.title == selectedOption?.title {
-                button.isSelected = true
-            }
-    
-            buttons.append(button)
-        }
-        
-        setupUI()
-        setConstraints()
-        
-        bindAction()
-    }
+    private var completionHandler: ((String) -> Void)?
     
     private func setupUI() {
         axis = .vertical
@@ -70,8 +44,28 @@ class UISortButtonStackView: UIStackView {
         }
     }
     
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func setup(
+        _ options: [JobOpeningSortOptions],
+        selectedOption: JobOpeningSortOptions?,
+        completionHandler: ((String) -> Void)? = nil
+    ) {
+        
+        options.forEach {
+            let button = UISortButton()
+            button.setTitle($0.title, for: .normal)
+            
+            if $0.title == selectedOption?.title {
+                button.isSelected = true
+            }
+            
+            buttons.append(button)
+        }
+        
+        self.completionHandler = completionHandler
+        setupUI()
+        setConstraints()
+        
+        bindAction()
     }
     
 }

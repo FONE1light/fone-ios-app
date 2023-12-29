@@ -9,9 +9,10 @@ import UIKit
 
 extension UIViewController {
     /// ViewController 말고 view로만 만드는 BottomSheet
-    func presentPanModal(view: UIView) {
+    /// - Dimmed View 눌러서 닫은 후 다시 노출되지 않는다면 sceneCoordinator 파라미터 넘길 것
+    func presentPanModal(view: UIView, sceneCoordinator: SceneCoordinatorType? = nil) {
         view.layoutIfNeeded()
-        let vc = BottomSheetViewController(view: view)
+        let vc = BottomSheetViewController(view: view, sceneCoordinator: sceneCoordinator)
         presentPanModal(vc)
     }
     
