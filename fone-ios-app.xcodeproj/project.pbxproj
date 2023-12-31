@@ -135,6 +135,8 @@
 		36AC7BDD2AB1315700478030 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AC7BDC2AB1315700478030 /* ProfileViewController.swift */; };
 		36AC7BDF2AB1319500478030 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AC7BDE2AB1319500478030 /* ProfileViewModel.swift */; };
 		36B8FDE52AC0EDA20040AFB2 /* ScrapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B8FDE42AC0EDA20040AFB2 /* ScrapViewModel.swift */; };
+		36B9D1AB2B3BF75400A1F91D /* ProfileInfoAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B9D1AA2B3BF75400A1F91D /* ProfileInfoAPIModel.swift */; };
+		36B9D1AD2B3BF95200A1F91D /* ProfileInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B9D1AC2B3BF95200A1F91D /* ProfileInfoProvider.swift */; };
 		36BCC7E02AA31A350060E35A /* SignUpPersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BCC7DF2AA31A350060E35A /* SignUpPersonalInfoViewController.swift */; };
 		36BCC7E22AA328AB0060E35A /* SignUpPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BCC7E12AA328AB0060E35A /* SignUpPhoneNumberViewController.swift */; };
 		36BCC7E42AA32B530060E35A /* SignUpSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BCC7E32AA32B530060E35A /* SignUpSuccessViewController.swift */; };
@@ -450,6 +452,8 @@
 		36AC7BDC2AB1315700478030 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		36AC7BDE2AB1319500478030 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		36B8FDE42AC0EDA20040AFB2 /* ScrapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapViewModel.swift; sourceTree = "<group>"; };
+		36B9D1AA2B3BF75400A1F91D /* ProfileInfoAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoAPIModel.swift; sourceTree = "<group>"; };
+		36B9D1AC2B3BF95200A1F91D /* ProfileInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoProvider.swift; sourceTree = "<group>"; };
 		36BCC7DF2AA31A350060E35A /* SignUpPersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPersonalInfoViewController.swift; sourceTree = "<group>"; };
 		36BCC7E12AA328AB0060E35A /* SignUpPhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPhoneNumberViewController.swift; sourceTree = "<group>"; };
 		36BCC7E32AA32B530060E35A /* SignUpSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSuccessViewController.swift; sourceTree = "<group>"; };
@@ -720,6 +724,7 @@
 				AB9DAAA72AB0A4F500B00016 /* HomeInfoProvider.swift */,
 				36BDA13F2AEE3C71001AF777 /* ImageUploadProvider.swift */,
 				AB04760E2B08F851003DF5EF /* JobOpeningInfoProvider.swift */,
+				36B9D1AC2B3BF95200A1F91D /* ProfileInfoProvider.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -743,6 +748,7 @@
 				36BDA1412AEE3F08001AF777 /* ImageUploadAPIModel.swift */,
 				AB0476102B08FB11003DF5EF /* JobInfoAPIModel.swift */,
 				AB3458772B0CDB4400F4833D /* Result.swift */,
+				36B9D1AA2B3BF75400A1F91D /* ProfileInfoAPIModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1958,6 +1964,7 @@
 				AB53282A2B29D7FE00F2A014 /* RecruitContactInfoViewModel.swift in Sources */,
 				3628668B2A8DF40F00CD42BC /* APIConfig.swift in Sources */,
 				ABCDD1742B00D60F00A598A8 /* AuthorCell.swift in Sources */,
+				36B9D1AD2B3BF95200A1F91D /* ProfileInfoProvider.swift in Sources */,
 				367D9BB62AC1202A00DA6C96 /* MyPageTabBarItem.swift in Sources */,
 				36BCC7E02AA31A350060E35A /* SignUpPersonalInfoViewController.swift in Sources */,
 				367D9C2D2ADA5EC700DA6C96 /* ProfileRegistrationViewModel.swift in Sources */,
@@ -2038,6 +2045,7 @@
 				AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */,
 				367D9BDC2ACE433200DA6C96 /* ScrapViewController.swift in Sources */,
 				AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */,
+				36B9D1AB2B3BF75400A1F91D /* ProfileInfoAPIModel.swift in Sources */,
 				367D9C342ADA657200DA6C96 /* JobRegistrationViewModel.swift in Sources */,
 				ABCDD1912B00F23000A598A8 /* SummaryCell.swift in Sources */,
 				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,

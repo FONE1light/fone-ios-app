@@ -71,6 +71,9 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         let layout = UICollectionViewFlowLayout()
         
         layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 24
+        layout.minimumInteritemSpacing = 14
+        
         let collectionView = UICollectionView(
             frame: .zero,
             collectionViewLayout: layout
@@ -96,9 +99,6 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                     jobTypeDropdown.setLabel(jobType.name)
                     jobTypeDropdown.switchSelectionState()
                 }
-                
-                // TODO: tableView 혹은 collectionView 세팅
-                //            owner.viewModel.fetchList()
             }.disposed(by: disposeBag)
         
         viewModel.selectedTab.withUnretained(self)
@@ -106,7 +106,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                 owner.segmentedControl.selectedSegmentType = tabType
                 
                 // sortButton 상태(UI+연결화면), 플로팅 버튼 상태(UI+연결화면), tableView/collectionView 변경
-                owner.sortButton.setLabel(owner.viewModel.sortButtonStateDic[tabType]?.title)
+                owner.viewModel.selectedSortOption.accept(owner.viewModel.sortButtonStateDic[tabType] ?? .recent)
                 owner.floatingButton.changeMode(tabType)
                 owner.floatingSelectionView.changeMode(tabType)
                 
@@ -123,8 +123,8 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         collectionViewProfile.rx.itemSelected
             .withUnretained(self)
             .bind { owner, indexPath in
-                guard let cell = owner.collectionViewProfile.cellForItem(at: indexPath) 
-                        as? MyPageProfileCell else { return }
+                guard owner.collectionViewProfile.cellForItem(at: indexPath) 
+                        is MyPageProfileCell else { return }
                 
                 owner.goJobHuntingDetail(jobHuntingId: 41, type: .actor) // FIXME: 우선 41, ACTOR로 고정, cell에서 id, job 가져오기
             }.disposed(by: rx.disposeBag)
@@ -133,6 +133,12 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
             .withUnretained(self)
             .bind { owner, _ in
                 owner.tableViewJob.reloadData()
+            }.disposed(by: disposeBag)
+        
+        viewModel.reloadCollectionView
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.collectionViewProfile.reloadData()
             }.disposed(by: disposeBag)
         
         // MARK: Button tap
@@ -161,6 +167,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
             .withUnretained(self)
             .bind { owner, option in
                 owner.sortButton.setLabel(option.title)
+                owner.viewModel.sortButtonStateDic[owner.viewModel.selectedTab.value] = option
             }.disposed(by: disposeBag)
         
         filterButton.rx.tap
@@ -211,8 +218,6 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         
         setupUI()
         setConstraints()
-        
-        viewModel.fetchList()
         
     }
     
@@ -457,19 +462,22 @@ extension JobOpeningHuntingViewController: UICollectionViewDataSource {
     
     // MARK: cell count
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return profiles.count
+        return viewModel.profilesContent?.count ?? 0
     }
     
     // MARK: cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as MyPageProfileCell
-        let profile = profiles[indexPath.row]
         
+        guard let profile = viewModel.profilesContent?[indexPath.row] else { return cell }
+        
+        let birthYear = profile.birthday?.birthYear(separator: "-")
         cell.configure(
-            image: nil,
+            image: profile.profileURL,
             name: profile.name,
+            birthYear: birthYear,
             age: profile.age,
-            isSaved: profile.isSaved
+            isSaved: profile.isWant
         )
         
         return cell
@@ -481,18 +489,10 @@ extension JobOpeningHuntingViewController: UICollectionViewDataSource {
 extension JobOpeningHuntingViewController: UICollectionViewDelegateFlowLayout {
     // MARK: cellSize
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let defaultHeight = 223.0 // FIXME: 셀크기로
+        let defaultHeight = 242.0
         let itemWidth = (UIScreen.main.bounds.width - 16*2 - 14) / 2
         return CGSize(width: itemWidth, height: defaultHeight)
     }
     
-    // MARK: minimumSpacing
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 14
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 26
-    }
 }
 

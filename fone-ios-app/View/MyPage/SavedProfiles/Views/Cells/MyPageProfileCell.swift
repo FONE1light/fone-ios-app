@@ -7,6 +7,8 @@
 
 import UIKit
 import RxSwift
+import SnapKit
+import Then
 
 class MyPageProfileCell: UICollectionViewCell {
     
@@ -34,11 +36,13 @@ class MyPageProfileCell: UICollectionViewCell {
     
     private let imageView = UIImageView().then {
         $0.cornerRadius = 5
-        $0.backgroundColor = .gray_9E9E9E
+        $0.backgroundColor = .gray_F8F8F8
+        $0.clipsToBounds = true
+        $0.image = UIImage(resource: .defaultProfile)
     }
     
     private let nameLabel = UILabel().then {
-        $0.font = .font_m(16)
+        $0.font = .font_b(16)
         $0.textColor = .gray_161616
     }
     
@@ -65,7 +69,6 @@ class MyPageProfileCell: UICollectionViewCell {
     private func setupUI() {
         [imageView, nameLabel, ageLabel, heartImageView]
             .forEach { addSubview($0) }
-        //        contentView.addSubview(imageView)
     }
     
     private func setConstraints() {
@@ -76,12 +79,12 @@ class MyPageProfileCell: UICollectionViewCell {
         
         nameLabel.snp.makeConstraints {
             $0.top.equalTo(imageView.snp.bottom).offset(7)
-            $0.leading.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
         }
         
         ageLabel.snp.makeConstraints {
-            $0.leading.equalTo(nameLabel.snp.trailing).offset(6)
-            $0.centerY.equalTo(nameLabel)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(2)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
         
         heartImageView.snp.makeConstraints {
@@ -90,10 +93,11 @@ class MyPageProfileCell: UICollectionViewCell {
         }
     }
     
-    func configure(image: UIImage?, name: String?, age: String?, isSaved: Bool?) {
-        imageView.image = image
+    func configure(image: String?, name: String?, birthYear: String?, age: Int?, isSaved: Bool?) {
+        imageView.load(url: image)
         nameLabel.text = name
-        ageLabel.text = age
+        ageLabel.text = "\(birthYear ?? "")년생 (\(age ?? 0)살)"
+        
         self.isSaved = isSaved ?? false
     }
 }

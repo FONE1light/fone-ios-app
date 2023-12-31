@@ -53,6 +53,10 @@ extension JobOpeningInfoTarget: TargetType {
             return ["Authorization": authorization]
         }
     }
+    
+    var validationType: ValidationType {
+        return .successCodes
+    }
 }
 
-let jobOpeningInfoProvider = MoyaProvider<JobOpeningInfoTarget>()
+let jobOpeningInfoProvider = MoyaProvider<JobOpeningInfoTarget>(session: Session(interceptor: AuthInterceptor.shared))
