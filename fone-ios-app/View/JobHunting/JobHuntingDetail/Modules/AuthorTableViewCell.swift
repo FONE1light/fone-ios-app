@@ -80,7 +80,7 @@ class AuthorTableViewCell: UITableViewCell {
     func configure(authorInfo: AuthorInfo) {
         createdAtLabel.text = getDateAndTime(createdAt: authorInfo.createdAt)
         viewCountLabel.text = String(authorInfo.viewCount)
-        profileImageView.kf.setImage(with: URL(string: authorInfo.profileUrl))
+        profileImageView.load(url: authorInfo.profileUrl)
         nicknameLabel.text = authorInfo.nickname
         userJobLabel.text = authorInfo.userJob
         officialMarkImageView.isHidden = authorInfo.userJob != "OFFICIAL"

@@ -101,6 +101,8 @@ extension SavedProfilesContentViewController: UICollectionViewDataSource {
         
         // FIXME: API response 모델 따라서 현행화
         cell.configure(
+            id: nil,
+            jobType: nil,
             image: nil,
             name: profile.name,
             birthYear: profile.birthYear,

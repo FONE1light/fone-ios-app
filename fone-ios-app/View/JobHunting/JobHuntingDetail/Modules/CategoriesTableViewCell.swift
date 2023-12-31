@@ -23,6 +23,7 @@ class CategoriesTableViewCell: UITableViewCell {
     
     func configure(_ categories: [Category]) {
         selectionBlock.setSelections(categories)
+        selectionBlock.allowsSelection = false
         
         setupUI(categoriesCount: categories.count)
     }

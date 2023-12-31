@@ -60,7 +60,7 @@ enum CareerType: String, Selection, CaseIterable {
         return 11
     }
     
-    static func getType(serverName: String) -> CareerType? {
+    static func getType(serverName: String?) -> CareerType? {
         return CareerType.allCases.filter { $0.rawValue == serverName }.first
     }
 }

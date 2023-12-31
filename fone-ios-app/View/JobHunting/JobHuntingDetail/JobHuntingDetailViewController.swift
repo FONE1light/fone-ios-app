@@ -11,15 +11,15 @@ import RxSwift
 enum JobHuntingDetailSection: Int, CaseIterable {
     case author = 0
     /// 프로필 이미지 리스트
-    case profileList // ADDED
+    case profileList
     /// 배우 정보 / 스태프 정보
-    case actorStaffInfo // ADDED TODO: actor/staff 처리
+    case actorStaffInfo
     /// 상세 요강
     case summary
     /// 주요 경력
-    case mainCareer // ADDED
+    case mainCareer
     /// 분야
-    case categories // ADDED
+    case categories
     /// 본 정보는 ~
     case footer
 }
@@ -42,8 +42,6 @@ class JobHuntingDetailViewController: UIViewController, ViewModelBindableType {
         
         setNavigationBar()
         setCollectionView()
-        
-        viewModel.fetchJobHuntingDetail()
     }
     
     func bindViewModel() {
@@ -82,11 +80,13 @@ extension JobHuntingDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let content = viewModel.jobHuntingDetail else { return UITableViewCell() }
+        let profile = viewModel.jobHuntingDetail
+        
         switch indexPath.row {
         case JobHuntingDetailSection.author.rawValue:
             guard let authorInfo = viewModel.authorInfo else { return UITableViewCell() }
             let cell = tableView.dequeueReusableCell(for: indexPath) as AuthorTableViewCell
+            
             cell.configure(authorInfo: authorInfo)
             cell.instagramButtonTap
                 .withUnretained(self)
@@ -101,12 +101,11 @@ extension JobHuntingDetailViewController: UITableViewDataSource {
             return cell
             
         case JobHuntingDetailSection.profileList.rawValue:
-            
             let cell = tableView.dequeueReusableCell(for: indexPath) as ProfileListTableViewCell
-            let urls = viewModel.mockUrls?.prefix(3) ?? []
+            let urls = profile.profileImages?.prefix(3) ?? []
             
             cell.configure(
-                title: "제가 평범한 할머니로 보이시나요?",
+                title: profile.hookingComment,
                 imageUrls: Array(urls)
             )
             cell.viewMoreButtonTap
@@ -128,32 +127,35 @@ extension JobHuntingDetailViewController: UITableViewDataSource {
             return cell
             
         case JobHuntingDetailSection.actorStaffInfo.rawValue:
-//            guard let authorInfo = viewModel.authorInfo else { return UITableViewCell() }
             switch viewModel.jobType {
             case .actor:
                 let cell = tableView.dequeueReusableCell(for: indexPath) as ActorInfoTableViewCell
-                // FIXME: 실 데이터 넣기
+                guard let actorInfo = viewModel.actorInfo else { return cell }
+                
                 cell.configure(
-                    name: "박신혜",
-                    gender: .WOMAN,
-                    birthYear: "2002년 (21살)",
-                    height: "170cm",
-                    weight: "60kg",
-                    email: "de91jko@naver.com",
-                    specialty: "줄넘기/실뜨기/달리기"
+                    name: actorInfo.name,
+                    gender: actorInfo.gender,
+                    birthYear: actorInfo.birthYear,
+                    age: actorInfo.age,
+                    height: actorInfo.height,
+                    weight: actorInfo.height,
+                    email: actorInfo.email,
+                    specialty: actorInfo.specialty
                 )
                 return cell
-            case .staff:
                 
+            case .staff:
                 let cell = tableView.dequeueReusableCell(for: indexPath) as StaffInfoTableViewCell
-                // FIXME: 실 데이터 넣기
+                guard let staffInfo = viewModel.staffInfo else { return cell }
+                
                 cell.configure(
-                    name: "박신혜",
-                    gender: .WOMAN,
-                    birthYear: "2002년 (21살)",
-                    domain: "음악",
-                    email: "de91jko@naver.com",
-                    specialty: "줄넘기/실뜨기/달리기"
+                    name: staffInfo.name,
+                    gender: staffInfo.gender,
+                    birthYear: staffInfo.birthYear,
+                    age: staffInfo.age,
+                    domains: staffInfo.domains,
+                    email: staffInfo.email,
+                    specialty: staffInfo.specialty
                 )
                 return cell
                 
@@ -162,20 +164,24 @@ extension JobHuntingDetailViewController: UITableViewDataSource {
             
         case JobHuntingDetailSection.summary.rawValue:
             let cell = tableView.dequeueReusableCell(for: indexPath) as SummaryTableViewCell
-            let summary = viewModel.jobHuntingDetail?.work?.details ?? ""
+            let summary = profile.details ?? ""
+            
             cell.configure(item: summary)
             return cell
             
         case JobHuntingDetailSection.mainCareer.rawValue:
             let cell = tableView.dequeueReusableCell(for: indexPath) as MainCareerTableViewCell
-            let mainCareer = viewModel.jobHuntingDetail?.work?.details ?? ""
-            cell.configure(item: mainCareer)
+            let career = CareerType.getType(serverName: profile.career)?.name ?? ""
+            
+            cell.configure(item: career)
             return cell
             
         case JobHuntingDetailSection.categories.rawValue:
             let cell = tableView.dequeueReusableCell(for: indexPath) as CategoriesTableViewCell
-//            let categories = content.categories
-            let categories: [Category] = [.shortFilm, .viral, .independentFilm, .webDrama]
+            let categories = profile.categories?
+                .compactMap { Category.getType(serverName: $0) }
+            guard let categories = categories else { return cell }
+            
             cell.configure(categories)
             return cell
             
