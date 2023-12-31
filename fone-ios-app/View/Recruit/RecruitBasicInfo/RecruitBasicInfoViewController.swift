@@ -15,7 +15,6 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     private var selections = [String: PHPickerResult]()
     private var selectedAssetIdentifiers = [String]()
     private var images = [UIImage]()
-    private var imageUrls: [String] = []
     
     @IBOutlet weak var titleTextView: UITextView!
     @IBOutlet weak var titleCountLabel: UILabel!
@@ -102,12 +101,6 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let title = owner.titleTextView.text ?? ""
-                // let categories
-                let startDate = owner.dateServerFormat(date: owner.startDateLabel.text)
-                let endDate = owner.dateServerFormat(date: owner.endDateLabel.text)
-                let imageUrls = owner.imageUrls
-                owner.viewModel.recruitBasicInfo = RecruitBasicInfo(title: title, categories: [], startDate: startDate, endDate: endDate, imageUrls: imageUrls)
                 owner.viewModel.moveToNextStep()
             }.disposed(by: rx.disposeBag)
     }
@@ -200,13 +193,6 @@ extension RecruitBasicInfoViewController: DateTimePickerVCDelegate {
         label?.text = dateTime
         label?.textColor = .gray_161616
         alwaysButton.backgroundColor = .gray_C5C5C5
-    }
-    
-    private func dateServerFormat(date: String?) -> String {
-        guard let date else { return "" }
-        var result = String(date.dropLast(3))
-        result = result.replacingOccurrences(of: ".", with: "-")
-        return result
     }
 }
 
