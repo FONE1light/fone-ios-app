@@ -83,7 +83,7 @@ class StaffInfoTableViewCell: UITableViewCell {
         specialty: String?
     ) {
         nameLabel.text = name
-        genderLabel.text = gender?.string
+        genderLabel.text = gender?.name
         birthYearLabel.text = "\(birthYear ?? "")년 (\(age ?? "")살)"
         var domain = domains?
             .compactMap { Domain.getType(serverName: $0)?.name }

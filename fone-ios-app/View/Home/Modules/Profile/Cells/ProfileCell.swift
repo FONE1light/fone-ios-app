@@ -26,6 +26,6 @@ class ProfileCell: UICollectionViewCell {
         let year = item.birthday?.split(separator: "-").first ?? ""
         let age = item.age?.description ?? ""
         ageLabel.text = "\(year)년생 (\(age)살)"
-        genderLabel.text = GenderType(rawValue: item.gender ?? "")?.string
+        genderLabel.text = GenderType.getType(serverName: item.gender ?? "")?.name
     }
 }

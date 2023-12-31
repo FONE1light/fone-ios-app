@@ -40,7 +40,7 @@ extension JobHuntingDetailViewModel {
     private func setActorInfo() {
         actorInfo = ActorInfo(
             name: jobHuntingDetail.name,
-            gender: GenderType.getType(rawValue: jobHuntingDetail.gender),
+            gender: GenderType.getType(serverName: jobHuntingDetail.gender),
             birthYear: jobHuntingDetail.birthday?.birthYear(separator: "-"),
             age: "\(jobHuntingDetail.age ?? 0)",
             height: "\(jobHuntingDetail.height ?? 0)",
@@ -53,7 +53,7 @@ extension JobHuntingDetailViewModel {
     private func setStaffInfo() {
         staffInfo = StaffInfo(
             name: jobHuntingDetail.name,
-            gender: GenderType.getType(rawValue: jobHuntingDetail.gender),
+            gender: GenderType.getType(serverName: jobHuntingDetail.gender),
             birthYear: jobHuntingDetail.birthday?.birthYear(separator: "-"),
             age: "\(jobHuntingDetail.age ?? 0)",
             domains: jobHuntingDetail.domains,

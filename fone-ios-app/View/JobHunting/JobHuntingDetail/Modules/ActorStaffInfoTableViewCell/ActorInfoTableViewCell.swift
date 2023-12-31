@@ -88,7 +88,7 @@ class ActorInfoTableViewCell: UITableViewCell {
         specialty: String?
     ) {
         nameLabel.text = name
-        genderLabel.text = gender?.string
+        genderLabel.text = gender?.name
         birthYearLabel.text = "\(birthYear ?? "")년 (\(age ?? "")살)"
         heightWeightLabel.text = "\(height ?? "")cm ㅣ \(weight ?? "")kg"
         emailLabel.text = email
