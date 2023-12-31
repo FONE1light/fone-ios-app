@@ -48,6 +48,12 @@ class JobOpeningHuntingViewModel: CommonViewModel {
             }.disposed(by: disposeBag)
             
     }
+
+    func showFilter() {
+        let filterViewModel = FilterViewModel(sceneCoordinator: sceneCoordinator)
+        let filterScene = Scene.filter(filterViewModel)
+        sceneCoordinator.transition(to: filterScene, using: .fullScreenModal, animated: true)
+    }
     
     // JobSegmentType(프로필/모집)과 JobType(ACTOR/STAFF)을 알아야 api 쏘므로 ViewModel에  selectedTab, selectedJobType 필요
     func fetchList(

@@ -30,8 +30,8 @@ class JobOpeningCell: UICollectionViewCell {
         titleLabel.text = item.title
         nicknameLabel.text = item.nickname
         dDayLabel.text = item.dday
-        let gender = GenderType(rawValue: item.gender ?? "")
-        genderLabel.text = gender?.string
+        let gender = GenderType.getType(serverName: item.gender ?? "")
+        genderLabel.text = gender?.name
         
         var filteredCategory: [String] = []
         var hasOTT = false

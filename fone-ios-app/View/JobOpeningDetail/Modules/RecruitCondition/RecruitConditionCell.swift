@@ -48,7 +48,7 @@ class RecruitConditionCell: UICollectionViewCell {
         ddayLabel.textColor = recruitCondition.dday == "마감" ? .gray_9E9E9E : .violet_6D5999
         castingLabel.text = recruitCondition.casting
         numberOfRecruitsLabel.text = String(recruitCondition.numberOfRecruits)
-        genderLabel.text = GenderType(rawValue: recruitCondition.gender)?.string
+        genderLabel.text = GenderType.getType(serverName: recruitCondition.gender)?.name
         ageLabel.text = "\(recruitCondition.ageMin) ~ \(recruitCondition.ageMax)살"
         careerLabel.text = CareerType(rawValue: recruitCondition.career)?.string
     }

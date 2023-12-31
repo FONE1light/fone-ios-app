@@ -53,7 +53,7 @@ class StaffInfoTableViewCell: UITableViewCell {
         specialty: String?
     ) {
         nameLabel.text = name
-        genderLabel.text = gender?.string
+        genderLabel.text = gender?.name
         birthYearLabel.text = birthYear
         domainLabel.text = domain
         emailLabel.text = email
