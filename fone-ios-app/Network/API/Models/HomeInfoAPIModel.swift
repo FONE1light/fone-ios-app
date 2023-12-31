@@ -131,26 +131,32 @@ struct ProfileContent: Codable {
     let id: Int?
     let name, hookingComment, birthday, gender: String?
     let height, weight: Int?
-    let email, sns: String?
-    let snsUrls: [String]?
+    let email: String?
+    let snsUrls: [SnsURL]?
     let specialty, details, type, career: String?
     let careerDetail: String?
-    let categories: [String]?
-    let domains, profileUrls, profileImages: [String]?
+    let categories, domains: [String]?
+    let profileImages: [String]?
     let viewCount: Int?
-    let profileURL, representativeImageURL: String?
+    let representativeImageURL: String?
     let isWant: Bool?
     let age: Int?
     let createdAt, userNickname, userProfileURL, userJob: String?
     
     enum CodingKeys: String, CodingKey {
-        case id, name, hookingComment, birthday, gender, height, weight, email, sns, snsUrls, specialty, details, type, career, careerDetail, categories, domains, profileUrls, profileImages, viewCount
-        case profileURL = "profileUrl"
+        case id, name, hookingComment, birthday, gender, height, weight, email, snsUrls, specialty, details, type, career, careerDetail, categories, domains, profileImages, viewCount
         case representativeImageURL = "representativeImageUrl"
         case isWant, age, createdAt, userNickname
         case userProfileURL = "userProfileUrl"
         case userJob
     }
+}
+
+// MARK: - SnsURL
+struct SnsURL: Codable {
+    let url: String?
+    // e.g. "YOUTUBE"
+    let sns: String?
 }
 
 // MARK: - Pageable

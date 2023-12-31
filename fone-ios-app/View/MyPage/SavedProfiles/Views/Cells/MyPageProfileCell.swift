@@ -23,7 +23,8 @@ class MyPageProfileCell: UICollectionViewCell {
     
     static let identifier = String(describing: MyPageProfileCell.self)
     var disposeBag = DisposeBag()
-    
+    var id: Int?
+    var jobType: String?
     private var isSaved = false {
         didSet {
             if isSaved {
@@ -93,11 +94,20 @@ class MyPageProfileCell: UICollectionViewCell {
         }
     }
     
-    func configure(image: String?, name: String?, birthYear: String?, age: Int?, isSaved: Bool?) {
+    func configure(
+        id: Int?,
+        jobType: String?,
+        image: String?,
+        name: String?,
+        birthYear: String?,
+        age: Int?,
+        isSaved: Bool?
+    ) {
+        self.id = id
+        self.jobType = jobType
         imageView.load(url: image)
         nameLabel.text = name
         ageLabel.text = "\(birthYear ?? "")년생 (\(age ?? 0)살)"
-        
         self.isSaved = isSaved ?? false
     }
 }

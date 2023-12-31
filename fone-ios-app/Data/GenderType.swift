@@ -8,9 +8,9 @@
 import UIKit
 
 enum GenderType: Selection, CaseIterable {
+    case IRRELEVANT
     case MAN
     case WOMAN
-    case IRRELEVANT
     
     var name: String {
         switch self {
@@ -46,7 +46,7 @@ enum GenderType: Selection, CaseIterable {
         return 11
     }
     
-    static func getType(serverName: String) -> GenderType? {
+    static func getType(serverName: String?) -> GenderType? {
         return GenderType.allCases.filter { $0.serverName == serverName }.first
     }
 }

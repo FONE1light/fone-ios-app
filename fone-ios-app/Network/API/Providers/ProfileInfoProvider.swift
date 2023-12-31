@@ -10,7 +10,7 @@ import Moya
 
 enum ProfileInfoTarget {
     case profiles(type: Job, sort: [String])
-//    case profileDetail(profileId: Int, type: Job)
+    case profileDetail(profileId: Int, type: Job)
 }
 
 extension ProfileInfoTarget: TargetType {
@@ -22,6 +22,8 @@ extension ProfileInfoTarget: TargetType {
         switch self {
         case .profiles:
             return "/api/v1/profiles"
+        case .profileDetail(let profileId, _):
+            return "/api/v1/profiles/\(profileId)"
         }
     }
     
@@ -31,14 +33,16 @@ extension ProfileInfoTarget: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .profiles(let type, let sort):
+        case let .profiles(type, sort):
             return .requestParameters(parameters: ["type": type.name, "sort": sort], encoding: URLEncoding.default)
+        case let .profileDetail(_, type):
+            return .requestParameters(parameters: ["type": type.name], encoding: URLEncoding.default)
         }
     }
     
     var headers: [String : String]? {
         switch self {
-        case .profiles:
+        case .profiles, .profileDetail:
             let accessToken = Tokens.shared.accessToken.value
             let authorization = "Bearer \(accessToken)"
             return ["Authorization": authorization]

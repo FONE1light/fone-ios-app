@@ -5,8 +5,8 @@
 //  Created by 여나경 on 12/27/23.
 //
 
-// MARK: - ProfileData
-struct ProfileData: Codable {
+// MARK: - ProfilesData
+struct ProfilesData: Codable {
     let profiles: ProfilesContent?
 }
 
@@ -21,4 +21,9 @@ struct ProfilesContent: Codable {
 //    let first: Bool?
 //    let numberOfElements: Int?
 //    let empty: Bool?
+}
+
+// MARK: - ProfileData
+struct ProfileData: Codable {
+    let profile: ProfileContent?
 }

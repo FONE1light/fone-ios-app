@@ -119,14 +119,14 @@ class PostCellMainContentView: UIView {
         
         horizontalStackView.snp.makeConstraints {
             $0.top.equalTo(imageView)
-            $0.leading.equalTo(imageView.snp.trailing).offset(7)
+            $0.leading.equalTo(imageView.snp.trailing).offset(8)
             $0.trailing.equalToSuperview()
         }
         
         detailInfoBlock.snp.makeConstraints {
             $0.top.equalTo(horizontalStackView.snp.bottom).offset(6)
             $0.leading.equalTo(horizontalStackView)
-            $0.trailing.equalTo(bookmarkButton.snp.leading).offset(-9)
+            $0.trailing.equalToSuperview().offset(-8)
         }
         
         bookmarkButton.snp.makeConstraints {
