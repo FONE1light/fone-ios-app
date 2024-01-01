@@ -17,9 +17,8 @@ struct RecruitBasicInfo {
 
 final class RecruitBasicInfoViewModel: CommonViewModel {
     var jobType: Job?
-    var recruitBasicInfo: RecruitBasicInfo?
     
-    func moveToNextStep() {
+    func moveToNextStep(recruitBasicInfo: RecruitBasicInfo) {
         let recruitConditionInfoViewModel = RecruitConditionInfoViewModel(sceneCoordinator: sceneCoordinator)
         recruitConditionInfoViewModel.jobType = jobType
         recruitConditionInfoViewModel.recruitBasicInfo = recruitBasicInfo

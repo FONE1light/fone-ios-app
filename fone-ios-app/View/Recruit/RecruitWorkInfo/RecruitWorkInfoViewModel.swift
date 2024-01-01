@@ -9,6 +9,8 @@ import Foundation
 
 final class RecruitWorkInfoViewModel: CommonViewModel {
     var jobType: Job?
+    var recruitBasicInfo: RecruitBasicInfo?
+    var recruitConditionInfo: RecruitConditionInfo?
     
     func moveToNextStep() {
         let recruitWorkConditionViewModel = RecruitWorkConditionViewModel(sceneCoordinator: sceneCoordinator)

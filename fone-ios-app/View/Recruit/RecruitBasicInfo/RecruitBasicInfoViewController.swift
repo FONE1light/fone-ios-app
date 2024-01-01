@@ -107,8 +107,8 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
                 let startDate = owner.dateServerFormat(date: owner.startDateLabel.text)
                 let endDate = owner.dateServerFormat(date: owner.endDateLabel.text)
                 let imageUrls = owner.imageUrls
-                owner.viewModel.recruitBasicInfo = RecruitBasicInfo(title: title, categories: [], startDate: startDate, endDate: endDate, imageUrls: imageUrls)
-                owner.viewModel.moveToNextStep()
+                let recruitBasicInfo = RecruitBasicInfo(title: title, categories: [], startDate: startDate, endDate: endDate, imageUrls: imageUrls)
+                owner.viewModel.moveToNextStep(recruitBasicInfo: recruitBasicInfo)
             }.disposed(by: rx.disposeBag)
     }
     
