@@ -34,12 +34,14 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
     }
     
     private lazy var floatingDimView: UIView = {
-        let view = UIView(frame: UIScreen.main.bounds) // FIXME: 영역 재설정 (self.view.frame도 X)
+        let view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = .black_000000
         view.alpha = 0.3
         view.isHidden = true
-
-        self.view.insertSubview(view, belowSubview: floatingSelectionView)
+        
+        if let tabBar = UIApplication.tabBar {
+            UIApplication.viewOfKeyWindow?.insertSubview(view, aboveSubview: tabBar)
+        }
 
         return view
     }()
@@ -167,9 +169,18 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         floatingButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
+                
                 owner.floatingDimView.isHidden = !owner.floatingDimView.isHidden
                 owner.floatingSelectionView.switchHiddenState()
-            }.disposed(by: rx.disposeBag)
+                
+                // 만약 push로 화면 이동한 후라서 UITabBar가 맨 위에 올라와 있다면 dim view와 버튼 들을 tabBar 앞으로 보내기 위해 순서 변경 필요
+                if let viewOfKeyWindow = UIApplication.viewOfKeyWindow,
+                   viewOfKeyWindow.subviews.last is UITabBar {
+                    viewOfKeyWindow.exchangeSubview(at: 4, withSubviewAt: 3) // FloatingStackView
+                    viewOfKeyWindow.exchangeSubview(at: 3, withSubviewAt: 2) // FloatingButton
+                    viewOfKeyWindow.exchangeSubview(at: 2, withSubviewAt: 1) // UIView(Dim view)
+                }
+            }.disposed(by: disposeBag)
         
         floatingSelectionView.actorButtonTap
             .withUnretained(self)
@@ -207,6 +218,26 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         setupUI()
         setConstraints()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        floatingButton.isHidden = false
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        [
+            floatingButton,
+            floatingSelectionView,
+            floatingDimView
+        ]
+            .forEach {
+                $0.isHidden = true
+            }
     }
     
     private func setNavigationBar() {
@@ -271,20 +302,24 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
             filterButton,
             sortButton,
             tableViewJob,
-            collectionViewProfile,
-            
-            floatingButton,
-            floatingSelectionView
+            collectionViewProfile
         ]
             .forEach { view.addSubview($0) }
-        
-        view.bringSubviewToFront(floatingButton)
         
         segmentedControl.addTarget(
             self,
             action: #selector(changeTab),
             for: .valueChanged
         )
+        
+        // 플로팅 버튼과 뷰
+        [
+            floatingButton,
+            floatingSelectionView
+        ]
+            .forEach {
+                UIApplication.viewOfKeyWindow?.addSubview($0)
+            }
     }
     
     private func setConstraints() {
@@ -315,9 +350,10 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
             $0.leading.trailing.equalTo(tableViewJob).inset(16)
         }
         
+        // 플로팅 버튼과 뷰
         floatingButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(15)
-            $0.bottom.equalToSuperview().inset(30)
+            $0.bottom.equalToSuperview().inset(UIView.tabBarHeight + 30)
             $0.size.equalTo(48)
         }
         
