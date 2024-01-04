@@ -25,7 +25,8 @@ class RecruitDetailInfoViewController: UIViewController, ViewModelBindableType {
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.moveToNextStep()
+                let recruitDetailInfo = RecruitDetailInfo(details: owner.detailTextView.textView?.text)
+                owner.viewModel.moveToNextStep(recruitDetailInfo: recruitDetailInfo)
             }.disposed(by: rx.disposeBag)
     }
     

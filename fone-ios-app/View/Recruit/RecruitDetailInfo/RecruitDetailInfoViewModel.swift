@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct RecruitDetailInfo {
+    let details: String?
+}
+
 final class RecruitDetailInfoViewModel: CommonViewModel {
     var jobType: Job?
     var recruitBasicInfo: RecruitBasicInfo?
@@ -24,9 +28,8 @@ final class RecruitDetailInfoViewModel: CommonViewModel {
         self.recruitWorkConditionInfo = recruitWorkConditionInfo
     }
     
-    func moveToNextStep() {
-        let recruitContactInfoViewModel = RecruitContactInfoViewModel(sceneCoordinator: sceneCoordinator)
-        recruitContactInfoViewModel.jobType = jobType
+    func moveToNextStep(recruitDetailInfo: RecruitDetailInfo) {
+        let recruitContactInfoViewModel = RecruitContactInfoViewModel(sceneCoordinator: sceneCoordinator, jobType: jobType, recruitBasicInfo: recruitBasicInfo, recruitConditionInfo: recruitConditionInfo, recruitWorkInfo: recruitWorkInfo, recruitWorkConditionInfo: recruitWorkConditionInfo, recruitDetailInfo: recruitDetailInfo)
         let recuirtContactInfoScene = Scene.recruitContactInfo(recruitContactInfoViewModel)
         sceneCoordinator.transition(to: recuirtContactInfoScene, using: .push, animated: true)
     }
