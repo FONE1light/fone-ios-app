@@ -10,10 +10,22 @@ import UIKit
 extension UIApplication {
     /// deprecated 되지 않은 값 이용해 keyWindow 추출
     static var keyWindow: UIWindow? {
-        return UIApplication
+        UIApplication
             .shared
             .connectedScenes
             .compactMap { ($0 as? UIWindowScene)?.keyWindow }
             .last
+    }
+    
+    static var tabBar: UITabBar? {
+        UIApplication.keyWindow?
+            .rootViewController?.view.subviews
+            .filter { $0 is UITabBar }
+            .first as? UITabBar
+    }
+    
+    
+    static var viewOfKeyWindow: UIView? {
+        UIApplication.keyWindow?.rootViewController?.view
     }
 }

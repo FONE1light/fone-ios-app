@@ -116,4 +116,8 @@ extension UIView {
             .statusBarManager?
             .statusBarFrame.size.height ?? 0
     }
+    
+    static var tabBarHeight: CGFloat {
+        return UIApplication.viewOfKeyWindow?.subviews[safe: 1]?.frame.height ?? 0
+    }
 }

@@ -34,12 +34,21 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
     }
     
     private lazy var floatingDimView: UIView = {
-        let view = UIView(frame: UIScreen.main.bounds) // FIXME: 영역 재설정 (self.view.frame도 X)
+        let view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = .black_000000
         view.alpha = 0.3
         view.isHidden = true
-
-        self.view.insertSubview(view, belowSubview: floatingSelectionView)
+        // 닫기
+        view.addGestureRecognizer(
+            UITapGestureRecognizer(
+                target: self,
+                action: #selector(dismissDimView)
+            )
+        )
+        
+        if let tabBar = UIApplication.tabBar {
+            UIApplication.viewOfKeyWindow?.insertSubview(view, aboveSubview: tabBar)
+        }
 
         return view
     }()
@@ -167,9 +176,18 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         floatingButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
+                
                 owner.floatingDimView.isHidden = !owner.floatingDimView.isHidden
                 owner.floatingSelectionView.switchHiddenState()
-            }.disposed(by: rx.disposeBag)
+                
+                // 만약 push로 화면 이동한 후라서 UITabBar가 맨 위에 올라와 있다면 dim view와 버튼 들을 tabBar 앞으로 보내기 위해 순서 변경 필요
+                if let viewOfKeyWindow = UIApplication.viewOfKeyWindow,
+                   viewOfKeyWindow.subviews.last is UITabBar {
+                    viewOfKeyWindow.exchangeSubview(at: 4, withSubviewAt: 3) // FloatingStackView
+                    viewOfKeyWindow.exchangeSubview(at: 3, withSubviewAt: 2) // FloatingButton
+                    viewOfKeyWindow.exchangeSubview(at: 2, withSubviewAt: 1) // UIView(Dim view)
+                }
+            }.disposed(by: disposeBag)
         
         floatingSelectionView.actorButtonTap
             .withUnretained(self)
@@ -178,9 +196,9 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                 
                 switch tabType {
                 case .jobOpening:
-                    owner.moveToRecruitBasicInfo(of: .actor)
+                    owner.viewModel.moveToRecruitBasicInfo(of: .actor)
                 case .profile:
-                    owner.moveToRegisterProfile(of: .actor)
+                    owner.viewModel.moveToRegisterProfile(of: .actor)
                 }
             }.disposed(by: rx.disposeBag)
         
@@ -191,9 +209,9 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                 
                 switch tabType {
                 case .jobOpening:
-                    owner.moveToRecruitBasicInfo(of: .staff)
+                    owner.viewModel.moveToRecruitBasicInfo(of: .staff)
                 case .profile:
-                    owner.moveToRegisterProfile(of: .staff)
+                    owner.viewModel.moveToRegisterProfile(of: .staff)
                 }
                 
             }.disposed(by: rx.disposeBag)
@@ -207,6 +225,26 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         setupUI()
         setConstraints()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        floatingButton.isHidden = false
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        [
+            floatingButton,
+            floatingSelectionView,
+            floatingDimView
+        ]
+            .forEach {
+                $0.isHidden = true
+            }
     }
     
     private func setNavigationBar() {
@@ -271,20 +309,24 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
             filterButton,
             sortButton,
             tableViewJob,
-            collectionViewProfile,
-            
-            floatingButton,
-            floatingSelectionView
+            collectionViewProfile
         ]
             .forEach { view.addSubview($0) }
-        
-        view.bringSubviewToFront(floatingButton)
         
         segmentedControl.addTarget(
             self,
             action: #selector(changeTab),
             for: .valueChanged
         )
+        
+        // 플로팅 버튼과 뷰
+        [
+            floatingButton,
+            floatingSelectionView
+        ]
+            .forEach {
+                UIApplication.viewOfKeyWindow?.addSubview($0)
+            }
     }
     
     private func setConstraints() {
@@ -315,9 +357,10 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
             $0.leading.trailing.equalTo(tableViewJob).inset(16)
         }
         
+        // 플로팅 버튼과 뷰
         floatingButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(15)
-            $0.bottom.equalToSuperview().inset(30)
+            $0.bottom.equalToSuperview().inset(UIView.tabBarHeight + 30)
             $0.size.equalTo(48)
         }
         
@@ -345,21 +388,16 @@ extension JobOpeningHuntingViewController {
         }
     }
     
-    private func moveToRecruitBasicInfo(of jobType: Job) {
-        let recruitBasicInfoViewModel = RecruitBasicInfoViewModel(sceneCoordinator: viewModel.sceneCoordinator)
-        recruitBasicInfoViewModel.jobType = jobType
-        
-        let recruitScene = Scene.recruitBasicInfo(recruitBasicInfoViewModel)
-        viewModel.sceneCoordinator.transition(to: recruitScene, using: .push, animated: true)
-    }
-    
-    /// 프로필 등록 - 배우
-    private func moveToRegisterProfile(of jobType: Job) {
-        let registerBasicInfoViewModel = RegisterBasicInfoViewModel(sceneCoordinator: viewModel.sceneCoordinator)
-        registerBasicInfoViewModel.jobType = jobType
-        
-        let registerScene = Scene.registerBasicInfo(registerBasicInfoViewModel)
-        viewModel.sceneCoordinator.transition(to: registerScene, using: .push, animated: true)
+    // TODO: hidden 처리 말고 dismiss?
+    // 가능하다면 viewController 만들고 애니메이션 없는 modal 형식으로 띄우도록 구조 바꿔서(아래 뷰가 보여야 하므로 push는 X)
+    @objc private func dismissDimView() {
+        [
+            floatingSelectionView,
+            floatingDimView
+        ]
+            .forEach {
+                $0.isHidden = true
+            }
     }
 }
 
@@ -446,4 +484,3 @@ extension JobOpeningHuntingViewController: UICollectionViewDelegateFlowLayout {
     }
     
 }
-
