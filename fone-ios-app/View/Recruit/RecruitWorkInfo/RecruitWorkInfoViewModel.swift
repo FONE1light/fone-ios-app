@@ -8,11 +8,11 @@
 import Foundation
 
 struct RecruitWorkInfo {
-    let produce: String
-    let workTitle: String
-    let director: String
-    let genres: [String]
-    let logline: String
+    let produce: String?
+    let workTitle: String?
+    let director: String?
+    let genres: [String]?
+    let logline: String?
 }
 
 final class RecruitWorkInfoViewModel: CommonViewModel {
@@ -20,12 +20,16 @@ final class RecruitWorkInfoViewModel: CommonViewModel {
     var recruitBasicInfo: RecruitBasicInfo?
     var recruitConditionInfo: RecruitConditionInfo?
     
+    init(sceneCoordinator: SceneCoordinatorType, jobType: Job?, recruitBasicInfo: RecruitBasicInfo?, recruitConditionInfo: RecruitConditionInfo?) {
+        super.init(sceneCoordinator: sceneCoordinator)
+        
+        self.jobType = jobType
+        self.recruitBasicInfo = recruitBasicInfo
+        self.recruitConditionInfo = recruitConditionInfo
+    }
+    
     func moveToNextStep(recruitWorkInfo: RecruitWorkInfo) {
-        let recruitWorkConditionViewModel = RecruitWorkConditionViewModel(sceneCoordinator: sceneCoordinator)
-        recruitWorkConditionViewModel.jobType = jobType
-        recruitWorkConditionViewModel.recruitBasicInfo = recruitBasicInfo
-        recruitWorkConditionViewModel.recruitConditionInfo = recruitConditionInfo
-        recruitWorkConditionViewModel.recruitWorkInfo = recruitWorkInfo
+        let recruitWorkConditionViewModel = RecruitWorkConditionViewModel(sceneCoordinator: sceneCoordinator, jobType: jobType, recruitBasicInfo: recruitBasicInfo, recruitConditionInfo: recruitConditionInfo, recruitWorkInfo: recruitWorkInfo)
         let recuirtWorkConditionScene = Scene.recruitWorkCondition(recruitWorkConditionViewModel)
         sceneCoordinator.transition(to: recuirtWorkConditionScene, using: .push, animated: true)
     }

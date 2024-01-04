@@ -34,11 +34,11 @@ class RecruitWorkInfoViewController: UIViewController, ViewModelBindableType {
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let produce = owner.produceTextField.textField?.text ?? ""
-                let workTitle = owner.titleTextField.textField?.text ?? ""
-                let director = owner.directorTextField.textField?.text ?? ""
+                let produce = owner.produceTextField.textField?.text
+                let workTitle = owner.titleTextField.textField?.text
+                let director = owner.directorTextField.textField?.text
                 let genres = (owner.genreCollectionView.indexPathsForSelectedItems ?? []).map { owner.genres[$0.row].rawValue }
-                let logline = owner.loglineTextView.textView?.text ?? ""
+                let logline = owner.loglineTextView.textView?.text
                 let recruitWorkInfo = RecruitWorkInfo(produce: produce, workTitle: workTitle, director: director, genres: genres, logline: logline)
                 owner.viewModel.moveToNextStep(recruitWorkInfo: recruitWorkInfo)
             }.disposed(by: rx.disposeBag)

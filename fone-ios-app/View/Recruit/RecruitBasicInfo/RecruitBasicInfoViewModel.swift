@@ -8,20 +8,18 @@
 import Foundation
 
 struct RecruitBasicInfo {
-    let title: String
-    let categories: [Category]
-    let startDate: String
-    let endDate: String
-    let imageUrls: [String]
+    let title: String?
+    let categories: [Category]?
+    let startDate: String?
+    let endDate: String?
+    let imageUrls: [String]?
 }
 
 final class RecruitBasicInfoViewModel: CommonViewModel {
     var jobType: Job?
     
     func moveToNextStep(recruitBasicInfo: RecruitBasicInfo) {
-        let recruitConditionInfoViewModel = RecruitConditionInfoViewModel(sceneCoordinator: sceneCoordinator)
-        recruitConditionInfoViewModel.jobType = jobType
-        recruitConditionInfoViewModel.recruitBasicInfo = recruitBasicInfo
+        let recruitConditionInfoViewModel = RecruitConditionInfoViewModel(sceneCoordinator: sceneCoordinator, jobType: jobType, recruitBasicInfo: recruitBasicInfo)
         let recuirtConditionInfoScene = Scene.recruitConditionInfo(recruitConditionInfoViewModel)
         sceneCoordinator.transition(to: recuirtConditionInfoScene, using: .push, animated: true)
     }

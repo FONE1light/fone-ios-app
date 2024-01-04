@@ -9,6 +9,20 @@ import Foundation
 
 final class RecruitDetailInfoViewModel: CommonViewModel {
     var jobType: Job?
+    var recruitBasicInfo: RecruitBasicInfo?
+    var recruitConditionInfo: RecruitConditionInfo?
+    var recruitWorkInfo: RecruitWorkInfo?
+    var recruitWorkConditionInfo: RecruitWorkConditionInfo?
+    
+    init(sceneCoordinator: SceneCoordinatorType, jobType: Job?, recruitBasicInfo: RecruitBasicInfo?, recruitConditionInfo: RecruitConditionInfo?, recruitWorkInfo: RecruitWorkInfo?, recruitWorkConditionInfo: RecruitWorkConditionInfo?) {
+        super.init(sceneCoordinator: sceneCoordinator)
+        
+        self.jobType = jobType
+        self.recruitBasicInfo = recruitBasicInfo
+        self.recruitConditionInfo = recruitConditionInfo
+        self.recruitWorkInfo = recruitWorkInfo
+        self.recruitWorkConditionInfo = recruitWorkConditionInfo
+    }
     
     func moveToNextStep() {
         let recruitContactInfoViewModel = RecruitContactInfoViewModel(sceneCoordinator: sceneCoordinator)
