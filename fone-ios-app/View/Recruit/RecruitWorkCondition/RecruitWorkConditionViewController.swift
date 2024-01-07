@@ -29,12 +29,13 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setNavigationBar()
         setUI()
         setupDatePicker()
     }
     
     func bindViewModel() {
+        setNavigationBar()
+        
         startDateButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in

@@ -22,7 +22,6 @@ class RecruitWorkInfoViewController: UIViewController, ViewModelBindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setNavigationBar()
         setUI()
         genreCollectionView.delegate = self
         genreCollectionView.dataSource = self
@@ -31,6 +30,8 @@ class RecruitWorkInfoViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
+        setNavigationBar()
+        
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
