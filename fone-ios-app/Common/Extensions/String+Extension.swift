@@ -46,6 +46,12 @@ extension String {
         }
     }
     
+    var dateServerFormat: String? {
+        var result = String(self.dropLast(3))
+        result = result.replacingOccurrences(of: ".", with: "-")
+        return result
+    }
+    
     func toast(positionType: ToastPositionType = .withNothing, isKeyboardShowing: Bool = false, completion: (() -> Void)? = nil) {
         ToastManager.show(self, positionType: positionType, isKeyboardShowing: isKeyboardShowing, completion: completion)
     }

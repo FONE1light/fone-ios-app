@@ -15,6 +15,7 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     private var selections = [String: PHPickerResult]()
     private var selectedAssetIdentifiers = [String]()
     private var images = [UIImage]()
+    private var imageUrls: [String] = []
     
     @IBOutlet weak var titleTextView: UITextView!
     @IBOutlet weak var titleCountLabel: UILabel!
@@ -101,7 +102,13 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.moveToNextStep()
+                let title = owner.titleTextView.text
+                // let categories
+                let startDate = owner.startDateLabel.text?.dateServerFormat
+                let endDate = owner.endDateLabel.text?.dateServerFormat
+                let imageUrls = owner.imageUrls
+                let recruitBasicInfo = RecruitBasicInfo(title: title, categories: [], startDate: startDate, endDate: endDate, imageUrls: imageUrls)
+                owner.viewModel.moveToNextStep(recruitBasicInfo: recruitBasicInfo)
             }.disposed(by: rx.disposeBag)
     }
     

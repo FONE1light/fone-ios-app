@@ -12,7 +12,7 @@ import SnapKit
 /// 하단에 글자수 label이 있는 textView
 class LetterCountedTextView: UIView, UITextViewDelegate {
     
-    private var textView: DefaultTextView?
+    var textView: DefaultTextView?
     private let letterCountLabel = UILabel()
     private var placeholderString: String?
     

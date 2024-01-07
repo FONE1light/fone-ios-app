@@ -35,7 +35,18 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.moveToNextStep()
+                let casting = owner.castingTextField.textField?.text
+                let domainsArray = owner.viewModel.selectedDomains.value
+                let domains = domainsArray.map { $0.name }
+                let numberOfRecruits = Int(owner.numberTextField.textField?.text ?? "")
+                let gender = GenderType.IRRELEVANT.serverName // FIXME
+                let ageMinString = owner.startAgeLabel.text?.replacingOccurrences(of: "세", with: "") ?? ""
+                let ageMin = Int(ageMinString)
+                let ageMaxString = owner.endAgeLabel.text?.replacingOccurrences(of: "세", with: "") ?? ""
+                let ageMax = Int(ageMaxString)
+                let career = owner.careerSelectionBlock.selectedItem.value as? CareerType ?? .NEWCOMER
+                let recruitConditionInfo = RecruitConditionInfo(casting: casting, domains: domains, numberOfRecruits: numberOfRecruits, gender: gender, ageMin: ageMin, ageMax: ageMax, career: career.rawValue)
+                owner.viewModel.moveToNextStep(recruitConditionInfo: recruitConditionInfo)
             }.disposed(by: rx.disposeBag)
         
         domainSelectButton.rx.tap

@@ -72,7 +72,13 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.moveToNextStep()
+                let workingStartDate = owner.startDateLabel.text?.dateServerFormat
+                let workingEndDate = owner.endDateLabel.text?.dateServerFormat
+                let workingStartTime = owner.startTimeTextField.text
+                let workingEndTime = owner.endTimeTextField.text
+                let salary = Int(owner.salaryTextField.text ?? "")
+                let recruitWorkConditionInfo = RecruitWorkConditionInfo(workingCity: "", workingDistrict: "", workingStartDate: workingStartDate, workingEndDate: workingEndDate, selectedDay: [], workingStartTime: workingStartTime, workingEndTime: workingEndTime, salaryType: SalaryType.HOURLY.rawValue, salary: salary) // TODO: 시-구 API 추후 개발 예정, 근무요일, 급여유형
+                owner.viewModel.moveToNextStep(recruitWorkConditionInfo: recruitWorkConditionInfo)
             }.disposed(by: rx.disposeBag)
     }
     
