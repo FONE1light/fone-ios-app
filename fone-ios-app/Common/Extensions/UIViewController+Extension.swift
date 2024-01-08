@@ -34,6 +34,7 @@ extension UINavigationController: UIGestureRecognizerDelegate {
     }
 
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let home = viewControllers.first as? HomeViewController { return true }
         return viewControllers.count > 1
     }
 }

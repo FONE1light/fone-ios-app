@@ -29,6 +29,10 @@ class HomeViewController: UIViewController, ViewModelBindableType {
         setCollectionView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.hidesBarsOnSwipe = true
+    }
+    
     func bindViewModel() {
         viewModel
             .homeInfoDataSubject
@@ -42,7 +46,6 @@ class HomeViewController: UIViewController, ViewModelBindableType {
     
     private func setNavigationBar() {
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.hidesBarsOnSwipe = true
         
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.shadowColor = nil
