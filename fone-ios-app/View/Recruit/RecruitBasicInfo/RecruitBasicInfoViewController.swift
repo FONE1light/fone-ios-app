@@ -34,7 +34,6 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setNavigationBar()
         setTextView()
         setSelectionBlock()
         setCollectionView()
@@ -50,6 +49,8 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
+        setNavigationBar()
+        
         titleTextView.rx.text.orEmpty
             .map { $0 == self.placeholderString ? "" : $0 }
             .map { $0.count }
