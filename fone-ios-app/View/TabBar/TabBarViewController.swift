@@ -9,7 +9,7 @@ import UIKit
 enum Tabs: Int, CaseIterable {
     case home = 0
     case job
-    case chat
+//    case chat
     case myPage
     
     var nav: UINavigationController {
@@ -18,8 +18,8 @@ enum Tabs: Int, CaseIterable {
             return UINavigationController(rootViewController: HomeViewController())
         case .job:
             return UINavigationController(rootViewController: JobOpeningHuntingViewController())
-        case .chat:
-            return UINavigationController(rootViewController: ChatViewController())
+//        case .chat:
+//            return UINavigationController(rootViewController: ChatViewController())
         case .myPage:
             return UINavigationController(rootViewController: MyPageViewController())
         }
@@ -31,8 +31,8 @@ enum Tabs: Int, CaseIterable {
             return UIImage(named: "home_unselected") ?? UIImage()
         case .job:
             return UIImage(named: "job-hunting_unselected") ?? UIImage()
-        case .chat:
-            return UIImage(named: "chat_unselected") ?? UIImage()
+//        case .chat:
+//            return UIImage(named: "chat_unselected") ?? UIImage()
         case .myPage:
             return UIImage(named: "mypage_unselected") ?? UIImage()
         }
@@ -44,8 +44,8 @@ enum Tabs: Int, CaseIterable {
             return "홈"
         case .job:
             return "구인구직"
-        case .chat:
-            return "채팅"
+//        case .chat:
+//            return "채팅"
         case .myPage:
             return "마이페이지"
         }
@@ -57,8 +57,8 @@ enum Tabs: Int, CaseIterable {
             return UIImage(named: "home_selected") ?? UIImage()
         case .job:
             return UIImage(named: "job-hunting_selected") ?? UIImage()
-        case .chat:
-            return UIImage(named: "chat_selected") ?? UIImage()
+//        case .chat:
+//            return UIImage(named: "chat_selected") ?? UIImage()
         case .myPage:
             return UIImage(named: "mypage_selected") ?? UIImage()
         }
@@ -120,19 +120,19 @@ class TabBarViewController: UITabBarController {
                 vc.bind(viewModel: viewModel)
                 vc.hasViewModel = true
                 
+//            case 2:
+//                guard var vc = nav.visibleViewController as? ChatViewController else { return }
+//                let viewModel = ChatViewModel(sceneCoordinator: coordinator)
+//                coordinator.currentVC = vc
+//                
+//                guard !vc.hasViewModel else { return }
+//                DispatchQueue.main.async {
+//                    vc.bind(viewModel: viewModel)
+//                    vc.hasViewModel = true
+//                }
+//                
+                
             case 2:
-                guard var vc = nav.visibleViewController as? ChatViewController else { return }
-                let viewModel = ChatViewModel(sceneCoordinator: coordinator)
-                coordinator.currentVC = vc
-                
-                guard !vc.hasViewModel else { return }
-                DispatchQueue.main.async {
-                    vc.bind(viewModel: viewModel)
-                    vc.hasViewModel = true
-                }
-                
-                
-            case 3:
                 guard var vc = nav.visibleViewController as? MyPageViewController else { return }
                 let viewModel = MyPageViewModel(sceneCoordinator: coordinator)
                 coordinator.currentVC = vc
