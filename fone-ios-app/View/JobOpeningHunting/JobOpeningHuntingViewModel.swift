@@ -25,8 +25,12 @@ class JobOpeningHuntingViewModel: CommonViewModel {
         .profile: .recent
     ]
     
-    var jobOpeningsContent: [JobOpeningContent]?
-    var profilesContent: [ProfileContent]?
+    private var jobOpeningsPage = 0
+    private var profilesPage = 0
+    private let pageSize = 10
+    
+    var jobOpeningsContent: [JobOpeningContent]? = []
+    var profilesContent: [ProfileContent]? = []
     var reloadTableView = PublishSubject<Void>()
     var reloadCollectionView = PublishSubject<Void>()
     
@@ -40,6 +44,7 @@ class JobOpeningHuntingViewModel: CommonViewModel {
                 let (jobType, option) = result
                 
                 print("✅\(jobType), \(owner.selectedTab.value), \(option)")
+                owner.initList(segmentType: owner.selectedTab.value)
                 owner.fetchList(
                     jobType: jobType,
                     segmentType: owner.selectedTab.value,
@@ -70,13 +75,15 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     }
     
     private func fetchJobOpenings(jobType: Job, sort: [String]) {
-        jobOpeningInfoProvider.rx.request(.jobOpenings(type: jobType, sort: sort))
+        jobOpeningInfoProvider.rx.request(.jobOpenings(type: jobType, sort: sort, page: jobOpeningsPage, size: pageSize))
             .mapObject(JobOpeningsInfo.self)
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
                 print(response)
-                owner.jobOpeningsContent = response.data?.jobOpenings?.content
+//                owner.jobOpeningsContent = response.data?.jobOpenings?.content
+                guard let newContent = response.data?.jobOpenings?.content else { return }
+                owner.jobOpeningsContent?.append(contentsOf: newContent)
                 owner.reloadTableView.onNext(())
             },
                        onError: { error in
@@ -97,6 +104,22 @@ class JobOpeningHuntingViewModel: CommonViewModel {
                        onError: { error in
                 print(error.localizedDescription)
             }).disposed(by: disposeBag)
+    }
+    
+    private func loadMore() {
+        // TODO: 현재 탭 따라 분기
+        jobOpeningsPage = jobOpeningsPage + 1
+    }
+    
+    private func initList(segmentType: JobSegmentType) {
+        switch segmentType {
+        case .jobOpening:
+            jobOpeningsPage = 0
+            jobOpeningsContent = []
+        case .profile:
+            profilesPage = 0
+            profilesContent = []
+        }
     }
 }
 
