@@ -439,7 +439,7 @@ extension JobOpeningHuntingViewController: UITableViewDataSource {
 
 extension JobOpeningHuntingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.dequeueReusableCell(for: indexPath) as JobCell
+        guard let cell = tableView.cellForRow(at: indexPath) as? JobCell else { return }
         guard let id = cell.id, let type = cell.jobType else { return }
         viewModel.goJobOpeningDetail(jobOpeningId: id, type: type)
     }
