@@ -26,12 +26,12 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUI()
         setButtons()
     }
     
     func bindViewModel() {
         setNavigationBar()
+        setUI()
         
         nextButton.rx.tap
             .withUnretained(self)
