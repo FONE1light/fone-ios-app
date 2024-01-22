@@ -31,8 +31,8 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     
     private var isLoading = false
     
-    var jobOpeningsContent: [JobOpeningContent]? = []
-    var profilesContent: [ProfileContent]? = []
+    var jobOpeningsContent: [JobOpeningContent] = []
+    var profilesContent: [ProfileContent] = []
     var reloadTableView = PublishSubject<Void>()
     var reloadCollectionView = PublishSubject<Void>()
     
@@ -90,7 +90,7 @@ class JobOpeningHuntingViewModel: CommonViewModel {
                     owner.jobOpeningsPage = owner.jobOpeningsPage - 1 // 원복
                     return
                 }
-                owner.jobOpeningsContent?.append(contentsOf: newContent)
+                owner.jobOpeningsContent.append(contentsOf: newContent)
                 owner.reloadTableView.onNext(())
             },
                        onError: { [weak self] error in
@@ -114,7 +114,7 @@ class JobOpeningHuntingViewModel: CommonViewModel {
                     owner.profilesPage = owner.profilesPage - 1 // 원복
                     return
                 }
-                owner.profilesContent?.append(contentsOf: newContent)
+                owner.profilesContent.append(contentsOf: newContent)
                 owner.reloadCollectionView.onNext(())
             },
                        onError: { [weak self] error in
