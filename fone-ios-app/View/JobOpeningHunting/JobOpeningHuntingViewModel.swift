@@ -103,26 +103,38 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     }
     
     private func fetchProfiles(jobType: Job, sort: [String]) {
-        profileInfoProvider.rx.request(.profiles(type: jobType, sort: sort))
+        profileInfoProvider.rx.request(.profiles(type: jobType, sort: sort, page: profilesPage, size: pageSize))
             .mapObject(Result<ProfilesData>.self)
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
                 print(response)
-                owner.profilesContent = response.data?.profiles?.content
+                owner.isLoading = false
+                guard let newContent = response.data?.profiles?.content, newContent.count > 0 else {
+                    owner.profilesPage = owner.profilesPage - 1 // 원복
+                    return
+                }
+                owner.profilesContent?.append(contentsOf: newContent)
                 owner.reloadCollectionView.onNext(())
-//                owner.isLoading = false //
             },
-                       onError: { error in
+                       onError: { [weak self] error in
+                error.localizedDescription.toast()
                 print(error.localizedDescription)
+                guard let self = self else { return }
+                self.isLoading = false
+                self.profilesPage = self.profilesPage - 1 // 원복
             }).disposed(by: disposeBag)
     }
     
     func loadMore() {
-        // TODO: 현재 탭 따라 분기
         guard isLoading == false else { return }
         print("|LOAD MORE")
-        jobOpeningsPage = jobOpeningsPage + 1
+        switch selectedTab.value {
+        case .jobOpening:
+            jobOpeningsPage = jobOpeningsPage + 1
+        case .profile:
+            profilesPage = profilesPage + 1
+        }
         fetchList(jobType: selectedJobType.value, segmentType: selectedTab.value, sortOption: selectedSortOption.value)
     }
     

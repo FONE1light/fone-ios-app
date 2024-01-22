@@ -165,6 +165,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
             .bind { owner, option in
                 owner.sortButton.setLabel(option.title)
                 owner.viewModel.sortButtonStateDic[owner.viewModel.selectedTab.value] = option
+                owner.scrollToTop()
             }.disposed(by: disposeBag)
         
         filterButton.rx.tap
@@ -443,18 +444,6 @@ extension JobOpeningHuntingViewController: UITableViewDelegate {
         guard let id = cell.id, let type = cell.jobType else { return }
         viewModel.goJobOpeningDetail(jobOpeningId: id, type: type)
     }
-    
-    // MARK: - scroll offset detection
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let tableViewContentSize = tableViewJob.contentSize.height
-        let contentOffset = scrollView.contentOffset.y
-        let scrollViewFrameSize = scrollView.frame.size.height // == tableViewJob.bounds.size.height
-        
-        if tableViewContentSize - contentOffset <= scrollViewFrameSize * 1.2 {
-            viewModel.loadMore()
-        }
-    }
-    
 }
 
 
@@ -470,7 +459,8 @@ extension JobOpeningHuntingViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as MyPageProfileCell
         
-        guard let profile = viewModel.profilesContent?[indexPath.row] else { return cell }
+        guard viewModel.profilesContent?.count ?? 0 > 0,
+            let profile = viewModel.profilesContent?[indexPath.row] else { return cell }
         
         let birthYear = profile.birthday?.birthYear(separator: "-")
         cell.configure(
@@ -495,5 +485,38 @@ extension JobOpeningHuntingViewController: UICollectionViewDelegateFlowLayout {
         let itemWidth = (UIScreen.main.bounds.width - 16*2 - 14) / 2
         return CGSize(width: itemWidth, height: defaultHeight)
     }
+}
+
+// MARK: - Scroll offset detection(tableView, collectionView)
+extension JobOpeningHuntingViewController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        var scrollViewContentSize: CGFloat = 0
+        
+        switch scrollView {
+        case is UITableView:
+            scrollViewContentSize = tableViewJob.contentSize.height
+        case is UICollectionView:
+            scrollViewContentSize = collectionViewProfile.contentSize.height
+        default:
+            return
+        }
+        let contentOffset = scrollView.contentOffset.y
+        let scrollViewFrameSize = scrollView.frame.size.height // == tableViewJob.bounds.size.height
+        
+        if scrollViewContentSize - contentOffset <= scrollViewFrameSize * 1.2 {
+            viewModel.loadMore()
+        }
+    }
     
+    private func scrollToTop() {
+        
+        switch viewModel.selectedTab.value {
+        case .jobOpening:
+            guard tableViewJob.numberOfRows(inSection: 0) > 0 else { return }
+            tableViewJob.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        case .profile:
+            guard collectionViewProfile.numberOfItems(inSection: 0) > 0 else { return }
+            collectionViewProfile.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        }
+    }
 }

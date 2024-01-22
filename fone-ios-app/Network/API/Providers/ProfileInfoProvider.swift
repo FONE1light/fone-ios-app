@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 enum ProfileInfoTarget {
-    case profiles(type: Job, sort: [String])
+    case profiles(type: Job, sort: [String], page: Int, size: Int)
     case profileDetail(profileId: Int, type: Job)
 }
 
@@ -33,8 +33,13 @@ extension ProfileInfoTarget: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case let .profiles(type, sort):
-            return .requestParameters(parameters: ["type": type.name, "sort": sort], encoding: URLEncoding.default)
+        case let .profiles(type, sort, page, size):
+            return .requestParameters(parameters: [
+                "type": type.name,
+                "sort": sort,
+                "page": page,
+                "size": size
+            ], encoding: URLEncoding.default)
         case let .profileDetail(_, type):
             return .requestParameters(parameters: ["type": type.name], encoding: URLEncoding.default)
         }
