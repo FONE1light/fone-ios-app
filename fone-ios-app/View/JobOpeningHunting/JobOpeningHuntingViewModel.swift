@@ -29,6 +29,8 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     private var profilesPage = 0
     private let pageSize = 10
     
+    private var isLoading = false
+    
     var jobOpeningsContent: [JobOpeningContent]? = []
     var profilesContent: [ProfileContent]? = []
     var reloadTableView = PublishSubject<Void>()
@@ -66,6 +68,8 @@ class JobOpeningHuntingViewModel: CommonViewModel {
         segmentType selectedTab: JobSegmentType,
         sortOption: JobOpeningSortOptions
     ) {
+        isLoading = true
+        
         let sort = sortOption.serverParameter ?? []
         
         switch selectedTab {
@@ -81,13 +85,20 @@ class JobOpeningHuntingViewModel: CommonViewModel {
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
                 print(response)
-//                owner.jobOpeningsContent = response.data?.jobOpenings?.content
-                guard let newContent = response.data?.jobOpenings?.content else { return }
+                owner.isLoading = false
+                guard let newContent = response.data?.jobOpenings?.content, newContent.count > 0 else {
+                    owner.jobOpeningsPage = owner.jobOpeningsPage - 1 // 원복
+                    return
+                }
                 owner.jobOpeningsContent?.append(contentsOf: newContent)
                 owner.reloadTableView.onNext(())
             },
-                       onError: { error in
+                       onError: { [weak self] error in
+                error.localizedDescription.toast()
                 print(error.localizedDescription)
+                guard let self = self else { return }
+                self.isLoading = false
+                self.jobOpeningsPage = self.jobOpeningsPage - 1 // 원복
             }).disposed(by: disposeBag)
     }
     
@@ -100,15 +111,19 @@ class JobOpeningHuntingViewModel: CommonViewModel {
                 print(response)
                 owner.profilesContent = response.data?.profiles?.content
                 owner.reloadCollectionView.onNext(())
+//                owner.isLoading = false //
             },
                        onError: { error in
                 print(error.localizedDescription)
             }).disposed(by: disposeBag)
     }
     
-    private func loadMore() {
+    func loadMore() {
         // TODO: 현재 탭 따라 분기
+        guard isLoading == false else { return }
+        print("|LOAD MORE")
         jobOpeningsPage = jobOpeningsPage + 1
+        fetchList(jobType: selectedJobType.value, segmentType: selectedTab.value, sortOption: selectedSortOption.value)
     }
     
     private func initList(segmentType: JobSegmentType) {

@@ -443,8 +443,22 @@ extension JobOpeningHuntingViewController: UITableViewDelegate {
         guard let id = cell.id, let type = cell.jobType else { return }
         viewModel.goJobOpeningDetail(jobOpeningId: id, type: type)
     }
+    
+    // MARK: - scroll offset detection
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let tableViewContentSize = tableViewJob.contentSize.height
+        let contentOffset = scrollView.contentOffset.y
+        let scrollViewFrameSize = scrollView.frame.size.height // == tableViewJob.bounds.size.height
+        
+        if tableViewContentSize - contentOffset <= scrollViewFrameSize * 1.2 {
+            viewModel.loadMore()
+        }
+    }
+    
 }
 
+
+// MARK: - CollectionView
 extension JobOpeningHuntingViewController: UICollectionViewDataSource {
     
     // MARK: cell count
@@ -474,7 +488,6 @@ extension JobOpeningHuntingViewController: UICollectionViewDataSource {
     
 }
 
-// MARK: - CollectionView
 extension JobOpeningHuntingViewController: UICollectionViewDelegateFlowLayout {
     // MARK: cellSize
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
