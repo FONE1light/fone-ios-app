@@ -7,6 +7,7 @@
 
 import UIKit
 import Then
+import SnapKit
 import RxRelay
 
 /// 직업 or 관심사 선택 label + UICollectionView 영역
@@ -21,11 +22,17 @@ class SelectionBlock: UIView {
     }
     
     private var titlesAreEmpty: Bool {
-        guard let titleLabelText = titleLabel.text,
-              let subtitleLabelText = subtitleLabel.text else {
-            return true
+        if let titleLabelText = titleLabel.text,
+           !titleLabelText.isEmpty {
+            return false
         }
-        return titleLabelText.isEmpty && subtitleLabelText.isEmpty
+        
+        if let subtitleLabelText = subtitleLabel.text,
+            !subtitleLabelText.isEmpty {
+            return false
+        }
+        
+        return true
     }
     
     private var items: [Selection] = []
@@ -87,23 +94,32 @@ class SelectionBlock: UIView {
             $0.bottom.equalTo(titleLabel)
         }
         
+        collectionView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(titleLabel.snp.bottom)
+            $0.bottom.equalToSuperview()
+        }
+    }
+    
+    private func updateCollectionViewTopConstraints() {
         var topOffset: CGFloat = 8
         if titlesAreEmpty {
             topOffset = 0
         }
-        collectionView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
+        
+        collectionView.snp.updateConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(topOffset)
-            $0.bottom.equalToSuperview()
         }
     }
     
     func setTitle(_ text: String) {
         titleLabel.text = text
+        updateCollectionViewTopConstraints()
     }
     
     func setSubtitle(_ text: String) {
         subtitleLabel.text = text
+        updateCollectionViewTopConstraints()
     }
     
     func setSelections(_ list: [Selection]) {
