@@ -208,7 +208,12 @@ extension MyPageViewController: UITableViewDataSource {
             .bind { owner, _ in
                 
                 if let scene = menuType.nextScene(owner.viewModel.sceneCoordinator) {
-                    owner.viewModel.sceneCoordinator.transition(to: scene, using: .push, animated: true)
+                    switch menuType {
+                    case .question:
+                        owner.viewModel.sceneCoordinator.transition(to: scene, using: .fullScreenModal, animated: false)
+                    default:
+                        owner.viewModel.sceneCoordinator.transition(to: scene, using: .push, animated: true)
+                    }
                 } else if let bottomSheet = menuType.bottomSheet {
                     // FIXME: 높이 늘어나는 것 해결(UIView-Encapsulated-Layout-Height)
                     owner.presentPanModal(view: bottomSheet)
