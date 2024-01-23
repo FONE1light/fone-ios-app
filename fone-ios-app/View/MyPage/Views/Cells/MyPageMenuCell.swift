@@ -12,16 +12,21 @@ import RxSwift
 import RxCocoa
 
 enum MyPageMenuType {
+    /// 나의 등록내역
     case postings
-    case contact
+    /// 문의하기
+    case question
+    /// 앱 버전
     case version
+    /// 로그아웃
     case logout
+    /// 회원 탈퇴
     case withdrawal
     
     private var imageName: String? {
         switch self {
         case .postings: return "mySettings"
-        case .contact: return "ContactUs"
+        case .question: return "ContactUs"
         case .version: return "Settings"
         case .logout: return "Logout"
         case .withdrawal: return "Withdrawal"
@@ -36,7 +41,7 @@ enum MyPageMenuType {
     var text: String? {
         switch self {
         case .postings: return "나의 등록내역"
-        case .contact: return "문의하기"
+        case .question: return "문의하기"
         case .version: return "앱 버전"
         case .logout: return "로그아웃"
         case .withdrawal: return "회원 탈퇴"
@@ -45,7 +50,7 @@ enum MyPageMenuType {
     
     var trailingView: UIView? {
         switch self {
-        case .postings, .contact:
+        case .postings, .question:
             return UIImageView().then {
                 $0.image = UIImage(named: "arrow_right16")
             }
@@ -82,6 +87,10 @@ enum MyPageMenuType {
             let viewModel = MyRegistrationsViewModel(sceneCoordinator: sceneCoordinator)
             let scene = Scene.myRegistrations(viewModel)
             return scene
+        case .question:
+            let viewModel = QuestionViewModel(sceneCoordinator: sceneCoordinator)
+            let scene = Scene.question(viewModel)
+            return scene
         default: return nil
         }
     }
@@ -116,7 +125,7 @@ class MyPageMenuCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-//        self.setupCell(type: .contact) // 없어도 됨
+//        self.setupCell(type: .question) // 없어도 됨
     }
     
     func setupCell(type: MyPageMenuType) {

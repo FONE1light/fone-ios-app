@@ -18,6 +18,8 @@ class QuestionViewController: UIViewController, ViewModelBindableType {
     var selectedButtonTag: Int = 1
     var questionTypeString = ""
     let placeholerString = "요청에 관한 세부 정보를 입력하세요. 저희 에프원이 가능한 빨리 답변을 드리도록 하겠습니다."
+    /// 해당 화면 진입 전 navigationBar hidden 상태
+    var navigationBarHiddenOriginalState: Bool?
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var closeButton: UIButton!
@@ -59,6 +61,17 @@ class QuestionViewController: UIViewController, ViewModelBindableType {
         submitButton.applyShadow(shadowType: .shadowIt2)
         agreeButton.setImage(UIImage(named: "checkboxes_off"), for: .normal)
         agreeButton.setImage(UIImage(named: "checkboxes_on"), for: .selected)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationBarHiddenOriginalState = navigationController?.navigationBar.isHidden
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = navigationBarHiddenOriginalState ?? false
     }
     
     func bindViewModel() {
