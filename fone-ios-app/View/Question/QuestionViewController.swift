@@ -16,7 +16,7 @@ enum QuestionType: Int, CaseIterable {
 class QuestionViewController: UIViewController, ViewModelBindableType {
     var viewModel: QuestionViewModel!
     var selectedButtonTag: Int = 1
-    var questionTypeString = ""
+    var questionTypeString = "\(QuestionType.ALLIANCE)"
     let placeholerString = "요청에 관한 세부 정보를 입력하세요. 저희 에프원이 가능한 빨리 답변을 드리도록 하겠습니다."
     /// 해당 화면 진입 전 navigationBar hidden 상태
     var navigationBarHiddenOriginalState: Bool?
@@ -124,7 +124,7 @@ class QuestionViewController: UIViewController, ViewModelBindableType {
                 let title = owner.titleTextField.text ?? ""
                 let description = owner.descriptionTextView.text == owner.placeholerString ? "" : owner.descriptionTextView.text
                 let agreeToPersonalInformation = owner.agreeButton.isSelected
-                let question = QuestionInfo(id: nil, email: email, type: type, title: title, description: description ?? "", agreeToPersonalInformation: agreeToPersonalInformation)
+                let question = QuestionInfo(email: email, type: type, title: title, description: description ?? "", agreeToPersonalInformation: agreeToPersonalInformation)
                 owner.viewModel.submitQuestion(question: question)
             }.disposed(by: rx.disposeBag)
     }

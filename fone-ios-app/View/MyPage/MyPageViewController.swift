@@ -56,7 +56,7 @@ class MyPageViewController: UIViewController, ViewModelBindableType {
     
     private let menuList: [MyPageMenuType] = [
         .postings,
-        .contact,
+        .question,
         .version,
         .logout,
         .withdrawal
