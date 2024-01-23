@@ -124,8 +124,6 @@ class MyPageMenuCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-//        self.setupCell(type: .question) // 없어도 됨
     }
     
     func setupCell(type: MyPageMenuType) {
