@@ -493,19 +493,11 @@ extension JobOpeningHuntingViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - Scroll offset detection(tableView, collectionView)
 extension JobOpeningHuntingViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        var scrollViewContentSize: CGFloat = 0
-        
-        switch scrollView {
-        case is UITableView:
-            scrollViewContentSize = tableViewJob.contentSize.height
-        case is UICollectionView:
-            scrollViewContentSize = collectionViewProfile.contentSize.height
-        default:
-            return
-        }
+        let scrollViewContentSize = scrollView.contentSize.height
         let contentOffset = scrollView.contentOffset.y
-        let scrollViewFrameSize = scrollView.frame.size.height // == tableViewJob.bounds.size.height
+        let scrollViewFrameSize = scrollView.frame.size.height // == tableViewJob.bounds.size.height, collectionViewProfile.bounds.size.height
         
+        // * 1.2: 최하단 도달보다 조금 더 전
         if scrollViewContentSize - contentOffset <= scrollViewFrameSize * 1.2 {
             viewModel.loadMore()
         }
