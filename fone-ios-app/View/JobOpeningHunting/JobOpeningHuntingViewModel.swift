@@ -161,4 +161,22 @@ extension JobOpeningHuntingViewModel {
             }).disposed(by: disposeBag)
         
     }
+    
+    /// 모집 등록
+    func moveToRecruitBasicInfo(of jobType: Job) {
+        let recruitBasicInfoViewModel = RecruitBasicInfoViewModel(sceneCoordinator: sceneCoordinator)
+        recruitBasicInfoViewModel.jobType = jobType
+        
+        let recruitScene = Scene.recruitBasicInfo(recruitBasicInfoViewModel)
+        sceneCoordinator.transition(to: recruitScene, using: .push, animated: true)
+    }
+    
+    /// 프로필 등록
+    func moveToRegisterProfile(of jobType: Job) {
+        let registerBasicInfoViewModel = RegisterBasicInfoViewModel(sceneCoordinator: sceneCoordinator)
+        registerBasicInfoViewModel.jobType = jobType
+        
+        let registerScene = Scene.registerBasicInfo(registerBasicInfoViewModel)
+        sceneCoordinator.transition(to: registerScene, using: .push, animated: true)
+    }
 }

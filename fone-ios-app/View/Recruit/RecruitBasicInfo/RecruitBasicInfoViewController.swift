@@ -34,7 +34,6 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setNavigationBar()
         setTextView()
         setSelectionBlock()
         setCollectionView()
@@ -50,6 +49,8 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
+        setNavigationBar()
+        
         titleTextView.rx.text.orEmpty
             .map { $0 == self.placeholderString ? "" : $0 }
             .map { $0.count }
@@ -102,13 +103,15 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let title = owner.titleTextView.text
-                // let categories
-                let startDate = owner.startDateLabel.text?.dateServerFormat
-                let endDate = owner.endDateLabel.text?.dateServerFormat
-                let imageUrls = owner.imageUrls
-                let recruitBasicInfo = RecruitBasicInfo(title: title, categories: [], startDate: startDate, endDate: endDate, imageUrls: imageUrls)
-                owner.viewModel.moveToNextStep(recruitBasicInfo: recruitBasicInfo)
+                owner.viewModel.uploadImages(images: owner.images) { imageUrls in
+                    let title = owner.titleTextView.text
+                    // let categories
+                    let startDate = owner.startDateLabel.text?.dateServerFormat
+                    let endDate = owner.endDateLabel.text?.dateServerFormat
+                    let recruitBasicInfo = RecruitBasicInfo(title: title, categories: [], startDate: startDate, endDate: endDate, imageUrls: imageUrls)
+                    owner.viewModel.moveToNextStep(recruitBasicInfo: recruitBasicInfo)
+                }
+                
             }.disposed(by: rx.disposeBag)
     }
     

@@ -18,11 +18,11 @@ class RecruitContactInfoViewController: UIViewController, ViewModelBindableType 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setNavigationBar()
         setUI()
     }
     
     func bindViewModel() {
+        setNavigationBar()
         
     }
     
