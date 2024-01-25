@@ -27,16 +27,20 @@ extension QuestionInfoTarget: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case.questions(let questionInfo):
+        case .questions(let questionInfo):
             return .requestJSONEncodable(questionInfo)
         }
     }
     
     var headers: [String: String]? {
-        var commonHeaders: [String: String] = [:]
-        commonHeaders["Content-Type"] = "application/json"
-        return commonHeaders // TODO: MOCK,
+        let accessToken = Tokens.shared.accessToken.value
+        let authorization = "Bearer \(accessToken)"
+        return ["Authorization": authorization]
+    }
+    
+    var validationType: ValidationType {
+        return .successCodes
     }
 }
 
-let questionInfoProvider = MoyaProvider<QuestionInfoTarget> ()
+let questionInfoProvider = MoyaProvider<QuestionInfoTarget>(session: Session(interceptor: AuthInterceptor.shared))

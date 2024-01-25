@@ -22,7 +22,6 @@ struct Question: Codable {
 
 // MARK: - QuestionInfo
 struct QuestionInfo: Codable {
-    let id: Int?
     let email, type, title, description: String
     let agreeToPersonalInformation: Bool
 }
