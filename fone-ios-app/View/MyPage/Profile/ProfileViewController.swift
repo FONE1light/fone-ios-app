@@ -17,6 +17,8 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
     private let profileImage = UIImageView().then {
         $0.image = UIImage(named: "profileImage")
     }
+    private let imagePickerViewController = UIImagePickerController()
+    private let profileButton = UIButton()
     
     let nicknameBlock = UIView()
     
@@ -77,6 +79,13 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
             }.disposed(by: rx.disposeBag)
         
         // ViewModel
+        
+        viewModel.profileImage
+            .withUnretained(self)
+            .bind { owner, image in
+                owner.setProfileImage(image)
+            }.disposed(by: disposeBag)
+        
         viewModel.nicknameAvailbleState
             .distinctUntilChanged()
             .withUnretained(self)
@@ -101,14 +110,27 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
                 }
             }.disposed(by: self.disposeBag)
         
+        
+        profileButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.showActionSheet()
+            }.disposed(by: rx.disposeBag)
+        
         button.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
+                guard let interests = owner.categorySelectionBlock.selectedItems.value as? [Category] else { return }
+                let stringInterest = interests.map { $0.serverName }
+                
+                guard let jobs = owner.jobSelectionBlock.selectedItems.value as? [Job] else { return }
+                let stringJob = jobs.first?.serverName
+                
                 let userInfo = UserInfo(
-                    interests: [Category.independentFilm.serverName],
-                    job: Job.actor.serverName,
+                    interests: stringInterest,
+                    job: stringJob,
                     nickname: owner.nicknameTextField.text,
-                    profileURL: nil
+                    profileURL: owner.viewModel.profileUrl
                 )
                 owner.viewModel.modifyInfo(userInfo)
             }.disposed(by: rx.disposeBag)
@@ -136,6 +158,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         
         [
             profileImage,
+            profileButton,
             nicknameBlock,
             jobSelectionBlock,
             categorySelectionBlock,
@@ -166,6 +189,10 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
             $0.top.equalToSuperview()
             $0.centerX.equalToSuperview()
             $0.size.equalTo(64)
+        }
+        
+        profileButton.snp.makeConstraints {
+            $0.edges.equalTo(profileImage)
         }
         
         nicknameBlock.snp.makeConstraints {
@@ -211,5 +238,59 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
             $0.trailing.equalToSuperview()
             $0.width.equalTo(82)
         }
+    }
+}
+
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    private func showActionSheet() {
+        let chooseImage = UIAlertAction(
+            title: "앨범에서 사진 선택",
+            style: .default
+        ) { _ in
+            self.imagePickerViewController.delegate = self
+            self.imagePickerViewController.sourceType = .photoLibrary
+            self.present(self.imagePickerViewController, animated: true)
+        }
+        
+        let changeToDefaultImage = UIAlertAction(
+            title: "기본 이미지로 변경",
+            style: .default
+        ) { _ in
+            self.setProfileImage(UIImage(named: "profileImage"))
+            self.viewModel.profileUrl = nil
+        }
+        
+        let cancel = UIAlertAction(
+            title: "취소",
+            style: .cancel
+        )
+        
+        let alert = UIAlertController(
+            title: "프로필 사진 설정",
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(chooseImage)
+        alert.addAction(changeToDefaultImage)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true)
+    }
+    
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
+    ) {
+        
+        if let pickedImage = info[.originalImage] as? UIImage {
+            viewModel.uploadProfileImage(pickedImage)
+        }
+        
+        imagePickerViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    private func setProfileImage(_ image: UIImage?) {
+        profileImage.image = image
     }
 }

@@ -5,13 +5,16 @@
 //  Created by 여나경 on 2023/09/12.
 //
 
-import Foundation
+import UIKit
 import RxSwift
 import RxCocoa
 import Moya
 
 class ProfileViewModel: CommonViewModel {
     var disposeBag = DisposeBag()
+    
+    var profileUrl: String?
+    var profileImage = PublishRelay<UIImage>()
     
     var nicknameAvailbleState = BehaviorRelay<NicknameAvailableState>(value: .cannotCheck)
     
@@ -30,7 +33,9 @@ class ProfileViewModel: CommonViewModel {
                 }
             }, onError: { error in
                 guard let response = (error as? MoyaError)?.response,
-                      let errorData = try? response.mapObject(Result<User>.self) else { return }
+                      let errorData = try? response.mapObject(Result<User>.self) else { 
+                    return error.localizedDescription.toast(positionType: .withButton)
+                }
                 errorData.message?.toast(positionType: .withButton)
                 if errorData.errorCode == "DuplicateUserNicknameException" {
                     self.nicknameAvailbleState.accept(.duplicated)
@@ -59,8 +64,39 @@ class ProfileViewModel: CommonViewModel {
                     response.message?.toast(positionType: .withButton)
                 }
             }, onError: { error in
-                print("\(error)")
-                error.localizedDescription.toast(positionType: .withButton)
+                guard let response = (error as? MoyaError)?.response,
+                      let errorData = try? response.mapObject(Result<String>.self) else { return }
+                errorData.message?.toast(positionType: .withButton)
+            }).disposed(by: disposeBag)
+    }
+}
+
+extension ProfileViewModel {
+    func uploadProfileImage(_ pickedImage: UIImage) {
+        // 필요 시 compressionQuality 조정
+        let imageData = pickedImage.jpegData(compressionQuality: 0.1)?.base64EncodedString() ?? ""
+        let imageInfo = ImageInfoToUpload(
+            imageData: imageData,
+            resource: "/image-upload/user-profile",
+            stageVariables: StageVariables(stage: "prod")
+        )
+        
+        let imageUploadRequestModel = ImageUploadRequestModel(images: [imageInfo])
+        imageUploadProvider.rx.request(.uploadImage(images: imageUploadRequestModel))
+            .mapObject(ImageUploadResponseModel.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, response in
+                if response.result == "SUCCESS" {
+                    owner.profileUrl = response.data?.first?.imageUrl
+                    owner.profileImage.accept(pickedImage)
+                } else {
+                    "[실패] 사진이 업로드 되지 않았습니다.".toast(positionType: .withButton)
+                    print(response.message ?? "")
+                }
+            }, onError: { error in
+                "[실패] 사진이 업로드 되지 않았습니다.".toast(positionType: .withButton)
+                print(error)
             }).disposed(by: disposeBag)
     }
 }
