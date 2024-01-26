@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-// TODO: 서버 구조 확인, 필요 없으면 삭제
 enum APIConfig {
     case DEV // 개발 서버
     case STAGING // 테스트 서버
