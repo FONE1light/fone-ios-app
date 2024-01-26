@@ -100,6 +100,18 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
                     owner.duplicatedWarningLabel.isHidden = true
                 }
             }.disposed(by: self.disposeBag)
+        
+        button.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                let userInfo = UserInfo(
+                    interests: [Category.independentFilm.serverName],
+                    job: Job.actor.serverName,
+                    nickname: owner.nicknameTextField.text,
+                    profileURL: nil
+                )
+                owner.viewModel.modifyInfo(userInfo)
+            }.disposed(by: rx.disposeBag)
     }
     
     override func viewDidLoad() {

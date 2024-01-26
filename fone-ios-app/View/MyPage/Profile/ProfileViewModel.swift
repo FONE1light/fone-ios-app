@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Moya
 
 class ProfileViewModel: CommonViewModel {
     var disposeBag = DisposeBag()
@@ -28,9 +29,12 @@ class ProfileViewModel: CommonViewModel {
                     "사용할 수 있는 닉네임입니다.".toast(positionType: .withButton)
                 }
             }, onError: { error in
-                print("\(error)")
-                self.nicknameAvailbleState.accept(.available)
-                error.localizedDescription.toast(positionType: .withButton)
+                guard let response = (error as? MoyaError)?.response,
+                      let errorData = try? response.mapObject(Result<User>.self) else { return }
+                errorData.message?.toast(positionType: .withButton)
+                if errorData.errorCode == "DuplicateUserNicknameException" {
+                    self.nicknameAvailbleState.accept(.duplicated)
+                }
             }).disposed(by: disposeBag)
     }
     
@@ -41,5 +45,22 @@ class ProfileViewModel: CommonViewModel {
         } else {
             self.nicknameAvailbleState.accept(.cannotCheck)
         }
+    }
+    
+    func modifyInfo(_ userInfo: UserInfo) {
+        userInfoProvider.rx.request(.modifyUserInfo(userInfo: userInfo))
+            .mapObject(Result<User>.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, response in
+                if response.result == "SUCCESS" {
+                    "수정이 완료되었습니다.".toast(positionType: .withButton)
+                } else {
+                    response.message?.toast(positionType: .withButton)
+                }
+            }, onError: { error in
+                print("\(error)")
+                error.localizedDescription.toast(positionType: .withButton)
+            }).disposed(by: disposeBag)
     }
 }
