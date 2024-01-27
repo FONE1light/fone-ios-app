@@ -15,6 +15,7 @@ enum APIError: Error {
 
 enum JobOpeningInfoTarget {
     case jobOpenings(type: Job, sort: [String])
+    case createJobOpenings(jobOpeningRequest: JobOpeningRequest)
     case jobOpeningDetail(jobOpeningId: Int, type: Job)
 }
 
@@ -25,7 +26,7 @@ extension JobOpeningInfoTarget: TargetType {
     
     var path: String {
         switch self {
-        case .jobOpenings:
+        case .jobOpenings, .createJobOpenings:
             return "/api/v1/job-openings"
         case .jobOpeningDetail(let jopOpeningId, _):
             return "/api/v1/job-openings/\(jopOpeningId)" //
@@ -33,13 +34,20 @@ extension JobOpeningInfoTarget: TargetType {
     }
     
     var method: Moya.Method {
-        return .get
+        switch self {
+        case .jobOpenings, .jobOpeningDetail:
+            return .get
+        case .createJobOpenings:
+            return .post
+        }
     }
     
     var task: Moya.Task {
         switch self {
         case .jobOpenings(let type, let sort):
             return .requestParameters(parameters: ["type": type.name, "sort": sort], encoding: URLEncoding.default)
+        case .createJobOpenings(let jobOpeningRequest):
+            return .requestJSONEncodable(jobOpeningRequest)
         case .jobOpeningDetail(_, let type):
             return .requestParameters(parameters: ["type": type.name], encoding: URLEncoding.default)
         }
@@ -47,7 +55,7 @@ extension JobOpeningInfoTarget: TargetType {
     
     var headers: [String : String]? {
         switch self {
-        case .jobOpenings, .jobOpeningDetail:
+        case .jobOpenings, .createJobOpenings, .jobOpeningDetail:
             let accessToken = Tokens.shared.accessToken.value
             let authorization = "Bearer \(accessToken)"
             return ["Authorization": authorization]

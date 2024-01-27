@@ -24,6 +24,12 @@ class RecruitContactInfoViewController: UIViewController, ViewModelBindableType 
     func bindViewModel() {
         setNavigationBar()
         
+        registerButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                let recruitContactInfo = RecruitContactInfo(manager: owner.managerTextField.textField?.text, email: owner.emailTextField.textField?.text)
+                owner.viewModel.createJobOpenings(recruitContactInfo: recruitContactInfo)
+            }.disposed(by: rx.disposeBag)
     }
     
     private func setNavigationBar() {
