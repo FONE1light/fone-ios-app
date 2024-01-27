@@ -16,6 +16,14 @@ struct RecruitBasicInfo {
     let imageUrls: [String]?
 }
 
+struct RecruitBasicInfo {
+    let title: String?
+    let categories: [Category]?
+    let startDate: String?
+    let endDate: String?
+    let imageUrls: [String]?
+}
+
 final class RecruitBasicInfoViewModel: CommonViewModel {
     var disposeBag = DisposeBag()
     var jobType: Job?
