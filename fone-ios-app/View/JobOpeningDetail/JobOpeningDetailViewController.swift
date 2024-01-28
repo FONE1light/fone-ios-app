@@ -64,11 +64,11 @@ extension JobOpeningDetailViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if section == JobOpeningDetailSection.image.rawValue {
-//            guard let viewModel = viewModel else { return 0 }
-//            let itemCount = viewModel.jobOpeningDetail?.imageUrls?.count == 0 ? 0 : 1
-//            return itemCount
-//        }
+        if section == JobOpeningDetailSection.image.rawValue {
+            guard let viewModel = viewModel else { return 0 }
+            let itemCount = viewModel.jobOpeningDetail?.imageUrls?.count == 0 ? 0 : 1
+            return itemCount
+        }
         return 1
     }
     
@@ -87,17 +87,7 @@ extension JobOpeningDetailViewController: UICollectionViewDataSource {
             return cell
         case JobOpeningDetailSection.image.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as DetailImageCell
-            cell.configure(imageUrls: [
-                "https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_.jpg",
-                "https://images.ctfassets.net/3m6gg2lxde82/1M3pgRmfLqMWjUpzGUz22T/b6fcf28828426cef8b208f56fed350c7/cillian-murphy-oppenheimer.png",
-                "https://ymcinema.com/wp-content/uploads/2023/06/IMAX-Presents-A-Rare-BTS-Look-of-Oppenheimer.001.jpeg",
-                "https://static1.srcdn.com/wordpress/wp-content/uploads/2023/08/oppenheimer-imax-cillian-murphy.jpg",
-                "https://i0.wp.com/ymcinema.com/wp-content/uploads/2023/06/IMAX-Presents-A-Rare-BTS-Look-of-Oppenheimer.007.jpeg?ssl=1",
-                "https://pyxis.nymag.com/v1/imgs/2b8/7f3/1a86390fd159126aaff357a3fb6c108410-oppenheimer-process-01.jpg",
-                "https://m.media-amazon.com/images/M/MV5BMjQ2YTY0ZjItOGE3NS00MjAwLThhMDMtYTc4YjRkY2VjNDBlXkEyXkFqcGdeQXVyMTE0MzQwMjgz._V1_.jpg",
-                "https://blog.frame.io/wp-content/uploads/2023/08/trc-oppenheimer-bts-christopher-nolan-with-cillian-murphy.jpg",
-                "https://www.motionpictures.org/wp-content/uploads/2023/04/GF-11507_MSG.jpg"
-            ])
+            cell.configure(imageUrls: viewModel.jobOpeningDetail?.imageUrls ?? [])
             return cell
         case JobOpeningDetailSection.recruitCondition.rawValue:
             guard let recruitCondition = viewModel.recruitCondition else { return UICollectionViewCell() }
