@@ -12,12 +12,12 @@ class ProfileRegistrationViewController: UIViewController, ViewModelBindableType
     var viewModel: ProfileRegistrationViewModel!
     
     private var profiles: [Profile] = [
-        Profile(imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
-        Profile(imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
-        Profile(imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
-        Profile(imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
-        Profile(imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
-        Profile(imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
+        Profile(id: nil, imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
+        Profile(id: nil, imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
+        Profile(id: nil, imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
+        Profile(id: nil, imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
+        Profile(id: nil, imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
+        Profile(id: nil, imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
     ]
     
     private lazy var tableView = UITableView().then {

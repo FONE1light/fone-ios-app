@@ -12,13 +12,10 @@ import Then
 
 class MyPageProfileCell: UICollectionViewCell {
     
-    struct Constants {
-        /// leading, trailing inset
-        static let leadingInset: CGFloat = 16
-        /// top, bottom inset
-        static let topInset: CGFloat = 8
-        /// `label`의 fontSize
-        static let fontSize: CGFloat = 14
+    private struct Constants {
+        static let imageHeight: CGFloat = 198
+        static let nameLabelTopOffset: CGFloat = 6
+        static let ageLabelTopOffset: CGFloat = 2
     }
     
     static let identifier = String(describing: MyPageProfileCell.self)
@@ -75,16 +72,16 @@ class MyPageProfileCell: UICollectionViewCell {
     private func setConstraints() {
         imageView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(198)
+            $0.height.equalTo(MyPageProfileCell.Constants.imageHeight)
         }
         
         nameLabel.snp.makeConstraints {
-            $0.top.equalTo(imageView.snp.bottom).offset(7)
+            $0.top.equalTo(imageView.snp.bottom).offset(MyPageProfileCell.Constants.nameLabelTopOffset)
             $0.leading.trailing.equalToSuperview()
         }
         
         ageLabel.snp.makeConstraints {
-            $0.top.equalTo(nameLabel.snp.bottom).offset(2)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(MyPageProfileCell.Constants.ageLabelTopOffset)
             $0.leading.trailing.bottom.equalToSuperview()
         }
         
@@ -112,4 +109,11 @@ class MyPageProfileCell: UICollectionViewCell {
     }
 }
 
+extension MyPageProfileCell {
+    static func cellHeight(width: CGFloat) -> CGFloat {
+        let nameHeight = UILabel.getLabelHeight(width: width, text: "text", font: UIFont.font_b(16), line: 1)
+        let ageHeight = UILabel.getLabelHeight(width: width, text: "text", font: UIFont.font_b(13), line: 1)
+        return MyPageProfileCell.Constants.imageHeight + MyPageProfileCell.Constants.nameLabelTopOffset + nameHeight + MyPageProfileCell.Constants.ageLabelTopOffset + ageHeight
+    }
+}
 

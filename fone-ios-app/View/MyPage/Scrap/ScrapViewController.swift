@@ -47,7 +47,10 @@ class ScrapViewController: UIViewController, ViewModelBindableType {
     }
     
     private func initPageController() {
-        pageController = MyPagePageViewController(tabBarType: .scrap)
+        pageController = MyPagePageViewController(
+            tabBarType: .scrap,
+            sceneCoordinator: viewModel.sceneCoordinator
+        )
         // TODO: y offset, height 확정
         let tabBarHeight = MyPageTabBarCollectionView.Constants.tabBarHeight + MyPageTabBarCollectionView.Constants.grayUnderlineHeight
         self.pageController.view.frame = CGRect.init(
