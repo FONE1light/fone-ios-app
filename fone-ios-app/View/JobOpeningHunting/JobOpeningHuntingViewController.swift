@@ -60,6 +60,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         $0.delegate = self
         $0.register(with: JobCell.self)
         $0.backgroundColor = .gray_EEEFEF
+        $0.bounces = false
     }
     
     private lazy var collectionViewProfile: UICollectionView = {
@@ -165,6 +166,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
             .bind { owner, option in
                 owner.sortButton.setLabel(option.title)
                 owner.viewModel.sortButtonStateDic[owner.viewModel.selectedTab.value] = option
+                owner.scrollToTop()
             }.disposed(by: disposeBag)
         
         filterButton.rx.tap
@@ -405,25 +407,27 @@ extension JobOpeningHuntingViewController {
 extension JobOpeningHuntingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.jobOpeningsContent?.count ?? 0
+        return viewModel.jobOpeningsContent.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as JobCell
         
-        guard let content = viewModel.jobOpeningsContent, content.count > 0 else { return cell }
+        guard viewModel.jobOpeningsContent.count > 0 else { return cell }
+        let content = viewModel.jobOpeningsContent[indexPath.row]
+        
         cell.configure(
-            id: content[indexPath.row].id,
-            jobType: content[indexPath.row].type,
-            profileUrl: content[indexPath.row].profileURL,
-            isVerified: content[indexPath.row].isVerified,
-            categories: content[indexPath.row].categories,
-            isScrap: content[indexPath.row].isScrap,
-            title: content[indexPath.row].title,
-            dDay: content[indexPath.row].dday,
-            genre: content[indexPath.row].work?.genres?.first,
-            domain: content[indexPath.row].domains?.first,
-            produce: content[indexPath.row].work?.produce
+            id: content.id,
+            jobType: content.type,
+            profileUrl: content.profileURL,
+            isVerified: content.isVerified,
+            categories: content.categories,
+            isScrap: content.isScrap,
+            title: content.title,
+            dDay: content.dday,
+            genre: content.work?.genres?.first,
+            domain: content.domains?.first,
+            produce: content.work?.produce
         )
         
         cell.bookmarkButtonTap
@@ -445,20 +449,23 @@ extension JobOpeningHuntingViewController: UITableViewDelegate {
     }
 }
 
+
+// MARK: - CollectionView
 extension JobOpeningHuntingViewController: UICollectionViewDataSource {
     
     // MARK: cell count
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.profilesContent?.count ?? 0
+        return viewModel.profilesContent.count 
     }
     
     // MARK: cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as MyPageProfileCell
         
-        guard let profile = viewModel.profilesContent?[indexPath.row] else { return cell }
-        
+        guard viewModel.profilesContent.count > 0 else { return cell }
+        let profile = viewModel.profilesContent[indexPath.row]
         let birthYear = profile.birthday?.birthYear(separator: "-")
+        
         cell.configure(
             id: profile.id,
             jobType: profile.type,
@@ -474,7 +481,6 @@ extension JobOpeningHuntingViewController: UICollectionViewDataSource {
     
 }
 
-// MARK: - CollectionView
 extension JobOpeningHuntingViewController: UICollectionViewDelegateFlowLayout {
     // MARK: cellSize
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -482,5 +488,30 @@ extension JobOpeningHuntingViewController: UICollectionViewDelegateFlowLayout {
         let itemWidth = (UIScreen.main.bounds.width - 16*2 - 14) / 2
         return CGSize(width: itemWidth, height: defaultHeight)
     }
+}
+
+// MARK: - Scroll offset detection(tableView, collectionView)
+extension JobOpeningHuntingViewController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let scrollViewContentSize = scrollView.contentSize.height
+        let contentOffset = scrollView.contentOffset.y
+        let scrollViewFrameSize = scrollView.frame.size.height // == tableViewJob.bounds.size.height, collectionViewProfile.bounds.size.height
+        
+        // * 1.2: 최하단 도달보다 조금 더 전
+        if scrollViewContentSize - contentOffset <= scrollViewFrameSize * 1.2 {
+            viewModel.loadMore()
+        }
+    }
     
+    private func scrollToTop() {
+        
+        switch viewModel.selectedTab.value {
+        case .jobOpening:
+            guard tableViewJob.numberOfRows(inSection: 0) > 0 else { return }
+            tableViewJob.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        case .profile:
+            guard collectionViewProfile.numberOfItems(inSection: 0) > 0 else { return }
+            collectionViewProfile.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        }
+    }
 }

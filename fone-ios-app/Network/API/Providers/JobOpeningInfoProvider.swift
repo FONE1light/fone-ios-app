@@ -14,7 +14,7 @@ enum APIError: Error {
 }
 
 enum JobOpeningInfoTarget {
-    case jobOpenings(type: Job, sort: [String])
+    case jobOpenings(type: Job, sort: [String], page: Int, size: Int)
     case createJobOpenings(jobOpeningRequest: JobOpeningRequest)
     case jobOpeningDetail(jobOpeningId: Int, type: Job)
 }
@@ -44,8 +44,13 @@ extension JobOpeningInfoTarget: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .jobOpenings(let type, let sort):
-            return .requestParameters(parameters: ["type": type.name, "sort": sort], encoding: URLEncoding.default)
+        case .jobOpenings(let type, let sort, let page, let size):
+            return .requestParameters(parameters: [
+                "type": type.name,
+                "sort": sort,
+                "page": page,
+                "size": size
+            ], encoding: URLEncoding.default)
         case .createJobOpenings(let jobOpeningRequest):
             return .requestJSONEncodable(jobOpeningRequest)
         case .jobOpeningDetail(_, let type):

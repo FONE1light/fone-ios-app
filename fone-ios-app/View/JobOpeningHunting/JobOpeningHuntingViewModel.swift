@@ -25,8 +25,14 @@ class JobOpeningHuntingViewModel: CommonViewModel {
         .profile: .recent
     ]
     
-    var jobOpeningsContent: [JobOpeningContent]?
-    var profilesContent: [ProfileContent]?
+    private var jobOpeningsPage = 0
+    private var profilesPage = 0
+    private let pageSize = 10
+    
+    private var isLoading = false
+    
+    var jobOpeningsContent: [JobOpeningContent] = []
+    var profilesContent: [ProfileContent] = []
     var reloadTableView = PublishSubject<Void>()
     var reloadCollectionView = PublishSubject<Void>()
     
@@ -40,6 +46,7 @@ class JobOpeningHuntingViewModel: CommonViewModel {
                 let (jobType, option) = result
                 
                 print("✅\(jobType), \(owner.selectedTab.value), \(option)")
+                owner.initList(segmentType: owner.selectedTab.value)
                 owner.fetchList(
                     jobType: jobType,
                     segmentType: owner.selectedTab.value,
@@ -61,6 +68,8 @@ class JobOpeningHuntingViewModel: CommonViewModel {
         segmentType selectedTab: JobSegmentType,
         sortOption: JobOpeningSortOptions
     ) {
+        isLoading = true
+        
         let sort = sortOption.serverParameter ?? []
         
         switch selectedTab {
@@ -70,33 +79,74 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     }
     
     private func fetchJobOpenings(jobType: Job, sort: [String]) {
-        jobOpeningInfoProvider.rx.request(.jobOpenings(type: jobType, sort: sort))
+        jobOpeningInfoProvider.rx.request(.jobOpenings(type: jobType, sort: sort, page: jobOpeningsPage, size: pageSize))
             .mapObject(JobOpeningsInfo.self)
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
                 print(response)
-                owner.jobOpeningsContent = response.data?.jobOpenings?.content
+                owner.isLoading = false
+                guard let newContent = response.data?.jobOpenings?.content, newContent.count > 0 else {
+                    owner.jobOpeningsPage = owner.jobOpeningsPage - 1 // 원복
+                    return
+                }
+                owner.jobOpeningsContent.append(contentsOf: newContent)
                 owner.reloadTableView.onNext(())
             },
-                       onError: { error in
+                       onError: { [weak self] error in
+                error.localizedDescription.toast()
                 print(error.localizedDescription)
+                guard let self = self else { return }
+                self.isLoading = false
+                self.jobOpeningsPage = self.jobOpeningsPage - 1 // 원복
             }).disposed(by: disposeBag)
     }
     
     private func fetchProfiles(jobType: Job, sort: [String]) {
-        profileInfoProvider.rx.request(.profiles(type: jobType, sort: sort))
+        profileInfoProvider.rx.request(.profiles(type: jobType, sort: sort, page: profilesPage, size: pageSize))
             .mapObject(Result<ProfilesData>.self)
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
                 print(response)
-                owner.profilesContent = response.data?.profiles?.content
+                owner.isLoading = false
+                guard let newContent = response.data?.profiles?.content, newContent.count > 0 else {
+                    owner.profilesPage = owner.profilesPage - 1 // 원복
+                    return
+                }
+                owner.profilesContent.append(contentsOf: newContent)
                 owner.reloadCollectionView.onNext(())
             },
-                       onError: { error in
+                       onError: { [weak self] error in
+                error.localizedDescription.toast()
                 print(error.localizedDescription)
+                guard let self = self else { return }
+                self.isLoading = false
+                self.profilesPage = self.profilesPage - 1 // 원복
             }).disposed(by: disposeBag)
+    }
+    
+    func loadMore() {
+        guard isLoading == false else { return }
+        print("|LOAD MORE")
+        switch selectedTab.value {
+        case .jobOpening:
+            jobOpeningsPage = jobOpeningsPage + 1
+        case .profile:
+            profilesPage = profilesPage + 1
+        }
+        fetchList(jobType: selectedJobType.value, segmentType: selectedTab.value, sortOption: selectedSortOption.value)
+    }
+    
+    private func initList(segmentType: JobSegmentType) {
+        switch segmentType {
+        case .jobOpening:
+            jobOpeningsPage = 0
+            jobOpeningsContent = []
+        case .profile:
+            profilesPage = 0
+            profilesContent = []
+        }
     }
 }
 
