@@ -31,6 +31,10 @@ final class RecruitWorkConditionViewModel: CommonViewModel {
         self.recruitWorkInfo = recruitWorkInfo
     }
     
+    func showSalaryTypeBottomSheet() {
+        sceneCoordinator.transition(to: .salaryTypeBottomSheet(sceneCoordinator), using: .customModal, animated: true)
+    }
+    
     func moveToNextStep(recruitWorkConditionInfo: RecruitWorkConditionInfo) {
         let recruitDetailInfoViewModel = RecruitDetailInfoViewModel(sceneCoordinator: sceneCoordinator, jobType: jobType, recruitBasicInfo: recruitBasicInfo, recruitConditionInfo: recruitConditionInfo, recruitWorkInfo: recruitWorkInfo, recruitWorkConditionInfo: recruitWorkConditionInfo)
         let recuirtDetailInfoScene = Scene.recruitDetailInfo(recruitDetailInfoViewModel)

@@ -59,6 +59,7 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
         salaryTypeButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
+                owner.viewModel.showSalaryTypeBottomSheet()
             }.disposed(by: rx.disposeBag)
         
         salaryTextField.rx.text.orEmpty
