@@ -10,7 +10,7 @@ import Foundation
 struct RecruitWorkConditionInfo {
     let workingCity, workingDistrict: String?
     let workingStartDate, workingEndDate: String?
-    let selectedDay: [String]?
+    let selectedDays: [String]?
     let workingStartTime, workingEndTime: String?
     let salaryType: String?
     let salary: Int?
