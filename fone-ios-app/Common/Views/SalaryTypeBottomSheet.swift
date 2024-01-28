@@ -10,6 +10,7 @@ import UIKit
 class SalaryTypeBottomSheet: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
+        loadNib(SalaryTypeBottomSheet.self)
     }
     
     required init?(coder: NSCoder) {
