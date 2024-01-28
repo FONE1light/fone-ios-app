@@ -83,6 +83,10 @@
                         <color key="titleColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IeD-8G-XKf">
+                    <rect key="frame" x="0.0" y="248" width="375" height="40"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
@@ -94,19 +98,22 @@
                 <constraint firstItem="SME-Px-dti" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="6" id="BPd-dA-N9n"/>
                 <constraint firstItem="whb-1G-vbp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="22" id="CbG-2s-tY3"/>
                 <constraint firstItem="p4E-w2-Bot" firstAttribute="top" secondItem="SME-Px-dti" secondAttribute="bottom" constant="6" id="Dyy-iv-azh"/>
+                <constraint firstItem="IeD-8G-XKf" firstAttribute="top" secondItem="jTe-He-daJ" secondAttribute="bottom" id="GPQ-4C-VN4"/>
+                <constraint firstAttribute="bottom" secondItem="IeD-8G-XKf" secondAttribute="bottom" id="KMo-zx-JYY"/>
                 <constraint firstItem="dJG-29-3Eb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="22" id="Uew-u6-uf6"/>
                 <constraint firstAttribute="trailing" secondItem="whb-1G-vbp" secondAttribute="trailing" constant="22" id="W2r-ur-n8m"/>
                 <constraint firstItem="dJG-29-3Eb" firstAttribute="top" secondItem="sQB-xD-AxU" secondAttribute="bottom" id="cQT-zG-Iav"/>
+                <constraint firstAttribute="trailing" secondItem="IeD-8G-XKf" secondAttribute="trailing" id="fY3-Ie-b5W"/>
+                <constraint firstItem="IeD-8G-XKf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="gyU-zR-ENM"/>
                 <constraint firstItem="sQB-xD-AxU" firstAttribute="top" secondItem="p4E-w2-Bot" secondAttribute="bottom" id="jTg-nT-ago"/>
                 <constraint firstAttribute="trailing" secondItem="sQB-xD-AxU" secondAttribute="trailing" constant="22" id="kdJ-cu-rkH"/>
                 <constraint firstItem="SME-Px-dti" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="22" id="kip-qD-UNU"/>
                 <constraint firstItem="sQB-xD-AxU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="22" id="omo-7N-Tmo"/>
-                <constraint firstAttribute="bottom" secondItem="jTe-He-daJ" secondAttribute="bottom" constant="40" id="tBJ-cz-C7d"/>
                 <constraint firstItem="jTe-He-daJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="22" id="tGn-4I-Yc0"/>
                 <constraint firstItem="whb-1G-vbp" firstAttribute="top" secondItem="dJG-29-3Eb" secondAttribute="bottom" id="td2-BQ-6oB"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="105" y="21"/>
+            <point key="canvasLocation" x="104.58015267175573" y="20.422535211267608"/>
         </view>
     </objects>
     <resources>
