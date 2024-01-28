@@ -14,20 +14,20 @@ class RecruitContactInfoViewController: UIViewController, ViewModelBindableType 
     @IBOutlet weak var registerButton: UIButton!
     
     var viewModel: RecruitContactInfoViewModel!
+    var jobType = Job.actor
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setNavigationBar()
         setUI()
     }
     
     func bindViewModel() {
-        setNavigationBar()
         
     }
     
     private func setNavigationBar() {
-        guard let jobType = viewModel.jobType else { return }
         navigationItem.titleView = NavigationTitleView(title: "\(jobType.koreanName) 모집하기")
         navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
             type: .back,

@@ -268,7 +268,7 @@ extension Scene {
             
         case .recruitContactInfo(let recruitContactInfoViewModel):
             var recruitContactInfoVC = RecruitContactInfoViewController()
-            
+            recruitContactInfoVC.jobType = recruitContactInfoViewModel.jobType ?? .actor
             DispatchQueue.main.async {
                 recruitContactInfoVC.bind(viewModel: recruitContactInfoViewModel)
             }
