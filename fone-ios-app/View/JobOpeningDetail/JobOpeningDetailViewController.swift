@@ -41,6 +41,10 @@ class JobOpeningDetailViewController: UIViewController, ViewModelBindableType {
             type: .back,
             viewController: self
         )
+        navigationItem.rightBarButtonItem = NavigationRightBarButtonItem(
+            type: .more,
+            viewController: self
+        )
     }
     
     private func setCollectionView() {
