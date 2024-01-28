@@ -158,6 +158,7 @@
 		AB04760F2B08F851003DF5EF /* JobOpeningInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB04760E2B08F851003DF5EF /* JobOpeningInfoProvider.swift */; };
 		AB0476112B08FB11003DF5EF /* JobInfoAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0476102B08FB11003DF5EF /* JobInfoAPIModel.swift */; };
 		AB0F8E4C2AB324B7006D85F7 /* HomeInfoAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0F8E4B2AB324B7006D85F7 /* HomeInfoAPIModel.swift */; };
+		AB1442882B665CAA007CAC7F /* ValidationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1442872B665CAA007CAC7F /* ValidationProvider.swift */; };
 		AB1851462B1CA1110051D0DC /* RecruitDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1851442B1CA1110051D0DC /* RecruitDetailInfoViewController.swift */; };
 		AB1851472B1CA1110051D0DC /* RecruitDetailInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB1851452B1CA1110051D0DC /* RecruitDetailInfoViewController.xib */; };
 		AB1ADF2B2B1E016900C2F2DD /* RecruitWorkInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1ADF292B1E016900C2F2DD /* RecruitWorkInfoViewController.swift */; };
@@ -478,6 +479,7 @@
 		AB04760E2B08F851003DF5EF /* JobOpeningInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningInfoProvider.swift; sourceTree = "<group>"; };
 		AB0476102B08FB11003DF5EF /* JobInfoAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoAPIModel.swift; sourceTree = "<group>"; };
 		AB0F8E4B2AB324B7006D85F7 /* HomeInfoAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInfoAPIModel.swift; sourceTree = "<group>"; };
+		AB1442872B665CAA007CAC7F /* ValidationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationProvider.swift; sourceTree = "<group>"; };
 		AB1851442B1CA1110051D0DC /* RecruitDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitDetailInfoViewController.swift; sourceTree = "<group>"; };
 		AB1851452B1CA1110051D0DC /* RecruitDetailInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitDetailInfoViewController.xib; sourceTree = "<group>"; };
 		AB1ADF292B1E016900C2F2DD /* RecruitWorkInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitWorkInfoViewController.swift; sourceTree = "<group>"; };
@@ -733,6 +735,7 @@
 				36BDA13F2AEE3C71001AF777 /* ImageUploadProvider.swift */,
 				AB04760E2B08F851003DF5EF /* JobOpeningInfoProvider.swift */,
 				36B9D1AC2B3BF95200A1F91D /* ProfileInfoProvider.swift */,
+				AB1442872B665CAA007CAC7F /* ValidationProvider.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -2041,6 +2044,7 @@
 				AB1CEAAD2ABFD20F00E7E54F /* ProfileModule.swift in Sources */,
 				367D9C2C2ADA5EC700DA6C96 /* ProfileRegistrationViewController.swift in Sources */,
 				ABB1BB0D2B397DD20012F962 /* FilterViewModel.swift in Sources */,
+				AB1442882B665CAA007CAC7F /* ValidationProvider.swift in Sources */,
 				AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */,
 				368273652B270D8500EB0629 /* MainCareerTableViewCell.swift in Sources */,
 				AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */,
