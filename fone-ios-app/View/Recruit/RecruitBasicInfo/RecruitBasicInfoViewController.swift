@@ -15,6 +15,7 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     private var selections = [String: PHPickerResult]()
     private var selectedAssetIdentifiers = [String]()
     private var images = [UIImage]()
+    private var imageUrls: [String] = []
     
     @IBOutlet weak var titleTextView: UITextView!
     @IBOutlet weak var titleCountLabel: UILabel!

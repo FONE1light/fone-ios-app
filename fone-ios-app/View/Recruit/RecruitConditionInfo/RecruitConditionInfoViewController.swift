@@ -37,8 +37,8 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
             .withUnretained(self)
             .bind { owner, _ in
                 let casting = owner.castingTextField.textField?.text
-                let domainsArray = owner.viewModel.selectedDomains.value
-                let domains = domainsArray.map { $0.name }
+                let domainsArray = owner.viewModel.selectedDomains.value as? [Domain]
+                let domains = domainsArray?.map { $0.serverName }
                 let numberOfRecruits = Int(owner.numberTextField.textField?.text ?? "")
                 let gender = GenderType.IRRELEVANT.serverName // FIXME
                 let ageMinString = owner.startAgeLabel.text?.replacingOccurrences(of: "세", with: "") ?? ""
