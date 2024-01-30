@@ -34,6 +34,7 @@
 		36323CD62B68DF9200AC99ED /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36323CD52B68DF9200AC99ED /* HeartButton.swift */; };
 		36323CD82B693E6400AC99ED /* CompetitionInfoAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36323CD72B693E6400AC99ED /* CompetitionInfoAPIModel.swift */; };
 		36323CDA2B693E8200AC99ED /* CompetitionInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36323CD92B693E8200AC99ED /* CompetitionInfoProvider.swift */; };
+		36323CDC2B6946D300AC99ED /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36323CDB2B6946D300AC99ED /* Int+Extension.swift */; };
 		363D48E12B44642A002164A7 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D48E02B44642A002164A7 /* Collection+Extension.swift */; };
 		364482CC2AB7C75E00984507 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482CB2AB7C75E00984507 /* MyPageViewController.swift */; };
 		364482CE2AB7C76500984507 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482CD2AB7C76500984507 /* MyPageViewModel.swift */; };
@@ -362,6 +363,7 @@
 		36323CD52B68DF9200AC99ED /* HeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButton.swift; sourceTree = "<group>"; };
 		36323CD72B693E6400AC99ED /* CompetitionInfoAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionInfoAPIModel.swift; sourceTree = "<group>"; };
 		36323CD92B693E8200AC99ED /* CompetitionInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionInfoProvider.swift; sourceTree = "<group>"; };
+		36323CDB2B6946D300AC99ED /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		363D48E02B44642A002164A7 /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		364482CB2AB7C75E00984507 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		364482CD2AB7C76500984507 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
@@ -848,6 +850,7 @@
 				360E843B2B28850100D4A540 /* UIApplication+Extension.swift */,
 				363D48E02B44642A002164A7 /* Collection+Extension.swift */,
 				365EE0C62B68CC050089035A /* Error+Extension.swift */,
+				36323CDB2B6946D300AC99ED /* Int+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2028,6 +2031,7 @@
 				AB79B3BC2A9E29C4008EBAA2 /* QuestionViewController.swift in Sources */,
 				36323CD82B693E6400AC99ED /* CompetitionInfoAPIModel.swift in Sources */,
 				AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */,
+				36323CDC2B6946D300AC99ED /* Int+Extension.swift in Sources */,
 				AB0F8E4C2AB324B7006D85F7 /* HomeInfoAPIModel.swift in Sources */,
 				ABCDD19B2B00F5A300A598A8 /* ContactInfoCell.swift in Sources */,
 				364BCC6E2AB36A4900E14B25 /* Job.swift in Sources */,

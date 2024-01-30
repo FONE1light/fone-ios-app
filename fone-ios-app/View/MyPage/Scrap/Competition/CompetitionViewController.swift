@@ -12,7 +12,7 @@ import SnapKit
 struct CompetitionScrap {
     let title: String?
     let coorporation: String?
-    let leftDays: String? // TODO: 유효한 토큰 생기면 서버 데이터 확인해서 형식 확정(날짜, 숫자, 혹은 "D-N"/"마감")
+    let leftDays: String?
     let viewCount: Int?
 }
 

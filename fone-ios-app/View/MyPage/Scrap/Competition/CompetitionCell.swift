@@ -79,7 +79,7 @@ class CompetitionCell: UITableViewCell {
     
     private func setupConstraints() {
         competitionImageView.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview().inset(10)
+            $0.top.equalToSuperview().inset(10)
             $0.leading.equalToSuperview().offset(16)
             $0.width.equalTo(95)
             $0.height.equalTo(98)
@@ -93,10 +93,11 @@ class CompetitionCell: UITableViewCell {
         
         coorporationLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(4)
-            $0.leading.equalTo(titleLabel.snp.leading)
+            $0.leading.trailing.equalTo(titleLabel)
         }
         
         dDayLabel.snp.makeConstraints {
+            $0.top.equalTo(coorporationLabel.snp.bottom).offset(16)
             $0.leading.equalTo(titleLabel.snp.leading)
         }
         
@@ -118,7 +119,7 @@ class CompetitionCell: UITableViewCell {
         }
         
         separator.snp.makeConstraints {
-            $0.top.equalTo(dDayLabel.snp.bottom).offset(13)
+            $0.top.equalTo(competitionImageView.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview()
         }
@@ -129,7 +130,7 @@ class CompetitionCell: UITableViewCell {
         titleLabel.text = competition.title
         coorporationLabel.text = competition.coorporation
         dDayLabel.text = competition.leftDays
-        viewCountLabel.text = "\(competition.viewCount ?? 0)"// TODO: viewCount Int to "***,***,**" 포맷팅
+        viewCountLabel.text = competition.viewCount?.toDecimalFormat()
     }
     
 }
