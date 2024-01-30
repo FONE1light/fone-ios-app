@@ -30,6 +30,11 @@ final class RecruitBasicInfoViewModel: CommonViewModel {
 
 extension RecruitBasicInfoViewModel {
     func uploadImages(images: [UIImage], completion: @escaping ([String]) -> ())  {
+        guard !images.isEmpty else {
+            completion([])
+            return
+        }
+        
         let imageDatas = images.map {
             $0.jpegData(compressionQuality: 0.1)?.base64EncodedString() ?? ""
         }
