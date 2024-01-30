@@ -12,16 +12,15 @@ import RxCocoa
 class JobViewModel: CommonViewModel {
     
     private var disposeBag = DisposeBag()
-    
     var jobScraps = PublishRelay<[JobScrap]?>()
     
     override init(sceneCoordinator: SceneCoordinatorType) {
         super.init(sceneCoordinator: sceneCoordinator)
         
-        fetchScraps()
+        fetchJobScraps()
     }
     
-    private func fetchScraps() {
+    private func fetchJobScraps() {
         jobOpeningInfoProvider.rx.request(.scraps)
             .mapObject(Result<JobOpeningsData>.self)
             .asObservable()

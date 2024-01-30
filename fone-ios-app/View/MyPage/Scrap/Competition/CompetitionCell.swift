@@ -124,17 +124,12 @@ class CompetitionCell: UITableViewCell {
         }
         
     }
-    func configure(
-//        image: // TODO: imageURL 전달 받은 것 넣기
-        title: String?,
-        coorporation: String?,
-        leftDays: String?, // TODO: 유효한 토큰 생기면 서버 데이터 확인해서 형식 확정(날짜, 숫자, 혹은 "D-N"/"마감")
-        viewCount: Int
-    ) {
-        titleLabel.text = title
-        coorporationLabel.text = coorporation
-        dDayLabel.text = leftDays
-        viewCountLabel.text = "3,222"// TODO: viewCount Int to "***,***,**" 포맷팅
+    
+    func configure(_ competition: CompetitionScrap) {
+        titleLabel.text = competition.title
+        coorporationLabel.text = competition.coorporation
+        dDayLabel.text = competition.leftDays
+        viewCountLabel.text = "\(competition.viewCount ?? 0)"// TODO: viewCount Int to "***,***,**" 포맷팅
     }
     
 }
