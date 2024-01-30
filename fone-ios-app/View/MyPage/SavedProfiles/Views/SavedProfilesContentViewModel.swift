@@ -38,7 +38,7 @@ class SavedProfilesContentViewModel: CommonViewModel {
                             age: age,
                             isSaved: $0.isWant,
                             birthYear: birthYear,
-                            job: Job.getType(name: $0.userJob)
+                            job: Job.getType(name: $0.type)
                         )
                     }
                     owner.savedProfiles.accept(profiles)
