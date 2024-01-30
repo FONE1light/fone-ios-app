@@ -47,6 +47,7 @@
 		3650F6222A86715C0017645D /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3650F61F2A86715C0017645D /* Pretendard-Medium.ttf */; };
 		3650F6232A86715C0017645D /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3650F6202A86715C0017645D /* Pretendard-Bold.ttf */; };
 		3650F6262A8672010017645D /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3650F6252A8672010017645D /* UIFont+Extension.swift */; };
+		365EE0C72B68CC050089035A /* Error+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EE0C62B68CC050089035A /* Error+Extension.swift */; };
 		3663DB122AF6843C005899BF /* JobUISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663DB112AF6843C005899BF /* JobUISegmentedControl.swift */; };
 		3663DB142AF68845005899BF /* JobOpeningSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663DB132AF68845005899BF /* JobOpeningSortButton.swift */; };
 		366E85092B19ECC200CB7681 /* FullWidthSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E85082B19ECC200CB7681 /* FullWidthSelectionView.swift */; };
@@ -370,6 +371,7 @@
 		3650F61F2A86715C0017645D /* Pretendard-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.ttf"; sourceTree = "<group>"; };
 		3650F6202A86715C0017645D /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
 		3650F6252A8672010017645D /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		365EE0C62B68CC050089035A /* Error+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Extension.swift"; sourceTree = "<group>"; };
 		3663DB112AF6843C005899BF /* JobUISegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobUISegmentedControl.swift; sourceTree = "<group>"; };
 		3663DB132AF68845005899BF /* JobOpeningSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningSortButton.swift; sourceTree = "<group>"; };
 		366E85082B19ECC200CB7681 /* FullWidthSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthSelectionView.swift; sourceTree = "<group>"; };
@@ -834,6 +836,7 @@
 				3682737C2B28681C00EB0629 /* UIImageView+Extension.swift */,
 				360E843B2B28850100D4A540 /* UIApplication+Extension.swift */,
 				363D48E02B44642A002164A7 /* Collection+Extension.swift */,
+				365EE0C62B68CC050089035A /* Error+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2092,6 +2095,7 @@
 				AB6992242AB6E87100B67455 /* ChatViewModel.swift in Sources */,
 				363D48E12B44642A002164A7 /* Collection+Extension.swift in Sources */,
 				3608447C2B2C1DE100A9776F /* SNSWebViewController.swift in Sources */,
+				365EE0C72B68CC050089035A /* Error+Extension.swift in Sources */,
 				360E843E2B2984C000D4A540 /* ReportBottomSheet.swift in Sources */,
 				3628669A2A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift in Sources */,
 				362C80352B139D8000489E7D /* LetterCountedTextView.swift in Sources */,

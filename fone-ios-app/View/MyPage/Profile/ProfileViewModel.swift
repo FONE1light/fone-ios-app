@@ -31,12 +31,12 @@ class ProfileViewModel: CommonViewModel {
                     owner.nicknameAvailbleState.accept(.available)
                     "사용할 수 있는 닉네임입니다.".toast(positionType: .withButton)
                 }
-            }, onError: { error in
+            }, onError: { [weak self] error in
+                error.showToast(modelType: User.self, positionType: .withButton)
+                
+                guard let self = self else { return }
                 guard let response = (error as? MoyaError)?.response,
-                      let errorData = try? response.mapObject(Result<User>.self) else { 
-                    return error.localizedDescription.toast(positionType: .withButton)
-                }
-                errorData.message?.toast(positionType: .withButton)
+                      let errorData = try? response.mapObject(Result<User>.self) else { return }
                 if errorData.errorCode == "DuplicateUserNicknameException" {
                     self.nicknameAvailbleState.accept(.duplicated)
                 }
