@@ -33,6 +33,7 @@ class CompetitionViewModel: CommonViewModel {
                             id: competition.id,
                             title: competition.title,
                             coorporation: competition.agency,
+                            isScrap: competition.isScrap,
                             leftDays: competition.screeningDDay,
                             viewCount: competition.viewCount
                         )
@@ -42,6 +43,23 @@ class CompetitionViewModel: CommonViewModel {
                 },
                 onError: { error in
                     error.showToast(modelType: CompetitionsData.self)
+                }).disposed(by: disposeBag)
+    }
+    
+    func toggleScrap(id: Int?) {
+        guard let id = id else { return }
+        competitionInfoProvider.rx.request(.scrapCompetition(competitionId: id))
+            .mapObject(Result<CompetitionContent>.self) // TODO: 대체
+            .asObservable()
+            .withUnretained(self)
+            .subscribe (
+                onNext: { owner, response in
+                    if response.result?.isSuccess != true {
+                        "스크랩을 실패했습니다.".toast()
+                    }
+                },
+                onError: { error in
+                    error.showToast(modelType: CompetitionContent.self)
                 }).disposed(by: disposeBag)
     }
 }

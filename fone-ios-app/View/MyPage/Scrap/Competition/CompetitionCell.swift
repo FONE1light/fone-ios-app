@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 import Then
 
 class CompetitionCell: UITableViewCell {
@@ -48,8 +49,9 @@ class CompetitionCell: UITableViewCell {
         $0.textColor = .gray_9E9E9E
     }
     
-    private let bookmarkImageView = UIImageView().then {
-        $0.image = UIImage(named: "Bookmark")
+    private let bookmarkButton = BookmarkButton()
+    var bookmarkButtonTap: ControlEvent<Void> {
+        bookmarkButton.rx.tap
     }
     
     required init?(coder: NSCoder) {
@@ -72,7 +74,7 @@ class CompetitionCell: UITableViewCell {
             dDayLabel,
             viewImageView,
             viewCountLabel,
-            bookmarkImageView,
+            bookmarkButton,
             separator
         ]
             .forEach { contentView.addSubview($0) }
@@ -89,7 +91,7 @@ class CompetitionCell: UITableViewCell {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(14)
             $0.leading.equalTo(competitionImageView.snp.trailing).offset(12)
-            $0.trailing.equalTo(bookmarkImageView.snp.leading).offset(-22)
+            $0.trailing.equalTo(bookmarkButton.snp.leading).offset(-22)
         }
         
         coorporationLabel.snp.makeConstraints {
@@ -113,7 +115,7 @@ class CompetitionCell: UITableViewCell {
             $0.leading.equalTo(viewImageView.snp.trailing).offset(2)
         }
         
-        bookmarkImageView.snp.makeConstraints {
+        bookmarkButton.snp.makeConstraints {
             $0.top.equalToSuperview().offset(14)
             $0.trailing.equalToSuperview().offset(-24)
             $0.size.equalTo(24)
@@ -132,8 +134,12 @@ class CompetitionCell: UITableViewCell {
         coorporationLabel.text = competition.coorporation
         dDayLabel.text = competition.leftDays
         viewCountLabel.text = competition.viewCount?.toDecimalFormat()
+        bookmarkButton.isSelected = competition.isScrap ?? false
     }
-    
 }
 
-
+extension CompetitionCell {
+    func toggleBookmarkButton() {
+        bookmarkButton.toggle()
+    }
+}

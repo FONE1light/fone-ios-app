@@ -11,6 +11,7 @@ import Moya
 enum CompetitionInfoTarget {
     case competitions
     case scraps
+    case scrapCompetition(competitionId: Int)
 }
 
 extension CompetitionInfoTarget: TargetType {
@@ -24,11 +25,15 @@ extension CompetitionInfoTarget: TargetType {
             "/api/v1/competitions"
         case .scraps:
             "/api/v1/competitions/scraps"
+        case let .scrapCompetition(competitionId):
+            "/api/v1/competitions/\(competitionId)/scrap"
         }
     }
     
     var method: Moya.Method {
         switch self {
+        case .scrapCompetition:
+            return .post
         default:
             return .get
         }
@@ -43,6 +48,10 @@ extension CompetitionInfoTarget: TargetType {
 //                "page": page,
 //                "size": size
 //            ], encoding: URLEncoding.default)
+        case let .scrapCompetition(competitionId):
+            return .requestParameters(parameters: [
+                "competitionId": competitionId
+            ], encoding: URLEncoding.default)
         default:
             return .requestPlain
         }

@@ -13,6 +13,7 @@ struct CompetitionScrap {
     let id: Int?
     let title: String?
     let coorporation: String?
+    let isScrap: Bool?
     let leftDays: String?
     let viewCount: Int?
 }
@@ -23,7 +24,7 @@ class CompetitionViewController: UIViewController, ViewModelBindableType {
     var viewModel: CompetitionViewModel!
     private var disposeBag = DisposeBag()
     
-    private var competitions: [CompetitionScrap] = []
+    var competitions: [CompetitionScrap] = []
     
     private lazy var tableView = UITableView().then {
         $0.showsVerticalScrollIndicator = false
@@ -78,7 +79,22 @@ extension CompetitionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let competition = competitions[indexPath.row]
         let cell = tableView.dequeueReusableCell(for: indexPath) as CompetitionCell
+        
         cell.configure(competition)
+        
+        cell.bookmarkButtonTap
+            .asDriver()
+            .do {_ in
+                // cell의 button toggle
+                cell.toggleBookmarkButton()
+            }
+            .debounce(.milliseconds(500))
+            .asObservable()
+            .withUnretained(self)
+            .bind { owner, _ in
+                // API 호출
+                owner.viewModel.toggleScrap(id: competition.id)
+            }.disposed(by: cell.disposeBag)
         
         return cell
     }
