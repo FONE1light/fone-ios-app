@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+/// 마이페이지 > 스크랩 > 구인구직 탭의 pageViewController
 class CompetitionViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: CompetitionViewModel!

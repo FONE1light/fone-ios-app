@@ -17,6 +17,7 @@ enum JobOpeningInfoTarget {
     case jobOpenings(type: Job, sort: [String], page: Int, size: Int)
     case createJobOpenings(jobOpeningRequest: JobOpeningRequest)
     case jobOpeningDetail(jobOpeningId: Int, type: Job)
+    case scraps
 }
 
 extension JobOpeningInfoTarget: TargetType {
@@ -30,12 +31,14 @@ extension JobOpeningInfoTarget: TargetType {
             return "/api/v1/job-openings"
         case .jobOpeningDetail(let jopOpeningId, _):
             return "/api/v1/job-openings/\(jopOpeningId)" //
+        case .scraps:
+            return "/api/v1/job-openings/scraps"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .jobOpenings, .jobOpeningDetail:
+        case .jobOpenings, .jobOpeningDetail, .scraps:
             return .get
         case .createJobOpenings:
             return .post
@@ -55,12 +58,14 @@ extension JobOpeningInfoTarget: TargetType {
             return .requestJSONEncodable(jobOpeningRequest)
         case .jobOpeningDetail(_, let type):
             return .requestParameters(parameters: ["type": type.name], encoding: URLEncoding.default)
+        case .scraps:
+            return .requestPlain
         }
     }
     
     var headers: [String : String]? {
         switch self {
-        case .jobOpenings, .createJobOpenings, .jobOpeningDetail:
+        case .jobOpenings, .createJobOpenings, .jobOpeningDetail, .scraps:
             let accessToken = Tokens.shared.accessToken.value
             let authorization = "Bearer \(accessToken)"
             return ["Authorization": authorization]

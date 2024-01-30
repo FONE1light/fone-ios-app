@@ -27,30 +27,20 @@ class JobScrapCell: UITableViewCell {
         setConstraints()
     }
     
-    func configure(
-        job: Job, // actor/staff
-        profileUrl: String? = nil,
-        isVerified: Bool? = nil,
-        categories: [Category], // 작품 성격 최대 2개
-        isScrap: Bool? = nil,
-        title: String? = nil,
-        dDay: String? = nil,
-        genre: String? = nil, // 배우 - 장르 중 첫 번째 값
-        domain: String? = nil, // 스태프 - 분야 중 첫 번째 값
-        produce: String? = nil
-    ) {
+    func configure(_ jobScrap: JobScrap) {
         mainContentView.configure(
-            profileUrl: profileUrl,
-            isVerified: isVerified,
-            categories: categories,
-            isScrap: isScrap,
-            title: title,
-            dDay: dDay,
-            genre: genre,
-            domain: domain,
-            produce: produce
+            profileUrl: jobScrap.profileUrl,
+            isVerified: jobScrap.isVerified,
+            categories: jobScrap.categories ?? [],
+            isScrap: jobScrap.isScrap,
+            title: jobScrap.title,
+            dDay: jobScrap.dDay,
+            genre: jobScrap.genre,
+            domain: jobScrap.domain,
+            produce: jobScrap.produce
         )
         
+        guard let job = jobScrap.job else { return }
         jobTag.setType(as: job)
     }
     

@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum Genre: String {
+enum Genre: String, CaseIterable {
     case ACTION,DOCUMENTARY, DRAMA, ETC, FANTASY, MUSICAL, ROMANCE, THRILLER
     
     var koreanName: String {
@@ -47,5 +47,9 @@ enum Genre: String {
         case .ROMANCE: return UIImage(resource: .romanceOn)
         case .THRILLER: return UIImage(resource: .thrillerOn)
         }
+    }
+    
+    static func getType(name: String?) -> Genre? {
+        Genre.allCases.filter { $0.rawValue == name }.first
     }
 }

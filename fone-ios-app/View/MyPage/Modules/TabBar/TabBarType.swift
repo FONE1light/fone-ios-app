@@ -25,9 +25,11 @@ extension TabBarType {
     func getViewControllers(sceneCoordinator: SceneCoordinatorType) -> [UIViewController] {
         switch self {
         case .scrap:
+            let jobViewModel = JobViewModel(sceneCoordinator: sceneCoordinator)
+            let competitionViewModel = CompetitionViewModel(sceneCoordinator: sceneCoordinator)
             return [
-                JobViewController(),
-                CompetitionViewController()
+                Scene.scrapJob(jobViewModel).instantiate(),                 // 구인구직 탭
+                Scene.scrapCompetition(competitionViewModel).instantiate()  // 공모전 탭
             ]
         case .savedProfiles:
             let actorViewModel = SavedProfilesContentViewModel(sceneCoordinator: sceneCoordinator, jobType: .actor)
