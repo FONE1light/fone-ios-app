@@ -14,14 +14,14 @@ class SavedProfilesContentViewModel: CommonViewModel {
     
     var savedProfiles = PublishRelay<[Profile]?>()
     
-    override init(sceneCoordinator: SceneCoordinatorType) {
+    init(sceneCoordinator: SceneCoordinatorType, jobType: Job) {
         super.init(sceneCoordinator: sceneCoordinator)
         
-        fetch()
+        fetchProfilesWanted(jobType: jobType)
     }
     
-    func fetch() {
-        profileInfoProvider.rx.request(.profilesWanted)
+    func fetchProfilesWanted(jobType: Job) {
+        profileInfoProvider.rx.request(.profilesWanted(type: jobType))
             .mapObject(Result<ProfilesData>.self)
             .asObservable()
             .withUnretained(self)
@@ -43,8 +43,8 @@ class SavedProfilesContentViewModel: CommonViewModel {
                     }
                     owner.savedProfiles.accept(profiles)
                 },
-                onError: { [weak self] error in
-                    error.localizedDescription.toast()
+                onError: { error in
+                    error.showToast(modelType: ProfilesData.self)
                 }).disposed(by: disposeBag)
         
     }

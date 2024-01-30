@@ -30,8 +30,8 @@ extension TabBarType {
                 CompetitionViewController()
             ]
         case .savedProfiles:
-            let actorViewModel = SavedProfilesContentViewModel(sceneCoordinator: sceneCoordinator)
-            let staffViewModel = SavedProfilesContentViewModel(sceneCoordinator: sceneCoordinator)
+            let actorViewModel = SavedProfilesContentViewModel(sceneCoordinator: sceneCoordinator, jobType: .actor)
+            let staffViewModel = SavedProfilesContentViewModel(sceneCoordinator: sceneCoordinator, jobType: .staff)
             return [
                 Scene.savedProfilesContent(actorViewModel).instantiate(), // 배우 탭
                 Scene.savedProfilesContent(staffViewModel).instantiate()  // 스태프 탭

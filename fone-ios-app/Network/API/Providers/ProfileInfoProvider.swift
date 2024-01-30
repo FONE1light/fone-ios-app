@@ -11,7 +11,7 @@ import Moya
 enum ProfileInfoTarget {
     case profiles(type: Job, sort: [String], page: Int, size: Int)
     case profileDetail(profileId: Int, type: Job)
-    case profilesWanted
+    case profilesWanted(type: Job)
 }
 
 extension ProfileInfoTarget: TargetType {
@@ -45,8 +45,10 @@ extension ProfileInfoTarget: TargetType {
             ], encoding: URLEncoding.default)
         case let .profileDetail(_, type):
             return .requestParameters(parameters: ["type": type.name], encoding: URLEncoding.default)
-        case .profilesWanted:
-            return .requestPlain
+        case let .profilesWanted(type):
+            return .requestParameters(parameters: [
+                "type": type.name
+            ], encoding: URLEncoding.default)
         }
     }
     
