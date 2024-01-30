@@ -15,7 +15,7 @@ struct Profile {
     let age: String?
     let isSaved: Bool?
     let birthYear: String?
-    let job: Job? // 서버 데이터 확인 후 수정
+    let job: Job?
 }
 
 class SavedProfilesContentViewController: UIViewController, ViewModelBindableType {
@@ -59,6 +59,16 @@ class SavedProfilesContentViewController: UIViewController, ViewModelBindableTyp
                 owner.profiles = profiles
                 owner.collectionView.reloadData()
             }.disposed(by: disposeBag)
+        
+        collectionView.rx.itemSelected
+            .withUnretained(self)
+            .bind { owner, indexPath in
+                let profile = owner.profiles[indexPath.row]
+                guard let id = profile.id,
+                      let job = profile.job else { return }
+                
+                owner.viewModel.goJobHuntingDetail(jobHuntingId: id, type: job)
+            }.disposed(by: rx.disposeBag)
     }
     
     override func viewDidLoad() {
@@ -94,14 +104,12 @@ extension SavedProfilesContentViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as MyPageProfileCell
         let profile = profiles[indexPath.row]
         
-        // FIXME: API response 모델 따라서 현행화
         cell.configure(
             id: profile.id,
             jobType: profile.job?.name,
             image: profile.imageUrl,
             name: profile.name,
             birthYear: profile.birthYear,
-//            age: profile.age,
             age: Int(profile.age ?? ""),
             isSaved: profile.isSaved
         )
