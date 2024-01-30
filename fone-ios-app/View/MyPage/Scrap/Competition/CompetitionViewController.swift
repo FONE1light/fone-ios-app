@@ -10,6 +10,7 @@ import RxSwift
 import SnapKit
 
 struct CompetitionScrap {
+    let id: Int?
     let title: String?
     let coorporation: String?
     let leftDays: String?
@@ -46,6 +47,13 @@ class CompetitionViewController: UIViewController, ViewModelBindableType {
                 owner.competitions = competitions
                 owner.tableView.reloadData()
             }.disposed(by: disposeBag)
+        
+        tableView.rx.itemSelected
+            .withUnretained(self)
+            .bind { owner, indexPath in
+                guard let id = owner.competitions[indexPath.row].id else { return }
+                owner.viewModel.moveToCompetitionDetail(id: id)
+            }.disposed(by: rx.disposeBag)
     }
     
     
@@ -74,6 +82,4 @@ extension CompetitionViewController: UITableViewDataSource {
         
         return cell
     }
-    
-    
 }

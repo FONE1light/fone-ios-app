@@ -43,6 +43,14 @@ class JobViewController: UIViewController, ViewModelBindableType {
                 owner.jobScraps = jobScraps ?? []
                 owner.tableView.reloadData()
             }.disposed(by: disposeBag)
+        
+        tableView.rx.itemSelected
+            .withUnretained(self)
+            .bind { owner, indexPath in
+                guard let id = owner.jobScraps[indexPath.row].id,
+                let jobType = owner.jobScraps[indexPath.row].job else { return }
+                owner.viewModel.goJobOpeningDetail(jobOpeningId: id, type: jobType)
+            }.disposed(by: rx.disposeBag)
     }
     
     override func viewDidLoad() {
