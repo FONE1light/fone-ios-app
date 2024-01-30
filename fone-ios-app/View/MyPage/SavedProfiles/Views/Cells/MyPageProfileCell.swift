@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 import SnapKit
 import Then
 
@@ -22,13 +23,9 @@ class MyPageProfileCell: UICollectionViewCell {
     var disposeBag = DisposeBag()
     var id: Int?
     var jobType: String?
-    private var isSaved = false {
+    var isSaved = false {
         didSet {
-            if isSaved {
-                heartImageView.image = UIImage(named: "heart_on")
-            } else {
-                heartImageView.image = UIImage(named: "heart_01_off")
-            }
+            heartButton.isSelected = isSaved
         }
     }
     
@@ -49,8 +46,9 @@ class MyPageProfileCell: UICollectionViewCell {
         $0.textColor = .gray_555555
     }
     
-    private let heartImageView = UIImageView().then {
-        $0.image = UIImage(named: "heart_01_off")
+    private let heartButton = HeartButton()
+    var heartButtonTap: ControlEvent<Void> {
+        heartButton.rx.tap
     }
     
     override init(frame: CGRect) {
@@ -65,7 +63,7 @@ class MyPageProfileCell: UICollectionViewCell {
     }
     
     private func setupUI() {
-        [imageView, nameLabel, ageLabel, heartImageView]
+        [imageView, nameLabel, ageLabel, heartButton]
             .forEach { addSubview($0) }
     }
     
@@ -85,7 +83,7 @@ class MyPageProfileCell: UICollectionViewCell {
             $0.leading.trailing.bottom.equalToSuperview()
         }
         
-        heartImageView.snp.makeConstraints {
+        heartButton.snp.makeConstraints {
             $0.size.equalTo(24)
             $0.top.trailing.equalToSuperview().inset(10)
         }

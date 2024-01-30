@@ -114,6 +114,20 @@ extension SavedProfilesContentViewController: UICollectionViewDataSource {
             isSaved: profile.isSaved
         )
         
+        cell.heartButtonTap
+            .asDriver()
+            .do {_ in
+                // cell의 button toggle
+                cell.isSaved.toggle()
+            }
+            .debounce(.milliseconds(500))
+            .asObservable()
+            .withUnretained(self)
+            .bind { owner, _ in
+                // API 호출
+                owner.viewModel.toggleWanted(id: profile.id)
+            }.disposed(by: cell.disposeBag)
+        
         return cell
     }
 

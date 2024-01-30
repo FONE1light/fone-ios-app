@@ -31,6 +31,7 @@
 		362C80312B13672200489E7D /* RegisterDetailContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362C80302B13672200489E7D /* RegisterDetailContentViewModel.swift */; };
 		362C80332B13673C00489E7D /* RegisterDetailContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362C80322B13673C00489E7D /* RegisterDetailContentViewController.swift */; };
 		362C80352B139D8000489E7D /* LetterCountedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362C80342B139D7F00489E7D /* LetterCountedTextView.swift */; };
+		36323CD62B68DF9200AC99ED /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36323CD52B68DF9200AC99ED /* HeartButton.swift */; };
 		363D48E12B44642A002164A7 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D48E02B44642A002164A7 /* Collection+Extension.swift */; };
 		364482CC2AB7C75E00984507 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482CB2AB7C75E00984507 /* MyPageViewController.swift */; };
 		364482CE2AB7C76500984507 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482CD2AB7C76500984507 /* MyPageViewModel.swift */; };
@@ -355,6 +356,7 @@
 		362C80302B13672200489E7D /* RegisterDetailContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailContentViewModel.swift; sourceTree = "<group>"; };
 		362C80322B13673C00489E7D /* RegisterDetailContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailContentViewController.swift; sourceTree = "<group>"; };
 		362C80342B139D7F00489E7D /* LetterCountedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterCountedTextView.swift; sourceTree = "<group>"; };
+		36323CD52B68DF9200AC99ED /* HeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButton.swift; sourceTree = "<group>"; };
 		363D48E02B44642A002164A7 /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		364482CB2AB7C75E00984507 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		364482CD2AB7C76500984507 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
@@ -1244,6 +1246,7 @@
 				362C80342B139D7F00489E7D /* LetterCountedTextView.swift */,
 				360E843D2B2984C000D4A540 /* ReportBottomSheet.swift */,
 				36FB6B902B374D9900715EE9 /* BookmarkButton.swift */,
+				36323CD52B68DF9200AC99ED /* HeartButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1958,6 +1961,7 @@
 				367D9C0F2AD9FBC900DA6C96 /* MyPageTabBarCollectionView.swift in Sources */,
 				366F22A82ADB2BFD00FD00BD /* DetailInfoBlock.swift in Sources */,
 				ABF3034B2AA33E4A00C14AF7 /* EmailSignUpViewModel.swift in Sources */,
+				36323CD62B68DF9200AC99ED /* HeartButton.swift in Sources */,
 				ABCDD1972B00F3BD00A598A8 /* FooterCell.swift in Sources */,
 				362866942A8E3D4700CD42BC /* Single+Codable.swift in Sources */,
 				ABF817292AF27B1D00625D55 /* RecruitBasicInfoViewController.swift in Sources */,

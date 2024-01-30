@@ -46,7 +46,23 @@ class SavedProfilesContentViewModel: CommonViewModel {
                 onError: { error in
                     error.showToast(modelType: ProfilesData.self)
                 }).disposed(by: disposeBag)
-        
+    }
+    
+    func toggleWanted(id: Int?) {
+        guard let id = id else { return }
+        profileInfoProvider.rx.request(.profileWant(profileId: id))
+            .mapObject(Result<ProfilesData>.self) // 대체
+            .asObservable()
+            .withUnretained(self)
+            .subscribe (
+                onNext: { owner, response in
+                    if response.result?.isSuccess != true {
+                        "프로필 찜하기를 실패했습니다.".toast()
+                    }
+                },
+                onError: { error in
+                    error.showToast(modelType: ProfilesData.self)
+                }).disposed(by: disposeBag)
     }
 }
 
