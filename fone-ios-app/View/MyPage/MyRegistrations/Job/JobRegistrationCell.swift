@@ -34,24 +34,20 @@ class JobRegistrationCell: UITableViewCell {
         setConstraints()
     }
     
-    func configure(
-        job: Job, // actor/staff
-        categories: [Category], // 작품 성격 최대 2개
-        dDay: String? = nil,
-        coorporate: String? = nil,
-        casting: String? = nil,
-        field: String? = nil
-    ) {
-        // FIXME: 현행화
+    func configure(_ jobRegistration: JobOpening) {
         mainContentView.configure(
-            categories: categories,
-//            title: title,
-            dDay: dDay
-//            coorporate: coorporate,
-//            casting: casting,
-//            field: field
+            profileUrl: jobRegistration.profileUrl,
+            isVerified: jobRegistration.isVerified,
+            categories: jobRegistration.categories ?? [],
+            isScrap: nil,
+            title: jobRegistration.title,
+            dDay: jobRegistration.dDay,
+            genre: jobRegistration.genre,
+            domain: jobRegistration.domain,
+            produce: jobRegistration.produce
         )
         
+        guard let job = jobRegistration.job else { return }
         jobTag.setType(as: job)
     }
     
