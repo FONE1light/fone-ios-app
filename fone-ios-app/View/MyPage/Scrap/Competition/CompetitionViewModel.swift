@@ -49,7 +49,7 @@ class CompetitionViewModel: CommonViewModel {
     func toggleScrap(id: Int?) {
         guard let id = id else { return }
         competitionInfoProvider.rx.request(.scrapCompetition(competitionId: id))
-            .mapObject(Result<CompetitionContent>.self) // TODO: 대체
+            .mapObject(Result<CompetitionContent>.self) // 빈 json
             .asObservable()
             .withUnretained(self)
             .subscribe (

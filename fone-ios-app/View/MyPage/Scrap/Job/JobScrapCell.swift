@@ -22,9 +22,7 @@ class JobScrapCell: UITableViewCell {
         height: 6, color: .gray_F8F8F8
     )
     
-    var bookmarkButtonTap: ControlEvent<Void> {
-        mainContentView.bookmarkButtonTap
-    }
+    var isScrap = BehaviorRelay<Bool>(value: true)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -32,6 +30,8 @@ class JobScrapCell: UITableViewCell {
         self.selectionStyle = .none
         setupUI()
         setConstraints()
+        
+        bind()
     }
     
     func configure(_ jobScrap: JobScrap) {
@@ -72,13 +72,23 @@ class JobScrapCell: UITableViewCell {
         }
     }
     
+    private func bind() {
+        mainContentView.bookmarkButtonTap
+            .asDriver()
+            .do { [weak self] _ in
+                // cell의 button toggle
+                self?.mainContentView.toggleBookmarkButton()
+            }
+            .debounce(.milliseconds(500))
+            .asObservable()
+            .withUnretained(self)
+            .bind { owner, _ in
+                // API 호출 위해 상태값 방출
+                owner.isScrap.accept(owner.mainContentView.isBookmarkButtonSelected)
+            }.disposed(by: disposeBag)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension JobScrapCell {
-    func toggleBookmarkButton() {
-        mainContentView.toggleBookmarkButton()
     }
 }

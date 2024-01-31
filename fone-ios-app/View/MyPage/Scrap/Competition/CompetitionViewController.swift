@@ -82,20 +82,14 @@ extension CompetitionViewController: UITableViewDataSource {
         
         cell.configure(competition)
         
-        cell.bookmarkButtonTap
-            .asDriver()
-            .do {_ in
-                // cell의 button toggle
-                cell.toggleBookmarkButton()
-            }
-            .debounce(.milliseconds(500))
-            .asObservable()
+        cell.isScrap
+            .distinctUntilChanged()
+            .skip(1) // distinct를 사용하게 위해 초기값이 필요하나 api call는 막고자 skip 1
             .withUnretained(self)
             .bind { owner, _ in
                 // API 호출
                 owner.viewModel.toggleScrap(id: competition.id)
             }.disposed(by: cell.disposeBag)
-        
         return cell
     }
 }

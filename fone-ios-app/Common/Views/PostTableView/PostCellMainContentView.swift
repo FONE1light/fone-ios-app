@@ -43,6 +43,9 @@ class PostCellMainContentView: UIView {
     var bookmarkButtonTap: ControlEvent<Void> {
         bookmarkButton.rx.tap
     }
+    var isBookmarkButtonSelected: Bool {
+        bookmarkButton.isSelected
+    }
     
     private let detailInfoBlock = DetailInfoBlock()
     

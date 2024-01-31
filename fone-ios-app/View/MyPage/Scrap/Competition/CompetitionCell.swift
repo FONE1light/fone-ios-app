@@ -50,9 +50,7 @@ class CompetitionCell: UITableViewCell {
     }
     
     private let bookmarkButton = BookmarkButton()
-    var bookmarkButtonTap: ControlEvent<Void> {
-        bookmarkButton.rx.tap
-    }
+    var isScrap = BehaviorRelay<Bool>(value: true)
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -64,6 +62,8 @@ class CompetitionCell: UITableViewCell {
         selectionStyle = .none
         setupUI()
         setupConstraints()
+        
+        bind()
     }
     
     private func setupUI() {
@@ -129,17 +129,27 @@ class CompetitionCell: UITableViewCell {
         
     }
     
+    private func bind() {
+        bookmarkButton.rx.tap
+            .asDriver()
+            .do { [weak self] _ in
+                // cell의 button toggle
+                self?.bookmarkButton.toggle()
+            }
+            .debounce(.milliseconds(500))
+            .asObservable()
+            .withUnretained(self)
+            .bind { owner, _ in
+                // API 호출 위해 상태값 방출
+                owner.isScrap.accept(owner.bookmarkButton.isSelected)
+            }.disposed(by: disposeBag)
+    }
+    
     func configure(_ competition: CompetitionScrap) {
         titleLabel.text = competition.title
         coorporationLabel.text = competition.coorporation
         dDayLabel.text = competition.leftDays
         viewCountLabel.text = competition.viewCount?.toDecimalFormat()
         bookmarkButton.isSelected = competition.isScrap ?? false
-    }
-}
-
-extension CompetitionCell {
-    func toggleBookmarkButton() {
-        bookmarkButton.toggle()
     }
 }
