@@ -6,19 +6,14 @@
 //
 
 import UIKit
+import RxSwift
 
 class ProfileRegistrationViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: ProfileRegistrationViewModel!
+    private var disposeBag = DisposeBag()
     
-    private var profiles: [Profile] = [
-        Profile(id: nil, imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
-        Profile(id: nil, imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
-        Profile(id: nil, imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
-        Profile(id: nil, imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
-        Profile(id: nil, imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
-        Profile(id: nil, imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
-    ]
+    private var profileRegistrations: [Profile] = []
     
     private lazy var tableView = UITableView().then {
         $0.register(with: ProfileRegistrationCell.self)
@@ -30,7 +25,12 @@ class ProfileRegistrationViewController: UIViewController, ViewModelBindableType
     }
     
     func bindViewModel() {
-        
+        viewModel.profileRegistrations
+            .withUnretained(self)
+            .bind { owner, profiles in
+                owner.profileRegistrations = profiles ?? []
+                owner.tableView.reloadData()
+            }.disposed(by: disposeBag)
     }
     
     override func viewDidLoad() {
@@ -59,13 +59,15 @@ class ProfileRegistrationViewController: UIViewController, ViewModelBindableType
 // MARK: - UITableView functions
 extension ProfileRegistrationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return profiles.count
+        return profileRegistrations.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         let cell = tableView.dequeueReusableCell(for: indexPath) as ProfileRegistrationCell
-        let profile = profiles[indexPath.row]
-        cell.configure(name: profile.name, job: .actor, birthYear: "1985", age: "38")
+        let cell = tableView.dequeueReusableCell(for: indexPath) as ProfileRegistrationCell
+        let profile = profileRegistrations[indexPath.row]
+        
+        cell.configure(profile)
+        
         return cell
     }
 }

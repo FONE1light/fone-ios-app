@@ -17,10 +17,10 @@ class JobRegistrationViewModel: CommonViewModel {
     override init(sceneCoordinator: SceneCoordinatorType) {
         super.init(sceneCoordinator: sceneCoordinator)
         
-        fetchRegistrations()
+        fetchJobRegistrations()
     }
     
-    private func fetchRegistrations() {
+    private func fetchJobRegistrations() {
         jobOpeningInfoProvider.rx.request(.myRegistrations)
             .mapObject(Result<JobOpeningsData>.self)
             .asObservable()

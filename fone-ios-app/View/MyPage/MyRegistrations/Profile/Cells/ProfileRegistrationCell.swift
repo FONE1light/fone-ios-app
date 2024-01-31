@@ -65,16 +65,11 @@ class ProfileRegistrationCell: UITableViewCell {
         self.setConstraints()
     }
     
-    func configure(
-        name: String?,
-        job: Job?,
-        birthYear: String?,
-        age: String?
-    ) {
-        nameLabel.text = name
-        jobLabel.text = job?.name
-        birthYearLabel.text = "\(birthYear ?? "")년생"
-        ageLabel.text = "(\(age ?? "")살)"
+    func configure(_ profile: Profile) {
+        nameLabel.text = profile.name
+        jobLabel.text = profile.job?.name
+        birthYearLabel.text = "\(profile.birthYear ?? "")년생"
+        ageLabel.text = "(\(profile.age ?? "")살)"
     }
     
     private func setupUI() {

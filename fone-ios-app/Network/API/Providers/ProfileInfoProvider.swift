@@ -15,6 +15,7 @@ enum ProfileInfoTarget {
     case profilesWanted(type: Job)
     /// 프로필 찜하기/찜 해제하기
     case profileWant(profileId: Int)
+    case myRegistrations
 }
 
 extension ProfileInfoTarget: TargetType {
@@ -32,6 +33,8 @@ extension ProfileInfoTarget: TargetType {
             return "/api/v1/profiles/wants"
         case .profileWant(let profileId):
             return "/api/v1/profiles/\(profileId)/want"
+        case .myRegistrations:
+            return "/api/v1/profiles/my-registrations"
         }
     }
     
@@ -59,18 +62,15 @@ extension ProfileInfoTarget: TargetType {
             return .requestParameters(parameters: [
                 "type": type.name
             ], encoding: URLEncoding.default)
-        case .profileWant:
+        case .profileWant, .myRegistrations:
             return .requestPlain
         }
     }
     
     var headers: [String : String]? {
-        switch self {
-        case .profiles, .profileDetail, .profilesWanted, .profileWant:
-            let accessToken = Tokens.shared.accessToken.value
-            let authorization = "Bearer \(accessToken)"
-            return ["Authorization": authorization]
-        }
+        let accessToken = Tokens.shared.accessToken.value
+        let authorization = "Bearer \(accessToken)"
+        return ["Authorization": authorization]
     }
     
     var validationType: ValidationType {
