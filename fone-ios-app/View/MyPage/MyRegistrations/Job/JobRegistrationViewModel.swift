@@ -54,3 +54,25 @@ class JobRegistrationViewModel: CommonViewModel {
                 }).disposed(by: disposeBag)
     }
 }
+
+// MARK: - 화면 이동
+extension JobRegistrationViewModel {
+    /// 모집 상세로 이동
+    func goJobOpeningDetail(jobOpeningId: Int, type: Job) {
+        jobOpeningInfoProvider.rx.request(.jobOpeningDetail(jobOpeningId: jobOpeningId, type: type))
+            .mapObject(JobOpeningInfo.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, response in
+                guard let jobOpening = response.data?.jobOpening else {
+                    response.message.toast()
+                    return }
+                let viewModel = JobOpeningDetailViewModel(sceneCoordinator: owner.sceneCoordinator, jobOpeningDetail: jobOpening)
+                let detailScene = Scene.jobOpeningDetail(viewModel)
+                owner.sceneCoordinator.transition(to: detailScene, using: .push, animated: true)
+            },
+                       onError: { error in
+                print(error)
+            }).disposed(by: disposeBag)
+    }
+}

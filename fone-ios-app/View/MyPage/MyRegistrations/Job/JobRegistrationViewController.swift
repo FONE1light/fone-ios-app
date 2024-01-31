@@ -65,6 +65,15 @@ extension JobRegistrationViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(for: indexPath) as JobRegistrationCell
         
         cell.configure(jobRegistration)
+        
+        // buttons
+        cell.cellButtonTap
+            .withUnretained(self)
+            .bind { owner, _ in
+                guard let id = jobRegistration.id,
+                      let job = jobRegistration.job else { return }
+                owner.viewModel.goJobOpeningDetail(jobOpeningId: id, type: job)
+            }.disposed(by: cell.disposeBag)
 
         return cell
     }

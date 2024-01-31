@@ -7,8 +7,12 @@
 
 import UIKit
 import RxCocoa
+import RxSwift
 
 class JobRegistrationCell: UITableViewCell {
+
+    static let identifier = String(describing: JobRegistrationCell.self)
+    var disposeBag = DisposeBag()
     
     private let mainContentView = PostCellMainContentView(hasBookmark: false)
     private var jobTag = Tag()
@@ -16,15 +20,26 @@ class JobRegistrationCell: UITableViewCell {
     private let horizontalDivider = Divider(height: 1, color: .gray_D9D9D9)
     private let verticalDivider = Divider(width: 1, color: .gray_D9D9D9)
         
+    private let cellButton = UIButton()
     private let modifyButton = JobRegistrationButton(title: "수정하기")
     private let deleteButton = JobRegistrationButton(title: "삭제")
-    
-    static let identifier = String(describing: JobRegistrationCell.self)
-    
+        
     private let separator = Divider(
         width: UIScreen.main.bounds.width,
         height: 6, color: .gray_F8F8F8
     )
+    
+    var cellButtonTap: ControlEvent<Void> {
+        cellButton.rx.tap
+    }
+
+    var modifyButtonTap: ControlEvent<Void> {
+        modifyButton.buttonTap
+    }
+
+    var deleteButtonTap: ControlEvent<Void> {
+        deleteButton.buttonTap
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -55,6 +70,7 @@ class JobRegistrationCell: UITableViewCell {
         [
             mainContentView,
             jobTag,
+            cellButton,
             horizontalDivider,
             modifyButton,
             deleteButton,
@@ -73,6 +89,11 @@ class JobRegistrationCell: UITableViewCell {
         
         jobTag.snp.makeConstraints {
             $0.trailing.bottom.equalTo(mainContentView)
+        }
+        
+        cellButton.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(horizontalDivider.snp.top)
         }
         
         horizontalDivider.snp.makeConstraints {

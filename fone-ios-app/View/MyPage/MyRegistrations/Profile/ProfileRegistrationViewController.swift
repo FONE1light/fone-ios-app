@@ -68,6 +68,14 @@ extension ProfileRegistrationViewController: UITableViewDataSource {
         
         cell.configure(profile)
         
+        // buttons
+        cell.cellButtonTap
+            .withUnretained(self)
+            .bind { owner, _ in
+                guard let id = profile.id,
+                      let job = profile.job else { return }
+                owner.viewModel.goJobHuntingDetail(jobHuntingId: id, type: job)
+            }.disposed(by: cell.disposeBag)
         return cell
     }
 }
