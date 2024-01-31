@@ -26,7 +26,6 @@ enum Scene {
     case scrap(ScrapViewModel)     // 스크랩
     case scrapJob(JobViewModel)     // 스크랩 > 구인구직 content 영역
     case scrapCompetition(CompetitionViewModel) // 스크랩 > 공모전 content 영역
-//    case competition(CompetitionViewModel) // 공모전 // TODO: 구인구직, 공모전 뷰 컨 UI 범위 확인 후 삭제
     case savedProfiles(SavedProfilesTabBarViewModel) // 찜한 프로필
     case savedProfilesContent(SavedProfilesContentViewModel) // 찜한 프로필 content 영역
     case myRegistrations(MyRegistrationsViewModel) // 나의 등록내역
@@ -202,15 +201,6 @@ extension Scene {
             }
 
             return competitionVC
-            
-//        case .competition(let competitionViewModel):
-//            var competitionVC = CompetitionViewController()
-//            
-//            DispatchQueue.main.async {
-//                competitionVC.bind(viewModel: competitionViewModel)
-//            }
-//            
-//            return competitionVC
             
         case .savedProfiles(let savedProfilesTabBarViewModel):
             var savedProfilesVC = SavedProfilesTabBarController()
