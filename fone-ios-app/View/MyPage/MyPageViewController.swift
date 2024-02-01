@@ -94,8 +94,8 @@ class MyPageViewController: UIViewController, ViewModelBindableType {
         buttonStackView?.saveButtonTap
             .withUnretained(self)
             .bind { owner, _ in
-                let viewModel = MyRegistrationsViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator)
-                let scene = Scene.myRegistrations(viewModel)
+                let viewModel = SavedProfilesTabBarViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator)
+                let scene = Scene.savedProfiles(viewModel)
                 
                 owner.viewModel.sceneCoordinator.transition(to: scene, using: .push, animated: true)
             }.disposed(by: rx.disposeBag)

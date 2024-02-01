@@ -46,7 +46,10 @@ class MyRegistrationsViewController: UIViewController, ViewModelBindableType {
     }
     
     private func initPageController() {
-        pageController = MyPagePageViewController(tabBarType: .myRegistrations)
+        pageController = MyPagePageViewController(
+            tabBarType: .myRegistrations,
+            sceneCoordinator: viewModel.sceneCoordinator
+        )
         // TODO: y offset, height 확정
         let tabBarHeight = MyPageTabBarCollectionView.Constants.tabBarHeight + MyPageTabBarCollectionView.Constants.grayUnderlineHeight
         self.pageController.view.frame = CGRect.init(

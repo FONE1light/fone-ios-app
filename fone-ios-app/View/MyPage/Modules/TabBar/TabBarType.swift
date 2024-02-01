@@ -22,7 +22,7 @@ extension TabBarType {
         }
     }
     
-    var viewControllers: [UIViewController] {
+    func getViewControllers(sceneCoordinator: SceneCoordinatorType) -> [UIViewController] {
         switch self {
         case .scrap:
             return [
@@ -30,9 +30,11 @@ extension TabBarType {
                 CompetitionViewController()
             ]
         case .savedProfiles:
+            let actorViewModel = SavedProfilesContentViewModel(sceneCoordinator: sceneCoordinator, jobType: .actor)
+            let staffViewModel = SavedProfilesContentViewModel(sceneCoordinator: sceneCoordinator, jobType: .staff)
             return [
-                SavedProfilesContentViewController(backgroundColor: .beige_624418), // 배우 탭
-                SavedProfilesContentViewController(backgroundColor: .gray) // 스태프 탭
+                Scene.savedProfilesContent(actorViewModel).instantiate(), // 배우 탭
+                Scene.savedProfilesContent(staffViewModel).instantiate()  // 스태프 탭
             ]
         case .myRegistrations:
             return [

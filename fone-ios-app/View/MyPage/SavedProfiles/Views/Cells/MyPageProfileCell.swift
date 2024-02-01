@@ -7,31 +7,25 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 import SnapKit
 import Then
 
 class MyPageProfileCell: UICollectionViewCell {
     
-    struct Constants {
-        /// leading, trailing inset
-        static let leadingInset: CGFloat = 16
-        /// top, bottom inset
-        static let topInset: CGFloat = 8
-        /// `label`의 fontSize
-        static let fontSize: CGFloat = 14
+    private struct Constants {
+        static let imageHeight: CGFloat = 198
+        static let nameLabelTopOffset: CGFloat = 6
+        static let ageLabelTopOffset: CGFloat = 2
     }
     
     static let identifier = String(describing: MyPageProfileCell.self)
     var disposeBag = DisposeBag()
     var id: Int?
     var jobType: String?
-    private var isSaved = false {
+    var isSaved = false {
         didSet {
-            if isSaved {
-                heartImageView.image = UIImage(named: "heart_on")
-            } else {
-                heartImageView.image = UIImage(named: "heart_01_off")
-            }
+            heartButton.isSelected = isSaved
         }
     }
     
@@ -52,8 +46,9 @@ class MyPageProfileCell: UICollectionViewCell {
         $0.textColor = .gray_555555
     }
     
-    private let heartImageView = UIImageView().then {
-        $0.image = UIImage(named: "heart_01_off")
+    private let heartButton = HeartButton()
+    var heartButtonTap: ControlEvent<Void> {
+        heartButton.rx.tap
     }
     
     override init(frame: CGRect) {
@@ -68,27 +63,27 @@ class MyPageProfileCell: UICollectionViewCell {
     }
     
     private func setupUI() {
-        [imageView, nameLabel, ageLabel, heartImageView]
+        [imageView, nameLabel, ageLabel, heartButton]
             .forEach { addSubview($0) }
     }
     
     private func setConstraints() {
         imageView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(198)
+            $0.height.equalTo(MyPageProfileCell.Constants.imageHeight)
         }
         
         nameLabel.snp.makeConstraints {
-            $0.top.equalTo(imageView.snp.bottom).offset(7)
+            $0.top.equalTo(imageView.snp.bottom).offset(MyPageProfileCell.Constants.nameLabelTopOffset)
             $0.leading.trailing.equalToSuperview()
         }
         
         ageLabel.snp.makeConstraints {
-            $0.top.equalTo(nameLabel.snp.bottom).offset(2)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(MyPageProfileCell.Constants.ageLabelTopOffset)
             $0.leading.trailing.bottom.equalToSuperview()
         }
         
-        heartImageView.snp.makeConstraints {
+        heartButton.snp.makeConstraints {
             $0.size.equalTo(24)
             $0.top.trailing.equalToSuperview().inset(10)
         }
@@ -112,4 +107,11 @@ class MyPageProfileCell: UICollectionViewCell {
     }
 }
 
+extension MyPageProfileCell {
+    static func cellHeight(width: CGFloat) -> CGFloat {
+        let nameHeight = UILabel.getLabelHeight(width: width, text: "text", font: UIFont.font_b(16), line: 1)
+        let ageHeight = UILabel.getLabelHeight(width: width, text: "text", font: UIFont.font_b(13), line: 1)
+        return MyPageProfileCell.Constants.imageHeight + MyPageProfileCell.Constants.nameLabelTopOffset + nameHeight + MyPageProfileCell.Constants.ageLabelTopOffset + ageHeight
+    }
+}
 

@@ -6,31 +6,24 @@
 //
 
 import UIKit
+import RxSwift
 
 struct Profile {
+    let id: Int?
     let imageUrl: String?
     let name: String?
     let age: String?
     let isSaved: Bool?
-    let birthYear: String? // age, birthYear 공존 혹은 하나만?
-    let job: Job? // 서버 데이터 확인 후 수정
+    let birthYear: String?
+    let job: Job?
 }
 
 class SavedProfilesContentViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: SavedProfilesContentViewModel!
+    private var disposeBag = DisposeBag()
     
-    private var profiles: [Profile] = [
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true, birthYear: nil, job: nil),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: false, birthYear: nil, job: nil),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true, birthYear: nil, job: nil),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: false, birthYear: nil, job: nil),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true, birthYear: nil, job: nil),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true, birthYear: nil, job: nil),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: false, birthYear: nil, job: nil),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true, birthYear: nil, job: nil),
-        Profile(imageUrl: nil, name: "황우슬혜", age: "1985년생 (38살)", isSaved: true, birthYear: nil, job: nil)
-    ]
+    private var profiles: [Profile] = []
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -50,11 +43,8 @@ class SavedProfilesContentViewController: UIViewController, ViewModelBindableTyp
         return collectionView
     }()
     
-    // TODO: 추후 backgroundColor 삭제
-    init(backgroundColor: UIColor) {
+    init() {
         super.init(nibName: nil, bundle: nil)
-        
-//        view.backgroundColor = backgroundColor
     }
 
     required init?(coder: NSCoder) {
@@ -62,7 +52,23 @@ class SavedProfilesContentViewController: UIViewController, ViewModelBindableTyp
     }
     
     func bindViewModel() {
+        viewModel.savedProfiles
+            .withUnretained(self)
+            .bind { owner, profiles in
+                guard let profiles = profiles else { return }
+                owner.profiles = profiles
+                owner.collectionView.reloadData()
+            }.disposed(by: disposeBag)
         
+        collectionView.rx.itemSelected
+            .withUnretained(self)
+            .bind { owner, indexPath in
+                let profile = owner.profiles[indexPath.row]
+                guard let id = profile.id,
+                      let job = profile.job else { return }
+                
+                owner.viewModel.goJobHuntingDetail(jobHuntingId: id, type: job)
+            }.disposed(by: rx.disposeBag)
     }
     
     override func viewDidLoad() {
@@ -70,7 +76,6 @@ class SavedProfilesContentViewController: UIViewController, ViewModelBindableTyp
         
         setUI()
         setConstraints()
-                
     }
     
     private func setUI() {
@@ -99,17 +104,29 @@ extension SavedProfilesContentViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as MyPageProfileCell
         let profile = profiles[indexPath.row]
         
-        // FIXME: API response 모델 따라서 현행화
         cell.configure(
-            id: nil,
-            jobType: nil,
-            image: nil,
+            id: profile.id,
+            jobType: profile.job?.name,
+            image: profile.imageUrl,
             name: profile.name,
             birthYear: profile.birthYear,
-//            age: profile.age,
             age: Int(profile.age ?? ""),
             isSaved: profile.isSaved
         )
+        
+        cell.heartButtonTap
+            .asDriver()
+            .do {_ in
+                // cell의 button toggle
+                cell.isSaved.toggle()
+            }
+            .debounce(.milliseconds(500))
+            .asObservable()
+            .withUnretained(self)
+            .bind { owner, _ in
+                // API 호출
+                owner.viewModel.toggleWanted(id: profile.id)
+            }.disposed(by: cell.disposeBag)
         
         return cell
     }
@@ -119,8 +136,8 @@ extension SavedProfilesContentViewController: UICollectionViewDataSource {
 extension SavedProfilesContentViewController: UICollectionViewDelegateFlowLayout {
     // MARK: cellSize
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let defaultHeight = 223.0 // FIXME: 셀크기로
         let itemWidth = (UIScreen.main.bounds.width - 16*2 - 14) / 2
+        let defaultHeight = MyPageProfileCell.cellHeight(width: itemWidth)
         return CGSize(width: itemWidth, height: defaultHeight)
     }
     
