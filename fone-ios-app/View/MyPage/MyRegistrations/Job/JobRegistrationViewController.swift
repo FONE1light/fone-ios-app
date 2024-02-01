@@ -79,17 +79,16 @@ extension JobRegistrationViewController: UITableViewDataSource {
             .withUnretained(self)
             .bind { owner, _ in
                 guard let id = jobRegistration.id else { return }
-                owner.deleteJobOpening(jobOpeningId: id)
+                owner.showDeletePopup(jobOpeningId: id)
             }.disposed(by: cell.disposeBag)
 
         return cell
     }
-
 }
 
 
 extension JobRegistrationViewController {
-    func deleteJobOpening(jobOpeningId: Int) {
+    func showDeletePopup(jobOpeningId: Int) {
         let message = "게시글을 삭제하면 다시 되돌릴 수 없어요. 정말 삭제 하시겠어요?"
         let alert = UIAlertController.createTwoBlackButtonPopup(
             title: message,
