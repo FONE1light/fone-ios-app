@@ -96,7 +96,21 @@ extension JobViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(for: indexPath) as JobScrapCell
         cell.configure(jobScrap)
         
+        
+        cell.bookmarkButtonTap
+            .asDriver()
+            .do {_ in
+                // cell의 button toggle
+                cell.toggleBookmarkButton()
+            }
+            .debounce(.milliseconds(500))
+            .asObservable()
+            .withUnretained(self)
+            .bind { owner, _ in
+                // API 호출
+                owner.viewModel.toggleScrap(id: jobScrap.id)
+            }.disposed(by: cell.disposeBag)
+
         return cell
     }
-
 }

@@ -18,6 +18,7 @@ enum JobOpeningInfoTarget {
     case createJobOpenings(jobOpeningRequest: JobOpeningRequest)
     case jobOpeningDetail(jobOpeningId: Int, type: Job)
     case scraps
+    case scrapJobOpening(jobOpeningId: Int)
 }
 
 extension JobOpeningInfoTarget: TargetType {
@@ -33,6 +34,8 @@ extension JobOpeningInfoTarget: TargetType {
             return "/api/v1/job-openings/\(jopOpeningId)" //
         case .scraps:
             return "/api/v1/job-openings/scraps"
+        case .scrapJobOpening(let jobOpeningId):
+            return "/api/v1/job-openings/\(jobOpeningId)/scrap"
         }
     }
     
@@ -40,7 +43,7 @@ extension JobOpeningInfoTarget: TargetType {
         switch self {
         case .jobOpenings, .jobOpeningDetail, .scraps:
             return .get
-        case .createJobOpenings:
+        case .createJobOpenings, .scrapJobOpening:
             return .post
         }
     }
@@ -60,12 +63,16 @@ extension JobOpeningInfoTarget: TargetType {
             return .requestParameters(parameters: ["type": type.name], encoding: URLEncoding.default)
         case .scraps:
             return .requestPlain
+        case .scrapJobOpening(let jobOpeningId): // 없어도 에러 발생하지 않으나 스웨거 정의대로 넣어서 보냄
+            return .requestParameters(parameters: [
+                "jobOpeningId": jobOpeningId
+            ], encoding: URLEncoding.default)
         }
     }
     
     var headers: [String : String]? {
         switch self {
-        case .jobOpenings, .createJobOpenings, .jobOpeningDetail, .scraps:
+        case .jobOpenings, .createJobOpenings, .jobOpeningDetail, .scraps, .scrapJobOpening:
             let accessToken = Tokens.shared.accessToken.value
             let authorization = "Bearer \(accessToken)"
             return ["Authorization": authorization]

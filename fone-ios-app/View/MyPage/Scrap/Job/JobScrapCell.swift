@@ -6,18 +6,25 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class JobScrapCell: UITableViewCell {
     
+    static let identifier = String(describing: JobScrapCell.self)
+    var disposeBag = DisposeBag()
+    
     private let mainContentView = PostCellMainContentView(hasBookmark: true)
     private var jobTag = Tag()
-    
-    static let identifier = String(describing: JobScrapCell.self)
     
     private let separator = Divider(
         width: UIScreen.main.bounds.width,
         height: 6, color: .gray_F8F8F8
     )
+    
+    var bookmarkButtonTap: ControlEvent<Void> {
+        mainContentView.bookmarkButtonTap
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -67,5 +74,11 @@ class JobScrapCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension JobScrapCell {
+    func toggleBookmarkButton() {
+        mainContentView.toggleBookmarkButton()
     }
 }
