@@ -6,18 +6,23 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class JobScrapCell: UITableViewCell {
     
+    static let identifier = String(describing: JobScrapCell.self)
+    var disposeBag = DisposeBag()
+    
     private let mainContentView = PostCellMainContentView(hasBookmark: true)
     private var jobTag = Tag()
-    
-    static let identifier = String(describing: JobScrapCell.self)
     
     private let separator = Divider(
         width: UIScreen.main.bounds.width,
         height: 6, color: .gray_F8F8F8
     )
+    
+    var isScrap = BehaviorRelay<Bool>(value: true)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -25,32 +30,24 @@ class JobScrapCell: UITableViewCell {
         self.selectionStyle = .none
         setupUI()
         setConstraints()
+        
+        bind()
     }
     
-    func configure(
-        job: Job, // actor/staff
-        profileUrl: String? = nil,
-        isVerified: Bool? = nil,
-        categories: [Category], // 작품 성격 최대 2개
-        isScrap: Bool? = nil,
-        title: String? = nil,
-        dDay: String? = nil,
-        genre: String? = nil, // 배우 - 장르 중 첫 번째 값
-        domain: String? = nil, // 스태프 - 분야 중 첫 번째 값
-        produce: String? = nil
-    ) {
+    func configure(_ jobScrap: JobScrap) {
         mainContentView.configure(
-            profileUrl: profileUrl,
-            isVerified: isVerified,
-            categories: categories,
-            isScrap: isScrap,
-            title: title,
-            dDay: dDay,
-            genre: genre,
-            domain: domain,
-            produce: produce
+            profileUrl: jobScrap.profileUrl,
+            isVerified: jobScrap.isVerified,
+            categories: jobScrap.categories ?? [],
+            isScrap: jobScrap.isScrap,
+            title: jobScrap.title,
+            dDay: jobScrap.dDay,
+            genre: jobScrap.genre,
+            domain: jobScrap.domain,
+            produce: jobScrap.produce
         )
         
+        guard let job = jobScrap.job else { return }
         jobTag.setType(as: job)
     }
     
@@ -73,6 +70,22 @@ class JobScrapCell: UITableViewCell {
             $0.top.equalTo(mainContentView.snp.bottom).offset(12)
             $0.leading.trailing.bottom.equalToSuperview()
         }
+    }
+    
+    private func bind() {
+        mainContentView.bookmarkButtonTap
+            .asDriver()
+            .do { [weak self] _ in
+                // cell의 button toggle
+                self?.mainContentView.toggleBookmarkButton()
+            }
+            .debounce(.milliseconds(500))
+            .asObservable()
+            .withUnretained(self)
+            .bind { owner, _ in
+                // API 호출 위해 상태값 방출
+                owner.isScrap.accept(owner.mainContentView.isBookmarkButtonSelected)
+            }.disposed(by: disposeBag)
     }
     
     required init?(coder: NSCoder) {

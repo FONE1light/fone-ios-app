@@ -6,22 +6,51 @@
 //
 
 import UIKit
+import RxSwift
 import SnapKit
 
+struct JobScrap {
+    let id: Int?
+    let profileUrl: String?
+    let isVerified: Bool?
+    let categories: [Category]? // 작품 성격 최대 2개
+    let isScrap: Bool?
+    let title: String?
+    let dDay: String?
+    let genre: String? // 배우 - 장르 중 첫 번째 값
+    let domain: String? // 스태프 - 분야 중 첫 번째 값
+    let produce: String?
+    let job: Job?
+}
+
 class JobViewController: UIViewController, ViewModelBindableType {
-    
+
     var viewModel: JobViewModel!
+    private var disposeBag = DisposeBag()
     
+    private var jobScraps: [JobScrap] = []
     private lazy var tableView = UITableView().then {
         $0.showsVerticalScrollIndicator = false
         $0.separatorStyle = .none
-//        $0.delegate = self
         $0.dataSource = self
         $0.register(with: JobScrapCell.self)
     }
     
     func bindViewModel() {
+        viewModel.jobScraps
+            .withUnretained(self)
+            .bind { owner, jobScraps in
+                owner.jobScraps = jobScraps ?? []
+                owner.tableView.reloadData()
+            }.disposed(by: disposeBag)
         
+        tableView.rx.itemSelected
+            .withUnretained(self)
+            .bind { owner, indexPath in
+                guard let id = owner.jobScraps[indexPath.row].id,
+                let jobType = owner.jobScraps[indexPath.row].job else { return }
+                owner.viewModel.goJobOpeningDetail(jobOpeningId: id, type: jobType)
+            }.disposed(by: rx.disposeBag)
     }
     
     override func viewDidLoad() {
@@ -59,34 +88,23 @@ class JobViewController: UIViewController, ViewModelBindableType {
 extension JobViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //        return self.arrDropDownDataSource.count
-        return 2
+        return jobScraps.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let jobScrap = jobScraps[indexPath.row]
         let cell = tableView.dequeueReusableCell(for: indexPath) as JobScrapCell
+        cell.configure(jobScrap)
         
-//        cell.configure(
-//            job: .staff,
-//            categories: [.featureFilm, .youtube],
-//            deadline: "2023.01.20",
-//            coorporate: "성균관대학교 영상학과",
-//            gender: "남자",
-//            period: "일주일",
-//            field: "미술"
-//        )
-        
-        
-        // FIXME: configure 호출 현행화
-        cell.configure(
-            job: .actor,
-            categories: [.ottDrama, .shortFilm],
-            dDay: "D-12"
-//            coorporate: "성균관대학교 영상학과",
-//            casting: "수영선수"
-        )
-        
+        cell.isScrap
+            .distinctUntilChanged()
+            .skip(1) // distinct를 사용하게 위해 초기값이 필요하나 api call는 막고자 skip 1
+            .withUnretained(self)
+            .bind { owner, _ in
+                // API 호출
+                owner.viewModel.toggleScrap(id: jobScrap.id)
+            }.disposed(by: cell.disposeBag)
+
         return cell
     }
-
 }
