@@ -75,4 +75,9 @@ extension JobRegistrationViewModel {
                 print(error)
             }).disposed(by: disposeBag)
     }
+    
+    func deleteJobOpening(jobOpeningId: Int) {
+        // TODO: API 요청
+        print("API CALL")
+    }
 }
