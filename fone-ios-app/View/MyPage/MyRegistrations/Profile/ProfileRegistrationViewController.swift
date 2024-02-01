@@ -76,6 +76,31 @@ extension ProfileRegistrationViewController: UITableViewDataSource {
                       let job = profile.job else { return }
                 owner.viewModel.goJobHuntingDetail(jobHuntingId: id, type: job)
             }.disposed(by: cell.disposeBag)
+        
+        cell.deleteButtonTap
+            .withUnretained(self)
+            .bind { owner, _ in
+                guard let id = profile.id else { return }
+                owner.showDeletePopup(id: id)
+            }.disposed(by: cell.disposeBag)
+        
         return cell
+    }
+}
+
+
+extension ProfileRegistrationViewController {
+    func showDeletePopup(id: Int) {
+        let message = "게시글을 삭제하면 다시 되돌릴 수 없어요. 정말 삭제 하시겠어요?"
+        let alert = UIAlertController.createTwoBlackButtonPopup(
+            title: message,
+            cancelButtonText: "아니오",
+            continueButtonText: "네"
+        ) { [weak self] _ in
+            guard let self = self else { return }
+            self.viewModel.deleteProfileRegistration(jobHuntingId: id)
+        }
+        
+        present(alert, animated: true)
     }
 }

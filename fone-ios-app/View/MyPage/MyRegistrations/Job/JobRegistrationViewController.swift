@@ -96,7 +96,7 @@ extension JobRegistrationViewController {
             continueButtonText: "네"
         ) { [weak self] _ in
             guard let self = self else { return }
-            self.viewModel.deleteJobOpening(jobOpeningId: jobOpeningId)
+            self.viewModel.deleteJobRegistration(jobOpeningId: jobOpeningId)
         }
         
         present(alert, animated: true)

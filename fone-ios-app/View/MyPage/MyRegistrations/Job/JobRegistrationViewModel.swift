@@ -53,6 +53,11 @@ class JobRegistrationViewModel: CommonViewModel {
                     error.showToast(modelType: JobOpeningsData.self)
                 }).disposed(by: disposeBag)
     }
+    
+    func deleteJobRegistration(jobOpeningId: Int) {
+        // TODO: API 요청
+        print("API CALL")
+    }
 }
 
 // MARK: - 화면 이동
@@ -74,10 +79,5 @@ extension JobRegistrationViewModel {
                        onError: { error in
                 print(error)
             }).disposed(by: disposeBag)
-    }
-    
-    func deleteJobOpening(jobOpeningId: Int) {
-        // TODO: API 요청
-        print("API CALL")
     }
 }

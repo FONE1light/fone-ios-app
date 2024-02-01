@@ -49,6 +49,11 @@ class ProfileRegistrationViewModel: CommonViewModel {
             }).disposed(by: disposeBag)
         
     }
+    
+    func deleteProfileRegistration(jobHuntingId: Int) {
+        // TODO: API 요청
+        print("API CALL")
+    }
 }
 
 // MARK: - 화면 이동
