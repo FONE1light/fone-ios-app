@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class RecruitDetailInfoViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var stepIndicator: StepIndicator!
@@ -13,6 +14,8 @@ class RecruitDetailInfoViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var nextButton: UIButton!
     
     var viewModel: RecruitDetailInfoViewModel!
+    
+    let placeholder = "외부 연락처 공개 등 부적절한 내용이 포함된 게시글은 게시가 제한될 수 있어요."
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +27,13 @@ class RecruitDetailInfoViewController: UIViewController, ViewModelBindableType {
         setNavigationBar()
         
         nextButton.rx.tap
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .bind { owner, _ in
-                let recruitDetailInfo = RecruitDetailInfo(details: owner.detailTextView.textView?.text)
-                owner.viewModel.moveToNextStep(recruitDetailInfo: recruitDetailInfo)
+                let details = owner.detailTextView.textView?.text == owner.placeholder ? "" : owner.detailTextView.textView?.text
+                let recruitDetailInfo = RecruitDetailInfo(details: details)
+                owner.viewModel.validateSummary(recruitDetailInfo: recruitDetailInfo)
+//                owner.viewModel.moveToNextStep(recruitDetailInfo: recruitDetailInfo)
             }.disposed(by: rx.disposeBag)
     }
     
@@ -42,7 +48,7 @@ class RecruitDetailInfoViewController: UIViewController, ViewModelBindableType {
     
     private func setUI() {
         stepIndicator.xibInit(index: 4, totalCount: 6)
-        detailTextView.xibInit(placeholder: "외부 연락처 공개 등 부적절한 내용이 포함된 게시글은 게시가 제한될 수 있어요.", textViewHeight: 172, maximumLetterCount: 500)
+        detailTextView.xibInit(placeholder: placeholder, textViewHeight: 172, maximumLetterCount: 500)
         nextButton.applyShadow(shadowType: .shadowBt)
     }
 }
