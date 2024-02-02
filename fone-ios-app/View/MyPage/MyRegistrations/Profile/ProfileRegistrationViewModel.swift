@@ -46,13 +46,27 @@ class ProfileRegistrationViewModel: CommonViewModel {
                 
             },
             onError: { error in
+                error.showToast(modelType: ProfilesData.self)
             }).disposed(by: disposeBag)
         
     }
     
-    func deleteProfileRegistration(jobHuntingId: Int) {
-        // TODO: API 요청
-        print("API CALL")
+    func deleteProfileRegistration(id: Int) {
+        profileInfoProvider.rx.request(.deleteProfile(profileId: id))
+            .mapObject(Result<ProfilesData>.self) // 대체
+            .asObservable()
+            .withUnretained(self)
+            .subscribe (
+                onNext: { owner, response in
+                    if response.result?.isSuccess != true {
+                        "삭제를 실패했습니다.".toast()
+                    } else {
+                        owner.fetchProfileRegistrations()
+                    }
+                },
+                onError: { error in
+                    error.showToast(modelType: ProfilesData.self)
+                }).disposed(by: disposeBag)
     }
 }
 

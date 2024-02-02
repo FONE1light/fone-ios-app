@@ -54,9 +54,22 @@ class JobRegistrationViewModel: CommonViewModel {
                 }).disposed(by: disposeBag)
     }
     
-    func deleteJobRegistration(jobOpeningId: Int) {
-        // TODO: API 요청
-        print("API CALL")
+    func deleteJobRegistration(id: Int) {
+        jobOpeningInfoProvider.rx.request(.deleteJobOpening(jobOpeningId: id))
+            .mapObject(Result<JobOpeningData>.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe (
+                onNext: { owner, response in
+                    if response.result?.isSuccess != true {
+                        "삭제를 실패했습니다.".toast()
+                    } else {
+                        owner.fetchJobRegistrations()
+                    }
+                },
+                onError: { error in
+                    error.showToast(modelType: JobOpeningData.self)
+                }).disposed(by: disposeBag)
     }
 }
 

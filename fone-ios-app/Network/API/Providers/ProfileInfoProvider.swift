@@ -16,6 +16,7 @@ enum ProfileInfoTarget {
     /// 프로필 찜하기/찜 해제하기
     case profileWant(profileId: Int)
     case myRegistrations
+    case deleteProfile(profileId: Int)
 }
 
 extension ProfileInfoTarget: TargetType {
@@ -35,6 +36,8 @@ extension ProfileInfoTarget: TargetType {
             return "/api/v1/profiles/\(profileId)/want"
         case .myRegistrations:
             return "/api/v1/profiles/my-registrations"
+        case .deleteProfile(let profileId):
+            return "/api/v1/profiles/\(profileId)"
         }
     }
     
@@ -42,6 +45,8 @@ extension ProfileInfoTarget: TargetType {
         switch self {
         case .profileWant:
             return .post
+        case .deleteProfile:
+            return .delete
         default:
             return .get
         }
@@ -61,6 +66,10 @@ extension ProfileInfoTarget: TargetType {
         case let .profilesWanted(type):
             return .requestParameters(parameters: [
                 "type": type.name
+            ], encoding: URLEncoding.default)
+        case let .deleteProfile(profileId):
+            return .requestParameters(parameters: [
+                "profileId": profileId
             ], encoding: URLEncoding.default)
         case .profileWant, .myRegistrations:
             return .requestPlain

@@ -98,7 +98,7 @@ extension ProfileRegistrationViewController {
             continueButtonText: "네"
         ) { [weak self] _ in
             guard let self = self else { return }
-            self.viewModel.deleteProfileRegistration(jobHuntingId: id)
+            self.viewModel.deleteProfileRegistration(id: id)
         }
         
         present(alert, animated: true)

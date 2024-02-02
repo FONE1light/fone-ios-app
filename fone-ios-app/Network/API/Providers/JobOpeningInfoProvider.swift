@@ -20,6 +20,7 @@ enum JobOpeningInfoTarget {
     case scraps
     case scrapJobOpening(jobOpeningId: Int)
     case myRegistrations
+    case deleteJobOpening(jobOpeningId: Int)
 }
 
 extension JobOpeningInfoTarget: TargetType {
@@ -39,6 +40,8 @@ extension JobOpeningInfoTarget: TargetType {
             return "/api/v1/job-openings/\(jobOpeningId)/scrap"
         case .myRegistrations:
             return "/api/v1/job-openings/my-registrations"
+        case .deleteJobOpening(let jobOpeningId):
+            return "/api/v1/job-openings/\(jobOpeningId)"
         }
     }
     
@@ -48,6 +51,8 @@ extension JobOpeningInfoTarget: TargetType {
             return .get
         case .createJobOpenings, .scrapJobOpening:
             return .post
+        case .deleteJobOpening:
+            return .delete
         }
     }
     
@@ -66,7 +71,7 @@ extension JobOpeningInfoTarget: TargetType {
             return .requestParameters(parameters: ["type": type.name], encoding: URLEncoding.default)
         case .scraps, .myRegistrations:
             return .requestPlain
-        case .scrapJobOpening(let jobOpeningId): // 없어도 에러 발생하지 않으나 스웨거 정의대로 넣어서 보냄
+        case .scrapJobOpening(let jobOpeningId), .deleteJobOpening(let jobOpeningId): // 없어도 에러 발생하지 않으나 스웨거 정의대로 넣어서 보냄
             return .requestParameters(parameters: [
                 "jobOpeningId": jobOpeningId
             ], encoding: URLEncoding.default)
