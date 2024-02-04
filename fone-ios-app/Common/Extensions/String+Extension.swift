@@ -144,6 +144,12 @@ extension String {
     }
 }
 
+extension String {
+    var isSuccess: Bool {
+        self == "SUCCESS"
+    }
+}
+
 extension NSMutableAttributedString {
     @discardableResult func setAttributeText(_ text: String, _ font : UIFont, _ color: UIColor) -> NSMutableAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor : color]

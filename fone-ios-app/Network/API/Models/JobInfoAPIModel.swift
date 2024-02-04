@@ -46,3 +46,7 @@ struct JobOpeningsContent: Codable {
     let totalElements, totalPages: Int?
 }
 
+struct ScrapJobOpeningResponseResult: Codable {
+    let result: String?
+}
+

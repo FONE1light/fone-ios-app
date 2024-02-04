@@ -31,6 +31,10 @@
 		362C80312B13672200489E7D /* RegisterDetailContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362C80302B13672200489E7D /* RegisterDetailContentViewModel.swift */; };
 		362C80332B13673C00489E7D /* RegisterDetailContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362C80322B13673C00489E7D /* RegisterDetailContentViewController.swift */; };
 		362C80352B139D8000489E7D /* LetterCountedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362C80342B139D7F00489E7D /* LetterCountedTextView.swift */; };
+		36323CD62B68DF9200AC99ED /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36323CD52B68DF9200AC99ED /* HeartButton.swift */; };
+		36323CD82B693E6400AC99ED /* CompetitionInfoAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36323CD72B693E6400AC99ED /* CompetitionInfoAPIModel.swift */; };
+		36323CDA2B693E8200AC99ED /* CompetitionInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36323CD92B693E8200AC99ED /* CompetitionInfoProvider.swift */; };
+		36323CDC2B6946D300AC99ED /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36323CDB2B6946D300AC99ED /* Int+Extension.swift */; };
 		363D48E12B44642A002164A7 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D48E02B44642A002164A7 /* Collection+Extension.swift */; };
 		364482CC2AB7C75E00984507 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482CB2AB7C75E00984507 /* MyPageViewController.swift */; };
 		364482CE2AB7C76500984507 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482CD2AB7C76500984507 /* MyPageViewModel.swift */; };
@@ -47,6 +51,7 @@
 		3650F6222A86715C0017645D /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3650F61F2A86715C0017645D /* Pretendard-Medium.ttf */; };
 		3650F6232A86715C0017645D /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3650F6202A86715C0017645D /* Pretendard-Bold.ttf */; };
 		3650F6262A8672010017645D /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3650F6252A8672010017645D /* UIFont+Extension.swift */; };
+		365EE0C72B68CC050089035A /* Error+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EE0C62B68CC050089035A /* Error+Extension.swift */; };
 		3663DB122AF6843C005899BF /* JobUISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663DB112AF6843C005899BF /* JobUISegmentedControl.swift */; };
 		3663DB142AF68845005899BF /* JobOpeningSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663DB132AF68845005899BF /* JobOpeningSortButton.swift */; };
 		366E85092B19ECC200CB7681 /* FullWidthSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E85082B19ECC200CB7681 /* FullWidthSelectionView.swift */; };
@@ -160,6 +165,7 @@
 		AB0F8E4C2AB324B7006D85F7 /* HomeInfoAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0F8E4B2AB324B7006D85F7 /* HomeInfoAPIModel.swift */; };
 		AB1442822B664CDB007CAC7F /* SalaryTypeBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1442812B664CDB007CAC7F /* SalaryTypeBottomSheet.swift */; };
 		AB1442842B664D7A007CAC7F /* SalaryTypeBottomSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB1442832B664D7A007CAC7F /* SalaryTypeBottomSheet.xib */; };
+		AB1442882B665CAA007CAC7F /* ValidationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1442872B665CAA007CAC7F /* ValidationProvider.swift */; };
 		AB1851462B1CA1110051D0DC /* RecruitDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1851442B1CA1110051D0DC /* RecruitDetailInfoViewController.swift */; };
 		AB1851472B1CA1110051D0DC /* RecruitDetailInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB1851452B1CA1110051D0DC /* RecruitDetailInfoViewController.xib */; };
 		AB1915752B651A6300424256 /* JobInfoAPIRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1915742B651A6300424256 /* JobInfoAPIRequestModel.swift */; };
@@ -356,6 +362,10 @@
 		362C80302B13672200489E7D /* RegisterDetailContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailContentViewModel.swift; sourceTree = "<group>"; };
 		362C80322B13673C00489E7D /* RegisterDetailContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailContentViewController.swift; sourceTree = "<group>"; };
 		362C80342B139D7F00489E7D /* LetterCountedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterCountedTextView.swift; sourceTree = "<group>"; };
+		36323CD52B68DF9200AC99ED /* HeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButton.swift; sourceTree = "<group>"; };
+		36323CD72B693E6400AC99ED /* CompetitionInfoAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionInfoAPIModel.swift; sourceTree = "<group>"; };
+		36323CD92B693E8200AC99ED /* CompetitionInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionInfoProvider.swift; sourceTree = "<group>"; };
+		36323CDB2B6946D300AC99ED /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		363D48E02B44642A002164A7 /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		364482CB2AB7C75E00984507 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		364482CD2AB7C76500984507 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
@@ -372,6 +382,7 @@
 		3650F61F2A86715C0017645D /* Pretendard-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.ttf"; sourceTree = "<group>"; };
 		3650F6202A86715C0017645D /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
 		3650F6252A8672010017645D /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		365EE0C62B68CC050089035A /* Error+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Extension.swift"; sourceTree = "<group>"; };
 		3663DB112AF6843C005899BF /* JobUISegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobUISegmentedControl.swift; sourceTree = "<group>"; };
 		3663DB132AF68845005899BF /* JobOpeningSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningSortButton.swift; sourceTree = "<group>"; };
 		366E85082B19ECC200CB7681 /* FullWidthSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthSelectionView.swift; sourceTree = "<group>"; };
@@ -483,6 +494,7 @@
 		AB0F8E4B2AB324B7006D85F7 /* HomeInfoAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInfoAPIModel.swift; sourceTree = "<group>"; };
 		AB1442812B664CDB007CAC7F /* SalaryTypeBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalaryTypeBottomSheet.swift; sourceTree = "<group>"; };
 		AB1442832B664D7A007CAC7F /* SalaryTypeBottomSheet.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SalaryTypeBottomSheet.xib; sourceTree = "<group>"; };
+		AB1442872B665CAA007CAC7F /* ValidationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationProvider.swift; sourceTree = "<group>"; };
 		AB1851442B1CA1110051D0DC /* RecruitDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitDetailInfoViewController.swift; sourceTree = "<group>"; };
 		AB1851452B1CA1110051D0DC /* RecruitDetailInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitDetailInfoViewController.xib; sourceTree = "<group>"; };
 		AB1915742B651A6300424256 /* JobInfoAPIRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoAPIRequestModel.swift; sourceTree = "<group>"; };
@@ -739,6 +751,8 @@
 				36BDA13F2AEE3C71001AF777 /* ImageUploadProvider.swift */,
 				AB04760E2B08F851003DF5EF /* JobOpeningInfoProvider.swift */,
 				36B9D1AC2B3BF95200A1F91D /* ProfileInfoProvider.swift */,
+				AB1442872B665CAA007CAC7F /* ValidationProvider.swift */,
+				36323CD92B693E8200AC99ED /* CompetitionInfoProvider.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -764,6 +778,7 @@
 				AB1915742B651A6300424256 /* JobInfoAPIRequestModel.swift */,
 				AB3458772B0CDB4400F4833D /* Result.swift */,
 				36B9D1AA2B3BF75400A1F91D /* ProfileInfoAPIModel.swift */,
+				36323CD72B693E6400AC99ED /* CompetitionInfoAPIModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -838,6 +853,8 @@
 				3682737C2B28681C00EB0629 /* UIImageView+Extension.swift */,
 				360E843B2B28850100D4A540 /* UIApplication+Extension.swift */,
 				363D48E02B44642A002164A7 /* Collection+Extension.swift */,
+				365EE0C62B68CC050089035A /* Error+Extension.swift */,
+				36323CDB2B6946D300AC99ED /* Int+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1245,6 +1262,7 @@
 				362C80342B139D7F00489E7D /* LetterCountedTextView.swift */,
 				360E843D2B2984C000D4A540 /* ReportBottomSheet.swift */,
 				36FB6B902B374D9900715EE9 /* BookmarkButton.swift */,
+				36323CD52B68DF9200AC99ED /* HeartButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1965,11 +1983,13 @@
 				36A4D49E2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift in Sources */,
 				AB1851462B1CA1110051D0DC /* RecruitDetailInfoViewController.swift in Sources */,
 				36A4D49B2B15C164008541E9 /* RegisterInterestViewModel.swift in Sources */,
+				36323CDA2B693E8200AC99ED /* CompetitionInfoProvider.swift in Sources */,
 				362419D32AE33158007D1AFB /* SignUpSuccessViewModel.swift in Sources */,
 				AB49A33F2A810FE000748484 /* LoginViewController.swift in Sources */,
 				367D9C0F2AD9FBC900DA6C96 /* MyPageTabBarCollectionView.swift in Sources */,
 				366F22A82ADB2BFD00FD00BD /* DetailInfoBlock.swift in Sources */,
 				ABF3034B2AA33E4A00C14AF7 /* EmailSignUpViewModel.swift in Sources */,
+				36323CD62B68DF9200AC99ED /* HeartButton.swift in Sources */,
 				ABCDD1972B00F3BD00A598A8 /* FooterCell.swift in Sources */,
 				362866942A8E3D4700CD42BC /* Single+Codable.swift in Sources */,
 				ABF817292AF27B1D00625D55 /* RecruitBasicInfoViewController.swift in Sources */,
@@ -2024,7 +2044,9 @@
 				36BCC7E62AA5E0180060E35A /* CustomButton.swift in Sources */,
 				AB1915752B651A6300424256 /* JobInfoAPIRequestModel.swift in Sources */,
 				AB79B3BC2A9E29C4008EBAA2 /* QuestionViewController.swift in Sources */,
+				36323CD82B693E6400AC99ED /* CompetitionInfoAPIModel.swift in Sources */,
 				AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */,
+				36323CDC2B6946D300AC99ED /* Int+Extension.swift in Sources */,
 				AB0F8E4C2AB324B7006D85F7 /* HomeInfoAPIModel.swift in Sources */,
 				ABCDD19B2B00F5A300A598A8 /* ContactInfoCell.swift in Sources */,
 				364BCC6E2AB36A4900E14B25 /* Job.swift in Sources */,
@@ -2060,6 +2082,7 @@
 				AB1CEAAD2ABFD20F00E7E54F /* ProfileModule.swift in Sources */,
 				367D9C2C2ADA5EC700DA6C96 /* ProfileRegistrationViewController.swift in Sources */,
 				ABB1BB0D2B397DD20012F962 /* FilterViewModel.swift in Sources */,
+				AB1442882B665CAA007CAC7F /* ValidationProvider.swift in Sources */,
 				AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */,
 				368273652B270D8500EB0629 /* MainCareerTableViewCell.swift in Sources */,
 				AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */,
@@ -2107,6 +2130,7 @@
 				AB6992242AB6E87100B67455 /* ChatViewModel.swift in Sources */,
 				363D48E12B44642A002164A7 /* Collection+Extension.swift in Sources */,
 				3608447C2B2C1DE100A9776F /* SNSWebViewController.swift in Sources */,
+				365EE0C72B68CC050089035A /* Error+Extension.swift in Sources */,
 				360E843E2B2984C000D4A540 /* ReportBottomSheet.swift in Sources */,
 				AB1442822B664CDB007CAC7F /* SalaryTypeBottomSheet.swift in Sources */,
 				3628669A2A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift in Sources */,

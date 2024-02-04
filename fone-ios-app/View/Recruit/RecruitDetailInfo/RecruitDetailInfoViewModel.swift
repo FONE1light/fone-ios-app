@@ -6,12 +6,15 @@
 //
 
 import Foundation
+import RxSwift
+import Moya
 
 struct RecruitDetailInfo {
     let details: String?
 }
 
 final class RecruitDetailInfoViewModel: CommonViewModel {
+    let disposeBag = DisposeBag()
     var jobType: Job?
     var recruitBasicInfo: RecruitBasicInfo?
     var recruitConditionInfo: RecruitConditionInfo?
@@ -26,6 +29,28 @@ final class RecruitDetailInfoViewModel: CommonViewModel {
         self.recruitConditionInfo = recruitConditionInfo
         self.recruitWorkInfo = recruitWorkInfo
         self.recruitWorkConditionInfo = recruitWorkConditionInfo
+    }
+    
+    func validateSummary(recruitDetailInfo: RecruitDetailInfo) {
+        validationProvider.rx.request(.validateSummary(recruitDetailInfo: recruitDetailInfo))
+            .mapObject(Result<String?>.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, response in
+                if response.result == "SUCCESS" {
+                    owner.moveToNextStep(recruitDetailInfo: recruitDetailInfo)
+                }
+            }, onError: { error in
+                if let data = (error as? MoyaError)?.response?.data {
+                    let decoder = JSONDecoder()
+                    do {
+                        let result = try decoder.decode(Result<String>.self, from: data)
+                        result.message?.toast(positionType: .withButton)
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+            }).disposed(by: disposeBag)
     }
     
     func moveToNextStep(recruitDetailInfo: RecruitDetailInfo) {

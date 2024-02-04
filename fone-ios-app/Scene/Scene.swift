@@ -24,10 +24,14 @@ enum Scene {
     
     // 마이페이지 내부
     case profile(ProfileViewModel) // 프로필 수정
-    case scrap(ScrapViewModel)     // 스크랩
-    case competition(CompetitionViewModel) // 공모전 // TODO: 구인구직, 공모전 뷰 컨 UI 범위 확인 후 삭제
-    case savedProfiles(SavedProfilesTabBarViewModel) // 찜한 프로필
-    case myRegistrations(MyRegistrationsViewModel) // 나의 등록내역
+    case scrap(ScrapViewModel)                  // 스크랩
+    case scrapJob(JobViewModel)                 // 스크랩 > 구인구직 content 영역
+    case scrapCompetition(CompetitionViewModel) // 스크랩 > 공모전 content 영역
+    case savedProfiles(SavedProfilesTabBarViewModel)         // 찜한 프로필
+    case savedProfilesContent(SavedProfilesContentViewModel) // 찜한 프로필 content 영역
+    case myRegistrations(MyRegistrationsViewModel)          // 나의 등록내역
+    case jobRegistrations(JobRegistrationViewModel)         // 나의 등록내역 > 모집 content 영역
+    case profileRegistrations(ProfileRegistrationViewModel) // 나의 등록내역 > 프로필 content 영역
     
     // 구인구직
     case jobOpeningDetail(JobOpeningDetailViewModel) // 모집 상세
@@ -180,38 +184,70 @@ extension Scene {
         case .scrap(let scrapViewModel):
             var scrapVC = ScrapViewController()
             
-            DispatchQueue.main.async {
-                scrapVC.bind(viewModel: scrapViewModel)
-            }
+            scrapVC.bind(viewModel: scrapViewModel)
             
             return scrapVC
             
-        case .competition(let competitionViewModel):
-            var competitionVC = CompetitionViewController()
+        case .scrapJob(let jobViewModel):
+            var jobVC = JobViewController()
+
+            DispatchQueue.main.async {
+                jobVC.bind(viewModel: jobViewModel)
+            }
+
+            return jobVC
             
+        case .scrapCompetition(let competitionViewModel):
+            var competitionVC = CompetitionViewController()
+
             DispatchQueue.main.async {
                 competitionVC.bind(viewModel: competitionViewModel)
             }
-            
+
             return competitionVC
             
         case .savedProfiles(let savedProfilesTabBarViewModel):
             var savedProfilesVC = SavedProfilesTabBarController()
             
-            DispatchQueue.main.async {
-                savedProfilesVC.bind(viewModel: savedProfilesTabBarViewModel)
-            }
+            savedProfilesVC.bind(viewModel: savedProfilesTabBarViewModel)
             
             return savedProfilesVC
+            
+        case .savedProfilesContent(let savedProfilesContentViewModel):
+            var savedProfilesContentVC = SavedProfilesContentViewController()
+            
+            DispatchQueue.main.async {
+                savedProfilesContentVC.bind(viewModel: savedProfilesContentViewModel)
+            }
+            
+            return savedProfilesContentVC
             
         case .myRegistrations(let myRegistrationsViewModel):
             var myRegistrationsVC = MyRegistrationsViewController()
             
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 myRegistrationsVC.bind(viewModel: myRegistrationsViewModel)
-            }
+//            }
             
             return myRegistrationsVC
+            
+        case .jobRegistrations(let jobRegistrationsViewModel):
+            var jobRegistrationsVC = JobRegistrationViewController()
+            
+            DispatchQueue.main.async {
+                jobRegistrationsVC.bind(viewModel: jobRegistrationsViewModel)
+            }
+            
+            return jobRegistrationsVC
+            
+        case .profileRegistrations(let profileRegistrationsViewModel):
+            var profileRegistrationsVC = ProfileRegistrationViewController()
+            
+            DispatchQueue.main.async {
+                profileRegistrationsVC.bind(viewModel: profileRegistrationsViewModel)
+            }
+            
+            return profileRegistrationsVC
             
         case .jobOpeningDetail(let recruitDetailViewModel):
             var jobOpeningDetailVC = JobOpeningDetailViewController()
@@ -270,7 +306,7 @@ extension Scene {
             
         case .recruitContactInfo(let recruitContactInfoViewModel):
             var recruitContactInfoVC = RecruitContactInfoViewController()
-            
+            recruitContactInfoVC.jobType = recruitContactInfoViewModel.jobType ?? .actor
             DispatchQueue.main.async {
                 recruitContactInfoVC.bind(viewModel: recruitContactInfoViewModel)
             }

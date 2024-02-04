@@ -6,19 +6,14 @@
 //
 
 import UIKit
+import RxSwift
 
 class ProfileRegistrationViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: ProfileRegistrationViewModel!
+    private var disposeBag = DisposeBag()
     
-    private var profiles: [Profile] = [
-        Profile(imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
-        Profile(imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
-        Profile(imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
-        Profile(imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
-        Profile(imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
-        Profile(imageUrl: nil, name: "정용식", age: "38", isSaved: true, birthYear: "1985", job: .actor),
-    ]
+    private var profileRegistrations: [Profile] = []
     
     private lazy var tableView = UITableView().then {
         $0.register(with: ProfileRegistrationCell.self)
@@ -30,7 +25,12 @@ class ProfileRegistrationViewController: UIViewController, ViewModelBindableType
     }
     
     func bindViewModel() {
-        
+        viewModel.profileRegistrations
+            .withUnretained(self)
+            .bind { owner, profiles in
+                owner.profileRegistrations = profiles ?? []
+                owner.tableView.reloadData()
+            }.disposed(by: disposeBag)
     }
     
     override func viewDidLoad() {
@@ -59,13 +59,49 @@ class ProfileRegistrationViewController: UIViewController, ViewModelBindableType
 // MARK: - UITableView functions
 extension ProfileRegistrationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return profiles.count
+        return profileRegistrations.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         let cell = tableView.dequeueReusableCell(for: indexPath) as ProfileRegistrationCell
-        let profile = profiles[indexPath.row]
-        cell.configure(name: profile.name, job: .actor, birthYear: "1985", age: "38")
+        let cell = tableView.dequeueReusableCell(for: indexPath) as ProfileRegistrationCell
+        let profile = profileRegistrations[indexPath.row]
+        
+        cell.configure(profile)
+        
+        // buttons
+        cell.cellButtonTap
+            .withUnretained(self)
+            .bind { owner, _ in
+                guard let id = profile.id,
+                      let job = profile.job else { return }
+                owner.viewModel.goJobHuntingDetail(jobHuntingId: id, type: job)
+            }.disposed(by: cell.disposeBag)
+        
+        cell.deleteButtonTap
+            .withUnretained(self)
+            .bind { owner, _ in
+                guard let id = profile.id else { return }
+                owner.showDeletePopup(id: id)
+            }.disposed(by: cell.disposeBag)
+        
         return cell
+    }
+}
+
+
+extension ProfileRegistrationViewController {
+    func showDeletePopup(id: Int) {
+        let message = "게시글을 삭제하면 다시 되돌릴 수 없어요. 정말 삭제 하시겠어요?"
+        let alert = UIAlertController.createTwoBlackButtonPopup(
+            title: message,
+            cancelButtonText: "아니오",
+            continueButtonText: "네"
+        ) { [weak self] _ in
+            guard let self = self else { return }
+            // TODO: 서버 에러 해결되면 테스트 후 주석 해제
+//            self.viewModel.deleteProfileRegistration(id: id)
+        }
+        
+        present(alert, animated: true)
     }
 }

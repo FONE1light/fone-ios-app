@@ -11,6 +11,12 @@ import Moya
 enum ProfileInfoTarget {
     case profiles(type: Job, sort: [String], page: Int, size: Int)
     case profileDetail(profileId: Int, type: Job)
+    /// 내가 찜한 프로필 조회
+    case profilesWanted(type: Job)
+    /// 프로필 찜하기/찜 해제하기
+    case profileWant(profileId: Int)
+    case myRegistrations
+    case deleteProfile(profileId: Int)
 }
 
 extension ProfileInfoTarget: TargetType {
@@ -24,11 +30,26 @@ extension ProfileInfoTarget: TargetType {
             return "/api/v1/profiles"
         case .profileDetail(let profileId, _):
             return "/api/v1/profiles/\(profileId)"
+        case .profilesWanted:
+            return "/api/v1/profiles/wants"
+        case .profileWant(let profileId):
+            return "/api/v1/profiles/\(profileId)/want"
+        case .myRegistrations:
+            return "/api/v1/profiles/my-registrations"
+        case .deleteProfile(let profileId):
+            return "/api/v1/profiles/\(profileId)"
         }
     }
     
     var method: Moya.Method {
-        return .get
+        switch self {
+        case .profileWant:
+            return .post
+        case .deleteProfile:
+            return .delete
+        default:
+            return .get
+        }
     }
     
     var task: Moya.Task {
@@ -42,16 +63,23 @@ extension ProfileInfoTarget: TargetType {
             ], encoding: URLEncoding.default)
         case let .profileDetail(_, type):
             return .requestParameters(parameters: ["type": type.name], encoding: URLEncoding.default)
+        case let .profilesWanted(type):
+            return .requestParameters(parameters: [
+                "type": type.name
+            ], encoding: URLEncoding.default)
+        case let .deleteProfile(profileId):
+            return .requestParameters(parameters: [
+                "profileId": profileId
+            ], encoding: URLEncoding.default)
+        case .profileWant, .myRegistrations:
+            return .requestPlain
         }
     }
     
     var headers: [String : String]? {
-        switch self {
-        case .profiles, .profileDetail:
-            let accessToken = Tokens.shared.accessToken.value
-            let authorization = "Bearer \(accessToken)"
-            return ["Authorization": authorization]
-        }
+        let accessToken = Tokens.shared.accessToken.value
+        let authorization = "Bearer \(accessToken)"
+        return ["Authorization": authorization]
     }
     
     var validationType: ValidationType {

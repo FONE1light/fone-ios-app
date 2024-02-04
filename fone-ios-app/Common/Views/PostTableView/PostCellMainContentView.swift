@@ -43,6 +43,9 @@ class PostCellMainContentView: UIView {
     var bookmarkButtonTap: ControlEvent<Void> {
         bookmarkButton.rx.tap
     }
+    var isBookmarkButtonSelected: Bool {
+        bookmarkButton.isSelected
+    }
     
     private let detailInfoBlock = DetailInfoBlock()
     
@@ -54,6 +57,7 @@ class PostCellMainContentView: UIView {
         setConstraints()
     }
     
+    // TODO: == nil 삭제
     func configure(
         profileUrl: String? = nil,
         isVerified: Bool? = nil,

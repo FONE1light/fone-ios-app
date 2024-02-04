@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 import Then
 
 class CompetitionCell: UITableViewCell {
@@ -48,9 +49,8 @@ class CompetitionCell: UITableViewCell {
         $0.textColor = .gray_9E9E9E
     }
     
-    private let bookmarkImageView = UIImageView().then {
-        $0.image = UIImage(named: "Bookmark")
-    }
+    private let bookmarkButton = BookmarkButton()
+    var isScrap = BehaviorRelay<Bool>(value: true)
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -58,9 +58,12 @@ class CompetitionCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
+        selectionStyle = .none
         setupUI()
         setupConstraints()
+        
+        bind()
     }
     
     private func setupUI() {
@@ -71,7 +74,7 @@ class CompetitionCell: UITableViewCell {
             dDayLabel,
             viewImageView,
             viewCountLabel,
-            bookmarkImageView,
+            bookmarkButton,
             separator
         ]
             .forEach { contentView.addSubview($0) }
@@ -79,7 +82,7 @@ class CompetitionCell: UITableViewCell {
     
     private func setupConstraints() {
         competitionImageView.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview().inset(10)
+            $0.top.equalToSuperview().inset(10)
             $0.leading.equalToSuperview().offset(16)
             $0.width.equalTo(95)
             $0.height.equalTo(98)
@@ -88,15 +91,16 @@ class CompetitionCell: UITableViewCell {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(14)
             $0.leading.equalTo(competitionImageView.snp.trailing).offset(12)
-            $0.trailing.equalTo(bookmarkImageView.snp.leading).offset(-22)
+            $0.trailing.equalTo(bookmarkButton.snp.leading).offset(-22)
         }
         
         coorporationLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(4)
-            $0.leading.equalTo(titleLabel.snp.leading)
+            $0.leading.trailing.equalTo(titleLabel)
         }
         
         dDayLabel.snp.makeConstraints {
+            $0.top.equalTo(coorporationLabel.snp.bottom).offset(16)
             $0.leading.equalTo(titleLabel.snp.leading)
         }
         
@@ -111,32 +115,41 @@ class CompetitionCell: UITableViewCell {
             $0.leading.equalTo(viewImageView.snp.trailing).offset(2)
         }
         
-        bookmarkImageView.snp.makeConstraints {
+        bookmarkButton.snp.makeConstraints {
             $0.top.equalToSuperview().offset(14)
             $0.trailing.equalToSuperview().offset(-24)
             $0.size.equalTo(24)
         }
         
         separator.snp.makeConstraints {
-            $0.top.equalTo(dDayLabel.snp.bottom).offset(13)
+            $0.top.equalTo(competitionImageView.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview()
         }
         
     }
-    func configure(
-//        image: // TODO: imageURL 전달 받은 것 넣기
-        title: String?,
-        coorporation: String?,
-        leftDays: String?, // TODO: 유효한 토큰 생기면 서버 데이터 확인해서 형식 확정(날짜, 숫자, 혹은 "D-N"/"마감")
-        viewCount: Int
-    ) {
-        titleLabel.text = title
-        coorporationLabel.text = coorporation
-        dDayLabel.text = leftDays
-        viewCountLabel.text = "3,222"// TODO: viewCount Int to "***,***,**" 포맷팅
+    
+    private func bind() {
+        bookmarkButton.rx.tap
+            .asDriver()
+            .do { [weak self] _ in
+                // cell의 button toggle
+                self?.bookmarkButton.toggle()
+            }
+            .debounce(.milliseconds(500))
+            .asObservable()
+            .withUnretained(self)
+            .bind { owner, _ in
+                // API 호출 위해 상태값 방출
+                owner.isScrap.accept(owner.bookmarkButton.isSelected)
+            }.disposed(by: disposeBag)
     }
     
+    func configure(_ competition: CompetitionScrap) {
+        titleLabel.text = competition.title
+        coorporationLabel.text = competition.coorporation
+        dDayLabel.text = competition.leftDays
+        viewCountLabel.text = competition.viewCount?.toDecimalFormat()
+        bookmarkButton.isSelected = competition.isScrap ?? false
+    }
 }
-
-

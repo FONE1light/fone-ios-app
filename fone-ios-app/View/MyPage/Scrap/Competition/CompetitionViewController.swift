@@ -6,16 +6,29 @@
 //
 
 import UIKit
+import RxSwift
 import SnapKit
 
+struct CompetitionScrap {
+    let id: Int?
+    let title: String?
+    let coorporation: String?
+    let isScrap: Bool?
+    let leftDays: String?
+    let viewCount: Int?
+}
+
+/// 마이페이지 > 스크랩 > 구인구직 탭의 pageViewController
 class CompetitionViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: CompetitionViewModel!
+    private var disposeBag = DisposeBag()
+    
+    var competitions: [CompetitionScrap] = []
     
     private lazy var tableView = UITableView().then {
         $0.showsVerticalScrollIndicator = false
         $0.separatorStyle = .none
-//        $0.delegate = self
         $0.dataSource = self
         $0.register(with: CompetitionCell.self)
     }
@@ -28,7 +41,20 @@ class CompetitionViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
+        viewModel.competitionScraps
+            .withUnretained(self)
+            .bind { owner, competitions in
+                guard let competitions = competitions else { return }
+                owner.competitions = competitions
+                owner.tableView.reloadData()
+            }.disposed(by: disposeBag)
         
+        tableView.rx.itemSelected
+            .withUnretained(self)
+            .bind { owner, indexPath in
+                guard let id = owner.competitions[indexPath.row].id else { return }
+                owner.viewModel.moveToCompetitionDetail(id: id)
+            }.disposed(by: rx.disposeBag)
     }
     
     
@@ -47,20 +73,23 @@ class CompetitionViewController: UIViewController, ViewModelBindableType {
 
 extension CompetitionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        4
+        competitions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let competition = competitions[indexPath.row]
         let cell = tableView.dequeueReusableCell(for: indexPath) as CompetitionCell
-        cell.configure(
-            title: "제목 예 2022 베리어프리 콘텐츠 공모전 제목 예 2022 베리어프리 콘텐츠 공모전",
-            coorporation: "방송통신 위원회",
-            leftDays: "D-15",
-            viewCount: 3222
-        )
         
+        cell.configure(competition)
+        
+        cell.isScrap
+            .distinctUntilChanged()
+            .skip(1) // distinct를 사용하게 위해 초기값이 필요하나 api call는 막고자 skip 1
+            .withUnretained(self)
+            .bind { owner, _ in
+                // API 호출
+                owner.viewModel.toggleScrap(id: competition.id)
+            }.disposed(by: cell.disposeBag)
         return cell
     }
-    
-    
 }
