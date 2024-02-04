@@ -16,6 +16,7 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
     @IBOutlet weak var startTimeTextField: UITextField!
     @IBOutlet weak var endTimeTextField: UITextField!
     @IBOutlet weak var salaryTypeButton: UIButton!
+    @IBOutlet weak var salaryTypeTextField: UILabel!
     @IBOutlet weak var salaryTextField: UITextField!
     @IBOutlet weak var nextButton: UIButton!
     
@@ -32,8 +33,10 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
             }
         }
     }
+    
     var viewModel: RecruitWorkConditionViewModel!
     var selectedDays: [String] = []
+    var salaryType = SalaryType.ANNUAL
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +47,15 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
     
     func bindViewModel() {
         setNavigationBar()
+        
+        viewModel.salaryType
+            .withUnretained(self)
+            .bind { owner, salaryType in
+                owner.salaryType = salaryType
+//                owner.viewModel.sceneCoordinator.close(animated: true)
+                owner.salaryTypeTextField.textColor = .gray_161616
+                owner.salaryTypeTextField.text = salaryType.string
+            }.disposed(by: rx.disposeBag)
         
         startDateButton.rx.tap
             .withUnretained(self)
@@ -68,6 +80,7 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
         salaryTypeButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
+                owner.viewModel.showSalaryTypeBottomSheet()
             }.disposed(by: rx.disposeBag)
         
         salaryTextField.rx.text.orEmpty

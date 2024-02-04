@@ -163,6 +163,8 @@
 		AB04760F2B08F851003DF5EF /* JobOpeningInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB04760E2B08F851003DF5EF /* JobOpeningInfoProvider.swift */; };
 		AB0476112B08FB11003DF5EF /* JobInfoAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0476102B08FB11003DF5EF /* JobInfoAPIModel.swift */; };
 		AB0F8E4C2AB324B7006D85F7 /* HomeInfoAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0F8E4B2AB324B7006D85F7 /* HomeInfoAPIModel.swift */; };
+		AB1442822B664CDB007CAC7F /* SalaryTypeBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1442812B664CDB007CAC7F /* SalaryTypeBottomSheet.swift */; };
+		AB1442842B664D7A007CAC7F /* SalaryTypeBottomSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB1442832B664D7A007CAC7F /* SalaryTypeBottomSheet.xib */; };
 		AB1442882B665CAA007CAC7F /* ValidationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1442872B665CAA007CAC7F /* ValidationProvider.swift */; };
 		AB14428F2B6FA606007CAC7F /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB14428E2B6FA606007CAC7F /* WeekDay.swift */; };
 		AB1851462B1CA1110051D0DC /* RecruitDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1851442B1CA1110051D0DC /* RecruitDetailInfoViewController.swift */; };
@@ -491,6 +493,8 @@
 		AB04760E2B08F851003DF5EF /* JobOpeningInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningInfoProvider.swift; sourceTree = "<group>"; };
 		AB0476102B08FB11003DF5EF /* JobInfoAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoAPIModel.swift; sourceTree = "<group>"; };
 		AB0F8E4B2AB324B7006D85F7 /* HomeInfoAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInfoAPIModel.swift; sourceTree = "<group>"; };
+		AB1442812B664CDB007CAC7F /* SalaryTypeBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalaryTypeBottomSheet.swift; sourceTree = "<group>"; };
+		AB1442832B664D7A007CAC7F /* SalaryTypeBottomSheet.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SalaryTypeBottomSheet.xib; sourceTree = "<group>"; };
 		AB1442872B665CAA007CAC7F /* ValidationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationProvider.swift; sourceTree = "<group>"; };
 		AB14428E2B6FA606007CAC7F /* WeekDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
 		AB1851442B1CA1110051D0DC /* RecruitDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitDetailInfoViewController.swift; sourceTree = "<group>"; };
@@ -1274,6 +1278,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		AB1442892B67C41F007CAC7F /* BottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				AB1442812B664CDB007CAC7F /* SalaryTypeBottomSheet.swift */,
+				AB1442832B664D7A007CAC7F /* SalaryTypeBottomSheet.xib */,
+			);
+			path = BottomSheet;
+			sourceTree = "<group>";
+		};
 		AB1851432B1CA0F20051D0DC /* RecruitDetailInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1610,6 +1623,7 @@
 		AB998B012B21F97E007E6214 /* RecruitWorkCondition */ = {
 			isa = PBXGroup;
 			children = (
+				AB1442892B67C41F007CAC7F /* BottomSheet */,
 				AB998AFD2B21F976007E6214 /* RecruitWorkConditionViewController.swift */,
 				AB998AFE2B21F976007E6214 /* RecruitWorkConditionViewController.xib */,
 				AB6E43302B2205ED001960E7 /* RecruitWorkConditionViewModel.swift */,
@@ -1902,6 +1916,7 @@
 				AB67855D2AA3374F00ACD35C /* EmailSignUpViewController.xib in Resources */,
 				ABF8172A2AF27B1D00625D55 /* RecruitBasicInfoViewController.xib in Resources */,
 				AB2578A22AAF36A900328363 /* HomeViewController.xib in Resources */,
+				AB1442842B664D7A007CAC7F /* SalaryTypeBottomSheet.xib in Resources */,
 				AB2578AB2AAF3C8F00328363 /* ChatViewController.xib in Resources */,
 				AB6785582AA3336900ACD35C /* EmailLoginViewController.xib in Resources */,
 				AB6780FC2B10F2220074463E /* DatePickerViewController.xib in Resources */,
@@ -2120,6 +2135,7 @@
 				3608447C2B2C1DE100A9776F /* SNSWebViewController.swift in Sources */,
 				365EE0C72B68CC050089035A /* Error+Extension.swift in Sources */,
 				360E843E2B2984C000D4A540 /* ReportBottomSheet.swift in Sources */,
+				AB1442822B664CDB007CAC7F /* SalaryTypeBottomSheet.swift in Sources */,
 				3628669A2A8E3E3700CD42BC /* UserInfoAPIResponseModel.swift in Sources */,
 				362C80352B139D8000489E7D /* LetterCountedTextView.swift in Sources */,
 				367D9C052AD765C800DA6C96 /* SavedProfilesContentViewController.swift in Sources */,

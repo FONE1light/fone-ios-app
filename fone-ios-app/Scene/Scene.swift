@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxRelay
 
 enum Scene {
     case home(SceneCoordinator)
@@ -58,6 +59,7 @@ enum Scene {
     case jobOpeningSortBottomSheet(JobOpeningSortBottomSheetViewModel) // 구인구직 탭 > 정렬 바텀시트
     case profilePreview(ProfilePreviewViewModel) // 프로필 이미지 크게 보기
     case snsWebViewController(SNSWebViewModel) // 개인 SNS(웹)
+    case salaryTypeBottomSheet(SceneCoordinatorType, PublishRelay<SalaryType>)
 }
 
 extension Scene {
@@ -416,6 +418,11 @@ extension Scene {
             
             viewController.bind(viewModel: snsWebViewModel)
             return navControlller
+            
+        case .salaryTypeBottomSheet(let sceneCoordinator, let salaryTypeRelay):
+            let bottomSheet = SalaryTypeBottomSheet(frame: .zero, salaryTypeRelay: salaryTypeRelay)
+            let bottomSheetVC = BottomSheetViewController(view: bottomSheet, sceneCoordinator: sceneCoordinator)
+            return bottomSheetVC
         }
     }
 }

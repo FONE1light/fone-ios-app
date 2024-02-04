@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxRelay
 
 struct RecruitWorkConditionInfo {
     let workingCity, workingDistrict: String?
@@ -22,6 +23,8 @@ final class RecruitWorkConditionViewModel: CommonViewModel {
     var recruitConditionInfo: RecruitConditionInfo?
     var recruitWorkInfo: RecruitWorkInfo?
     
+    let salaryType = PublishRelay<SalaryType>()
+    
     init(sceneCoordinator: SceneCoordinatorType, jobType: Job?, recruitBasicInfo: RecruitBasicInfo?, recruitConditionInfo: RecruitConditionInfo?, recruitWorkInfo: RecruitWorkInfo?) {
         super.init(sceneCoordinator: sceneCoordinator)
         
@@ -29,6 +32,10 @@ final class RecruitWorkConditionViewModel: CommonViewModel {
         self.recruitBasicInfo = recruitBasicInfo
         self.recruitConditionInfo = recruitConditionInfo
         self.recruitWorkInfo = recruitWorkInfo
+    }
+    
+    func showSalaryTypeBottomSheet() {
+        sceneCoordinator.transition(to: .salaryTypeBottomSheet(sceneCoordinator, salaryType), using: .customModal, animated: true)
     }
     
     func moveToNextStep(recruitWorkConditionInfo: RecruitWorkConditionInfo) {
