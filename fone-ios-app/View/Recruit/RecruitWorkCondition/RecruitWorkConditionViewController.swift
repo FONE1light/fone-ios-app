@@ -42,6 +42,7 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
         viewModel.salaryType
             .withUnretained(self)
             .bind { owner, salaryType in
+                owner.salaryType = salaryType
 //                owner.viewModel.sceneCoordinator.close(animated: true)
                 owner.salaryTypeTextField.textColor = .gray_161616
                 owner.salaryTypeTextField.text = salaryType.string
