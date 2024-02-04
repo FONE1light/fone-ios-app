@@ -21,8 +21,6 @@ class MyPagePageViewController: UIPageViewController, UIPageViewControllerDataSo
         self.presetViewControllers = tabBarType.getViewControllers(sceneCoordinator: sceneCoordinator)
 
         super.init(transitionStyle: .pageCurl, navigationOrientation: .horizontal)
-        
-        
     }
     
     required init?(coder: NSCoder) {

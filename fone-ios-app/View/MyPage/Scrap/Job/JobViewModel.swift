@@ -12,7 +12,7 @@ import RxCocoa
 class JobViewModel: CommonViewModel {
     
     private var disposeBag = DisposeBag()
-    var jobScraps = PublishRelay<[JobScrap]?>()
+    var jobScraps = PublishRelay<[JobOpening]?>()
     
     override init(sceneCoordinator: SceneCoordinatorType) {
         super.init(sceneCoordinator: sceneCoordinator)
@@ -35,7 +35,7 @@ class JobViewModel: CommonViewModel {
                         let jobType = Job.getType(name: jobOpening.type)
                         let genre = Genre.getType(name: jobOpening.work?.genres?.first)?.koreanName
                         let domain = Domain.getType(serverName: jobOpening.domains?.first)?.name
-                        return JobScrap(
+                        return JobOpening(
                             id: jobOpening.id,
                             profileUrl: jobOpening.profileURL,
                             isVerified: jobOpening.isVerified,

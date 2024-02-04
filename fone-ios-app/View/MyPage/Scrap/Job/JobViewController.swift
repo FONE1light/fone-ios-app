@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import SnapKit
 
-struct JobScrap {
+struct JobOpening {
     let id: Int?
     let profileUrl: String?
     let isVerified: Bool?
@@ -28,7 +28,7 @@ class JobViewController: UIViewController, ViewModelBindableType {
     var viewModel: JobViewModel!
     private var disposeBag = DisposeBag()
     
-    private var jobScraps: [JobScrap] = []
+    private var jobScraps: [JobOpening] = []
     private lazy var tableView = UITableView().then {
         $0.showsVerticalScrollIndicator = false
         $0.separatorStyle = .none

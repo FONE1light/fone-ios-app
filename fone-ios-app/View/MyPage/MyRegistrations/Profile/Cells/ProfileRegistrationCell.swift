@@ -54,9 +54,20 @@ class ProfileRegistrationCell: UITableViewCell {
     
     private let divider = Divider(height: 1, color: .gray_EEEFEF)
     
+    private let cellButton = UIButton()
+    var cellButtonTap: ControlEvent<Void> {
+        cellButton.rx.tap
+    }
+    
     private let modifyButton = ProfileRegistrationButton(title: "수정하기")
+    var modifyButtonTap: ControlEvent<Void> {
+        modifyButton.buttonTap
+    }
     
     private let deleteButton = ProfileRegistrationButton(title: "삭제")
+    var deleteButtonTap: ControlEvent<Void> {
+        deleteButton.buttonTap
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -65,16 +76,11 @@ class ProfileRegistrationCell: UITableViewCell {
         self.setConstraints()
     }
     
-    func configure(
-        name: String?,
-        job: Job?,
-        birthYear: String?,
-        age: String?
-    ) {
-        nameLabel.text = name
-        jobLabel.text = job?.name
-        birthYearLabel.text = "\(birthYear ?? "")년생"
-        ageLabel.text = "(\(age ?? "")살)"
+    func configure(_ profile: Profile) {
+        nameLabel.text = profile.name
+        jobLabel.text = profile.job?.name
+        birthYearLabel.text = "\(profile.birthYear ?? "")년생"
+        ageLabel.text = "(\(profile.age ?? "")살)"
     }
     
     private func setupUI() {
@@ -91,6 +97,7 @@ class ProfileRegistrationCell: UITableViewCell {
             birthYearLabel,
             ageLabel,
             divider,
+            cellButton,
             modifyButton,
             deleteButton
         ]
@@ -142,6 +149,10 @@ class ProfileRegistrationCell: UITableViewCell {
             $0.trailing.equalToSuperview().offset(-12)
         }
         
+        cellButton.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
         modifyButton.snp.makeConstraints {
             $0.top.equalTo(divider.snp.bottom).offset(12)
             $0.leading.equalTo(image.snp.trailing).offset(18)
@@ -152,7 +163,6 @@ class ProfileRegistrationCell: UITableViewCell {
             $0.centerY.equalTo(modifyButton)
             $0.leading.equalTo(modifyButton.snp.trailing).offset(6)
         }
-        
     }
     
     
@@ -161,7 +171,7 @@ class ProfileRegistrationCell: UITableViewCell {
     }
 }
 
-
+// TODO: UIView -> UIButton 상속하도록 수정
 class ProfileRegistrationButton: UIView {
     
     private let button = UIButton()

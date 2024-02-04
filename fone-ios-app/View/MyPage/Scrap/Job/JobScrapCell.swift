@@ -34,7 +34,7 @@ class JobScrapCell: UITableViewCell {
         bind()
     }
     
-    func configure(_ jobScrap: JobScrap) {
+    func configure(_ jobScrap: JobOpening) {
         mainContentView.configure(
             profileUrl: jobScrap.profileUrl,
             isVerified: jobScrap.isVerified,

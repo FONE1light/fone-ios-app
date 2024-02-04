@@ -23,12 +23,14 @@ enum Scene {
     
     // 마이페이지 내부
     case profile(ProfileViewModel) // 프로필 수정
-    case scrap(ScrapViewModel)     // 스크랩
-    case scrapJob(JobViewModel)     // 스크랩 > 구인구직 content 영역
+    case scrap(ScrapViewModel)                  // 스크랩
+    case scrapJob(JobViewModel)                 // 스크랩 > 구인구직 content 영역
     case scrapCompetition(CompetitionViewModel) // 스크랩 > 공모전 content 영역
-    case savedProfiles(SavedProfilesTabBarViewModel) // 찜한 프로필
+    case savedProfiles(SavedProfilesTabBarViewModel)         // 찜한 프로필
     case savedProfilesContent(SavedProfilesContentViewModel) // 찜한 프로필 content 영역
-    case myRegistrations(MyRegistrationsViewModel) // 나의 등록내역
+    case myRegistrations(MyRegistrationsViewModel)          // 나의 등록내역
+    case jobRegistrations(JobRegistrationViewModel)         // 나의 등록내역 > 모집 content 영역
+    case profileRegistrations(ProfileRegistrationViewModel) // 나의 등록내역 > 프로필 content 영역
     
     // 구인구직
     case jobOpeningDetail(JobOpeningDetailViewModel) // 모집 상세
@@ -221,11 +223,29 @@ extension Scene {
         case .myRegistrations(let myRegistrationsViewModel):
             var myRegistrationsVC = MyRegistrationsViewController()
             
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 myRegistrationsVC.bind(viewModel: myRegistrationsViewModel)
-            }
+//            }
             
             return myRegistrationsVC
+            
+        case .jobRegistrations(let jobRegistrationsViewModel):
+            var jobRegistrationsVC = JobRegistrationViewController()
+            
+            DispatchQueue.main.async {
+                jobRegistrationsVC.bind(viewModel: jobRegistrationsViewModel)
+            }
+            
+            return jobRegistrationsVC
+            
+        case .profileRegistrations(let profileRegistrationsViewModel):
+            var profileRegistrationsVC = ProfileRegistrationViewController()
+            
+            DispatchQueue.main.async {
+                profileRegistrationsVC.bind(viewModel: profileRegistrationsViewModel)
+            }
+            
+            return profileRegistrationsVC
             
         case .jobOpeningDetail(let recruitDetailViewModel):
             var jobOpeningDetailVC = JobOpeningDetailViewController()

@@ -39,9 +39,11 @@ extension TabBarType {
                 Scene.savedProfilesContent(staffViewModel).instantiate()  // 스태프 탭
             ]
         case .myRegistrations:
+            let jobRegistrationViewModel = JobRegistrationViewModel(sceneCoordinator: sceneCoordinator)
+            let profileRegistrationViewModel = ProfileRegistrationViewModel(sceneCoordinator: sceneCoordinator)
             return [
-                JobRegistrationViewController(), // 모집 탭
-                ProfileRegistrationViewController() // 프로필 탭
+                Scene.jobRegistrations(jobRegistrationViewModel).instantiate(), // 모집 탭
+                Scene.profileRegistrations(profileRegistrationViewModel).instantiate() // 프로필 탭
             ]
         }
     }

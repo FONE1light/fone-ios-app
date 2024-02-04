@@ -57,6 +57,7 @@ class PostCellMainContentView: UIView {
         setConstraints()
     }
     
+    // TODO: == nil 삭제
     func configure(
         profileUrl: String? = nil,
         isVerified: Bool? = nil,
