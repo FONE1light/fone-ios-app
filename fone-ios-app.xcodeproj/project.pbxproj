@@ -1245,8 +1245,6 @@
 				362C80342B139D7F00489E7D /* LetterCountedTextView.swift */,
 				360E843D2B2984C000D4A540 /* ReportBottomSheet.swift */,
 				36FB6B902B374D9900715EE9 /* BookmarkButton.swift */,
-				AB1442812B664CDB007CAC7F /* SalaryTypeBottomSheet.swift */,
-				AB1442832B664D7A007CAC7F /* SalaryTypeBottomSheet.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1257,6 +1255,15 @@
 				36AC7BD82AAE88F400478030 /* TermsCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		AB1442892B67C41F007CAC7F /* BottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				AB1442812B664CDB007CAC7F /* SalaryTypeBottomSheet.swift */,
+				AB1442832B664D7A007CAC7F /* SalaryTypeBottomSheet.xib */,
+			);
+			path = BottomSheet;
 			sourceTree = "<group>";
 		};
 		AB1851432B1CA0F20051D0DC /* RecruitDetailInfo */ = {
@@ -1595,6 +1602,7 @@
 		AB998B012B21F97E007E6214 /* RecruitWorkCondition */ = {
 			isa = PBXGroup;
 			children = (
+				AB1442892B67C41F007CAC7F /* BottomSheet */,
 				AB998AFD2B21F976007E6214 /* RecruitWorkConditionViewController.swift */,
 				AB998AFE2B21F976007E6214 /* RecruitWorkConditionViewController.xib */,
 				AB6E43302B2205ED001960E7 /* RecruitWorkConditionViewModel.swift */,

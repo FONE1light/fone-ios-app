@@ -11,6 +11,9 @@
         <array key="Pretendard-Bold.ttf">
             <string>Pretendard-Bold</string>
         </array>
+        <array key="Pretendard-Regular.ttf">
+            <string>Pretendard-Regular</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -28,60 +31,75 @@
                     <color key="textColor" red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p4E-w2-Bot">
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p4E-w2-Bot" customClass="UISortButton" customModule="fone_ios_app" customModuleProvider="target">
                     <rect key="frame" x="22" y="28" width="331" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="29R-ly-UkV"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="연봉">
-                        <color key="titleColor" red="0.80784313725490198" green="0.043137254901960784" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="annualTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="ob0-9J-m8g"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQB-xD-AxU">
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQB-xD-AxU" customClass="UISortButton" customModule="fone_ios_app" customModuleProvider="target">
                     <rect key="frame" x="22" y="72" width="331" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="4Ix-2C-VS8"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="월급">
                         <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="annualTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="jXi-IJ-lZI"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJG-29-3Eb">
+                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJG-29-3Eb" customClass="UISortButton" customModule="fone_ios_app" customModuleProvider="target">
                     <rect key="frame" x="22" y="116" width="331" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="TR3-Xw-GWw"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="일급">
                         <color key="titleColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="annualTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ydk-XQ-cYO"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whb-1G-vbp">
+                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whb-1G-vbp" customClass="UISortButton" customModule="fone_ios_app" customModuleProvider="target">
                     <rect key="frame" x="22" y="160" width="331" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="0hH-Oa-RTw"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="시급">
                         <color key="titleColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="annualTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="OH5-Oj-3Ys"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jTe-He-daJ">
+                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jTe-He-daJ" customClass="UISortButton" customModule="fone_ios_app" customModuleProvider="target">
                     <rect key="frame" x="22" y="204" width="331" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="hjl-0I-4UZ"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="회차">
                         <color key="titleColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="annualTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="xy1-0S-zpr"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IeD-8G-XKf">
                     <rect key="frame" x="0.0" y="248" width="375" height="40"/>
@@ -113,6 +131,13 @@
                 <constraint firstItem="whb-1G-vbp" firstAttribute="top" secondItem="dJG-29-3Eb" secondAttribute="bottom" id="td2-BQ-6oB"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="annualButton" destination="p4E-w2-Bot" id="9xy-WI-g99"/>
+                <outlet property="dailyButton" destination="dJG-29-3Eb" id="Kfx-li-tBV"/>
+                <outlet property="hourlyButton" destination="whb-1G-vbp" id="tWZ-sq-WMn"/>
+                <outlet property="monthlyButton" destination="sQB-xD-AxU" id="Aek-DD-EJ1"/>
+                <outlet property="perSessionButton" destination="jTe-He-daJ" id="ddB-4q-rvq"/>
+            </connections>
             <point key="canvasLocation" x="104.58015267175573" y="20.422535211267608"/>
         </view>
     </objects>
