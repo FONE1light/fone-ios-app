@@ -166,6 +166,7 @@
 		AB1442822B664CDB007CAC7F /* SalaryTypeBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1442812B664CDB007CAC7F /* SalaryTypeBottomSheet.swift */; };
 		AB1442842B664D7A007CAC7F /* SalaryTypeBottomSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB1442832B664D7A007CAC7F /* SalaryTypeBottomSheet.xib */; };
 		AB1442882B665CAA007CAC7F /* ValidationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1442872B665CAA007CAC7F /* ValidationProvider.swift */; };
+		AB14428F2B6FA606007CAC7F /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB14428E2B6FA606007CAC7F /* WeekDay.swift */; };
 		AB1851462B1CA1110051D0DC /* RecruitDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1851442B1CA1110051D0DC /* RecruitDetailInfoViewController.swift */; };
 		AB1851472B1CA1110051D0DC /* RecruitDetailInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB1851452B1CA1110051D0DC /* RecruitDetailInfoViewController.xib */; };
 		AB1915752B651A6300424256 /* JobInfoAPIRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1915742B651A6300424256 /* JobInfoAPIRequestModel.swift */; };
@@ -495,6 +496,7 @@
 		AB1442812B664CDB007CAC7F /* SalaryTypeBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalaryTypeBottomSheet.swift; sourceTree = "<group>"; };
 		AB1442832B664D7A007CAC7F /* SalaryTypeBottomSheet.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SalaryTypeBottomSheet.xib; sourceTree = "<group>"; };
 		AB1442872B665CAA007CAC7F /* ValidationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationProvider.swift; sourceTree = "<group>"; };
+		AB14428E2B6FA606007CAC7F /* WeekDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
 		AB1851442B1CA1110051D0DC /* RecruitDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitDetailInfoViewController.swift; sourceTree = "<group>"; };
 		AB1851452B1CA1110051D0DC /* RecruitDetailInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitDetailInfoViewController.xib; sourceTree = "<group>"; };
 		AB1915742B651A6300424256 /* JobInfoAPIRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoAPIRequestModel.swift; sourceTree = "<group>"; };
@@ -794,6 +796,7 @@
 				AB532B302B0A306A003A6A57 /* SalaryType.swift */,
 				366E850A2B19F50A00CB7681 /* Domain.swift */,
 				AB72BC8F2B1E097B00EB02FE /* Genre.swift */,
+				AB14428E2B6FA606007CAC7F /* WeekDay.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -2156,6 +2159,7 @@
 				36AB6FC92B05266200D9D6D0 /* UISortButton.swift in Sources */,
 				362419D92AE8A62C007D1AFB /* UserInfoAPIRequestModel.swift in Sources */,
 				AB4546502AAB452D0019B27F /* UIButton+Extension.swift in Sources */,
+				AB14428F2B6FA606007CAC7F /* WeekDay.swift in Sources */,
 				368273772B2863CF00EB0629 /* JobHuntingProfilesViewController.swift in Sources */,
 				ABAFA3392A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift in Sources */,
 				ABCDD16E2B00BE1800A598A8 /* JobOpeningDetailViewModel.swift in Sources */,

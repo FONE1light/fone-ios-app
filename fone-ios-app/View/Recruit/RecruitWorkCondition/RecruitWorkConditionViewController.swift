@@ -24,9 +24,18 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
         sender.isSelected.toggle()
         sender.setTitleColor(sender.isSelected ? .red_CE0B39 : .gray_9E9E9E, for: .normal)
         sender.backgroundColor = sender.isSelected ? .red_FFEBF0 : .gray_EEEFEF
+        let selectedDay = WeekDay.getWeekDayType(from: sender.titleLabel?.text)?.rawValue ?? ""
+        if !selectedDays.contains(selectedDay), sender.isSelected {
+            selectedDays.append(selectedDay)
+        } else if selectedDays.contains(selectedDay), !sender.isSelected {
+            if let index = selectedDays.firstIndex(of: selectedDay) {
+                selectedDays.remove(at: index)
+            }
+        }
     }
     
     var viewModel: RecruitWorkConditionViewModel!
+    var selectedDays: [String] = []
     var salaryType = SalaryType.ANNUAL
     
     override func viewDidLoad() {
@@ -91,7 +100,7 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
                 let workingStartTime = owner.startTimeTextField.text
                 let workingEndTime = owner.endTimeTextField.text
                 let salary = Int(owner.salaryTextField.text?.replacingOccurrences(of: ",", with: "") ?? "")
-                let recruitWorkConditionInfo = RecruitWorkConditionInfo(workingCity: "서울특별시", workingDistrict: "강남구", workingStartDate: workingStartDate, workingEndDate: workingEndDate, selectedDays: [], workingStartTime: workingStartTime, workingEndTime: workingEndTime, salaryType: owner.salaryType.rawValue, salary: salary) // TODO: 시-구 API 추후 개발 예정, 근무요일
+                let recruitWorkConditionInfo = RecruitWorkConditionInfo(workingCity: "서울특별시", workingDistrict: "강남구", workingStartDate: workingStartDate, workingEndDate: workingEndDate, selectedDays: owner.selectedDays, workingStartTime: workingStartTime, workingEndTime: workingEndTime, salaryType: SalaryType.HOURLY.rawValue, salary: salary) // TODO: 시-구 API 추후 개발 예정, 급여유형
                 owner.viewModel.moveToNextStep(recruitWorkConditionInfo: recruitWorkConditionInfo)
             }.disposed(by: rx.disposeBag)
     }
