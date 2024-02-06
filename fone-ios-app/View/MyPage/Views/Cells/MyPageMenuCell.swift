@@ -56,7 +56,7 @@ enum MyPageMenuType {
             }
         case .version:
             return UILabel().then {
-                $0.text = "0.0.0"
+                $0.text = getCurrentAppVersion()
                 $0.font = .font_m(16)
                 $0.textColor = .violet_6D5999
             }
@@ -93,6 +93,13 @@ enum MyPageMenuType {
             return scene
         default: return nil
         }
+    }
+    
+    private func getCurrentAppVersion() -> String? {
+        guard let dictionary = Bundle.main.infoDictionary else { return nil }
+        
+        let version = dictionary["CFBundleShortVersionString"] as? String
+        return version
     }
     
 }

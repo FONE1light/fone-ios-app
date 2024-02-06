@@ -112,7 +112,7 @@ extension SignUpPersonalInfoViewModel {
         phoneNumberViewModel.signUpPersonalInfo = SignUpPersonalInfo(
             nickname: nickname,
             birthday: birthday,
-            gender: gender?.name,
+            gender: gender?.serverName,
             profileURL: profileUrl
         )
         
