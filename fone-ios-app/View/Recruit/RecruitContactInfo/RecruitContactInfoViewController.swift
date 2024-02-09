@@ -44,7 +44,7 @@ class RecruitContactInfoViewController: UIViewController, ViewModelBindableType 
     }
     
     private func setUI() {
-        stepIndicator.xibInit(index: 5, totalCount: 6)
+        stepIndicator.xibInit(index: 6, totalCount: 7)
         managerTextField.xibInit(label: "담당자", placeholder: "", textFieldHeight: 44, isRequired: true, textFieldLeadingOffset: 62)
         emailTextField.xibInit(label: "이메일", placeholder: "", textFieldHeight: 44, isRequired: true, textFieldLeadingOffset: 62)
         registerButton.applyShadow(shadowType: .shadowBt)

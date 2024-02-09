@@ -226,6 +226,9 @@
 		AB3F071E2AADADB700E54A25 /* FindPasswordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB3F071C2AADADB700E54A25 /* FindPasswordCell.xib */; };
 		AB3F07202AADB72500E54A25 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3F071F2AADB72500E54A25 /* UICollectionView+Extension.swift */; };
 		AB4546502AAB452D0019B27F /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB45464F2AAB452D0019B27F /* UIButton+Extension.swift */; };
+		AB48A2412B7647EA00007F24 /* RecruitContactLinkInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB48A23F2B7647EA00007F24 /* RecruitContactLinkInfoViewController.swift */; };
+		AB48A2452B76480900007F24 /* RecruitContactLinkInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB48A2442B76480900007F24 /* RecruitContactLinkInfoViewModel.swift */; };
+		AB48A2472B764D3300007F24 /* RecruitContactLinkInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB48A2462B764D3300007F24 /* RecruitContactLinkInfoViewController.xib */; };
 		AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A32A2A8104E000748484 /* SceneCoordinatorType.swift */; };
 		AB49A32D2A81053200748484 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A32C2A81053200748484 /* Scene.swift */; };
 		AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB49A32E2A81055800748484 /* TransitionModel.swift */; };
@@ -527,6 +530,9 @@
 		AB3F071C2AADADB700E54A25 /* FindPasswordCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FindPasswordCell.xib; sourceTree = "<group>"; };
 		AB3F071F2AADB72500E54A25 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		AB45464F2AAB452D0019B27F /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		AB48A23F2B7647EA00007F24 /* RecruitContactLinkInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitContactLinkInfoViewController.swift; sourceTree = "<group>"; };
+		AB48A2442B76480900007F24 /* RecruitContactLinkInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitContactLinkInfoViewModel.swift; sourceTree = "<group>"; };
+		AB48A2462B764D3300007F24 /* RecruitContactLinkInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitContactLinkInfoViewController.xib; sourceTree = "<group>"; };
 		AB49A32A2A8104E000748484 /* SceneCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinatorType.swift; sourceTree = "<group>"; };
 		AB49A32C2A81053200748484 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		AB49A32E2A81055800748484 /* TransitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionModel.swift; sourceTree = "<group>"; };
@@ -1406,6 +1412,16 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		AB48A2432B7647F200007F24 /* RecruitContactLinkInfo */ = {
+			isa = PBXGroup;
+			children = (
+				AB48A23F2B7647EA00007F24 /* RecruitContactLinkInfoViewController.swift */,
+				AB48A2462B764D3300007F24 /* RecruitContactLinkInfoViewController.xib */,
+				AB48A2442B76480900007F24 /* RecruitContactLinkInfoViewModel.swift */,
+			);
+			path = RecruitContactLinkInfo;
+			sourceTree = "<group>";
+		};
 		AB49A3292A8104A000748484 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
@@ -1761,6 +1777,7 @@
 		ABF817262AF27AE600625D55 /* Recruit */ = {
 			isa = PBXGroup;
 			children = (
+				AB48A2432B7647F200007F24 /* RecruitContactLinkInfo */,
 				AB80BBE82B12E10E0016D2AB /* RecruitBasicInfo */,
 				AB80BBED2B12E1420016D2AB /* RecruitConditionInfo */,
 				AB1ADF2D2B1E016E00C2F2DD /* RecruitWorkInfo */,
@@ -1920,6 +1937,7 @@
 				AB2578AB2AAF3C8F00328363 /* ChatViewController.xib in Resources */,
 				AB6785582AA3336900ACD35C /* EmailLoginViewController.xib in Resources */,
 				AB6780FC2B10F2220074463E /* DatePickerViewController.xib in Resources */,
+				AB48A2472B764D3300007F24 /* RecruitContactLinkInfoViewController.xib in Resources */,
 				3650F6222A86715C0017645D /* Pretendard-Medium.ttf in Resources */,
 				ABCDD1922B00F23000A598A8 /* SummaryCell.xib in Resources */,
 				AB1CEAA92ABFD1D700E7E54F /* MainBannerModule.xib in Resources */,
@@ -2008,6 +2026,7 @@
 				362419D12AE319CF007D1AFB /* SignUpSelectionViewModel.swift in Sources */,
 				AB49A32D2A81053200748484 /* Scene.swift in Sources */,
 				367D9BBF2AC1572700DA6C96 /* Divider.swift in Sources */,
+				AB48A2412B7647EA00007F24 /* RecruitContactLinkInfoViewController.swift in Sources */,
 				367D9BFE2AD7583500DA6C96 /* UITabBar+Extension.swift in Sources */,
 				AB49A3472A81159F00748484 /* FindIDPasswordViewModel.swift in Sources */,
 				AB7900B72AB5C99A004DA4F3 /* NotiViewController.swift in Sources */,
@@ -2062,6 +2081,7 @@
 				AB3F071D2AADADB700E54A25 /* FindPasswordCell.swift in Sources */,
 				367D9BD82ACB5CC900DA6C96 /* JobViewController.swift in Sources */,
 				ABCDD17C2B00DE8E00A598A8 /* DetailImageCell.swift in Sources */,
+				AB48A2452B76480900007F24 /* RecruitContactLinkInfoViewModel.swift in Sources */,
 				364482D52AB8082E00984507 /* MyPageButtonStackViewContentView.swift in Sources */,
 				36AB6FD62B08842F00D9D6D0 /* StepIndicator.swift in Sources */,
 				36031ECB2AF4DCE4006B57AE /* JobOpeningHuntingViewModel.swift in Sources */,

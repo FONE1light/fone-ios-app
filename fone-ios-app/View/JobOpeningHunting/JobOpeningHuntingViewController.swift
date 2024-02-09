@@ -198,7 +198,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                 
                 switch tabType {
                 case .jobOpening:
-                    owner.viewModel.moveToRecruitBasicInfo(of: .actor)
+                    owner.viewModel.moveToComposeRecruit(of: .actor)
                 case .profile:
                     owner.viewModel.moveToRegisterProfile(of: .actor)
                 }
@@ -211,7 +211,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                 
                 switch tabType {
                 case .jobOpening:
-                    owner.viewModel.moveToRecruitBasicInfo(of: .staff)
+                    owner.viewModel.moveToComposeRecruit(of: .staff)
                 case .profile:
                     owner.viewModel.moveToRegisterProfile(of: .staff)
                 }

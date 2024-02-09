@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Bold.ttf">
+            <string>Pretendard-Bold</string>
+        </array>
+        <array key="Pretendard-Medium.ttf">
+            <string>Pretendard-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecruitContactLinkInfoViewController" customModule="fone_ios_app" customModuleProvider="target">
+            <connections>
+                <outlet property="nextButton" destination="gfQ-M8-tb5" id="Pvw-lI-6Kj"/>
+                <outlet property="stepIndicator" destination="akT-sK-psl" id="GoJ-ab-KVM"/>
+                <outlet property="view" destination="iN0-l3-epB" id="lPJ-zm-FdL"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="akT-sK-psl" customClass="StepIndicator" customModule="fone_ios_app" customModuleProvider="target">
+                    <rect key="frame" x="16" y="89" width="102" height="6"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="6" id="8Uf-99-b8X"/>
+                        <constraint firstAttribute="width" constant="102" id="b8S-Jg-CIf"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfQ-M8-tb5">
+                    <rect key="frame" x="16" y="732" width="361" height="48"/>
+                    <color key="backgroundColor" red="0.75294117650000003" green="0.0" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="Mls-OH-Lbj"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="16"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="다음"/>
+                    <state key="disabled" title="제출하기"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="연락할 방법의 링크를 남겨주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12G-Nj-0Er">
+                    <rect key="frame" x="16.000000000000014" y="115" width="243.33333333333337" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="26" id="GbT-hA-pZb"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="19"/>
+                    <color key="textColor" red="0.21176470589999999" green="0.17254901959999999" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="연락을 받을 수단으로 정확한 정보를 입력해주세요. " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UbK-2f-L3j">
+                    <rect key="frame" x="16" y="145" width="239" height="14"/>
+                    <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="12"/>
+                    <color key="textColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="UbK-2f-L3j" firstAttribute="top" secondItem="12G-Nj-0Er" secondAttribute="bottom" constant="4" id="4we-c8-5LP"/>
+                <constraint firstItem="akT-sK-psl" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="9NI-7F-9y4"/>
+                <constraint firstItem="akT-sK-psl" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="Egn-RM-mKz"/>
+                <constraint firstItem="12G-Nj-0Er" firstAttribute="top" secondItem="akT-sK-psl" secondAttribute="bottom" constant="20" id="PCb-Wq-5Oe"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="gfQ-M8-tb5" secondAttribute="trailing" constant="16" id="TIu-Yf-Ruz"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="gfQ-M8-tb5" secondAttribute="bottom" constant="38" id="YKS-uB-wtK"/>
+                <constraint firstItem="UbK-2f-L3j" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="jwe-Eb-Qby"/>
+                <constraint firstItem="12G-Nj-0Er" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="l0L-Sw-C9R"/>
+                <constraint firstItem="gfQ-M8-tb5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="nhM-5f-XOm"/>
+            </constraints>
+            <point key="canvasLocation" x="28" y="42"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -48,15 +48,15 @@
                             <rect key="frame" x="0.0" y="0.0" width="393" height="721"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xx1-4W-Wda" customClass="StepIndicator" customModule="fone_ios_app" customModuleProvider="target">
-                                    <rect key="frame" x="16" y="30" width="88" height="6"/>
+                                    <rect key="frame" x="16" y="30" width="102" height="6"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="88" id="QkZ-ep-kAx"/>
+                                        <constraint firstAttribute="width" constant="102" id="QkZ-ep-kAx"/>
                                         <constraint firstAttribute="height" constant="6" id="US6-3D-gV0"/>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="근무조건을 선택해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvD-kA-bKc">
-                                    <rect key="frame" x="16" y="56" width="191.66666666666666" height="26"/>
+                                    <rect key="frame" x="16" y="56" width="189.66666666666666" height="26"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="26" id="wQX-pR-dPL"/>
                                     </constraints>
@@ -65,7 +65,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="근무지역" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5h-da-F7X">
-                                    <rect key="frame" x="15.999999999999996" y="96" width="55.666666666666657" height="20"/>
+                                    <rect key="frame" x="16.000000000000004" y="96" width="55.333333333333343" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="Caq-IN-tFy"/>
                                     </constraints>
@@ -77,7 +77,7 @@
                                     <rect key="frame" x="16" y="124" width="124" height="44"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y0h-0w-v2d">
-                                            <rect key="frame" x="12" y="12.666666666666659" width="14" height="18.666666666666671"/>
+                                            <rect key="frame" x="12" y="12.333333333333341" width="14" height="19.333333333333329"/>
                                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
                                             <color key="textColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -117,7 +117,7 @@
                                     <rect key="frame" x="152" y="124" width="225" height="44"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="구" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sH-Eq-cYs">
-                                            <rect key="frame" x="12" y="12.666666666666659" width="14" height="18.666666666666671"/>
+                                            <rect key="frame" x="12" y="12.333333333333341" width="14" height="19.333333333333329"/>
                                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
                                             <color key="textColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -172,7 +172,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="근무기간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wvv-FG-ZXb">
-                                    <rect key="frame" x="15.999999999999996" y="200" width="55.666666666666657" height="20"/>
+                                    <rect key="frame" x="16.000000000000004" y="200" width="55.333333333333343" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="OZL-cD-duA"/>
                                     </constraints>
@@ -191,7 +191,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w1z-0a-dBz">
-                                            <rect key="frame" x="36" y="12.666666666666687" width="41.666666666666657" height="18.666666666666671"/>
+                                            <rect key="frame" x="36" y="12.333333333333313" width="41.666666666666657" height="19.333333333333329"/>
                                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
                                             <color key="textColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -237,7 +237,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마감일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRt-3G-WmM">
-                                            <rect key="frame" x="36" y="12.666666666666687" width="41.666666666666657" height="18.666666666666671"/>
+                                            <rect key="frame" x="36" y="12.333333333333313" width="41.666666666666657" height="19.333333333333329"/>
                                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
                                             <color key="textColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -285,7 +285,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="근무요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PL-WD-ebe">
-                                    <rect key="frame" x="15.999999999999996" y="304" width="55.666666666666657" height="20"/>
+                                    <rect key="frame" x="16.000000000000004" y="304" width="55.333333333333343" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="zQB-wV-8dx"/>
                                     </constraints>
@@ -454,7 +454,7 @@
                                     </subviews>
                                 </stackView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="근무시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aSI-5G-cq9">
-                                    <rect key="frame" x="15.999999999999996" y="419" width="55.666666666666657" height="20"/>
+                                    <rect key="frame" x="16.000000000000004" y="419" width="55.333333333333343" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="fnY-Oi-UGX"/>
                                     </constraints>
@@ -485,7 +485,7 @@
                                     <rect key="frame" x="210" y="447" width="167" height="44"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="마감" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uYs-pL-NfJ">
-                                            <rect key="frame" x="12" y="11.666666666666627" width="115" height="20.333333333333329"/>
+                                            <rect key="frame" x="12" y="11.333333333333371" width="115" height="21"/>
                                             <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -517,7 +517,7 @@
                                     <rect key="frame" x="16" y="447" width="150" height="44"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="시작" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SZL-xe-CjJ">
-                                            <rect key="frame" x="12" y="11.666666666666627" width="98" height="20.333333333333329"/>
+                                            <rect key="frame" x="12" y="11.333333333333371" width="98" height="21"/>
                                             <color key="textColor" red="0.086274509803921567" green="0.086274509803921567" blue="0.086274509803921567" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -553,7 +553,7 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="급여" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hex-OH-VQe">
-                                    <rect key="frame" x="16" y="523" width="28" height="20"/>
+                                    <rect key="frame" x="16" y="523" width="27.666666666666671" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="CqN-Q1-10g"/>
                                     </constraints>
@@ -565,7 +565,7 @@
                                     <rect key="frame" x="16" y="551" width="124" height="44"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시급" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGC-rM-lfM">
-                                            <rect key="frame" x="12" y="12.666666666666631" width="28" height="18.666666666666671"/>
+                                            <rect key="frame" x="12.000000000000002" y="12.333333333333369" width="27.666666666666671" height="19.333333333333329"/>
                                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
                                             <color key="textColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -611,7 +611,7 @@
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UU6-OD-mL2">
-                                            <rect key="frame" x="199" y="12.666666666666631" width="14" height="18.666666666666671"/>
+                                            <rect key="frame" x="199" y="12.333333333333369" width="14" height="19.333333333333329"/>
                                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
                                             <color key="textColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>

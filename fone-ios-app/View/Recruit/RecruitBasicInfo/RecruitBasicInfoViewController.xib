@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -50,10 +50,23 @@
                             <rect key="frame" x="0.0" y="0.0" width="393" height="727.66666666666663"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G3c-lB-aDF">
-                                    <rect key="frame" x="16" y="30" width="88" height="6"/>
+                                    <rect key="frame" x="16" y="30" width="102" height="6"/>
                                     <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pCz-wr-qZi">
+                                            <rect key="frame" x="0.0" y="0.0" width="6" height="6"/>
+                                            <color key="backgroundColor" red="0.80784313725490198" green="0.043137254901960784" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="6" id="0TW-Oj-uzA"/>
+                                                <constraint firstAttribute="width" constant="6" id="6eN-GU-7ak"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="3"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="REw-6d-Ucs">
-                                            <rect key="frame" x="0.0" y="0.0" width="18" height="6"/>
+                                            <rect key="frame" x="14" y="0.0" width="18" height="6"/>
                                             <color key="backgroundColor" red="0.80784313725490198" green="0.043137254901960784" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="18" id="AKn-n4-jV1"/>
@@ -66,7 +79,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fln-0D-NTv">
-                                            <rect key="frame" x="26" y="0.0" width="6" height="6"/>
+                                            <rect key="frame" x="40" y="0.0" width="6" height="6"/>
                                             <color key="backgroundColor" red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="6" id="F6w-DM-bFR"/>
@@ -79,7 +92,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oXJ-Dv-c4X">
-                                            <rect key="frame" x="40" y="0.0" width="6" height="6"/>
+                                            <rect key="frame" x="54" y="0.0" width="6" height="6"/>
                                             <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="6" id="TEf-bf-jeO"/>
@@ -92,7 +105,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J4D-i2-gLC">
-                                            <rect key="frame" x="54" y="0.0" width="6" height="6"/>
+                                            <rect key="frame" x="68" y="0.0" width="6" height="6"/>
                                             <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="6" id="e8T-Fc-yuI"/>
@@ -105,7 +118,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lwd-oj-00Q">
-                                            <rect key="frame" x="68" y="0.0" width="6" height="6"/>
+                                            <rect key="frame" x="82" y="0.0" width="6" height="6"/>
                                             <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="6" id="tKF-HP-sVf"/>
@@ -118,7 +131,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V7K-Pv-Isz">
-                                            <rect key="frame" x="82" y="0.0" width="6" height="6"/>
+                                            <rect key="frame" x="96" y="0.0" width="6" height="6"/>
                                             <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="6" id="2VU-zd-eNv"/>
@@ -138,11 +151,14 @@
                                         <constraint firstItem="V7K-Pv-Isz" firstAttribute="centerY" secondItem="lwd-oj-00Q" secondAttribute="centerY" id="F0y-gO-Xr7"/>
                                         <constraint firstAttribute="height" constant="6" id="GS1-DM-EUb"/>
                                         <constraint firstItem="V7K-Pv-Isz" firstAttribute="leading" secondItem="lwd-oj-00Q" secondAttribute="trailing" constant="8" id="HW7-mp-DJj"/>
+                                        <constraint firstAttribute="bottom" secondItem="pCz-wr-qZi" secondAttribute="bottom" id="M2N-xG-BpQ"/>
                                         <constraint firstAttribute="bottom" secondItem="REw-6d-Ucs" secondAttribute="bottom" id="MgS-ga-1XP"/>
                                         <constraint firstAttribute="bottom" secondItem="fln-0D-NTv" secondAttribute="bottom" id="NjO-3f-Q4c"/>
-                                        <constraint firstItem="REw-6d-Ucs" firstAttribute="leading" secondItem="G3c-lB-aDF" secondAttribute="leading" id="OgZ-ie-dvF"/>
                                         <constraint firstAttribute="bottom" secondItem="lwd-oj-00Q" secondAttribute="bottom" id="Rgl-uc-zp6"/>
+                                        <constraint firstItem="pCz-wr-qZi" firstAttribute="leading" secondItem="G3c-lB-aDF" secondAttribute="leading" id="Tkf-Ba-yBc"/>
                                         <constraint firstItem="J4D-i2-gLC" firstAttribute="leading" secondItem="oXJ-Dv-c4X" secondAttribute="trailing" constant="8" id="eVd-EU-bvM"/>
+                                        <constraint firstItem="pCz-wr-qZi" firstAttribute="top" secondItem="G3c-lB-aDF" secondAttribute="top" id="ftP-PS-FlH"/>
+                                        <constraint firstItem="REw-6d-Ucs" firstAttribute="leading" secondItem="pCz-wr-qZi" secondAttribute="trailing" constant="8" id="hrR-uO-8cl"/>
                                         <constraint firstAttribute="trailing" secondItem="V7K-Pv-Isz" secondAttribute="trailing" id="id6-3A-PNP"/>
                                         <constraint firstItem="oXJ-Dv-c4X" firstAttribute="leading" secondItem="fln-0D-NTv" secondAttribute="trailing" constant="8" id="jet-GJ-Daa"/>
                                         <constraint firstItem="lwd-oj-00Q" firstAttribute="leading" secondItem="J4D-i2-gLC" secondAttribute="trailing" constant="8" id="loo-Ak-rM6"/>
@@ -154,7 +170,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기본 정보를 입력해주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeK-Kf-LSS">
-                                    <rect key="frame" x="16" y="56" width="189.66666666666666" height="26"/>
+                                    <rect key="frame" x="16" y="56" width="191.66666666666666" height="26"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="26" id="KAf-4M-a12"/>
                                     </constraints>
@@ -211,7 +227,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="모집 기간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zhw-Lc-xjJ">
-                                    <rect key="frame" x="16" y="403" width="59" height="19.333333333333314"/>
+                                    <rect key="frame" x="16" y="403" width="60" height="19.333333333333314"/>
                                     <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="16"/>
                                     <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -256,7 +272,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="모집 기간에만 지원자에게 연락받을 수 있어요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ga-rp-K8k">
-                                    <rect key="frame" x="16" y="478.33333333333337" width="215.33333333333334" height="14"/>
+                                    <rect key="frame" x="16" y="478.33333333333337" width="217.33333333333334" height="14"/>
                                     <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                     <color key="textColor" red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -281,7 +297,7 @@
                                     </collectionViewFlowLayout>
                                 </collectionView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="갤러리에 있는 사진만 올릴 수 있어요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qD8-pL-29b">
-                                    <rect key="frame" x="16" y="633.66666666666663" width="174" height="14"/>
+                                    <rect key="frame" x="16" y="633.66666666666663" width="176" height="14"/>
                                     <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                     <color key="textColor" red="0.61960784310000006" green="0.61960784310000006" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -313,7 +329,7 @@
                                     </constraints>
                                 </imageView>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="H55-f3-0Na">
-                                    <rect key="frame" x="77" y="408.66666666666669" width="8" height="8"/>
+                                    <rect key="frame" x="78" y="408.66666666666669" width="8" height="8"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="8" id="GWM-8A-wle"/>
                                         <constraint firstAttribute="height" constant="8" id="YmM-Kd-ijp"/>

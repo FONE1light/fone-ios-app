@@ -40,14 +40,6 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
         nextButton.applyShadow(shadowType: .shadowBt)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = false // 스와이프백 안 되게
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = true // 스와이프백 다시 가능하게
-    }
-    
     func bindViewModel() {
         setNavigationBar()
         
@@ -119,7 +111,7 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
         guard let jobType = viewModel.jobType else { return }
         navigationItem.titleView = NavigationTitleView(title: "\(jobType.koreanName) 모집하기")
         navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
-            type: .backWithAlert,
+            type: .back,
             viewController: self
         )
     }
