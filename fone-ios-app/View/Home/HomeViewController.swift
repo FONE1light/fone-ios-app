@@ -108,7 +108,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         case ModuleSection.mainBanner.rawValue:
             height = 250
         case ModuleSection.jobOpening.rawValue:
-            height = 214
+            height = 219
         case ModuleSection.competition.rawValue:
             height = 259 - 67 //FIXME: 영화제 데이터 들어오면 수정
         case ModuleSection.profile.rawValue:
