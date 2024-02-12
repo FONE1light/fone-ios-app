@@ -47,7 +47,7 @@ class RecruitDetailInfoViewController: UIViewController, ViewModelBindableType {
     }
     
     private func setUI() {
-        stepIndicator.xibInit(index: 4, totalCount: 6)
+        stepIndicator.xibInit(index: 5, totalCount: 7)
         detailTextView.xibInit(placeholder: placeholder, textViewHeight: 172, maximumLetterCount: 500)
         nextButton.applyShadow(shadowType: .shadowBt)
     }

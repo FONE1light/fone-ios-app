@@ -79,7 +79,7 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
     }
     
     private func setUI() {
-        stepIndicator.xibInit(index: 1, totalCount: 6)
+        stepIndicator.xibInit(index: 2, totalCount: 7)
         switch viewModel.jobType {
         case .actor:
             castingTextField.isHidden = false

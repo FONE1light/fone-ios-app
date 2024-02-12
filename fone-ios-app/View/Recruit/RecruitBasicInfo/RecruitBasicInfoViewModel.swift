@@ -21,6 +21,12 @@ final class RecruitBasicInfoViewModel: CommonViewModel {
     var jobType: Job?
     var imageUrls: [String] = []
     
+    init(sceneCoordinator: SceneCoordinatorType, jobType: Job?) {
+        super.init(sceneCoordinator: sceneCoordinator)
+        
+        self.jobType = jobType
+    }
+    
     func moveToNextStep(recruitBasicInfo: RecruitBasicInfo) {
         let recruitConditionInfoViewModel = RecruitConditionInfoViewModel(sceneCoordinator: sceneCoordinator, jobType: jobType, recruitBasicInfo: recruitBasicInfo)
         let recuirtConditionInfoScene = Scene.recruitConditionInfo(recruitConditionInfoViewModel)

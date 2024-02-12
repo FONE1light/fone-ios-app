@@ -55,7 +55,7 @@ class RecruitWorkInfoViewController: UIViewController, ViewModelBindableType {
     }
     
     private func setUI() {
-        stepIndicator.xibInit(index: 2, totalCount: 6)
+        stepIndicator.xibInit(index: 3, totalCount: 7)
         produceTextField.xibInit(label: "제작", placeholder: "제작 주체(회사, 학교, 단체 등의 이름)", textFieldHeight: 44, isRequired: true, textFieldLeadingOffset: 54)
         titleTextField.xibInit(label: "제목", placeholder: "작품 제목", textFieldHeight: 44, isRequired: true, textFieldLeadingOffset: 54)
         directorTextField.xibInit(label: "연출", placeholder: "연출자 이름", textFieldHeight: 44, isRequired: true, textFieldLeadingOffset: 54)

@@ -35,12 +35,13 @@ enum Scene {
     
     // 구인구직
     case jobOpeningDetail(JobOpeningDetailViewModel) // 모집 상세
-    case recruitBasicInfo(RecruitBasicInfoViewModel) // 모집 글쓰기1
-    case recruitConditionInfo(RecruitConditionInfoViewModel) // 모집 글쓰기2
-    case recruitWorkInfo(RecruitWorkInfoViewModel) // 모집 글쓰기3
-    case recruitWorkCondition(RecruitWorkConditionViewModel) // 모집 글쓰기4
-    case recruitDetailInfo(RecruitDetailInfoViewModel) // 모집 글쓰기5
-    case recruitContactInfo(RecruitContactInfoViewModel) // 모집 글쓰기5
+    case recruitContactLinkInfo(RecruitContactLinkInfoViewModel) // 모집 글쓰기1
+    case recruitBasicInfo(RecruitBasicInfoViewModel) // 모집 글쓰기2
+    case recruitConditionInfo(RecruitConditionInfoViewModel) // 모집 글쓰기3
+    case recruitWorkInfo(RecruitWorkInfoViewModel) // 모집 글쓰기4
+    case recruitWorkCondition(RecruitWorkConditionViewModel) // 모집 글쓰기5
+    case recruitDetailInfo(RecruitDetailInfoViewModel) // 모집 글쓰기6
+    case recruitContactInfo(RecruitContactInfoViewModel) // 모집 글쓰기7
     
     case jobHuntingDetail(JobHuntingDetailViewModel) // 프로필 상세
     case registerBasicInfo(RegisterBasicInfoViewModel) // 프로필 등록하기1
@@ -258,6 +259,15 @@ extension Scene {
             }
             
             return jobOpeningDetailVC
+            
+        case .recruitContactLinkInfo(let recruitContactLinkInfoViewModel):
+            var recruitContactLinkInfoVC = RecruitContactLinkInfoViewController()
+            
+            DispatchQueue.main.async {
+                recruitContactLinkInfoVC.bind(viewModel: recruitContactLinkInfoViewModel)
+            }
+            
+            return recruitContactLinkInfoVC
             
         case .recruitBasicInfo(let recruitBasicInfoViewModel):
             var recruitBasicInfoVC = RecruitBasicInfoViewController()

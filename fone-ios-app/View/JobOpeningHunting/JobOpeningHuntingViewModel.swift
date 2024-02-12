@@ -213,12 +213,12 @@ extension JobOpeningHuntingViewModel {
     }
     
     /// 모집 등록
-    func moveToRecruitBasicInfo(of jobType: Job) {
-        let recruitBasicInfoViewModel = RecruitBasicInfoViewModel(sceneCoordinator: sceneCoordinator)
-        recruitBasicInfoViewModel.jobType = jobType
+    func moveToComposeRecruit(of jobType: Job) {
+        let recruitContactLinkInfoViewModel = RecruitContactLinkInfoViewModel(sceneCoordinator: sceneCoordinator)
+        recruitContactLinkInfoViewModel.jobType = jobType
         
-        let recruitScene = Scene.recruitBasicInfo(recruitBasicInfoViewModel)
-        sceneCoordinator.transition(to: recruitScene, using: .push, animated: true)
+        let recruitComposeScene = Scene.recruitContactLinkInfo(recruitContactLinkInfoViewModel)
+        sceneCoordinator.transition(to: recruitComposeScene, using: .push, animated: true)
     }
     
     /// 프로필 등록

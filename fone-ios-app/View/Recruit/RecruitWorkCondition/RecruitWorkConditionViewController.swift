@@ -115,7 +115,7 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
     }
     
     private func setUI() {
-        stepIndicator.xibInit(index: 3, totalCount: 6)
+        stepIndicator.xibInit(index: 4, totalCount: 7)
         nextButton.applyShadow(shadowType: .shadowBt)
     }
     
