@@ -16,6 +16,9 @@ class CompetitionModule: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        collectionView.dataSource = self
+        collectionView.register(FilmCompetitionCell.self)
     }
 
     func setModuelInfo(info: CompetitionModuleInfo?) {
@@ -25,11 +28,29 @@ class CompetitionModule: UICollectionViewCell {
     }
     
     private func setModule() {
-        guard competitionInfo != nil else {
-            errorView.isHidden = false
-            collectionView.isHidden = true
-            return
-        }
+//        guard competitionInfo != nil else {
+//            errorView.isHidden = false
+//            collectionView.isHidden = true
+//            return
+//        }
         collectionView.reloadData()
     }
 }
+
+extension CompetitionModule: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        let maxCount = 5
+//        let itemCount = competitionInfo?.data?.content?.count ?? 0
+//        return min(itemCount, maxCount)
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as FilmCompetitionCell
+//        if let item = competitionInfo?.data?.content?[indexPath.item] {
+            cell.configure(index: indexPath.item)
+//        }
+        return cell
+    }
+}
+
