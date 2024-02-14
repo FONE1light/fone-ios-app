@@ -8,23 +8,25 @@
 import UIKit
 import RxSwift
 
-struct RecruitContactInfo {
+struct RecruitContactInfo: Codable {
     let manager, email: String?
 }
 
 final class RecruitContactInfoViewModel: CommonViewModel {
     let disposeBag = DisposeBag()
     var jobType: Job?
+    var recruitContactLinkInfo: RecruitContactLinkInfo?
     var recruitBasicInfo: RecruitBasicInfo?
     var recruitConditionInfo: RecruitConditionInfo?
     var recruitWorkInfo: RecruitWorkInfo?
     var recruitWorkConditionInfo: RecruitWorkConditionInfo?
     var recruitDetailInfo: RecruitDetailInfo?
     
-    init(sceneCoordinator: SceneCoordinatorType, jobType: Job?, recruitBasicInfo: RecruitBasicInfo?, recruitConditionInfo: RecruitConditionInfo?, recruitWorkInfo: RecruitWorkInfo?, recruitWorkConditionInfo: RecruitWorkConditionInfo?, recruitDetailInfo: RecruitDetailInfo) {
+    init(sceneCoordinator: SceneCoordinatorType, jobType: Job?, recruitContactLinkInfo: RecruitContactLinkInfo?, recruitBasicInfo: RecruitBasicInfo?, recruitConditionInfo: RecruitConditionInfo?, recruitWorkInfo: RecruitWorkInfo?, recruitWorkConditionInfo: RecruitWorkConditionInfo?, recruitDetailInfo: RecruitDetailInfo) {
         super.init(sceneCoordinator: sceneCoordinator)
         
         self.jobType = jobType
+        self.recruitContactLinkInfo = recruitContactLinkInfo
         self.recruitBasicInfo = recruitBasicInfo
         self.recruitConditionInfo = recruitConditionInfo
         self.recruitWorkInfo = recruitWorkInfo

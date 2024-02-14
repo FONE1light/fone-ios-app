@@ -8,29 +8,31 @@
 import Foundation
 import RxRelay
 
-struct RecruitConditionInfo {
+struct RecruitConditionInfo: Codable {
     let casting: String?
     let domains: [String]?
     let numberOfRecruits: Int?
     let gender: String?
     let ageMin, ageMax: Int?
-    let career: String?  //FIXME: [String]이어야할 것 같은데 서버 확인 필요.
+    let career: [String]?  //FIXME: [String]이어야할 것 같은데 서버 확인 필요.
 }
 
 final class RecruitConditionInfoViewModel: CommonViewModel {
     var jobType: Job?
+    var recruitContactLinkInfo: RecruitContactLinkInfo?
     var recruitBasicInfo: RecruitBasicInfo?
     let selectedDomains = BehaviorRelay<[Selection]>(value: [])
     
-    init(sceneCoordinator: SceneCoordinatorType, jobType: Job?, recruitBasicInfo: RecruitBasicInfo?) {
+    init(sceneCoordinator: SceneCoordinatorType, jobType: Job?, recruitContactLinkInfo: RecruitContactLinkInfo?, recruitBasicInfo: RecruitBasicInfo?) {
         super.init(sceneCoordinator: sceneCoordinator)
         
         self.jobType = jobType
+        self.recruitContactLinkInfo = recruitContactLinkInfo
         self.recruitBasicInfo = recruitBasicInfo
     }
     
     func moveToNextStep(recruitConditionInfo: RecruitConditionInfo) {
-        let recruitWorkInfoViewModel = RecruitWorkInfoViewModel(sceneCoordinator: sceneCoordinator, jobType: jobType, recruitBasicInfo: recruitBasicInfo, recruitConditionInfo: recruitConditionInfo)
+        let recruitWorkInfoViewModel = RecruitWorkInfoViewModel(sceneCoordinator: sceneCoordinator, jobType: jobType, recruitContactLinkInfo: recruitContactLinkInfo, recruitBasicInfo: recruitBasicInfo, recruitConditionInfo: recruitConditionInfo)
         let recruitWorkInfoScene = Scene.recruitWorkInfo(recruitWorkInfoViewModel)
         sceneCoordinator.transition(to: recruitWorkInfoScene, using: .push, animated: true)
     }

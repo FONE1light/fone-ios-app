@@ -419,15 +419,15 @@ extension JobOpeningHuntingViewController: UITableViewDataSource {
         cell.configure(
             id: content.id,
             jobType: content.type,
-            profileUrl: content.profileURL,
+            profileUrl: content.userProfileURL,
             isVerified: content.isVerified,
-            categories: content.categories,
+            categories: content.recruitBasicInfo?.categories,
             isScrap: content.isScrap,
-            title: content.title,
+            title: content.recruitBasicInfo?.title,
             dDay: content.dday,
-            genre: content.work?.genres?.first,
-            domain: content.domains?.first,
-            produce: content.work?.produce
+            genre: content.recruitWorkInfo?.genres?.first,
+            domain: content.recruitConditionInfo?.domains?.first,
+            produce: content.recruitWorkInfo?.produce
         )
         
         cell.bookmarkButtonTap

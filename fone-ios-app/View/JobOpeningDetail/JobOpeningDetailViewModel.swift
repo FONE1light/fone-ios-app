@@ -10,11 +10,11 @@ import Foundation
 final class JobOpeningDetailViewModel: CommonViewModel {
     var jobOpeningDetail: JobOpeningContent?
     
-    lazy var authorInfo = AuthorInfo(createdAt: jobOpeningDetail?.createdAt, profileUrl: jobOpeningDetail?.profileURL, nickname: jobOpeningDetail?.nickname, userJob: jobOpeningDetail?.userJob, viewCount: jobOpeningDetail?.viewCount)
+    lazy var authorInfo = AuthorInfo(createdAt: jobOpeningDetail?.createdAt, profileUrl: jobOpeningDetail?.userProfileURL, nickname: jobOpeningDetail?.userNickname, userJob: jobOpeningDetail?.userJob, viewCount: jobOpeningDetail?.viewCount)
     
-    lazy var titleInfo = TitleInfo(categories: jobOpeningDetail?.categories, title: jobOpeningDetail?.title)
+    lazy var titleInfo = TitleInfo(categories: jobOpeningDetail?.recruitBasicInfo?.categories, title: jobOpeningDetail?.recruitBasicInfo?.title)
     
-    lazy var recruitCondition = RecruitCondition(type: jobOpeningDetail?.type, recruitmentEndDate: jobOpeningDetail?.recruitmentEndDate, dday: jobOpeningDetail?.dday, casting: jobOpeningDetail?.casting, gender: jobOpeningDetail?.gender, career: jobOpeningDetail?.career, domains: jobOpeningDetail?.domains, numberOfRecruits: jobOpeningDetail?.numberOfRecruits, ageMin: jobOpeningDetail?.ageMin, ageMax: jobOpeningDetail?.ageMax)
+    lazy var recruitCondition = RecruitCondition(type: jobOpeningDetail?.type, recruitmentEndDate: jobOpeningDetail?.recruitBasicInfo?.recruitmentEndDate, dday: jobOpeningDetail?.dday, recruitConditionInfo: jobOpeningDetail?.recruitConditionInfo)
     
     init(sceneCoordinator: SceneCoordinatorType, jobOpeningDetail: JobOpeningContent) {
         super.init(sceneCoordinator: sceneCoordinator)

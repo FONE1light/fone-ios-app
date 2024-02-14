@@ -10,8 +10,8 @@ import Foundation
 // MARK: - JobOpeningRequest
 struct JobOpeningRequest: Codable {
     let ageMax, ageMin: Int?
-    let career, casting: String?
-    let categories: [String]?
+    let casting: String?
+    let career, categories: [String]?
     let domains: [String]?
     let gender: String?
     let imageUrls: [String]?
@@ -36,15 +36,15 @@ struct JobOpeningRequest: Codable {
          recruitContactInfo: RecruitContactInfo?, jobType: Job?) {
         ageMax = recruitConditionInfo?.ageMax ?? 0
         ageMin = recruitConditionInfo?.ageMin ?? 0
-        career = recruitConditionInfo?.career ?? ""
+        career = recruitConditionInfo?.career ?? []
         casting = recruitConditionInfo?.casting ?? ""
-        categories = recruitBasicInfo?.categories?.map { $0.serverName }
+        categories = recruitBasicInfo?.categories//?.map { $0.serverName }
         domains = recruitConditionInfo?.domains
         gender = recruitConditionInfo?.gender
         imageUrls = recruitBasicInfo?.imageUrls ?? []
         numberOfRecruits = recruitConditionInfo?.numberOfRecruits ?? 0
-        recruitmentEndDate = recruitBasicInfo?.endDate ?? ""
-        recruitmentStartDate = recruitBasicInfo?.startDate ?? ""
+        recruitmentEndDate = recruitBasicInfo?.recruitmentEndDate ?? ""
+        recruitmentStartDate = recruitBasicInfo?.recruitmentStartDate ?? ""
         title = recruitBasicInfo?.title
         type = jobType?.serverName
         work = WorkRequest(recruitWorkInfo: recruitWorkInfo, recruitWorkConditionInfo: recruitWorkConditionInfo, recruitDetailInfo: recruitDetailInfo, recruitContactInfo: recruitContactInfo)

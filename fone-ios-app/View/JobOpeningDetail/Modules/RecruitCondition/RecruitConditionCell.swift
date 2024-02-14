@@ -8,12 +8,26 @@
 import UIKit
 
 struct RecruitCondition {
-    let type, recruitmentEndDate, dday, casting, gender, career: String
-    let domains: [String]
+    let type, recruitmentEndDate, dday, casting, gender: String
+    let career, domains: [String]
     let numberOfRecruits, ageMin, ageMax: Int
     
-    init?(type: String?, recruitmentEndDate: String?, dday: String?, casting: String?, gender: String?, career: String?, domains: [String]?, numberOfRecruits: Int?, ageMin: Int?, ageMax: Int?) {
-        guard let type = type, let recruitmentEndDate = recruitmentEndDate, let dday = dday, let casting = casting, let gender = gender, let career = career, let domains = domains, let numberOfRecruits = numberOfRecruits, let ageMin = ageMin, let ageMax = ageMax else { return nil }
+//    init?(type: String?, recruitmentEndDate: String?, dday: String?, casting: String?, gender: String?, career: [String]?, domains: [String]?, numberOfRecruits: Int?, ageMin: Int?, ageMax: Int?) {
+//        guard let type = type, let recruitmentEndDate = recruitmentEndDate, let dday = dday, let casting = casting, let gender = gender, let career = career, let domains = domains, let numberOfRecruits = numberOfRecruits, let ageMin = ageMin, let ageMax = ageMax else { return nil }
+//        self.type = type
+//        self.recruitmentEndDate = recruitmentEndDate
+//        self.dday = dday
+//        self.casting = casting
+//        self.gender = gender
+//        self.career = career
+//        self.domains = domains
+//        self.numberOfRecruits = numberOfRecruits
+//        self.ageMin = ageMin
+//        self.ageMax = ageMax
+//    }
+//    
+    init?(type: String?, recruitmentEndDate: String?, dday: String?, recruitConditionInfo: RecruitConditionInfo?) {
+        guard let type = type, let recruitmentEndDate = recruitmentEndDate, let dday = dday, let casting = recruitConditionInfo?.casting, let gender = recruitConditionInfo?.gender, let career = recruitConditionInfo?.career, let domains = recruitConditionInfo?.domains, let numberOfRecruits = recruitConditionInfo?.numberOfRecruits, let ageMin = recruitConditionInfo?.ageMin, let ageMax = recruitConditionInfo?.ageMax else { return nil }
         self.type = type
         self.recruitmentEndDate = recruitmentEndDate
         self.dday = dday
@@ -50,6 +64,6 @@ class RecruitConditionCell: UICollectionViewCell {
         numberOfRecruitsLabel.text = String(recruitCondition.numberOfRecruits)
         genderLabel.text = GenderType.getType(serverName: recruitCondition.gender)?.name
         ageLabel.text = "\(recruitCondition.ageMin) ~ \(recruitCondition.ageMax)살"
-        careerLabel.text = CareerType(rawValue: recruitCondition.career)?.string
+        careerLabel.text = CareerType(rawValue: recruitCondition.career.first ?? "")?.string
     }
 }

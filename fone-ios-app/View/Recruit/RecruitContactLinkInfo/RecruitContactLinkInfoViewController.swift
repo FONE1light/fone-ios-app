@@ -33,7 +33,8 @@ class RecruitContactLinkInfoViewController: UIViewController, ViewModelBindableT
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.moveToNextStep()
+                let recruitContactLinkInfo = RecruitContactLinkInfo(contact: "", contactMethod: "") // FIXME
+                owner.viewModel.moveToNextStep(recruitContactLinkInfo: recruitContactLinkInfo)
             }.disposed(by: rx.disposeBag)
     }
     
