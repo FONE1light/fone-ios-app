@@ -138,7 +138,7 @@ extension JobHuntingDetailViewController: UITableViewDataSource {
                     birthYear: actorInfo.birthYear,
                     age: actorInfo.age,
                     height: actorInfo.height,
-                    weight: actorInfo.height,
+                    weight: actorInfo.weight,
                     email: actorInfo.email,
                     specialty: actorInfo.specialty
                 )
