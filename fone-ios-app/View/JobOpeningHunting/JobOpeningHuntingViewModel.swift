@@ -112,6 +112,9 @@ class JobOpeningHuntingViewModel: CommonViewModel {
                 owner.isLoading = false
                 guard let newContent = response.data?.profiles?.content, newContent.count > 0 else {
                     owner.profilesPage = owner.profilesPage - 1 // 원복
+                    if owner.profilesContent.isEmpty { // 탭 변경 후 받은 리스트가 빈 경우
+                        owner.reloadCollectionView.onNext(())
+                    }
                     return
                 }
                 owner.profilesContent.append(contentsOf: newContent)
