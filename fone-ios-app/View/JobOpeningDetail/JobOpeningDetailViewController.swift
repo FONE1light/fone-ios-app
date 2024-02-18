@@ -84,7 +84,7 @@ extension JobOpeningDetailViewController: UICollectionViewDataSource {
         case JobOpeningDetailSection.author.rawValue:
             guard let authorInfo = viewModel.authorInfo else { return UICollectionViewCell() }
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as AuthorCell
-            cell.configure(authorInfo: authorInfo)
+            cell.configure(authorInfo: authorInfo, isVerified: content.isVerified)
             return cell
         case JobOpeningDetailSection.title.rawValue:
             guard let titleInfo = viewModel.titleInfo else { return UICollectionViewCell() }
