@@ -97,10 +97,11 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
             .bind { owner, _ in
                 owner.viewModel.uploadImages(images: owner.images) { imageUrls in
                     let title = owner.titleTextView.text
-                    // let categories
+                    let  selectedCategories = owner.selectionBlock.selectedItems.value as? [Category]
+                    let categories = selectedCategories?.map{ $0.serverName }
                     let startDate = owner.startDateLabel.text?.dateServerFormat
                     let endDate = owner.endDateLabel.text?.dateServerFormat
-                    let recruitBasicInfo = RecruitBasicInfo(title: title, categories: [], recruitmentStartDate: startDate, recruitmentEndDate: endDate, imageUrls: imageUrls)
+                    let recruitBasicInfo = RecruitBasicInfo(title: title, categories: categories, recruitmentStartDate: startDate, recruitmentEndDate: endDate, imageUrls: imageUrls)
                     owner.viewModel.moveToNextStep(recruitBasicInfo: recruitBasicInfo)
                 }
                 
