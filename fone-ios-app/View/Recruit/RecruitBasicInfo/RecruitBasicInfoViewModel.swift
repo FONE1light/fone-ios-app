@@ -14,7 +14,7 @@ struct RecruitBasicInfo: Codable {
     let recruitmentStartDate: String?
     let recruitmentEndDate: String?
     let imageUrls: [String]?
-    var representativeImageUrl: String = ""
+    var representativeImageUrl: String?
 }
 
 final class RecruitBasicInfoViewModel: CommonViewModel {
