@@ -23,6 +23,8 @@ class JobOpeningDetailViewController: UIViewController, ViewModelBindableType {
     var viewModel: JobOpeningDetailViewModel!
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var scrapButton: UIButton!
+    @IBOutlet weak var contactButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +34,7 @@ class JobOpeningDetailViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
-        
+        contactButton.setEnabled(isEnabled: viewModel.jobOpeningDetail?.contactable ?? false)
     }
     
     private func setNavigationBar() {
