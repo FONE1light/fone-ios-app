@@ -9,22 +9,24 @@ import Foundation
 import RxSwift
 import Moya
 
-struct RecruitDetailInfo {
+struct RecruitDetailInfo: Codable {
     let details: String?
 }
 
 final class RecruitDetailInfoViewModel: CommonViewModel {
     let disposeBag = DisposeBag()
     var jobType: Job?
+    var recruitContactLinkInfo: RecruitContactLinkInfo?
     var recruitBasicInfo: RecruitBasicInfo?
     var recruitConditionInfo: RecruitConditionInfo?
     var recruitWorkInfo: RecruitWorkInfo?
     var recruitWorkConditionInfo: RecruitWorkConditionInfo?
     
-    init(sceneCoordinator: SceneCoordinatorType, jobType: Job?, recruitBasicInfo: RecruitBasicInfo?, recruitConditionInfo: RecruitConditionInfo?, recruitWorkInfo: RecruitWorkInfo?, recruitWorkConditionInfo: RecruitWorkConditionInfo?) {
+    init(sceneCoordinator: SceneCoordinatorType, jobType: Job?, recruitContactLinkInfo: RecruitContactLinkInfo?, recruitBasicInfo: RecruitBasicInfo?, recruitConditionInfo: RecruitConditionInfo?, recruitWorkInfo: RecruitWorkInfo?, recruitWorkConditionInfo: RecruitWorkConditionInfo?) {
         super.init(sceneCoordinator: sceneCoordinator)
         
         self.jobType = jobType
+        self.recruitContactLinkInfo = recruitContactLinkInfo
         self.recruitBasicInfo = recruitBasicInfo
         self.recruitConditionInfo = recruitConditionInfo
         self.recruitWorkInfo = recruitWorkInfo
@@ -54,7 +56,7 @@ final class RecruitDetailInfoViewModel: CommonViewModel {
     }
     
     func moveToNextStep(recruitDetailInfo: RecruitDetailInfo) {
-        let recruitContactInfoViewModel = RecruitContactInfoViewModel(sceneCoordinator: sceneCoordinator, jobType: jobType, recruitBasicInfo: recruitBasicInfo, recruitConditionInfo: recruitConditionInfo, recruitWorkInfo: recruitWorkInfo, recruitWorkConditionInfo: recruitWorkConditionInfo, recruitDetailInfo: recruitDetailInfo)
+        let recruitContactInfoViewModel = RecruitContactInfoViewModel(sceneCoordinator: sceneCoordinator, jobType: jobType, recruitContactLinkInfo: recruitContactLinkInfo, recruitBasicInfo: recruitBasicInfo, recruitConditionInfo: recruitConditionInfo, recruitWorkInfo: recruitWorkInfo, recruitWorkConditionInfo: recruitWorkConditionInfo, recruitDetailInfo: recruitDetailInfo)
         let recuirtContactInfoScene = Scene.recruitContactInfo(recruitContactInfoViewModel)
         sceneCoordinator.transition(to: recuirtContactInfoScene, using: .push, animated: true)
     }

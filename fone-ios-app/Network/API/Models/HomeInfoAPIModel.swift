@@ -41,31 +41,32 @@ struct JobOpeningModuleData: Codable {
 
 // MARK: - JobOpeningContent
 struct JobOpeningContent: Codable {
-    let ageMax, ageMin: Int?
-    let career, casting: String?
-    let categories: [String]?
-    let createdAt, dday: String?
-    let domains: [String]?
-    let gender: String?
-    let id: Int?
-    let imageUrls: [String]?
-    let isScrap, isVerified: Bool?
-    let nickname: String?
-    let numberOfRecruits: Int?
-    let profileURL: String?
-    let recruitmentEndDate, recruitmentStartDate: String?
-    let representativeImageURL: String?
-    let scrapCount: Int?
-    let title, type, userJob: String?
-    let viewCount: Int?
-    let work: Work?
-
+    let createdAt, dday: String
+    let recruitContactLinkInfo: RecruitContactLinkInfo?
+    let recruitBasicInfo: RecruitBasicInfo?
+    let recruitConditionInfo: RecruitConditionInfo?
+    let recruitWorkInfo: RecruitWorkInfo?
+    let recruitWorkConditionInfo: RecruitWorkConditionInfo?
+    let recruitDetailInfo: RecruitDetailInfo?
+    let recruitContactInfo: RecruitContactInfo?
+    let id: Int
+    let isScrap, isVerified, contactable: Bool
+    let scrapCount: Int
+    let type, userJob, userNickname: String
+    let userProfileURL: String
+    let viewCount: Int
+    let workingDate: String
+    
     enum CodingKeys: String, CodingKey {
-        case ageMax, ageMin, career, casting, categories, createdAt, dday, domains, gender, id, imageUrls, isScrap, isVerified, nickname, numberOfRecruits
-        case profileURL = "profileUrl"
-        case recruitmentEndDate, recruitmentStartDate
-        case representativeImageURL = "representativeImageUrl"
-        case scrapCount, title, type, userJob, viewCount, work
+        case contactable, createdAt, dday, id, isScrap, isVerified, scrapCount, type, userJob, userNickname, viewCount, workingDate
+        case recruitContactLinkInfo = "firstPage"
+        case recruitBasicInfo = "secondPage"
+        case recruitConditionInfo = "thirdPage"
+        case recruitWorkInfo = "fourthPage"
+        case recruitWorkConditionInfo = "fifthPage"
+        case recruitDetailInfo = "sixthPage"
+        case recruitContactInfo = "seventhPage"
+        case userProfileURL = "userProfileUrl"
     }
 }
 
@@ -231,4 +232,3 @@ struct Pageable: Codable {
 struct Sort: Codable {
     let empty, unsorted, sorted: Bool?
 }
-

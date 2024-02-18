@@ -8,7 +8,7 @@
 import Foundation
 import RxRelay
 
-struct RecruitWorkConditionInfo {
+struct RecruitWorkConditionInfo: Codable {
     let workingCity, workingDistrict: String?
     let workingStartDate, workingEndDate: String?
     let selectedDays: [String]?
@@ -19,16 +19,18 @@ struct RecruitWorkConditionInfo {
 
 final class RecruitWorkConditionViewModel: CommonViewModel {
     var jobType: Job?
+    var recruitContactLinkInfo: RecruitContactLinkInfo?
     var recruitBasicInfo: RecruitBasicInfo?
     var recruitConditionInfo: RecruitConditionInfo?
     var recruitWorkInfo: RecruitWorkInfo?
     
     let salaryType = PublishRelay<SalaryType>()
     
-    init(sceneCoordinator: SceneCoordinatorType, jobType: Job?, recruitBasicInfo: RecruitBasicInfo?, recruitConditionInfo: RecruitConditionInfo?, recruitWorkInfo: RecruitWorkInfo?) {
+    init(sceneCoordinator: SceneCoordinatorType, jobType: Job?, recruitContactLinkInfo: RecruitContactLinkInfo?, recruitBasicInfo: RecruitBasicInfo?, recruitConditionInfo: RecruitConditionInfo?, recruitWorkInfo: RecruitWorkInfo?) {
         super.init(sceneCoordinator: sceneCoordinator)
         
         self.jobType = jobType
+        self.recruitContactLinkInfo = recruitContactLinkInfo
         self.recruitBasicInfo = recruitBasicInfo
         self.recruitConditionInfo = recruitConditionInfo
         self.recruitWorkInfo = recruitWorkInfo
@@ -39,7 +41,7 @@ final class RecruitWorkConditionViewModel: CommonViewModel {
     }
     
     func moveToNextStep(recruitWorkConditionInfo: RecruitWorkConditionInfo) {
-        let recruitDetailInfoViewModel = RecruitDetailInfoViewModel(sceneCoordinator: sceneCoordinator, jobType: jobType, recruitBasicInfo: recruitBasicInfo, recruitConditionInfo: recruitConditionInfo, recruitWorkInfo: recruitWorkInfo, recruitWorkConditionInfo: recruitWorkConditionInfo)
+        let recruitDetailInfoViewModel = RecruitDetailInfoViewModel(sceneCoordinator: sceneCoordinator, jobType: jobType, recruitContactLinkInfo: recruitContactLinkInfo, recruitBasicInfo: recruitBasicInfo, recruitConditionInfo: recruitConditionInfo, recruitWorkInfo: recruitWorkInfo, recruitWorkConditionInfo: recruitWorkConditionInfo)
         let recuirtDetailInfoScene = Scene.recruitDetailInfo(recruitDetailInfoViewModel)
         sceneCoordinator.transition(to: recuirtDetailInfoScene, using: .push, animated: true)
     }

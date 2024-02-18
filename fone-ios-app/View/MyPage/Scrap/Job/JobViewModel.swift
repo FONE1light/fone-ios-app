@@ -31,21 +31,21 @@ class JobViewModel: CommonViewModel {
                     let jobOpeningsContent = response.data?.jobOpenings?.content
                     
                     let jobScraps = jobOpeningsContent?.map { jobOpening in
-                        let categories = jobOpening.categories?.compactMap { Category.getType(serverName: $0) }
+                        let categories = jobOpening.recruitBasicInfo?.categories?.compactMap { Category.getType(serverName: $0) }
                         let jobType = Job.getType(name: jobOpening.type)
-                        let genre = Genre.getType(name: jobOpening.work?.genres?.first)?.koreanName
-                        let domain = Domain.getType(serverName: jobOpening.domains?.first)?.name
+                        let genre = Genre.getType(name: jobOpening.recruitWorkInfo?.genres?.first)?.koreanName
+                        let domain = Domain.getType(serverName: jobOpening.recruitConditionInfo?.domains?.first)?.name
                         return JobOpening(
                             id: jobOpening.id,
-                            profileUrl: jobOpening.profileURL,
+                            profileUrl: jobOpening.userProfileURL,
                             isVerified: jobOpening.isVerified,
                             categories: categories,
                             isScrap: jobOpening.isScrap,
-                            title: jobOpening.title,
+                            title: jobOpening.recruitBasicInfo?.title,
                             dDay: jobOpening.dday,
                             genre: genre,
                             domain: domain,
-                            produce: jobOpening.work?.produce,
+                            produce: jobOpening.recruitWorkInfo?.produce,
                             job: jobType
                         )
                     }

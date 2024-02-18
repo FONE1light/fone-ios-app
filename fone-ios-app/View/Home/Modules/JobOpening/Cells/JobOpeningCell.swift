@@ -27,15 +27,15 @@ class JobOpeningCell: UICollectionViewCell {
         
         setTextColors(index: index)
         
-        titleLabel.text = item.title
-        nicknameLabel.text = item.nickname
+        titleLabel.text = item.recruitBasicInfo?.title
+        nicknameLabel.text = item.userNickname
         dDayLabel.text = item.dday
-        let gender = GenderType.getType(serverName: item.gender ?? "")
+        let gender = GenderType.getType(serverName: item.recruitConditionInfo?.gender ?? "")
         genderLabel.text = gender?.name
         
         var filteredCategory: [String] = []
         var hasOTT = false
-        if let categories = item.categories {
+        if let categories = item.recruitBasicInfo?.categories {
             for category in categories {
                 if category == Category.ottDrama.serverName {
                     hasOTT = true
