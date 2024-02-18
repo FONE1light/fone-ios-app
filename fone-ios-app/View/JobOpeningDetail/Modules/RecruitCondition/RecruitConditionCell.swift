@@ -12,32 +12,17 @@ struct RecruitCondition {
     let career, domains: [String]
     let numberOfRecruits, ageMin, ageMax: Int
     
-//    init?(type: String?, recruitmentEndDate: String?, dday: String?, casting: String?, gender: String?, career: [String]?, domains: [String]?, numberOfRecruits: Int?, ageMin: Int?, ageMax: Int?) {
-//        guard let type = type, let recruitmentEndDate = recruitmentEndDate, let dday = dday, let casting = casting, let gender = gender, let career = career, let domains = domains, let numberOfRecruits = numberOfRecruits, let ageMin = ageMin, let ageMax = ageMax else { return nil }
-//        self.type = type
-//        self.recruitmentEndDate = recruitmentEndDate
-//        self.dday = dday
-//        self.casting = casting
-//        self.gender = gender
-//        self.career = career
-//        self.domains = domains
-//        self.numberOfRecruits = numberOfRecruits
-//        self.ageMin = ageMin
-//        self.ageMax = ageMax
-//    }
-//    
     init?(type: String?, recruitmentEndDate: String?, dday: String?, recruitConditionInfo: RecruitConditionInfo?) {
-        guard let type = type, let recruitmentEndDate = recruitmentEndDate, let dday = dday, let casting = recruitConditionInfo?.casting, let gender = recruitConditionInfo?.gender, let career = recruitConditionInfo?.career, let domains = recruitConditionInfo?.domains, let numberOfRecruits = recruitConditionInfo?.numberOfRecruits, let ageMin = recruitConditionInfo?.ageMin, let ageMax = recruitConditionInfo?.ageMax else { return nil }
-        self.type = type
-        self.recruitmentEndDate = recruitmentEndDate
-        self.dday = dday
-        self.casting = casting
-        self.gender = gender
-        self.career = career
-        self.domains = domains
-        self.numberOfRecruits = numberOfRecruits
-        self.ageMin = ageMin
-        self.ageMax = ageMax
+        self.type = type ?? ""
+        self.recruitmentEndDate = recruitmentEndDate ?? ""
+        self.dday = dday ?? ""
+        self.casting = recruitConditionInfo?.casting ?? ""
+        self.gender = recruitConditionInfo?.gender ?? ""
+        self.career = recruitConditionInfo?.career ?? []
+        self.domains = recruitConditionInfo?.domains ?? []
+        self.numberOfRecruits = recruitConditionInfo?.numberOfRecruits ?? 0
+        self.ageMin = recruitConditionInfo?.ageMin ?? 0
+        self.ageMax = recruitConditionInfo?.ageMax ?? 0
     }
 }
 
@@ -54,7 +39,7 @@ class RecruitConditionCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     func configure(recruitCondition: RecruitCondition) {
         typeLabel.text = recruitCondition.type == Job.actor.name ? "모집배역" : "모집분야"
         deadLineLabel.text = recruitCondition.recruitmentEndDate
@@ -64,6 +49,10 @@ class RecruitConditionCell: UICollectionViewCell {
         numberOfRecruitsLabel.text = String(recruitCondition.numberOfRecruits)
         genderLabel.text = GenderType.getType(serverName: recruitCondition.gender)?.name
         ageLabel.text = "\(recruitCondition.ageMin) ~ \(recruitCondition.ageMax)살"
-        careerLabel.text = CareerType(rawValue: recruitCondition.career.first ?? "")?.string
+        var careerStr = ""
+        for career in recruitCondition.career {
+            careerStr += "\(CareerType(rawValue: career)?.string ?? ""), "
+        }
+        careerLabel.text =  String(careerStr.dropLast(2))
     }
 }

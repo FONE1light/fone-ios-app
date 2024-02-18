@@ -50,14 +50,15 @@ struct JobOpeningContent: Codable {
     let recruitDetailInfo: RecruitDetailInfo?
     let recruitContactInfo: RecruitContactInfo?
     let id: Int
-    let isScrap, isVerified: Bool
+    let isScrap, isVerified, contactable: Bool
     let scrapCount: Int
     let type, userJob, userNickname: String
     let userProfileURL: String
     let viewCount: Int
+    let workingDate: String
     
     enum CodingKeys: String, CodingKey {
-        case createdAt, dday, id, isScrap, isVerified, scrapCount, type, userJob, userNickname
+        case contactable, createdAt, dday, id, isScrap, isVerified, scrapCount, type, userJob, userNickname, viewCount, workingDate
         case recruitContactLinkInfo = "firstPage"
         case recruitBasicInfo = "secondPage"
         case recruitConditionInfo = "thirdPage"
@@ -66,7 +67,6 @@ struct JobOpeningContent: Codable {
         case recruitDetailInfo = "sixthPage"
         case recruitContactInfo = "seventhPage"
         case userProfileURL = "userProfileUrl"
-        case viewCount
     }
 }
 
