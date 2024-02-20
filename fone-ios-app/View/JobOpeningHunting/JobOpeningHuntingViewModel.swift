@@ -70,7 +70,7 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     ) {
         isLoading = true
         
-        let sort = sortOption.serverParameter ?? []
+        let sort = sortOption.serverParameter ?? ""
         
         switch selectedTab {
         case .jobOpening: fetchJobOpenings(jobType: jobType, sort: sort)
@@ -78,7 +78,7 @@ class JobOpeningHuntingViewModel: CommonViewModel {
         }
     }
     
-    private func fetchJobOpenings(jobType: Job, sort: [String]) {
+    private func fetchJobOpenings(jobType: Job, sort: String) {
         jobOpeningInfoProvider.rx.request(.jobOpenings(type: jobType, sort: sort, page: jobOpeningsPage, size: pageSize))
             .mapObject(Result<JobOpeningsData>.self)
             .asObservable()
@@ -102,7 +102,7 @@ class JobOpeningHuntingViewModel: CommonViewModel {
             }).disposed(by: disposeBag)
     }
     
-    private func fetchProfiles(jobType: Job, sort: [String]) {
+    private func fetchProfiles(jobType: Job, sort: String) {
         profileInfoProvider.rx.request(.profiles(type: jobType, sort: sort, page: profilesPage, size: pageSize))
             .mapObject(Result<ProfilesData>.self)
             .asObservable()

@@ -14,7 +14,7 @@ enum APIError: Error {
 }
 
 enum JobOpeningInfoTarget {
-    case jobOpenings(type: Job, sort: [String], page: Int, size: Int)
+    case jobOpenings(type: Job, sort: String, page: Int, size: Int)
     case createJobOpenings(jobOpeningRequest: JobOpeningRequest)
     case jobOpeningDetail(jobOpeningId: Int, type: Job)
     case scraps

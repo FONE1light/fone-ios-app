@@ -10,7 +10,7 @@ import PanModal
 
 protocol Options {
     var title: String? { get }
-    var serverParameter: [String]? { get }
+    var serverParameter: String? { get }
 }
 
 class OptionsBottomSheetViewController: UIViewController, ViewModelBindableType {

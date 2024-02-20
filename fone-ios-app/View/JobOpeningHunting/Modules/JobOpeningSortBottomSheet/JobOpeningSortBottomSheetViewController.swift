@@ -24,11 +24,11 @@ enum JobOpeningSortOptions: CaseIterable, Options {
         }
     }
     
-    var serverParameter: [String]? {
+    var serverParameter: String? {
         switch self {
-        case .recent: ["createdAt", "DESC"]
-        case .view: ["viewCount", "DESC"]
-        case .deadline: ["deadline", "ASC"]
+        case .recent: "createdAt,DESC"
+        case .view: "viewCount,DESC"
+        case .deadline: "deadline,ASC"
         }
     }
     

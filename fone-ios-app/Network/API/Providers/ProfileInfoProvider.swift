@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 enum ProfileInfoTarget {
-    case profiles(type: Job, sort: [String], page: Int, size: Int)
+    case profiles(type: Job, sort: String, page: Int, size: Int)
     case profileDetail(profileId: Int, type: Job)
     /// 내가 찜한 프로필 조회
     case profilesWanted(type: Job)
