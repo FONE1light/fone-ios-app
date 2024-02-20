@@ -59,11 +59,6 @@ class ProfileRegistrationCell: UITableViewCell {
         cellButton.rx.tap
     }
     
-    private let modifyButton = ProfileRegistrationButton(title: "수정하기")
-    var modifyButtonTap: ControlEvent<Void> {
-        modifyButton.buttonTap
-    }
-    
     private let deleteButton = ProfileRegistrationButton(title: "삭제")
     var deleteButtonTap: ControlEvent<Void> {
         deleteButton.buttonTap
@@ -98,7 +93,6 @@ class ProfileRegistrationCell: UITableViewCell {
             ageLabel,
             divider,
             cellButton,
-            modifyButton,
             deleteButton
         ]
             .forEach { containView.addSubview($0) }
@@ -153,15 +147,10 @@ class ProfileRegistrationCell: UITableViewCell {
             $0.edges.equalToSuperview()
         }
         
-        modifyButton.snp.makeConstraints {
+        deleteButton.snp.makeConstraints {
             $0.top.equalTo(divider.snp.bottom).offset(12)
             $0.leading.equalTo(image.snp.trailing).offset(18)
             $0.bottom.equalToSuperview().offset(-16)
-        }
-        
-        deleteButton.snp.makeConstraints {
-            $0.centerY.equalTo(modifyButton)
-            $0.leading.equalTo(modifyButton.snp.trailing).offset(6)
         }
     }
     
