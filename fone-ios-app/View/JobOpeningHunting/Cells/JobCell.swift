@@ -58,6 +58,7 @@ class JobCell: UITableViewCell {
         self.jobType = Job.getType(name: jobType)
         
         let categories = categories?.compactMap { Category.getType(serverName: $0) } ?? []
+        let genre = Genre.getType(name: genre ?? "")?.koreanName
         let domain = Domain.getType(serverName: domain ?? "")?.name
         
         mainContentView.configure(

@@ -41,7 +41,7 @@ struct JobOpeningModuleData: Codable {
 
 // MARK: - JobOpeningContent
 struct JobOpeningContent: Codable {
-    let createdAt, dday: String
+    let createdAt, dday: String?
     let recruitContactLinkInfo: RecruitContactLinkInfo?
     let recruitBasicInfo: RecruitBasicInfo?
     let recruitConditionInfo: RecruitConditionInfo?
@@ -49,13 +49,13 @@ struct JobOpeningContent: Codable {
     let recruitWorkConditionInfo: RecruitWorkConditionInfo?
     let recruitDetailInfo: RecruitDetailInfo?
     let recruitContactInfo: RecruitContactInfo?
-    let id: Int
-    let isScrap, isVerified, contactable: Bool
-    let scrapCount: Int
-    let type, userJob, userNickname: String
-    let userProfileURL: String
-    let viewCount: Int
-    let workingDate: String
+    let id: Int?
+    let isScrap, isVerified, contactable: Bool?
+    let scrapCount: Int?
+    let type, userJob, userNickname: String?
+    let userProfileURL: String?
+    let viewCount: Int?
+    let workingDate: String?
     
     enum CodingKeys: String, CodingKey {
         case contactable, createdAt, dday, id, isScrap, isVerified, scrapCount, type, userJob, userNickname, viewCount, workingDate
