@@ -13,6 +13,10 @@ protocol Options {
     var serverParameter: String? { get }
 }
 
+/// 선택 옵션이 있는 바텀시트
+/// - 예시
+///     - 구인구직 탭 > 정렬 바텀시트
+///     - 등록하기 > 연락방법 바텀시트
 class OptionsBottomSheetViewController: UIViewController, ViewModelBindableType {
     
     var longFormHeight: PanModalHeight {

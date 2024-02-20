@@ -155,8 +155,9 @@ class JobOpeningHuntingViewModel: CommonViewModel {
 
 extension JobOpeningHuntingViewModel {
     func showSortBottomSheet(segmentType: JobSegmentType) {
-        let jobOpeningSortBottomSheetViewModel = JobOpeningSortBottomSheetViewModel(
+        let optionsBottomSheetViewModel = OptionsBottomSheetViewModel(
             sceneCoordinator: sceneCoordinator,
+            title: "정렬",
             selectedItem: selectedSortOption.value,
             list: segmentType.sortList
         ) { [weak self] selectedText in
@@ -165,7 +166,7 @@ extension JobOpeningHuntingViewModel {
             self.selectedSortOption.accept(option)
             self.sceneCoordinator.close(animated: true)
         }
-        let scene = Scene.jobOpeningSortBottomSheet(jobOpeningSortBottomSheetViewModel)
+        let scene = Scene.optionsBottomSheet(optionsBottomSheetViewModel)
         sceneCoordinator.transition(to: scene, using: .customModal, animated: true)
     }
 }
