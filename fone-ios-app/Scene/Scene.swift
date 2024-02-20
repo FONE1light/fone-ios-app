@@ -62,6 +62,7 @@ enum Scene {
     case profilePreview(ProfilePreviewViewModel) // 프로필 이미지 크게 보기
     case snsWebViewController(SNSWebViewModel) // 개인 SNS(웹)
     case salaryTypeBottomSheet(SceneCoordinatorType, PublishRelay<SalaryType>)
+    case optionsBottomSheet(OptionsBottomSheetViewModel)
 }
 
 extension Scene {
@@ -442,6 +443,15 @@ extension Scene {
         case .salaryTypeBottomSheet(let sceneCoordinator, let salaryTypeRelay):
             let bottomSheet = SalaryTypeBottomSheet(frame: .zero, salaryTypeRelay: salaryTypeRelay)
             let bottomSheetVC = BottomSheetViewController(view: bottomSheet, sceneCoordinator: sceneCoordinator)
+            return bottomSheetVC
+            
+        case .optionsBottomSheet(let optionsBottomSheetViewModel):
+            var optionsBottomSheetVC = OptionsBottomSheetViewController()
+            
+            optionsBottomSheetVC.bind(viewModel: optionsBottomSheetViewModel)
+            
+            let bottomSheetVC = BottomSheetViewController(view: optionsBottomSheetVC.view, sceneCoordinator: optionsBottomSheetViewModel.sceneCoordinator)
+            
             return bottomSheetVC
         }
     }

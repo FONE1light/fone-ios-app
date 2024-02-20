@@ -119,6 +119,8 @@
 		369292F02B84E26A00BA52AA /* RegisterContactLinkInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369292EF2B84E26A00BA52AA /* RegisterContactLinkInfoViewController.swift */; };
 		369292F22B84E27000BA52AA /* RegisterContactLinkInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369292F12B84E27000BA52AA /* RegisterContactLinkInfoViewModel.swift */; };
 		369292F52B84E66300BA52AA /* ContactTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369292F42B84E66300BA52AA /* ContactTypeView.swift */; };
+		369292F82B84F58100BA52AA /* OptionsBottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369292F72B84F58100BA52AA /* OptionsBottomSheetViewModel.swift */; };
+		369292FA2B84F5A800BA52AA /* OptionsBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369292F92B84F5A800BA52AA /* OptionsBottomSheetViewController.swift */; };
 		36A4D4972B14E572008541E9 /* DynamicSizeSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4962B14E572008541E9 /* DynamicSizeSelectionCell.swift */; };
 		36A4D4992B15C158008541E9 /* RegisterInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4982B15C158008541E9 /* RegisterInterestViewController.swift */; };
 		36A4D49B2B15C164008541E9 /* RegisterInterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D49A2B15C164008541E9 /* RegisterInterestViewModel.swift */; };
@@ -456,6 +458,8 @@
 		369292EF2B84E26A00BA52AA /* RegisterContactLinkInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterContactLinkInfoViewController.swift; sourceTree = "<group>"; };
 		369292F12B84E27000BA52AA /* RegisterContactLinkInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterContactLinkInfoViewModel.swift; sourceTree = "<group>"; };
 		369292F42B84E66300BA52AA /* ContactTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTypeView.swift; sourceTree = "<group>"; };
+		369292F72B84F58100BA52AA /* OptionsBottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsBottomSheetViewModel.swift; sourceTree = "<group>"; };
+		369292F92B84F5A800BA52AA /* OptionsBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsBottomSheetViewController.swift; sourceTree = "<group>"; };
 		36A4D4962B14E572008541E9 /* DynamicSizeSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicSizeSelectionCell.swift; sourceTree = "<group>"; };
 		36A4D4982B15C158008541E9 /* RegisterInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInterestViewController.swift; sourceTree = "<group>"; };
 		36A4D49A2B15C164008541E9 /* RegisterInterestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInterestViewModel.swift; sourceTree = "<group>"; };
@@ -988,6 +992,7 @@
 		366F22AE2ADB645800FD00BD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				369292F62B84F56F00BA52AA /* OptionsBottomSheet */,
 				366F22AF2ADB646400FD00BD /* BottomSheetViewController.swift */,
 				AB6780F92B10F2220074463E /* DatePickerViewController.swift */,
 				AB6780FA2B10F2220074463E /* DatePickerViewController.xib */,
@@ -1166,6 +1171,15 @@
 				369292F42B84E66300BA52AA /* ContactTypeView.swift */,
 			);
 			path = Modules;
+			sourceTree = "<group>";
+		};
+		369292F62B84F56F00BA52AA /* OptionsBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				369292F72B84F58100BA52AA /* OptionsBottomSheetViewModel.swift */,
+				369292F92B84F5A800BA52AA /* OptionsBottomSheetViewController.swift */,
+			);
+			path = OptionsBottomSheet;
 			sourceTree = "<group>";
 		};
 		36A4D4952B14E4E9008541E9 /* SelectionBlock */ = {
@@ -2023,6 +2037,7 @@
 				ABCDD1782B00DA4F00A598A8 /* TitleCell.swift in Sources */,
 				AB72BC8D2B1E073900EB02FE /* GenreCell.swift in Sources */,
 				367D9C0B2AD9F03900DA6C96 /* SavedProfilesTabBarController.swift in Sources */,
+				369292F82B84F58100BA52AA /* OptionsBottomSheetViewModel.swift in Sources */,
 				360E843C2B28850100D4A540 /* UIApplication+Extension.swift in Sources */,
 				AB9885122AA476FF00282C07 /* Rx+Extension.swift in Sources */,
 				364482D32AB804E100984507 /* MyPageButtonStackView.swift in Sources */,
@@ -2060,6 +2075,7 @@
 				3628668E2A8DF4EA00CD42BC /* UserInfoProvider.swift in Sources */,
 				AB79B3B92A9E298B008EBAA2 /* QuestionViewModel.swift in Sources */,
 				AB04760F2B08F851003DF5EF /* JobOpeningInfoProvider.swift in Sources */,
+				369292FA2B84F5A800BA52AA /* OptionsBottomSheetViewController.swift in Sources */,
 				AB2578A12AAF36A900328363 /* HomeViewController.swift in Sources */,
 				3682736B2B27179200EB0629 /* SummaryTableViewCell.swift in Sources */,
 				AB6785542AA3335A00ACD35C /* EmailLoginViewModel.swift in Sources */,

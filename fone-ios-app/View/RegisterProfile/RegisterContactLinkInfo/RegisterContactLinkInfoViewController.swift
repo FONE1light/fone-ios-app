@@ -55,7 +55,20 @@ class RegisterContactLinkInfoViewController: UIViewController, ViewModelBindable
     func bindViewModel() {
         setNavigationBar() // viewModel 바인딩 된 후 navigationBar의 title
         
+        viewModel.selectedContactTypeOption
+            .withUnretained(self)
+            .bind { owner, option in
+                owner.contactTypeView.setLabel(option.title)
+                owner.textField.placeholder = option.textFieldPlaceholder
+            }.disposed(by: disposeBag)
+        
         // Buttons
+        contactTypeView.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.viewModel.showContactTypeBottomSheet()
+            }.disposed(by: rx.disposeBag)
+        
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
