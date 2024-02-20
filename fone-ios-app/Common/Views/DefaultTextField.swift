@@ -60,6 +60,12 @@ class DefaultTextField: UITextField {
         self.rightViewMode = .always
     }
     
+    func setLeadingPadding(_ offset: CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: offset, height: height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+    
     func setTextAlignment(_ alignment: NSTextAlignment) {
         textAlignment = alignment
     }

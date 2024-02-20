@@ -116,6 +116,9 @@
 		3682737B2B28660B00EB0629 /* JobHuntingProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682737A2B28660B00EB0629 /* JobHuntingProfileCollectionViewCell.swift */; };
 		3682737D2B28681C00EB0629 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682737C2B28681C00EB0629 /* UIImageView+Extension.swift */; };
 		3682737F2B2878B200EB0629 /* ProfilePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682737E2B2878B200EB0629 /* ProfilePreviewViewController.swift */; };
+		369292F02B84E26A00BA52AA /* RegisterContactLinkInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369292EF2B84E26A00BA52AA /* RegisterContactLinkInfoViewController.swift */; };
+		369292F22B84E27000BA52AA /* RegisterContactLinkInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369292F12B84E27000BA52AA /* RegisterContactLinkInfoViewModel.swift */; };
+		369292F52B84E66300BA52AA /* ContactTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369292F42B84E66300BA52AA /* ContactTypeView.swift */; };
 		36A4D4972B14E572008541E9 /* DynamicSizeSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4962B14E572008541E9 /* DynamicSizeSelectionCell.swift */; };
 		36A4D4992B15C158008541E9 /* RegisterInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4982B15C158008541E9 /* RegisterInterestViewController.swift */; };
 		36A4D49B2B15C164008541E9 /* RegisterInterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D49A2B15C164008541E9 /* RegisterInterestViewModel.swift */; };
@@ -450,6 +453,9 @@
 		3682737A2B28660B00EB0629 /* JobHuntingProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobHuntingProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		3682737C2B28681C00EB0629 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		3682737E2B2878B200EB0629 /* ProfilePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePreviewViewController.swift; sourceTree = "<group>"; };
+		369292EF2B84E26A00BA52AA /* RegisterContactLinkInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterContactLinkInfoViewController.swift; sourceTree = "<group>"; };
+		369292F12B84E27000BA52AA /* RegisterContactLinkInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterContactLinkInfoViewModel.swift; sourceTree = "<group>"; };
+		369292F42B84E66300BA52AA /* ContactTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTypeView.swift; sourceTree = "<group>"; };
 		36A4D4962B14E572008541E9 /* DynamicSizeSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicSizeSelectionCell.swift; sourceTree = "<group>"; };
 		36A4D4982B15C158008541E9 /* RegisterInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInterestViewController.swift; sourceTree = "<group>"; };
 		36A4D49A2B15C164008541E9 /* RegisterInterestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInterestViewModel.swift; sourceTree = "<group>"; };
@@ -1144,6 +1150,24 @@
 			path = JobHuntingImages;
 			sourceTree = "<group>";
 		};
+		369292EE2B84E24F00BA52AA /* RegisterContactLinkInfo */ = {
+			isa = PBXGroup;
+			children = (
+				369292F32B84E65500BA52AA /* Modules */,
+				369292F12B84E27000BA52AA /* RegisterContactLinkInfoViewModel.swift */,
+				369292EF2B84E26A00BA52AA /* RegisterContactLinkInfoViewController.swift */,
+			);
+			path = RegisterContactLinkInfo;
+			sourceTree = "<group>";
+		};
+		369292F32B84E65500BA52AA /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				369292F42B84E66300BA52AA /* ContactTypeView.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
 		36A4D4952B14E4E9008541E9 /* SelectionBlock */ = {
 			isa = PBXGroup;
 			children = (
@@ -1200,6 +1224,7 @@
 		36AB6FD02B08690600D9D6D0 /* RegisterProfile */ = {
 			isa = PBXGroup;
 			children = (
+				369292EE2B84E24F00BA52AA /* RegisterContactLinkInfo */,
 				366E85042B1990DF00CB7681 /* RegisterBasicInfo */,
 				36A4D49C2B15CF7B008541E9 /* RegisterDetailInfo */,
 				366E85052B1990FC00CB7681 /* RegisterDetailContent */,
@@ -1974,6 +1999,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				369292F02B84E26A00BA52AA /* RegisterContactLinkInfoViewController.swift in Sources */,
 				364482CC2AB7C75E00984507 /* MyPageViewController.swift in Sources */,
 				362866822A8B6B3600CD42BC /* UILabel+Extension.swift in Sources */,
 				366F22AD2ADB5AF000FD00BD /* UIViewController+Extension.swift in Sources */,
@@ -2015,6 +2041,7 @@
 				362866942A8E3D4700CD42BC /* Single+Codable.swift in Sources */,
 				ABF817292AF27B1D00625D55 /* RecruitBasicInfoViewController.swift in Sources */,
 				36AC7BDD2AB1315700478030 /* ProfileViewController.swift in Sources */,
+				369292F22B84E27000BA52AA /* RegisterContactLinkInfoViewModel.swift in Sources */,
 				367D9C1A2ADA294E00DA6C96 /* MyRegistrationsViewModel.swift in Sources */,
 				36E269412AAAEF420034B485 /* NavigationLeftBarButtonItem.swift in Sources */,
 				AB6E432F2B2205CB001960E7 /* RecruitWorkInfoViewModel.swift in Sources */,
@@ -2065,6 +2092,7 @@
 				367D9BD32AC3B9CC00DA6C96 /* CompetitionViewModel.swift in Sources */,
 				36BCC7E62AA5E0180060E35A /* CustomButton.swift in Sources */,
 				AB1915752B651A6300424256 /* JobInfoAPIRequestModel.swift in Sources */,
+				369292F52B84E66300BA52AA /* ContactTypeView.swift in Sources */,
 				AB79B3BC2A9E29C4008EBAA2 /* QuestionViewController.swift in Sources */,
 				36323CD82B693E6400AC99ED /* CompetitionInfoAPIModel.swift in Sources */,
 				AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */,

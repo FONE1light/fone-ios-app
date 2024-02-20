@@ -226,10 +226,10 @@ extension JobOpeningHuntingViewModel {
     
     /// 프로필 등록
     func moveToRegisterProfile(of jobType: Job) {
-        let registerBasicInfoViewModel = RegisterBasicInfoViewModel(sceneCoordinator: sceneCoordinator)
-        registerBasicInfoViewModel.jobType = jobType
+        let registerContactLinkInfoViewModel = RegisterContactLinkInfoViewModel(sceneCoordinator: sceneCoordinator)
+        registerContactLinkInfoViewModel.jobType = jobType
         
-        let registerScene = Scene.registerBasicInfo(registerBasicInfoViewModel)
+        let registerScene = Scene.registerContactLinkInfo(registerContactLinkInfoViewModel)
         sceneCoordinator.transition(to: registerScene, using: .push, animated: true)
     }
 }
