@@ -44,13 +44,13 @@ enum Scene {
     case recruitContactInfo(RecruitContactInfoViewModel) // 모집 글쓰기7
     
     case jobHuntingDetail(JobHuntingDetailViewModel) // 프로필 상세
-    case registerContactLinkInfo(RegisterContactLinkInfoViewModel) // 프로필 등록하기0
-    case registerBasicInfo(RegisterBasicInfoViewModel) // 프로필 등록하기1
-    case registerDetailInfoActor(RegisterDetailInfoActorViewModel) // 프로필 등록하기2 - 배우
-    case registerDetailInfoStaff(RegisterDetailInfoStaffViewModel) // 프로필 등록하기2 - 스태프
-    case registerDetailContent(RegisterDetailContentViewModel) // 프로필 등록하기3
-    case registerCareer(RegisterCareerViewModel) // 프로필 등록하기4
-    case registerInterest(RegisterInterestViewModel) // 프로필 등록하기5
+    case registerContactLinkInfo(RegisterContactLinkInfoViewModel) // 프로필 등록하기1
+    case registerBasicInfo(RegisterBasicInfoViewModel) // 프로필 등록하기2
+    case registerDetailInfoActor(RegisterDetailInfoActorViewModel) // 프로필 등록하기3 - 배우
+    case registerDetailInfoStaff(RegisterDetailInfoStaffViewModel) // 프로필 등록하기3 - 스태프
+    case registerDetailContent(RegisterDetailContentViewModel) // 프로필 등록하기4
+    case registerCareer(RegisterCareerViewModel) // 프로필 등록하기5
+    case registerInterest(RegisterInterestViewModel) // 프로필 등록하기6
     
     case jobHuntingProfiles(JobHuntingProfilesViewModel) // 프로필 상세 > 이미지 더보기
     

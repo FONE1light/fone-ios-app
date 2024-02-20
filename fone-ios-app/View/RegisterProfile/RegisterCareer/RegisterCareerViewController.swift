@@ -15,7 +15,7 @@ class RegisterCareerViewController: UIViewController, ViewModelBindableType {
     var viewModel: RegisterCareerViewModel!
     var disposeBag = DisposeBag()
     
-    private let stepIndicator = StepIndicator(index: 3, totalCount: 5)
+    private let stepIndicator = StepIndicator(index: 4, totalCount: 6)
     
     private let titleLabel = UILabel().then {
         $0.text = "주요 경력을 입력해 주세요"

@@ -15,7 +15,7 @@ class RegisterDetailContentViewController: UIViewController, ViewModelBindableTy
     var viewModel: RegisterDetailContentViewModel!
     var disposeBag = DisposeBag()
     
-    private let stepIndicator = StepIndicator(index: 2, totalCount: 5)
+    private let stepIndicator = StepIndicator(index: 3, totalCount: 6)
     
     private let titleLabel = UILabel().then {
         $0.text = "상세 요강을 입력해주세요"
