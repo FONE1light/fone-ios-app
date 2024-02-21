@@ -10,9 +10,6 @@ import RxRelay
 
 class RegisterDetailInfoActorViewModel: CommonViewModel {
     
-    var instagramLink = BehaviorRelay<String?>(value: nil)
-    var youtubeLink = BehaviorRelay<String?>(value: nil)
-    
     func moveToRegisterDetailContent() {
         let sceneCoordinator = sceneCoordinator
         let registerDetailContentViewModel = RegisterDetailContentViewModel(sceneCoordinator: sceneCoordinator)

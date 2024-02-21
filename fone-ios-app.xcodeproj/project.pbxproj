@@ -51,6 +51,7 @@
 		3650F6222A86715C0017645D /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3650F61F2A86715C0017645D /* Pretendard-Medium.ttf */; };
 		3650F6232A86715C0017645D /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3650F6202A86715C0017645D /* Pretendard-Bold.ttf */; };
 		3650F6262A8672010017645D /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3650F6252A8672010017645D /* UIFont+Extension.swift */; };
+		3652C55F2B85EF700009ABEB /* SNSImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3652C55E2B85EF700009ABEB /* SNSImageView.swift */; };
 		365EE0C72B68CC050089035A /* Error+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EE0C62B68CC050089035A /* Error+Extension.swift */; };
 		3663DB122AF6843C005899BF /* JobUISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663DB112AF6843C005899BF /* JobUISegmentedControl.swift */; };
 		3663DB142AF68845005899BF /* JobOpeningSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663DB132AF68845005899BF /* JobOpeningSortButton.swift */; };
@@ -127,7 +128,6 @@
 		36A4D49B2B15C164008541E9 /* RegisterInterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D49A2B15C164008541E9 /* RegisterInterestViewModel.swift */; };
 		36A4D49E2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D49D2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift */; };
 		36A4D4A02B15CFC9008541E9 /* RegisterDetailInfoStaffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D49F2B15CFC9008541E9 /* RegisterDetailInfoStaffViewController.swift */; };
-		36A4D4A22B15D065008541E9 /* SNSBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4A12B15D065008541E9 /* SNSBottomSheet.swift */; };
 		36A554462B39B8B800C87751 /* JobOpeningSortOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A554452B39B8B800C87751 /* JobOpeningSortOptions.swift */; };
 		36AB6FC52B050E6400D9D6D0 /* FloatingStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FC42B050E6400D9D6D0 /* FloatingStackView.swift */; };
 		36AB6FC72B05263E00D9D6D0 /* UISortButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FC62B05263E00D9D6D0 /* UISortButtonStackView.swift */; };
@@ -391,6 +391,7 @@
 		3650F61F2A86715C0017645D /* Pretendard-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.ttf"; sourceTree = "<group>"; };
 		3650F6202A86715C0017645D /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
 		3650F6252A8672010017645D /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		3652C55E2B85EF700009ABEB /* SNSImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSImageView.swift; sourceTree = "<group>"; };
 		365EE0C62B68CC050089035A /* Error+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Extension.swift"; sourceTree = "<group>"; };
 		3663DB112AF6843C005899BF /* JobUISegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobUISegmentedControl.swift; sourceTree = "<group>"; };
 		3663DB132AF68845005899BF /* JobOpeningSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningSortButton.swift; sourceTree = "<group>"; };
@@ -466,7 +467,6 @@
 		36A4D49A2B15C164008541E9 /* RegisterInterestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInterestViewModel.swift; sourceTree = "<group>"; };
 		36A4D49D2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailInfoStaffViewModel.swift; sourceTree = "<group>"; };
 		36A4D49F2B15CFC9008541E9 /* RegisterDetailInfoStaffViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailInfoStaffViewController.swift; sourceTree = "<group>"; };
-		36A4D4A12B15D065008541E9 /* SNSBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSBottomSheet.swift; sourceTree = "<group>"; };
 		36A554452B39B8B800C87751 /* JobOpeningSortOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningSortOptions.swift; sourceTree = "<group>"; };
 		36AB6FC42B050E6400D9D6D0 /* FloatingStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingStackView.swift; sourceTree = "<group>"; };
 		36AB6FC62B05263E00D9D6D0 /* UISortButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISortButtonStackView.swift; sourceTree = "<group>"; };
@@ -1208,7 +1208,7 @@
 		36A4D4A32B15D093008541E9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				36A4D4A12B15D065008541E9 /* SNSBottomSheet.swift */,
+				3652C55E2B85EF700009ABEB /* SNSImageView.swift */,
 				366E850C2B19FBE400CB7681 /* DomainSelectionPopupViewController.swift */,
 				366E85112B22042700CB7681 /* DomainPreviewTag.swift */,
 				366E85132B220CBE00CB7681 /* DomainContentView.swift */,
@@ -2023,7 +2023,6 @@
 				362866902A8DF5C900CD42BC /* String+Extension.swift in Sources */,
 				36AC7BDF2AB1319500478030 /* ProfileViewModel.swift in Sources */,
 				36F50AAC2A9897AA00991C9B /* SelectionCell.swift in Sources */,
-				36A4D4A22B15D065008541E9 /* SNSBottomSheet.swift in Sources */,
 				36FB11882B341C570093C5CB /* ProfilePreviewViewModel.swift in Sources */,
 				3650F6262A8672010017645D /* UIFont+Extension.swift in Sources */,
 				367D9C2B2ADA5EC700DA6C96 /* ProfileRegistrationCell.swift in Sources */,
@@ -2249,6 +2248,7 @@
 				367D9BD12AC3B98100DA6C96 /* CompetitionViewController.swift in Sources */,
 				3682736F2B2724DF00EB0629 /* ActorInfoTableViewCell.swift in Sources */,
 				366E85482B230DB200CB7681 /* JobHuntingDetailViewModel.swift in Sources */,
+				3652C55F2B85EF700009ABEB /* SNSImageView.swift in Sources */,
 				AB6E43312B2205ED001960E7 /* RecruitWorkConditionViewModel.swift in Sources */,
 				36BDA1422AEE3F08001AF777 /* ImageUploadAPIModel.swift in Sources */,
 				AB49A32F2A81055900748484 /* TransitionModel.swift in Sources */,
