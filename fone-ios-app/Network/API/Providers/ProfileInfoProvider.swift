@@ -20,6 +20,11 @@ enum ProfileInfoTarget {
     
     // 유효성 검사, 등록하기
     case validateContact(request: ContactRequest)
+    case validateBasicInfo(request: BasicInfoRequest)
+    case validateDetailInfo(request: DetailInfoRequest)
+    case validateDetailContent(request: DetailContentRequest)
+    case validateCareer(request: CareerRequest)
+    case validateInterst(request: InterestRequest)
 }
 
 extension ProfileInfoTarget: TargetType {
@@ -44,12 +49,28 @@ extension ProfileInfoTarget: TargetType {
             
         case .validateContact:
             return "/api/v1/profiles/validate/contact"
+        case .validateBasicInfo:
+            return "/api/v1/profiles/validate/basic"
+        case .validateDetailInfo:
+            return "/api/v1/profiles/validate/details"
+        case .validateDetailContent:
+            return "/api/v1/profiles/validate/description"
+        case .validateCareer:
+            return "/api/v1/profiles/validate/career"
+        case .validateInterst:
+            return "/api/v1/profiles/validate/interest"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .profileWant, .validateContact:
+        case .profileWant,
+                .validateContact,
+                .validateBasicInfo,
+                .validateDetailInfo,
+                .validateDetailContent,
+                .validateCareer,
+                .validateInterst:
             return .post
         case .deleteProfile:
             return .delete
@@ -78,6 +99,16 @@ extension ProfileInfoTarget: TargetType {
                 "profileId": profileId
             ], encoding: URLEncoding.default)
         case let .validateContact(request):
+            return .requestJSONEncodable(request)
+        case let .validateBasicInfo(request):
+            return .requestJSONEncodable(request)
+        case let .validateDetailInfo(request):
+            return .requestJSONEncodable(request)
+        case let .validateDetailContent(request):
+            return .requestJSONEncodable(request)
+        case let .validateCareer(request):
+            return .requestJSONEncodable(request)
+        case let .validateInterst(request):
             return .requestJSONEncodable(request)
         case .profileWant, .myRegistrations:
             return .requestPlain
