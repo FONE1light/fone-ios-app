@@ -17,6 +17,9 @@ enum ProfileInfoTarget {
     case profileWant(profileId: Int)
     case myRegistrations
     case deleteProfile(profileId: Int)
+    
+    // 유효성 검사, 등록하기
+    case validateContact(request: ContactRequest)
 }
 
 extension ProfileInfoTarget: TargetType {
@@ -38,12 +41,15 @@ extension ProfileInfoTarget: TargetType {
             return "/api/v1/profiles/my-registrations"
         case .deleteProfile(let profileId):
             return "/api/v1/profiles/\(profileId)"
+            
+        case .validateContact:
+            return "/api/v1/profiles/validate/contact"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .profileWant:
+        case .profileWant, .validateContact:
             return .post
         case .deleteProfile:
             return .delete
@@ -71,6 +77,8 @@ extension ProfileInfoTarget: TargetType {
             return .requestParameters(parameters: [
                 "profileId": profileId
             ], encoding: URLEncoding.default)
+        case let .validateContact(request):
+            return .requestJSONEncodable(request)
         case .profileWant, .myRegistrations:
             return .requestPlain
         }
