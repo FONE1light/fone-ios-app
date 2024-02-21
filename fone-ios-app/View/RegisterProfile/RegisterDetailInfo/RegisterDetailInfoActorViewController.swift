@@ -21,7 +21,7 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
         $0.spacing = 20
     }
     
-    private let stepIndicator = StepIndicator(index: 1, totalCount: 5)
+    private let stepIndicator = StepIndicator(index: 2, totalCount: 6)
     
     private let titleLabel = UILabel().then {
         $0.text = "상세 정보를 입력해주세요"

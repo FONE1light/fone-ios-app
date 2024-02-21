@@ -15,7 +15,7 @@ class RegisterInterestViewController: UIViewController, ViewModelBindableType {
     var viewModel: RegisterInterestViewModel!
     var disposeBag = DisposeBag()
     
-    private let stepIndicator = StepIndicator(index: 4, totalCount: 5)
+    private let stepIndicator = StepIndicator(index: 5, totalCount: 6)
     
     private let titleLabel = UILabel().then {
         $0.text = "관심사를 선택해 주세요"

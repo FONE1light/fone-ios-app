@@ -45,8 +45,8 @@ class UISortButtonStackView: UIStackView {
     }
     
     func setup(
-        _ options: [JobOpeningSortOptions],
-        selectedOption: JobOpeningSortOptions?,
+        _ options: [Options],
+        selectedOption: Options?,
         completionHandler: ((String) -> Void)? = nil
     ) {
         

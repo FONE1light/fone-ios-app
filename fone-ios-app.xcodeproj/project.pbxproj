@@ -116,14 +116,19 @@
 		3682737B2B28660B00EB0629 /* JobHuntingProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682737A2B28660B00EB0629 /* JobHuntingProfileCollectionViewCell.swift */; };
 		3682737D2B28681C00EB0629 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682737C2B28681C00EB0629 /* UIImageView+Extension.swift */; };
 		3682737F2B2878B200EB0629 /* ProfilePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682737E2B2878B200EB0629 /* ProfilePreviewViewController.swift */; };
+		369292F02B84E26A00BA52AA /* RegisterContactLinkInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369292EF2B84E26A00BA52AA /* RegisterContactLinkInfoViewController.swift */; };
+		369292F22B84E27000BA52AA /* RegisterContactLinkInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369292F12B84E27000BA52AA /* RegisterContactLinkInfoViewModel.swift */; };
+		369292F52B84E66300BA52AA /* ContactTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369292F42B84E66300BA52AA /* ContactTypeView.swift */; };
+		369292F82B84F58100BA52AA /* OptionsBottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369292F72B84F58100BA52AA /* OptionsBottomSheetViewModel.swift */; };
+		369292FA2B84F5A800BA52AA /* OptionsBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369292F92B84F5A800BA52AA /* OptionsBottomSheetViewController.swift */; };
+		369292FC2B85053B00BA52AA /* ContactTypeOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369292FB2B85053B00BA52AA /* ContactTypeOptions.swift */; };
 		36A4D4972B14E572008541E9 /* DynamicSizeSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4962B14E572008541E9 /* DynamicSizeSelectionCell.swift */; };
 		36A4D4992B15C158008541E9 /* RegisterInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4982B15C158008541E9 /* RegisterInterestViewController.swift */; };
 		36A4D49B2B15C164008541E9 /* RegisterInterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D49A2B15C164008541E9 /* RegisterInterestViewModel.swift */; };
 		36A4D49E2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D49D2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift */; };
 		36A4D4A02B15CFC9008541E9 /* RegisterDetailInfoStaffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D49F2B15CFC9008541E9 /* RegisterDetailInfoStaffViewController.swift */; };
 		36A4D4A22B15D065008541E9 /* SNSBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4D4A12B15D065008541E9 /* SNSBottomSheet.swift */; };
-		36A554462B39B8B800C87751 /* JobOpeningSortBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A554452B39B8B800C87751 /* JobOpeningSortBottomSheetViewController.swift */; };
-		36A554482B39B8C100C87751 /* JobOpeningSortBottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A554472B39B8C100C87751 /* JobOpeningSortBottomSheetViewModel.swift */; };
+		36A554462B39B8B800C87751 /* JobOpeningSortOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A554452B39B8B800C87751 /* JobOpeningSortOptions.swift */; };
 		36AB6FC52B050E6400D9D6D0 /* FloatingStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FC42B050E6400D9D6D0 /* FloatingStackView.swift */; };
 		36AB6FC72B05263E00D9D6D0 /* UISortButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FC62B05263E00D9D6D0 /* UISortButtonStackView.swift */; };
 		36AB6FC92B05266200D9D6D0 /* UISortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6FC82B05266200D9D6D0 /* UISortButton.swift */; };
@@ -450,14 +455,19 @@
 		3682737A2B28660B00EB0629 /* JobHuntingProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobHuntingProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		3682737C2B28681C00EB0629 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		3682737E2B2878B200EB0629 /* ProfilePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePreviewViewController.swift; sourceTree = "<group>"; };
+		369292EF2B84E26A00BA52AA /* RegisterContactLinkInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterContactLinkInfoViewController.swift; sourceTree = "<group>"; };
+		369292F12B84E27000BA52AA /* RegisterContactLinkInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterContactLinkInfoViewModel.swift; sourceTree = "<group>"; };
+		369292F42B84E66300BA52AA /* ContactTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTypeView.swift; sourceTree = "<group>"; };
+		369292F72B84F58100BA52AA /* OptionsBottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsBottomSheetViewModel.swift; sourceTree = "<group>"; };
+		369292F92B84F5A800BA52AA /* OptionsBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsBottomSheetViewController.swift; sourceTree = "<group>"; };
+		369292FB2B85053B00BA52AA /* ContactTypeOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTypeOptions.swift; sourceTree = "<group>"; };
 		36A4D4962B14E572008541E9 /* DynamicSizeSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicSizeSelectionCell.swift; sourceTree = "<group>"; };
 		36A4D4982B15C158008541E9 /* RegisterInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInterestViewController.swift; sourceTree = "<group>"; };
 		36A4D49A2B15C164008541E9 /* RegisterInterestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInterestViewModel.swift; sourceTree = "<group>"; };
 		36A4D49D2B15CFA6008541E9 /* RegisterDetailInfoStaffViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailInfoStaffViewModel.swift; sourceTree = "<group>"; };
 		36A4D49F2B15CFC9008541E9 /* RegisterDetailInfoStaffViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailInfoStaffViewController.swift; sourceTree = "<group>"; };
 		36A4D4A12B15D065008541E9 /* SNSBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSBottomSheet.swift; sourceTree = "<group>"; };
-		36A554452B39B8B800C87751 /* JobOpeningSortBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningSortBottomSheetViewController.swift; sourceTree = "<group>"; };
-		36A554472B39B8C100C87751 /* JobOpeningSortBottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningSortBottomSheetViewModel.swift; sourceTree = "<group>"; };
+		36A554452B39B8B800C87751 /* JobOpeningSortOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningSortOptions.swift; sourceTree = "<group>"; };
 		36AB6FC42B050E6400D9D6D0 /* FloatingStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingStackView.swift; sourceTree = "<group>"; };
 		36AB6FC62B05263E00D9D6D0 /* UISortButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISortButtonStackView.swift; sourceTree = "<group>"; };
 		36AB6FC82B05266200D9D6D0 /* UISortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISortButton.swift; sourceTree = "<group>"; };
@@ -903,8 +913,7 @@
 			children = (
 				36AB6FC62B05263E00D9D6D0 /* UISortButtonStackView.swift */,
 				36AB6FC82B05266200D9D6D0 /* UISortButton.swift */,
-				36A554452B39B8B800C87751 /* JobOpeningSortBottomSheetViewController.swift */,
-				36A554472B39B8C100C87751 /* JobOpeningSortBottomSheetViewModel.swift */,
+				36A554452B39B8B800C87751 /* JobOpeningSortOptions.swift */,
 			);
 			path = JobOpeningSortBottomSheet;
 			sourceTree = "<group>";
@@ -982,6 +991,7 @@
 		366F22AE2ADB645800FD00BD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				369292F62B84F56F00BA52AA /* OptionsBottomSheet */,
 				366F22AF2ADB646400FD00BD /* BottomSheetViewController.swift */,
 				AB6780F92B10F2220074463E /* DatePickerViewController.swift */,
 				AB6780FA2B10F2220074463E /* DatePickerViewController.xib */,
@@ -1144,6 +1154,34 @@
 			path = JobHuntingImages;
 			sourceTree = "<group>";
 		};
+		369292EE2B84E24F00BA52AA /* RegisterContactLinkInfo */ = {
+			isa = PBXGroup;
+			children = (
+				369292F32B84E65500BA52AA /* Modules */,
+				369292F12B84E27000BA52AA /* RegisterContactLinkInfoViewModel.swift */,
+				369292EF2B84E26A00BA52AA /* RegisterContactLinkInfoViewController.swift */,
+			);
+			path = RegisterContactLinkInfo;
+			sourceTree = "<group>";
+		};
+		369292F32B84E65500BA52AA /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				369292F42B84E66300BA52AA /* ContactTypeView.swift */,
+				369292FB2B85053B00BA52AA /* ContactTypeOptions.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		369292F62B84F56F00BA52AA /* OptionsBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				369292F72B84F58100BA52AA /* OptionsBottomSheetViewModel.swift */,
+				369292F92B84F5A800BA52AA /* OptionsBottomSheetViewController.swift */,
+			);
+			path = OptionsBottomSheet;
+			sourceTree = "<group>";
+		};
 		36A4D4952B14E4E9008541E9 /* SelectionBlock */ = {
 			isa = PBXGroup;
 			children = (
@@ -1200,6 +1238,7 @@
 		36AB6FD02B08690600D9D6D0 /* RegisterProfile */ = {
 			isa = PBXGroup;
 			children = (
+				369292EE2B84E24F00BA52AA /* RegisterContactLinkInfo */,
 				366E85042B1990DF00CB7681 /* RegisterBasicInfo */,
 				36A4D49C2B15CF7B008541E9 /* RegisterDetailInfo */,
 				366E85052B1990FC00CB7681 /* RegisterDetailContent */,
@@ -1974,6 +2013,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				369292F02B84E26A00BA52AA /* RegisterContactLinkInfoViewController.swift in Sources */,
 				364482CC2AB7C75E00984507 /* MyPageViewController.swift in Sources */,
 				362866822A8B6B3600CD42BC /* UILabel+Extension.swift in Sources */,
 				366F22AD2ADB5AF000FD00BD /* UIViewController+Extension.swift in Sources */,
@@ -1997,6 +2037,7 @@
 				ABCDD1782B00DA4F00A598A8 /* TitleCell.swift in Sources */,
 				AB72BC8D2B1E073900EB02FE /* GenreCell.swift in Sources */,
 				367D9C0B2AD9F03900DA6C96 /* SavedProfilesTabBarController.swift in Sources */,
+				369292F82B84F58100BA52AA /* OptionsBottomSheetViewModel.swift in Sources */,
 				360E843C2B28850100D4A540 /* UIApplication+Extension.swift in Sources */,
 				AB9885122AA476FF00282C07 /* Rx+Extension.swift in Sources */,
 				364482D32AB804E100984507 /* MyPageButtonStackView.swift in Sources */,
@@ -2015,6 +2056,7 @@
 				362866942A8E3D4700CD42BC /* Single+Codable.swift in Sources */,
 				ABF817292AF27B1D00625D55 /* RecruitBasicInfoViewController.swift in Sources */,
 				36AC7BDD2AB1315700478030 /* ProfileViewController.swift in Sources */,
+				369292F22B84E27000BA52AA /* RegisterContactLinkInfoViewModel.swift in Sources */,
 				367D9C1A2ADA294E00DA6C96 /* MyRegistrationsViewModel.swift in Sources */,
 				36E269412AAAEF420034B485 /* NavigationLeftBarButtonItem.swift in Sources */,
 				AB6E432F2B2205CB001960E7 /* RecruitWorkInfoViewModel.swift in Sources */,
@@ -2033,6 +2075,7 @@
 				3628668E2A8DF4EA00CD42BC /* UserInfoProvider.swift in Sources */,
 				AB79B3B92A9E298B008EBAA2 /* QuestionViewModel.swift in Sources */,
 				AB04760F2B08F851003DF5EF /* JobOpeningInfoProvider.swift in Sources */,
+				369292FA2B84F5A800BA52AA /* OptionsBottomSheetViewController.swift in Sources */,
 				AB2578A12AAF36A900328363 /* HomeViewController.swift in Sources */,
 				3682736B2B27179200EB0629 /* SummaryTableViewCell.swift in Sources */,
 				AB6785542AA3335A00ACD35C /* EmailLoginViewModel.swift in Sources */,
@@ -2057,7 +2100,7 @@
 				364482D82AB80EDA00984507 /* MyPageMenuCell.swift in Sources */,
 				AB9DAAA82AB0A4F500B00016 /* HomeInfoProvider.swift in Sources */,
 				366E85122B22042700CB7681 /* DomainPreviewTag.swift in Sources */,
-				36A554462B39B8B800C87751 /* JobOpeningSortBottomSheetViewController.swift in Sources */,
+				36A554462B39B8B800C87751 /* JobOpeningSortOptions.swift in Sources */,
 				AB532B312B0A306A003A6A57 /* SalaryType.swift in Sources */,
 				ABA47FF72A850AE600B64403 /* UIView+Extension.swift in Sources */,
 				AB2578A52AAF387F00328363 /* TabBarViewController.swift in Sources */,
@@ -2065,6 +2108,7 @@
 				367D9BD32AC3B9CC00DA6C96 /* CompetitionViewModel.swift in Sources */,
 				36BCC7E62AA5E0180060E35A /* CustomButton.swift in Sources */,
 				AB1915752B651A6300424256 /* JobInfoAPIRequestModel.swift in Sources */,
+				369292F52B84E66300BA52AA /* ContactTypeView.swift in Sources */,
 				AB79B3BC2A9E29C4008EBAA2 /* QuestionViewController.swift in Sources */,
 				36323CD82B693E6400AC99ED /* CompetitionInfoAPIModel.swift in Sources */,
 				AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */,
@@ -2077,7 +2121,6 @@
 				36BCC7E62AA5E0180060E35A /* CustomButton.swift in Sources */,
 				AB79B3BC2A9E29C4008EBAA2 /* QuestionViewController.swift in Sources */,
 				AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */,
-				36A554482B39B8C100C87751 /* JobOpeningSortBottomSheetViewModel.swift in Sources */,
 				AB3F071D2AADADB700E54A25 /* FindPasswordCell.swift in Sources */,
 				367D9BD82ACB5CC900DA6C96 /* JobViewController.swift in Sources */,
 				ABCDD17C2B00DE8E00A598A8 /* DetailImageCell.swift in Sources */,
@@ -2183,6 +2226,7 @@
 				368273772B2863CF00EB0629 /* JobHuntingProfilesViewController.swift in Sources */,
 				ABAFA3392A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift in Sources */,
 				ABCDD16E2B00BE1800A598A8 /* JobOpeningDetailViewModel.swift in Sources */,
+				369292FC2B85053B00BA52AA /* ContactTypeOptions.swift in Sources */,
 				AB532B2D2B0A2774003A6A57 /* GenderType.swift in Sources */,
 				368273792B28641800EB0629 /* JobHuntingProfilesViewModel.swift in Sources */,
 				364BCC6C2AB3673900E14B25 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,

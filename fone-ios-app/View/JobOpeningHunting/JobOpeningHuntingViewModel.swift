@@ -70,7 +70,7 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     ) {
         isLoading = true
         
-        let sort = sortOption.serverParameter ?? []
+        let sort = sortOption.serverParameter ?? ""
         
         switch selectedTab {
         case .jobOpening: fetchJobOpenings(jobType: jobType, sort: sort)
@@ -78,7 +78,7 @@ class JobOpeningHuntingViewModel: CommonViewModel {
         }
     }
     
-    private func fetchJobOpenings(jobType: Job, sort: [String]) {
+    private func fetchJobOpenings(jobType: Job, sort: String) {
         jobOpeningInfoProvider.rx.request(.jobOpenings(type: jobType, sort: sort, page: jobOpeningsPage, size: pageSize))
             .mapObject(Result<JobOpeningsData>.self)
             .asObservable()
@@ -102,7 +102,7 @@ class JobOpeningHuntingViewModel: CommonViewModel {
             }).disposed(by: disposeBag)
     }
     
-    private func fetchProfiles(jobType: Job, sort: [String]) {
+    private func fetchProfiles(jobType: Job, sort: String) {
         profileInfoProvider.rx.request(.profiles(type: jobType, sort: sort, page: profilesPage, size: pageSize))
             .mapObject(Result<ProfilesData>.self)
             .asObservable()
@@ -155,8 +155,9 @@ class JobOpeningHuntingViewModel: CommonViewModel {
 
 extension JobOpeningHuntingViewModel {
     func showSortBottomSheet(segmentType: JobSegmentType) {
-        let jobOpeningSortBottomSheetViewModel = JobOpeningSortBottomSheetViewModel(
+        let optionsBottomSheetViewModel = OptionsBottomSheetViewModel(
             sceneCoordinator: sceneCoordinator,
+            title: "정렬",
             selectedItem: selectedSortOption.value,
             list: segmentType.sortList
         ) { [weak self] selectedText in
@@ -165,7 +166,7 @@ extension JobOpeningHuntingViewModel {
             self.selectedSortOption.accept(option)
             self.sceneCoordinator.close(animated: true)
         }
-        let scene = Scene.jobOpeningSortBottomSheet(jobOpeningSortBottomSheetViewModel)
+        let scene = Scene.optionsBottomSheet(optionsBottomSheetViewModel)
         sceneCoordinator.transition(to: scene, using: .customModal, animated: true)
     }
 }
@@ -226,10 +227,10 @@ extension JobOpeningHuntingViewModel {
     
     /// 프로필 등록
     func moveToRegisterProfile(of jobType: Job) {
-        let registerBasicInfoViewModel = RegisterBasicInfoViewModel(sceneCoordinator: sceneCoordinator)
-        registerBasicInfoViewModel.jobType = jobType
+        let registerContactLinkInfoViewModel = RegisterContactLinkInfoViewModel(sceneCoordinator: sceneCoordinator)
+        registerContactLinkInfoViewModel.jobType = jobType
         
-        let registerScene = Scene.registerBasicInfo(registerBasicInfoViewModel)
+        let registerScene = Scene.registerContactLinkInfo(registerContactLinkInfoViewModel)
         sceneCoordinator.transition(to: registerScene, using: .push, animated: true)
     }
 }

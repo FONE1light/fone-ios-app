@@ -44,12 +44,13 @@ enum Scene {
     case recruitContactInfo(RecruitContactInfoViewModel) // 모집 글쓰기7
     
     case jobHuntingDetail(JobHuntingDetailViewModel) // 프로필 상세
-    case registerBasicInfo(RegisterBasicInfoViewModel) // 프로필 등록하기1
-    case registerDetailInfoActor(RegisterDetailInfoActorViewModel) // 프로필 등록하기2 - 배우
-    case registerDetailInfoStaff(RegisterDetailInfoStaffViewModel) // 프로필 등록하기2 - 스태프
-    case registerDetailContent(RegisterDetailContentViewModel) // 프로필 등록하기3
-    case registerCareer(RegisterCareerViewModel) // 프로필 등록하기4
-    case registerInterest(RegisterInterestViewModel) // 프로필 등록하기5
+    case registerContactLinkInfo(RegisterContactLinkInfoViewModel) // 프로필 등록하기1
+    case registerBasicInfo(RegisterBasicInfoViewModel) // 프로필 등록하기2
+    case registerDetailInfoActor(RegisterDetailInfoActorViewModel) // 프로필 등록하기3 - 배우
+    case registerDetailInfoStaff(RegisterDetailInfoStaffViewModel) // 프로필 등록하기3 - 스태프
+    case registerDetailContent(RegisterDetailContentViewModel) // 프로필 등록하기4
+    case registerCareer(RegisterCareerViewModel) // 프로필 등록하기5
+    case registerInterest(RegisterInterestViewModel) // 프로필 등록하기6
     
     case jobHuntingProfiles(JobHuntingProfilesViewModel) // 프로필 상세 > 이미지 더보기
     
@@ -57,10 +58,10 @@ enum Scene {
 
     // 모달
     case reportBottomSheet(SceneCoordinatorType) // 신고하기 바텀시트
-    case jobOpeningSortBottomSheet(JobOpeningSortBottomSheetViewModel) // 구인구직 탭 > 정렬 바텀시트
     case profilePreview(ProfilePreviewViewModel) // 프로필 이미지 크게 보기
     case snsWebViewController(SNSWebViewModel) // 개인 SNS(웹)
     case salaryTypeBottomSheet(SceneCoordinatorType, PublishRelay<SalaryType>)
+    case optionsBottomSheet(OptionsBottomSheetViewModel) // 선택 가능 바텀시트(공통)
 }
 
 extension Scene {
@@ -330,6 +331,15 @@ extension Scene {
             
             return jobHuntingDetailVC
             
+        case .registerContactLinkInfo(let registerContactLinkInfoViewModel):
+            var registerContactLinkInfoVC = RegisterContactLinkInfoViewController()
+            
+            DispatchQueue.main.async {
+                registerContactLinkInfoVC.bind(viewModel: registerContactLinkInfoViewModel)
+            }
+            
+            return registerContactLinkInfoVC
+            
         case .registerBasicInfo(let registerBasicInfoViewModel):
             var registerBasicInfoVC = RegisterBasicInfoViewController()
             
@@ -404,16 +414,6 @@ extension Scene {
 
             return bottomSheetVC
             
-        case .jobOpeningSortBottomSheet(let jobOpeningSortBottomSheetViewModel):
-            var jobOpeningSortBottomSheetVC = JobOpeningSortBottomSheetViewController()
-            
-            jobOpeningSortBottomSheetVC.bind(viewModel: jobOpeningSortBottomSheetViewModel)
-            
-//            return jobOpeningSortBottomSheetVC // 노출X
-            let bottomSheetVC = BottomSheetViewController(view: jobOpeningSortBottomSheetVC.view, sceneCoordinator: jobOpeningSortBottomSheetViewModel.sceneCoordinator)
-            
-            return bottomSheetVC
-            
         case .profilePreview(let profilePreviewViewModel):
             var profilePreviewVC = ProfilePreviewViewController()
             let navControlller = UINavigationController(rootViewController: profilePreviewVC)
@@ -432,6 +432,15 @@ extension Scene {
         case .salaryTypeBottomSheet(let sceneCoordinator, let salaryTypeRelay):
             let bottomSheet = SalaryTypeBottomSheet(frame: .zero, salaryTypeRelay: salaryTypeRelay)
             let bottomSheetVC = BottomSheetViewController(view: bottomSheet, sceneCoordinator: sceneCoordinator)
+            return bottomSheetVC
+            
+        case .optionsBottomSheet(let optionsBottomSheetViewModel):
+            var optionsBottomSheetVC = OptionsBottomSheetViewController()
+            
+            optionsBottomSheetVC.bind(viewModel: optionsBottomSheetViewModel)
+            
+            let bottomSheetVC = BottomSheetViewController(view: optionsBottomSheetVC.view, sceneCoordinator: optionsBottomSheetViewModel.sceneCoordinator)
+            
             return bottomSheetVC
         }
     }
