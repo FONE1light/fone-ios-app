@@ -114,7 +114,13 @@ class RegisterBasicInfoViewController: UIViewController, ViewModelBindableType {
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.moveToRegisterDetailInfo()
+                owner.viewModel.uploadImages(images: owner.images) { imageUrls in
+                    owner.viewModel.validate(
+                        name: owner.nameBlock.textField?.text,
+                        hookingComment: owner.hookingBlock.text,
+                        profileImages: imageUrls
+                    )
+                }
             }.disposed(by: rx.disposeBag)
     }
     

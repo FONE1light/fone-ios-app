@@ -33,7 +33,7 @@ class RegisterContactLinkInfoViewModel: CommonViewModel {
                     }
                 },
                 onError: { error in
-                    error.showToast(modelType: Result<EmptyData>.self)
+                    error.showToast(modelType: EmptyData.self, positionType: .withButton)
                 }
             ).disposed(by: disposeBag)
     }

@@ -13,7 +13,7 @@ struct ContactRequest: Codable {
 
 // 페이지2: 기본 정보 입력
 struct BasicInfoRequest: Codable {
-    let hookingComment, name: String?
+    let name, hookingComment: String?
     let profileImages: [String]?
     let representativeImageURL: String?
 
