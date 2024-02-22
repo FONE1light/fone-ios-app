@@ -6,11 +6,37 @@
 //
 
 import RxCocoa
+import RxSwift
 
 class RegisterContactLinkInfoViewModel: CommonViewModel {
+    
+    let disposeBag = DisposeBag()
     var jobType: Job?
     
     var selectedContactTypeOption = BehaviorRelay<ContactTypeOptions>(value: .kakaoOpenChat)
+    
+    func validate(url: String?) {
+        let contactType = selectedContactTypeOption.value.serverParameter
+        
+        let contactRequest = ContactRequest(contact: url, contactMethod: contactType)
+        
+        profileInfoProvider.rx.request(.validateContact(request: contactRequest))
+            .mapObject(Result<EmptyData>.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(
+                onNext: { owner, response in
+                    if response.result?.isSuccess != true {
+                        "올바른 링크 주소를 입력해 주세요.".toast(positionType: .withButton)
+                    } else {
+                        owner.moveToRegisterBasicInfo()
+                    }
+                },
+                onError: { error in
+                    error.showToast(modelType: EmptyData.self, positionType: .withButton)
+                }
+            ).disposed(by: disposeBag)
+    }
 }
 
 extension RegisterContactLinkInfoViewModel {

@@ -51,7 +51,8 @@ class SavedProfilesContentViewModel: CommonViewModel {
     func toggleWanted(id: Int?) {
         guard let id = id else { return }
         profileInfoProvider.rx.request(.profileWant(profileId: id))
-            .mapObject(Result<ProfilesData>.self) // 대체
+            .mapObject(Result<ProfilesData>.self) // FIXME: 아래로 대체
+//            .mapObject(Result<EmptyData>.self)
             .asObservable()
             .withUnretained(self)
             .subscribe (

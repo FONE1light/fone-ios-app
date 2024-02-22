@@ -20,14 +20,12 @@ enum ContactTypeOptions: CaseIterable, Options {
         }
     }
     
-    // TODO: 수정
     var serverParameter: String? {
-//        switch self {
-//        case .kakaoOpenChat: "createdAt,DESC"
-//        case .email: "viewCount,DESC"
-//        case .googleForm: "deadline,ASC"
-//        }
-        nil
+        switch self {
+        case .kakaoOpenChat: "KAKAO"
+        case .email: "EMAIL"
+        case .googleForm: "GOOGLE_FORM"
+        }
     }
     
     var textFieldPlaceholder: String? {
