@@ -32,6 +32,7 @@ class JobOpeningModule: UICollectionViewCell {
     }
     
     private func setModule() {
+        errorView.isHidden = true
         titleLabel.text = jobOpeningInfo?.title
     }
 }
