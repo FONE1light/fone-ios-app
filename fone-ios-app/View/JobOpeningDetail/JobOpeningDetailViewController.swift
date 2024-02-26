@@ -34,6 +34,21 @@ class JobOpeningDetailViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
+        scrapButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                guard let id = owner.viewModel.jobOpeningDetail?.id else { return }
+                owner.viewModel.scrapJobOpening(id: id)
+            }.disposed(by: rx.disposeBag)
+        
+        viewModel.scrapSubject
+            .withUnretained(self)
+            .subscribe(onNext: { owner, scrapResult in
+                owner.setScrapButtonStatus(scrapped: scrapResult)
+            }).disposed(by: rx.disposeBag)
+        
+        setScrapButtonStatus(scrapped: viewModel.jobOpeningDetail?.isScrap ?? false)
+        
         contactButton.setEnabled(isEnabled: viewModel.jobOpeningDetail?.contactable ?? false)
     }
     
@@ -61,6 +76,11 @@ class JobOpeningDetailViewController: UIViewController, ViewModelBindableType {
         collectionView.register(SummaryCell.self)
         collectionView.register(ContactInfoCell.self)
         collectionView.register(FooterCell.self)
+    }
+    
+    private func setScrapButtonStatus(scrapped: Bool) {
+        scrapButton.imageView?.image = scrapped ? UIImage(resource: .bookmarkOnInterpace) : UIImage(resource: .bookmarkOffInterpace)
+        scrapButton.titleLabel?.textColor = scrapped ? .gray_161616 : .gray_555555
     }
 }
 

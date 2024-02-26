@@ -6,9 +6,13 @@
 //
 
 import Foundation
+import RxSwift
 
 final class JobOpeningDetailViewModel: CommonViewModel {
+    private var disposeBag = DisposeBag()
     var jobOpeningDetail: JobOpeningContent?
+    
+    var scrapSubject = PublishSubject<Bool>()
     
     lazy var authorInfo = AuthorInfo(createdAt: jobOpeningDetail?.createdAt, profileUrl: jobOpeningDetail?.userProfileURL, nickname: jobOpeningDetail?.userNickname, userJob: jobOpeningDetail?.userJob, viewCount: jobOpeningDetail?.viewCount)
     
@@ -20,5 +24,23 @@ final class JobOpeningDetailViewModel: CommonViewModel {
         super.init(sceneCoordinator: sceneCoordinator)
         
         self.jobOpeningDetail = jobOpeningDetail
+    }
+    
+    func scrapJobOpening(id: Int) {
+        jobOpeningInfoProvider.rx.request(.scrapJobOpening(jobOpeningId: id))
+            .mapObject(Result<ScrapJobOpeningResponseResult>.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe (
+                onNext: { owner, response in
+                    if response.result?.isSuccess != true {
+                        "스크랩을 실패했습니다.".toast()
+                    }
+                    let result = response.data?.result == "SCRAPPED"
+                    owner.scrapSubject.onNext(result)
+                },
+                onError: { error in
+                    error.showToast(modelType: ScrapJobOpeningResponseResult.self)
+                }).disposed(by: disposeBag)
     }
 }
