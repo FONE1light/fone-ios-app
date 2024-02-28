@@ -57,7 +57,7 @@ class RegisterDetailContentViewController: UIViewController, ViewModelBindableTy
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.moveToRegisterCareer()
+                owner.viewModel.validate(details: owner.letterCountedTextView.textView?.text)
             }.disposed(by: rx.disposeBag)
     }
     
