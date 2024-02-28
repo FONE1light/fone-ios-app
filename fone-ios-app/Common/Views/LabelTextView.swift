@@ -22,6 +22,12 @@ class LabelTextView: UIView {
         $0.isHidden = true
     }
     
+    // FIXME: placeholderString 유저 입력 시 입력 가능하도록 수정
+    var text: String? {
+        let text = letterCountedTextView?.textView?.text
+        return text == placeholderString ? "" : text
+    }
+    
     private var letterCountedTextView: LetterCountedTextView?
     
     private var placeholderString: String?

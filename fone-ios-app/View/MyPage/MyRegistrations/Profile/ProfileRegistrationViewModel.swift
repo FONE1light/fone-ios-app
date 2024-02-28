@@ -53,7 +53,8 @@ class ProfileRegistrationViewModel: CommonViewModel {
     
     func deleteProfileRegistration(id: Int) {
         profileInfoProvider.rx.request(.deleteProfile(profileId: id))
-            .mapObject(Result<ProfilesData>.self) // 대체
+            .mapObject(Result<ProfilesData>.self) // FIXME: 아래로 대체
+        //            .mapObject(Result<EmptyData>.self)
             .asObservable()
             .withUnretained(self)
             .subscribe (

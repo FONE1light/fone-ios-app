@@ -72,9 +72,7 @@ class RegisterContactLinkInfoViewController: UIViewController, ViewModelBindable
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                // FIXME: 유효성 검증 API 호출
-//                owner.viewModel.validate()
-                owner.viewModel.moveToRegisterBasicInfo()
+                owner.viewModel.validate(url: owner.textField.text)
             }.disposed(by: rx.disposeBag)
     }
     
