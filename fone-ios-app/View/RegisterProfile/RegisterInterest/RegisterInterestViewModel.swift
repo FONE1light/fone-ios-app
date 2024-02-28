@@ -6,13 +6,37 @@
 //
 
 import UIKit
+import RxSwift
 
 class RegisterInterestViewModel: CommonViewModel {
+    private let disposeBag = DisposeBag()
     var jobType: Job?
 }
 
 extension RegisterInterestViewModel {
-    func register() {
+    
+    func validate(categories: [String]?) {
+        let interestRequest = InterestRequest(categories: categories)
+        
+        profileInfoProvider.rx.request(.validateInterst(request: interestRequest))
+            .mapObject(Result<EmptyData>.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(
+                onNext: { owner, response in
+                    if response.result?.isSuccess == true {
+//                        owner.register()
+                    } else {
+                        response.message?.toast(positionType: .withButton)
+                    }
+                },
+                onError: { error in
+                    error.showToast(modelType: String.self, positionType: .withButton)
+                }
+            ).disposed(by: disposeBag)
+    }
+    
+    private func register() {
         // TODO: API 호출
         
         var isSucceeded = true
