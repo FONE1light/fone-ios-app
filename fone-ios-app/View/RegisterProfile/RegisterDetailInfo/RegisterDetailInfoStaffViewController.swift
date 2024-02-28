@@ -194,21 +194,7 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
                 owner.present(popup, animated: false)
                 
             }.disposed(by: rx.disposeBag)
-        
-//        instagramButton.rx.tap
-//            .withUnretained(self)
-//            .bind { owner, _ in
-//                let bottomSheet = SNSBottomSheet(type: .instagram, link: owner.viewModel.instagramLink)
-//                owner.presentPanModal(view: bottomSheet)
-//            }.disposed(by: rx.disposeBag)
-//        
-//        youtubeButton.rx.tap
-//            .withUnretained(self)
-//            .bind { owner, _ in
-//                    let bottomSheet = SNSBottomSheet(type: .youtube, link: owner.viewModel.youtubeLink)
-//                    owner.presentPanModal(view: bottomSheet)
-//            }.disposed(by: rx.disposeBag)
-        
+    
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
