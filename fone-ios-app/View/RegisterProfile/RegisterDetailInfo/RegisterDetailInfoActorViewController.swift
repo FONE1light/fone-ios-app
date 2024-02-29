@@ -224,8 +224,8 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
         setupUI()
         setConstraints()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name:UIResponder.keyboardWillHideNotification, object: nil)
         
     }
     
@@ -417,18 +417,17 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
 }
 
 extension RegisterDetailInfoActorViewController {
-    @objc func keyboardWillShow(notification: NSNotification) {
+    @objc func keyboardWillAppear(notification: NSNotification) {
         guard let userInfo = notification.userInfo else { return }
-        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-
+        let keyboardFrameEnd = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let keyboardHeightEnd = keyboardFrameEnd.height
+        
         var contentInset = self.scrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height + 100 // TODO: 상수 삭제
+        contentInset.bottom = keyboardHeightEnd
         scrollView.contentInset = contentInset
-//        scrollView.scrollIndicatorInsets = contentInset
     }
 
-    @objc func keyboardWillHide(notification: NSNotification) {
+    @objc func keyboardWillDisappear(notification: NSNotification) {
         let contentInset = UIEdgeInsets.zero
         scrollView.contentInset = contentInset
     }
