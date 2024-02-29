@@ -405,8 +405,6 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
             $0.leading.equalTo(youtubeImageView.snp.trailing).offset(6)
             $0.trailing.equalToSuperview()
         }
-        
-        
     }
     
     private func checkAllActivated() {
