@@ -16,6 +16,12 @@ class LetterCountedTextView: UIView, UITextViewDelegate {
     private let letterCountLabel = UILabel()
     private var placeholderString: String?
     
+    // FIXME: placeholderString 유저 입력 시 입력 가능하도록 수정
+    var text: String? {
+        let text = textView?.text
+        return text == placeholderString ? "" : text
+    }
+    
     /// - Parameters:
     ///   - placeholder: UITextView에 들어갈 placeholder
     init(
