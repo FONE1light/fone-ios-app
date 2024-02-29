@@ -49,8 +49,9 @@ class RegisterInterestViewController: UIViewController, ViewModelBindableType {
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                // FIXME: API 호출
-                owner.viewModel.register()
+                guard let categories = owner.selectionBlock.selectedItems.value as? [Category] else { return }
+                let stringCategories = categories.map { $0.serverName }
+                owner.viewModel.validate(categories: stringCategories)
             }.disposed(by: rx.disposeBag)
     }
     

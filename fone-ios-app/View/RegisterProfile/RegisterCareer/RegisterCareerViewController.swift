@@ -51,7 +51,9 @@ class RegisterCareerViewController: UIViewController, ViewModelBindableType {
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.moveToRegisterInterest()
+                guard let career = owner.selectionBlock.selectedItem.value as? CareerType else { return }
+                let careerDetail = owner.letterCountedTextView.text
+                owner.viewModel.validate(career: career.rawValue, careerDetail: careerDetail)
             }.disposed(by: rx.disposeBag)
     }
     
