@@ -16,6 +16,8 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
     var viewModel: RegisterDetailInfoStaffViewModel!
     var disposeBag = DisposeBag()
     
+    private var gender: GenderType = .IRRELEVANT
+    
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     
@@ -151,6 +153,7 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
             }.disposed(by: disposeBag)
         
         // Buttons
+        // TODO: 성별 선택 로직 확인 및 수정
         genderIrrelevantButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
@@ -159,6 +162,10 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
                 owner.genderIrrelevantButton.isActivated = isIrrelevant
                 owner.maleButton.isActivated = isIrrelevant
                 owner.femaleButton.isActivated = isIrrelevant
+                
+                if isIrrelevant {
+                    owner.gender = .IRRELEVANT
+                }
             }.disposed(by: rx.disposeBag)
         
         maleButton.rx.tap
@@ -170,8 +177,8 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
                     owner.genderIrrelevantButton.isActivated = false
                 } else {
                     owner.checkAllActivated()
+                    owner.gender = .MAN
                 }
-//                owner.viewModel.gender = .MAN
             }.disposed(by: rx.disposeBag)
         
         femaleButton.rx.tap
@@ -183,8 +190,8 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
                     owner.genderIrrelevantButton.isActivated = false
                 } else {
                     owner.checkAllActivated()
+                    owner.gender = .WOMAN
                 }
-//                owner.viewModel.gender = .WOMAN
             }.disposed(by: rx.disposeBag)
         
         domainContentButton.rx.tap
@@ -204,7 +211,23 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.moveToRegisterDetailContent()
+                let instagramUrl = SnsURL(sns: "INSTAGRAM", url: owner.instagramTextField.text)
+                let youtubeUrl = SnsURL(sns: "YOUTUBE", url: owner.youtubeTextField.text)
+                
+                guard let domains = owner.viewModel.selectedDomains.value as? [Domain] else { return }
+                let stringDomains = domains.map { $0.serverName }
+                
+                let detailInfoRequest = DetailInfoRequest(
+                    birthday: owner.birthTextField.text,
+                    domains: stringDomains,
+                    email: owner.emailBlock.textField?.text,
+                    gender: owner.gender.serverName,
+                    height: nil,
+                    snsUrls: [instagramUrl, youtubeUrl],
+                    specialty: owner.specialtyBlock.textField?.text,
+                    weight: nil
+                )
+                owner.viewModel.validate(detailInfoRequest: detailInfoRequest)
             }.disposed(by: rx.disposeBag)
     }
     
