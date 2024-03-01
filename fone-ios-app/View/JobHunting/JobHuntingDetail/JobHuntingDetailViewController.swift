@@ -102,10 +102,10 @@ extension JobHuntingDetailViewController: UITableViewDataSource {
             
         case JobHuntingDetailSection.profileList.rawValue:
             let cell = tableView.dequeueReusableCell(for: indexPath) as ProfileListTableViewCell
-            let urls = profile.profileImages?.prefix(3) ?? []
+            let urls = profile.registerBasicInfo?.profileImages?.prefix(3) ?? []
             
             cell.configure(
-                title: profile.hookingComment,
+                title: profile.registerBasicInfo?.hookingComment,
                 imageUrls: Array(urls)
             )
             cell.viewMoreButtonTap
@@ -138,7 +138,7 @@ extension JobHuntingDetailViewController: UITableViewDataSource {
                     birthYear: actorInfo.birthYear,
                     age: actorInfo.age,
                     height: actorInfo.height,
-                    weight: actorInfo.height,
+                    weight: actorInfo.weight,
                     email: actorInfo.email,
                     specialty: actorInfo.specialty
                 )
@@ -164,21 +164,21 @@ extension JobHuntingDetailViewController: UITableViewDataSource {
             
         case JobHuntingDetailSection.summary.rawValue:
             let cell = tableView.dequeueReusableCell(for: indexPath) as SummaryTableViewCell
-            let summary = profile.details ?? ""
+            let summary = profile.registerDetailContent?.details ?? ""
             
             cell.configure(item: summary)
             return cell
             
         case JobHuntingDetailSection.mainCareer.rawValue:
             let cell = tableView.dequeueReusableCell(for: indexPath) as MainCareerTableViewCell
-            let career = CareerType.getType(serverName: profile.career)?.name ?? ""
+            let career = CareerType.getType(serverName: profile.registerCareer?.career)?.name ?? ""
             
             cell.configure(item: career)
             return cell
             
         case JobHuntingDetailSection.categories.rawValue:
             let cell = tableView.dequeueReusableCell(for: indexPath) as CategoriesTableViewCell
-            let categories = profile.categories?
+            let categories = profile.registerInterest?.categories?
                 .compactMap { Category.getType(serverName: $0) }
             guard let categories = categories else { return cell }
             

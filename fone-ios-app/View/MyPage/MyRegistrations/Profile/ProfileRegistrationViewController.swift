@@ -98,8 +98,7 @@ extension ProfileRegistrationViewController {
             continueButtonText: "네"
         ) { [weak self] _ in
             guard let self = self else { return }
-            // TODO: 서버 에러 해결되면 테스트 후 주석 해제
-//            self.viewModel.deleteProfileRegistration(id: id)
+            self.viewModel.deleteProfileRegistration(id: id)
         }
         
         present(alert, animated: true)

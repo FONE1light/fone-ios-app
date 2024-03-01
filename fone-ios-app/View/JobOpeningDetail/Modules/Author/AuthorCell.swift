@@ -36,13 +36,13 @@ class AuthorCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configure(authorInfo: AuthorInfo) {
+    func configure(authorInfo: AuthorInfo, isVerified: Bool) {
         createdAtLabel.text = getDateAndTime(createdAt: authorInfo.createdAt)
         viewCountLabel.text = String(authorInfo.viewCount)
         profileImageView.kf.setImage(with: URL(string: authorInfo.profileUrl))
         nicknameLabel.text = authorInfo.nickname
         userJobLabel.text = authorInfo.userJob
-        officialMarkImageView.isHidden = authorInfo.userJob != "OFFICIAL"
+        officialMarkImageView.isHidden = !isVerified
     }
     
     fileprivate func getDateAndTime(createdAt: String) -> String {

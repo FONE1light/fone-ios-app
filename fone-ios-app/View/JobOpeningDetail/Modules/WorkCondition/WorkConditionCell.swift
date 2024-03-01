@@ -19,12 +19,12 @@ class WorkConditionCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configure(salaryType: String?, salary: Int?, location: String?, period: String?, workDays: [String]?, workingTime: String?) {
+    func configure(salaryType: String?, salary: Int?, city: String?, district: String?, period: String?, workDays: [String]?, startTime: String?, endTime: String?) {
         salaryTypeLabel.text = SalaryType(rawValue: salaryType ?? "")?.string
         salaryLabel.text = "\(String(salary ?? 0).insertComma)원"
-        locationLabel.text = location
+        locationLabel.text = "\(city ?? "") \(district ?? "")"
         periodLabel.text = period
-        workingTimeLabel.text = workingTime
+        workingTimeLabel.text = "\(startTime ?? "") ~ \(endTime ?? "")"
         if let workDays = workDays {
             var workDaysStr = ""
             for day in workDays {

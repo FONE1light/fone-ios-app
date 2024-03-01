@@ -10,7 +10,7 @@ import SnapKit
 
 class DefaultTextField: UITextField {
 
-    private let height: CGFloat
+    private var height: CGFloat = 40
     
     init(
         placeholder: String? = nil,
@@ -28,7 +28,21 @@ class DefaultTextField: UITextField {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+    }
+    
+    func xibInit(
+        placeholder: String? = nil,
+        height: CGFloat = 40,
+        keyboardType: UIKeyboardType? = .default
+    ) {
+        self.height = height
+        self.setUI(placeholder)
+        self.setContraints(height: height)
+        
+        if let keyboardType = keyboardType {
+            self.keyboardType = keyboardType
+        }
     }
     
     private func setUI(_ placeholder: String?) {
@@ -58,6 +72,12 @@ class DefaultTextField: UITextField {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: offset, height: height))
         self.rightView = paddingView
         self.rightViewMode = .always
+    }
+    
+    func setLeadingPadding(_ offset: CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: offset, height: height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
     }
     
     func setTextAlignment(_ alignment: NSTextAlignment) {

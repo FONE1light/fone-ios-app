@@ -70,7 +70,7 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     ) {
         isLoading = true
         
-        let sort = sortOption.serverParameter ?? []
+        let sort = sortOption.serverParameter ?? ""
         
         switch selectedTab {
         case .jobOpening: fetchJobOpenings(jobType: jobType, sort: sort)
@@ -78,9 +78,9 @@ class JobOpeningHuntingViewModel: CommonViewModel {
         }
     }
     
-    private func fetchJobOpenings(jobType: Job, sort: [String]) {
+    private func fetchJobOpenings(jobType: Job, sort: String) {
         jobOpeningInfoProvider.rx.request(.jobOpenings(type: jobType, sort: sort, page: jobOpeningsPage, size: pageSize))
-            .mapObject(JobOpeningsInfo.self)
+            .mapObject(Result<JobOpeningsData>.self)
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
@@ -102,7 +102,7 @@ class JobOpeningHuntingViewModel: CommonViewModel {
             }).disposed(by: disposeBag)
     }
     
-    private func fetchProfiles(jobType: Job, sort: [String]) {
+    private func fetchProfiles(jobType: Job, sort: String) {
         profileInfoProvider.rx.request(.profiles(type: jobType, sort: sort, page: profilesPage, size: pageSize))
             .mapObject(Result<ProfilesData>.self)
             .asObservable()
@@ -112,6 +112,9 @@ class JobOpeningHuntingViewModel: CommonViewModel {
                 owner.isLoading = false
                 guard let newContent = response.data?.profiles?.content, newContent.count > 0 else {
                     owner.profilesPage = owner.profilesPage - 1 // 원복
+                    if owner.profilesContent.isEmpty { // 탭 변경 후 받은 리스트가 빈 경우
+                        owner.reloadCollectionView.onNext(())
+                    }
                     return
                 }
                 owner.profilesContent.append(contentsOf: newContent)
@@ -152,8 +155,9 @@ class JobOpeningHuntingViewModel: CommonViewModel {
 
 extension JobOpeningHuntingViewModel {
     func showSortBottomSheet(segmentType: JobSegmentType) {
-        let jobOpeningSortBottomSheetViewModel = JobOpeningSortBottomSheetViewModel(
+        let optionsBottomSheetViewModel = OptionsBottomSheetViewModel(
             sceneCoordinator: sceneCoordinator,
+            title: "정렬",
             selectedItem: selectedSortOption.value,
             list: segmentType.sortList
         ) { [weak self] selectedText in
@@ -162,7 +166,7 @@ extension JobOpeningHuntingViewModel {
             self.selectedSortOption.accept(option)
             self.sceneCoordinator.close(animated: true)
         }
-        let scene = Scene.jobOpeningSortBottomSheet(jobOpeningSortBottomSheetViewModel)
+        let scene = Scene.optionsBottomSheet(optionsBottomSheetViewModel)
         sceneCoordinator.transition(to: scene, using: .customModal, animated: true)
     }
 }
@@ -171,12 +175,12 @@ extension JobOpeningHuntingViewModel {
     /// 모집 상세로 이동
     func goJobOpeningDetail(jobOpeningId: Int, type: Job) {
         jobOpeningInfoProvider.rx.request(.jobOpeningDetail(jobOpeningId: jobOpeningId, type: type))
-            .mapObject(JobOpeningInfo.self)
+            .mapObject(Result<JobOpeningData>.self)
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
                 guard let jobOpening = response.data?.jobOpening else {
-                    response.message.toast()
+                    response.message?.toast()
                     return }
                 let viewModel = JobOpeningDetailViewModel(sceneCoordinator: owner.sceneCoordinator, jobOpeningDetail: jobOpening)
                 let detailScene = Scene.jobOpeningDetail(viewModel)
@@ -223,10 +227,10 @@ extension JobOpeningHuntingViewModel {
     
     /// 프로필 등록
     func moveToRegisterProfile(of jobType: Job) {
-        let registerBasicInfoViewModel = RegisterBasicInfoViewModel(sceneCoordinator: sceneCoordinator)
-        registerBasicInfoViewModel.jobType = jobType
+        let registerContactLinkInfoViewModel = RegisterContactLinkInfoViewModel(sceneCoordinator: sceneCoordinator)
+        registerContactLinkInfoViewModel.jobType = jobType
         
-        let registerScene = Scene.registerBasicInfo(registerBasicInfoViewModel)
+        let registerScene = Scene.registerContactLinkInfo(registerContactLinkInfoViewModel)
         sceneCoordinator.transition(to: registerScene, using: .push, animated: true)
     }
 }

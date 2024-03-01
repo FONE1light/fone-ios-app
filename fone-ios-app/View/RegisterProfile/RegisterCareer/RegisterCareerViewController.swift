@@ -15,7 +15,7 @@ class RegisterCareerViewController: UIViewController, ViewModelBindableType {
     var viewModel: RegisterCareerViewModel!
     var disposeBag = DisposeBag()
     
-    private let stepIndicator = StepIndicator(index: 3, totalCount: 5)
+    private let stepIndicator = StepIndicator(index: 4, totalCount: 6)
     
     private let titleLabel = UILabel().then {
         $0.text = "주요 경력을 입력해 주세요"
@@ -51,7 +51,9 @@ class RegisterCareerViewController: UIViewController, ViewModelBindableType {
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.moveToRegisterInterest()
+                guard let career = owner.selectionBlock.selectedItem.value as? CareerType else { return }
+                let careerDetail = owner.letterCountedTextView.text
+                owner.viewModel.validate(career: career.rawValue, careerDetail: careerDetail)
             }.disposed(by: rx.disposeBag)
     }
     

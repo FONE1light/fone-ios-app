@@ -18,10 +18,8 @@ class JobRegistrationCell: UITableViewCell {
     private var jobTag = Tag()
     
     private let horizontalDivider = Divider(height: 1, color: .gray_D9D9D9)
-    private let verticalDivider = Divider(width: 1, color: .gray_D9D9D9)
         
     private let cellButton = UIButton()
-    private let modifyButton = JobRegistrationButton(title: "수정하기")
     private let deleteButton = JobRegistrationButton(title: "삭제")
         
     private let separator = Divider(
@@ -31,10 +29,6 @@ class JobRegistrationCell: UITableViewCell {
     
     var cellButtonTap: ControlEvent<Void> {
         cellButton.rx.tap
-    }
-
-    var modifyButtonTap: ControlEvent<Void> {
-        modifyButton.buttonTap
     }
 
     var deleteButtonTap: ControlEvent<Void> {
@@ -72,9 +66,7 @@ class JobRegistrationCell: UITableViewCell {
             jobTag,
             cellButton,
             horizontalDivider,
-            modifyButton,
             deleteButton,
-            verticalDivider,
             separator
         ]
             .forEach { contentView.addSubview($0) }
@@ -101,26 +93,13 @@ class JobRegistrationCell: UITableViewCell {
             $0.leading.trailing.equalToSuperview()
         }
         
-        verticalDivider.snp.makeConstraints {
-            $0.top.equalTo(horizontalDivider.snp.bottom)
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(modifyButton.snp.bottom)
-        }
-        
-        modifyButton.snp.makeConstraints {
-            $0.top.equalTo(verticalDivider.snp.top)
-            $0.leading.equalToSuperview()
-            $0.trailing.equalTo(verticalDivider.snp.leading)
-        }
-        
         deleteButton.snp.makeConstraints {
-            $0.top.bottom.equalTo(modifyButton)
-            $0.leading.equalTo(verticalDivider.snp.trailing)
-            $0.trailing.equalToSuperview()
+            $0.top.equalTo(horizontalDivider.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
         }
-        
+    
         separator.snp.makeConstraints {
-            $0.top.equalTo(modifyButton.snp.bottom)
+            $0.top.equalTo(deleteButton.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }

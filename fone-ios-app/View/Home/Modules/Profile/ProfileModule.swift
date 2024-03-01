@@ -35,6 +35,7 @@ class ProfileModule: UICollectionViewCell {
         guard profileInfo?.data?.content?.count != 0 else {
             showErrorView()
             return }
+        errorView.isHidden = true
         titleLabel.text = profileInfo?.title
     }
     

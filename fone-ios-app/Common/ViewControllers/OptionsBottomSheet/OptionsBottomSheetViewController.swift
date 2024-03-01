@@ -1,68 +1,49 @@
 //
-//  JobOpeningSortBottomSheetViewController.swift
+//  OptionsBottomSheetViewController.swift
 //  fone-ios-app
 //
-//  Created by 여나경 on 12/25/23.
+//  Created by 여나경 on 2/20/24.
 //
 
 import UIKit
 import PanModal
 
-enum JobOpeningSortOptions: CaseIterable {
-    /// 최신순
-    case recent
-    /// 조회순
-    case view
-    /// 마감임박순
-    case deadline
-    
-    var title: String? {
-        switch self {
-        case .recent: "최신순"
-        case .view: "조회순"
-        case .deadline: "마감임박순"
-        }
-    }
-    
-    var serverParameter: [String]? {
-        switch self {
-        case .recent: ["createdAt", "DESC"]
-        case .view: ["viewCount", "DESC"]
-        case .deadline: ["deadline", "ASC"]
-        }
-    }
-    
-    static func getType(title: String?) -> JobOpeningSortOptions? {
-        JobOpeningSortOptions.allCases.filter { $0.title == title }.first
-    }
+protocol Options {
+    var title: String? { get }
+    var serverParameter: String? { get }
 }
 
-class JobOpeningSortBottomSheetViewController: UIViewController, ViewModelBindableType {
+/// 선택 옵션이 있는 바텀시트
+/// - 예시
+///     - 구인구직 탭 > 정렬 바텀시트
+///     - 등록하기 > 연락방법 바텀시트
+class OptionsBottomSheetViewController: UIViewController, ViewModelBindableType {
     
     var longFormHeight: PanModalHeight {
         shortFormHeight
     }
-
+    
     var shortFormHeight: PanModalHeight {
-            return .intrinsicHeight
+        return .intrinsicHeight
     }
     
-    var viewModel: JobOpeningSortBottomSheetViewModel!
+    var viewModel: OptionsBottomSheetViewModel!
     
     private let titleLabel = UILabel().then {
         $0.font = .font_m(12)
         $0.textColor = .gray_9E9E9E
-        $0.text = "정렬"
     }
     
     private let list = UISortButtonStackView()
     
     func bindViewModel() {
+        titleLabel.text = viewModel.title
+        
         list.setup(
-                viewModel.list,
-                selectedOption: viewModel.selectedItem,
-                completionHandler: viewModel.completionHandler
-                )
+            viewModel.list,
+            selectedOption: viewModel.selectedItem,
+            completionHandler: viewModel.completionHandler
+        )
     }
     
     override func viewDidLoad() {
@@ -99,7 +80,7 @@ class JobOpeningSortBottomSheetViewController: UIViewController, ViewModelBindab
     }
 }
 
-extension JobOpeningSortBottomSheetViewController: PanModalPresentable {
+extension OptionsBottomSheetViewController: PanModalPresentable {
     var panScrollable: UIScrollView? {
         nil
     }

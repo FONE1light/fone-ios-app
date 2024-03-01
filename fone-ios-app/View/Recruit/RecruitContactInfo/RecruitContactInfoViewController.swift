@@ -25,7 +25,6 @@ class RecruitContactInfoViewController: UIViewController, ViewModelBindableType 
     }
     
     func bindViewModel() {
-        
         registerButton.rx.tap
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .withUnretained(self)
@@ -47,6 +46,7 @@ class RecruitContactInfoViewController: UIViewController, ViewModelBindableType 
         stepIndicator.xibInit(index: 6, totalCount: 7)
         managerTextField.xibInit(label: "담당자", placeholder: "", textFieldHeight: 44, isRequired: true, textFieldLeadingOffset: 62)
         emailTextField.xibInit(label: "이메일", placeholder: "", textFieldHeight: 44, isRequired: true, textFieldLeadingOffset: 62)
+        emailTextField.textField?.keyboardType = .emailAddress
         registerButton.applyShadow(shadowType: .shadowBt)
     }
 }

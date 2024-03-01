@@ -8,27 +8,30 @@
 import UIKit
 import RxSwift
 
-struct RecruitBasicInfo {
+struct RecruitBasicInfo: Codable {
     let title: String?
-    let categories: [Category]?
-    let startDate: String?
-    let endDate: String?
+    let categories: [String]?
+    let recruitmentStartDate: String?
+    let recruitmentEndDate: String?
     let imageUrls: [String]?
+    var representativeImageUrl: String?
 }
 
 final class RecruitBasicInfoViewModel: CommonViewModel {
     var disposeBag = DisposeBag()
     var jobType: Job?
+    var recruitContactLinkInfo: RecruitContactLinkInfo?
     var imageUrls: [String] = []
     
-    init(sceneCoordinator: SceneCoordinatorType, jobType: Job?) {
+    init(sceneCoordinator: SceneCoordinatorType, jobType: Job?, recruitContactLinkInfo: RecruitContactLinkInfo) {
         super.init(sceneCoordinator: sceneCoordinator)
         
         self.jobType = jobType
+        self.recruitContactLinkInfo = recruitContactLinkInfo
     }
     
     func moveToNextStep(recruitBasicInfo: RecruitBasicInfo) {
-        let recruitConditionInfoViewModel = RecruitConditionInfoViewModel(sceneCoordinator: sceneCoordinator, jobType: jobType, recruitBasicInfo: recruitBasicInfo)
+        let recruitConditionInfoViewModel = RecruitConditionInfoViewModel(sceneCoordinator: sceneCoordinator, jobType: jobType, recruitContactLinkInfo: recruitContactLinkInfo, recruitBasicInfo: recruitBasicInfo)
         let recuirtConditionInfoScene = Scene.recruitConditionInfo(recruitConditionInfoViewModel)
         sceneCoordinator.transition(to: recuirtConditionInfoScene, using: .push, animated: true)
     }

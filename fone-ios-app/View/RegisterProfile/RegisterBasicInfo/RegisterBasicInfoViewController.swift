@@ -22,7 +22,7 @@ class RegisterBasicInfoViewController: UIViewController, ViewModelBindableType {
         $0.axis = .vertical
     }
     
-    private let stepIndicator = StepIndicator(index: 0, totalCount: 5)
+    private let stepIndicator = StepIndicator(index: 1, totalCount: 6)
     
     private let titleLabel = UILabel().then {
         $0.text = "기본 정보를 입력해주세요"
@@ -114,7 +114,13 @@ class RegisterBasicInfoViewController: UIViewController, ViewModelBindableType {
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.moveToRegisterDetailInfo()
+                owner.viewModel.uploadImages(images: owner.images) { imageUrls in
+                    owner.viewModel.validate(
+                        name: owner.nameBlock.textField?.text,
+                        hookingComment: owner.hookingBlock.text,
+                        profileImages: imageUrls
+                    )
+                }
             }.disposed(by: rx.disposeBag)
     }
     

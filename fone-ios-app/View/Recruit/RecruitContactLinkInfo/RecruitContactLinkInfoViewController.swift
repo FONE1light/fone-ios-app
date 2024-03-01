@@ -9,6 +9,9 @@ import UIKit
 
 class RecruitContactLinkInfoViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var stepIndicator: StepIndicator!
+    @IBOutlet weak var contactTypeButton: UIButton!
+    @IBOutlet weak var contactTypeLabel: UILabel!
+    @IBOutlet weak var contactTextField: UITextField!
     @IBOutlet weak var nextButton: UIButton!
     
     var viewModel: RecruitContactLinkInfoViewModel!
@@ -30,10 +33,26 @@ class RecruitContactLinkInfoViewController: UIViewController, ViewModelBindableT
     func bindViewModel() {
         setNavigationBar()
         
+        contactTypeButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.viewModel.showContactTypeBottomSheet()
+            }.disposed(by: rx.disposeBag)
+        
+        viewModel.selectedContactTypeOption
+            .withUnretained(self)
+            .subscribe(onNext: { owner, contactType in
+                owner.viewModel.contactType = contactType
+                owner.contactTypeLabel.text = contactType.title
+                owner.contactTypeLabel.textColor = .gray_161616
+                owner.contactTextField.placeholder = contactType == .email ? "이메일 주소를 첨부할 수 있어요" : "링크를 첨부할 수 있어요"
+            }).disposed(by: rx.disposeBag)
+        
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.moveToNextStep()
+                let recruitContactLinkInfo = RecruitContactLinkInfo(contact: owner.contactTextField.text ?? "", contactMethod: owner.viewModel.contactType?.serverParameter ?? "")
+                owner.viewModel.moveToNextStep(recruitContactLinkInfo: recruitContactLinkInfo)
             }.disposed(by: rx.disposeBag)
     }
     

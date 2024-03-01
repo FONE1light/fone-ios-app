@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 enum ProfileInfoTarget {
-    case profiles(type: Job, sort: [String], page: Int, size: Int)
+    case profiles(type: Job, sort: String, page: Int, size: Int)
     case profileDetail(profileId: Int, type: Job)
     /// 내가 찜한 프로필 조회
     case profilesWanted(type: Job)
@@ -17,6 +17,14 @@ enum ProfileInfoTarget {
     case profileWant(profileId: Int)
     case myRegistrations
     case deleteProfile(profileId: Int)
+    
+    // 유효성 검사, 등록하기
+    case validateContact(request: ContactRequest)
+    case validateBasicInfo(request: BasicInfoRequest)
+    case validateDetailInfo(request: DetailInfoRequest)
+    case validateDetailContent(request: DetailContentRequest)
+    case validateCareer(request: CareerRequest)
+    case validateInterst(request: InterestRequest)
 }
 
 extension ProfileInfoTarget: TargetType {
@@ -38,12 +46,31 @@ extension ProfileInfoTarget: TargetType {
             return "/api/v1/profiles/my-registrations"
         case .deleteProfile(let profileId):
             return "/api/v1/profiles/\(profileId)"
+            
+        case .validateContact:
+            return "/api/v1/profiles/validate/contact"
+        case .validateBasicInfo:
+            return "/api/v1/profiles/validate/basic"
+        case .validateDetailInfo:
+            return "/api/v1/profiles/validate/details"
+        case .validateDetailContent:
+            return "/api/v1/profiles/validate/description"
+        case .validateCareer:
+            return "/api/v1/profiles/validate/career"
+        case .validateInterst:
+            return "/api/v1/profiles/validate/interest"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .profileWant:
+        case .profileWant,
+                .validateContact,
+                .validateBasicInfo,
+                .validateDetailInfo,
+                .validateDetailContent,
+                .validateCareer,
+                .validateInterst:
             return .post
         case .deleteProfile:
             return .delete
@@ -71,6 +98,18 @@ extension ProfileInfoTarget: TargetType {
             return .requestParameters(parameters: [
                 "profileId": profileId
             ], encoding: URLEncoding.default)
+        case let .validateContact(request):
+            return .requestJSONEncodable(request)
+        case let .validateBasicInfo(request):
+            return .requestJSONEncodable(request)
+        case let .validateDetailInfo(request):
+            return .requestJSONEncodable(request)
+        case let .validateDetailContent(request):
+            return .requestJSONEncodable(request)
+        case let .validateCareer(request):
+            return .requestJSONEncodable(request)
+        case let .validateInterst(request):
+            return .requestJSONEncodable(request)
         case .profileWant, .myRegistrations:
             return .requestPlain
         }

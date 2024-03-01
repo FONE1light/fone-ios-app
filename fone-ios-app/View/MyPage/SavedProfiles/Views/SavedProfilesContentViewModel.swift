@@ -29,12 +29,12 @@ class SavedProfilesContentViewModel: CommonViewModel {
                 onNext: { owner, response in
                     let profilesContent = response.data?.profiles?.content
                     let profiles = profilesContent?.map {
-                        let birthYear = String($0.birthday?.split(separator: "-").first ?? "")
+                        let birthYear = String($0.registerDetailInfo?.birthday?.split(separator: "-").first ?? "")
                         let age = "\($0.age ?? 0)"
                         return Profile(
                             id: $0.id,
                             imageUrl: $0.userProfileURL,
-                            name: $0.name,
+                            name: $0.registerBasicInfo?.name,
                             age: age,
                             isSaved: $0.isWant,
                             birthYear: birthYear,
@@ -51,7 +51,8 @@ class SavedProfilesContentViewModel: CommonViewModel {
     func toggleWanted(id: Int?) {
         guard let id = id else { return }
         profileInfoProvider.rx.request(.profileWant(profileId: id))
-            .mapObject(Result<ProfilesData>.self) // 대체
+            .mapObject(Result<ProfilesData>.self) // FIXME: 아래로 대체
+//            .mapObject(Result<EmptyData>.self)
             .asObservable()
             .withUnretained(self)
             .subscribe (

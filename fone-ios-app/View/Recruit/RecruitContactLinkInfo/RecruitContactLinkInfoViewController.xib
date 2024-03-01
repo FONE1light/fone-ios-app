@@ -22,6 +22,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecruitContactLinkInfoViewController" customModule="fone_ios_app" customModuleProvider="target">
             <connections>
+                <outlet property="contactTextField" destination="0AM-td-IgZ" id="CFG-Kr-WmY"/>
+                <outlet property="contactTypeButton" destination="Zu4-0F-BHe" id="kBk-ri-NmC"/>
+                <outlet property="contactTypeLabel" destination="SNY-6E-D20" id="aYh-lF-iXt"/>
                 <outlet property="nextButton" destination="gfQ-M8-tb5" id="Pvw-lI-6Kj"/>
                 <outlet property="stepIndicator" destination="akT-sK-psl" id="GoJ-ab-KVM"/>
                 <outlet property="view" destination="iN0-l3-epB" id="lPJ-zm-FdL"/>
@@ -57,7 +60,7 @@
                     </userDefinedRuntimeAttributes>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="연락할 방법의 링크를 남겨주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12G-Nj-0Er">
-                    <rect key="frame" x="16" y="115" width="246" height="26"/>
+                    <rect key="frame" x="16.000000000000014" y="115" width="243.33333333333337" height="26"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="26" id="GbT-hA-pZb"/>
                     </constraints>
@@ -66,7 +69,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="연락을 받을 수단으로 정확한 정보를 입력해주세요. " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UbK-2f-L3j">
-                    <rect key="frame" x="16.000000000000014" y="145" width="241.33333333333337" height="14"/>
+                    <rect key="frame" x="15.999999999999986" y="145" width="238.66666666666663" height="14"/>
                     <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="12"/>
                     <color key="textColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -129,15 +132,16 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0iZ-Vi-ob4">
                     <rect key="frame" x="16" y="225" width="361" height="44"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="링크를 첨부할 수 있어요" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0AM-td-IgZ">
-                            <rect key="frame" x="12" y="11.666666666666657" width="151" height="21"/>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="링크를 첨부할 수 있어요" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0AM-td-IgZ">
+                            <rect key="frame" x="12" y="11.666666666666657" width="337" height="21"/>
                             <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            <textInputTraits key="textInputTraits"/>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="0AM-td-IgZ" secondAttribute="trailing" constant="12" id="0Bf-RM-m7o"/>
                         <constraint firstItem="0AM-td-IgZ" firstAttribute="centerY" secondItem="0iZ-Vi-ob4" secondAttribute="centerY" id="Db6-VL-Etc"/>
                         <constraint firstAttribute="height" constant="44" id="Jz7-Ib-x2O"/>
                         <constraint firstItem="0AM-td-IgZ" firstAttribute="leading" secondItem="0iZ-Vi-ob4" secondAttribute="leading" constant="12" id="uPK-ri-Ih4"/>

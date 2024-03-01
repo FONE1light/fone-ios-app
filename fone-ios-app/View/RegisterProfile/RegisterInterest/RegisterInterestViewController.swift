@@ -15,7 +15,7 @@ class RegisterInterestViewController: UIViewController, ViewModelBindableType {
     var viewModel: RegisterInterestViewModel!
     var disposeBag = DisposeBag()
     
-    private let stepIndicator = StepIndicator(index: 4, totalCount: 5)
+    private let stepIndicator = StepIndicator(index: 5, totalCount: 6)
     
     private let titleLabel = UILabel().then {
         $0.text = "관심사를 선택해 주세요"
@@ -49,8 +49,9 @@ class RegisterInterestViewController: UIViewController, ViewModelBindableType {
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                // FIXME: API 호출
-                owner.viewModel.register()
+                guard let categories = owner.selectionBlock.selectedItems.value as? [Category] else { return }
+                let stringCategories = categories.map { $0.serverName }
+                owner.viewModel.validate(categories: stringCategories)
             }.disposed(by: rx.disposeBag)
     }
     

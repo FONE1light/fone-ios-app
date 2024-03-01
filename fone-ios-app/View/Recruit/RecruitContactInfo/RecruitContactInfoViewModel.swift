@@ -7,24 +7,27 @@
 
 import UIKit
 import RxSwift
+import Moya
 
-struct RecruitContactInfo {
+struct RecruitContactInfo: Codable {
     let manager, email: String?
 }
 
 final class RecruitContactInfoViewModel: CommonViewModel {
     let disposeBag = DisposeBag()
     var jobType: Job?
+    var recruitContactLinkInfo: RecruitContactLinkInfo?
     var recruitBasicInfo: RecruitBasicInfo?
     var recruitConditionInfo: RecruitConditionInfo?
     var recruitWorkInfo: RecruitWorkInfo?
     var recruitWorkConditionInfo: RecruitWorkConditionInfo?
     var recruitDetailInfo: RecruitDetailInfo?
     
-    init(sceneCoordinator: SceneCoordinatorType, jobType: Job?, recruitBasicInfo: RecruitBasicInfo?, recruitConditionInfo: RecruitConditionInfo?, recruitWorkInfo: RecruitWorkInfo?, recruitWorkConditionInfo: RecruitWorkConditionInfo?, recruitDetailInfo: RecruitDetailInfo) {
+    init(sceneCoordinator: SceneCoordinatorType, jobType: Job?, recruitContactLinkInfo: RecruitContactLinkInfo?, recruitBasicInfo: RecruitBasicInfo?, recruitConditionInfo: RecruitConditionInfo?, recruitWorkInfo: RecruitWorkInfo?, recruitWorkConditionInfo: RecruitWorkConditionInfo?, recruitDetailInfo: RecruitDetailInfo) {
         super.init(sceneCoordinator: sceneCoordinator)
         
         self.jobType = jobType
+        self.recruitContactLinkInfo = recruitContactLinkInfo
         self.recruitBasicInfo = recruitBasicInfo
         self.recruitConditionInfo = recruitConditionInfo
         self.recruitWorkInfo = recruitWorkInfo
@@ -33,9 +36,9 @@ final class RecruitContactInfoViewModel: CommonViewModel {
     }
     
     func createJobOpenings(recruitContactInfo: RecruitContactInfo) {
-        let jobOpeningRequest = JobOpeningRequest(recruitBasicInfo: recruitBasicInfo, recruitConditionInfo: recruitConditionInfo, recruitWorkInfo: recruitWorkInfo, recruitWorkConditionInfo: recruitWorkConditionInfo, recruitDetailInfo: recruitDetailInfo, recruitContactInfo: recruitContactInfo, jobType: jobType)
+        let jobOpeningRequest = JobOpeningRequest(recruitContactLinkInfo: recruitContactLinkInfo, recruitBasicInfo: recruitBasicInfo, recruitConditionInfo: recruitConditionInfo, recruitWorkInfo: recruitWorkInfo, recruitWorkConditionInfo: recruitWorkConditionInfo, recruitDetailInfo: recruitDetailInfo, recruitContactInfo: recruitContactInfo, jobType: jobType)
         jobOpeningInfoProvider.rx.request(.createJobOpenings(jobOpeningRequest: jobOpeningRequest))
-            .mapObject(JobOpeningContent.self)
+            .mapObject(JobOpeningData.self)
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
@@ -43,6 +46,9 @@ final class RecruitContactInfoViewModel: CommonViewModel {
                 owner.showSuccessPopUp()
             }, onError: { error in
                 print(error)
+                guard let response = (error as? MoyaError)?.response,
+                      let errorData = try? response.mapObject(Result<String>.self) else { return }
+                errorData.message?.toast(positionType: .withButton)
             }).disposed(by: disposeBag)
     }
 }
