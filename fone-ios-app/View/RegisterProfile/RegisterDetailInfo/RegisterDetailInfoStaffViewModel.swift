@@ -11,8 +11,6 @@ import RxRelay
 class RegisterDetailInfoStaffViewModel: CommonViewModel {
     
     let selectedDomains = BehaviorRelay<[Selection]>(value: [])
-    var instagramLink = BehaviorRelay<String?>(value: nil)
-    var youtubeLink = BehaviorRelay<String?>(value: nil)
     
     func moveToRegisterDetailContent() {
         let sceneCoordinator = sceneCoordinator

@@ -16,6 +16,9 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
     var viewModel: RegisterDetailInfoActorViewModel!
     var disposeBag = DisposeBag()
     
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
+    
     let stackView = UIStackView().then {
         $0.axis = .vertical
         $0.spacing = 20
@@ -124,15 +127,18 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
         $0.textColor = .gray_161616
     }
     
-    private let instagramButton = UIButton().then {
-        $0.setImage(UIImage(named: "instagram_but_g"), for: .normal)
-        $0.setImage(UIImage(named: "instagram_but_c"), for: .selected)
-    }
+    private let instagramImageView = SNSImageView(type: .instagram)
+    private let youtubeImageView = SNSImageView(type: .youtube)
     
-    private let youtubeButton = UIButton().then {
-        $0.setImage(UIImage(named: "youtube_but_g"), for: .normal)
-        $0.setImage(UIImage(named: "youtube_but_c"), for: .selected)
-    }
+    private let instagramTextField = DefaultTextField(
+        placeholder: "인스타그램 링크를 첨부할 수 있어요.",
+        height: 44
+    )
+    
+    private let youtubeTextField = DefaultTextField(
+        placeholder: "유튜브 링크를 첨부할 수 있어요.",
+        height: 44
+    )
     
     private let nextButton = CustomButton("다음", type: .bottom).then {
             $0.applyShadow(shadowType: .shadowBt)
@@ -145,25 +151,25 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
             .bind(to: birthTextField.rx.text)
             .disposed(by: rx.disposeBag)
         
-        viewModel.instagramLink
+        instagramTextField.rx.text
             .withUnretained(self)
             .bind { owner, link in
                 guard let link = link else { return }
                 if link.isEmpty == false {
-                    owner.instagramButton.isSelected = true
+                    owner.instagramImageView.isSelected = true
                 } else {
-                    owner.instagramButton.isSelected = false
+                    owner.instagramImageView.isSelected = false
                 }
             }.disposed(by: disposeBag)
         
-        viewModel.youtubeLink
+        youtubeTextField.rx.text
             .withUnretained(self)
             .bind { owner, link in
                 guard let link = link else { return }
                 if link.isEmpty == false {
-                    owner.youtubeButton.isSelected = true
+                    owner.youtubeImageView.isSelected = true
                 } else {
-                    owner.youtubeButton.isSelected = false
+                    owner.youtubeImageView.isSelected = false
                 }
             }.disposed(by: disposeBag)
         
@@ -204,20 +210,6 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
 //                owner.viewModel.gender = .WOMAN
             }.disposed(by: rx.disposeBag)
         
-        instagramButton.rx.tap
-            .withUnretained(self)
-            .bind { owner, _ in
-                let bottomSheet = SNSBottomSheet(type: .instagram, link: owner.viewModel.instagramLink)
-                owner.presentPanModal(view: bottomSheet)
-            }.disposed(by: rx.disposeBag)
-        
-        youtubeButton.rx.tap
-            .withUnretained(self)
-            .bind { owner, _ in
-                    let bottomSheet = SNSBottomSheet(type: .youtube, link: owner.viewModel.youtubeLink)
-                    owner.presentPanModal(view: bottomSheet)
-            }.disposed(by: rx.disposeBag)
-        
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
@@ -232,6 +224,9 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
         setupUI()
         setConstraints()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name:UIResponder.keyboardWillHideNotification, object: nil)
+        
     }
     
     private func setNavigationBar() {
@@ -244,15 +239,19 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
     
     private func setupUI() {
         view.backgroundColor = .white_FFFFFF
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
         
         [
             stepIndicator,
             titleLabel,
             stackView,
-            snsBlock,
-            nextButton
+            snsBlock
         ]
-            .forEach { view.addSubview($0) }
+            .forEach { contentView.addSubview($0) }
+        
+        view.addSubview(nextButton)
+        
         
         [
             birthBlock,
@@ -284,16 +283,27 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
         
         [
             snsLabel,
-            instagramButton,
-            youtubeButton
+            instagramImageView,
+            instagramTextField,
+            youtubeImageView,
+            youtubeTextField
         ]
             .forEach { snsBlock.addSubview($0) }
         setupSNSBlock()
     }
     
     private func setConstraints() {
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.width.equalToSuperview()
+            $0.edges.equalTo(scrollView.contentLayoutGuide)
+        }
+        
         stepIndicator.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(30)
+            $0.top.equalToSuperview().offset(30)
             $0.leading.equalToSuperview().offset(16)
         }
         
@@ -318,8 +328,9 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
         }
         
         snsBlock.snp.makeConstraints {
-            $0.top.equalTo(stackView.snp.bottom).offset(20)
+            $0.top.equalTo(stackView.snp.bottom).offset(30)
             $0.leading.trailing.equalTo(stackView)
+            $0.bottom.equalToSuperview()
         }
         
         nextButton.snp.makeConstraints {
@@ -367,22 +378,33 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
     
     private func setupSNSBlock() {
         snsLabel.snp.makeConstraints {
-            $0.top.leading.bottom.equalToSuperview()
+            $0.top.leading.equalToSuperview()
         }
         
-        instagramButton.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(62)
-            $0.size.equalTo(40)
+        instagramImageView.snp.makeConstraints {
+            $0.top.equalTo(snsLabel.snp.bottom).offset(16)
+            $0.leading.equalToSuperview()
+            $0.size.equalTo(44)
         }
         
-        youtubeButton.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.leading.equalTo(instagramButton.snp.trailing).offset(8)
-            $0.size.equalTo(40)
+        instagramTextField.snp.makeConstraints {
+            $0.top.bottom.equalTo(instagramImageView)
+            $0.leading.equalTo(instagramImageView.snp.trailing).offset(6)
+            $0.trailing.equalToSuperview()
         }
         
+        youtubeImageView.snp.makeConstraints {
+            $0.top.equalTo(instagramImageView.snp.bottom).offset(20)
+            $0.leading.equalToSuperview()
+            $0.size.equalTo(44)
+            $0.bottom.equalToSuperview()
+        }
         
+        youtubeTextField.snp.makeConstraints {
+            $0.top.bottom.equalTo(youtubeImageView)
+            $0.leading.equalTo(youtubeImageView.snp.trailing).offset(6)
+            $0.trailing.equalToSuperview()
+        }
     }
     
     private func checkAllActivated() {
@@ -392,3 +414,20 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
     }
 }
 
+extension RegisterDetailInfoActorViewController {
+    @objc func keyboardWillAppear(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else { return }
+        let keyboardFrameEnd = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let keyboardHeightEnd = keyboardFrameEnd.height
+        
+        var contentInset = self.scrollView.contentInset
+        contentInset.bottom = keyboardHeightEnd
+        scrollView.contentInset = contentInset
+    }
+
+    @objc func keyboardWillDisappear(notification: NSNotification) {
+        let contentInset = UIEdgeInsets.zero
+        scrollView.contentInset = contentInset
+    }
+    
+}
