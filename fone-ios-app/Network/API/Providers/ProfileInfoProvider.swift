@@ -19,12 +19,13 @@ enum ProfileInfoTarget {
     case deleteProfile(profileId: Int)
     
     // 유효성 검사, 등록하기
-    case validateContact(request: ContactRequest)
-    case validateBasicInfo(request: BasicInfoRequest)
-    case validateDetailInfo(request: DetailInfoRequest)
-    case validateDetailContent(request: DetailContentRequest)
-    case validateCareer(request: CareerRequest)
-    case validateInterst(request: InterestRequest)
+    case validateContact(request: RegisterContactLinkInfo)
+    case validateBasicInfo(request: RegisterBasicInfo)
+    case validateDetailInfo(request: RegisterDetailInfo)
+    case validateDetailContent(request: RegisterDetailContentInfo)
+    case validateCareer(request: RegisterCareerInfo)
+    case validateInterst(request: RegisterInterestInfo)
+    case registerProfile(request: ProfileRequest)
 }
 
 extension ProfileInfoTarget: TargetType {
@@ -59,6 +60,8 @@ extension ProfileInfoTarget: TargetType {
             return "/api/v1/profiles/validate/career"
         case .validateInterst:
             return "/api/v1/profiles/validate/interest"
+        case .registerProfile:
+            return "/api/v1/profiles"
         }
     }
     
@@ -70,7 +73,8 @@ extension ProfileInfoTarget: TargetType {
                 .validateDetailInfo,
                 .validateDetailContent,
                 .validateCareer,
-                .validateInterst:
+                .validateInterst,
+                .registerProfile:
             return .post
         case .deleteProfile:
             return .delete
@@ -109,6 +113,8 @@ extension ProfileInfoTarget: TargetType {
         case let .validateCareer(request):
             return .requestJSONEncodable(request)
         case let .validateInterst(request):
+            return .requestJSONEncodable(request)
+        case let .registerProfile(request):
             return .requestJSONEncodable(request)
         case .profileWant, .myRegistrations:
             return .requestPlain

@@ -13,6 +13,18 @@ class RegisterBasicInfoViewModel: CommonViewModel {
     let disposeBag = DisposeBag()
     var jobType: Job?
     
+    private var registerContactLinkInfo: RegisterContactLinkInfo
+    
+    init(
+        sceneCoordinator: SceneCoordinatorType,
+        jobType: Job?,
+        registerContactLinkInfo: RegisterContactLinkInfo
+    ) {
+        self.jobType = jobType
+        self.registerContactLinkInfo = registerContactLinkInfo
+        super.init(sceneCoordinator: sceneCoordinator)
+    }
+    
     func uploadImages(images: [UIImage], completion: @escaping ([String]) -> ())  {
         guard !images.isEmpty else {
             completion([])
@@ -47,7 +59,7 @@ class RegisterBasicInfoViewModel: CommonViewModel {
     }
     
     func validate(name: String?, hookingComment: String?, profileImages: [String]?) {
-        let basicInfoRequest = BasicInfoRequest(
+        let basicInfoRequest = RegisterBasicInfo(
             name: name,
             hookingComment: hookingComment,
             profileImages: profileImages,
@@ -61,7 +73,7 @@ class RegisterBasicInfoViewModel: CommonViewModel {
             .subscribe(
                 onNext: { owner, response in
                     if response.result?.isSuccess == true {
-                        owner.moveToRegisterDetailInfo()
+                        owner.moveToRegisterDetailInfo(basicInfoRequest)
                     } else {
                         response.message?.toast(positionType: .withButton)
                     }
@@ -72,17 +84,25 @@ class RegisterBasicInfoViewModel: CommonViewModel {
             ).disposed(by: disposeBag)
     }
     
-    private func moveToRegisterDetailInfo() {
+    private func moveToRegisterDetailInfo(_ registerBasicInfo: RegisterBasicInfo) {
         let sceneCoordinator = sceneCoordinator
         
         var scene: Scene
         
         switch jobType {
         case .actor:
-            let registerDetailInfoViewModel = RegisterDetailInfoActorViewModel(sceneCoordinator: sceneCoordinator)
+            let registerDetailInfoViewModel = RegisterDetailInfoActorViewModel(
+                sceneCoordinator: sceneCoordinator,
+                registerContactLinkInfo: registerContactLinkInfo,
+                registerBasicInfo: registerBasicInfo
+            )
             scene = Scene.registerDetailInfoActor(registerDetailInfoViewModel)
         case .staff:
-            let registerDetailInfoStaffViewModel = RegisterDetailInfoStaffViewModel(sceneCoordinator: sceneCoordinator)
+            let registerDetailInfoStaffViewModel = RegisterDetailInfoStaffViewModel(
+                sceneCoordinator: sceneCoordinator,
+                registerContactLinkInfo: registerContactLinkInfo,
+                registerBasicInfo: registerBasicInfo
+            )
             scene = Scene.registerDetailInfoStaff(registerDetailInfoStaffViewModel)
         default: return
         }

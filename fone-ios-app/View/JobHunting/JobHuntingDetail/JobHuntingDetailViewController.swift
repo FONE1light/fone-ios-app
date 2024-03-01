@@ -164,21 +164,21 @@ extension JobHuntingDetailViewController: UITableViewDataSource {
             
         case JobHuntingDetailSection.summary.rawValue:
             let cell = tableView.dequeueReusableCell(for: indexPath) as SummaryTableViewCell
-            let summary = profile.registerDetailContent?.details ?? ""
+            let summary = profile.registerDetailContentInfo?.details ?? ""
             
             cell.configure(item: summary)
             return cell
             
         case JobHuntingDetailSection.mainCareer.rawValue:
             let cell = tableView.dequeueReusableCell(for: indexPath) as MainCareerTableViewCell
-            let career = CareerType.getType(serverName: profile.registerCareer?.career)?.name ?? ""
+            let career = CareerType.getType(serverName: profile.registerCareerInfo?.career)?.name ?? ""
             
             cell.configure(item: career)
             return cell
             
         case JobHuntingDetailSection.categories.rawValue:
             let cell = tableView.dequeueReusableCell(for: indexPath) as CategoriesTableViewCell
-            let categories = profile.registerInterest?.categories?
+            let categories = profile.registerInterestInfo?.categories?
                 .compactMap { Category.getType(serverName: $0) }
             guard let categories = categories else { return cell }
             
