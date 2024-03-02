@@ -32,9 +32,9 @@ extension ValidationTarget: TargetType {
     var task: Moya.Task {
         switch self {
         case .validateContactLink(recruitContactLinkInfo: let recruitContactLinkInfo):
-            return .requestParameters(parameters: ["contact": recruitContactLinkInfo.contact ?? "", "contactMethod": recruitContactLinkInfo.contactMethod ?? ""], encoding: JSONEncoding.default)
+            return .requestJSONEncodable(recruitContactLinkInfo)
         case .validateSummary(recruitDetailInfo: let recruitDetailInfo):
-            return .requestParameters(parameters: ["details": recruitDetailInfo.details ?? ""], encoding: JSONEncoding.default)
+            return .requestJSONEncodable(recruitDetailInfo)
         }
     }
     
