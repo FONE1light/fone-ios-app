@@ -16,6 +16,8 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
     var viewModel: RegisterDetailInfoActorViewModel!
     var disposeBag = DisposeBag()
     
+    private var gender: GenderType = .IRRELEVANT
+    
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     
@@ -174,6 +176,7 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
             }.disposed(by: disposeBag)
         
         // Buttons
+        // TODO: 성별 선택 로직 확인 및 수정
         genderIrrelevantButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
@@ -182,6 +185,10 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
                 owner.genderIrrelevantButton.isActivated = isIrrelevant
                 owner.maleButton.isActivated = isIrrelevant
                 owner.femaleButton.isActivated = isIrrelevant
+                
+                if isIrrelevant {
+                    owner.gender = .IRRELEVANT
+                }
             }.disposed(by: rx.disposeBag)
         
         maleButton.rx.tap
@@ -193,8 +200,8 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
                     owner.genderIrrelevantButton.isActivated = false
                 } else {
                     owner.checkAllActivated()
+                    owner.gender = .MAN
                 }
-//                owner.viewModel.gender = .MAN
             }.disposed(by: rx.disposeBag)
         
         femaleButton.rx.tap
@@ -206,14 +213,30 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
                     owner.genderIrrelevantButton.isActivated = false
                 } else {
                     owner.checkAllActivated()
+                    owner.gender = .WOMAN
                 }
-//                owner.viewModel.gender = .WOMAN
             }.disposed(by: rx.disposeBag)
         
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.moveToRegisterDetailContent()
+                let instagramUrl = SnsURL(sns: "INSTAGRAM", url: owner.instagramTextField.text)
+                let youtubeUrl = SnsURL(sns: "YOUTUBE", url: owner.youtubeTextField.text)
+
+                let height = Int(owner.heightBlock.textField?.text ?? "")
+                let weight = Int(owner.weightBlock.textField?.text ?? "")
+                
+                let detailInfoRequest = DetailInfoRequest(
+                    birthday: owner.birthTextField.text,
+                    domains: nil,
+                    email: owner.emailBlock.textField?.text,
+                    gender: owner.gender.serverName,
+                    height: height,
+                    snsUrls: [instagramUrl, youtubeUrl],
+                    specialty: owner.specialtyBlock.textField?.text,
+                    weight: weight
+                )
+                owner.viewModel.validate(detailInfoRequest: detailInfoRequest)
             }.disposed(by: rx.disposeBag)
     }
     

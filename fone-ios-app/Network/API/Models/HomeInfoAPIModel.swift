@@ -217,9 +217,9 @@ struct RegisterInterest: Codable {
 
 // MARK: - SnsURL
 struct SnsURL: Codable {
-    let url: String?
     // e.g. "YOUTUBE"
     let sns: String?
+    let url: String?
 }
 
 // MARK: - 공통 사용
