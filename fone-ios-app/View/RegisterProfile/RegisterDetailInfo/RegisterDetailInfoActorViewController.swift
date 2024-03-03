@@ -227,15 +227,15 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
                 let height = Int(owner.heightBlock.textField?.text ?? "")
                 let weight = Int(owner.weightBlock.textField?.text ?? "")
                 
-                let detailInfoRequest = DetailInfoRequest(
+                let detailInfoRequest = RegisterDetailInfo(
                     birthday: owner.birthTextField.text,
-                    domains: nil,
-                    email: owner.emailBlock.textField?.text,
                     gender: owner.gender?.serverName,
                     height: height,
-                    snsUrls: [instagramUrl, youtubeUrl],
+                    weight: weight,
+                    email: owner.emailBlock.textField?.text,
+                    domains: nil,
                     specialty: owner.specialtyBlock.textField?.text,
-                    weight: weight
+                    snsUrls: [instagramUrl, youtubeUrl]
                 )
                 owner.viewModel.validate(detailInfoRequest: detailInfoRequest)
             }.disposed(by: rx.disposeBag)

@@ -218,15 +218,15 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
                 guard let domains = owner.viewModel.selectedDomains.value as? [Domain] else { return }
                 let stringDomains = domains.map { $0.serverName }
                 
-                let detailInfoRequest = DetailInfoRequest(
+                let detailInfoRequest = RegisterDetailInfo(
                     birthday: owner.birthTextField.text,
-                    domains: stringDomains,
-                    email: owner.emailBlock.textField?.text,
                     gender: owner.gender?.serverName,
                     height: nil,
-                    snsUrls: [instagramUrl, youtubeUrl],
+                    weight: nil,
+                    email: owner.emailBlock.textField?.text,
+                    domains: stringDomains,
                     specialty: owner.specialtyBlock.textField?.text,
-                    weight: nil
+                    snsUrls: [instagramUrl, youtubeUrl]
                 )
                 owner.viewModel.validate(detailInfoRequest: detailInfoRequest)
             }.disposed(by: rx.disposeBag)

@@ -150,9 +150,9 @@ struct ProfileContent: Codable {
     let registerContactLinkInfo: RegisterContactLinkInfo?
     let registerBasicInfo: RegisterBasicInfo?
     let registerDetailInfo: RegisterDetailInfo?
-    let registerDetailContent: RegisterDetailContent?
-    let registerCareer: RegisterCareer?
-    let registerInterest: RegisterInterest?
+    let registerDetailContentInfo: RegisterDetailContentInfo?
+    let registerCareerInfo: RegisterCareerInfo?
+    let registerInterestInfo: RegisterInterestInfo?
     let type: String?
     let viewCount: Int?
     let isWant: Bool?
@@ -166,61 +166,13 @@ struct ProfileContent: Codable {
         case registerContactLinkInfo = "firstPage"
         case registerBasicInfo = "secondPage"
         case registerDetailInfo = "thirdPage"
-        case registerDetailContent = "fourthPage"
-        case registerCareer = "fifthPage"
-        case registerInterest = "sixthPage"
+        case registerDetailContentInfo = "fourthPage"
+        case registerCareerInfo = "fifthPage"
+        case registerInterestInfo = "sixthPage"
     }
 }
 
 // MARK: - FirstPage
-struct RegisterContactLinkInfo: Codable {
-    let contactMethod: String?
-    let contact: String?
-}
-
-// MARK: - SecondPage
-struct RegisterBasicInfo: Codable {
-    let name, hookingComment: String?
-    let profileImages: [String]?
-    let representativeImageURL: String?
-
-    enum CodingKeys: String, CodingKey {
-        case name, hookingComment, profileImages
-        case representativeImageURL = "representativeImageUrl"
-    }
-}
-
-// MARK: - ThirdPage
-struct RegisterDetailInfo: Codable {
-    let birthday, gender: String?
-    let height, weight: Int?
-    let email: String?
-    let domains: [String]?
-    let specialty: String?
-    let snsUrls: [SnsURL]?
-}
-
-// MARK: - FourthPage
-struct RegisterDetailContent: Codable {
-    let details: String?
-}
-
-// MARK: - FifthPage
-struct RegisterCareer: Codable {
-    let career, careerDetail: String?
-}
-
-// MARK: - SixthPage
-struct RegisterInterest: Codable {
-    let categories: [String]?
-}
-
-// MARK: - SnsURL
-struct SnsURL: Codable {
-    // e.g. "YOUTUBE"
-    let sns: String?
-    let url: String?
-}
 
 // MARK: - 공통 사용
 struct Pageable: Codable {

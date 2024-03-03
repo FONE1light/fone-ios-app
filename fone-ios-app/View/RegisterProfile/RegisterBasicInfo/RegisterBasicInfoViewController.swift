@@ -43,10 +43,15 @@ class RegisterBasicInfoViewController: UIViewController, ViewModelBindableType {
     )
     
     // MARK: - 이미지 첨부
+    private let attachImageLabelBlock = UIView()
     private let attachImagelabel = UILabel().then {
         $0.text = "이미지 첨부"
         $0.font = .font_b(16)
         $0.textColor = .gray_161616
+    }
+    
+    private let starImageView = UIImageView().then {
+        $0.image = UIImage(resource: .star)
     }
 
     private let attachedImagesView = UIView()
@@ -157,7 +162,7 @@ class RegisterBasicInfoViewController: UIViewController, ViewModelBindableType {
             hookingBlock,
             EmptyView(height: 30),
             
-            attachImagelabel,
+            attachImageLabelBlock,
             EmptyView(height: 8),
             attachedImagesView, // 하위 뷰 포함
             EmptyView(height: 4),
@@ -165,6 +170,11 @@ class RegisterBasicInfoViewController: UIViewController, ViewModelBindableType {
         ]
             .forEach { stackView.addArrangedSubview($0) }
         
+        [
+            attachImagelabel,
+            starImageView
+        ]
+            .forEach { attachImageLabelBlock.addSubview($0) }
         [
             imageCountView, // 하위 뷰 포함
             collectionView
@@ -194,6 +204,17 @@ class RegisterBasicInfoViewController: UIViewController, ViewModelBindableType {
             $0.leading.trailing.equalTo(stackView)
             $0.bottom.equalToSuperview().offset(-38)
             $0.height.equalTo(48)
+        }
+        
+        // attachImageLabelBlock 내부
+        attachImagelabel.snp.makeConstraints {
+            $0.top.leading.bottom.equalToSuperview()
+        }
+        
+        starImageView.snp.makeConstraints {
+            $0.centerY.equalTo(attachImagelabel)
+            $0.leading.equalTo(attachImagelabel.snp.trailing).offset(2)
+            $0.size.equalTo(8)
         }
         
         // attachedImagesView 내부

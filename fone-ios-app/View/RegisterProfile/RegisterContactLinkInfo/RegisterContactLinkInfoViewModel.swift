@@ -18,7 +18,7 @@ class RegisterContactLinkInfoViewModel: CommonViewModel {
     func validate(url: String?) {
         let contactType = selectedContactTypeOption.value.serverParameter
         
-        let contactRequest = ContactRequest(contact: url, contactMethod: contactType)
+        let contactRequest = RegisterContactLinkInfo(contactMethod: contactType, contact: url)
         
         profileInfoProvider.rx.request(.validateContact(request: contactRequest))
             .mapObject(Result<EmptyData>.self)
@@ -29,7 +29,7 @@ class RegisterContactLinkInfoViewModel: CommonViewModel {
                     if response.result?.isSuccess != true {
                         "올바른 링크 주소를 입력해 주세요.".toast(positionType: .withButton)
                     } else {
-                        owner.moveToRegisterBasicInfo()
+                        owner.moveToRegisterBasicInfo(contactRequest)
                     }
                 },
                 onError: { error in
@@ -40,9 +40,12 @@ class RegisterContactLinkInfoViewModel: CommonViewModel {
 }
 
 extension RegisterContactLinkInfoViewModel {
-    func moveToRegisterBasicInfo() {
-        let registerBasicInfoViewModel = RegisterBasicInfoViewModel(sceneCoordinator: sceneCoordinator)
-        registerBasicInfoViewModel.jobType = jobType
+    func moveToRegisterBasicInfo(_ registerContactLinkInfo: RegisterContactLinkInfo) {
+        let registerBasicInfoViewModel = RegisterBasicInfoViewModel(
+            sceneCoordinator: sceneCoordinator,
+            jobType: jobType,
+            registerContactLinkInfo: registerContactLinkInfo
+        )
         
         let registerScene = Scene.registerBasicInfo(registerBasicInfoViewModel)
         sceneCoordinator.transition(to: registerScene, using: .push, animated: true)

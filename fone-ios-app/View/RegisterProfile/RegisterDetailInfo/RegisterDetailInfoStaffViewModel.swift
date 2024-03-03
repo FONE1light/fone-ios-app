@@ -14,7 +14,20 @@ class RegisterDetailInfoStaffViewModel: CommonViewModel {
     private let disposeBag = DisposeBag()
     let selectedDomains = BehaviorRelay<[Selection]>(value: [])
     
-    func validate(detailInfoRequest: DetailInfoRequest) {
+    private var registerContactLinkInfo: RegisterContactLinkInfo
+    private var registerBasicInfo: RegisterBasicInfo
+    
+    init(
+        sceneCoordinator: SceneCoordinatorType,
+        registerContactLinkInfo: RegisterContactLinkInfo,
+        registerBasicInfo: RegisterBasicInfo
+    ) {
+        self.registerContactLinkInfo = registerContactLinkInfo
+        self.registerBasicInfo = registerBasicInfo
+        super.init(sceneCoordinator: sceneCoordinator)
+    }
+    
+    func validate(detailInfoRequest: RegisterDetailInfo) {
         profileInfoProvider.rx.request(.validateDetailInfo(request: detailInfoRequest))
             .mapObject(Result<EmptyData>.self)
             .asObservable()
@@ -22,7 +35,7 @@ class RegisterDetailInfoStaffViewModel: CommonViewModel {
             .subscribe (
                 onNext: { owner, response in
                     if response.result?.isSuccess == true {
-                        owner.moveToRegisterDetailContent()
+                        owner.moveToRegisterDetailContent(detailInfoRequest)
                     } else {
                         response.message?.toast(positionType: .withButton)
                     }
@@ -32,10 +45,15 @@ class RegisterDetailInfoStaffViewModel: CommonViewModel {
                 }).disposed(by: disposeBag)
     }
     
-    private func moveToRegisterDetailContent() {
+    private func moveToRegisterDetailContent(_ registerDetailInfo: RegisterDetailInfo) {
         let sceneCoordinator = sceneCoordinator
-        let registerDetailContentViewModel = RegisterDetailContentViewModel(sceneCoordinator: sceneCoordinator)
-        registerDetailContentViewModel.jobType = .staff
+        let registerDetailContentViewModel = RegisterDetailContentViewModel(
+            sceneCoordinator: sceneCoordinator,
+            jobType: .staff,
+            registerContactLinkInfo: registerContactLinkInfo,
+            registerBasicInfo: registerBasicInfo,
+            registerDetailInfo: registerDetailInfo
+        )
         
         let scene = Scene.registerDetailContent(registerDetailContentViewModel)
         sceneCoordinator.transition(to: scene, using: .push, animated: true)

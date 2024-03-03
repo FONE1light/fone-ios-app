@@ -12,8 +12,29 @@ class RegisterCareerViewModel: CommonViewModel {
     private let disposeBag = DisposeBag()
     var jobType: Job?
     
+    private var registerContactLinkInfo: RegisterContactLinkInfo
+    private var registerBasicInfo: RegisterBasicInfo
+    private var registerDetailInfo: RegisterDetailInfo
+    private var registerDetailContentInfo: RegisterDetailContentInfo
+    
+    init(
+        sceneCoordinator: SceneCoordinatorType,
+        jobType: Job?,
+        registerContactLinkInfo: RegisterContactLinkInfo,
+        registerBasicInfo: RegisterBasicInfo,
+        registerDetailInfo: RegisterDetailInfo,
+        registerDetailContentInfo: RegisterDetailContentInfo
+    ) {
+        self.jobType = jobType
+        self.registerContactLinkInfo = registerContactLinkInfo
+        self.registerBasicInfo = registerBasicInfo
+        self.registerDetailInfo = registerDetailInfo
+        self.registerDetailContentInfo = registerDetailContentInfo
+        super.init(sceneCoordinator: sceneCoordinator)
+    }
+    
     func validate(career: String?, careerDetail: String?) {
-        let careerRequest = CareerRequest(career: career, careerDetail: careerDetail)
+        let careerRequest = RegisterCareerInfo(career: career, careerDetail: careerDetail)
         
         profileInfoProvider.rx.request(.validateCareer(request: careerRequest))
             .mapObject(Result<EmptyData>.self)
@@ -22,7 +43,7 @@ class RegisterCareerViewModel: CommonViewModel {
             .subscribe(
                 onNext: { owner, response in
                     if response.result?.isSuccess == true {
-                        owner.moveToRegisterInterest()
+                        owner.moveToRegisterInterest(careerRequest)
                     } else {
                         response.message?.toast(positionType: .withButton)
                     }
@@ -33,10 +54,17 @@ class RegisterCareerViewModel: CommonViewModel {
             ).disposed(by: disposeBag)
     }
     
-    private func moveToRegisterInterest() {
+    private func moveToRegisterInterest(_ registerCareerInfo: RegisterCareerInfo) {
         let sceneCoordinator = sceneCoordinator
-        let registerInterestViewModel = RegisterInterestViewModel(sceneCoordinator: sceneCoordinator)
-        registerInterestViewModel.jobType = jobType
+        let registerInterestViewModel = RegisterInterestViewModel(
+            sceneCoordinator: sceneCoordinator,
+            jobType: jobType,
+            registerContactLinkInfo: registerContactLinkInfo,
+            registerBasicInfo: registerBasicInfo,
+            registerDetailInfo: registerDetailInfo,
+            registerDetailContentInfo: registerDetailContentInfo,
+            registerCareerInfo: registerCareerInfo
+        )
         
         let scene = Scene.registerInterest(registerInterestViewModel)
         sceneCoordinator.transition(to: scene, using: .push, animated: true)
