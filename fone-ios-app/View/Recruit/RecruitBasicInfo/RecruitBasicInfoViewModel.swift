@@ -30,6 +30,25 @@ final class RecruitBasicInfoViewModel: CommonViewModel {
         self.recruitContactLinkInfo = recruitContactLinkInfo
     }
     
+    func validateTitle(recruitBasicInfo: RecruitBasicInfo) {
+        validationProvider.rx.request(.validateTitle(recruitBasicInfo: recruitBasicInfo))
+            .mapObject(Result<String>.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(
+                onNext: { owner, response in
+                    if response.result?.isSuccess == true {
+                        owner.moveToNextStep(recruitBasicInfo: recruitBasicInfo)
+                    } else {
+                        response.message?.toast(positionType: .withButton)
+                    }
+                },
+                onError: { error in
+                    error.showToast(modelType: String.self, positionType: .withButton)
+                }
+            ).disposed(by: disposeBag)
+    }
+    
     func moveToNextStep(recruitBasicInfo: RecruitBasicInfo) {
         let recruitConditionInfoViewModel = RecruitConditionInfoViewModel(sceneCoordinator: sceneCoordinator, jobType: jobType, recruitContactLinkInfo: recruitContactLinkInfo, recruitBasicInfo: recruitBasicInfo)
         let recuirtConditionInfoScene = Scene.recruitConditionInfo(recruitConditionInfoViewModel)

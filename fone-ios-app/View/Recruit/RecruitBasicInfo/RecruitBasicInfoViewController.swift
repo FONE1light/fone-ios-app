@@ -102,7 +102,7 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
                     let startDate = owner.startDateLabel.text?.dateServerFormat
                     let endDate = owner.endDateLabel.text?.dateServerFormat
                     let recruitBasicInfo = RecruitBasicInfo(title: title, categories: categories, recruitmentStartDate: startDate, recruitmentEndDate: endDate, imageUrls: imageUrls)
-                    owner.viewModel.moveToNextStep(recruitBasicInfo: recruitBasicInfo)
+                    owner.viewModel.validateTitle(recruitBasicInfo: recruitBasicInfo)
                 }
                 
             }.disposed(by: rx.disposeBag)
@@ -125,6 +125,7 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     
     private func setSelectionBlock() {
         selectionBlock.setSelections(Category.allCases)
+        selectionBlock.selectionLimits = 2
     }
     
     private func setCollectionView() {

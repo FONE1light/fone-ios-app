@@ -61,6 +61,8 @@ class SelectionBlock: UIView {
         }
     }
     
+    var selectionLimits: Int = 0
+    
     let selectedItems = BehaviorRelay<[Selection]>(value: [])
     
     init() {
@@ -142,6 +144,10 @@ extension SelectionBlock {
                 var items = owner.selectedItems.value
                 
                 if cell.isChosen {
+                    if owner.selectionLimits > 0, items.count >= owner.selectionLimits {
+                        cell.toggle()
+                        return
+                    }
                     items.append(item)
                 } else {
                     items.removeAll { $0.name == item.name }
