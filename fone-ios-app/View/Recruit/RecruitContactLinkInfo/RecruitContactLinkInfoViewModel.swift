@@ -37,6 +37,25 @@ final class RecruitContactLinkInfoViewModel: CommonViewModel {
         sceneCoordinator.transition(to: scene, using: .customModal, animated: true)
     }
     
+    func validateContactLink(recruitContactLinkInfo: RecruitContactLinkInfo) {
+        validationProvider.rx.request(.validateContactLink(recruitContactLinkInfo: recruitContactLinkInfo))
+            .mapObject(Result<String>.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(
+                onNext: { owner, response in
+                    if response.result?.isSuccess == true {
+                        owner.moveToNextStep(recruitContactLinkInfo: recruitContactLinkInfo)
+                    } else {
+                        response.message?.toast(positionType: .withButton)
+                    }
+                },
+                onError: { error in
+                    error.showToast(modelType: String.self, positionType: .withButton)
+                }
+            ).disposed(by: disposeBag)
+    }
+    
     func moveToNextStep(recruitContactLinkInfo: RecruitContactLinkInfo) {
         let recruitBasicInfoViewModel = RecruitBasicInfoViewModel(sceneCoordinator: sceneCoordinator, jobType: jobType, recruitContactLinkInfo: recruitContactLinkInfo)
         let recruitBasicInfoScene = Scene.recruitBasicInfo(recruitBasicInfoViewModel)
