@@ -38,18 +38,39 @@ class RegisterInterestViewController: UIViewController, ViewModelBindableType {
     func bindViewModel() {
         setNavigationBar() // viewModel 바인딩 된 후 navigationBar의 title 설정
         
+        selectionBlock.selectedItems
+            .observe(on: MainScheduler.asyncInstance)
+            .withUnretained(self)
+            .bind { owner, items in
+                guard let categories = items as? [Category] else { return }
+                guard !categories.isEmpty else { return } // 선택 해제한 경우나 deselectAll()의 경우 추가 작업 X
+                
+                if categories.count == Category.allCases.count {
+                    owner.selectAllButton.isActivated = true
+                    owner.selectionBlock.deselectAll()
+                } else {
+                    owner.selectAllButton.isActivated = false
+                }
+            }.disposed(by: disposeBag)
+        
         // Buttons
         selectAllButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.selectAllButton.isActivated = !owner.selectAllButton.isActivated
-             
+                guard !owner.selectAllButton.isActivated else { return }
+                owner.selectAllButton.isActivated = true
+                owner.selectionBlock.deselectAll()
             }.disposed(by: rx.disposeBag)
         
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                guard let categories = owner.selectionBlock.selectedItems.value as? [Category] else { return }
+                var categories: [Category] = []
+                if owner.selectAllButton.isActivated {
+                    categories = Category.allCases
+                } else {
+                    categories = owner.selectionBlock.selectedItems.value as? [Category] ?? []
+                }
                 let stringCategories = categories.map { $0.serverName }
                 owner.viewModel.validate(categories: stringCategories)
             }.disposed(by: rx.disposeBag)
