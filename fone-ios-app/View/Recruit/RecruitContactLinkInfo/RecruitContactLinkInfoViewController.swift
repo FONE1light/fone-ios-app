@@ -15,10 +15,12 @@ class RecruitContactLinkInfoViewController: UIViewController, ViewModelBindableT
     @IBOutlet weak var nextButton: UIButton!
     
     var viewModel: RecruitContactLinkInfoViewModel!
-
+    var jobType = Job.actor
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNavigationBar()
         setUI()
     }
 
@@ -31,8 +33,6 @@ class RecruitContactLinkInfoViewController: UIViewController, ViewModelBindableT
     }
     
     func bindViewModel() {
-        setNavigationBar()
-        
         contactTypeButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
@@ -57,7 +57,6 @@ class RecruitContactLinkInfoViewController: UIViewController, ViewModelBindableT
     }
     
     private func setNavigationBar() {
-        guard let jobType = viewModel.jobType else { return }
         navigationItem.titleView = NavigationTitleView(title: "\(jobType.koreanName) 모집하기")
         navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
             type: .backWithAlert,

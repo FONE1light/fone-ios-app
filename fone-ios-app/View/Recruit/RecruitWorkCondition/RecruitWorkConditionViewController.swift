@@ -35,19 +35,19 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
     }
     
     var viewModel: RecruitWorkConditionViewModel!
+    var jobType = Job.actor
     var selectedDays: [String] = []
     var salaryType = SalaryType.ANNUAL
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNavigationBar()
         setUI()
         setupDatePicker()
     }
     
     func bindViewModel() {
-        setNavigationBar()
-        
         viewModel.salaryType
             .withUnretained(self)
             .bind { owner, salaryType in
@@ -106,7 +106,6 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
     }
     
     private func setNavigationBar() {
-        guard let jobType = viewModel.jobType else { return }
         navigationItem.titleView = NavigationTitleView(title: "\(jobType.koreanName) 모집하기")
         navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
             type: .back,

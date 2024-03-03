@@ -17,11 +17,13 @@ class RecruitWorkInfoViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var nextButton: UIButton!
     
     var viewModel: RecruitWorkInfoViewModel!
+    var jobType = Job.actor
     private let genres: [Genre] = [.ACTION, .DRAMA, .THRILLER, .MUSICAL, .ROMANCE, .FANTASY, .DOCUMENTARY, .ETC]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setNavigationBar()
         setUI()
         genreCollectionView.delegate = self
         genreCollectionView.dataSource = self
@@ -30,8 +32,6 @@ class RecruitWorkInfoViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
-        setNavigationBar()
-        
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
@@ -46,7 +46,6 @@ class RecruitWorkInfoViewController: UIViewController, ViewModelBindableType {
     }
     
     private func setNavigationBar() {
-        guard let jobType = viewModel.jobType else { return }
         navigationItem.titleView = NavigationTitleView(title: "\(jobType.koreanName) 모집하기")
         navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
             type: .back,

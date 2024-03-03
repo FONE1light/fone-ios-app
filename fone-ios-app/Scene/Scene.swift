@@ -263,6 +263,7 @@ extension Scene {
             
         case .recruitContactLinkInfo(let recruitContactLinkInfoViewModel):
             var recruitContactLinkInfoVC = RecruitContactLinkInfoViewController()
+            recruitContactLinkInfoVC.jobType = recruitContactLinkInfoViewModel.jobType ?? .actor
             
             DispatchQueue.main.async {
                 recruitContactLinkInfoVC.bind(viewModel: recruitContactLinkInfoViewModel)
@@ -272,6 +273,7 @@ extension Scene {
             
         case .recruitBasicInfo(let recruitBasicInfoViewModel):
             var recruitBasicInfoVC = RecruitBasicInfoViewController()
+            recruitBasicInfoVC.jobType = recruitBasicInfoViewModel.jobType ?? .actor
             
             DispatchQueue.main.async {
                 recruitBasicInfoVC.bind(viewModel: recruitBasicInfoViewModel)
@@ -281,6 +283,7 @@ extension Scene {
             
         case .recruitConditionInfo(let recruitConditionInfoViewModel):
             var recruitConditionInfoVC = RecruitConditionInfoViewController()
+            recruitConditionInfoVC.jobType = recruitConditionInfoViewModel.jobType ?? .actor
             
             DispatchQueue.main.async {
                 recruitConditionInfoVC.bind(viewModel: recruitConditionInfoViewModel)
@@ -290,6 +293,7 @@ extension Scene {
             
         case .recruitWorkInfo(let recruitWorkInfoViewModel):
             var recruitWorkInfoVC = RecruitWorkInfoViewController()
+            recruitWorkInfoVC.jobType = recruitWorkInfoViewModel.jobType ?? .actor
             
             DispatchQueue.main.async {
                 recruitWorkInfoVC.bind(viewModel: recruitWorkInfoViewModel)
@@ -299,6 +303,7 @@ extension Scene {
             
         case .recruitWorkCondition(let recruitWorkConditionViewModel):
             var recruitWorkConditionVC = RecruitWorkConditionViewController()
+            recruitWorkConditionVC.jobType = recruitWorkConditionViewModel.jobType ?? .actor
             
             DispatchQueue.main.async {
                 recruitWorkConditionVC.bind(viewModel: recruitWorkConditionViewModel)
@@ -308,6 +313,7 @@ extension Scene {
             
         case .recruitDetailInfo(let recruitDetailInfoViewModel):
             var recruitDetailInfoVC = RecruitDetailInfoViewController()
+            recruitDetailInfoVC.jobType = recruitDetailInfoViewModel.jobType ?? .actor
             
             DispatchQueue.main.async {
                 recruitDetailInfoVC.bind(viewModel: recruitDetailInfoViewModel)
@@ -318,6 +324,7 @@ extension Scene {
         case .recruitContactInfo(let recruitContactInfoViewModel):
             var recruitContactInfoVC = RecruitContactInfoViewController()
             recruitContactInfoVC.jobType = recruitContactInfoViewModel.jobType ?? .actor
+            
             DispatchQueue.main.async {
                 recruitContactInfoVC.bind(viewModel: recruitContactInfoViewModel)
             }
