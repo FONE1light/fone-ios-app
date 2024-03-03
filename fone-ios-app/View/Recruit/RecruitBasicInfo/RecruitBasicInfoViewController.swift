@@ -96,7 +96,7 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
             .withUnretained(self)
             .bind { owner, _ in
                 owner.viewModel.uploadImages(images: owner.images) { imageUrls in
-                    let title = owner.titleTextView.text
+                    let title = owner.titleTextView.text == owner.placeholderString ? "" : owner.titleTextView.text
                     let  selectedCategories = owner.selectionBlock.selectedItems.value as? [Category]
                     let categories = selectedCategories?.map{ $0.serverName }
                     let startDate = owner.startDateLabel.text?.dateServerFormat
