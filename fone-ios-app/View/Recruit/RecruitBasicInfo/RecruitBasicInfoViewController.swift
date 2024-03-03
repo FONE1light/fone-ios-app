@@ -96,13 +96,13 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
             .withUnretained(self)
             .bind { owner, _ in
                 owner.viewModel.uploadImages(images: owner.images) { imageUrls in
-                    let title = owner.titleTextView.text
+                    let title = owner.titleTextView.text == owner.placeholderString ? "" : owner.titleTextView.text
                     let  selectedCategories = owner.selectionBlock.selectedItems.value as? [Category]
                     let categories = selectedCategories?.map{ $0.serverName }
                     let startDate = owner.startDateLabel.text?.dateServerFormat
                     let endDate = owner.endDateLabel.text?.dateServerFormat
                     let recruitBasicInfo = RecruitBasicInfo(title: title, categories: categories, recruitmentStartDate: startDate, recruitmentEndDate: endDate, imageUrls: imageUrls)
-                    owner.viewModel.moveToNextStep(recruitBasicInfo: recruitBasicInfo)
+                    owner.viewModel.validateTitle(recruitBasicInfo: recruitBasicInfo)
                 }
                 
             }.disposed(by: rx.disposeBag)
@@ -125,6 +125,7 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     
     private func setSelectionBlock() {
         selectionBlock.setSelections(Category.allCases)
+        selectionBlock.selectionLimits = 2
     }
     
     private func setCollectionView() {
