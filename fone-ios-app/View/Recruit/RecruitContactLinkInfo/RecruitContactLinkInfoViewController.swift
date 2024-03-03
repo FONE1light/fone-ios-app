@@ -52,7 +52,7 @@ class RecruitContactLinkInfoViewController: UIViewController, ViewModelBindableT
             .withUnretained(self)
             .bind { owner, _ in
                 let recruitContactLinkInfo = RecruitContactLinkInfo(contact: owner.contactTextField.text ?? "", contactMethod: owner.viewModel.contactType?.serverParameter ?? "")
-                owner.viewModel.moveToNextStep(recruitContactLinkInfo: recruitContactLinkInfo)
+                owner.viewModel.validateContactLink(recruitContactLinkInfo: recruitContactLinkInfo)
             }.disposed(by: rx.disposeBag)
     }
     

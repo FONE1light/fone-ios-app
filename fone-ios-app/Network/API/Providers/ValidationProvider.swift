@@ -9,6 +9,7 @@ import Foundation
 import Moya
 
 enum ValidationTarget {
+    case validateContactLink(recruitContactLinkInfo: RecruitContactLinkInfo)
     case validateSummary(recruitDetailInfo: RecruitDetailInfo)
 }
 
@@ -18,7 +19,10 @@ extension ValidationTarget: TargetType {
     }
     
     var path: String {
-        return "/api/v1/job-openings/validate/summary"
+        switch self {
+        case .validateContactLink: return "/api/v1/job-openings/validate/contact"
+        case .validateSummary: return "/api/v1/job-openings/validate/summary"
+        }
     }
     
     var method: Moya.Method {
@@ -27,18 +31,17 @@ extension ValidationTarget: TargetType {
     
     var task: Moya.Task {
         switch self {
+        case .validateContactLink(recruitContactLinkInfo: let recruitContactLinkInfo):
+            return .requestJSONEncodable(recruitContactLinkInfo)
         case .validateSummary(recruitDetailInfo: let recruitDetailInfo):
-            return .requestParameters(parameters: ["details": recruitDetailInfo.details ?? ""], encoding: JSONEncoding.default)
+            return .requestJSONEncodable(recruitDetailInfo)
         }
     }
     
     var headers: [String : String]? {
-        switch self {
-        case .validateSummary:
-            let accessToken = Tokens.shared.accessToken.value
-            let authorization = "Bearer \(accessToken)"
-            return ["Authorization": authorization]
-        }
+        let accessToken = Tokens.shared.accessToken.value
+        let authorization = "Bearer \(accessToken)"
+        return ["Authorization": authorization]
     }
     
     var validationType: ValidationType {
