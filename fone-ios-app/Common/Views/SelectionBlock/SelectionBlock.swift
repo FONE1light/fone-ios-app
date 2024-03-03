@@ -125,6 +125,14 @@ class SelectionBlock: UIView {
     func setSelections(_ list: [Selection]) {
         items = list
     }
+    
+    func deselectAll() {
+        collectionView.visibleCells.forEach {
+            guard let cell = $0 as? SelectionCell else { return }
+            cell.isChosen = false
+        }
+        selectedItems.accept([])
+    }
 }
 
 extension SelectionBlock {

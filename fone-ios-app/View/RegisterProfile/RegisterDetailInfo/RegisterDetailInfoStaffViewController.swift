@@ -16,7 +16,7 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
     var viewModel: RegisterDetailInfoStaffViewModel!
     var disposeBag = DisposeBag()
     
-    private var gender: GenderType = .IRRELEVANT
+    private var gender: GenderType? = nil
     
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -153,19 +153,18 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
             }.disposed(by: disposeBag)
         
         // Buttons
-        // TODO: 성별 선택 로직 확인 및 수정
         genderIrrelevantButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let isIrrelevant = !owner.genderIrrelevantButton.isActivated
-                
-                owner.genderIrrelevantButton.isActivated = isIrrelevant
-                owner.maleButton.isActivated = isIrrelevant
-                owner.femaleButton.isActivated = isIrrelevant
-                
-                if isIrrelevant {
-                    owner.gender = .IRRELEVANT
+                guard !owner.genderIrrelevantButton.isActivated else {
+                    return
                 }
+                
+                owner.genderIrrelevantButton.isActivated = true
+                owner.maleButton.isActivated = false
+                owner.femaleButton.isActivated = false
+                
+                owner.gender = .IRRELEVANT
             }.disposed(by: rx.disposeBag)
         
         maleButton.rx.tap
@@ -173,11 +172,12 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
             .bind { owner, _ in
                 owner.maleButton.isActivated = !owner.maleButton.isActivated
                 
-                if owner.maleButton.isActivated == false {
-                    owner.genderIrrelevantButton.isActivated = false
-                } else {
-                    owner.checkAllActivated()
+                if owner.maleButton.isActivated {
                     owner.gender = .MAN
+                    owner.genderIrrelevantButton.isActivated = false
+                    owner.checkAllActivated()
+                } else {
+                    owner.gender = nil
                 }
             }.disposed(by: rx.disposeBag)
         
@@ -186,11 +186,12 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
             .bind { owner, _ in
                 owner.femaleButton.isActivated = !owner.femaleButton.isActivated
                 
-                if owner.femaleButton.isActivated == false {
-                    owner.genderIrrelevantButton.isActivated = false
-                } else {
-                    owner.checkAllActivated()
+                if owner.femaleButton.isActivated {
                     owner.gender = .WOMAN
+                    owner.genderIrrelevantButton.isActivated = false
+                    owner.checkAllActivated()
+                } else {
+                    owner.gender = nil
                 }
             }.disposed(by: rx.disposeBag)
         
@@ -221,7 +222,7 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
                     birthday: owner.birthTextField.text,
                     domains: stringDomains,
                     email: owner.emailBlock.textField?.text,
-                    gender: owner.gender.serverName,
+                    gender: owner.gender?.serverName,
                     height: nil,
                     snsUrls: [instagramUrl, youtubeUrl],
                     specialty: owner.specialtyBlock.textField?.text,
@@ -437,6 +438,9 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
     private func checkAllActivated() {
         if maleButton.isActivated && femaleButton.isActivated {
             genderIrrelevantButton.isActivated = true
+            maleButton.isActivated = false
+            femaleButton.isActivated = false
+            gender = .IRRELEVANT
         }
     }
 }

@@ -25,7 +25,11 @@ class SelectionCell: UICollectionViewCell {
     static let identifier = String(describing: SelectionCell.self)
     var disposeBag = DisposeBag()
     
-    var isChosen = false
+    var isChosen = false {
+        didSet {
+            setColor()
+        }
+    }
     
     var item: Selection? {
         didSet {
@@ -67,17 +71,16 @@ extension SelectionCell {
     
     /// 선택 상태(isChosen) 변경
     func toggle() {
-        changeColor()
         isChosen = !isChosen
     }
     
-    private func changeColor() {
+    private func setColor() {
         if isChosen {
-            self.backgroundColor = .gray_EEEFEF
-            self.label.textColor = .gray_9E9E9E
-        } else {
             self.backgroundColor = .red_FFEBF0
             self.label.textColor = .red_CE0B39
+        } else {
+            self.backgroundColor = .gray_EEEFEF
+            self.label.textColor = .gray_9E9E9E
         }
     }
     
