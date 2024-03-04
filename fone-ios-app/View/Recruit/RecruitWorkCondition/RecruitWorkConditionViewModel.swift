@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxSwift
 import RxRelay
 
 struct RecruitWorkConditionInfo: Codable {
@@ -17,14 +18,24 @@ struct RecruitWorkConditionInfo: Codable {
     let salary: Int?
 }
 
+struct RegionOption: Options {
+    var title: String?
+    var serverParameter: String?
+}
+
 final class RecruitWorkConditionViewModel: CommonViewModel {
+    let disposeBag = DisposeBag()
     var jobType: Job?
+    
+    let allOption = RegionOption(title: "전체", serverParameter: "전체")
+    var regionsOptions: [Options] = []
+    var selectedRegion = PublishRelay<String>()
+    let salaryType = PublishRelay<SalaryType>()
+    
     var recruitContactLinkInfo: RecruitContactLinkInfo?
     var recruitBasicInfo: RecruitBasicInfo?
     var recruitConditionInfo: RecruitConditionInfo?
     var recruitWorkInfo: RecruitWorkInfo?
-    
-    let salaryType = PublishRelay<SalaryType>()
     
     init(sceneCoordinator: SceneCoordinatorType, jobType: Job?, recruitContactLinkInfo: RecruitContactLinkInfo?, recruitBasicInfo: RecruitBasicInfo?, recruitConditionInfo: RecruitConditionInfo?, recruitWorkInfo: RecruitWorkInfo?) {
         super.init(sceneCoordinator: sceneCoordinator)
@@ -34,6 +45,41 @@ final class RecruitWorkConditionViewModel: CommonViewModel {
         self.recruitBasicInfo = recruitBasicInfo
         self.recruitConditionInfo = recruitConditionInfo
         self.recruitWorkInfo = recruitWorkInfo
+    }
+    
+    func getRegions() {
+        jobOpeningInfoProvider.rx.request(.getRegions)
+            .mapObject(Result<RegionsModel>.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, response in
+                if let regions = response.data?.regions {
+                    var regionOptions: [Options] = []
+                    for region in regions {
+                        let option = RegionOption(title: region, serverParameter: region)
+                        regionOptions.append(option)
+                    }
+                    owner.regionsOptions = regionOptions
+                    owner.showRegionsBottomSheet()
+                }
+                
+            }).disposed(by: disposeBag)
+    }
+    
+    /// 지역 바텀시트 노출
+    func showRegionsBottomSheet() {
+        let optionsBottomSheetViewModel = OptionsBottomSheetViewModel(
+            sceneCoordinator: sceneCoordinator,
+            title: "근무지역",
+            selectedItem: allOption,
+            list: regionsOptions
+        ) { [weak self] selectedText in
+            guard let self = self else { return }
+            self.selectedRegion.accept(selectedText)
+            self.sceneCoordinator.close(animated: true)
+        }
+        let scene = Scene.optionsBottomSheet(optionsBottomSheetViewModel)
+        sceneCoordinator.transition(to: scene, using: .customModal, animated: true)
     }
     
     func showSalaryTypeBottomSheet() {

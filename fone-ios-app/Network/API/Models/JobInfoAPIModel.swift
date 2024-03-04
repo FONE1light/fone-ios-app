@@ -33,3 +33,7 @@ struct ScrapJobOpeningResponseResult: Codable {
     let result: String?
 }
 
+struct RegionsModel: Codable {
+    let regions: [String]
+}
+

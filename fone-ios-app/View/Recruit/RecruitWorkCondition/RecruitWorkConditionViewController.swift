@@ -9,6 +9,8 @@ import UIKit
 
 class RecruitWorkConditionViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var stepIndicator: StepIndicator!
+    @IBOutlet weak var regionsButton: UIButton!
+    @IBOutlet weak var districtButton: UIButton!
     @IBOutlet weak var startDateButton: UIButton!
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var endDateButton: UIButton!
@@ -47,6 +49,12 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
     
     func bindViewModel() {
         setNavigationBar()
+        
+        regionsButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.viewModel.getRegions()
+            }.disposed(by: rx.disposeBag)
         
         viewModel.salaryType
             .withUnretained(self)
