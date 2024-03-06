@@ -30,7 +30,7 @@ class RecruitContactInfoViewController: UIViewController, ViewModelBindableType 
             .withUnretained(self)
             .bind { owner, _ in
                 let recruitContactInfo = RecruitContactInfo(manager: owner.managerTextField.textField?.text, email: owner.emailTextField.textField?.text)
-                owner.viewModel.createJobOpenings(recruitContactInfo: recruitContactInfo)
+                owner.viewModel.validateManager(recruitContactInfo: recruitContactInfo)
             }.disposed(by: rx.disposeBag)
     }
     

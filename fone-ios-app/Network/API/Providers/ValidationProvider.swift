@@ -11,6 +11,7 @@ import Moya
 enum ValidationTarget {
     case validateContactLink(recruitContactLinkInfo: RecruitContactLinkInfo)
     case validateTitle(recruitBasicInfo: RecruitBasicInfo)
+    case validateManager(recruitContactInfo: RecruitContactInfo)
     case validateSummary(recruitDetailInfo: RecruitDetailInfo)
 }
 
@@ -23,6 +24,7 @@ extension ValidationTarget: TargetType {
         switch self {
         case .validateContactLink: return "/api/v1/job-openings/validate/contact"
         case .validateTitle: return "/api/v1/job-openings/validate/title"
+        case .validateManager: return "/api/v1/job-openings/validate/manager"
         case .validateSummary: return "/api/v1/job-openings/validate/summary"
         }
     }
@@ -37,6 +39,8 @@ extension ValidationTarget: TargetType {
             return .requestJSONEncodable(recruitContactLinkInfo)
         case .validateTitle(recruitBasicInfo: let recruitBasicInfo):
             return .requestJSONEncodable(recruitBasicInfo)
+        case .validateManager(recruitContactInfo: let recruitContactInfo):
+            return .requestJSONEncodable(recruitContactInfo)
         case .validateSummary(recruitDetailInfo: let recruitDetailInfo):
             return .requestJSONEncodable(recruitDetailInfo)
         }

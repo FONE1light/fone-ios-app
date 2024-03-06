@@ -14,18 +14,18 @@ class RecruitDetailInfoViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var nextButton: UIButton!
     
     var viewModel: RecruitDetailInfoViewModel!
+    var jobType = Job.actor
     
     let placeholder = "외부 연락처 공개 등 부적절한 내용이 포함된 게시글은 게시가 제한될 수 있어요."
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNavigationBar()
         setUI()
     }
     
     func bindViewModel() {
-        setNavigationBar()
-        
         nextButton.rx.tap
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .withUnretained(self)
@@ -33,12 +33,10 @@ class RecruitDetailInfoViewController: UIViewController, ViewModelBindableType {
                 let details = owner.detailTextView.textView?.text == owner.placeholder ? "" : owner.detailTextView.textView?.text
                 let recruitDetailInfo = RecruitDetailInfo(details: details)
                 owner.viewModel.validateSummary(recruitDetailInfo: recruitDetailInfo)
-//                owner.viewModel.moveToNextStep(recruitDetailInfo: recruitDetailInfo)
             }.disposed(by: rx.disposeBag)
     }
     
     private func setNavigationBar() {
-        guard let jobType = viewModel.jobType else { return }
         navigationItem.titleView = NavigationTitleView(title: "\(jobType.koreanName) 모집하기")
         navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
             type: .back,
