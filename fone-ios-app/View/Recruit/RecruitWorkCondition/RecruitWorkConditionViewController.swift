@@ -56,6 +56,23 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
                 owner.viewModel.getRegions()
             }.disposed(by: rx.disposeBag)
         
+        viewModel.showRegionBottomSheetSubject
+            .withUnretained(self)
+            .bind { owner, _ in
+                let regionsBottomSheetViewModel = RegionsBottomSheetViewModel(
+                    sceneCoordinator: owner.viewModel.sceneCoordinator,
+                    selectedItem: "전체",
+                    list: owner.viewModel.regions
+                ) { selectedText in
+                    owner.viewModel.selectedRegion.accept(selectedText)
+                    owner.viewModel.sceneCoordinator.close(animated: true)
+                }
+                var regionsBottomSheetVC = RegionsBottomSheetViewController()
+                
+                regionsBottomSheetVC.bind(viewModel: regionsBottomSheetViewModel)
+                owner.presentPanModal(regionsBottomSheetVC)
+            }.disposed(by: rx.disposeBag)
+        
         viewModel.salaryType
             .withUnretained(self)
             .bind { owner, salaryType in

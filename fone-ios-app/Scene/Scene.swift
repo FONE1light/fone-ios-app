@@ -62,6 +62,7 @@ enum Scene {
     case snsWebViewController(SNSWebViewModel) // 개인 SNS(웹)
     case salaryTypeBottomSheet(SceneCoordinatorType, PublishRelay<SalaryType>)
     case optionsBottomSheet(OptionsBottomSheetViewModel) // 선택 가능 바텀시트(공통)
+    case regionsBottomSheet(RegionsBottomSheetViewModel) // 근무지역 바텀시트
 }
 
 extension Scene {
@@ -440,6 +441,15 @@ extension Scene {
             optionsBottomSheetVC.bind(viewModel: optionsBottomSheetViewModel)
             
             let bottomSheetVC = BottomSheetViewController(view: optionsBottomSheetVC.view, sceneCoordinator: optionsBottomSheetViewModel.sceneCoordinator)
+            
+            return bottomSheetVC
+            
+        case .regionsBottomSheet(let regionsBottomSheetViewModel):
+            var regionsBottomSheetVC = RegionsBottomSheetViewController()
+            
+            regionsBottomSheetVC.bind(viewModel: regionsBottomSheetViewModel)
+            
+            let bottomSheetVC = BottomSheetViewController(view: regionsBottomSheetVC.view, sceneCoordinator: regionsBottomSheetViewModel.sceneCoordinator)
             
             return bottomSheetVC
         }

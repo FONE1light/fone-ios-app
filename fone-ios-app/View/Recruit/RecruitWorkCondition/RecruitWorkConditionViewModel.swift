@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxRelay
+import PanModal
 
 struct RecruitWorkConditionInfo: Codable {
     let workingCity, workingDistrict: String?
@@ -28,8 +29,9 @@ final class RecruitWorkConditionViewModel: CommonViewModel {
     var jobType: Job?
     
     let allOption = RegionOption(title: "전체", serverParameter: "전체")
-    var regionsOptions: [Options] = []
+    var regions: [String] = []
     var selectedRegion = PublishRelay<String>()
+    var showRegionBottomSheetSubject = PublishSubject<Void>()
     let salaryType = PublishRelay<SalaryType>()
     
     var recruitContactLinkInfo: RecruitContactLinkInfo?
@@ -54,12 +56,8 @@ final class RecruitWorkConditionViewModel: CommonViewModel {
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
                 if let regions = response.data?.regions {
-                    var regionOptions: [Options] = []
-                    for region in regions {
-                        let option = RegionOption(title: region, serverParameter: region)
-                        regionOptions.append(option)
-                    }
-                    owner.regionsOptions = regionOptions
+                    owner.regions = regions
+                    owner.showRegionBottomSheetSubject.onNext(())
                     owner.showRegionsBottomSheet()
                 }
                 
@@ -68,18 +66,17 @@ final class RecruitWorkConditionViewModel: CommonViewModel {
     
     /// 지역 바텀시트 노출
     func showRegionsBottomSheet() {
-        let optionsBottomSheetViewModel = OptionsBottomSheetViewModel(
-            sceneCoordinator: sceneCoordinator,
-            title: "근무지역",
-            selectedItem: allOption,
-            list: regionsOptions
-        ) { [weak self] selectedText in
-            guard let self = self else { return }
-            self.selectedRegion.accept(selectedText)
-            self.sceneCoordinator.close(animated: true)
-        }
-        let scene = Scene.optionsBottomSheet(optionsBottomSheetViewModel)
-        sceneCoordinator.transition(to: scene, using: .customModal, animated: true)
+//        let regionsBottomSheetViewModel = RegionsBottomSheetViewModel(
+//            sceneCoordinator: sceneCoordinator,
+//            selectedItem: "전체",
+//            list: regions
+//        ) { [weak self] selectedText in
+//            guard let self = self else { return }
+//            self.selectedRegion.accept(selectedText)
+//            self.sceneCoordinator.close(animated: true)
+//        }
+//        let scene = Scene.regionsBottomSheet(regionsBottomSheetViewModel)
+//        sceneCoordinator.transition(to: scene, using: .customModal, animated: true)
     }
     
     func showSalaryTypeBottomSheet() {

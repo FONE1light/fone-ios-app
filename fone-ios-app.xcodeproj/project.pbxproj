@@ -324,6 +324,11 @@
 		ABB1BB0D2B397DD20012F962 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB1BB0C2B397DD20012F962 /* FilterViewModel.swift */; };
 		ABC1DBDD2AC0113800B9A6BF /* JobOpeningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1DBDB2AC0113800B9A6BF /* JobOpeningCell.swift */; };
 		ABC1DBDE2AC0113800B9A6BF /* JobOpeningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC1DBDC2AC0113800B9A6BF /* JobOpeningCell.xib */; };
+		ABC82CE12B989407002EAC8F /* RegionsBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC82CDF2B989407002EAC8F /* RegionsBottomSheetViewController.swift */; };
+		ABC82CE22B989407002EAC8F /* RegionsBottomSheetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC82CE02B989407002EAC8F /* RegionsBottomSheetViewController.xib */; };
+		ABC82CE42B98943A002EAC8F /* RegionsBottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC82CE32B98943A002EAC8F /* RegionsBottomSheetViewModel.swift */; };
+		ABC82CE82B989662002EAC8F /* RegionsBottomSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC82CE62B989662002EAC8F /* RegionsBottomSheetCell.swift */; };
+		ABC82CE92B989662002EAC8F /* RegionsBottomSheetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC82CE72B989662002EAC8F /* RegionsBottomSheetCell.xib */; };
 		ABCDD16B2B00B73300A598A8 /* JobOpeningDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCDD1692B00B73300A598A8 /* JobOpeningDetailViewController.swift */; };
 		ABCDD16C2B00B73300A598A8 /* JobOpeningDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABCDD16A2B00B73300A598A8 /* JobOpeningDetailViewController.xib */; };
 		ABCDD16E2B00BE1800A598A8 /* JobOpeningDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCDD16D2B00BE1800A598A8 /* JobOpeningDetailViewModel.swift */; };
@@ -619,6 +624,11 @@
 		ABB1BB0C2B397DD20012F962 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		ABC1DBDB2AC0113800B9A6BF /* JobOpeningCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningCell.swift; sourceTree = "<group>"; };
 		ABC1DBDC2AC0113800B9A6BF /* JobOpeningCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JobOpeningCell.xib; sourceTree = "<group>"; };
+		ABC82CDF2B989407002EAC8F /* RegionsBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionsBottomSheetViewController.swift; sourceTree = "<group>"; };
+		ABC82CE02B989407002EAC8F /* RegionsBottomSheetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegionsBottomSheetViewController.xib; sourceTree = "<group>"; };
+		ABC82CE32B98943A002EAC8F /* RegionsBottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionsBottomSheetViewModel.swift; sourceTree = "<group>"; };
+		ABC82CE62B989662002EAC8F /* RegionsBottomSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionsBottomSheetCell.swift; sourceTree = "<group>"; };
+		ABC82CE72B989662002EAC8F /* RegionsBottomSheetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegionsBottomSheetCell.xib; sourceTree = "<group>"; };
 		ABCDD1692B00B73300A598A8 /* JobOpeningDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningDetailViewController.swift; sourceTree = "<group>"; };
 		ABCDD16A2B00B73300A598A8 /* JobOpeningDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JobOpeningDetailViewController.xib; sourceTree = "<group>"; };
 		ABCDD16D2B00BE1800A598A8 /* JobOpeningDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningDetailViewModel.swift; sourceTree = "<group>"; };
@@ -1005,6 +1015,7 @@
 				366F22AF2ADB646400FD00BD /* BottomSheetViewController.swift */,
 				AB6780F92B10F2220074463E /* DatePickerViewController.swift */,
 				AB6780FA2B10F2220074463E /* DatePickerViewController.xib */,
+				ABC82CE52B989625002EAC8F /* RegionsBottomSheet */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1725,6 +1736,18 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		ABC82CE52B989625002EAC8F /* RegionsBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				ABC82CDF2B989407002EAC8F /* RegionsBottomSheetViewController.swift */,
+				ABC82CE02B989407002EAC8F /* RegionsBottomSheetViewController.xib */,
+				ABC82CE32B98943A002EAC8F /* RegionsBottomSheetViewModel.swift */,
+				ABC82CE62B989662002EAC8F /* RegionsBottomSheetCell.swift */,
+				ABC82CE72B989662002EAC8F /* RegionsBottomSheetCell.xib */,
+			);
+			path = RegionsBottomSheet;
+			sourceTree = "<group>";
+		};
 		ABCDD1662B00B6FD00A598A8 /* JobOpeningDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -1976,6 +1999,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABC82CE92B989662002EAC8F /* RegionsBottomSheetCell.xib in Resources */,
 				ABCDD19C2B00F5A300A598A8 /* ContactInfoCell.xib in Resources */,
 				AB1CEAB32ABFD22600E7E54F /* CompetitionModule.xib in Resources */,
 				AB1CEABD2ABFD29C00E7E54F /* MainBannerCell.xib in Resources */,
@@ -2024,6 +2048,7 @@
 				ABCDD18E2B00EB1000A598A8 /* WorkConditionCell.xib in Resources */,
 				AB1851472B1CA1110051D0DC /* RecruitDetailInfoViewController.xib in Resources */,
 				AB68DF2C2ACC0EA1003BADE1 /* ProfileCell.xib in Resources */,
+				ABC82CE22B989407002EAC8F /* RegionsBottomSheetViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2035,6 +2060,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				369292F02B84E26A00BA52AA /* RegisterContactLinkInfoViewController.swift in Sources */,
+				ABC82CE42B98943A002EAC8F /* RegionsBottomSheetViewModel.swift in Sources */,
 				364482CC2AB7C75E00984507 /* MyPageViewController.swift in Sources */,
 				362866822A8B6B3600CD42BC /* UILabel+Extension.swift in Sources */,
 				366F22AD2ADB5AF000FD00BD /* UIViewController+Extension.swift in Sources */,
@@ -2091,6 +2117,7 @@
 				367D9BBF2AC1572700DA6C96 /* Divider.swift in Sources */,
 				AB48A2412B7647EA00007F24 /* RecruitContactLinkInfoViewController.swift in Sources */,
 				367D9BFE2AD7583500DA6C96 /* UITabBar+Extension.swift in Sources */,
+				ABC82CE82B989662002EAC8F /* RegionsBottomSheetCell.swift in Sources */,
 				AB49A3472A81159F00748484 /* FindIDPasswordViewModel.swift in Sources */,
 				AB7900B72AB5C99A004DA4F3 /* NotiViewController.swift in Sources */,
 				3628668E2A8DF4EA00CD42BC /* UserInfoProvider.swift in Sources */,
@@ -2119,6 +2146,7 @@
 				362C802D2B0A4C1000489E7D /* RegisterDetailInfoActorViewController.swift in Sources */,
 				362866972A8E3D8200CD42BC /* Response+Codable.swift in Sources */,
 				364482D82AB80EDA00984507 /* MyPageMenuCell.swift in Sources */,
+				ABC82CE12B989407002EAC8F /* RegionsBottomSheetViewController.swift in Sources */,
 				AB9DAAA82AB0A4F500B00016 /* HomeInfoProvider.swift in Sources */,
 				366E85122B22042700CB7681 /* DomainPreviewTag.swift in Sources */,
 				36A554462B39B8B800C87751 /* JobOpeningSortOptions.swift in Sources */,
