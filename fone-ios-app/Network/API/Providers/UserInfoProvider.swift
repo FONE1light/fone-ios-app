@@ -107,11 +107,9 @@ extension UserInfoTarget: TargetType {
 //        commonHeaders["Content-Type"] = "application/json;charset=UTF-8"
         
         switch self {
-        case .fetchMyPage:
-            commonHeaders[Tokens.shared.accessToken.key] = Tokens.shared.accessToken.value // TODO: MOCK,
         case .emailSignIn, .reissueToken, .sendSMS, .emailSignUp, .findID, .findPassword, .resetPassword, .socialSignIn, .socialSignUp:
             commonHeaders["Content-Type"] = "application/json;charset=UTF-8"
-        case .modifyUserInfo:
+        case .fetchMyPage, .modifyUserInfo:
             let accessToken = Tokens.shared.accessToken.value
             let authorization = "Bearer \(accessToken)"
             commonHeaders["Authorization"] = authorization
