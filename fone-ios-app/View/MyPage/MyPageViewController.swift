@@ -103,7 +103,7 @@ class MyPageViewController: UIViewController, ViewModelBindableType {
     
     private func setNavigationBar() {
         self.navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(type: .myPage)
-        self.navigationItem.rightBarButtonItem = NavigationRightBarButtonItem(type: .notification)
+        self.navigationItem.rightBarButtonItem = NavigationRightBarButtonItem(type: .notification, viewController: self)
         
     }
     
