@@ -8,6 +8,8 @@
 import UIKit
 import SnapKit
 import Then
+import RxCocoa
+import RxSwift
 
 class MyPageBottomSheet: UIView {
 
@@ -43,9 +45,12 @@ class MyPageBottomSheet: UIView {
         $0.titleLabel?.font = .font_m(16)
     }
     
-//    var yesButtonTap: ControlEvent<Void> {
-//        yesButton.rx.tap
-//    }
+    var yesButtonTap: ControlEvent<Void> {
+        yesButton.rx.tap
+    }
+    var noButtonTap: ControlEvent<Void> {
+        noButton.rx.tap
+    }
     
     init(
         title: String?,
@@ -58,7 +63,6 @@ class MyPageBottomSheet: UIView {
         
         titleLabel.text = title
         contentLabel.text = content
-            
     }
     
     required init?(coder: NSCoder) {

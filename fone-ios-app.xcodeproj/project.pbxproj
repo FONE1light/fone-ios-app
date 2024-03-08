@@ -11,6 +11,8 @@
 		36031ECB2AF4DCE4006B57AE /* JobOpeningHuntingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36031ECA2AF4DCE4006B57AE /* JobOpeningHuntingViewModel.swift */; };
 		3608447C2B2C1DE100A9776F /* SNSWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3608447B2B2C1DE100A9776F /* SNSWebViewController.swift */; };
 		3608447E2B2C1DEF00A9776F /* SNSWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3608447D2B2C1DEF00A9776F /* SNSWebViewModel.swift */; };
+		360C012E2B7214AB009A8D42 /* LogoutBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360C012D2B7214AB009A8D42 /* LogoutBottomSheetViewController.swift */; };
+		360E47DC2B721D0500664120 /* LogoutBottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360E47DB2B721D0500664120 /* LogoutBottomSheetViewModel.swift */; };
 		360E843C2B28850100D4A540 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360E843B2B28850100D4A540 /* UIApplication+Extension.swift */; };
 		360E843E2B2984C000D4A540 /* ReportBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360E843D2B2984C000D4A540 /* ReportBottomSheet.swift */; };
 		362419CF2AE319B1007D1AFB /* SignUpPersonalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362419CE2AE319B1007D1AFB /* SignUpPersonalInfoViewModel.swift */; };
@@ -355,6 +357,8 @@
 		36031ECA2AF4DCE4006B57AE /* JobOpeningHuntingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningHuntingViewModel.swift; sourceTree = "<group>"; };
 		3608447B2B2C1DE100A9776F /* SNSWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSWebViewController.swift; sourceTree = "<group>"; };
 		3608447D2B2C1DEF00A9776F /* SNSWebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSWebViewModel.swift; sourceTree = "<group>"; };
+		360C012D2B7214AB009A8D42 /* LogoutBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutBottomSheetViewController.swift; sourceTree = "<group>"; };
+		360E47DB2B721D0500664120 /* LogoutBottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutBottomSheetViewModel.swift; sourceTree = "<group>"; };
 		360E843B2B28850100D4A540 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		360E843D2B2984C000D4A540 /* ReportBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportBottomSheet.swift; sourceTree = "<group>"; };
 		362419CE2AE319B1007D1AFB /* SignUpPersonalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPersonalInfoViewModel.swift; sourceTree = "<group>"; };
@@ -730,6 +734,15 @@
 			path = JobHunting;
 			sourceTree = "<group>";
 		};
+		360C012C2B72149B009A8D42 /* BottomSheets */ = {
+			isa = PBXGroup;
+			children = (
+				360C012D2B7214AB009A8D42 /* LogoutBottomSheetViewController.swift */,
+				360E47DB2B721D0500664120 /* LogoutBottomSheetViewModel.swift */,
+			);
+			path = BottomSheets;
+			sourceTree = "<group>";
+		};
 		362866792A8B66B900CD42BC /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -830,6 +843,7 @@
 		364482CA2AB7C74900984507 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				360C012C2B72149B009A8D42 /* BottomSheets */,
 				364482CB2AB7C75E00984507 /* MyPageViewController.swift */,
 				364482CD2AB7C76500984507 /* MyPageViewModel.swift */,
 				367D9C132ADA214300DA6C96 /* Modules */,
@@ -2091,6 +2105,7 @@
 				367D9BBF2AC1572700DA6C96 /* Divider.swift in Sources */,
 				AB48A2412B7647EA00007F24 /* RecruitContactLinkInfoViewController.swift in Sources */,
 				367D9BFE2AD7583500DA6C96 /* UITabBar+Extension.swift in Sources */,
+				360E47DC2B721D0500664120 /* LogoutBottomSheetViewModel.swift in Sources */,
 				AB49A3472A81159F00748484 /* FindIDPasswordViewModel.swift in Sources */,
 				AB7900B72AB5C99A004DA4F3 /* NotiViewController.swift in Sources */,
 				3628668E2A8DF4EA00CD42BC /* UserInfoProvider.swift in Sources */,
@@ -2099,6 +2114,7 @@
 				369292FA2B84F5A800BA52AA /* OptionsBottomSheetViewController.swift in Sources */,
 				AB2578A12AAF36A900328363 /* HomeViewController.swift in Sources */,
 				3682736B2B27179200EB0629 /* SummaryTableViewCell.swift in Sources */,
+				360C012E2B7214AB009A8D42 /* LogoutBottomSheetViewController.swift in Sources */,
 				AB6785542AA3335A00ACD35C /* EmailLoginViewModel.swift in Sources */,
 				367D9C122AD9FE2600DA6C96 /* MyPageTabBarCell.swift in Sources */,
 				366E85142B220CBE00CB7681 /* DomainContentView.swift in Sources */,
