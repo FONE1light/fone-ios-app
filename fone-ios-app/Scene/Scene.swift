@@ -168,9 +168,7 @@ extension Scene {
         case .myPage(let myPageViewModel):
             var myPageVC = MyPageViewController()
             
-            DispatchQueue.main.async {
-                myPageVC.bind(viewModel: myPageViewModel)
-            }
+            myPageVC.bind(viewModel: myPageViewModel)
             
             return myPageVC
             
