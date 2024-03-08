@@ -63,6 +63,7 @@ enum Scene {
     case salaryTypeBottomSheet(SceneCoordinatorType, PublishRelay<SalaryType>)
     case optionsBottomSheet(OptionsBottomSheetViewModel) // 선택 가능 바텀시트(공통)
     case logoutBottomSheet(LogoutBottomSheetViewModel) // 마이페이지 > 로그아웃
+    case signoutBottomSheet(SignoutBottomSheetViewModel) // 마이페이지 > 회원 탈퇴
 }
 
 extension Scene {
@@ -457,6 +458,15 @@ extension Scene {
             vc.bind(viewModel: logoutBottomSheetViewModel)
             
             let bottomSheetVC = BottomSheetViewController(view: vc.view, sceneCoordinator: logoutBottomSheetViewModel.sceneCoordinator)
+            
+            return bottomSheetVC
+            
+        case .signoutBottomSheet(let signoutBottomSheetViewModel):
+            var vc = SignoutBottomSheetViewController()
+            
+            vc.bind(viewModel: signoutBottomSheetViewModel)
+            
+            let bottomSheetVC = BottomSheetViewController(view: vc.view, sceneCoordinator: signoutBottomSheetViewModel.sceneCoordinator)
             
             return bottomSheetVC
         }

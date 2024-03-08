@@ -1,19 +1,19 @@
 //
-//  LogoutBottomSheetViewModel.swift
+//  SignoutBottomSheetViewModel.swift
 //  fone-ios-app
 //
-//  Created by 여나경 on 2/6/24.
+//  Created by 여나경 on 3/8/24.
 //
 
 import UIKit
 import RxSwift
 
-class LogoutBottomSheetViewModel: CommonViewModel {
+class SignoutBottomSheetViewModel: CommonViewModel {
     
     private var disposeBag = DisposeBag()
     
-    func logout() {
-        userInfoProvider.rx.request(.logout)
+    func signout() {
+        userInfoProvider.rx.request(.signout)
             .mapObject(Result<String?>.self)
             .asObservable()
             .withUnretained(self)
@@ -24,7 +24,7 @@ class LogoutBottomSheetViewModel: CommonViewModel {
                         Tokens.shared.accessToken.value = ""
                         owner.moveToLogin()
                     } else {
-                        "로그아웃 실패".toast()
+                        "회원 탈퇴 실패".toast()
                     }
                 }
                 , onError: { error in

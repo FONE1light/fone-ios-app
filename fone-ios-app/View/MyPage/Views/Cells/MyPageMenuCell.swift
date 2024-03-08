@@ -64,23 +64,6 @@ enum MyPageMenuType {
         }
     }
     
-    var bottomSheet: UIView? {
-        switch self {
-        case .logout:
-            return MyPageBottomSheet(
-                title: "로그아웃 하시겠습니까?",
-                content: "깡총! 소셜 로그인 화면으로 돌아가요"
-            )
-        case .withdrawal:
-            return MyPageBottomSheet(
-                title: ".. 저희 이별하나요? 너무 아쉬워요",
-                content: "회원탈퇴를 진행할 경우 혜택 및\n게시글, 관심, 채팅 등 모든 정보가 삭제됩니다."
-            )
-        default: return nil
-        }
-        
-    }
-    
     func nextScene(_ sceneCoordinator: SceneCoordinatorType) -> Scene? {
         switch self {
         case .postings:

@@ -24,6 +24,7 @@ enum UserInfoTarget {
     case socialSignIn(accessToken: String, loginType: String)
     case modifyUserInfo(userInfo: UserInfo)
     case logout
+    case signout
 }
 
 extension UserInfoTarget: TargetType {
@@ -59,6 +60,8 @@ extension UserInfoTarget: TargetType {
             return "/api/v1/users"
         case .logout:
             return "/api/v1/users/log-out"
+        case .signout:
+            return "/api/v1/users/sign-out"
         }
     }
     
@@ -68,7 +71,7 @@ extension UserInfoTarget: TargetType {
             return .get
         case .emailSignIn, .reissueToken, .sendSMS, .emailSignUp, .findID, .findPassword, .socialSignIn, .socialSignUp, .logout:
             return .post
-        case .resetPassword, .modifyUserInfo:
+        case .resetPassword, .modifyUserInfo, .signout:
             return .patch
         }
     }
@@ -114,7 +117,7 @@ extension UserInfoTarget: TargetType {
             commonHeaders[Tokens.shared.accessToken.key] = Tokens.shared.accessToken.value // TODO: MOCK,
         case .emailSignIn, .reissueToken, .sendSMS, .emailSignUp, .findID, .findPassword, .resetPassword, .socialSignIn, .socialSignUp:
             commonHeaders["Content-Type"] = "application/json;charset=UTF-8"
-        case .modifyUserInfo, .logout:
+        case .modifyUserInfo, .logout, .signout:
             let accessToken = Tokens.shared.accessToken.value
             let authorization = "Bearer \(accessToken)"
             commonHeaders["Authorization"] = authorization
