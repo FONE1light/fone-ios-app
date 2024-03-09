@@ -22,6 +22,7 @@ enum JobOpeningInfoTarget {
     case myRegistrations
     case deleteJobOpening(jobOpeningId: Int)
     case getRegions
+    case getDistricts(region: String)
 }
 
 extension JobOpeningInfoTarget: TargetType {
@@ -45,12 +46,14 @@ extension JobOpeningInfoTarget: TargetType {
             return "/api/v1/job-openings/\(jobOpeningId)"
         case .getRegions:
             return "/api/v1/job-openings/locations/regions"
+        case .getDistricts(let region):
+            return "/api/v1/job-openings/locations/districts/\(region)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .jobOpenings, .jobOpeningDetail, .scraps, .myRegistrations, .getRegions:
+        case .jobOpenings, .jobOpeningDetail, .scraps, .myRegistrations, .getRegions, .getDistricts:
             return .get
         case .createJobOpenings, .scrapJobOpening:
             return .post
@@ -78,6 +81,8 @@ extension JobOpeningInfoTarget: TargetType {
             return .requestParameters(parameters: [
                 "jobOpeningId": jobOpeningId
             ], encoding: URLEncoding.default)
+        case .getDistricts(let region):
+            return .requestParameters(parameters: ["region": region], encoding: URLEncoding.default)
         }
     }
     

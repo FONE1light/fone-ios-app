@@ -5,7 +5,7 @@
 //  Created by Yukyung Huh on 12/7/23.
 //
 
-import Foundation
+import UIKit
 import RxSwift
 import RxRelay
 import PanModal
@@ -29,9 +29,6 @@ final class RecruitWorkConditionViewModel: CommonViewModel {
     var jobType: Job?
     
     let allOption = RegionOption(title: "전체", serverParameter: "전체")
-    var regions: [String] = []
-    var selectedRegion = PublishRelay<String>()
-    var showRegionBottomSheetSubject = PublishSubject<Void>()
     let salaryType = PublishRelay<SalaryType>()
     
     var recruitContactLinkInfo: RecruitContactLinkInfo?
@@ -49,34 +46,46 @@ final class RecruitWorkConditionViewModel: CommonViewModel {
         self.recruitWorkInfo = recruitWorkInfo
     }
     
-    func getRegions() {
+    func getRegions(button: UIButton, handler: @escaping (UIAction) -> ()) {
         jobOpeningInfoProvider.rx.request(.getRegions)
             .mapObject(Result<RegionsModel>.self)
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
                 if let regions = response.data?.regions {
-                    owner.regions = regions
-                    owner.showRegionBottomSheetSubject.onNext(())
-                    owner.showRegionsBottomSheet()
+                    var regionsActions: [UIAction] = []
+                    for region in regions {
+                        let action = UIAction(title: "\(region)", handler: handler)
+                        regionsActions.append(action)
+                    }
+                    button.menu = UIMenu(title: "근무지역",
+                                                 options: .singleSelection,
+                                                 children: regionsActions)
+                    button.showsMenuAsPrimaryAction = true
                 }
                 
             }).disposed(by: disposeBag)
     }
     
-    /// 지역 바텀시트 노출
-    func showRegionsBottomSheet() {
-//        let regionsBottomSheetViewModel = RegionsBottomSheetViewModel(
-//            sceneCoordinator: sceneCoordinator,
-//            selectedItem: "전체",
-//            list: regions
-//        ) { [weak self] selectedText in
-//            guard let self = self else { return }
-//            self.selectedRegion.accept(selectedText)
-//            self.sceneCoordinator.close(animated: true)
-//        }
-//        let scene = Scene.regionsBottomSheet(regionsBottomSheetViewModel)
-//        sceneCoordinator.transition(to: scene, using: .customModal, animated: true)
+    func getDistricts(button: UIButton, handler: @escaping (UIAction) -> ()) {
+        jobOpeningInfoProvider.rx.request(.getRegions)
+            .mapObject(Result<RegionsModel>.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, response in
+                if let regions = response.data?.regions {
+                    var regionsActions: [UIAction] = []
+                    for region in regions {
+                        let action = UIAction(title: "\(region)", handler: handler)
+                        regionsActions.append(action)
+                    }
+                    button.menu = UIMenu(title: "근무지역",
+                                                 options: .singleSelection,
+                                                 children: regionsActions)
+                    button.showsMenuAsPrimaryAction = true
+                }
+                
+            }).disposed(by: disposeBag)
     }
     
     func showSalaryTypeBottomSheet() {

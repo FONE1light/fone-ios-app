@@ -62,7 +62,6 @@ enum Scene {
     case snsWebViewController(SNSWebViewModel) // 개인 SNS(웹)
     case salaryTypeBottomSheet(SceneCoordinatorType, PublishRelay<SalaryType>)
     case optionsBottomSheet(OptionsBottomSheetViewModel) // 선택 가능 바텀시트(공통)
-    case regionsBottomSheet(RegionsBottomSheetViewModel) // 근무지역 바텀시트
 }
 
 extension Scene {
@@ -193,20 +192,20 @@ extension Scene {
             
         case .scrapJob(let jobViewModel):
             var jobVC = JobViewController()
-
+            
             DispatchQueue.main.async {
                 jobVC.bind(viewModel: jobViewModel)
             }
-
+            
             return jobVC
             
         case .scrapCompetition(let competitionViewModel):
             var competitionVC = CompetitionViewController()
-
+            
             DispatchQueue.main.async {
                 competitionVC.bind(viewModel: competitionViewModel)
             }
-
+            
             return competitionVC
             
         case .savedProfiles(let savedProfilesTabBarViewModel):
@@ -228,9 +227,9 @@ extension Scene {
         case .myRegistrations(let myRegistrationsViewModel):
             var myRegistrationsVC = MyRegistrationsViewController()
             
-//            DispatchQueue.main.async {
-                myRegistrationsVC.bind(viewModel: myRegistrationsViewModel)
-//            }
+            //            DispatchQueue.main.async {
+            myRegistrationsVC.bind(viewModel: myRegistrationsViewModel)
+            //            }
             
             return myRegistrationsVC
             
@@ -367,7 +366,7 @@ extension Scene {
             }
             
             return registerDetailInfoVC
-
+            
         case .registerDetailContent(let registerDetailContentViewModel):
             var registerDetailContentVC = RegisterDetailContentViewController()
             
@@ -394,7 +393,7 @@ extension Scene {
             }
             
             return registerInterestVC
-
+            
         case .jobHuntingProfiles(let jobHuntingProfilesViewModel):
             var jobHuntingProfilesVC = JobHuntingProfilesViewController()
             
@@ -408,11 +407,11 @@ extension Scene {
             filterVC.bind(viewModel: filterViewModel)
             
             return filterVC
-
+            
         case .reportBottomSheet(let sceneCoordinator):
             let bottomSheet = ReportBottomSheet()
             let bottomSheetVC = BottomSheetViewController(view: bottomSheet, sceneCoordinator: sceneCoordinator)
-
+            
             return bottomSheetVC
             
         case .profilePreview(let profilePreviewViewModel):
@@ -441,15 +440,6 @@ extension Scene {
             optionsBottomSheetVC.bind(viewModel: optionsBottomSheetViewModel)
             
             let bottomSheetVC = BottomSheetViewController(view: optionsBottomSheetVC.view, sceneCoordinator: optionsBottomSheetViewModel.sceneCoordinator)
-            
-            return bottomSheetVC
-            
-        case .regionsBottomSheet(let regionsBottomSheetViewModel):
-            var regionsBottomSheetVC = RegionsBottomSheetViewController()
-            
-            regionsBottomSheetVC.bind(viewModel: regionsBottomSheetViewModel)
-            
-            let bottomSheetVC = BottomSheetViewController(view: regionsBottomSheetVC.view, sceneCoordinator: regionsBottomSheetViewModel.sceneCoordinator)
             
             return bottomSheetVC
         }

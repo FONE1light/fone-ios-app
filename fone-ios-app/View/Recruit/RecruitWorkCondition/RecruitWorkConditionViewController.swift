@@ -10,7 +10,9 @@ import UIKit
 class RecruitWorkConditionViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var stepIndicator: StepIndicator!
     @IBOutlet weak var regionsButton: UIButton!
+    @IBOutlet weak var regionsLabel: UILabel!
     @IBOutlet weak var districtButton: UIButton!
+    @IBOutlet weak var districtLabel: UILabel!
     @IBOutlet weak var startDateButton: UIButton!
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var endDateButton: UIButton!
@@ -45,33 +47,11 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
         
         setUI()
         setupDatePicker()
+        getRegions()
     }
     
     func bindViewModel() {
         setNavigationBar()
-        
-        regionsButton.rx.tap
-            .withUnretained(self)
-            .bind { owner, _ in
-                owner.viewModel.getRegions()
-            }.disposed(by: rx.disposeBag)
-        
-        viewModel.showRegionBottomSheetSubject
-            .withUnretained(self)
-            .bind { owner, _ in
-                let regionsBottomSheetViewModel = RegionsBottomSheetViewModel(
-                    sceneCoordinator: owner.viewModel.sceneCoordinator,
-                    selectedItem: "전체",
-                    list: owner.viewModel.regions
-                ) { selectedText in
-                    owner.viewModel.selectedRegion.accept(selectedText)
-                    owner.viewModel.sceneCoordinator.close(animated: true)
-                }
-                var regionsBottomSheetVC = RegionsBottomSheetViewController()
-                
-                regionsBottomSheetVC.bind(viewModel: regionsBottomSheetViewModel)
-                owner.presentPanModal(regionsBottomSheetVC)
-            }.disposed(by: rx.disposeBag)
         
         viewModel.salaryType
             .withUnretained(self)
@@ -158,6 +138,14 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
         endDatePicker.locale = Locale(identifier: "ko-KR")
         endDatePicker.addTarget(self, action: #selector(getEndTime), for: .valueChanged)
         endTimeTextField.inputView = endDatePicker
+    }
+    
+    private func getRegions() {
+        let regionHandler: UIActionHandler = { [weak self] (action: UIAction) in
+            self?.regionsLabel.text = action.title
+            self?.regionsLabel.textColor = .gray_161616
+        }
+        viewModel.getRegions(button: self.regionsButton, handler: regionHandler)
     }
     
     @objc func getStartTime(_ sender: UIDatePicker) {

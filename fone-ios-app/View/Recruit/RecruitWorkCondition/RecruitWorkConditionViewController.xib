@@ -23,11 +23,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecruitWorkConditionViewController" customModule="fone_ios_app" customModuleProvider="target">
             <connections>
                 <outlet property="districtButton" destination="w9K-b5-nvO" id="Dya-g2-jIU"/>
+                <outlet property="districtLabel" destination="4sH-Eq-cYs" id="2Vn-6T-kgI"/>
                 <outlet property="endDateButton" destination="4CG-T2-grr" id="Zfi-Pg-KiX"/>
                 <outlet property="endDateLabel" destination="xRt-3G-WmM" id="eUx-DU-G08"/>
                 <outlet property="endTimeTextField" destination="uYs-pL-NfJ" id="wpq-En-PFD"/>
                 <outlet property="nextButton" destination="hGW-ns-pwr" id="t0X-v6-oGZ"/>
                 <outlet property="regionsButton" destination="wUg-oL-0FA" id="wwE-qe-9QP"/>
+                <outlet property="regionsLabel" destination="Y0h-0w-v2d" id="OFA-U3-oHQ"/>
                 <outlet property="salaryTextField" destination="K7S-YA-bwT" id="f7G-Ee-IpM"/>
                 <outlet property="salaryTypeButton" destination="EC9-gj-8n9" id="ygi-TQ-APG"/>
                 <outlet property="salaryTypeTextField" destination="YGC-rM-lfM" id="9zF-qY-2gy"/>
