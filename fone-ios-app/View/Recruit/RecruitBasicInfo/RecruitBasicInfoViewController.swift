@@ -10,6 +10,7 @@ import PhotosUI
 
 class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     var viewModel: RecruitBasicInfoViewModel!
+    var jobType = Job.actor
     
     private var placeholderString = "모집 제목을 입력하세요"
     private var selections = [String: PHPickerResult]()
@@ -34,6 +35,7 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNavigationBar()
         setTextView()
         setSelectionBlock()
         setCollectionView()
@@ -41,8 +43,6 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
-        setNavigationBar()
-        
         titleTextView.rx.text.orEmpty
             .map { $0 == self.placeholderString ? "" : $0 }
             .map { $0.count }
@@ -109,7 +109,6 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     }
     
     private func setNavigationBar() {
-        guard let jobType = viewModel.jobType else { return }
         navigationItem.titleView = NavigationTitleView(title: "\(jobType.koreanName) 모집하기")
         navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
             type: .back,

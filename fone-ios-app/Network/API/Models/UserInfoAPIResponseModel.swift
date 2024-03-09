@@ -7,11 +7,9 @@
 
 import Foundation
 
+// MARK: - UserInfoModel
 struct UserInfoModel: Codable {
-    // MARK: - UserInfoModel
-    struct UserInfoModel: Codable {
-        let user: User
-    }
+    let user: User?
 }
 
 // MARK: - User
