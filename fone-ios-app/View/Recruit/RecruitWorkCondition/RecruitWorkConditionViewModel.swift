@@ -46,7 +46,14 @@ final class RecruitWorkConditionViewModel: CommonViewModel {
         self.recruitWorkInfo = recruitWorkInfo
     }
     
-    func getRegions(button: UIButton, handler: @escaping (UIAction) -> ()) {
+    func getRegions(regionsLabel: UILabel, regionsButton: UIButton, districtLabel: UILabel, districtButton: UIButton) {
+        let regionHandler: UIActionHandler = { (action: UIAction) in
+            regionsLabel.text = action.title
+            regionsLabel.textColor = .gray_161616
+            self.getDistricts(region: action.title, label: districtLabel, button: districtButton)
+            districtLabel.text = "구"
+            districtLabel.textColor = .gray_9E9E9E
+        }
         jobOpeningInfoProvider.rx.request(.getRegions)
             .mapObject(Result<RegionsModel>.self)
             .asObservable()
@@ -55,33 +62,37 @@ final class RecruitWorkConditionViewModel: CommonViewModel {
                 if let regions = response.data?.regions {
                     var regionsActions: [UIAction] = []
                     for region in regions {
-                        let action = UIAction(title: "\(region)", handler: handler)
+                        let action = UIAction(title: "\(region)", handler: regionHandler)
                         regionsActions.append(action)
                     }
-                    button.menu = UIMenu(title: "근무지역",
+                    regionsButton.menu = UIMenu(title: "근무지역",
                                                  options: .singleSelection,
                                                  children: regionsActions)
-                    button.showsMenuAsPrimaryAction = true
+                    regionsButton.showsMenuAsPrimaryAction = true
                 }
                 
             }).disposed(by: disposeBag)
     }
     
-    func getDistricts(button: UIButton, handler: @escaping (UIAction) -> ()) {
-        jobOpeningInfoProvider.rx.request(.getRegions)
-            .mapObject(Result<RegionsModel>.self)
+    func getDistricts(region: String, label: UILabel, button: UIButton) {
+        let districtHandler: UIActionHandler = { (action: UIAction) in
+            label.text = action.title
+            label.textColor = .gray_161616
+        }
+        jobOpeningInfoProvider.rx.request(.getDistricts(region: region))
+            .mapObject(Result<DistrictsModel>.self)
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
-                if let regions = response.data?.regions {
-                    var regionsActions: [UIAction] = []
-                    for region in regions {
-                        let action = UIAction(title: "\(region)", handler: handler)
-                        regionsActions.append(action)
+                if let districts = response.data?.districts {
+                    var districtsActions: [UIAction] = []
+                    for district in districts {
+                        let action = UIAction(title: "\(district)", handler: districtHandler)
+                        districtsActions.append(action)
                     }
                     button.menu = UIMenu(title: "근무지역",
                                                  options: .singleSelection,
-                                                 children: regionsActions)
+                                                 children: districtsActions)
                     button.showsMenuAsPrimaryAction = true
                 }
                 

@@ -37,3 +37,7 @@ struct RegionsModel: Codable {
     let regions: [String]
 }
 
+struct DistrictsModel: Codable {
+    let districts: [String]
+}
+

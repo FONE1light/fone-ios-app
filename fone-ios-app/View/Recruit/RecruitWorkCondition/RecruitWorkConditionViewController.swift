@@ -141,11 +141,7 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
     }
     
     private func getRegions() {
-        let regionHandler: UIActionHandler = { [weak self] (action: UIAction) in
-            self?.regionsLabel.text = action.title
-            self?.regionsLabel.textColor = .gray_161616
-        }
-        viewModel.getRegions(button: self.regionsButton, handler: regionHandler)
+        viewModel.getRegions(regionsLabel: regionsLabel, regionsButton: regionsButton, districtLabel: districtLabel, districtButton: districtButton)
     }
     
     @objc func getStartTime(_ sender: UIDatePicker) {
