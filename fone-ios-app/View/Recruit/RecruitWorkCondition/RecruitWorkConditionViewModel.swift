@@ -8,7 +8,6 @@
 import UIKit
 import RxSwift
 import RxRelay
-import PanModal
 
 struct RecruitWorkConditionInfo: Codable {
     let workingCity, workingDistrict: String?
