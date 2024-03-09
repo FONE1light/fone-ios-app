@@ -22,15 +22,16 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
     @IBOutlet weak var nextButton: UIButton!
     
     var viewModel: RecruitConditionInfoViewModel!
+    var jobType = Job.actor
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNavigationBar()
         setButtons()
     }
     
     func bindViewModel() {
-        setNavigationBar()
         setUI()
         
         nextButton.rx.tap
@@ -70,7 +71,6 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
     }
     
     private func setNavigationBar() {
-        guard let jobType = viewModel.jobType else { return }
         navigationItem.titleView = NavigationTitleView(title: "\(jobType.koreanName) 모집하기")
         navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(
             type: .back,

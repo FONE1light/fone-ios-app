@@ -35,6 +35,25 @@ final class RecruitContactInfoViewModel: CommonViewModel {
         self.recruitDetailInfo = recruitDetailInfo
     }
     
+    func validateManager(recruitContactInfo: RecruitContactInfo) {
+        validationProvider.rx.request(.validateManager(recruitContactInfo: recruitContactInfo))
+            .mapObject(Result<String>.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(
+                onNext: { owner, response in
+                    if response.result?.isSuccess == true {
+                        owner.createJobOpenings(recruitContactInfo: recruitContactInfo)
+                    } else {
+                        response.message?.toast(positionType: .withButton)
+                    }
+                },
+                onError: { error in
+                    error.showToast(modelType: String.self, positionType: .withButton)
+                }
+            ).disposed(by: disposeBag)
+    }
+    
     func createJobOpenings(recruitContactInfo: RecruitContactInfo) {
         let jobOpeningRequest = JobOpeningRequest(recruitContactLinkInfo: recruitContactLinkInfo, recruitBasicInfo: recruitBasicInfo, recruitConditionInfo: recruitConditionInfo, recruitWorkInfo: recruitWorkInfo, recruitWorkConditionInfo: recruitWorkConditionInfo, recruitDetailInfo: recruitDetailInfo, recruitContactInfo: recruitContactInfo, jobType: jobType)
         jobOpeningInfoProvider.rx.request(.createJobOpenings(jobOpeningRequest: jobOpeningRequest))

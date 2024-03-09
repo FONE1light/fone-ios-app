@@ -22,6 +22,7 @@ class MyPageViewController: UIViewController, ViewModelBindableType {
     private let profileImage = UIImageView().then {
         $0.backgroundColor = .gray_C5C5C5
         $0.cornerRadius = 34
+        $0.clipsToBounds = true
     }
     
     private let nameLabel = UILabel().then {
@@ -73,6 +74,16 @@ class MyPageViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
+        viewModel.fetchMyPage()
+        
+        viewModel.userInfo
+            .withUnretained(self)
+            .bind { owner, userInfo in
+                owner.profileImage.load(url: userInfo?.profileURL)
+                owner.nameLabel.text = userInfo?.nickname
+                owner.jobLabel.text = userInfo?.job
+            }.disposed(by: disposeBag)
+        
         rightArrowButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
@@ -103,7 +114,7 @@ class MyPageViewController: UIViewController, ViewModelBindableType {
     
     private func setNavigationBar() {
         self.navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(type: .myPage)
-        self.navigationItem.rightBarButtonItem = NavigationRightBarButtonItem(type: .notification)
+        self.navigationItem.rightBarButtonItem = NavigationRightBarButtonItem(type: .notification, viewController: self)
         
     }
     
