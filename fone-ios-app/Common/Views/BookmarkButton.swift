@@ -23,7 +23,9 @@ class BookmarkButton: UIButton {
         setImage(UIImage(named: "bookmark_off_Interpace"), for: .normal)
     }
     
-    func toggle() {
+    /// 토글 후 상태값 반환
+    func toggle() -> Bool {
         isSelected = !isSelected
+        return isSelected
     }
 }

@@ -85,15 +85,16 @@ class StaffInfoTableViewCell: UITableViewCell {
         nameLabel.text = name
         genderLabel.text = gender?.name
         birthYearLabel.text = "\(birthYear ?? "")년 (\(age ?? "")살)"
+        emailLabel.text = email
+        specialtyLabel.text = specialty
         var domain = domains?
             .compactMap { Domain.getType(serverName: $0)?.name }
             .reduce("") { (domain1: String, domain2: String) -> String in
             domain1 + "/" + domain2
         }
-        domain?.removeFirst()
+        guard var domain = domain, !domain.isEmpty else { return }
+        domain.removeFirst() // '/' 삭제
         domainLabel.text = domain
-        emailLabel.text = email
-        specialtyLabel.text = specialty
     }
     
     private func setupUI() {

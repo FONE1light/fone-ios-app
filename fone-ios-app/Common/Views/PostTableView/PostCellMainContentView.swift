@@ -157,7 +157,25 @@ class PostCellMainContentView: UIView {
 }
 
 extension PostCellMainContentView {
-    func toggleBookmarkButton() {
-        bookmarkButton.toggle()
+    func toggleBookmarkButton() -> Bool {
+        return bookmarkButton.toggle()
+    }
+}
+
+extension PostCellMainContentView {
+    /// 모든 값 초기화. `prepareForReuse`에서 사용
+    func initialize() {
+        imageView.image = UIImage(resource: .defaultProfile)
+        
+        tagList.setValues(
+            isVerified: false,
+            categories: []
+        )
+        
+        bookmarkButton.isSelected = false
+        
+        titleLabel.text = nil
+        
+        detailInfoBlock.setValues()
     }
 }

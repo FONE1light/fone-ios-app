@@ -433,8 +433,8 @@ extension JobOpeningHuntingViewController: UITableViewDataSource {
         cell.bookmarkButtonTap
             .withUnretained(self)
             .bind { owner, _ in
-                cell.toggleBookmarkButton()
-                // TODO: jobOpeningID 이용 북마크(스크랩) api 호출
+                owner.viewModel.toggleScrap(id: cell.id)
+                owner.viewModel.jobOpeningsContent[indexPath.row].isScrap = cell.toggleBookmarkButton()
             }.disposed(by: cell.disposeBag)
 
         return cell
@@ -475,6 +475,13 @@ extension JobOpeningHuntingViewController: UICollectionViewDataSource {
             age: profile.age,
             isSaved: profile.isWant
         )
+        
+        cell.heartButtonTap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.viewModel.toggleWanted(id: cell.id)
+                owner.viewModel.profilesContent[indexPath.row].isWant = cell.toggleHeartButton()
+            }.disposed(by: cell.disposeBag)
         
         return cell
     }

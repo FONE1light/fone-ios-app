@@ -23,7 +23,9 @@ class HeartButton: UIButton {
         setImage(UIImage(named: "heart_01_off"), for: .normal)
     }
     
-    func toggle() {
+    /// 토글 후 상태값 반환
+    func toggle() -> Bool {
         isSelected = !isSelected
+        return isSelected
     }
 }
