@@ -37,9 +37,13 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let casting = owner.castingTextField.textField?.text
+                var casting = owner.castingTextField.textField?.text
                 let domainsArray = owner.viewModel.selectedDomains.value as? [Domain]
-                let domains = domainsArray?.map { $0.serverName }
+                var domains: [String]? = nil
+                if owner.jobType == .staff {
+                    casting = nil
+                    domains = domainsArray?.map { $0.serverName }
+                }
                 let numberOfRecruits = Int(owner.numberTextField.textField?.text ?? "")
                 let gender = GenderType.IRRELEVANT.serverName // FIXME
                 let ageMinString = owner.startAgeLabel.text?.replacingOccurrences(of: "세", with: "") ?? ""
@@ -47,8 +51,8 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
                 let ageMaxString = owner.endAgeLabel.text?.replacingOccurrences(of: "세", with: "") ?? ""
                 let ageMax = Int(ageMaxString)
                 let career = owner.careerSelectionBlock.selectedItem.value as? CareerType ?? .NEWCOMER
-                let recruitConditionInfo = RecruitConditionInfo(casting: casting, domains: domains, numberOfRecruits: numberOfRecruits, gender: gender, ageMin: ageMin, ageMax: ageMax, career: [career.rawValue]) // FIXME: 경력..
-                owner.viewModel.moveToNextStep(recruitConditionInfo: recruitConditionInfo)
+                let recruitConditionInfo = RecruitConditionInfo(casting: casting, domains: domains, numberOfRecruits: numberOfRecruits, gender: gender, ageMin: ageMin, ageMax: ageMax, careers: [career.rawValue]) // FIXME: 경력..
+                owner.viewModel.validateRole(recruitConditionInfo: recruitConditionInfo)
             }.disposed(by: rx.disposeBag)
         
         domainSelectButton.rx.tap
