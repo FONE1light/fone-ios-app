@@ -105,6 +105,21 @@ class MyPageProfileCell: UICollectionViewCell {
         ageLabel.text = "\(birthYear ?? "")년생 (\(age ?? 0)살)"
         self.isSaved = isSaved ?? false
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag() // 버튼(bookmarkButtonTap) 바인딩을 한 번만 하기 위해 필요?
+        
+        // 초기화
+        imageView.image = UIImage(resource: .defaultProfile)
+        nameLabel.text = nil
+        ageLabel.text = nil
+        isSaved = false
+    }
+    
+    func toggleHeart() -> Bool {
+        return heartButton.toggle()
+    }
 }
 
 extension MyPageProfileCell {

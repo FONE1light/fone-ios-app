@@ -476,6 +476,14 @@ extension JobOpeningHuntingViewController: UICollectionViewDataSource {
             isSaved: profile.isWant
         )
         
+        cell.heartButtonTap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.viewModel.toggleWanted(id: cell.id)
+                owner.viewModel.profilesContent[indexPath.row].isWant = cell.toggleHeart()
+                print("🔥\(indexPath.row), \(owner.viewModel.profilesContent[indexPath.row].isWant)")
+            }.disposed(by: cell.disposeBag)
+        
         return cell
     }
     

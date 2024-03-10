@@ -155,7 +155,7 @@ struct ProfileContent: Codable {
     let registerInterestInfo: RegisterInterestInfo?
     let type: String?
     let viewCount: Int?
-    let isWant: Bool?
+    var isWant: Bool?
     let createdAt, userNickname, userProfileURL, userJob: String?
     let age: Int?
 
