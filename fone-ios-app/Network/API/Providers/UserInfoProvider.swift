@@ -23,6 +23,8 @@ enum UserInfoTarget {
     case resetPassword(password: String, phoneNumber: String, token: String)
     case socialSignIn(accessToken: String, loginType: String)
     case modifyUserInfo(userInfo: UserInfo)
+    case logout
+    case signout
 }
 
 extension UserInfoTarget: TargetType {
@@ -56,6 +58,10 @@ extension UserInfoTarget: TargetType {
             return "/api/v1/users/social/sign-in"
         case .modifyUserInfo:
             return "/api/v1/users"
+        case .logout:
+            return "/api/v1/users/log-out"
+        case .signout:
+            return "/api/v1/users/sign-out"
         }
     }
     
@@ -63,9 +69,9 @@ extension UserInfoTarget: TargetType {
         switch self {
         case .fetchMyPage, .checkNicknameDuplication:
             return .get
-        case .emailSignIn, .reissueToken, .sendSMS, .emailSignUp, .findID, .findPassword, .socialSignIn, .socialSignUp:
+        case .emailSignIn, .reissueToken, .sendSMS, .emailSignUp, .findID, .findPassword, .socialSignIn, .socialSignUp, .logout:
             return .post
-        case .resetPassword, .modifyUserInfo:
+        case .resetPassword, .modifyUserInfo, .signout:
             return .patch
         }
     }
@@ -109,11 +115,11 @@ extension UserInfoTarget: TargetType {
         switch self {
         case .emailSignIn, .reissueToken, .sendSMS, .emailSignUp, .findID, .findPassword, .resetPassword, .socialSignIn, .socialSignUp:
             commonHeaders["Content-Type"] = "application/json;charset=UTF-8"
-        case .fetchMyPage, .modifyUserInfo:
+        case .fetchMyPage, .modifyUserInfo, .logout, .signout:
             let accessToken = Tokens.shared.accessToken.value
             let authorization = "Bearer \(accessToken)"
             commonHeaders["Authorization"] = authorization
-            commonHeaders["Content-Type"] = "application/json;charset=UTF-8" // 확인
+            commonHeaders["Content-Type"] = "application/json;charset=UTF-8"
         default:
             break
         }

@@ -217,7 +217,6 @@ extension MyPageViewController: UITableViewDataSource {
         
         cell.buttonTap.withUnretained(self)
             .bind { owner, _ in
-                
                 if let scene = menuType.nextScene(owner.viewModel.sceneCoordinator) {
                     switch menuType {
                     case .question:
@@ -225,9 +224,20 @@ extension MyPageViewController: UITableViewDataSource {
                     default:
                         owner.viewModel.sceneCoordinator.transition(to: scene, using: .push, animated: true)
                     }
-                } else if let bottomSheet = menuType.bottomSheet {
-                    // FIXME: 높이 늘어나는 것 해결(UIView-Encapsulated-Layout-Height)
-                    owner.presentPanModal(view: bottomSheet)
+                    return
+                }
+                
+                switch menuType {
+                case .logout:
+//                    // FIXME: 높이 늘어나는 것 해결(UIView-Encapsulated-Layout-Height)
+                    let logoutBottomSheetViewModel = LogoutBottomSheetViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator)
+                    let scene = Scene.logoutBottomSheet(logoutBottomSheetViewModel)
+                    owner.viewModel.sceneCoordinator.transition(to: scene, using: .customModal, animated: true)
+                case .withdrawal:
+                    let signoutBottomSheetViewModel = SignoutBottomSheetViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator)
+                    let scene = Scene.signoutBottomSheet(signoutBottomSheetViewModel)
+                    owner.viewModel.sceneCoordinator.transition(to: scene, using: .customModal, animated: true)
+                default: return
                 }
                 
             }.disposed(by: disposeBag)
