@@ -16,8 +16,8 @@ enum APIConfig {
 extension APIConfig {
     var baseURL: String {
         switch self {
-        case .DEV: return "http://3.37.114.103"
-        case .STAGING, .PRODUCT: return "http://3.39.0.194"
+        case .DEV: return "https://dev-api.f-one.app"
+        case .STAGING, .PRODUCT: return "https://api.f-one.app"
         }
         
     }
