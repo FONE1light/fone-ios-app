@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxSwift
 
 struct RecruitWorkInfo: Codable {
     let produce: String?
@@ -16,6 +17,7 @@ struct RecruitWorkInfo: Codable {
 }
 
 final class RecruitWorkInfoViewModel: CommonViewModel {
+    var disposeBag = DisposeBag()
     var jobType: Job?
     var recruitContactLinkInfo: RecruitContactLinkInfo?
     var recruitBasicInfo: RecruitBasicInfo?
@@ -28,6 +30,25 @@ final class RecruitWorkInfoViewModel: CommonViewModel {
         self.recruitContactLinkInfo = recruitContactLinkInfo
         self.recruitBasicInfo = recruitBasicInfo
         self.recruitConditionInfo = recruitConditionInfo
+    }
+    
+    func validateProject(recruitWorkInfo: RecruitWorkInfo) {
+        validationProvider.rx.request(.validateProject(recruitWorkInfo: recruitWorkInfo))
+            .mapObject(Result<String>.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(
+                onNext: { owner, response in
+                    if response.result?.isSuccess == true {
+                        owner.moveToNextStep(recruitWorkInfo: recruitWorkInfo)
+                    } else {
+                        response.message?.toast(positionType: .withButton)
+                    }
+                },
+                onError: { error in
+                    error.showToast(modelType: String.self, positionType: .withButton)
+                }
+            ).disposed(by: disposeBag)
     }
     
     func moveToNextStep(recruitWorkInfo: RecruitWorkInfo) {

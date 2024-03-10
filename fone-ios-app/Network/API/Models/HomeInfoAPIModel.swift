@@ -50,7 +50,8 @@ struct JobOpeningContent: Codable {
     let recruitDetailInfo: RecruitDetailInfo?
     let recruitContactInfo: RecruitContactInfo?
     let id: Int?
-    let isScrap, isVerified, contactable: Bool?
+    var isScrap: Bool?
+    let isVerified, contactable: Bool?
     let scrapCount: Int?
     let type, userJob, userNickname: String?
     let userProfileURL: String?
@@ -155,7 +156,7 @@ struct ProfileContent: Codable {
     let registerInterestInfo: RegisterInterestInfo?
     let type: String?
     let viewCount: Int?
-    let isWant: Bool?
+    var isWant: Bool?
     let createdAt, userNickname, userProfileURL, userJob: String?
     let age: Int?
 

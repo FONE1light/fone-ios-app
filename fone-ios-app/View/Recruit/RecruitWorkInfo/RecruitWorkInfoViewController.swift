@@ -41,7 +41,7 @@ class RecruitWorkInfoViewController: UIViewController, ViewModelBindableType {
                 let genres = (owner.genreCollectionView.indexPathsForSelectedItems ?? []).map { owner.genres[$0.row].rawValue }
                 let logline = owner.loglineTextView.textView?.text
                 let recruitWorkInfo = RecruitWorkInfo(produce: produce, workTitle: workTitle, director: director, genres: genres, logline: logline)
-                owner.viewModel.moveToNextStep(recruitWorkInfo: recruitWorkInfo)
+                owner.viewModel.validateProject(recruitWorkInfo: recruitWorkInfo)
             }.disposed(by: rx.disposeBag)
     }
     

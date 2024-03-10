@@ -170,9 +170,7 @@ extension Scene {
         case .myPage(let myPageViewModel):
             var myPageVC = MyPageViewController()
             
-            DispatchQueue.main.async {
-                myPageVC.bind(viewModel: myPageViewModel)
-            }
+            myPageVC.bind(viewModel: myPageViewModel)
             
             return myPageVC
             
@@ -194,20 +192,20 @@ extension Scene {
             
         case .scrapJob(let jobViewModel):
             var jobVC = JobViewController()
-
+            
             DispatchQueue.main.async {
                 jobVC.bind(viewModel: jobViewModel)
             }
-
+            
             return jobVC
             
         case .scrapCompetition(let competitionViewModel):
             var competitionVC = CompetitionViewController()
-
+            
             DispatchQueue.main.async {
                 competitionVC.bind(viewModel: competitionViewModel)
             }
-
+            
             return competitionVC
             
         case .savedProfiles(let savedProfilesTabBarViewModel):
@@ -229,9 +227,9 @@ extension Scene {
         case .myRegistrations(let myRegistrationsViewModel):
             var myRegistrationsVC = MyRegistrationsViewController()
             
-//            DispatchQueue.main.async {
-                myRegistrationsVC.bind(viewModel: myRegistrationsViewModel)
-//            }
+            //            DispatchQueue.main.async {
+            myRegistrationsVC.bind(viewModel: myRegistrationsViewModel)
+            //            }
             
             return myRegistrationsVC
             
@@ -375,7 +373,7 @@ extension Scene {
             }
             
             return registerDetailInfoVC
-
+            
         case .registerDetailContent(let registerDetailContentViewModel):
             var registerDetailContentVC = RegisterDetailContentViewController()
             
@@ -402,7 +400,7 @@ extension Scene {
             }
             
             return registerInterestVC
-
+            
         case .jobHuntingProfiles(let jobHuntingProfilesViewModel):
             var jobHuntingProfilesVC = JobHuntingProfilesViewController()
             
@@ -416,11 +414,11 @@ extension Scene {
             filterVC.bind(viewModel: filterViewModel)
             
             return filterVC
-
+            
         case .reportBottomSheet(let sceneCoordinator):
             let bottomSheet = ReportBottomSheet()
             let bottomSheetVC = BottomSheetViewController(view: bottomSheet, sceneCoordinator: sceneCoordinator)
-
+            
             return bottomSheetVC
             
         case .profilePreview(let profilePreviewViewModel):

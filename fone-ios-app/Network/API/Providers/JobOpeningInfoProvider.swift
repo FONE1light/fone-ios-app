@@ -21,6 +21,8 @@ enum JobOpeningInfoTarget {
     case scrapJobOpening(jobOpeningId: Int)
     case myRegistrations
     case deleteJobOpening(jobOpeningId: Int)
+    case getRegions
+    case getDistricts(region: String)
 }
 
 extension JobOpeningInfoTarget: TargetType {
@@ -42,12 +44,16 @@ extension JobOpeningInfoTarget: TargetType {
             return "/api/v1/job-openings/my-registrations"
         case .deleteJobOpening(let jobOpeningId):
             return "/api/v1/job-openings/\(jobOpeningId)"
+        case .getRegions:
+            return "/api/v1/job-openings/locations/regions"
+        case .getDistricts(let region):
+            return "/api/v1/job-openings/locations/districts/\(region)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .jobOpenings, .jobOpeningDetail, .scraps, .myRegistrations:
+        case .jobOpenings, .jobOpeningDetail, .scraps, .myRegistrations, .getRegions, .getDistricts:
             return .get
         case .createJobOpenings, .scrapJobOpening:
             return .post
@@ -69,12 +75,14 @@ extension JobOpeningInfoTarget: TargetType {
             return .requestJSONEncodable(jobOpeningRequest)
         case .jobOpeningDetail(_, let type):
             return .requestParameters(parameters: ["type": type.name], encoding: URLEncoding.default)
-        case .scraps, .myRegistrations:
+        case .scraps, .myRegistrations, .getRegions:
             return .requestPlain
         case .scrapJobOpening(let jobOpeningId), .deleteJobOpening(let jobOpeningId): // 없어도 에러 발생하지 않으나 스웨거 정의대로 넣어서 보냄
             return .requestParameters(parameters: [
                 "jobOpeningId": jobOpeningId
             ], encoding: URLEncoding.default)
+        case .getDistricts(let region):
+            return .requestParameters(parameters: ["region": region], encoding: URLEncoding.default)
         }
     }
     

@@ -234,3 +234,39 @@ extension JobOpeningHuntingViewModel {
         sceneCoordinator.transition(to: registerScene, using: .push, animated: true)
     }
 }
+
+extension JobOpeningHuntingViewModel {
+    func toggleScrap(id: Int?) {
+        guard let id = id else { return }
+        jobOpeningInfoProvider.rx.request(.scrapJobOpening(jobOpeningId: id))
+            .mapObject(Result<ScrapJobOpeningResponseResult>.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe (
+                onNext: { owner, response in
+                    if response.result?.isSuccess != true {
+                        "스크랩을 실패했습니다.".toast()
+                    }
+                },
+                onError: { error in
+                    error.showToast(modelType: ScrapJobOpeningResponseResult.self)
+                }).disposed(by: disposeBag)
+    }
+    
+    func toggleWanted(id: Int?) {
+        guard let id = id else { return }
+        profileInfoProvider.rx.request(.profileWant(profileId: id))
+            .mapObject(Result<EmptyData>.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe (
+                onNext: { owner, response in
+                    if response.result?.isSuccess != true {
+                        "프로필 찜하기를 실패했습니다.".toast()
+                    }
+                },
+                onError: { error in
+                    error.showToast(modelType: ProfilesData.self)
+                }).disposed(by: disposeBag)
+    }
+}

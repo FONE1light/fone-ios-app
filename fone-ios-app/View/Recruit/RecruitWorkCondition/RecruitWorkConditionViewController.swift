@@ -9,6 +9,10 @@ import UIKit
 
 class RecruitWorkConditionViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var stepIndicator: StepIndicator!
+    @IBOutlet weak var regionsButton: UIButton!
+    @IBOutlet weak var regionsLabel: UILabel!
+    @IBOutlet weak var districtButton: UIButton!
+    @IBOutlet weak var districtLabel: UILabel!
     @IBOutlet weak var startDateButton: UIButton!
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var endDateButton: UIButton!
@@ -48,6 +52,8 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
     }
     
     func bindViewModel() {
+        getRegions()
+        
         viewModel.salaryType
             .withUnretained(self)
             .bind { owner, salaryType in
@@ -95,13 +101,15 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
+                let workingCity = owner.regionsLabel.text == "시" ? "" : owner.regionsLabel.text ?? ""
+                let workingDistrict = owner.districtLabel.text == "구" ? "" : owner.districtLabel.text ?? ""
                 let workingStartDate = owner.startDateLabel.text?.dateServerFormat
                 let workingEndDate = owner.endDateLabel.text?.dateServerFormat
                 let workingStartTime = owner.startTimeTextField.text
                 let workingEndTime = owner.endTimeTextField.text
                 let salary = Int(owner.salaryTextField.text?.replacingOccurrences(of: ",", with: "") ?? "")
-                let recruitWorkConditionInfo = RecruitWorkConditionInfo(workingCity: "서울특별시", workingDistrict: "강남구", workingStartDate: workingStartDate, workingEndDate: workingEndDate, selectedDays: owner.selectedDays, workingStartTime: workingStartTime, workingEndTime: workingEndTime, salaryType: SalaryType.HOURLY.rawValue, salary: salary) // TODO: 시-구 API 추후 개발 예정, 급여유형
-                owner.viewModel.moveToNextStep(recruitWorkConditionInfo: recruitWorkConditionInfo)
+                let recruitWorkConditionInfo = RecruitWorkConditionInfo(workingCity: workingCity, workingDistrict: workingDistrict, workingStartDate: workingStartDate, workingEndDate: workingEndDate, selectedDays: owner.selectedDays, workingStartTime: workingStartTime, workingEndTime: workingEndTime, salaryType: SalaryType.HOURLY.rawValue, salary: salary)
+                owner.viewModel.validateProjectDetails(recruitWorkConditionInfo: recruitWorkConditionInfo)
             }.disposed(by: rx.disposeBag)
     }
     
@@ -132,6 +140,10 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
         endDatePicker.locale = Locale(identifier: "ko-KR")
         endDatePicker.addTarget(self, action: #selector(getEndTime), for: .valueChanged)
         endTimeTextField.inputView = endDatePicker
+    }
+    
+    private func getRegions() {
+        viewModel.getRegions(regionsLabel: regionsLabel, regionsButton: regionsButton, districtLabel: districtLabel, districtButton: districtButton)
     }
     
     @objc func getStartTime(_ sender: UIDatePicker) {

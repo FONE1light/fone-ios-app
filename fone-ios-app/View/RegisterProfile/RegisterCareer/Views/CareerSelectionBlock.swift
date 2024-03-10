@@ -53,6 +53,8 @@ class CareerSelectionBlock: UIView {
     
     let selectedItem = BehaviorRelay<Selection>(value: CareerType.NEWCOMER)
     
+    var selectedCareers: [String] = []
+    
     init() {
         super.init(frame: .zero)
         
@@ -108,6 +110,21 @@ extension CareerSelectionBlock {
                 guard let item = cell.item else { return }
                 owner.selectedItem.accept(item)
                 
+                if let career = item as? CareerType {
+                    owner.selectedCareers.append(career.rawValue)
+                }
+            }.disposed(by: rx.disposeBag)
+        
+        collectionView.rx.itemDeselected
+            .withUnretained(self)
+            .subscribe { owner, indexPath in
+                guard let cell = owner.collectionView.cellForItem(at: indexPath) as? DynamicSizeSelectionCell
+ else { return }
+                guard let item = cell.item else { return }
+                
+                if let career = item as? CareerType {
+                    owner.selectedCareers.removeAll { $0 == career.rawValue }
+                }
             }.disposed(by: rx.disposeBag)
     }
     

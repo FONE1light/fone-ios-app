@@ -39,6 +39,9 @@ class JobCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag() // 버튼(bookmarkButtonTap) 바인딩을 한 번만 하기 위해 필요
+        
+        // 초기화
+        mainContentView.initialize()
     }
     
     func configure(
@@ -97,7 +100,7 @@ class JobCell: UITableViewCell {
 }
 
 extension JobCell {
-    func toggleBookmarkButton() {
-        mainContentView.toggleBookmarkButton()
+    func toggleBookmarkButton() -> Bool {
+        return mainContentView.toggleBookmarkButton()
     }
 }
