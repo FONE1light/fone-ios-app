@@ -435,7 +435,6 @@ extension JobOpeningHuntingViewController: UITableViewDataSource {
             .bind { owner, _ in
                 owner.viewModel.toggleScrap(id: cell.id)
                 owner.viewModel.jobOpeningsContent[indexPath.row].isScrap = cell.toggleBookmarkButton()
-                print("🔥\(indexPath.row), \(owner.viewModel.jobOpeningsContent[indexPath.row].isScrap)")
             }.disposed(by: cell.disposeBag)
 
         return cell
@@ -482,7 +481,6 @@ extension JobOpeningHuntingViewController: UICollectionViewDataSource {
             .bind { owner, _ in
                 owner.viewModel.toggleWanted(id: cell.id)
                 owner.viewModel.profilesContent[indexPath.row].isWant = cell.toggleHeartButton()
-                print("🔥\(indexPath.row), \(owner.viewModel.profilesContent[indexPath.row].isWant)")
             }.disposed(by: cell.disposeBag)
         
         return cell
