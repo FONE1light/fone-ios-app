@@ -117,7 +117,7 @@ class MyPageProfileCell: UICollectionViewCell {
         isSaved = false
     }
     
-    func toggleHeart() -> Bool {
+    func toggleHeartButton() -> Bool {
         return heartButton.toggle()
     }
 }

@@ -100,7 +100,7 @@ class JobCell: UITableViewCell {
 }
 
 extension JobCell {
-    func toggleBookmarkButton() {
-        mainContentView.toggleBookmarkButton()
+    func toggleBookmarkButton() -> Bool {
+        return mainContentView.toggleBookmarkButton()
     }
 }

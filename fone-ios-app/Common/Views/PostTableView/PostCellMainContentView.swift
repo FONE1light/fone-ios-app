@@ -157,8 +157,8 @@ class PostCellMainContentView: UIView {
 }
 
 extension PostCellMainContentView {
-    func toggleBookmarkButton() {
-        bookmarkButton.toggle()
+    func toggleBookmarkButton() -> Bool {
+        return bookmarkButton.toggle()
     }
 }
 
