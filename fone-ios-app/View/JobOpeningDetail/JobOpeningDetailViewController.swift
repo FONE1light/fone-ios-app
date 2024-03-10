@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MessageUI
 
 enum JobOpeningDetailSection: Int, CaseIterable {
     case author = 0
@@ -50,6 +51,24 @@ class JobOpeningDetailViewController: UIViewController, ViewModelBindableType {
         setScrapButtonStatus(scrapped: viewModel.jobOpeningDetail?.isScrap ?? false)
         
         contactButton.setEnabled(isEnabled: viewModel.jobOpeningDetail?.contactable ?? false)
+        
+        contactButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                let contactType =  owner.viewModel.jobOpeningDetail?.recruitContactLinkInfo?.contactMethod
+                let contact = owner.viewModel.jobOpeningDetail?.recruitContactLinkInfo?.contact ?? ""
+                if contactType == ContactTypeOptions.email.serverParameter {
+                    if MFMailComposeViewController.canSendMail() {
+                        owner.sendEmail(to: contact)
+                    } else {
+                        owner.showMailErrorPopup()
+                    }
+                } else {
+                    if let url = URL(string: contact) {
+                        UIApplication.shared.open(url, options: [:])
+                    }
+                }
+            }.disposed(by: rx.disposeBag)
     }
     
     private func setNavigationBar() {
@@ -81,6 +100,28 @@ class JobOpeningDetailViewController: UIViewController, ViewModelBindableType {
     private func setScrapButtonStatus(scrapped: Bool) {
         scrapButton.imageView?.image = scrapped ? UIImage(resource: .bookmarkOnInterpace) : UIImage(resource: .bookmarkOffInterpace)
         scrapButton.titleLabel?.textColor = scrapped ? .gray_161616 : .gray_555555
+    }
+    
+    private func sendEmail(to contact: String) {
+        let composeViewController = MFMailComposeViewController()
+                composeViewController.mailComposeDelegate = self
+        composeViewController.setToRecipients([contact])
+        self.present(composeViewController, animated: true, completion: nil)
+    }
+    
+    private func showMailErrorPopup() {
+            let message = "메일을 보내려면 'Mail' 앱이 필요합니다. App Store에서 해당 앱을 복원하거나 이메일 설정을 확인하고 다시 시도해주세요."
+            let alert = UIAlertController.createTwoBlackButtonPopup(
+                title: message,
+                cancelButtonText: "취소",
+                continueButtonText: "App Store"
+            ) { _ in
+                if let url = URL(string: "https://apps.apple.com/kr/app/mail/id1108187098"), UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            }
+            
+            present(alert, animated: true)
     }
 }
 
@@ -174,5 +215,11 @@ extension JobOpeningDetailViewController: UICollectionViewDelegateFlowLayout {
         }
         
         return CGSize(width: width, height: height)
+    }
+}
+
+extension JobOpeningDetailViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
