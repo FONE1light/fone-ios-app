@@ -50,8 +50,8 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
                 let ageMin = Int(ageMinString)
                 let ageMaxString = owner.endAgeLabel.text?.replacingOccurrences(of: "세", with: "") ?? ""
                 let ageMax = Int(ageMaxString)
-                let career = owner.careerSelectionBlock.selectedItem.value as? CareerType ?? .NEWCOMER
-                let recruitConditionInfo = RecruitConditionInfo(casting: casting, domains: domains, numberOfRecruits: numberOfRecruits, gender: gender, ageMin: ageMin, ageMax: ageMax, careers: [career.rawValue]) // FIXME: 경력..
+                let careers = owner.careerSelectionBlock.selectedCareers
+                let recruitConditionInfo = RecruitConditionInfo(casting: casting, domains: domains, numberOfRecruits: numberOfRecruits, gender: gender, ageMin: ageMin, ageMax: ageMax, careers: careers)
                 owner.viewModel.validateRole(recruitConditionInfo: recruitConditionInfo)
             }.disposed(by: rx.disposeBag)
         
