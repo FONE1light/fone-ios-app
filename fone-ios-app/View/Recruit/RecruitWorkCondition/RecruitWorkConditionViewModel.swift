@@ -102,6 +102,25 @@ final class RecruitWorkConditionViewModel: CommonViewModel {
         sceneCoordinator.transition(to: .salaryTypeBottomSheet(sceneCoordinator, salaryType), using: .customModal, animated: true)
     }
     
+    func validateProjectDetails(recruitWorkConditionInfo: RecruitWorkConditionInfo) {
+        validationProvider.rx.request(.validateProjectDetails(recruitWorkConditionInfo: recruitWorkConditionInfo))
+            .mapObject(Result<String>.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(
+                onNext: { owner, response in
+                    if response.result?.isSuccess == true {
+                        owner.moveToNextStep(recruitWorkConditionInfo: recruitWorkConditionInfo)
+                    } else {
+                        response.message?.toast(positionType: .withButton)
+                    }
+                },
+                onError: { error in
+                    error.showToast(modelType: String.self, positionType: .withButton)
+                }
+            ).disposed(by: disposeBag)
+    }
+    
     func moveToNextStep(recruitWorkConditionInfo: RecruitWorkConditionInfo) {
         let recruitDetailInfoViewModel = RecruitDetailInfoViewModel(sceneCoordinator: sceneCoordinator, jobType: jobType, recruitContactLinkInfo: recruitContactLinkInfo, recruitBasicInfo: recruitBasicInfo, recruitConditionInfo: recruitConditionInfo, recruitWorkInfo: recruitWorkInfo, recruitWorkConditionInfo: recruitWorkConditionInfo)
         let recuirtDetailInfoScene = Scene.recruitDetailInfo(recruitDetailInfoViewModel)

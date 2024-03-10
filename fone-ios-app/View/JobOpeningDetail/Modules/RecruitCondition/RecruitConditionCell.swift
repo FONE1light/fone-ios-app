@@ -9,7 +9,7 @@ import UIKit
 
 struct RecruitCondition {
     let type, recruitmentEndDate, dday, casting, gender: String
-    let career, domains: [String]
+    let careers, domains: [String]
     let numberOfRecruits, ageMin, ageMax: Int
     
     init?(type: String?, recruitmentEndDate: String?, dday: String?, recruitConditionInfo: RecruitConditionInfo?) {
@@ -18,7 +18,7 @@ struct RecruitCondition {
         self.dday = dday ?? ""
         self.casting = recruitConditionInfo?.casting ?? ""
         self.gender = recruitConditionInfo?.gender ?? ""
-        self.career = recruitConditionInfo?.career ?? []
+        self.careers = recruitConditionInfo?.careers ?? []
         self.domains = recruitConditionInfo?.domains ?? []
         self.numberOfRecruits = recruitConditionInfo?.numberOfRecruits ?? 0
         self.ageMin = recruitConditionInfo?.ageMin ?? 0
@@ -50,7 +50,7 @@ class RecruitConditionCell: UICollectionViewCell {
         genderLabel.text = GenderType.getType(serverName: recruitCondition.gender)?.name
         ageLabel.text = "\(recruitCondition.ageMin) ~ \(recruitCondition.ageMax)살"
         var careerStr = ""
-        for career in recruitCondition.career {
+        for career in recruitCondition.careers {
             careerStr += "\(CareerType(rawValue: career)?.string ?? ""), "
         }
         careerLabel.text =  String(careerStr.dropLast(2))

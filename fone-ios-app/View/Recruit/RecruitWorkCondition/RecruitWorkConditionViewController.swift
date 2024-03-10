@@ -49,10 +49,11 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
         setNavigationBar()
         setUI()
         setupDatePicker()
-        getRegions()
     }
     
     func bindViewModel() {
+        getRegions()
+        
         viewModel.salaryType
             .withUnretained(self)
             .bind { owner, salaryType in
@@ -108,7 +109,7 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
                 let workingEndTime = owner.endTimeTextField.text
                 let salary = Int(owner.salaryTextField.text?.replacingOccurrences(of: ",", with: "") ?? "")
                 let recruitWorkConditionInfo = RecruitWorkConditionInfo(workingCity: workingCity, workingDistrict: workingDistrict, workingStartDate: workingStartDate, workingEndDate: workingEndDate, selectedDays: owner.selectedDays, workingStartTime: workingStartTime, workingEndTime: workingEndTime, salaryType: SalaryType.HOURLY.rawValue, salary: salary)
-                owner.viewModel.moveToNextStep(recruitWorkConditionInfo: recruitWorkConditionInfo)
+                owner.viewModel.validateProjectDetails(recruitWorkConditionInfo: recruitWorkConditionInfo)
             }.disposed(by: rx.disposeBag)
     }
     
