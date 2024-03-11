@@ -11,6 +11,12 @@ import RxSwift
 class SignoutBottomSheetViewModel: CommonViewModel {
     
     private var disposeBag = DisposeBag()
+    private let loginType: SocialLoginType?
+    
+    init(sceneCoordinator: SceneCoordinatorType, loginType: SocialLoginType?) {
+        self.loginType = loginType
+        super.init(sceneCoordinator: sceneCoordinator)
+    }
     
     func signout() {
         userInfoProvider.rx.request(.signout)

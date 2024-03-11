@@ -6,10 +6,11 @@
 //
 
 import RxSwift
+import RxRelay
 
 class MyPageViewModel: CommonViewModel {
     
-    let userInfo = PublishSubject<User?>()
+    let userInfo = BehaviorRelay<User?>(value: nil)
     
     private let disposeBag = DisposeBag()
     
@@ -21,7 +22,7 @@ class MyPageViewModel: CommonViewModel {
             .subscribe(
                 onNext: { owner, response in
                     if response.result?.isSuccess == true {
-                        owner.userInfo.onNext(response.data?.user)
+                        owner.userInfo.accept(response.data?.user)
                     } else {
                         response.message?.toast()
                     }
@@ -30,5 +31,19 @@ class MyPageViewModel: CommonViewModel {
                 error.showToast(modelType: String.self)
                 
             }).disposed(by: disposeBag)
+    }
+    
+    func logout() {
+        let loginType = SocialLoginType.getType(string: userInfo.value?.loginType)
+        let logoutBottomSheetViewModel = LogoutBottomSheetViewModel(sceneCoordinator: sceneCoordinator, loginType: loginType)
+        let scene = Scene.logoutBottomSheet(logoutBottomSheetViewModel)
+        sceneCoordinator.transition(to: scene, using: .customModal, animated: true)
+    }
+    
+    func signout() {
+        let loginType = SocialLoginType.getType(string: userInfo.value?.loginType)
+            let signoutBottomSheetViewModel = SignoutBottomSheetViewModel(sceneCoordinator: sceneCoordinator, loginType: loginType)
+        let scene = Scene.signoutBottomSheet(signoutBottomSheetViewModel)
+        sceneCoordinator.transition(to: scene, using: .customModal, animated: true)
     }
 }

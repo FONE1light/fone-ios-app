@@ -18,8 +18,12 @@ import GoogleSignIn
 import AuthenticationServices
 import Moya
 
-enum SocialLoginType: String {
+enum SocialLoginType: String, CaseIterable {
     case APPLE, GOOGLE, KAKAO
+    
+    static func getType(string: String?) -> SocialLoginType? {
+        SocialLoginType.allCases.filter { $0.rawValue == string }.first
+    }
 }
 
 final class SocialLoginManager {
@@ -107,12 +111,12 @@ final class SocialLoginManager {
                     owner.moveToSocialSignUp(accessToken: accessToken, loginType: loginType)
                 }
             }, onError: { [weak self] error in
-                guard let self = self else { return }
+                print(error.localizedDescription)
                 // TODO: 에러처리. 어떤 에러까지 signUp 화면으로 보낼지.
                 guard let statusCode = (error as? MoyaError)?.response?.statusCode else { return }
                 switch statusCode {
                 case 400...401: 
-                    self.moveToSocialSignUp(accessToken: accessToken, loginType: loginType)
+                    self?.moveToSocialSignUp(accessToken: accessToken, loginType: loginType)
                     return
                 default: break
                 }
@@ -175,6 +179,45 @@ extension SocialLoginManager {
             self.email = user?.kakaoAccount?.email ?? ""
             self.name = user?.kakaoAccount?.name ?? user?.kakaoAccount?.profile?.nickname
         }
+    }
+    
+}
+
+extension SocialLoginManager {
+    func logoutFromKakaoTalk() {
+        UserApi.shared.logout { error in
+            guard let error = error else { return }
+            print(error.localizedDescription)
+        }
+    }
+    
+    func logoutFromGoogle() {
+        GIDSignIn.sharedInstance.signOut()
+    }
+    
+    func logoutFromApple() {
+        // TODO: 구현
+        let clientID = "com.fone.filmone"
+    }
+}
+
+extension SocialLoginManager {
+    func disconnectKakaoTalkLogin() {
+        UserApi.shared.unlink {(error) in
+            if let error = error {
+                print(error)
+            } else {
+                print("unlink() success.")
+            }
+        }
+    }
+    
+    func disconnectGoogleLogin() {
+        GIDSignIn.sharedInstance.disconnect()
+    }
+    
+    func disconnectAppleLogin() {
+        
     }
 }
 
