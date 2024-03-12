@@ -112,6 +112,7 @@ final class SocialLoginManager {
                 }
             }, onError: { [weak self] error in
                 print(error.localizedDescription)
+                error.showToast(modelType: EmptyData.self)
                 // TODO: 에러처리. 어떤 에러까지 signUp 화면으로 보낼지.
                 guard let statusCode = (error as? MoyaError)?.response?.statusCode else { return }
                 switch statusCode {
@@ -120,9 +121,6 @@ final class SocialLoginManager {
                     return
                 default: break
                 }
-                
-                print(error.localizedDescription)
-                "\(error)".toast(positionType: .withButton)
             }).disposed(by: disposeBag)
     }
     

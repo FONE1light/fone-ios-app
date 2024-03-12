@@ -19,6 +19,16 @@ class LogoutBottomSheetViewModel: CommonViewModel {
     }
     
     func logout() {
+        switch loginType {
+        case .APPLE:
+            SocialLoginManager.shared.logoutFromApple()
+        case .GOOGLE:
+            SocialLoginManager.shared.logoutFromGoogle()
+        case .KAKAO:
+            SocialLoginManager.shared.logoutFromKakaoTalk()
+        default: break
+        }
+        
         userInfoProvider.rx.request(.logout)
             .mapObject(Result<String?>.self)
             .asObservable()
