@@ -14,8 +14,7 @@ class JobScrapCell: UITableViewCell {
     static let identifier = String(describing: JobScrapCell.self)
     var disposeBag = DisposeBag()
     
-    private let mainContentView = PostCellMainContentView(hasBookmark: true)
-    private var jobTag = Tag()
+    private let mainContentView = PostCellMainContentView(hasBookmark: true, hasJobTag: true)
     
     private let separator = Divider(
         width: UIScreen.main.bounds.width,
@@ -44,15 +43,13 @@ class JobScrapCell: UITableViewCell {
             dDay: jobScrap.dDay,
             genre: jobScrap.genre,
             domain: jobScrap.domain,
-            produce: jobScrap.produce
+            produce: jobScrap.produce,
+            job: jobScrap.job
         )
-        
-        guard let job = jobScrap.job else { return }
-        jobTag.setType(as: job)
     }
     
     private func setupUI() {
-        [mainContentView, jobTag, separator]
+        [mainContentView, /*jobTag,*/ separator]
             .forEach { contentView.addSubview($0) }
     }
     
@@ -60,10 +57,6 @@ class JobScrapCell: UITableViewCell {
         mainContentView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(12)
             $0.leading.trailing.equalToSuperview().inset(16)
-        }
-        
-        jobTag.snp.makeConstraints {
-            $0.trailing.bottom.equalTo(mainContentView)
         }
         
         separator.snp.makeConstraints {
@@ -77,7 +70,7 @@ class JobScrapCell: UITableViewCell {
             .asDriver()
             .do { [weak self] _ in
                 // cell의 button toggle
-                self?.mainContentView.toggleBookmarkButton()
+                _ = self?.mainContentView.toggleBookmarkButton()
             }
             .debounce(.milliseconds(500))
             .asObservable()

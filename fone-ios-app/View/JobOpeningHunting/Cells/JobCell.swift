@@ -14,7 +14,7 @@ class JobCell: UITableViewCell {
     var id: Int?
     var jobType: Job?
     
-    private let mainContentView = PostCellMainContentView(hasBookmark: true)
+    private let mainContentView = PostCellMainContentView(hasBookmark: true, hasJobTag: false)
     var disposeBag = DisposeBag()
     
     static let identifier = String(describing: JobCell.self)

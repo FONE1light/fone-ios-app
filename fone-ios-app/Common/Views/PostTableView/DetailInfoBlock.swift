@@ -80,6 +80,8 @@ class DetailInfoBlock: UIView {
             $0.leading.trailing.bottom.equalToSuperview()
         }
         
+        produceLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        
     }
     
     required init?(coder: NSCoder) {
