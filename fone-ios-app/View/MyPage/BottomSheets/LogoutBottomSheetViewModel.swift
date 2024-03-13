@@ -11,8 +11,24 @@ import RxSwift
 class LogoutBottomSheetViewModel: CommonViewModel {
     
     private var disposeBag = DisposeBag()
+    private let loginType: SocialLoginType?
+    
+    init(sceneCoordinator: SceneCoordinatorType, loginType: SocialLoginType?) {
+        self.loginType = loginType
+        super.init(sceneCoordinator: sceneCoordinator)
+    }
     
     func logout() {
+        switch loginType {
+        case .APPLE:
+            SocialLoginManager.shared.logoutFromApple()
+        case .GOOGLE:
+            SocialLoginManager.shared.logoutFromGoogle()
+        case .KAKAO:
+            SocialLoginManager.shared.logoutFromKakaoTalk()
+        default: break
+        }
+        
         userInfoProvider.rx.request(.logout)
             .mapObject(Result<String?>.self)
             .asObservable()

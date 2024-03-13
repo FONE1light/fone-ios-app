@@ -48,7 +48,6 @@ extension Token {
         }
     }
     
-    // FIXME: 테스트용이므로 실제 사용 시 재설정. 구조 변경도 고려
     var value: String {
         get {
             return UserDefaults.standard.string(forKey: self.key) ?? ""
