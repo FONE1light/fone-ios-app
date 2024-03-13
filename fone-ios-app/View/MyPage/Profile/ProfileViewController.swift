@@ -24,7 +24,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
     
     private let nicknameLabel = UILabel().then {
         $0.text = "닉네임"
-        $0.font = .font_m(15)
+        $0.font = .font_b(15)
         $0.textColor = .gray_161616
     }
     
