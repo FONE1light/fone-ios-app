@@ -76,7 +76,8 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell
         case ModuleSection.jobOpening.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as JobOpeningModule
-            cell.setModuelInfo(info: homeInfo?.jobOpening)
+            guard let viewModel else { return cell }
+            cell.setModuelInfo(info: homeInfo?.jobOpening, sceneCoordinator: viewModel.sceneCoordinator)
             return cell
         case ModuleSection.competition.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CompetitionModule
