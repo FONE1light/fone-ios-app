@@ -45,7 +45,7 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
     
     private let birthRequiredStar = UIImageView(image: UIImage(named: "star"))
     
-    private let birthTextField = DefaultTextField(placeholder: "YYYY-MM-DD", height: 44)
+    private let birthTextField = DefaultTextField(placeholder: "YYYY-MM-DD", height: 44, keyboardType: .numberPad)
     
     private let genderIrrelevantButton = CustomButton("성별무관", type: .clear).then {
         $0.isActivated = false
