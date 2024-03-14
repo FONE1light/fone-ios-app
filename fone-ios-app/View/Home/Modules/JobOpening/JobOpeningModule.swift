@@ -27,6 +27,7 @@ class JobOpeningModule: UICollectionViewCell {
                     vc.bind(viewModel: viewModel)
                     vc.hasViewModel = true
                 }
+                vc.viewModel.selectedTab.accept(.jobOpening)
             }
             tabBar.selectedIndex = 1
         }

@@ -85,7 +85,8 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell
         case ModuleSection.profile.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as ProfileModule
-            cell.setModuelInfo(info: homeInfo?.profile)
+            guard let viewModel else { return cell }
+            cell.setModuelInfo(info: homeInfo?.profile, sceneCoordinator: viewModel.sceneCoordinator)
             return cell
         default:
             return UICollectionViewCell()
