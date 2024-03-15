@@ -77,16 +77,16 @@ extension HomeViewController: UICollectionViewDataSource {
         case ModuleSection.jobOpening.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as JobOpeningModule
             guard let viewModel else { return cell }
-            cell.setModuelInfo(info: homeInfo?.jobOpening, sceneCoordinator: viewModel.sceneCoordinator)
+            cell.setModuleInfo(info: homeInfo?.jobOpening, sceneCoordinator: viewModel.sceneCoordinator)
             return cell
         case ModuleSection.competition.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CompetitionModule
-            cell.setModuelInfo(info: homeInfo?.competition)
+            cell.setModuleInfo(info: homeInfo?.competition)
             return cell
         case ModuleSection.profile.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as ProfileModule
             guard let viewModel else { return cell }
-            cell.setModuelInfo(info: homeInfo?.profile, sceneCoordinator: viewModel.sceneCoordinator)
+            cell.setModuleInfo(info: homeInfo?.profile, sceneCoordinator: viewModel.sceneCoordinator)
             return cell
         default:
             return UICollectionViewCell()

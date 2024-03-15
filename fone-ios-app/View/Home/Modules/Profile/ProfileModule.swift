@@ -39,7 +39,7 @@ class ProfileModule: UICollectionViewCell {
         collectionView.register(ProfileCell.self)
     }
     
-    func setModuelInfo(info: ProfileModuleInfo?, sceneCoordinator: SceneCoordinatorType?) {
+    func setModuleInfo(info: ProfileModuleInfo?, sceneCoordinator: SceneCoordinatorType?) {
         self.sceneCoordinator = sceneCoordinator
         guard let info else {
             showErrorView()

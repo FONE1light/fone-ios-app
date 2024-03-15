@@ -40,7 +40,7 @@ class JobOpeningModule: UICollectionViewCell {
         collectionView.register(JobOpeningCell.self)
     }
 
-    func setModuelInfo(info: JobOpeningModuleInfo?, sceneCoordinator: SceneCoordinatorType?) {
+    func setModuleInfo(info: JobOpeningModuleInfo?, sceneCoordinator: SceneCoordinatorType?) {
         self.sceneCoordinator = sceneCoordinator
         guard let info else {
             errorView.isHidden = false
