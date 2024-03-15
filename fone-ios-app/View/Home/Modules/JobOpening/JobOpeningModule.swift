@@ -9,10 +9,29 @@ import UIKit
 
 class JobOpeningModule: UICollectionViewCell {
     var jobOpeningInfo: JobOpeningModuleInfo?
+    var sceneCoordinator: SceneCoordinatorType?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var errorView: UIView!
+    
+    @IBAction func goToJobOpening(_ sender: Any) {
+        if let tabBar = window?.rootViewController as? UITabBarController {
+            let nav = tabBar.viewControllers?[1] as? UINavigationController
+            if var vc = nav?.topViewController as? JobOpeningHuntingViewController {
+                guard let sceneCoordinator = sceneCoordinator as? SceneCoordinator else { return }
+                let viewModel = JobOpeningHuntingViewModel(sceneCoordinator: sceneCoordinator)
+                sceneCoordinator.currentVC = vc
+                
+                if !vc.hasViewModel {
+                    vc.bind(viewModel: viewModel)
+                    vc.hasViewModel = true
+                }
+                vc.viewModel.selectedTab.accept(.jobOpening)
+            }
+            tabBar.selectedIndex = 1
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,7 +40,8 @@ class JobOpeningModule: UICollectionViewCell {
         collectionView.register(JobOpeningCell.self)
     }
 
-    func setModuelInfo(info: JobOpeningModuleInfo?) {
+    func setModuleInfo(info: JobOpeningModuleInfo?, sceneCoordinator: SceneCoordinatorType?) {
+        self.sceneCoordinator = sceneCoordinator
         guard let info else {
             errorView.isHidden = false
             return
