@@ -90,7 +90,7 @@ class SignUpPhoneNumberViewController: UIViewController, ViewModelBindableType {
         sendAuthNumberButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.sendAuthNumber()
+                owner.viewModel.sendAuthNumber(owner.phoneNumberTextField.text)
                 owner.showAuthNumberBlock()
         }.disposed(by: rx.disposeBag)
 

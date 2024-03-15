@@ -16,6 +16,8 @@ enum UserInfoTarget {
     case emailSignIn(emailSignInInfo: EmailSignInInfo)
     case reissueToken(tokenInfo: TokenInfo)
     case sendSMS(phoneNumber: String)
+    /// 회원가입 시 사용하는 SMS 전송
+    case sendSMSCode(code: String, phoneNumber: String)
     case emailSignUp(EmailSignUpInfo)
     case socialSignUp(SocialSignUpInfo)
     case findID(code: String, phoneNumber: String)
@@ -44,6 +46,8 @@ extension UserInfoTarget: TargetType {
             return "/api/v1/users/reissue"
         case .sendSMS:
             return "/api/v1/users/sms/send"
+        case .sendSMSCode:
+            return "/api/v1/sms/send-sms"
         case .emailSignUp:
             return "/api/v1/users/email/sign-up"
         case .socialSignUp:
@@ -69,7 +73,7 @@ extension UserInfoTarget: TargetType {
         switch self {
         case .fetchMyPage, .checkNicknameDuplication:
             return .get
-        case .emailSignIn, .reissueToken, .sendSMS, .emailSignUp, .findID, .findPassword, .socialSignIn, .socialSignUp, .logout:
+        case .emailSignIn, .reissueToken, .sendSMS, .sendSMSCode, .emailSignUp, .findID, .findPassword, .socialSignIn, .socialSignUp, .logout:
             return .post
         case .resetPassword, .modifyUserInfo, .signout:
             return .patch
@@ -87,6 +91,8 @@ extension UserInfoTarget: TargetType {
             return .requestJSONEncodable(tokenInfo)
         case .sendSMS(let phoneNumber):
             return .requestParameters(parameters: ["phoneNumber": phoneNumber], encoding: JSONEncoding.default)
+        case .sendSMSCode(let code, let phoneNumber):
+            return .requestParameters(parameters: ["code": code, "phone": phoneNumber], encoding: JSONEncoding.default)
         case .emailSignUp(let emailSignUpInfo): // TODO: 확인 후 통일
             return .requestJSONEncodable(emailSignUpInfo)
         case .socialSignUp(let socialSignUpInfo):
