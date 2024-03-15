@@ -14,8 +14,7 @@ class JobRegistrationCell: UITableViewCell {
     static let identifier = String(describing: JobRegistrationCell.self)
     var disposeBag = DisposeBag()
     
-    private let mainContentView = PostCellMainContentView(hasBookmark: false)
-    private var jobTag = Tag()
+    private let mainContentView = PostCellMainContentView(hasBookmark: false, hasJobTag: true)
     
     private let horizontalDivider = Divider(height: 1, color: .gray_D9D9D9)
         
@@ -53,17 +52,14 @@ class JobRegistrationCell: UITableViewCell {
             dDay: jobRegistration.dDay,
             genre: jobRegistration.genre,
             domain: jobRegistration.domain,
-            produce: jobRegistration.produce
+            produce: jobRegistration.produce,
+            job: jobRegistration.job
         )
-        
-        guard let job = jobRegistration.job else { return }
-        jobTag.setType(as: job)
     }
     
     private func setupUI() {
         [
             mainContentView,
-            jobTag,
             cellButton,
             horizontalDivider,
             deleteButton,
@@ -77,10 +73,6 @@ class JobRegistrationCell: UITableViewCell {
             $0.top.equalToSuperview().offset(12)
             $0.leading.equalToSuperview().offset(14)
             $0.trailing.equalToSuperview().offset(-12)
-        }
-        
-        jobTag.snp.makeConstraints {
-            $0.trailing.bottom.equalTo(mainContentView)
         }
         
         cellButton.snp.makeConstraints {
