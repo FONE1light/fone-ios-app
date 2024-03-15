@@ -13,6 +13,7 @@ import RxCocoa
 class PostCellMainContentView: UIView {
     
     var hasBookmark: Bool
+    var hasJobTag: Bool
     
     private let imageView = UIImageView().then {
         $0.cornerRadius = 5
@@ -49,10 +50,14 @@ class PostCellMainContentView: UIView {
     
     private let detailInfoBlock = DetailInfoBlock()
     
-    init(hasBookmark: Bool = true) {
+    private var jobTag = Tag()
+    
+    init(hasBookmark: Bool = true, hasJobTag: Bool = false) {
         self.hasBookmark = hasBookmark
-        super.init(frame: .zero)
+        self.hasJobTag = hasJobTag
         
+        super.init(frame: .zero)
+        jobTag.isHidden = !hasJobTag
         setupUI()
         setConstraints()
     }
@@ -67,7 +72,8 @@ class PostCellMainContentView: UIView {
         dDay: String? = nil,
         genre: String? = nil, // 배우 - 장르 중 첫 번째 값
         domain: String? = nil, // 스태프 - 분야 중 첫 번째 값
-        produce: String? = nil
+        produce: String? = nil,
+        job: Job? = nil
     ) {
         imageView.load(url: profileUrl)
         
@@ -85,6 +91,9 @@ class PostCellMainContentView: UIView {
             domainOrGenre: domain ?? genre,
             produce: produce
         )
+        
+        guard let job = job else { return }
+        jobTag.setType(as: job)
     }
     
     private func setupUI() {
@@ -92,7 +101,8 @@ class PostCellMainContentView: UIView {
         [
             imageView,
             horizontalStackView,
-            detailInfoBlock
+            detailInfoBlock,
+            jobTag
         ]
             .forEach {
                 self.addSubview($0)
@@ -130,7 +140,15 @@ class PostCellMainContentView: UIView {
         detailInfoBlock.snp.makeConstraints {
             $0.top.equalTo(horizontalStackView.snp.bottom).offset(6)
             $0.leading.equalTo(horizontalStackView)
-            $0.trailing.equalToSuperview().offset(-8)
+            if hasJobTag {
+                $0.trailing.equalTo(jobTag.snp.leading).offset(-10)
+            } else {
+                $0.trailing.equalToSuperview()
+            }
+        }
+        
+        jobTag.snp.makeConstraints {
+            $0.trailing.bottom.equalToSuperview()
         }
         
         bookmarkButton.snp.makeConstraints {
