@@ -35,6 +35,7 @@ class SignUpSelectionViewController: UIViewController, ViewModelBindableType {
         $0.setTitle("직업 선택")
         $0.setSubtitle("(추후 변경 가능)")
         $0.setSelections(Job.allCases)
+        $0.selectionLimits = 1
     }
     
     let interestSelectionBlock = SelectionBlock().then {
