@@ -199,7 +199,7 @@ extension JobOpeningDetailViewController: UICollectionViewDelegateFlowLayout {
         case JobOpeningDetailSection.image.rawValue:
             height = width / 375 * 400
         case JobOpeningDetailSection.recruitCondition.rawValue:
-            height = 244
+            height = RecruitConditionCell.cellHeight(viewModel.jobOpeningDetail?.recruitConditionInfo?.careers)
         case JobOpeningDetailSection.info.rawValue:
             height = WorkInfoCell.cellHeight(viewModel.jobOpeningDetail?.recruitWorkInfo?.logline)
         case JobOpeningDetailSection.workCondition.rawValue:
