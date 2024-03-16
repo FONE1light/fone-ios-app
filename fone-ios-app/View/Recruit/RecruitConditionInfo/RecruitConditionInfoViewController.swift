@@ -14,6 +14,9 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
     @IBOutlet weak var domainContentView: DomainContentView!
     @IBOutlet weak var domainSelectButton: UIButton!
     @IBOutlet weak var numberTextField: LabelTextField!
+    @IBOutlet weak var genderIrrelevantButton: CustomButton!
+    @IBOutlet weak var maleButton: CustomButton!
+    @IBOutlet weak var femaleButton: CustomButton!
     @IBOutlet weak var startAgeLabel: UILabel!
     @IBOutlet weak var startAgeButton: UIButton!
     @IBOutlet weak var endAgeLabel: UILabel!
@@ -23,6 +26,7 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
     
     var viewModel: RecruitConditionInfoViewModel!
     var jobType = Job.actor
+    private var gender = GenderType.IRRELEVANT
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +37,48 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
     
     func bindViewModel() {
         setUI()
+        
+        genderIrrelevantButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                guard !owner.genderIrrelevantButton.isActivated else {
+                    return
+                }
+                
+                owner.genderIrrelevantButton.isActivated = true
+                owner.maleButton.isActivated = false
+                owner.femaleButton.isActivated = false
+                
+                owner.gender = .IRRELEVANT
+            }.disposed(by: rx.disposeBag)
+        
+        maleButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.maleButton.isActivated = !owner.maleButton.isActivated
+                
+                if owner.maleButton.isActivated {
+                    owner.gender = .MAN
+                    owner.genderIrrelevantButton.isActivated = false
+                    owner.checkAllActivated()
+                } else {
+                    owner.genderIrrelevantButton.isActivated = true
+                }
+            }.disposed(by: rx.disposeBag)
+        
+        femaleButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.femaleButton.isActivated = !owner.femaleButton.isActivated
+                
+                if owner.femaleButton.isActivated {
+                    owner.gender = .WOMAN
+                    owner.genderIrrelevantButton.isActivated = false
+                    owner.checkAllActivated()
+                } else {
+                    owner.genderIrrelevantButton.isActivated = true
+                }
+            }.disposed(by: rx.disposeBag)
         
         nextButton.rx.tap
             .withUnretained(self)
@@ -45,7 +91,7 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
                     domains = domainsArray?.map { $0.serverName }
                 }
                 let numberOfRecruits = Int(owner.numberTextField.textField?.text ?? "")
-                let gender = GenderType.IRRELEVANT.serverName // FIXME
+                let gender = owner.gender.serverName
                 let ageMinString = owner.startAgeLabel.text?.replacingOccurrences(of: "세", with: "") ?? ""
                 let ageMin = Int(ageMinString)
                 let ageMaxString = owner.endAgeLabel.text?.replacingOccurrences(of: "세", with: "") ?? ""
@@ -101,6 +147,12 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
     }
     
     private func setButtons() {
+        genderIrrelevantButton.xibInit("성별무관", type: .clear)
+        maleButton.xibInit("남자", type: .auth)
+        maleButton.isActivated = false
+        femaleButton.xibInit("여자", type: .auth)
+        femaleButton.isActivated = false
+        
         nextButton.applyShadow(shadowType: .shadowBt)
         
         let startHandler: UIActionHandler = { [weak self] (action: UIAction) in
@@ -130,5 +182,14 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
                                    options: .singleSelection,
                                    children: endActions)
         endAgeButton.showsMenuAsPrimaryAction = true
+    }
+    
+    private func checkAllActivated() {
+        if maleButton.isActivated && femaleButton.isActivated {
+            genderIrrelevantButton.isActivated = true
+            maleButton.isActivated = false
+            femaleButton.isActivated = false
+            gender = .IRRELEVANT
+        }
     }
 }
