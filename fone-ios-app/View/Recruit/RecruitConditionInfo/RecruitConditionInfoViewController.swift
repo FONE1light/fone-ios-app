@@ -17,6 +17,7 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
     @IBOutlet weak var genderIrrelevantButton: CustomButton!
     @IBOutlet weak var maleButton: CustomButton!
     @IBOutlet weak var femaleButton: CustomButton!
+    @IBOutlet weak var ageClearButton: CustomButton!
     @IBOutlet weak var startAgeLabel: UILabel!
     @IBOutlet weak var startAgeButton: UIButton!
     @IBOutlet weak var endAgeLabel: UILabel!
@@ -78,6 +79,16 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
                 } else {
                     owner.genderIrrelevantButton.isActivated = true
                 }
+            }.disposed(by: rx.disposeBag)
+        
+        ageClearButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.ageClearButton.isActivated = true
+                owner.startAgeLabel.text = "시작"
+                owner.startAgeLabel.textColor = .gray_9E9E9E
+                owner.endAgeLabel.text = "끝"
+                owner.endAgeLabel.textColor = .gray_9E9E9E
             }.disposed(by: rx.disposeBag)
         
         nextButton.rx.tap
@@ -152,12 +163,14 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
         maleButton.isActivated = false
         femaleButton.xibInit("여자", type: .auth)
         femaleButton.isActivated = false
+        ageClearButton.xibInit("연령무관", type: .clear)
         
         nextButton.applyShadow(shadowType: .shadowBt)
         
         let startHandler: UIActionHandler = { [weak self] (action: UIAction) in
             self?.startAgeLabel.text = action.title
             self?.startAgeLabel.textColor = .gray_161616
+            self?.ageClearButton.isActivated = false
         }
         var startActions: [UIAction] = []
         for index in 1...80 {
@@ -172,6 +185,7 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
         let endHandler: UIActionHandler = { [weak self] (action: UIAction) in
             self?.endAgeLabel.text = action.title
             self?.endAgeLabel.textColor = .gray_161616
+            self?.ageClearButton.isActivated = false
         }
         var endActions: [UIAction] = []
         for index in 1...80 {

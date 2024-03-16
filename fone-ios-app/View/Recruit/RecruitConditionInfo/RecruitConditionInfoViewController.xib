@@ -22,6 +22,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecruitConditionInfoViewController" customModule="fone_ios_app" customModuleProvider="target">
             <connections>
+                <outlet property="ageClearButton" destination="vAg-RK-2v0" id="YPU-dc-ont"/>
                 <outlet property="careerSelectionBlock" destination="j5b-om-xiz" id="Rgx-sI-H6o"/>
                 <outlet property="castingTextField" destination="6DR-dF-PyS" id="MX7-PC-wBt"/>
                 <outlet property="domainContentView" destination="3bg-Bq-S8y" id="PQf-us-kVo"/>
@@ -235,7 +236,7 @@
                             <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAg-RK-2v0">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAg-RK-2v0" customClass="CustomButton" customModule="fone_ios_app" customModuleProvider="target">
                             <rect key="frame" x="305" y="314" width="72" height="24"/>
                             <color key="backgroundColor" red="0.21176470589999999" green="0.17254901959999999" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
