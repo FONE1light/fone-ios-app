@@ -13,12 +13,14 @@ class RecruitWorkInfoViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var titleTextField: LabelTextField!
     @IBOutlet weak var directorTextField: LabelTextField!
     @IBOutlet weak var genreCollectionView: UICollectionView!
+    @IBOutlet weak var privateButton: CustomButton!
     @IBOutlet weak var loglineTextView: LetterCountedTextView!
     @IBOutlet weak var nextButton: UIButton!
     
     var viewModel: RecruitWorkInfoViewModel!
     var jobType = Job.actor
     private let genres: [Genre] = [.ACTION, .DRAMA, .THRILLER, .MUSICAL, .ROMANCE, .FANTASY, .DOCUMENTARY, .ETC]
+    private let placeholder = "이야기의 방향을 알 수 있는 요약된 줄거리를 적어주세요."
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,22 @@ class RecruitWorkInfoViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
+        loglineTextView.textView?.rx.text
+            .withUnretained(self)
+            .bind { owner, text in
+                guard let text else {
+                    owner.privateButton.isActivated = true
+                    return
+                }
+                if text.isEmpty {
+                    owner.privateButton.isActivated = true
+                } else if text == owner.placeholder {
+                    owner.privateButton.isActivated = true
+                } else {
+                    owner.privateButton.isActivated = false
+                }
+            }.disposed(by: rx.disposeBag)
+        
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
@@ -39,7 +57,7 @@ class RecruitWorkInfoViewController: UIViewController, ViewModelBindableType {
                 let workTitle = owner.titleTextField.textField?.text
                 let director = owner.directorTextField.textField?.text
                 let genres = (owner.genreCollectionView.indexPathsForSelectedItems ?? []).map { owner.genres[$0.row].rawValue }
-                let logline = owner.loglineTextView.textView?.text
+                let logline = owner.loglineTextView.textView?.text == owner.placeholder ? nil : owner.loglineTextView.textView?.text
                 let recruitWorkInfo = RecruitWorkInfo(produce: produce, workTitle: workTitle, director: director, genres: genres, logline: logline)
                 owner.viewModel.validateProject(recruitWorkInfo: recruitWorkInfo)
             }.disposed(by: rx.disposeBag)
@@ -58,7 +76,8 @@ class RecruitWorkInfoViewController: UIViewController, ViewModelBindableType {
         produceTextField.xibInit(label: "제작", placeholder: "제작 주체(회사, 학교, 단체 등의 이름)", textFieldHeight: 44, isRequired: true, textFieldLeadingOffset: 54)
         titleTextField.xibInit(label: "제목", placeholder: "작품 제목", textFieldHeight: 44, isRequired: true, textFieldLeadingOffset: 54)
         directorTextField.xibInit(label: "연출", placeholder: "연출자 이름", textFieldHeight: 44, isRequired: true, textFieldLeadingOffset: 54)
-        loglineTextView.xibInit(placeholder: "이야기의 방향을 알 수 있는 요약된 줄거리를 적어주세요.", textViewHeight: 187, maximumLetterCount: 200)
+        privateButton.xibInit("비공개", type: .clear)
+        loglineTextView.xibInit(placeholder: placeholder, textViewHeight: 187, maximumLetterCount: 200)
         nextButton.applyShadow(shadowType: .shadowBt)
     }
 }

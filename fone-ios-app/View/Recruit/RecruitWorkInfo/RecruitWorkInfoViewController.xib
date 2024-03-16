@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -26,6 +26,7 @@
                 <outlet property="genreCollectionView" destination="Mn6-s2-lsS" id="w0t-tp-SRX"/>
                 <outlet property="loglineTextView" destination="ul0-5F-MGv" id="6f1-H8-ioY"/>
                 <outlet property="nextButton" destination="dgy-h2-A9m" id="LZW-oZ-NLd"/>
+                <outlet property="privateButton" destination="ej9-L5-rlL" id="V3o-ck-dXt"/>
                 <outlet property="produceTextField" destination="wgA-AL-TDv" id="4ow-II-1mD"/>
                 <outlet property="stepIndicator" destination="uTH-qR-VeE" id="eLK-bL-aNe"/>
                 <outlet property="titleTextField" destination="jgs-og-9BB" id="fSI-VX-P8e"/>
@@ -126,7 +127,7 @@
                                         <constraint firstAttribute="height" constant="234" id="rN7-FV-Vs8"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ej9-L5-rlL">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ej9-L5-rlL" customClass="CustomButton" customModule="fone_ios_app" customModuleProvider="target">
                                     <rect key="frame" x="305" y="522" width="72" height="24"/>
                                     <color key="backgroundColor" red="0.21176470589999999" green="0.17254901959999999" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
