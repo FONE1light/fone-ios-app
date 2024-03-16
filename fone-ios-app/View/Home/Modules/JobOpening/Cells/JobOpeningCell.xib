@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -191,7 +191,7 @@
                 <outlet property="dDayLabel" destination="lbI-oA-TAL" id="hrq-z6-ngM"/>
                 <outlet property="genderLabel" destination="yLq-pn-ynz" id="yeo-H1-1bA"/>
                 <outlet property="imageView" destination="FLV-o8-i0T" id="YId-y1-T2i"/>
-                <outlet property="nicknameLabel" destination="fZ2-8n-WD1" id="Zj8-Te-igS"/>
+                <outlet property="produceLabel" destination="fZ2-8n-WD1" id="6Fb-VM-3J1"/>
                 <outlet property="secondCategoryLabel" destination="Ok2-GB-VCV" id="k6y-pC-QNv"/>
                 <outlet property="secondCategoryView" destination="Udq-IC-rPw" id="wB1-p8-n0e"/>
                 <outlet property="titleLabel" destination="4Va-8j-bPr" id="zt3-rp-f7J"/>

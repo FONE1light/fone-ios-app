@@ -10,7 +10,7 @@ import UIKit
 class JobOpeningCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var nicknameLabel: UILabel!
+    @IBOutlet weak var produceLabel: UILabel!
     @IBOutlet weak var dDayLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var categoryView: UIView!
@@ -28,7 +28,7 @@ class JobOpeningCell: UICollectionViewCell {
         setTextColors(index: index)
         
         titleLabel.text = item.recruitBasicInfo?.title
-        nicknameLabel.text = item.userNickname
+        produceLabel.text = item.recruitWorkInfo?.produce
         dDayLabel.text = item.dday
         let gender = GenderType.getType(serverName: item.recruitConditionInfo?.gender ?? "")
         genderLabel.text = gender?.name
@@ -68,7 +68,7 @@ class JobOpeningCell: UICollectionViewCell {
     private func setTextColors(index: Int) {
         let isBlackTheme = index == 1 || index == 4
         titleLabel.textColor = isBlackTheme ? .gray_161616 : .white_FFFFFF
-        nicknameLabel.textColor = isBlackTheme ? .gray_161616 : .gray_F8F8F8
+        produceLabel.textColor = isBlackTheme ? .gray_161616 : .gray_F8F8F8
         [ dDayLabel, genderLabel, categoryLabel, secondCategoryLabel ].forEach {
             $0?.textColor = isBlackTheme ? .gray_555555 : .gray_F8F8F8
         }
