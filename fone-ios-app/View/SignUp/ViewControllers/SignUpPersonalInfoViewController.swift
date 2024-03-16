@@ -87,8 +87,11 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
         $0.textColor = .gray_9E9E9E
     }
     
-    private let profileImage = UIImageView().then {
-        $0.image = UIImage(named: "profileImage")
+    private let defaultProfileImage = UIImage(named: "profileImage")
+    private lazy var profileImage = UIImageView().then {
+        $0.image = defaultProfileImage
+        $0.clipsToBounds = true
+        $0.contentMode = .scaleAspectFill
     }
     
     private let imagePickerViewController = UIImagePickerController()
@@ -384,7 +387,7 @@ extension SignUpPersonalInfoViewController: UIImagePickerControllerDelegate {
             title: "기본 이미지로 변경",
             style: .default
         ) { _ in
-            self.setProfileImage(UIImage(named: "profileImage"))
+            self.setProfileImage(self.defaultProfileImage)
             self.viewModel.profileUrl = nil
         }
         
@@ -419,6 +422,11 @@ extension SignUpPersonalInfoViewController: UIImagePickerControllerDelegate {
     
     private func setProfileImage(_ image: UIImage?) {
         profileImage.image = image
+        if image == defaultProfileImage {
+            profileImage.cornerRadius = 0
+        } else {
+            profileImage.cornerRadius = profileImage.frame.width / 2
+        }
     }
 }
 

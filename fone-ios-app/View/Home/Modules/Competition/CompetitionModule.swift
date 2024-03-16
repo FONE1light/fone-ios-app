@@ -21,7 +21,7 @@ class CompetitionModule: UICollectionViewCell {
         collectionView.register(FilmCompetitionCell.self)
     }
 
-    func setModuelInfo(info: CompetitionModuleInfo?) {
+    func setModuleInfo(info: CompetitionModuleInfo?) {
         guard let info else {
             errorView.isHidden = false
             return
