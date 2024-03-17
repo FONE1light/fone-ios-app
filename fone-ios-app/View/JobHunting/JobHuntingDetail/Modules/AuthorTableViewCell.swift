@@ -31,6 +31,7 @@ class AuthorTableViewCell: UITableViewCell {
     private let profileImageView = UIImageView().then {
         $0.backgroundColor = .gray_D9D9D9
         $0.cornerRadius = 16
+        $0.clipsToBounds = true
     }
     
     private let nicknameLabel = UILabel().then {
