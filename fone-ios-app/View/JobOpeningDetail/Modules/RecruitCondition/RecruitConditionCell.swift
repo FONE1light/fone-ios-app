@@ -56,3 +56,15 @@ class RecruitConditionCell: UICollectionViewCell {
         careerLabel.text =  String(careerStr.dropLast(2))
     }
 }
+
+extension RecruitConditionCell {
+    static func cellHeight(_ item: [String]?) -> CGFloat {
+        guard let item = item else { return 244 }
+        var careerStr = ""
+        for career in item {
+            careerStr += "\(CareerType(rawValue: career)?.string ?? ""), "
+        }
+        let height = UILabel.getLabelHeight(width: UIScreen.main.bounds.width - 108, text: careerStr, font: UIFont.font_r(14), line: 0)
+        return height + 224
+    }
+}
