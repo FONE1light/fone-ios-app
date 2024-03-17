@@ -45,13 +45,14 @@ final class RecruitWorkConditionViewModel: CommonViewModel {
         self.recruitWorkInfo = recruitWorkInfo
     }
     
-    func getRegions(regionsLabel: UILabel, regionsButton: UIButton, districtLabel: UILabel, districtButton: UIButton) {
+    func getRegions(regionsLabel: UILabel, regionsButton: UIButton, districtLabel: UILabel, districtButton: UIButton, clearButton: CustomButton) {
         let regionHandler: UIActionHandler = { (action: UIAction) in
             regionsLabel.text = action.title
             regionsLabel.textColor = .gray_161616
-            self.getDistricts(region: action.title, label: districtLabel, button: districtButton)
+            self.getDistricts(region: action.title, label: districtLabel, button: districtButton, clearButton: clearButton)
             districtLabel.text = "구"
             districtLabel.textColor = .gray_9E9E9E
+            clearButton.isActivated = false
         }
         jobOpeningInfoProvider.rx.request(.getRegions)
             .mapObject(Result<RegionsModel>.self)
@@ -73,10 +74,11 @@ final class RecruitWorkConditionViewModel: CommonViewModel {
             }).disposed(by: disposeBag)
     }
     
-    func getDistricts(region: String, label: UILabel, button: UIButton) {
+    func getDistricts(region: String, label: UILabel, button: UIButton, clearButton: CustomButton) {
         let districtHandler: UIActionHandler = { (action: UIAction) in
             label.text = action.title
             label.textColor = .gray_161616
+            clearButton.isActivated = false
         }
         jobOpeningInfoProvider.rx.request(.getDistricts(region: region))
             .mapObject(Result<DistrictsModel>.self)
