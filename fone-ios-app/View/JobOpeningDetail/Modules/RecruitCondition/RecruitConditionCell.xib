@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -118,7 +118,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 ~ 30살" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6r-kY-nnY">
-                                <rect key="frame" x="92" y="167.66666666666666" width="61.666666666666657" height="17"/>
+                                <rect key="frame" x="92" y="166" width="61.666666666666657" height="20"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                 <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -132,8 +132,8 @@
                                 <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="경력무관" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7a-d0-hBg">
-                                <rect key="frame" x="92" y="197.66666666666666" width="48.666666666666657" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="경력무관" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7a-d0-hBg">
+                                <rect key="frame" x="92" y="196" width="267" height="17"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                 <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -157,13 +157,12 @@
                             <constraint firstItem="ALl-Or-QJd" firstAttribute="leading" secondItem="Kz2-ek-0WE" secondAttribute="leading" constant="92" id="1Hw-kA-fZj"/>
                             <constraint firstItem="abQ-pT-dx4" firstAttribute="leading" secondItem="Kz2-ek-0WE" secondAttribute="leading" constant="16" id="49n-4w-aa7"/>
                             <constraint firstItem="xiR-Tz-Y7r" firstAttribute="leading" secondItem="Kz2-ek-0WE" secondAttribute="leading" constant="16" id="6jc-5W-uFF"/>
-                            <constraint firstItem="O7a-d0-hBg" firstAttribute="centerY" secondItem="BR8-My-L0d" secondAttribute="centerY" id="8gr-Kt-hLV"/>
                             <constraint firstItem="cO8-oo-iSD" firstAttribute="centerY" secondItem="ALl-Or-QJd" secondAttribute="centerY" id="9Tj-R8-fRS"/>
                             <constraint firstItem="LKg-D3-JaR" firstAttribute="centerY" secondItem="abQ-pT-dx4" secondAttribute="centerY" id="EG4-qz-axx"/>
                             <constraint firstAttribute="bottom" secondItem="Ufy-if-LT4" secondAttribute="bottom" id="Gud-gA-xzZ"/>
                             <constraint firstItem="cO8-oo-iSD" firstAttribute="leading" secondItem="ALl-Or-QJd" secondAttribute="trailing" constant="6" id="Hff-1q-Haq"/>
+                            <constraint firstAttribute="trailing" secondItem="O7a-d0-hBg" secondAttribute="trailing" constant="16" id="ICz-Dr-oHz"/>
                             <constraint firstItem="zNb-bt-Kca" firstAttribute="leading" secondItem="LKg-D3-JaR" secondAttribute="leading" id="LMQ-V1-MrB"/>
-                            <constraint firstItem="Ufy-if-LT4" firstAttribute="top" secondItem="BR8-My-L0d" secondAttribute="bottom" constant="20" id="LYL-lz-RDw"/>
                             <constraint firstItem="V6r-kY-nnY" firstAttribute="centerY" secondItem="ThU-Ng-Mqd" secondAttribute="centerY" id="MLo-Bb-DPz"/>
                             <constraint firstItem="xiR-Tz-Y7r" firstAttribute="top" secondItem="JKb-Wy-gOA" secondAttribute="bottom" constant="10" id="OvJ-pj-w97"/>
                             <constraint firstItem="ThU-Ng-Mqd" firstAttribute="leading" secondItem="Kz2-ek-0WE" secondAttribute="leading" constant="16" id="Pph-Vo-7Lb"/>
@@ -177,6 +176,7 @@
                             <constraint firstItem="JKb-Wy-gOA" firstAttribute="top" secondItem="abQ-pT-dx4" secondAttribute="bottom" constant="10" id="b45-LG-P0l"/>
                             <constraint firstAttribute="trailing" secondItem="LKg-D3-JaR" secondAttribute="trailing" constant="16" id="cGl-Jh-dNw"/>
                             <constraint firstItem="Ph0-xk-2Q7" firstAttribute="top" secondItem="VBz-lw-h15" secondAttribute="bottom" constant="8" id="cjc-8c-HTs"/>
+                            <constraint firstItem="O7a-d0-hBg" firstAttribute="top" secondItem="BR8-My-L0d" secondAttribute="top" id="djL-S1-nn4"/>
                             <constraint firstItem="LKg-D3-JaR" firstAttribute="leading" secondItem="Kz2-ek-0WE" secondAttribute="leading" constant="92" id="hQK-lE-Vrt"/>
                             <constraint firstItem="VBz-lw-h15" firstAttribute="leading" secondItem="Kz2-ek-0WE" secondAttribute="leading" constant="16" id="mL6-QQ-cza"/>
                             <constraint firstItem="8jd-WL-xua" firstAttribute="centerY" secondItem="ALl-Or-QJd" secondAttribute="centerY" id="n3W-Px-N3T"/>
@@ -186,6 +186,7 @@
                             <constraint firstItem="zNb-bt-Kca" firstAttribute="centerY" secondItem="JKb-Wy-gOA" secondAttribute="centerY" id="qzV-iu-edU"/>
                             <constraint firstItem="BR8-My-L0d" firstAttribute="leading" secondItem="Kz2-ek-0WE" secondAttribute="leading" constant="16" id="u8L-A6-OXc"/>
                             <constraint firstItem="fNG-jx-ae4" firstAttribute="centerY" secondItem="xiR-Tz-Y7r" secondAttribute="centerY" id="w4k-3r-PP9"/>
+                            <constraint firstItem="O7a-d0-hBg" firstAttribute="top" secondItem="V6r-kY-nnY" secondAttribute="bottom" constant="10" id="wEh-MX-RFq"/>
                             <constraint firstItem="fNG-jx-ae4" firstAttribute="leading" secondItem="zNb-bt-Kca" secondAttribute="leading" id="yOa-s1-fMP"/>
                             <constraint firstItem="Ufy-if-LT4" firstAttribute="leading" secondItem="Kz2-ek-0WE" secondAttribute="leading" id="zOZ-zB-ubi"/>
                             <constraint firstItem="VBz-lw-h15" firstAttribute="top" secondItem="Kz2-ek-0WE" secondAttribute="top" constant="20" id="zaR-hF-Fjo"/>
