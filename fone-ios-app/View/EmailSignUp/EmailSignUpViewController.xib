@@ -86,7 +86,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="GJM-EK-5ux">
-                    <rect key="frame" x="16" y="209.66666666666669" width="361" height="150.66666666666669"/>
+                    <rect key="frame" x="16" y="209.66666666666666" width="361" height="40"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FSC-rt-K52">
                             <rect key="frame" x="0.0" y="0.0" width="361" height="40"/>
@@ -152,19 +152,19 @@
                                 <constraint firstAttribute="trailing" secondItem="YbX-xq-Wpb" secondAttribute="trailing" id="qrO-1S-1D6"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RXJ-ZO-JGD">
-                            <rect key="frame" x="0.0" y="62.000000000000036" width="361" height="88.666666666666686"/>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RXJ-ZO-JGD">
+                            <rect key="frame" x="0.0" y="0.0" width="361" height="27"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eVl-tx-u98">
-                                    <rect key="frame" x="0.0" y="0.0" width="264" height="42.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="264" height="24"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="인증번호 6자리" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GAV-Aa-PWw">
-                                            <rect key="frame" x="10" y="12.000000000000002" width="244" height="18.666666666666671"/>
+                                            <rect key="frame" x="10" y="12" width="244" height="0.0"/>
                                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="03:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGy-eY-RTP">
-                                            <rect key="frame" x="222" y="14.333333333333314" width="32" height="14.333333333333336"/>
+                                            <rect key="frame" x="222" y="5" width="32" height="14.333333333333336"/>
                                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                             <color key="textColor" red="1" green="0.34509803919999998" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -186,7 +186,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szz-kg-4Wj">
-                                    <rect key="frame" x="268" y="1.3333333333333144" width="93" height="40"/>
+                                    <rect key="frame" x="268" y="-8" width="93" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="MfM-ZA-afx"/>
                                         <constraint firstAttribute="width" constant="93" id="O0e-g4-nCa"/>
@@ -210,7 +210,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ay-jL-v12">
-                                    <rect key="frame" x="0.0" y="45.666666666666629" width="361" height="43"/>
+                                    <rect key="frame" x="0.0" y="27" width="361" height="0.0"/>
                                     <string key="text">인증번호를 발송했습니다. (유효시간 3분)
 인증번호가 오지 않는다면, 이메일 아이디 주소가 정확한지 확인, 스팸 메일함을 확인해 주세요.</string>
                                     <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
@@ -239,13 +239,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="비밀번호" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBI-mQ-WEa">
-                    <rect key="frame" x="16" y="400.33333333333331" width="52" height="18"/>
+                    <rect key="frame" x="16" y="289.66666666666669" width="52" height="18"/>
                     <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyT-rt-ESj">
-                    <rect key="frame" x="16" y="426.33333333333331" width="361" height="40"/>
+                    <rect key="frame" x="16" y="315.66666666666669" width="361" height="40"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="비밀번호를 입력해 주세요 " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bdG-Hs-wTu">
                             <rect key="frame" x="10" y="12" width="341" height="16"/>
@@ -282,16 +282,16 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8자 이상, 영문 대 소문자, 숫자, 특수문자를 사용하세요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oe5-Wu-aLL">
-                    <rect key="frame" x="16" y="469.33333333333331" width="258.66666666666669" height="14.333333333333314"/>
+                    <rect key="frame" x="16" y="358.66666666666669" width="258.66666666666669" height="14.333333333333314"/>
                     <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                     <color key="textColor" red="1" green="0.34509803919999998" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9bn-Rh-A8D">
-                    <rect key="frame" x="16" y="500.33333333333326" width="361" height="40"/>
+                    <rect key="frame" x="16" y="389.66666666666669" width="361" height="40"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="비밀번호를 한번 더 입력해 주세요 " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rd7-tL-Wlr">
-                            <rect key="frame" x="10" y="12.000000000000057" width="341" height="16"/>
+                            <rect key="frame" x="10" y="12" width="341" height="16"/>
                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                             <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             <connections>
@@ -325,7 +325,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="입력하신 비밀번호와 동일하지 않습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kuc-3f-VCq">
-                    <rect key="frame" x="16" y="543.33333333333337" width="188.66666666666666" height="14.333333333333371"/>
+                    <rect key="frame" x="16" y="432.66666666666669" width="188.66666666666666" height="14.333333333333314"/>
                     <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                     <color key="textColor" red="1" green="0.34509803919999998" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>

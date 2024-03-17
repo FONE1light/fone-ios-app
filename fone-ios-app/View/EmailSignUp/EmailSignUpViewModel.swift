@@ -64,6 +64,8 @@ class EmailSignUpViewModel: CommonViewModel {
                 } else {
                     response.message?.toast(positionType: .withBottomSheet)
                 }
+            }, onError: { error in
+                error.showToast(modelType: String.self, positionType: .withBottomSheet)
             }).disposed(by: disposeBag)
     }
     

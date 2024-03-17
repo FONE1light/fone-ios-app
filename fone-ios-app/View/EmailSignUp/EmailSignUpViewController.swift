@@ -72,6 +72,14 @@ class EmailSignUpViewController: UIViewController, ViewModelBindableType {
                 }
             }).disposed(by: rx.disposeBag)
         
+        authCodeTextField.rx.text.orEmpty
+            .map { $0.count == 6 }
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, isEnabled in
+                owner.checkAuthCodeButton.setMediumButtonEnabled(isEnabled: isEnabled)
+            }).disposed(by: rx.disposeBag)
+        
         checkAuthCodeButton.rx.tap
             .withUnretained(self)
             .subscribe(onNext: { owner, _ in
