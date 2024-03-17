@@ -13,6 +13,7 @@ enum SalaryType: String {
     case DAILY
     case HOURLY
     case PER_SESSION
+    case LATER_ON
     
     var string: String {
         switch self {
@@ -26,6 +27,8 @@ enum SalaryType: String {
             return "시급"
         case .PER_SESSION:
             return "회차"
+        case .LATER_ON:
+            return "추후협의"
         }
     }
 }

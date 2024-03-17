@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,7 +22,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecruitWorkConditionViewController" customModule="fone_ios_app" customModuleProvider="target">
             <connections>
+                <outlet property="dateClearButton" destination="Ius-ps-ff3" id="yD4-aN-Bnq"/>
                 <outlet property="districtButton" destination="w9K-b5-nvO" id="Dya-g2-jIU"/>
+                <outlet property="districtClearButton" destination="moR-ZX-iR0" id="KXi-OB-Obl"/>
                 <outlet property="districtLabel" destination="4sH-Eq-cYs" id="2Vn-6T-kgI"/>
                 <outlet property="endDateButton" destination="4CG-T2-grr" id="Zfi-Pg-KiX"/>
                 <outlet property="endDateLabel" destination="xRt-3G-WmM" id="eUx-DU-G08"/>
@@ -30,6 +32,7 @@
                 <outlet property="nextButton" destination="hGW-ns-pwr" id="t0X-v6-oGZ"/>
                 <outlet property="regionsButton" destination="wUg-oL-0FA" id="wwE-qe-9QP"/>
                 <outlet property="regionsLabel" destination="Y0h-0w-v2d" id="OFA-U3-oHQ"/>
+                <outlet property="salaryClearButton" destination="vJJ-fU-8ds" id="e6S-Z8-vFc"/>
                 <outlet property="salaryTextField" destination="K7S-YA-bwT" id="f7G-Ee-IpM"/>
                 <outlet property="salaryTypeButton" destination="EC9-gj-8n9" id="ygi-TQ-APG"/>
                 <outlet property="salaryTypeTextField" destination="YGC-rM-lfM" id="9zF-qY-2gy"/>
@@ -37,7 +40,10 @@
                 <outlet property="startDateLabel" destination="w1z-0a-dBz" id="ktO-YT-z06"/>
                 <outlet property="startTimeTextField" destination="SZL-xe-CjJ" id="xBV-Bl-ORh"/>
                 <outlet property="stepIndicator" destination="Xx1-4W-Wda" id="bQV-zd-qLG"/>
+                <outlet property="timeClearButton" destination="Wta-bv-WiL" id="q6y-1l-tE7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="weekDaysClearButton" destination="hlc-Aq-pCl" id="4VA-9L-CVU"/>
+                <outlet property="weekDaysStackView" destination="U6z-mc-bgj" id="a9T-us-te1"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -156,7 +162,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moR-ZX-iR0">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moR-ZX-iR0" customClass="CustomButton" customModule="fone_ios_app" customModuleProvider="target">
                                     <rect key="frame" x="326" y="94" width="51" height="24"/>
                                     <color key="backgroundColor" red="0.21176470589999999" green="0.17254901959999999" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
@@ -269,7 +275,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ius-ps-ff3">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ius-ps-ff3" customClass="CustomButton" customModule="fone_ios_app" customModuleProvider="target">
                                     <rect key="frame" x="326" y="198" width="51" height="24"/>
                                     <color key="backgroundColor" red="0.21176470589999999" green="0.17254901959999999" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
@@ -297,7 +303,7 @@
                                     <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlc-Aq-pCl">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlc-Aq-pCl" customClass="CustomButton" customModule="fone_ios_app" customModuleProvider="target">
                                     <rect key="frame" x="305" y="302" width="72" height="24"/>
                                     <color key="backgroundColor" red="0.21176470589999999" green="0.17254901959999999" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
@@ -466,7 +472,7 @@
                                     <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wta-bv-WiL">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wta-bv-WiL" customClass="CustomButton" customModule="fone_ios_app" customModuleProvider="target">
                                     <rect key="frame" x="305" y="417" width="72" height="24"/>
                                     <color key="backgroundColor" red="0.21176470589999999" green="0.17254901959999999" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
@@ -636,7 +642,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vJJ-fU-8ds">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vJJ-fU-8ds" customClass="CustomButton" customModule="fone_ios_app" customModuleProvider="target">
                                     <rect key="frame" x="326" y="521" width="51" height="24"/>
                                     <color key="backgroundColor" red="0.21176470589999999" green="0.17254901959999999" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
