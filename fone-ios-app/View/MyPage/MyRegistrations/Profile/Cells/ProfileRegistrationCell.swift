@@ -29,6 +29,8 @@ class ProfileRegistrationCell: UITableViewCell {
     private let image = UIImageView().then {
         $0.backgroundColor = .gray_9E9E9E
         $0.cornerRadius = 10
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
     }
     
     private let nameLabel = UILabel().then {
@@ -72,6 +74,7 @@ class ProfileRegistrationCell: UITableViewCell {
     }
     
     func configure(_ profile: Profile) {
+        image.load(url: profile.imageUrl)
         nameLabel.text = profile.name
         jobLabel.text = profile.job?.name
         birthYearLabel.text = "\(profile.birthYear ?? "")년생"
