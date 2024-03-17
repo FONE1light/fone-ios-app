@@ -19,6 +19,7 @@ class ProfileListTableViewCell: UITableViewCell {
     private let titleLabel = UILabel().then {
         $0.font = .font_b(19)
         $0.textColor = .gray_161616
+        $0.numberOfLines = 0
     }
     
     private let imageStackView = UIStackView().then {
