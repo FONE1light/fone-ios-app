@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,10 +22,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EmailSignUpViewController" customModule="fone_ios_app" customModuleProvider="target">
             <connections>
+                <outlet property="authCodeTextField" destination="GAV-Aa-PWw" id="3IC-GE-sIC"/>
+                <outlet property="checkAuthCodeButton" destination="szz-kg-4Wj" id="8Ce-Z8-2LT"/>
                 <outlet property="confirmPasswordContainerView" destination="9bn-Rh-A8D" id="fdf-1H-BGg"/>
                 <outlet property="confirmPasswordErrorLabel" destination="Kuc-3f-VCq" id="oaR-uB-4Xu"/>
                 <outlet property="confirmPasswordEyeButton" destination="0t6-AJ-d9V" id="tBb-pv-oPn"/>
                 <outlet property="confirmPasswordTextField" destination="rd7-tL-Wlr" id="AEO-eu-mK8"/>
+                <outlet property="emailAuthCodeView" destination="RXJ-ZO-JGD" id="DKW-if-brz"/>
                 <outlet property="emailConfirmButton" destination="YbX-xq-Wpb" id="S7q-ae-JOs"/>
                 <outlet property="emailContainerView" destination="eJz-7E-be2" id="kyJ-Ls-sGP"/>
                 <outlet property="emailErrorLabel" destination="THS-rq-43i" id="8EO-zQ-vBF"/>
@@ -36,6 +39,7 @@
                 <outlet property="passwordErrorLabel" destination="Oe5-Wu-aLL" id="QKc-hk-L4L"/>
                 <outlet property="passwordEyeButton" destination="m96-uJ-hxH" id="OZU-O5-Zby"/>
                 <outlet property="passwordTextField" destination="bdG-Hs-wTu" id="aLz-mp-Hqx"/>
+                <outlet property="timeLabel" destination="OGy-eY-RTP" id="skk-HJ-3mW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -51,10 +55,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NcP-WA-mXW">
-                    <rect key="frame" x="16" y="101" width="361" height="42"/>
+                    <rect key="frame" x="16" y="101" width="361" height="42.666666666666657"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="실명을 입력해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2SM-wY-NH4">
-                            <rect key="frame" x="10" y="12" width="341" height="18"/>
+                            <rect key="frame" x="10" y="12.000000000000002" width="341" height="18.666666666666671"/>
                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
@@ -76,74 +80,172 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이메일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHb-EQ-dja">
-                    <rect key="frame" x="16" y="183" width="39" height="18"/>
+                    <rect key="frame" x="16" y="183.66666666666666" width="39" height="18"/>
                     <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eJz-7E-be2">
-                    <rect key="frame" x="16" y="209" width="275" height="42"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="GJM-EK-5ux">
+                    <rect key="frame" x="16" y="209.66666666666669" width="361" height="150.66666666666669"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="이메일 주소를 입력해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P4n-WZ-4ZX">
-                            <rect key="frame" x="10" y="12" width="255" height="18"/>
-                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
-                            <connections>
-                                <outlet property="delegate" destination="-1" id="E29-TQ-0HB"/>
-                            </connections>
-                        </textField>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FSC-rt-K52">
+                            <rect key="frame" x="0.0" y="0.0" width="361" height="40"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eJz-7E-be2">
+                                    <rect key="frame" x="0.0" y="0.0" width="264" height="40"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="이메일 주소를 입력해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P4n-WZ-4ZX">
+                                            <rect key="frame" x="10" y="12" width="244" height="16"/>
+                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="E29-TQ-0HB"/>
+                                            </connections>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="P4n-WZ-4ZX" secondAttribute="bottom" constant="12" id="hKU-b4-Gmo"/>
+                                        <constraint firstItem="P4n-WZ-4ZX" firstAttribute="top" secondItem="eJz-7E-be2" secondAttribute="top" constant="12" id="i0f-oA-nYf"/>
+                                        <constraint firstAttribute="trailing" secondItem="P4n-WZ-4ZX" secondAttribute="trailing" constant="10" id="l12-rj-NWK"/>
+                                        <constraint firstItem="P4n-WZ-4ZX" firstAttribute="leading" secondItem="eJz-7E-be2" secondAttribute="leading" constant="10" id="wsm-K9-Y6C"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <button opaque="NO" tag="3" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YbX-xq-Wpb">
+                                    <rect key="frame" x="268" y="0.0" width="93" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="bDX-vu-dFN"/>
+                                        <constraint firstAttribute="width" constant="93" id="o0r-Kk-SmO"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                    <inset key="titleEdgeInsets" minX="14" minY="13" maxX="14" maxY="13"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="중복확인">
+                                        <color key="titleColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                            <real key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                            <color key="value" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="eJz-7E-be2" secondAttribute="bottom" id="07Y-TP-cXl"/>
+                                <constraint firstItem="YbX-xq-Wpb" firstAttribute="leading" secondItem="eJz-7E-be2" secondAttribute="trailing" constant="4" id="FRa-JJ-pWP"/>
+                                <constraint firstItem="YbX-xq-Wpb" firstAttribute="top" secondItem="FSC-rt-K52" secondAttribute="top" id="NCV-qr-0ne"/>
+                                <constraint firstItem="eJz-7E-be2" firstAttribute="leading" secondItem="FSC-rt-K52" secondAttribute="leading" id="Oyt-KB-Od9"/>
+                                <constraint firstAttribute="bottom" secondItem="YbX-xq-Wpb" secondAttribute="bottom" id="iEa-GS-rVj"/>
+                                <constraint firstItem="eJz-7E-be2" firstAttribute="top" secondItem="FSC-rt-K52" secondAttribute="top" id="oql-jN-A2D"/>
+                                <constraint firstAttribute="trailing" secondItem="YbX-xq-Wpb" secondAttribute="trailing" id="qrO-1S-1D6"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RXJ-ZO-JGD">
+                            <rect key="frame" x="0.0" y="62.000000000000036" width="361" height="88.666666666666686"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eVl-tx-u98">
+                                    <rect key="frame" x="0.0" y="0.0" width="264" height="42.666666666666664"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="인증번호 6자리" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GAV-Aa-PWw">
+                                            <rect key="frame" x="10" y="12.000000000000002" width="244" height="18.666666666666671"/>
+                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="03:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGy-eY-RTP">
+                                            <rect key="frame" x="222" y="14.333333333333314" width="32" height="14.333333333333336"/>
+                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                            <color key="textColor" red="1" green="0.34509803919999998" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="OGy-eY-RTP" firstAttribute="centerY" secondItem="eVl-tx-u98" secondAttribute="centerY" id="L1b-CA-UTd"/>
+                                        <constraint firstAttribute="trailing" secondItem="OGy-eY-RTP" secondAttribute="trailing" constant="10" id="P46-hG-Ipy"/>
+                                        <constraint firstAttribute="trailing" secondItem="GAV-Aa-PWw" secondAttribute="trailing" constant="10" id="WvD-31-lSM"/>
+                                        <constraint firstItem="GAV-Aa-PWw" firstAttribute="top" secondItem="eVl-tx-u98" secondAttribute="top" constant="12" id="g1f-N6-Y3z"/>
+                                        <constraint firstItem="GAV-Aa-PWw" firstAttribute="leading" secondItem="eVl-tx-u98" secondAttribute="leading" constant="10" id="mlY-HR-NbX"/>
+                                        <constraint firstAttribute="bottom" secondItem="GAV-Aa-PWw" secondAttribute="bottom" constant="12" id="sAf-ZH-Ha3"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szz-kg-4Wj">
+                                    <rect key="frame" x="268" y="1.3333333333333144" width="93" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="MfM-ZA-afx"/>
+                                        <constraint firstAttribute="width" constant="93" id="O0e-g4-nCa"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                    <inset key="titleEdgeInsets" minX="8" minY="13" maxX="8" maxY="13"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="인증번호 확인">
+                                        <color key="titleColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                            <real key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                            <color key="value" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ay-jL-v12">
+                                    <rect key="frame" x="0.0" y="45.666666666666629" width="361" height="43"/>
+                                    <string key="text">인증번호를 발송했습니다. (유효시간 3분)
+인증번호가 오지 않는다면, 이메일 아이디 주소가 정확한지 확인, 스팸 메일함을 확인해 주세요.</string>
+                                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                    <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="szz-kg-4Wj" firstAttribute="centerY" secondItem="eVl-tx-u98" secondAttribute="centerY" id="0U1-oO-fIQ"/>
+                                <constraint firstAttribute="bottom" secondItem="5ay-jL-v12" secondAttribute="bottom" id="IEx-sP-0Ax"/>
+                                <constraint firstItem="5ay-jL-v12" firstAttribute="top" secondItem="eVl-tx-u98" secondAttribute="bottom" constant="3" id="IY2-Rj-PfJ"/>
+                                <constraint firstItem="eVl-tx-u98" firstAttribute="top" secondItem="RXJ-ZO-JGD" secondAttribute="top" id="J8n-8F-SO7"/>
+                                <constraint firstItem="5ay-jL-v12" firstAttribute="leading" secondItem="RXJ-ZO-JGD" secondAttribute="leading" id="K4V-hQ-1V3"/>
+                                <constraint firstItem="szz-kg-4Wj" firstAttribute="leading" secondItem="eVl-tx-u98" secondAttribute="trailing" constant="4" id="bCJ-JG-NFT"/>
+                                <constraint firstAttribute="trailing" secondItem="5ay-jL-v12" secondAttribute="trailing" id="ky5-mQ-sy9"/>
+                                <constraint firstItem="eVl-tx-u98" firstAttribute="leading" secondItem="RXJ-ZO-JGD" secondAttribute="leading" id="uQR-3m-lgG"/>
+                                <constraint firstAttribute="trailing" secondItem="szz-kg-4Wj" secondAttribute="trailing" id="zQ7-Pf-vqS"/>
+                            </constraints>
+                        </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="P4n-WZ-4ZX" secondAttribute="bottom" constant="12" id="hKU-b4-Gmo"/>
-                        <constraint firstItem="P4n-WZ-4ZX" firstAttribute="top" secondItem="eJz-7E-be2" secondAttribute="top" constant="12" id="i0f-oA-nYf"/>
-                        <constraint firstAttribute="trailing" secondItem="P4n-WZ-4ZX" secondAttribute="trailing" constant="10" id="l12-rj-NWK"/>
-                        <constraint firstItem="P4n-WZ-4ZX" firstAttribute="leading" secondItem="eJz-7E-be2" secondAttribute="leading" constant="10" id="wsm-K9-Y6C"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="5"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </view>
+                </stackView>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이메일 형식이 유효하지 않습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="THS-rq-43i">
-                    <rect key="frame" x="16" y="254" width="157.33333333333334" height="14"/>
+                    <rect key="frame" x="16" y="252.66666666666666" width="157.33333333333334" height="14.333333333333343"/>
                     <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                     <color key="textColor" red="1" green="0.34509803919999998" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" tag="3" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YbX-xq-Wpb">
-                    <rect key="frame" x="295" y="210" width="82" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="bDX-vu-dFN"/>
-                        <constraint firstAttribute="width" constant="82" id="o0r-Kk-SmO"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
-                    <inset key="titleEdgeInsets" minX="14" minY="13" maxX="14" maxY="13"/>
-                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="중복확인">
-                        <color key="titleColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                            <real key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="5"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                            <color key="value" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="비밀번호" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBI-mQ-WEa">
-                    <rect key="frame" x="16" y="291" width="52" height="18"/>
+                    <rect key="frame" x="16" y="400.33333333333331" width="52" height="18"/>
                     <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyT-rt-ESj">
-                    <rect key="frame" x="16" y="317" width="361" height="40"/>
+                    <rect key="frame" x="16" y="426.33333333333331" width="361" height="40"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="비밀번호를 입력해 주세요 " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bdG-Hs-wTu">
                             <rect key="frame" x="10" y="12" width="341" height="16"/>
@@ -180,16 +282,16 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8자 이상, 영문 대 소문자, 숫자, 특수문자를 사용하세요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oe5-Wu-aLL">
-                    <rect key="frame" x="16" y="360" width="258.66666666666669" height="14"/>
+                    <rect key="frame" x="16" y="469.33333333333331" width="258.66666666666669" height="14.333333333333314"/>
                     <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                     <color key="textColor" red="1" green="0.34509803919999998" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9bn-Rh-A8D">
-                    <rect key="frame" x="16" y="391" width="361" height="40"/>
+                    <rect key="frame" x="16" y="500.33333333333326" width="361" height="40"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="비밀번호를 한번 더 입력해 주세요 " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rd7-tL-Wlr">
-                            <rect key="frame" x="10" y="12" width="341" height="16"/>
+                            <rect key="frame" x="10" y="12.000000000000057" width="341" height="16"/>
                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                             <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             <connections>
@@ -223,7 +325,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="입력하신 비밀번호와 동일하지 않습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kuc-3f-VCq">
-                    <rect key="frame" x="16" y="434" width="188.66666666666666" height="14"/>
+                    <rect key="frame" x="16" y="543.33333333333337" width="188.66666666666666" height="14.333333333333371"/>
                     <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                     <color key="textColor" red="1" green="0.34509803919999998" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -249,35 +351,33 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="QBI-mQ-WEa" firstAttribute="top" secondItem="GJM-EK-5ux" secondAttribute="bottom" constant="40" id="2K9-9n-rnN"/>
                 <constraint firstItem="YQY-q6-m7k" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="2mY-Yi-3jP"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fyT-rt-ESj" secondAttribute="trailing" constant="16" id="3z6-x8-x6v"/>
                 <constraint firstItem="Oe5-Wu-aLL" firstAttribute="top" secondItem="fyT-rt-ESj" secondAttribute="bottom" constant="3" id="4sH-qP-vMk"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="YQY-q6-m7k" secondAttribute="trailing" constant="16" id="5fj-xr-FsB"/>
                 <constraint firstItem="Zxs-aY-XXR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="64z-0X-Yyz"/>
                 <constraint firstItem="UHb-EQ-dja" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="7i8-l0-ifM"/>
-                <constraint firstItem="YbX-xq-Wpb" firstAttribute="leading" secondItem="eJz-7E-be2" secondAttribute="trailing" constant="4" id="7ok-Ii-DuN"/>
+                <constraint firstItem="GJM-EK-5ux" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Agx-0c-dNn"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="YQY-q6-m7k" secondAttribute="bottom" constant="38" id="CJK-T7-smy"/>
                 <constraint firstItem="Oe5-Wu-aLL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="DvI-si-Ac4"/>
                 <constraint firstItem="Kuc-3f-VCq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="ESm-aZ-9Kf"/>
-                <constraint firstItem="QBI-mQ-WEa" firstAttribute="top" secondItem="eJz-7E-be2" secondAttribute="bottom" constant="40" id="GV5-iB-aAs"/>
                 <constraint firstItem="9bn-Rh-A8D" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="HT4-nN-cg7"/>
-                <constraint firstItem="YbX-xq-Wpb" firstAttribute="centerY" secondItem="eJz-7E-be2" secondAttribute="centerY" id="IrQ-dW-ULa"/>
-                <constraint firstItem="eJz-7E-be2" firstAttribute="top" secondItem="UHb-EQ-dja" secondAttribute="bottom" constant="8" id="JQN-lx-qDw"/>
+                <constraint firstItem="THS-rq-43i" firstAttribute="top" secondItem="eJz-7E-be2" secondAttribute="bottom" constant="3" id="O9W-A0-SxA"/>
                 <constraint firstItem="9bn-Rh-A8D" firstAttribute="top" secondItem="fyT-rt-ESj" secondAttribute="bottom" constant="34" id="Qga-SE-U8B"/>
                 <constraint firstItem="UHb-EQ-dja" firstAttribute="top" secondItem="NcP-WA-mXW" secondAttribute="bottom" constant="40" id="UZn-xW-VRL"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9bn-Rh-A8D" secondAttribute="trailing" constant="16" id="Uc6-dt-GGI"/>
                 <constraint firstItem="NcP-WA-mXW" firstAttribute="top" secondItem="Zxs-aY-XXR" secondAttribute="bottom" constant="8" id="VCU-5Y-y64"/>
-                <constraint firstItem="THS-rq-43i" firstAttribute="top" secondItem="eJz-7E-be2" secondAttribute="bottom" constant="3" id="Yc8-KL-lUW"/>
                 <constraint firstAttribute="trailing" secondItem="NcP-WA-mXW" secondAttribute="trailing" constant="16" id="ZO9-Nb-xAl"/>
                 <constraint firstItem="THS-rq-43i" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="alo-S3-BsX"/>
                 <constraint firstItem="NcP-WA-mXW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="amc-f4-IBN"/>
                 <constraint firstItem="fyT-rt-ESj" firstAttribute="top" secondItem="QBI-mQ-WEa" secondAttribute="bottom" constant="8" id="c40-Qq-xpG"/>
                 <constraint firstItem="Kuc-3f-VCq" firstAttribute="top" secondItem="9bn-Rh-A8D" secondAttribute="bottom" constant="3" id="cpU-ab-UM7"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="YbX-xq-Wpb" secondAttribute="trailing" constant="16" id="kR1-yg-Wcl"/>
                 <constraint firstItem="fyT-rt-ESj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="kW4-eh-dZs"/>
-                <constraint firstItem="eJz-7E-be2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="rJK-OT-1ye"/>
                 <constraint firstItem="QBI-mQ-WEa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="rLO-ba-HPZ"/>
                 <constraint firstItem="Zxs-aY-XXR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="rYH-V7-Vmc"/>
+                <constraint firstItem="GJM-EK-5ux" firstAttribute="top" secondItem="UHb-EQ-dja" secondAttribute="bottom" constant="8" id="swU-Mu-msz"/>
+                <constraint firstAttribute="trailing" secondItem="GJM-EK-5ux" secondAttribute="trailing" constant="16" id="t21-jq-9VX"/>
             </constraints>
             <point key="canvasLocation" x="10" y="20"/>
         </view>

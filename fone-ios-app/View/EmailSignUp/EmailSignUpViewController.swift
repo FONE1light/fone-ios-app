@@ -10,12 +10,18 @@ import UIKit
 class EmailSignUpViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: EmailSignUpViewModel!
+    var timer: Timer?
+    var leftSeconds = 180
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var emailContainerView: UIView!
     @IBOutlet weak var emailErrorLabel: UILabel!
     @IBOutlet weak var emailConfirmButton: UIButton!
+    @IBOutlet weak var emailAuthCodeView: UIView!
+    @IBOutlet weak var authCodeTextField: UITextField!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var checkAuthCodeButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordContainerView: UIView!
     @IBOutlet weak var passwordErrorLabel: UILabel!
@@ -50,8 +56,30 @@ class EmailSignUpViewController: UIViewController, ViewModelBindableType {
             }).disposed(by: rx.disposeBag)
         
         emailConfirmButton.rx.tap
-            .subscribe(onNext: { _ in
-                // TODO: 이메일 중복 확인
+            .withUnretained(self)
+            .bind { owner, _ in
+                let email = owner.emailTextField.text ?? ""
+                owner.viewModel.checkEmail(email: email)
+            }.disposed(by: rx.disposeBag)
+        
+        viewModel.emailSendedSubject
+            .withUnretained(self)
+            .subscribe(onNext: { (owner, sended) in
+                if sended {
+                    owner.emailConfirmButton.setTitle("재전송", for: .normal)
+                    owner.emailAuthCodeView.isHidden = false
+                    owner.startTimer()
+                }
+            }).disposed(by: rx.disposeBag)
+        
+        checkAuthCodeButton.rx.tap
+            .withUnretained(self)
+            .subscribe(onNext: { owner, _ in
+                owner.timer?.invalidate()
+                owner.timer = nil
+                let code = owner.authCodeTextField.text ?? ""
+                let email = owner.emailTextField.text ?? ""
+                owner.validateAuthNumber(code: code, email: email)
             }).disposed(by: rx.disposeBag)
         
         passwordTextField.rx.text.orEmpty
@@ -114,6 +142,55 @@ class EmailSignUpViewController: UIViewController, ViewModelBindableType {
     private func setNavigationBar() {
         self.navigationItem.titleView = NavigationTitleView(title: "이메일 회원가입")
         self.navigationItem.rightBarButtonItem = NavigationRightBarButtonItem(type: .close, viewController: self)
+    }
+    
+    func startTimer() {
+        leftSeconds = 180
+        //기존에 타이머 동작중이면 중지 처리
+        if let timer = timer, timer.isValid {
+            timer.invalidate()
+        }
+        
+        //1초 간격 타이머 시작
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateTime() {
+        if leftSeconds > 0 {
+            leftSeconds -= 1
+            let timerString = String(format:"%02d:%02d", Int(leftSeconds/60), leftSeconds%60)
+            timeLabel.text = timerString
+        } else {
+            timer?.invalidate()
+            timer = nil
+            timeLabel.text = "00:00"
+        }
+    }
+    
+    func validateAuthNumber(code: String, email: String) {
+        userInfoProvider.rx.request(.validateEmail(code: code, email: email))
+            .mapObject(FindPasswordResponseModel.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, response in
+                if response.result == "SUCCESS" {
+                    owner.authSuccess()
+                } else {
+                    ToastManager.show(
+                        "올바른 인증번호를 입력해주세요.",
+                        positionType: .withBottomSheet
+                    )
+                }
+            }, onError: { error in
+                print("\(error)")
+            }).disposed(by: rx.disposeBag)
+    }
+    
+    func authSuccess() {
+        emailConfirmButton.setTitle("인증완료", for: .normal)
+        emailConfirmButton.setMediumButtonEnabled(isEnabled: false)
+        emailTextField.isUserInteractionEnabled = false
+        emailAuthCodeView.isHidden = true
     }
 }
 
