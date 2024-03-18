@@ -47,7 +47,7 @@ class RecruitConditionCell: UICollectionViewCell {
         deadLineLabel.text = recruitCondition.recruitmentEndDate
         ddayLabel.text = recruitCondition.dday
         ddayLabel.textColor = recruitCondition.dday == "마감" ? .gray_9E9E9E : .violet_6D5999
-        let isAlways = recruitCondition.dday.isEmpty
+        let isAlways = recruitCondition.recruitmentEndDate.isEmpty
         deadLineLabel.isHidden = isAlways
         separator.isHidden = isAlways
         if isActorOpening {

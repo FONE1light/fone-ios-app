@@ -170,7 +170,7 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
                 let workingStartTime = owner.timeClearButton.isActivated ? nil : owner.startTimeTextField.text
                 let workingEndTime = owner.timeClearButton.isActivated ? nil : owner.endTimeTextField.text
                 let salary = Int(owner.salaryTextField.text?.replacingOccurrences(of: ",", with: "") ?? "")
-                let recruitWorkConditionInfo = RecruitWorkConditionInfo(workingCity: workingCity, workingDistrict: workingDistrict, workingStartDate: workingStartDate, workingEndDate: workingEndDate, selectedDays: owner.selectedDays, workingStartTime: workingStartTime, workingEndTime: workingEndTime, salaryType: owner.salaryType.rawValue, salary: salary)
+                let recruitWorkConditionInfo = RecruitWorkConditionInfo(workingCity: workingCity, workingDistrict: workingDistrict, workingStartDate: workingStartDate, workingEndDate: workingEndDate, selectedDays: selectedDays, workingStartTime: workingStartTime, workingEndTime: workingEndTime, salaryType: owner.salaryType.rawValue, salary: salary)
                 owner.viewModel.validateProjectDetails(recruitWorkConditionInfo: recruitWorkConditionInfo)
             }.disposed(by: rx.disposeBag)
     }
