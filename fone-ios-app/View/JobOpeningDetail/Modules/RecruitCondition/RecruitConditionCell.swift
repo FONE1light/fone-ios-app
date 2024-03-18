@@ -28,6 +28,7 @@ struct RecruitCondition {
 
 class RecruitConditionCell: UICollectionViewCell {
     @IBOutlet weak var deadLineLabel: UILabel!
+    @IBOutlet weak var separator: UIImageView!
     @IBOutlet weak var ddayLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var castingLabel: UILabel!
@@ -41,14 +42,29 @@ class RecruitConditionCell: UICollectionViewCell {
     }
     
     func configure(recruitCondition: RecruitCondition) {
-        typeLabel.text = recruitCondition.type == Job.actor.name ? "모집배역" : "모집분야"
+        let isActorOpening = recruitCondition.type == Job.actor.name
+        typeLabel.text = isActorOpening ? "모집배역" : "모집분야"
         deadLineLabel.text = recruitCondition.recruitmentEndDate
         ddayLabel.text = recruitCondition.dday
         ddayLabel.textColor = recruitCondition.dday == "마감" ? .gray_9E9E9E : .violet_6D5999
-        castingLabel.text = recruitCondition.casting
+        let isAlways = recruitCondition.dday.isEmpty
+        deadLineLabel.isHidden = isAlways
+        separator.isHidden = isAlways
+        if isActorOpening {
+            castingLabel.text = recruitCondition.casting
+        } else {
+            var domainStr = ""
+            for domain in recruitCondition.domains {
+                if let name = Domain.getType(serverName: domain)?.name {
+                    domainStr += "\(name), "
+                }
+            }
+            castingLabel.text = String(domainStr.dropLast(2))
+        }
         numberOfRecruitsLabel.text = String(recruitCondition.numberOfRecruits)
         genderLabel.text = GenderType.getType(serverName: recruitCondition.gender)?.name
-        ageLabel.text = "\(recruitCondition.ageMin) ~ \(recruitCondition.ageMax)살"
+        let age = recruitCondition.ageMin <= 0 ? "연령무관" : "\(recruitCondition.ageMin) ~ \(recruitCondition.ageMax)살"
+        ageLabel.text = age
         var careerStr = ""
         for career in recruitCondition.careers {
             careerStr += "\(CareerType(rawValue: career)?.string ?? ""), "

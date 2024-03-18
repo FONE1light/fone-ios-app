@@ -20,11 +20,15 @@ class WorkConditionCell: UICollectionViewCell {
     }
     
     func configure(salaryType: String?, salary: Int?, city: String?, district: String?, period: String?, workDays: [String]?, startTime: String?, endTime: String?) {
-        salaryTypeLabel.text = SalaryType(rawValue: salaryType ?? "")?.string
-        salaryLabel.text = "\(String(salary ?? 0).insertComma)원"
-        locationLabel.text = "\(city ?? "") \(district ?? "")"
+        let salaryType = SalaryType(rawValue: salaryType ?? "")
+        salaryTypeLabel.text = salaryType?.string
+        let salary = salaryType == .LATER_ON ? "" : "\(String(salary ?? 0).insertComma)원"
+        salaryLabel.text = salary
+        let location = city == "전체" ? "미정" : "\(city ?? "") \(district ?? "")"
+        locationLabel.text = location
         periodLabel.text = period
-        workingTimeLabel.text = "\(startTime ?? "") ~ \(endTime ?? "")"
+        let time = startTime == nil ? "추후협의" : "\(startTime ?? "") ~ \(endTime ?? "")"
+        workingTimeLabel.text = time
         if let workDays = workDays {
             var workDaysStr = ""
             for day in workDays {

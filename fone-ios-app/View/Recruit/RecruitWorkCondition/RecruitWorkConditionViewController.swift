@@ -166,6 +166,7 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
                 let workingDistrict = owner.districtLabel.text == "구" ? "전체" : owner.districtLabel.text ?? ""
                 let workingStartDate = owner.startDateLabel.text == "시작일" ? nil : owner.startDateLabel.text?.dateServerFormat
                 let workingEndDate = owner.endDateLabel.text == "마감일" ? nil : owner.endDateLabel.text?.dateServerFormat
+                let selectedDays = owner.selectedDays.isEmpty ? ["LATER_ON"] : owner.selectedDays
                 let workingStartTime = owner.timeClearButton.isActivated ? nil : owner.startTimeTextField.text
                 let workingEndTime = owner.timeClearButton.isActivated ? nil : owner.endTimeTextField.text
                 let salary = Int(owner.salaryTextField.text?.replacingOccurrences(of: ",", with: "") ?? "")
