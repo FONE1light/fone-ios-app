@@ -35,8 +35,13 @@ class MainCareerTableViewCell: UITableViewCell {
         self.setupUI()
     }
     
-    func configure(item: String) {
-        detailsLabel.text = item
+    func configure(years: String, detail: String?) {
+        var content = "\(years)"
+        if let detail = detail, !detail.isEmpty {
+            content += "\n\n\(detail)"
+        }
+        
+        detailsLabel.text = content
     }
     
     private func setupUI() {
