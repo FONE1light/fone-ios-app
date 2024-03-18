@@ -199,6 +199,7 @@ class EmailSignUpViewController: UIViewController, ViewModelBindableType {
         emailConfirmButton.setMediumButtonEnabled(isEnabled: false)
         emailTextField.isUserInteractionEnabled = false
         emailAuthCodeView.isHidden = true
+        viewModel.emailConfirmedSubject.onNext(true)
     }
 }
 

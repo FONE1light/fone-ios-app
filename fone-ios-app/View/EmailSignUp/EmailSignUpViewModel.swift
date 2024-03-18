@@ -12,6 +12,7 @@ class EmailSignUpViewModel: CommonViewModel {
     var disposeBag = DisposeBag()
     var emailTextSubject = BehaviorSubject<String>(value: "")
     var emailSendedSubject = BehaviorSubject<Bool>(value: false)
+    var emailConfirmedSubject = BehaviorSubject<Bool>(value: false)
     var passwordTextSubject = BehaviorSubject<String>(value: "")
     var confirmPasswordTextSubjext = BehaviorSubject<String>(value: "")
     
@@ -34,8 +35,8 @@ class EmailSignUpViewModel: CommonViewModel {
     }()
     
     lazy var nextButtonEnabled: Observable<Bool> = {
-        Observable.combineLatest(emailIsValidSubject, passwordIsValidSubject, confirmPasswordIsValidSubject)
-            .map{ $0 && $1 && $2}
+        Observable.combineLatest(emailIsValidSubject, emailConfirmedSubject, passwordIsValidSubject, confirmPasswordIsValidSubject)
+            .map{ $0 && $1 && $2 && $3}
     }()
     
     func moveToSignUp(name: String, email: String, password: String) {
