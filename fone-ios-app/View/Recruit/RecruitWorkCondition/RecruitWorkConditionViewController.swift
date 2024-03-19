@@ -8,6 +8,7 @@
 import UIKit
 
 class RecruitWorkConditionViewController: UIViewController, ViewModelBindableType {
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stepIndicator: StepIndicator!
     @IBOutlet weak var districtClearButton: CustomButton!
     @IBOutlet weak var regionsButton: UIButton!
@@ -61,6 +62,17 @@ class RecruitWorkConditionViewController: UIViewController, ViewModelBindableTyp
     
     func bindViewModel() {
         getRegions()
+        
+        keyboardHeight()
+            .bind(to: viewModel.keyboardHeightBehaviorSubject)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.keyboardHeightBehaviorSubject
+            .withUnretained(self)
+            .subscribe(onNext: { (owner, keyboardHeight) in
+                owner.scrollView.contentInset.bottom = keyboardHeight
+                owner.scrollView.verticalScrollIndicatorInsets.bottom = keyboardHeight
+            }).disposed(by: rx.disposeBag)
         
         districtClearButton.rx.tap
             .withUnretained(self)

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -28,6 +28,7 @@
                 <outlet property="nextButton" destination="dgy-h2-A9m" id="LZW-oZ-NLd"/>
                 <outlet property="privateButton" destination="ej9-L5-rlL" id="V3o-ck-dXt"/>
                 <outlet property="produceTextField" destination="wgA-AL-TDv" id="4ow-II-1mD"/>
+                <outlet property="scrollView" destination="vTT-Wd-2TR" id="1Qy-9g-JaW"/>
                 <outlet property="stepIndicator" destination="uTH-qR-VeE" id="eLK-bL-aNe"/>
                 <outlet property="titleTextField" destination="jgs-og-9BB" id="fSI-VX-P8e"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -39,10 +40,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vTT-Wd-2TR">
-                    <rect key="frame" x="0.0" y="59" width="393" height="673"/>
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RQz-h7-SE9">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="847"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="932"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uTH-qR-VeE" customClass="StepIndicator" customModule="fone_ios_app" customModuleProvider="target">
                                     <rect key="frame" x="16" y="30" width="102" height="6"/>
@@ -53,7 +54,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="작품 정보를 입력해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCD-Fl-0QZ">
-                                    <rect key="frame" x="16" y="56" width="194" height="26"/>
+                                    <rect key="frame" x="16" y="56" width="196.66666666666666" height="26"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="26" id="xIt-Ra-LdF"/>
                                     </constraints>
@@ -176,46 +177,46 @@
                                 <constraint firstItem="Mn6-s2-lsS" firstAttribute="top" secondItem="cU9-Dl-9FP" secondAttribute="bottom" constant="12" id="iaG-hn-P5z"/>
                                 <constraint firstAttribute="trailing" secondItem="wgA-AL-TDv" secondAttribute="trailing" constant="16" id="m4q-hd-saS"/>
                                 <constraint firstItem="Esi-0C-gME" firstAttribute="top" secondItem="Mn6-s2-lsS" secondAttribute="bottom" constant="32" id="xAT-w5-CVx"/>
-                                <constraint firstAttribute="bottom" secondItem="ul0-5F-MGv" secondAttribute="bottom" constant="61" id="yly-Yf-cpy"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgy-h2-A9m">
+                            <rect key="frame" x="16" y="846" width="361" height="48"/>
+                            <color key="backgroundColor" red="0.75294117647058822" green="0.0" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="Q8W-ij-0Hk"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="16"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="다음"/>
+                            <state key="disabled" title="제출하기"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="dgy-h2-A9m" firstAttribute="leading" secondItem="ChX-hZ-X2c" secondAttribute="leading" constant="16" id="7R8-Sa-VJg"/>
+                        <constraint firstItem="ChX-hZ-X2c" firstAttribute="trailing" secondItem="dgy-h2-A9m" secondAttribute="trailing" constant="16" id="O3X-st-FRm"/>
                         <constraint firstItem="RQz-h7-SE9" firstAttribute="trailing" secondItem="gO9-on-LoK" secondAttribute="trailing" id="PwK-7u-qJ2"/>
                         <constraint firstItem="RQz-h7-SE9" firstAttribute="leading" secondItem="gO9-on-LoK" secondAttribute="leading" id="Tvm-47-fcd"/>
                         <constraint firstItem="RQz-h7-SE9" firstAttribute="bottom" secondItem="gO9-on-LoK" secondAttribute="bottom" id="eQA-iS-oCF"/>
                         <constraint firstItem="RQz-h7-SE9" firstAttribute="width" secondItem="vTT-Wd-2TR" secondAttribute="width" id="lXD-95-58V"/>
                         <constraint firstItem="RQz-h7-SE9" firstAttribute="top" secondItem="gO9-on-LoK" secondAttribute="top" id="uSR-1j-T32"/>
+                        <constraint firstItem="dgy-h2-A9m" firstAttribute="top" secondItem="ul0-5F-MGv" secondAttribute="bottom" constant="60" id="uxL-R7-YIk"/>
+                        <constraint firstAttribute="bottom" secondItem="dgy-h2-A9m" secondAttribute="bottom" constant="38" id="vro-dO-aaT"/>
                     </constraints>
                     <viewLayoutGuide key="contentLayoutGuide" id="gO9-on-LoK"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="ChX-hZ-X2c"/>
                 </scrollView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgy-h2-A9m">
-                    <rect key="frame" x="16" y="732" width="361" height="48"/>
-                    <color key="backgroundColor" red="0.75294117647058822" green="0.0" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="48" id="Q8W-ij-0Hk"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="16"/>
-                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="다음"/>
-                    <state key="disabled" title="제출하기"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="5"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="vTT-Wd-2TR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="T6r-SU-gpm"/>
                 <constraint firstItem="vTT-Wd-2TR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="nZK-H9-dcD"/>
-                <constraint firstAttribute="trailing" secondItem="dgy-h2-A9m" secondAttribute="trailing" constant="16" id="qEK-1D-iJ2"/>
-                <constraint firstItem="dgy-h2-A9m" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="stj-UY-Udk"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="dgy-h2-A9m" secondAttribute="bottom" constant="38" id="uLE-LV-skj"/>
-                <constraint firstItem="dgy-h2-A9m" firstAttribute="top" secondItem="vTT-Wd-2TR" secondAttribute="bottom" id="wlW-HR-cBs"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="vTT-Wd-2TR" secondAttribute="bottom" id="oBq-CV-3PX"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vTT-Wd-2TR" secondAttribute="trailing" id="x1f-JK-ePo"/>
             </constraints>
             <point key="canvasLocation" x="4" y="20"/>
