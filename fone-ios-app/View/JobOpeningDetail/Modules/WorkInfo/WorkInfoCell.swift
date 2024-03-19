@@ -26,15 +26,13 @@ class WorkInfoCell: UICollectionViewCell {
         for genre in genres ?? [] {
             genreString.append(Genre(rawValue: genre)?.koreanName ?? "")
         }
-//        genreLabel.text = genre
-        logLineLabel.text = logline
+        logLineLabel.text = logline ?? "비공개"
     }
 }
 
 extension WorkInfoCell {
     static func cellHeight(_ item: String?) -> CGFloat {
-        guard let item = item else { return 0 }
-        let height = UILabel.getLabelHeight(width: UIScreen.main.bounds.width - 138, text: item, font: UIFont.font_r(14), line: 0)
+        let height = UILabel.getLabelHeight(width: UIScreen.main.bounds.width - 138, text: item ?? "비공개", font: UIFont.font_r(14), line: 0)
         return height + 200
     }
 }

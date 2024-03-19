@@ -41,6 +41,8 @@ extension String {
             return "토"
         case "SUN":
             return "일"
+        case "LATER_ON":
+            return "추후협의"
         default:
             return ""
         }
