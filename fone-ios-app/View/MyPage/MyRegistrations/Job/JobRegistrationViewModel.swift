@@ -35,7 +35,7 @@ class JobRegistrationViewModel: CommonViewModel {
                         let domain = Domain.getType(serverName: jobOpening.recruitConditionInfo?.domains?.first)?.name
                         return JobOpening(
                             id: jobOpening.id,
-                            profileUrl: jobOpening.userProfileURL,
+                            profileUrl: jobOpening.recruitBasicInfo?.representativeImageUrl ?? jobOpening.recruitBasicInfo?.imageUrls?.first,
                             isVerified: jobOpening.isVerified,
                             categories: categories,
                             isScrap: nil,
