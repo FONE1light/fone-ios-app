@@ -48,6 +48,11 @@ class FindPasswordCell: UICollectionViewCell {
     func configure(viewModel: FindIDPasswordViewModel) {
         self.viewModel = viewModel
         
+        phoneNumberTextField.rx.text
+            .map { String($0?.prefix(11) ?? "") }
+            .bind(to: phoneNumberTextField.rx.text)
+            .disposed(by: rx.disposeBag)
+        
         phoneNumberTextField.rx.text.orEmpty
             .bind(to: phoneNumberSubject)
             .disposed(by: rx.disposeBag)

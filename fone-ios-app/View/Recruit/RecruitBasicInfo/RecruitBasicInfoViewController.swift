@@ -43,6 +43,11 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
+        titleTextView.rx.text
+            .map { String($0?.prefix(50) ?? "") }
+            .bind(to: titleTextView.rx.text)
+            .disposed(by: rx.disposeBag)
+        
         titleTextView.rx.text.orEmpty
             .map { $0 == self.placeholderString ? "" : $0 }
             .map { $0.count }

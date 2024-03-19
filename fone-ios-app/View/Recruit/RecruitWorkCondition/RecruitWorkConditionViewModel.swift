@@ -25,6 +25,7 @@ struct RegionOption: Options {
 
 final class RecruitWorkConditionViewModel: CommonViewModel {
     let disposeBag = DisposeBag()
+    var keyboardHeightBehaviorSubject = BehaviorSubject<CGFloat>(value: 0)
     var jobType: Job?
     
     let allOption = RegionOption(title: "전체", serverParameter: "전체")
