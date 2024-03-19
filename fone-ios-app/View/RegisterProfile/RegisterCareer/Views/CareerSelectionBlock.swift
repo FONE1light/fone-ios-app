@@ -8,6 +8,7 @@
 import UIKit
 import Then
 import RxRelay
+import RxSwift
 
 /// 직업 or 관심사 선택 label + UICollectionView 영역
 class CareerSelectionBlock: UIView {
@@ -52,8 +53,8 @@ class CareerSelectionBlock: UIView {
     }()
     
     let selectedItem = BehaviorRelay<Selection>(value: CareerType.NEWCOMER)
-    
     var selectedCareers: [String] = []
+    var clearButtonIsActivated = BehaviorSubject<Bool>(value: true)
     
     init() {
         super.init(frame: .zero)
@@ -109,9 +110,13 @@ extension CareerSelectionBlock {
                 // 선택(isSelected=true)된 item 업데이트
                 guard let item = cell.item else { return }
                 owner.selectedItem.accept(item)
-                
+                owner.clearButtonIsActivated.onNext(false)
                 if let career = item as? CareerType {
                     owner.selectedCareers.append(career.rawValue)
+                    if owner.selectedCareers.count == CareerType.allCases.count - 1 {
+                        owner.clearButtonIsActivated.onNext(true)
+                        owner.deselectAll()
+                    }
                 }
             }.disposed(by: rx.disposeBag)
         
@@ -130,5 +135,13 @@ extension CareerSelectionBlock {
     
     func selectItem(at indexPath: IndexPath) {
         collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
+    }
+    
+    func deselectAll() {
+        guard let selectedItems = collectionView.indexPathsForSelectedItems else { return }
+        for indexPath in selectedItems {
+            collectionView.deselectItem(at: indexPath, animated: true)
+        }
+        selectedCareers = []
     }
 }
