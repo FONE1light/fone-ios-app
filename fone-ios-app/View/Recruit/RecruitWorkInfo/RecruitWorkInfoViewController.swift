@@ -8,6 +8,7 @@
 import UIKit
 
 class RecruitWorkInfoViewController: UIViewController, ViewModelBindableType {
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stepIndicator: StepIndicator!
     @IBOutlet weak var produceTextField: LabelTextField!
     @IBOutlet weak var titleTextField: LabelTextField!
@@ -34,6 +35,17 @@ class RecruitWorkInfoViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
+        keyboardHeight()
+            .bind(to: viewModel.keyboardHeightBehaviorSubject)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.keyboardHeightBehaviorSubject
+            .withUnretained(self)
+            .subscribe(onNext: { (owner, keyboardHeight) in
+                owner.scrollView.contentInset.bottom = keyboardHeight
+                owner.scrollView.verticalScrollIndicatorInsets.bottom = keyboardHeight
+            }).disposed(by: rx.disposeBag)
+        
         loglineTextView.textView?.rx.text
             .withUnretained(self)
             .bind { owner, text in

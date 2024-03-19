@@ -18,6 +18,7 @@ struct RecruitWorkInfo: Codable {
 
 final class RecruitWorkInfoViewModel: CommonViewModel {
     var disposeBag = DisposeBag()
+    var keyboardHeightBehaviorSubject = BehaviorSubject<CGFloat>(value: 0)
     var jobType: Job?
     var recruitContactLinkInfo: RecruitContactLinkInfo?
     var recruitBasicInfo: RecruitBasicInfo?
