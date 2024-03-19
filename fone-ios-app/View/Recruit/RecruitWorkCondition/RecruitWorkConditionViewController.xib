@@ -36,6 +36,7 @@
                 <outlet property="salaryTextField" destination="K7S-YA-bwT" id="f7G-Ee-IpM"/>
                 <outlet property="salaryTypeButton" destination="EC9-gj-8n9" id="ygi-TQ-APG"/>
                 <outlet property="salaryTypeTextField" destination="YGC-rM-lfM" id="9zF-qY-2gy"/>
+                <outlet property="scrollView" destination="xaS-km-QYL" id="tbA-cX-851"/>
                 <outlet property="startDateButton" destination="8f9-pi-TzR" id="TE1-fN-TI9"/>
                 <outlet property="startDateLabel" destination="w1z-0a-dBz" id="ktO-YT-z06"/>
                 <outlet property="startTimeTextField" destination="SZL-xe-CjJ" id="xBV-Bl-ORh"/>
