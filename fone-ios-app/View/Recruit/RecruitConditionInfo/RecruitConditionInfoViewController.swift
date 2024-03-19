@@ -22,6 +22,7 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
     @IBOutlet weak var startAgeButton: UIButton!
     @IBOutlet weak var endAgeLabel: UILabel!
     @IBOutlet weak var endAgeButton: UIButton!
+    @IBOutlet weak var careerClearButton: CustomButton!
     @IBOutlet weak var careerSelectionBlock: CareerSelectionBlock!
     @IBOutlet weak var nextButton: UIButton!
     
@@ -91,6 +92,13 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
                 owner.endAgeLabel.textColor = .gray_9E9E9E
             }.disposed(by: rx.disposeBag)
         
+        careerClearButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.careerSelectionBlock.clearButtonIsActivated.onNext(true)
+                owner.careerSelectionBlock.deselectAll()
+            }.disposed(by: rx.disposeBag)
+        
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
@@ -107,7 +115,7 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
                 let ageMin = Int(ageMinString)
                 let ageMaxString = owner.endAgeLabel.text?.replacingOccurrences(of: "세", with: "") ?? ""
                 let ageMax = Int(ageMaxString)
-                let careers = owner.careerSelectionBlock.selectedCareers
+                let careers = owner.careerSelectionBlock.selectedCareers.isEmpty ? [CareerType.IRRELEVANT.rawValue] : owner.careerSelectionBlock.selectedCareers
                 let recruitConditionInfo = RecruitConditionInfo(casting: casting, domains: domains, numberOfRecruits: numberOfRecruits, gender: gender, ageMin: ageMin, ageMax: ageMax, careers: careers)
                 owner.viewModel.validateRole(recruitConditionInfo: recruitConditionInfo)
             }.disposed(by: rx.disposeBag)
@@ -155,6 +163,8 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
         numberTextField.xibInit(label: nil, placeholder: nil, textFieldLeadingOffset: 0, textFieldKeyboardType: .numberPad)
         careerSelectionBlock.xibInit()
         careerSelectionBlock.collectionView.allowsMultipleSelection = true
+        careerSelectionBlock.clearButtonIsActivated
+            .bind(to: careerClearButton.rx.isActivated).disposed(by: rx.disposeBag)
     }
     
     private func setButtons() {
@@ -164,7 +174,7 @@ class RecruitConditionInfoViewController: UIViewController, ViewModelBindableTyp
         femaleButton.xibInit("여자", type: .auth)
         femaleButton.isActivated = false
         ageClearButton.xibInit("연령무관", type: .clear)
-        
+        careerClearButton.xibInit("경력무관", type: .clear)
         nextButton.applyShadow(shadowType: .shadowBt)
         
         let startHandler: UIActionHandler = { [weak self] (action: UIAction) in
