@@ -33,7 +33,7 @@ class ProfileRegistrationViewModel: CommonViewModel {
                     let age = "\($0.age ?? 0)"
                     return Profile(
                         id: $0.id,
-                        imageUrl: $0.userProfileURL,
+                        imageUrl: $0.registerBasicInfo?.representativeImageURL ?? $0.registerBasicInfo?.profileImages?.first,
                         name: $0.registerBasicInfo?.name,
                         age: age,
                         isSaved: $0.isWant,
