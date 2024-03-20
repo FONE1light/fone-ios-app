@@ -86,8 +86,8 @@ class AuthorTableViewCell: UITableViewCell {
         userJobLabel.text = authorInfo.userJob
         officialMarkImageView.isHidden = authorInfo.userJob != "OFFICIAL"
         // 정확한 url 필요 없고 존재 유무만 전달
-        let hasInstagram = authorInfo.instagramUrl != nil
-        let hasYoutube = authorInfo.youtubeUrl != nil
+        let hasInstagram = authorInfo.instagramUrl != nil && (authorInfo.instagramUrl?.isEmpty == false)
+        let hasYoutube = authorInfo.youtubeUrl != nil && (authorInfo.youtubeUrl?.isEmpty == false)
         setupSnsStackView(hasInstagram: hasInstagram, hasYoutube: hasYoutube)
         
     }

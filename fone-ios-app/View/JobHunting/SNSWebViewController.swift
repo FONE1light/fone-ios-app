@@ -61,7 +61,7 @@ class SNSWebViewController: UIViewController, ViewModelBindableType, WKUIDelegat
         setConstraints()
         addBottomToolBar()
         
-        guard let url = viewModel.url else { return }
+        guard let url = viewModel.url, !url.isEmpty else { return }
         let myURL = URL(string: url)
         let myRequest = URLRequest(url: myURL!)
         webView.load(myRequest)
