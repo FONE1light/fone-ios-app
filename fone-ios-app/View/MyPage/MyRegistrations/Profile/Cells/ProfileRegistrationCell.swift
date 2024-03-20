@@ -73,6 +73,12 @@ class ProfileRegistrationCell: UITableViewCell {
         self.setConstraints()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        disposeBag = DisposeBag()
+    }
+    
     func configure(_ profile: Profile) {
         image.load(url: profile.imageUrl)
         nameLabel.text = profile.name
