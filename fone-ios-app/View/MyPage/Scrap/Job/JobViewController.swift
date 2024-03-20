@@ -11,7 +11,7 @@ import SnapKit
 
 struct JobOpening {
     let id: Int?
-    let profileUrl: String?
+    let imageUrl: String?
     let isVerified: Bool?
     let categories: [Category]? // 작품 성격 최대 2개
     let isScrap: Bool?

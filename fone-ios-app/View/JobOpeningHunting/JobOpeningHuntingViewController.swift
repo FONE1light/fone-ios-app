@@ -419,7 +419,7 @@ extension JobOpeningHuntingViewController: UITableViewDataSource {
         cell.configure(
             id: content.id,
             jobType: content.type,
-            profileUrl: content.userProfileURL,
+            imageUrl: content.recruitBasicInfo?.representativeImageUrl ?? content.recruitBasicInfo?.imageUrls?.first,
             isVerified: content.isVerified,
             categories: content.recruitBasicInfo?.categories,
             isScrap: content.isScrap,
