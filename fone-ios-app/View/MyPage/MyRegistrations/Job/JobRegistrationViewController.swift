@@ -68,6 +68,7 @@ extension JobRegistrationViewController: UITableViewDataSource {
         
         // buttons
         cell.cellButtonTap
+            .throttle(.milliseconds(500), latest: false, scheduler: MainScheduler.instance)
             .withUnretained(self)
             .bind { owner, _ in
                 guard let id = jobRegistration.id,
