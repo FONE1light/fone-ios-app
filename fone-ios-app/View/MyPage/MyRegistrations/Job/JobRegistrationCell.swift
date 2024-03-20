@@ -42,6 +42,11 @@ class JobRegistrationCell: UITableViewCell {
         setConstraints()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+    
     func configure(_ jobRegistration: JobOpening) {
         mainContentView.configure(
             profileUrl: jobRegistration.profileUrl,

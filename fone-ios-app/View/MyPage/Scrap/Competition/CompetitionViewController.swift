@@ -50,6 +50,7 @@ class CompetitionViewController: UIViewController, ViewModelBindableType {
             }.disposed(by: disposeBag)
         
         tableView.rx.itemSelected
+            .throttle(.milliseconds(500), latest: false, scheduler: MainScheduler.instance)
             .withUnretained(self)
             .bind { owner, indexPath in
                 guard let id = owner.competitions[indexPath.row].id else { return }

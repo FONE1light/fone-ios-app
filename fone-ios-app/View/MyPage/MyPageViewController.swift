@@ -212,10 +212,11 @@ extension MyPageViewController: UITableViewDataSource {
         
         let menuType = menuList[indexPath.row]
         
-        // FIXME: index 지정 방식 변경
         cell.setupCell(type: menuType)
         
-        cell.buttonTap.withUnretained(self)
+        cell.buttonTap
+            .throttle(.milliseconds(500), latest: false, scheduler: MainScheduler.instance)
+            .withUnretained(self)
             .bind { owner, _ in
                 if let scene = menuType.nextScene(owner.viewModel.sceneCoordinator) {
                     switch menuType {
