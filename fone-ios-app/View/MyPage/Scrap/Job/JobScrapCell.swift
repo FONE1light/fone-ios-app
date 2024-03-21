@@ -33,6 +33,11 @@ class JobScrapCell: UITableViewCell {
         bind()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+    
     func configure(_ jobScrap: JobOpening) {
         mainContentView.configure(
             profileUrl: jobScrap.profileUrl,

@@ -212,8 +212,14 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let instagramUrl = SnsURL(sns: "INSTAGRAM", url: owner.instagramTextField.text)
-                let youtubeUrl = SnsURL(sns: "YOUTUBE", url: owner.youtubeTextField.text)
+                var snsUrls: [SnsURL] = []
+                
+                if let instagramUrl = owner.instagramTextField.text, !instagramUrl.isEmpty {
+                    snsUrls.append(SnsURL(sns: "INSTAGRAM", url: instagramUrl))
+                }
+                if let youtubeUrl = owner.youtubeTextField.text, !youtubeUrl.isEmpty {
+                    snsUrls.append(SnsURL(sns: "YOUTUBE", url: youtubeUrl))
+                }
                 
                 guard let domains = owner.viewModel.selectedDomains.value as? [Domain] else { return }
                 let stringDomains = domains.map { $0.serverName }
@@ -226,7 +232,7 @@ class RegisterDetailInfoStaffViewController: UIViewController, ViewModelBindable
                     email: owner.emailBlock.textField?.text,
                     domains: stringDomains,
                     specialty: owner.specialtyBlock.textField?.text,
-                    snsUrls: [instagramUrl, youtubeUrl]
+                    snsUrls: snsUrls
                 )
                 owner.viewModel.validate(detailInfoRequest: detailInfoRequest)
             }.disposed(by: rx.disposeBag)

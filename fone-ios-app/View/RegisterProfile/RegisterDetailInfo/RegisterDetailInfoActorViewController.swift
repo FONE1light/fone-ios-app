@@ -221,8 +221,14 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
         nextButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let instagramUrl = SnsURL(sns: "INSTAGRAM", url: owner.instagramTextField.text)
-                let youtubeUrl = SnsURL(sns: "YOUTUBE", url: owner.youtubeTextField.text)
+                var snsUrls: [SnsURL] = []
+                
+                if let instagramUrl = owner.instagramTextField.text, !instagramUrl.isEmpty {
+                    snsUrls.append(SnsURL(sns: "INSTAGRAM", url: instagramUrl))
+                }
+                if let youtubeUrl = owner.youtubeTextField.text, !youtubeUrl.isEmpty {
+                    snsUrls.append(SnsURL(sns: "YOUTUBE", url: youtubeUrl))
+                }
 
                 let height = Int(owner.heightBlock.textField?.text ?? "")
                 let weight = Int(owner.weightBlock.textField?.text ?? "")
@@ -235,7 +241,7 @@ class RegisterDetailInfoActorViewController: UIViewController, ViewModelBindable
                     email: owner.emailBlock.textField?.text,
                     domains: nil,
                     specialty: owner.specialtyBlock.textField?.text,
-                    snsUrls: [instagramUrl, youtubeUrl]
+                    snsUrls: snsUrls
                 )
                 owner.viewModel.validate(detailInfoRequest: detailInfoRequest)
             }.disposed(by: rx.disposeBag)

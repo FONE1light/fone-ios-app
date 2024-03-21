@@ -108,7 +108,7 @@ class MyPageProfileCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        disposeBag = DisposeBag() // 버튼(bookmarkButtonTap) 바인딩을 한 번만 하기 위해 필요?
+        disposeBag = DisposeBag() // 버튼(bookmarkButtonTap) 바인딩을 한 번만 하기 위해 필요
         
         // 초기화
         imageView.image = UIImage(resource: .defaultProfile)
