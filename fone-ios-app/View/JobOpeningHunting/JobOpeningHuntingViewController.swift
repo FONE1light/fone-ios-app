@@ -33,6 +33,15 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         $0.isHidden = true
     }
     
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.center = self.view.center
+        activityIndicator.style = UIActivityIndicatorView.Style.medium
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
+        return activityIndicator
+    }()
+    
     private lazy var floatingDimView: UIView = {
         let view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = .black_000000
@@ -105,7 +114,8 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                 owner.viewModel.selectedSortOption.accept(owner.viewModel.sortButtonStateDic[tabType] ?? .recent)
                 owner.floatingButton.changeMode(tabType)
                 owner.floatingSelectionView.changeMode(tabType)
-                
+                owner.activityIndicator.startAnimating()
+                owner.activityIndicator.isHidden = false
                 switch tabType {
                 case .jobOpening:
                     owner.tableViewJob.isHidden = false
@@ -130,12 +140,16 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         viewModel.reloadTableView
             .withUnretained(self)
             .bind { owner, _ in
+                owner.activityIndicator.stopAnimating()
+                owner.activityIndicator.isHidden = true
                 owner.tableViewJob.reloadData()
             }.disposed(by: disposeBag)
         
         viewModel.reloadCollectionView
             .withUnretained(self)
             .bind { owner, _ in
+                owner.activityIndicator.stopAnimating()
+                owner.activityIndicator.isHidden = true
                 owner.collectionViewProfile.reloadData()
             }.disposed(by: disposeBag)
         
@@ -329,6 +343,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
             .forEach {
                 UIApplication.viewOfKeyWindow?.addSubview($0)
             }
+        UIApplication.viewOfKeyWindow?.addSubview(activityIndicator)
     }
     
     private func setConstraints() {
