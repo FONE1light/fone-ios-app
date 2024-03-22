@@ -8,7 +8,6 @@
 import UIKit
 import RxSwift
 
-// TODO: 공통 Custom TabBarController 만들어서 정리 (ScrapViewController, SavedProfilesTabBarController, MyRegistrationsViewController)
 class ScrapViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: ScrapViewModel!
@@ -22,6 +21,7 @@ class ScrapViewController: UIViewController, ViewModelBindableType {
 
     func bindViewModel() {
         tabBar.itemSelected
+            .throttle(.milliseconds(500), latest: false, scheduler: MainScheduler.instance)
             .withUnretained(self)
             .bind { owner, indexPath in
                 

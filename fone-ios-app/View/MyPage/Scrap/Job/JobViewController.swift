@@ -11,7 +11,7 @@ import SnapKit
 
 struct JobOpening {
     let id: Int?
-    let profileUrl: String?
+    let imageUrl: String?
     let isVerified: Bool?
     let categories: [Category]? // 작품 성격 최대 2개
     let isScrap: Bool?
@@ -45,6 +45,7 @@ class JobViewController: UIViewController, ViewModelBindableType {
             }.disposed(by: disposeBag)
         
         tableView.rx.itemSelected
+            .throttle(.milliseconds(500), latest: false, scheduler: MainScheduler.instance)
             .withUnretained(self)
             .bind { owner, indexPath in
                 guard let id = owner.jobScraps[indexPath.row].id,

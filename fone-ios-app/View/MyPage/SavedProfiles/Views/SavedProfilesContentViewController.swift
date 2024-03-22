@@ -61,6 +61,7 @@ class SavedProfilesContentViewController: UIViewController, ViewModelBindableTyp
             }.disposed(by: disposeBag)
         
         collectionView.rx.itemSelected
+            .throttle(.milliseconds(500), latest: false, scheduler: MainScheduler.instance)
             .withUnretained(self)
             .bind { owner, indexPath in
                 let profile = owner.profiles[indexPath.row]
