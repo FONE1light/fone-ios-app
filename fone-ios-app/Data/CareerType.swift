@@ -48,6 +48,10 @@ enum CareerType: String, Selection, CaseIterable {
         }
     }
     
+    var serverName: String {
+        self.rawValue
+    }
+    
     var tagTextColor: UIColor? {
         UIColor.violet_6D5999
     }

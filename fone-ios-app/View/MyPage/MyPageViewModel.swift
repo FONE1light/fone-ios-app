@@ -14,6 +14,11 @@ class MyPageViewModel: CommonViewModel {
     
     private let disposeBag = DisposeBag()
     
+    override init(sceneCoordinator: SceneCoordinatorType) {
+        super.init(sceneCoordinator: sceneCoordinator)
+        
+        fetchMyPage()
+    }
     func fetchMyPage() {
         userInfoProvider.rx.request(.fetchMyPage)
             .mapObject(Result<UserInfoModel>.self)
@@ -45,5 +50,13 @@ class MyPageViewModel: CommonViewModel {
             let signoutBottomSheetViewModel = SignoutBottomSheetViewModel(sceneCoordinator: sceneCoordinator, loginType: loginType)
         let scene = Scene.signoutBottomSheet(signoutBottomSheetViewModel)
         sceneCoordinator.transition(to: scene, using: .customModal, animated: true)
+    }
+}
+
+extension MyPageViewModel {
+    func moveToProfile() {
+        let profileViewModel = ProfileViewModel(sceneCoordinator: sceneCoordinator, profile: userInfo)
+        let scene = Scene.profile(profileViewModel)
+        sceneCoordinator.transition(to: scene, using: .push, animated: true)
     }
 }

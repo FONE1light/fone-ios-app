@@ -11,11 +11,13 @@ import RxSwift
 
 class ProfileViewController: UIViewController, ViewModelBindableType {
     
-    var disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
     var viewModel: ProfileViewModel!
     
     private let profileImage = UIImageView().then {
         $0.image = UIImage(named: "profileImage")
+        $0.clipsToBounds = true
+        $0.contentMode = .scaleAspectFill // 정확한 원이 되게 하기 위함
     }
     private let imagePickerViewController = UIImagePickerController()
     private let profileButton = UIButton()
@@ -47,6 +49,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
     let jobSelectionBlock = SelectionBlock().then {
         $0.setTitle("직업 선택")
         $0.setSelections(Job.allCases)
+        $0.selectionLimits = 1
     }
     
     let categorySelectionBlock = SelectionBlock().then {
@@ -61,6 +64,12 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
     let baseView = UIView()
     
     func bindViewModel() {
+        viewModel.previousProfile
+            .withUnretained(self)
+            .bind { owner, profile in
+                owner.loadPreviousProfile(profile)
+            }.disposed(by: disposeBag)
+        
         // TextFields
         nicknameTextField.rx.controlEvent(.editingChanged)
             .withUnretained(self)
@@ -80,10 +89,10 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         
         // ViewModel
         
-        viewModel.profileImage
+        viewModel.profileUrlRelay
             .withUnretained(self)
-            .bind { owner, image in
-                owner.setProfileImage(image)
+            .bind { owner, imageUrl in
+                owner.setProfileImage(imageUrl)
             }.disposed(by: disposeBag)
         
         viewModel.nicknameAvailbleState
@@ -130,7 +139,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
                     interests: stringInterest,
                     job: stringJob,
                     nickname: owner.nicknameTextField.text,
-                    profileURL: owner.viewModel.profileUrl
+                    profileURL: owner.viewModel.profileUrlRelay.value ?? ""
                 )
                 owner.viewModel.modifyInfo(userInfo)
             }.disposed(by: rx.disposeBag)
@@ -143,6 +152,25 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         setNavigationBar()
         setUI()
         setConstraints()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        disposeBag = DisposeBag()
+    }
+    
+    private func loadPreviousProfile(_ profile: User?) {
+        guard let profile = profile else { return }
+        
+        viewModel.profileUrlRelay.accept(profile.profileURL)
+        nicknameTextField.text = profile.nickname
+        guard let job = Job.getType(name: profile.job) else { return }
+        jobSelectionBlock.select(items: [job])
+        
+        let interests = profile.interests?.compactMap { Category.getType(serverName: $0) }
+        guard let categories = interests else { return }
+        categorySelectionBlock.select(items: categories)
     }
     
     private func setNavigationBar() {
@@ -257,8 +285,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             title: "기본 이미지로 변경",
             style: .default
         ) { _ in
-            self.setProfileImage(UIImage(named: "profileImage"))
-            self.viewModel.profileUrl = nil
+            self.viewModel.profileUrlRelay.accept(nil)
         }
         
         let cancel = UIAlertAction(
@@ -282,7 +309,6 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
     ) {
-        
         if let pickedImage = info[.originalImage] as? UIImage {
             viewModel.uploadProfileImage(pickedImage)
         }
@@ -290,7 +316,13 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         imagePickerViewController.dismiss(animated: true, completion: nil)
     }
     
-    private func setProfileImage(_ image: UIImage?) {
-        profileImage.image = image
+    private func setProfileImage(_ stringUrl: String?) {
+        guard let url = stringUrl, !url.isEmpty else {
+            profileImage.image = UIImage(named: "profileImage")
+            profileImage.cornerRadius = 0
+            return
+        }
+        profileImage.load(url: url)
+        profileImage.cornerRadius = profileImage.frame.width / 2
     }
 }

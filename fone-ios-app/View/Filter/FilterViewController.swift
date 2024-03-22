@@ -87,6 +87,9 @@ enum FilterAge: Selection, CaseIterable {
         }
     }
     
+    // TODO: 구현
+    var serverName: String { "" }
+    
     var tagTextColor: UIColor? {
         UIColor.violet_6D5999
     }

@@ -13,10 +13,17 @@ import Moya
 class ProfileViewModel: CommonViewModel {
     var disposeBag = DisposeBag()
     
-    var profileUrl: String?
-    var profileImage = PublishRelay<UIImage>()
+    /// 이전 프로필 정보
+    let previousProfile: BehaviorRelay<User?>
+    var profileUrlRelay: BehaviorRelay<String?>
     
     var nicknameAvailbleState = BehaviorRelay<NicknameAvailableState>(value: .cannotCheck)
+    
+    init(sceneCoordinator: SceneCoordinatorType, profile: BehaviorRelay<User?>) {
+        previousProfile = profile
+        profileUrlRelay = BehaviorRelay<String?>(value: profile.value?.profileURL)
+        super.init(sceneCoordinator: sceneCoordinator)
+    }
     
     func checkNicknameDuplication(_ nickname: String) {
         guard nickname.count >= 3 else { return }
@@ -54,7 +61,7 @@ class ProfileViewModel: CommonViewModel {
     
     func modifyInfo(_ userInfo: UserInfo) {
         userInfoProvider.rx.request(.modifyUserInfo(userInfo: userInfo))
-            .mapObject(Result<User>.self)
+            .mapObject(Result<UserInfoModel>.self)
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
@@ -88,8 +95,8 @@ extension ProfileViewModel {
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
                 if response.result == "SUCCESS" {
-                    owner.profileUrl = response.data?.first?.imageUrl
-                    owner.profileImage.accept(pickedImage)
+                    let profileUrl = response.data?.first?.imageUrl
+                    owner.profileUrlRelay.accept(profileUrl)
                 } else {
                     "[실패] 사진이 업로드 되지 않았습니다.".toast(positionType: .withButton)
                     print(response.message ?? "")
