@@ -9,6 +9,7 @@ import UIKit
 
 protocol Selection {
     var name: String { get }
+    var serverName: String { get }
     
     var tagTextColor: UIColor? { get }
     var tagBackgroundColor: UIColor? { get }
