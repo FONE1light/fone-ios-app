@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import MessageUI
 
 enum JobHuntingDetailSection: Int, CaseIterable {
     case author = 0
@@ -24,12 +25,14 @@ enum JobHuntingDetailSection: Int, CaseIterable {
     case footer
 }
 
-class JobHuntingDetailViewController: UIViewController, ViewModelBindableType {
+class JobHuntingDetailViewController: UIViewController, ViewModelBindableType, MFMailComposeViewControllerDelegate {
     
     var viewModel: JobHuntingDetailViewModel!
     var disposeBag = DisposeBag()
     
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var contactButton: CustomButton!
+    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.bounces = false
@@ -40,12 +43,47 @@ class JobHuntingDetailViewController: UIViewController, ViewModelBindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupUI()
         setNavigationBar()
         setCollectionView()
     }
     
     func bindViewModel() {
+        saveButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.viewModel.saveProfile()
+            }.disposed(by: rx.disposeBag)
         
+        viewModel.saveSubject
+            .withUnretained(self)
+            .subscribe(onNext: { owner, isSaved in
+                owner.setSaveButtonStatus(saved: isSaved)
+            }).disposed(by: rx.disposeBag)
+        
+        setSaveButtonStatus(saved: viewModel.jobHuntingDetail.isWant ?? false)
+        
+        contactButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                let contactType =  owner.viewModel.jobHuntingDetail.registerContactLinkInfo?.contactMethod
+                let contact = owner.viewModel.jobHuntingDetail.registerContactLinkInfo?.contact ?? ""
+                if contactType == ContactTypeOptions.email.serverParameter {
+                    if MFMailComposeViewController.canSendMail() {
+                        owner.sendEmail(to: contact)
+                    } else {
+                        owner.showMailErrorPopup()
+                    }
+                } else {
+                    if let url = URL(string: contact) {
+                        UIApplication.shared.open(url, options: [:])
+                    }
+                }
+            }.disposed(by: rx.disposeBag)
+    }
+    
+    private func setupUI() {
+        contactButton.xibInit("연락하기", type: .contact)
     }
     
     private func setNavigationBar() {
@@ -70,6 +108,33 @@ class JobHuntingDetailViewController: UIViewController, ViewModelBindableType {
         tableView.register(with: MainCareerTableViewCell.self)
         tableView.register(with: CategoriesTableViewCell.self)
         tableView.register(with: FooterTableViewCell.self)
+    }
+    
+    private func setSaveButtonStatus(saved: Bool) {
+        saveButton.imageView?.image = saved ? UIImage(resource: .heartOn) : UIImage(resource: .heart02Off)
+        saveButton.titleLabel?.textColor = saved ? .gray_161616 : .gray_555555
+    }
+    
+    private func sendEmail(to contact: String) {
+        let composeViewController = MFMailComposeViewController()
+                composeViewController.mailComposeDelegate = self
+        composeViewController.setToRecipients([contact])
+        self.present(composeViewController, animated: true, completion: nil)
+    }
+    
+    private func showMailErrorPopup() {
+            let message = "메일을 보내려면 'Mail' 앱이 필요합니다. App Store에서 해당 앱을 복원하거나 이메일 설정을 확인하고 다시 시도해주세요."
+            let alert = UIAlertController.createTwoBlackButtonPopup(
+                title: message,
+                cancelButtonText: "취소",
+                continueButtonText: "App Store"
+            ) { _ in
+                if let url = URL(string: "https://apps.apple.com/kr/app/mail/id1108187098"), UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            }
+            
+            present(alert, animated: true)
     }
 }
 

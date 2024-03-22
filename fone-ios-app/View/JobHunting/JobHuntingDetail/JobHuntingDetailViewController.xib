@@ -16,6 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JobHuntingDetailViewController" customModule="fone_ios_app" customModuleProvider="target">
             <connections>
+                <outlet property="contactButton" destination="oGb-MK-BKv" id="KXh-kD-RTI"/>
                 <outlet property="saveButton" destination="ax3-S7-U0E" id="JbN-Nh-44L"/>
                 <outlet property="tableView" destination="qJQ-o2-XW9" id="5HZ-D9-8yg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -29,7 +30,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hea-lU-9IO">
                     <rect key="frame" x="0.0" y="734" width="393" height="84"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGb-MK-BKv">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGb-MK-BKv" customClass="CustomButton" customModule="fone_ios_app" customModuleProvider="target">
                             <rect key="frame" x="165" y="12" width="212" height="48"/>
                             <color key="backgroundColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -53,7 +54,7 @@
                                 <constraint firstAttribute="height" constant="48" id="hPW-8F-VlV"/>
                             </constraints>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="찜하기" image="heart_02_off">
+                            <state key="normal" title="찜하기" image="Heart_02_off">
                                 <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="0.89803921568627454" colorSpace="calibratedRGB"/>
                             </state>
                             <userDefinedRuntimeAttributes>
@@ -93,7 +94,7 @@
         </view>
     </objects>
     <resources>
-        <image name="heart_02_off" width="24" height="24"/>
+        <image name="Heart_02_off" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
