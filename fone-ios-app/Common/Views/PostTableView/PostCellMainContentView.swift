@@ -64,7 +64,7 @@ class PostCellMainContentView: UIView {
     
     // TODO: == nil 삭제
     func configure(
-        profileUrl: String? = nil,
+        imageUrl: String? = nil,
         isVerified: Bool? = nil,
         categories: [Category], // 작품 성격 최대 2개
         isScrap: Bool? = nil,
@@ -75,7 +75,7 @@ class PostCellMainContentView: UIView {
         produce: String? = nil,
         job: Job? = nil
     ) {
-        imageView.load(url: profileUrl)
+        imageView.load(url: imageUrl)
         
         tagList.setValues(
             isVerified: isVerified ?? false,

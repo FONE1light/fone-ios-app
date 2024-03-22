@@ -40,7 +40,7 @@ class JobScrapCell: UITableViewCell {
     
     func configure(_ jobScrap: JobOpening) {
         mainContentView.configure(
-            profileUrl: jobScrap.profileUrl,
+            imageUrl: jobScrap.imageUrl,
             isVerified: jobScrap.isVerified,
             categories: jobScrap.categories ?? [],
             isScrap: jobScrap.isScrap,

@@ -47,7 +47,7 @@ class JobCell: UITableViewCell {
     func configure(
         id: Int? = nil,
         jobType: String? = nil, // ACTOR 혹은 STAFF
-        profileUrl: String? = nil,
+        imageUrl: String? = nil,
         isVerified: Bool? = nil,
         categories: [String]?, // 작품 성격 최대 2개
         isScrap: Bool? = nil,
@@ -65,7 +65,7 @@ class JobCell: UITableViewCell {
         let domain = Domain.getType(serverName: domain ?? "")?.name
         
         mainContentView.configure(
-            profileUrl: profileUrl,
+            imageUrl: imageUrl,
             isVerified: isVerified,
             categories: categories,
             isScrap: isScrap,

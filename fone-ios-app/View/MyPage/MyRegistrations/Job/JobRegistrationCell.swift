@@ -49,7 +49,7 @@ class JobRegistrationCell: UITableViewCell {
     
     func configure(_ jobRegistration: JobOpening) {
         mainContentView.configure(
-            profileUrl: jobRegistration.profileUrl,
+            imageUrl: jobRegistration.imageUrl,
             isVerified: jobRegistration.isVerified,
             categories: jobRegistration.categories ?? [],
             isScrap: nil,
