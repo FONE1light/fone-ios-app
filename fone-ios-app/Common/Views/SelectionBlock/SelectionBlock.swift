@@ -35,7 +35,7 @@ class SelectionBlock: UIView {
         return true
     }
     
-    private var items: [Selection] = []
+    private var allItems: [Selection] = []
     
     private lazy var collectionView: DynamicHeightCollectionView = {
         let layout = LeftAlignedCollectionViewFlowLayout()
@@ -125,7 +125,21 @@ class SelectionBlock: UIView {
     }
     
     func setSelections(_ list: [Selection]) {
-        items = list
+        allItems = list
+    }
+    
+    /// `items`를 선택된 상태로 설정
+    func select(items: [Selection]) {
+        collectionView.visibleCells.forEach { cell in
+            guard let cell = cell as? SelectionCell,
+            let item = cell.item else { return }
+            
+            if items.contains(where: { $0.serverName == item.serverName }) {
+                cell.isChosen = true
+            }
+        }
+        
+        selectedItems.accept(items)
     }
     
     func deselectAll() {
@@ -152,7 +166,14 @@ extension SelectionBlock {
                 var items = owner.selectedItems.value
                 
                 if cell.isChosen {
-                    if owner.selectionLimits > 0, items.count >= owner.selectionLimits {
+                    if owner.selectionLimits == 1 {
+                        // 무조건 비우고 deselect 후
+                        owner.deselectAll()
+                        items = []
+                        
+                        // 현재 셀 toggle ON
+                        cell.toggle()
+                    } else if owner.selectionLimits > 0, items.count >= owner.selectionLimits {
                         cell.toggle()
                         return
                     }
@@ -174,7 +195,7 @@ extension SelectionBlock: UICollectionViewDataSource {
     
     // MARK: cell count
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items.count
+        return allItems.count
     }
     
     // MARK: cell
@@ -183,7 +204,7 @@ extension SelectionBlock: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.setItem(items[indexPath.row])
+        cell.setItem(allItems[indexPath.row])
         cell.backgroundColor = .gray_EEEFEF
         
         return cell
@@ -195,7 +216,7 @@ extension SelectionBlock: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let defaultHeight = 33.0
         
-        let item = items[indexPath.row].name
+        let item = allItems[indexPath.row].name
         let itemSize = item.size(withAttributes: [
             NSAttributedString.Key.font : UIFont.font_r(SelectionCell.Constants.fontSize)
         ])
