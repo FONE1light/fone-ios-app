@@ -11,12 +11,11 @@ import RxSwift
 
 class ProfileViewController: UIViewController, ViewModelBindableType {
     
-    var disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
     var viewModel: ProfileViewModel!
     
     private let profileImage = UIImageView().then {
         $0.image = UIImage(named: "profileImage")
-        $0.cornerRadius = 32
         $0.clipsToBounds = true
         $0.contentMode = .scaleAspectFill // 정확한 원이 되게 하기 위함
     }
@@ -153,6 +152,12 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         setNavigationBar()
         setUI()
         setConstraints()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        disposeBag = DisposeBag()
     }
     
     private func loadPreviousProfile(_ profile: User?) {
