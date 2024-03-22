@@ -13,6 +13,8 @@ import PanModal
 class MyPageViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: MyPageViewModel!
+    // 바인딩 전 viewWillAppear에서 호출 시 크래시 방지 위함
+    private var optionalViewModel: MyPageViewModel?
     var hasViewModel = false
     
     var disposeBag = DisposeBag()
@@ -73,13 +75,19 @@ class MyPageViewController: UIViewController, ViewModelBindableType {
         setupProfileSection()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        optionalViewModel?.fetchMyPage()
+    }
+    
     func bindViewModel() {
-        viewModel.fetchMyPage()
+        optionalViewModel = viewModel
         
         viewModel.userInfo
             .withUnretained(self)
             .bind { owner, userInfo in
-                owner.profileImage.load(url: userInfo?.profileURL)
+                owner.setProfileImage(userInfo?.profileURL)
                 owner.nameLabel.text = userInfo?.nickname
                 owner.jobLabel.text = userInfo?.job
             }.disposed(by: disposeBag)
@@ -87,9 +95,7 @@ class MyPageViewController: UIViewController, ViewModelBindableType {
         rightArrowButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let profileViewModel = ProfileViewModel(sceneCoordinator: self.viewModel.sceneCoordinator)
-                let scene = Scene.profile(profileViewModel)
-                self.viewModel.sceneCoordinator.transition(to: scene, using: .push, animated: true)
+                owner.viewModel.moveToProfile()
             }.disposed(by: rx.disposeBag)
         
         buttonStackView?.scrapButtonTap
@@ -197,6 +203,14 @@ extension MyPageViewController {
             $0.trailing.equalTo(rightArrowImage.snp.trailing)
             $0.bottom.equalTo(profileImage.snp.bottom)
         }
+    }
+    
+    private func setProfileImage(_ stringUrl: String?) {
+        guard let url = stringUrl, !url.isEmpty else {
+            profileImage.image = nil
+            return
+        }
+        profileImage.load(url: url)
     }
 }
 
