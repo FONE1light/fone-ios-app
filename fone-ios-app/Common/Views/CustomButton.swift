@@ -17,6 +17,7 @@ enum ButtonDesignType {
     case bottom14
     /// 초기화 버튼 - '성별 무관', '전체 선택' 등
     case clear
+    case contact
 }
 
 extension ButtonDesignType {
@@ -24,7 +25,7 @@ extension ButtonDesignType {
     var titleFont: UIFont? {
         switch self {
         case .auth, .bottom14: return .font_r(14)
-        case .bottom: return .font_m(16)
+        case .bottom, .contact: return .font_m(16)
         case .clear: return .font_r(12)
         }
     }
@@ -40,7 +41,7 @@ extension ButtonDesignType {
     var defaultTitleColor: UIColor? {
         switch self {
         case .auth: return .red_CE0B39
-        case .bottom, .bottom14, .clear: return .white_FFFFFF
+        case .bottom, .bottom14, .clear, .contact: return .white_FFFFFF
         }
     }
     
@@ -60,7 +61,7 @@ extension ButtonDesignType {
     
     var disabledBackgroundColor: UIColor? {
         switch self {
-        case .clear: return .gray_C5C5C5
+        case .clear, .contact: return .gray_C5C5C5
         case .bottom14: return .gray_EEEFEF
         default: return nil
         }
@@ -68,7 +69,7 @@ extension ButtonDesignType {
     
     var defaultBackgroundColor: UIColor? {
         switch self {
-        case .bottom: return .red_C0002C
+        case .bottom, .contact: return .red_C0002C
         case .clear: return .violet_362C4C
         case .bottom14: return .red_CE0B39
         default: return nil

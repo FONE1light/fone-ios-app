@@ -5,9 +5,15 @@
 //  Created by 여나경 on 12/13/23.
 //
 
+import RxSwift
+
 final class JobHuntingDetailViewModel: CommonViewModel {
+    private var disposeBag = DisposeBag()
+    
     var jobType: Job?
-    let jobHuntingDetail: ProfileContent
+    var jobHuntingDetail: ProfileContent
+    
+    var saveSubject = PublishSubject<Bool>()
     
     lazy var authorInfo = AuthorInfo(
         createdAt: jobHuntingDetail.createdAt,
@@ -63,6 +69,29 @@ extension JobHuntingDetailViewModel {
     }
 }
 
+extension JobHuntingDetailViewModel {
+    func saveProfile() {
+        guard let id = jobHuntingDetail.id else { return }
+        
+        profileInfoProvider.rx.request(.profileWant(profileId: id))
+            .mapObject(Result<EmptyData>.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe (
+                onNext: { owner, response in
+                    if response.result?.isSuccess != true {
+                        "프로필 찜하기를 실패했습니다.".toast()
+                    }
+                    let isWant = owner.jobHuntingDetail.isWant ?? false
+                    owner.jobHuntingDetail.isWant = !isWant
+                    owner.saveSubject.onNext(!isWant)
+                },
+                onError: { error in
+                    error.showToast(modelType: ProfilesData.self)
+                })
+            .disposed(by: disposeBag)
+    }
+}
 extension JobHuntingDetailViewModel {
     
     func moveToJobHuntingProfiles() {
