@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         view.backgroundColor = .black_000000
         
         view.addSubview(imageView)
-        
+        imageView.contentMode = .scaleAspectFit
         imageView.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.size.equalTo(80)
