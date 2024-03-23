@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // MARK: 소셜로그인 초기화 (kakao)
         SocialLoginManager.shared.initailize(sceneCoordinator: coordinator)
+        VersionChecker.shared.initialize()
         
         var destinationScene: Scene
         let accessToken = Tokens.shared.accessToken.value
