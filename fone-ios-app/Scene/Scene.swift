@@ -9,6 +9,7 @@ import UIKit
 import RxRelay
 
 enum Scene {
+    case fakeLaunchScreen(SceneCoordinator)
     case home(SceneCoordinator)
     case login(LoginViewModel)
     case findIDPassword(FindIDPasswordViewModel)
@@ -69,6 +70,11 @@ enum Scene {
 extension Scene {
     func instantiate() -> UIViewController {
         switch self {
+        case .fakeLaunchScreen(let coordinator):
+            var fakeLaunchScreenVC = FakeLaunchScreenViewController(sceneCoordinator: coordinator)
+            
+            return fakeLaunchScreenVC
+            
         case .home(let coordinator):
             let tabBarController = TabBarViewController(coordinator: coordinator)
             
