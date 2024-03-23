@@ -218,7 +218,7 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
                 }
             }, onError: { error in
                 print(error.localizedDescription)
-                "\(error)".toast(positionType: .withButton)
+                error.showToast(modelType: EmptyData.self, positionType: .withButton)
             }).disposed(by: disposeBag)
         
     }
