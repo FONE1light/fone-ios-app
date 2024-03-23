@@ -45,9 +45,10 @@ extension UIAlertController {
     
     class func createTwoButtonPopup(
         title: String?,
-        backButtonText: String?,
-        continueButtonText: String?,
-        buttonHandler: ((UIAlertAction) -> Void)? = nil
+        leftButtonText: String?,
+        rightButtonText: String?,
+        leftButtonHandler: ((UIAlertAction) -> Void)? = nil,
+        rightButtonHandler: ((UIAlertAction) -> Void)? = nil
     ) -> UIAlertController {
         let alert = UIAlertController(
             title: title,
@@ -66,22 +67,22 @@ extension UIAlertController {
             ), forKey: "attributedTitle"
         )
         
-        let back = UIAlertAction(
-            title: backButtonText,
+        let leftAction = UIAlertAction(
+            title: leftButtonText,
             style: .default,
-            handler: buttonHandler
+            handler: leftButtonHandler
         )
-        alert.addAction(back)
+        alert.addAction(leftAction)
         
-        back.setValue(UIColor.gray_555555, forKey: "titleTextColor") // 색상 적용
+        leftAction.setValue(UIColor.gray_555555, forKey: "titleTextColor") // 색상 적용
         
-        let continueAction = UIAlertAction(
-            title: continueButtonText,
-            style: .destructive,
-            handler: nil)
-        alert.addAction(continueAction)
+        let rightAction = UIAlertAction(
+            title: rightButtonText,
+            style: .destructive, // TODO: 어차피 색 바꾸므로 Default로 설정해도 동일할 것
+            handler: rightButtonHandler)
+        alert.addAction(rightAction)
         
-        continueAction.setValue(UIColor.red_CE0B39, forKey: "titleTextColor") // 색상 적용
+        rightAction.setValue(UIColor.red_CE0B39, forKey: "titleTextColor") // 색상 적용
         
         return alert
     }
@@ -121,7 +122,7 @@ extension UIAlertController {
         
         let continueAction = UIAlertAction(
             title: continueButtonText,
-            style: .default, // bold 처리 위해
+            style: .default, // bold 처리 X 위해
             handler: buttonHandler
         )
         alert.addAction(continueAction)
