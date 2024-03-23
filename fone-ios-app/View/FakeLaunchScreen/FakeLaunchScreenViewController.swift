@@ -10,6 +10,7 @@ import UIKit
 class FakeLaunchScreenViewController: UIViewController {
     
     private let coordinator: SceneCoordinator
+    private let appStoreUrl = "https://apps.apple.com/us/app/%EC%97%90%ED%94%84%EC%9B%90/id1662193361"
     
     private let imageView = UIImageView(image: UIImage(resource: .logoFilmOne))
 
@@ -58,7 +59,7 @@ extension FakeLaunchScreenViewController {
         }
         
         let navigateToAppStore: ((UIAlertAction) -> Void) = { _ in
-            print("APPSTORE로 이동")
+            self.appStoreUrl.openURL()
         }
         
         let alert = UIAlertController

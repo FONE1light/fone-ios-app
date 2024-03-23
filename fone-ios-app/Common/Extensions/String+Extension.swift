@@ -14,6 +14,16 @@ extension String {
         }
     }
     
+    func openURL() {
+        guard let url = self.url else { return }
+        
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            print("can't open app store url")
+        }
+    }
+    
     /** 숫자형 문자열에 3자리수 마다 콤마 넣기 */
     var insertComma: String {
         let numberFormatter = NumberFormatter()
