@@ -19,15 +19,13 @@ class SignoutBottomSheetViewModel: CommonViewModel {
     }
     
     func signout() {
-//        switch loginType {
-//        case .APPLE:
-//            SocialLoginManager.shared.disconnectAppleLogin()
-//        case .GOOGLE:
-//            SocialLoginManager.shared.disconnectGoogleLogin()
-//        case .KAKAO:
-//            SocialLoginManager.shared.disconnectKakaoTalkLogin()
-//        default: break
-//        }
+        switch loginType {
+        case .GOOGLE:
+            SocialLoginManager.shared.disconnectGoogleLogin()
+        case .KAKAO:
+            SocialLoginManager.shared.disconnectKakaoTalkLogin()
+        default: break
+        }
         
         userInfoProvider.rx.request(.signout)
             .mapObject(Result<String?>.self)
@@ -38,6 +36,7 @@ class SignoutBottomSheetViewModel: CommonViewModel {
                     if response.result?.isSuccess == true {
                         response.message?.toast()
                         Tokens.shared.accessToken.value = ""
+                        Tokens.shared.refreshToken.value = ""
                         owner.moveToLogin()
                     } else {
                         "회원 탈퇴 실패".toast()

@@ -20,8 +20,6 @@ class LogoutBottomSheetViewModel: CommonViewModel {
     
     func logout() {
         switch loginType {
-        case .APPLE:
-            SocialLoginManager.shared.logoutFromApple()
         case .GOOGLE:
             SocialLoginManager.shared.logoutFromGoogle()
         case .KAKAO:
@@ -38,12 +36,12 @@ class LogoutBottomSheetViewModel: CommonViewModel {
                     if response.result?.isSuccess == true {
                         response.message?.toast()
                         Tokens.shared.accessToken.value = ""
+                        Tokens.shared.refreshToken.value = ""
                         owner.moveToLogin()
                     } else {
                         "로그아웃 실패".toast()
                     }
-                }
-                , onError: { error in
+                }, onError: { error in
                     error.showToast(modelType: String.self)
                 }).disposed(by: disposeBag)
     }

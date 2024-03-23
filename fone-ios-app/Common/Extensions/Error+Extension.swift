@@ -17,6 +17,7 @@ extension Error {
               !message.isEmpty else {
             return localizedDescription.toast(positionType: positionType, isKeyboardShowing: isKeyboardShowing)
         }
+        print(errorData)
         message.toast(positionType: positionType, isKeyboardShowing: isKeyboardShowing)
     }
 }
