@@ -18,8 +18,11 @@ final class VersionChecker {
         self.sceneCoordinator = sceneCoordinator
         
         let settings = RemoteConfigSettings()
-        // TODO: minimumFetchInterval 개발/운영 분기
+#if DEBUG
         settings.minimumFetchInterval = 0
+#else
+        settings.minimumFetchInterval = 3600
+#endif
         remoteConfig.configSettings = settings
         
         fetchVersion(completionHandler)
@@ -33,29 +36,22 @@ final class VersionChecker {
             }
             
             print("Config fetched!")
-            self.remoteConfig.activate { changed, error in
-                
+            self.remoteConfig.activate { _, _ in
                 if let fbVersion = self.remoteConfig["iOSrequiredVersionName"].stringValue {
-                    print("💥fbVersion: \(fbVersion)")
                     let appVersion = Bundle.appVersion
-                    print("💥appVersion: \(appVersion)")
                     let versionCompareResult = fbVersion.compare(appVersion, options: .numeric)
                     if versionCompareResult == .orderedDescending {
-                        // TODO: Navigate to AppStore
-                        print("💥fbVersion > appVersion! Navigate to AppStore")
+                        print("💥fbVersion > appVersion!")
                         (completionHandler)(false)
                         return
                     }
                 }
                 
                 if let fbBuild = self.remoteConfig["iOSrequiredVersionCode"].stringValue {
-                    print("💥fbBuild: \(fbBuild)")
                     let appBuild = Bundle.appBuild
-                    print("💥appBuild: \(appBuild)")
                     let buildCompareResult = fbBuild.compare(appBuild, options: .numeric)
                     if buildCompareResult == .orderedDescending {
-                        // TODO: Navigate to AppStore
-                        print("💥fbBuild > appBuild! Navigate to AppStore")
+                        print("💥fbBuild > appBuild!")
                         completionHandler(false)
                         return
                     }
