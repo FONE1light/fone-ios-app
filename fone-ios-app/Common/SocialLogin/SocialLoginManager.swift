@@ -50,9 +50,11 @@ final class SocialLoginManager {
             UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
                 if let error = error {
                     print(error)
+                    print("🔥loginWithKakaoTalk-FAILURE")
                 }
                 else {
                     print("loginWithKakaoTalk() success.")
+                    print("🔥loginWithKakaoTalk-SUCCESS")
                     let accessToken = oauthToken?.accessToken ?? ""
                     self.getKakaoUserEmailAndName()
                     self.socialSignIn(accessToken: accessToken, loginType: SocialLoginType.KAKAO.rawValue)
@@ -72,9 +74,10 @@ final class SocialLoginManager {
         GIDSignIn.sharedInstance.signIn(withPresenting: presentingVC) { [unowned self] result, error in
             guard error == nil else {
                 print(error as Any)
+                print("🔥loginWithGoogle-FAILURE")
                 return
             }
-            
+            print("🔥loginWithGoogle-SUCCESS")
             guard let user = result?.user,
                   let idToken = user.idToken?.tokenString,
                   let email = user.profile?.email else { return }
@@ -111,16 +114,16 @@ final class SocialLoginManager {
                     owner.moveToSocialSignUp(accessToken: accessToken, loginType: loginType)
                 }
             }, onError: { [weak self] error in
-                print(error.localizedDescription)
-                error.showToast(modelType: EmptyData.self)
                 // TODO: 에러처리. 어떤 에러까지 signUp 화면으로 보낼지.
                 guard let statusCode = (error as? MoyaError)?.response?.statusCode else { return }
                 switch statusCode {
-                case 400...401: 
+                case 400...401:
                     self?.moveToSocialSignUp(accessToken: accessToken, loginType: loginType)
                     return
                 default: break
                 }
+                print(error.localizedDescription)
+                error.showToast(modelType: EmptyData.self)
             }).disposed(by: disposeBag)
     }
     
@@ -178,24 +181,24 @@ extension SocialLoginManager {
             self.name = user?.kakaoAccount?.name ?? user?.kakaoAccount?.profile?.nickname
         }
     }
-    
 }
 
 extension SocialLoginManager {
     func logoutFromKakaoTalk() {
         UserApi.shared.logout { error in
-            guard let error = error else { return }
-            print(error.localizedDescription)
+            if let error = error {
+                print(error.localizedDescription)
+                print("🔥logoutFromKakaoTalk-FAILURE")
+                return
+            } else {
+                print("🔥logoutFromKakaoTalk-SUCCESS")
+            }
         }
     }
     
     func logoutFromGoogle() {
         GIDSignIn.sharedInstance.signOut()
-    }
-    
-    func logoutFromApple() {
-        // TODO: 구현
-        let clientID = "com.fone.filmone"
+        print("🔥logoutFromGoogle-SUCCESS")
     }
 }
 
@@ -204,18 +207,17 @@ extension SocialLoginManager {
         UserApi.shared.unlink {(error) in
             if let error = error {
                 print(error)
+                print("🔥disconnectKakaoTalkLogin-FAILURE")
             } else {
                 print("unlink() success.")
+                print("🔥disconnectKakaoTalkLogin-SUCCESS")
             }
         }
     }
     
     func disconnectGoogleLogin() {
         GIDSignIn.sharedInstance.disconnect()
-    }
-    
-    func disconnectAppleLogin() {
-        
+        print("🔥disconnectGoogleLogin-SUCCESS")
     }
 }
 
@@ -223,6 +225,7 @@ extension SocialLoginManager {
 extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         //로그인 성공
+        print("🔥loginWithApple-SUCCESS")
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             if let identityToken = appleIDCredential.identityToken,
@@ -239,7 +242,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // 로그인 실패(유저의 취소도 포함)
-        print("login failed - \(error.localizedDescription)")
+        print("🔥loginWithApple-FAILURE")
+        print("🔥login failed - \(error.localizedDescription)")
     }
 }
 
