@@ -44,6 +44,11 @@ final class SocialLoginManager {
         FirebaseApp.configure()
     }
     
+    /// currentVC가 바뀐 최신 SceneCoordnator를 가지고 있지 않은 경우 SceneCoordinator를 업데이트 하기 위해 사용
+    func updateCoordinator(_ sceneCoordinator: SceneCoordinatorType) {
+        self.sceneCoordinator = sceneCoordinator
+    }
+    
     func loginWithKakaoTalk() {
         // 카카오톡 설치 여부 확인
         if (UserApi.isKakaoTalkLoginAvailable()) {
@@ -114,7 +119,6 @@ final class SocialLoginManager {
                     owner.moveToSocialSignUp(accessToken: accessToken, loginType: loginType)
                 }
             }, onError: { [weak self] error in
-                // TODO: 에러처리. 어떤 에러까지 signUp 화면으로 보낼지.
                 guard let statusCode = (error as? MoyaError)?.response?.statusCode else { return }
                 switch statusCode {
                 case 400...401:
