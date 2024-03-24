@@ -44,6 +44,11 @@ final class SocialLoginManager {
         FirebaseApp.configure()
     }
     
+    /// currentVC가 바뀐 최신 SceneCoordnator를 가지고 있지 않은 경우 SceneCoordinator를 업데이트 하기 위해 사용
+    func updateCoordinator(_ sceneCoordinator: SceneCoordinatorType) {
+        self.sceneCoordinator = sceneCoordinator
+    }
+    
     func loginWithKakaoTalk() {
         // 카카오톡 설치 여부 확인
         if (UserApi.isKakaoTalkLoginAvailable()) {
