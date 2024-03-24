@@ -119,7 +119,6 @@ final class SocialLoginManager {
                     owner.moveToSocialSignUp(accessToken: accessToken, loginType: loginType)
                 }
             }, onError: { [weak self] error in
-                // TODO: 에러처리. 어떤 에러까지 signUp 화면으로 보낼지.
                 guard let statusCode = (error as? MoyaError)?.response?.statusCode else { return }
                 switch statusCode {
                 case 400...401:
