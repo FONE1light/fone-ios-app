@@ -25,6 +25,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
     private let filterButton = UIButton().then {
         let image = UIImage(named: "Slider")
         $0.setImage(image, for: .normal)
+        $0.isHidden = true // TODO: 추후 hidden 풀고 기능 추가
     }
     
     private var isShownFloating = false
