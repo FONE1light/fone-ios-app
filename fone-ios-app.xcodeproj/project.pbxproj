@@ -158,7 +158,7 @@
 		36BCC7E62AA5E0180060E35A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BCC7E52AA5E0180060E35A /* CustomButton.swift */; };
 		36BDA1402AEE3C71001AF777 /* ImageUploadProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BDA13F2AEE3C71001AF777 /* ImageUploadProvider.swift */; };
 		36BDA1422AEE3F08001AF777 /* ImageUploadAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BDA1412AEE3F08001AF777 /* ImageUploadAPIModel.swift */; };
-		36C3640F2BAECE26008DAC29 /* VersionChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C3640E2BAECE26008DAC29 /* VersionChecker.swift */; };
+		36C3640F2BAECE26008DAC29 /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C3640E2BAECE26008DAC29 /* RemoteConfigManager.swift */; };
 		36C364112BAF112E008DAC29 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C364102BAF112E008DAC29 /* Bundle+Extension.swift */; };
 		36C364132BAF261E008DAC29 /* FakeLaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C364122BAF261E008DAC29 /* FakeLaunchScreenViewController.swift */; };
 		36C8B7EE2ADC853D008B6F88 /* SignUpTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C8B7ED2ADC853D008B6F88 /* SignUpTerms.swift */; };
@@ -508,7 +508,7 @@
 		36BCC7E52AA5E0180060E35A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		36BDA13F2AEE3C71001AF777 /* ImageUploadProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadProvider.swift; sourceTree = "<group>"; };
 		36BDA1412AEE3F08001AF777 /* ImageUploadAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadAPIModel.swift; sourceTree = "<group>"; };
-		36C3640E2BAECE26008DAC29 /* VersionChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionChecker.swift; sourceTree = "<group>"; };
+		36C3640E2BAECE26008DAC29 /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
 		36C364102BAF112E008DAC29 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		36C364122BAF261E008DAC29 /* FakeLaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeLaunchScreenViewController.swift; sourceTree = "<group>"; };
 		36C8B7ED2ADC853D008B6F88 /* SignUpTerms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTerms.swift; sourceTree = "<group>"; };
@@ -1327,12 +1327,12 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		36C3640D2BAECDEB008DAC29 /* VersionChecker */ = {
+		36C3640D2BAECDEB008DAC29 /* RemoteConfigManager */ = {
 			isa = PBXGroup;
 			children = (
-				36C3640E2BAECE26008DAC29 /* VersionChecker.swift */,
+				36C3640E2BAECE26008DAC29 /* RemoteConfigManager.swift */,
 			);
-			path = VersionChecker;
+			path = RemoteConfigManager;
 			sourceTree = "<group>";
 		};
 		36C364162BAF47DD008DAC29 /* FakeLaunchScreen */ = {
@@ -1629,7 +1629,7 @@
 		AB60024E2A7E42A6000CF1FD /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				36C3640D2BAECDEB008DAC29 /* VersionChecker */,
+				36C3640D2BAECDEB008DAC29 /* RemoteConfigManager */,
 				AB4E44452B0E2226001B3DB6 /* User */,
 				AB3AE54B2ADBDA510048EDA2 /* SocialLogin */,
 				366F22AE2ADB645800FD00BD /* ViewControllers */,
@@ -2178,7 +2178,7 @@
 				36BCC7E62AA5E0180060E35A /* CustomButton.swift in Sources */,
 				AB1915752B651A6300424256 /* JobInfoAPIRequestModel.swift in Sources */,
 				369292F52B84E66300BA52AA /* ContactTypeView.swift in Sources */,
-				36C3640F2BAECE26008DAC29 /* VersionChecker.swift in Sources */,
+				36C3640F2BAECE26008DAC29 /* RemoteConfigManager.swift in Sources */,
 				AB79B3BC2A9E29C4008EBAA2 /* QuestionViewController.swift in Sources */,
 				36323CD82B693E6400AC99ED /* CompetitionInfoAPIModel.swift in Sources */,
 				AB6002362A7E375D000CF1FD /* AppDelegate.swift in Sources */,
