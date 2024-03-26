@@ -55,6 +55,7 @@
 		3650F6262A8672010017645D /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3650F6252A8672010017645D /* UIFont+Extension.swift */; };
 		3652C55F2B85EF700009ABEB /* SNSImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3652C55E2B85EF700009ABEB /* SNSImageView.swift */; };
 		365EE0C72B68CC050089035A /* Error+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EE0C62B68CC050089035A /* Error+Extension.swift */; };
+		365F30B52BB1C078003D623C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 365F30B42BB1C078003D623C /* PrivacyInfo.xcprivacy */; };
 		3663DB122AF6843C005899BF /* JobUISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663DB112AF6843C005899BF /* JobUISegmentedControl.swift */; };
 		3663DB142AF68845005899BF /* JobOpeningSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663DB132AF68845005899BF /* JobOpeningSortButton.swift */; };
 		366E85092B19ECC200CB7681 /* FullWidthSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E85082B19ECC200CB7681 /* FullWidthSelectionView.swift */; };
@@ -406,6 +407,7 @@
 		3650F6252A8672010017645D /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		3652C55E2B85EF700009ABEB /* SNSImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSImageView.swift; sourceTree = "<group>"; };
 		365EE0C62B68CC050089035A /* Error+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Extension.swift"; sourceTree = "<group>"; };
+		365F30B42BB1C078003D623C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		3663DB112AF6843C005899BF /* JobUISegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobUISegmentedControl.swift; sourceTree = "<group>"; };
 		3663DB132AF68845005899BF /* JobOpeningSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningSortButton.swift; sourceTree = "<group>"; };
 		366E85082B19ECC200CB7681 /* FullWidthSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthSelectionView.swift; sourceTree = "<group>"; };
@@ -1569,6 +1571,7 @@
 		AB6002292A7E375D000CF1FD = {
 			isa = PBXGroup;
 			children = (
+				365F30B42BB1C078003D623C /* PrivacyInfo.xcprivacy */,
 				AB6002342A7E375D000CF1FD /* fone-ios-app */,
 				AB6002332A7E375D000CF1FD /* Products */,
 			);
@@ -2043,6 +2046,7 @@
 				AB6780FC2B10F2220074463E /* DatePickerViewController.xib in Resources */,
 				AB48A2472B764D3300007F24 /* RecruitContactLinkInfoViewController.xib in Resources */,
 				3650F6222A86715C0017645D /* Pretendard-Medium.ttf in Resources */,
+				365F30B52BB1C078003D623C /* PrivacyInfo.xcprivacy in Resources */,
 				ABCDD1922B00F23000A598A8 /* SummaryCell.xib in Resources */,
 				AB1CEAA92ABFD1D700E7E54F /* MainBannerModule.xib in Resources */,
 				AB6002422A7E375D000CF1FD /* Assets.xcassets in Resources */,
