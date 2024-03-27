@@ -91,7 +91,8 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
         
         var toastMessage = "인증번호를 전송하였습니다."
         
-        if APISetting.shared.config == .DEV {
+        // 디버그 모드이거나 앱 심사 시 인증번호 노출
+        if APISetting.shared.config == .DEV || isAppleReviewInProcess(phoneNumber: phoneNumber) {
             toastMessage += "\n(인증번호: \(authNumber))"
             ToastManager.show(
                 toastMessage,
@@ -118,6 +119,11 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
         startTimer()
         
         phoneNumberAvailableState.accept(.sent)
+    }
+    
+    private func isAppleReviewInProcess(phoneNumber: String?) -> Bool {
+        guard let isAppleReviewInProcess = RemoteConfigManager.shared.isAppleReviewInProcess else { return false }
+        return phoneNumber == "000-0000-0000" && isAppleReviewInProcess
     }
     
     /// 인증번호 유효성 확인

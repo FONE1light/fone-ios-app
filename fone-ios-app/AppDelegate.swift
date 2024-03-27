@@ -19,12 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // MARK: 소셜로그인 초기화 (kakao)
         SocialLoginManager.shared.initailize(sceneCoordinator: coordinator)
-        VersionChecker.shared.initialize(sceneCoordinator: coordinator) { isSuccess in
+        RemoteConfigManager.shared.initialize(sceneCoordinator: coordinator) { isVersionCheckPassed in
             
             DispatchQueue.main.async {
                 var destinationScene: Scene
                 
-                if isSuccess {
+                if isVersionCheckPassed {
                     destinationScene = self.checkLoginStatus(coordinator)
                 } else {
                     destinationScene = Scene.fakeLaunchScreen(coordinator)
