@@ -56,6 +56,7 @@
 		3652C55F2B85EF700009ABEB /* SNSImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3652C55E2B85EF700009ABEB /* SNSImageView.swift */; };
 		365EE0C72B68CC050089035A /* Error+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EE0C62B68CC050089035A /* Error+Extension.swift */; };
 		365F30B52BB1C078003D623C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 365F30B42BB1C078003D623C /* PrivacyInfo.xcprivacy */; };
+		365F30B82BB3D991003D623C /* ATTrackingAlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F30B72BB3D991003D623C /* ATTrackingAlertManager.swift */; };
 		3663DB122AF6843C005899BF /* JobUISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663DB112AF6843C005899BF /* JobUISegmentedControl.swift */; };
 		3663DB142AF68845005899BF /* JobOpeningSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663DB132AF68845005899BF /* JobOpeningSortButton.swift */; };
 		366E85092B19ECC200CB7681 /* FullWidthSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E85082B19ECC200CB7681 /* FullWidthSelectionView.swift */; };
@@ -408,6 +409,7 @@
 		3652C55E2B85EF700009ABEB /* SNSImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSImageView.swift; sourceTree = "<group>"; };
 		365EE0C62B68CC050089035A /* Error+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Extension.swift"; sourceTree = "<group>"; };
 		365F30B42BB1C078003D623C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		365F30B72BB3D991003D623C /* ATTrackingAlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATTrackingAlertManager.swift; sourceTree = "<group>"; };
 		3663DB112AF6843C005899BF /* JobUISegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobUISegmentedControl.swift; sourceTree = "<group>"; };
 		3663DB132AF68845005899BF /* JobOpeningSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningSortButton.swift; sourceTree = "<group>"; };
 		366E85082B19ECC200CB7681 /* FullWidthSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthSelectionView.swift; sourceTree = "<group>"; };
@@ -933,6 +935,14 @@
 				3650F61E2A86715C0017645D /* Pretendard-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		365F30B62BB3D97D003D623C /* ATTrackingAlertManager */ = {
+			isa = PBXGroup;
+			children = (
+				365F30B72BB3D991003D623C /* ATTrackingAlertManager.swift */,
+			);
+			path = ATTrackingAlertManager;
 			sourceTree = "<group>";
 		};
 		3663DB102AF68422005899BF /* Modules */ = {
@@ -1632,6 +1642,7 @@
 		AB60024E2A7E42A6000CF1FD /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				365F30B62BB3D97D003D623C /* ATTrackingAlertManager */,
 				36C3640D2BAECDEB008DAC29 /* RemoteConfigManager */,
 				AB4E44452B0E2226001B3DB6 /* User */,
 				AB3AE54B2ADBDA510048EDA2 /* SocialLogin */,
@@ -2133,6 +2144,7 @@
 				AB6E432F2B2205CB001960E7 /* RecruitWorkInfoViewModel.swift in Sources */,
 				AB49A3492A8119B900748484 /* CommonViewModel.swift in Sources */,
 				36F50AA92A962C9800991C9B /* EmptyView.swift in Sources */,
+				365F30B82BB3D991003D623C /* ATTrackingAlertManager.swift in Sources */,
 				3663DB142AF68845005899BF /* JobOpeningSortButton.swift in Sources */,
 				AB61493E2A90D4410079CEC9 /* ToastManager.swift in Sources */,
 				AB25789E2AAF341900328363 /* HomeViewModel.swift in Sources */,

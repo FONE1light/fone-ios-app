@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
         let coordinator = SceneCoordinator(window: window!)
         
         // MARK: 소셜로그인 초기화 (kakao)
@@ -34,6 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         sleep(3)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            ATTrackingAlertManager.shared.initialize()
+        }
         
         return true
     }
