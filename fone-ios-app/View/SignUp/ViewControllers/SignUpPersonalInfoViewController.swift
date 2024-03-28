@@ -61,12 +61,6 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
         $0.textColor = .gray_161616
     }
     
-    private let birthSubtitleLabel = UILabel().then {
-        $0.text = "성별과 생년월일의 정보는 변경이 불가능합니다."
-        $0.font = .font_r(12)
-        $0.textColor = .gray_9E9E9E
-    }
-    
     private let birthTextField = DefaultTextField(placeholder: "YYYY-MM-DD")
     
     private let maleButton = CustomButton("남자", type: .auth).then {
@@ -250,7 +244,6 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
         
         [
             birthLabel,
-            birthSubtitleLabel,
             birthTextField,
             maleButton,
             femaleButton
@@ -335,13 +328,8 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
             $0.leading.equalToSuperview()
         }
         
-        birthSubtitleLabel.snp.makeConstraints {
-            $0.top.equalTo(birthLabel.snp.bottom).offset(1)
-            $0.leading.equalToSuperview()
-        }
-        
         birthTextField.snp.makeConstraints {
-            $0.top.equalTo(birthSubtitleLabel.snp.bottom).offset(8)
+            $0.top.equalTo(birthLabel.snp.bottom).offset(8)
             $0.leading.bottom.equalToSuperview()
         }
         
