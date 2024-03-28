@@ -34,9 +34,13 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
     let nicknameBlock = UIView()
     
     private let nicknameLabel = UILabel().then {
-        $0.text = "닉네임 *"
+        $0.text = "닉네임"
         $0.font = .font_b(15)
         $0.textColor = .gray_161616
+    }
+    
+    private let starImageView = UIImageView().then {
+        $0.image = UIImage(resource: .star)
     }
     
     private let nicknameTextField = DefaultTextField(placeholder: "3~8자리의 숫자, 영어, 한글만 가능합니다")
@@ -52,7 +56,7 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
     let birthBlock = UIView()
     
     private let birthLabel = UILabel().then {
-        $0.text = "생년월일 및 성별 *"
+        $0.text = "생년월일 및 성별"
         $0.font = .font_b(15)
         $0.textColor = .gray_161616
     }
@@ -236,6 +240,7 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
         
         [
             nicknameLabel,
+            starImageView,
             nicknameTextField,
             duplicationCheckButton
         ]
@@ -303,6 +308,12 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
         nicknameLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview()
+        }
+        
+        starImageView.snp.makeConstraints {
+            $0.size.equalTo(8)
+            $0.leading.equalTo(nicknameLabel.snp.trailing).offset(3)
+            $0.centerY.equalTo(nicknameLabel)
         }
         
         nicknameTextField.snp.makeConstraints {
