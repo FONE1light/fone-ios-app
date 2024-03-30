@@ -106,7 +106,7 @@ class RecruitBasicInfoViewController: UIViewController, ViewModelBindableType {
                     let categories = selectedCategories?.map{ $0.serverName }
                     let startDate = owner.startDateLabel.text?.dateServerFormat
                     let endDate = owner.endDateLabel.text?.dateServerFormat
-                    let recruitBasicInfo = RecruitBasicInfo(title: title, categories: categories, recruitmentStartDate: startDate, recruitmentEndDate: endDate, imageUrls: imageUrls)
+                    let recruitBasicInfo = RecruitBasicInfo(title: title, categories: categories, recruitmentStartDate: startDate, recruitmentEndDate: endDate, imageUrls: imageUrls, representativeImageUrl: imageUrls.first)
                     owner.viewModel.validateTitle(recruitBasicInfo: recruitBasicInfo)
                 }
                 
