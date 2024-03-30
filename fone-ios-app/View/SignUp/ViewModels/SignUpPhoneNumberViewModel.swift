@@ -200,8 +200,8 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
             interests: signUpSelectionInfo?.interests ?? [],
             
             nickname: signUpPersonalInfo?.nickname ?? "",
-            birthday: signUpPersonalInfo?.birthday ?? "",
-            gender: signUpPersonalInfo?.gender ?? "",
+            birthday: signUpPersonalInfo?.birthday ?? nil,
+            gender: signUpPersonalInfo?.gender ?? nil,
             profileUrl: signUpPersonalInfo?.profileURL ?? "",
             
             phoneNumber: phoneNumber?.phoneNumberFormatted() ?? "",

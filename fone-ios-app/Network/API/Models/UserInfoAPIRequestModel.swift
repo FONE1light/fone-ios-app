@@ -92,7 +92,8 @@ struct SocialSignUpInfo: Codable {
     let job: String
     let interests: [String]
     
-    let nickname, birthday, gender: String
+    let nickname: String
+    let birthday, gender: String?
     let profileUrl: String
     
     let phoneNumber: String
