@@ -34,9 +34,13 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
     let nicknameBlock = UIView()
     
     private let nicknameLabel = UILabel().then {
-        $0.text = "닉네임 *"
+        $0.text = "닉네임"
         $0.font = .font_b(15)
         $0.textColor = .gray_161616
+    }
+    
+    private let starImageView = UIImageView().then {
+        $0.image = UIImage(resource: .star)
     }
     
     private let nicknameTextField = DefaultTextField(placeholder: "3~8자리의 숫자, 영어, 한글만 가능합니다")
@@ -52,15 +56,9 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
     let birthBlock = UIView()
     
     private let birthLabel = UILabel().then {
-        $0.text = "생년월일 및 성별 *"
+        $0.text = "생년월일 및 성별"
         $0.font = .font_b(15)
         $0.textColor = .gray_161616
-    }
-    
-    private let birthSubtitleLabel = UILabel().then {
-        $0.text = "성별과 생년월일의 정보는 변경이 불가능합니다."
-        $0.font = .font_r(12)
-        $0.textColor = .gray_9E9E9E
     }
     
     private let birthTextField = DefaultTextField(placeholder: "YYYY-MM-DD")
@@ -236,6 +234,7 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
         
         [
             nicknameLabel,
+            starImageView,
             nicknameTextField,
             duplicationCheckButton
         ]
@@ -245,7 +244,6 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
         
         [
             birthLabel,
-            birthSubtitleLabel,
             birthTextField,
             maleButton,
             femaleButton
@@ -305,6 +303,12 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
             $0.leading.equalToSuperview()
         }
         
+        starImageView.snp.makeConstraints {
+            $0.size.equalTo(8)
+            $0.leading.equalTo(nicknameLabel.snp.trailing).offset(3)
+            $0.centerY.equalTo(nicknameLabel)
+        }
+        
         nicknameTextField.snp.makeConstraints {
             $0.top.equalTo(nicknameLabel.snp.bottom).offset(8)
             $0.leading.bottom.equalToSuperview()
@@ -324,13 +328,8 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
             $0.leading.equalToSuperview()
         }
         
-        birthSubtitleLabel.snp.makeConstraints {
-            $0.top.equalTo(birthLabel.snp.bottom).offset(1)
-            $0.leading.equalToSuperview()
-        }
-        
         birthTextField.snp.makeConstraints {
-            $0.top.equalTo(birthSubtitleLabel.snp.bottom).offset(8)
+            $0.top.equalTo(birthLabel.snp.bottom).offset(8)
             $0.leading.bottom.equalToSuperview()
         }
         
