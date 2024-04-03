@@ -37,6 +37,7 @@ class JobOpeningModule: UICollectionViewCell {
         super.awakeFromNib()
         
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.register(JobOpeningCell.self)
     }
 
@@ -70,5 +71,15 @@ extension JobOpeningModule: UICollectionViewDataSource {
             cell.configureCell(item: item, index: indexPath.item)
         }
         return cell
+    }
+}
+
+extension JobOpeningModule: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let sceneCoordinator = sceneCoordinator as? SceneCoordinator else { return }
+        if let item = jobOpeningInfo?.data?.content?[indexPath.item],
+           let id = item.id, let type = item.type {
+            sceneCoordinator.goJobOpeningDetail(jobOpeningId: id, type: Job.getType(name: type) ?? .actor)
+        }
     }
 }

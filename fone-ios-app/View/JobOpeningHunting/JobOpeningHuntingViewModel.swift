@@ -172,50 +172,6 @@ extension JobOpeningHuntingViewModel {
 }
 
 extension JobOpeningHuntingViewModel {
-    /// 모집 상세로 이동
-    func goJobOpeningDetail(jobOpeningId: Int, type: Job) {
-        jobOpeningInfoProvider.rx.request(.jobOpeningDetail(jobOpeningId: jobOpeningId, type: type))
-            .mapObject(Result<JobOpeningData>.self)
-            .asObservable()
-            .withUnretained(self)
-            .subscribe(onNext: { owner, response in
-                guard let jobOpening = response.data?.jobOpening else {
-                    response.message?.toast()
-                    return }
-                let viewModel = JobOpeningDetailViewModel(sceneCoordinator: owner.sceneCoordinator, jobOpeningDetail: jobOpening)
-                let detailScene = Scene.jobOpeningDetail(viewModel)
-                owner.sceneCoordinator.transition(to: detailScene, using: .push, animated: true)
-            },
-            onError: { error in
-                print(error)
-            }).disposed(by: disposeBag)
-    }
-    
-    /// 프로필 상세로 이동
-    func goJobHuntingDetail(jobHuntingId: Int, type: Job) {
-        profileInfoProvider.rx.request(.profileDetail(profileId: jobHuntingId, type: type))
-            .mapObject(Result<ProfileData>.self)
-            .asObservable()
-            .withUnretained(self)
-            .subscribe(onNext: { owner, response in
-                guard let profile = response.data?.profile else {
-                    response.message?.toast()
-                    return
-                }
-                
-                let viewModel = JobHuntingDetailViewModel(sceneCoordinator: owner.sceneCoordinator, jobHuntingDetail: profile)
-                viewModel.jobType = type
-                
-                let detailScene = Scene.jobHuntingDetail(viewModel)
-                owner.sceneCoordinator.transition(to: detailScene, using: .push, animated: true)
-            },
-                       onError: { error in
-                print(error.localizedDescription)
-                error.localizedDescription.toast()
-            }).disposed(by: disposeBag)
-        
-    }
-    
     /// 모집 등록
     func moveToComposeRecruit(of jobType: Job) {
         let recruitContactLinkInfoViewModel = RecruitContactLinkInfoViewModel(sceneCoordinator: sceneCoordinator)

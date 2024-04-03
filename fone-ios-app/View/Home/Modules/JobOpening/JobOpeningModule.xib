@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -43,9 +43,6 @@
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button" image="arrow_right16"/>
-                                <connections>
-                                    <action selector="goToJobOpening:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Lsd-hI-sfS"/>
-                                </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="AzB-9x-nK8">
                                 <rect key="frame" x="0.0" y="31.333333333333329" width="375" height="187.66666666666669"/>
@@ -98,15 +95,26 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="puc-tC-gED">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="31.333333333333332"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="goToJobOpening:" destination="gTV-IL-0wX" eventType="touchUpInside" id="IGN-kH-3Ap"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="s0D-Rx-3mM" secondAttribute="trailing" constant="16" id="27A-pe-Omk"/>
                             <constraint firstItem="AzB-9x-nK8" firstAttribute="leading" secondItem="9uS-dG-a7b" secondAttribute="leading" id="8Ow-7n-yl3"/>
                             <constraint firstItem="SQ4-4K-d97" firstAttribute="centerY" secondItem="QKf-E0-8sX" secondAttribute="centerY" id="FxE-Ka-YS4"/>
+                            <constraint firstItem="puc-tC-gED" firstAttribute="top" secondItem="9uS-dG-a7b" secondAttribute="top" id="GzD-wh-jDn"/>
+                            <constraint firstItem="puc-tC-gED" firstAttribute="leading" secondItem="9uS-dG-a7b" secondAttribute="leading" id="IM9-or-uJr"/>
                             <constraint firstItem="AzB-9x-nK8" firstAttribute="top" secondItem="QKf-E0-8sX" secondAttribute="bottom" constant="12" id="KV1-jZ-SfK"/>
+                            <constraint firstItem="AzB-9x-nK8" firstAttribute="top" secondItem="puc-tC-gED" secondAttribute="bottom" id="Ynm-3q-ewS"/>
                             <constraint firstItem="QKf-E0-8sX" firstAttribute="leading" secondItem="9uS-dG-a7b" secondAttribute="leading" constant="16" id="aoO-ch-a1p"/>
                             <constraint firstAttribute="trailing" secondItem="SQ4-4K-d97" secondAttribute="trailing" constant="16" id="dPF-sa-h5O"/>
+                            <constraint firstAttribute="trailing" secondItem="puc-tC-gED" secondAttribute="trailing" id="hO4-DF-XYf"/>
                             <constraint firstAttribute="bottom" secondItem="AzB-9x-nK8" secondAttribute="bottom" id="jhZ-4O-8FP"/>
                             <constraint firstItem="s0D-Rx-3mM" firstAttribute="leading" secondItem="9uS-dG-a7b" secondAttribute="leading" constant="16" id="lV0-CF-Tg5"/>
                             <constraint firstItem="s0D-Rx-3mM" firstAttribute="top" secondItem="QKf-E0-8sX" secondAttribute="bottom" constant="12" id="oJZ-KO-nfS"/>
@@ -128,7 +136,7 @@
                 <outlet property="errorView" destination="s0D-Rx-3mM" id="yfe-m2-w6p"/>
                 <outlet property="titleLabel" destination="QKf-E0-8sX" id="TdS-ZP-kvC"/>
             </connections>
-            <point key="canvasLocation" x="21" y="21"/>
+            <point key="canvasLocation" x="20.610687022900763" y="20.774647887323944"/>
         </collectionViewCell>
     </objects>
     <resources>

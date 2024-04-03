@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,9 +42,6 @@
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button" image="arrow_right16"/>
-                                <connections>
-                                    <action selector="goToProfiles:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Ang-Nw-JeZ"/>
-                                </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="BP9-EW-Gh8">
                                 <rect key="frame" x="0.0" y="47.333333333333329" width="375" height="166.66666666666669"/>
@@ -103,15 +100,26 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="42P-Gq-rMu">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="47.333333333333336"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="goToProfiles:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Rn9-dW-9Wg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="W7s-Wo-Jjf" firstAttribute="centerY" secondItem="FLS-Ie-ebv" secondAttribute="centerY" id="DZB-BI-tEL"/>
                             <constraint firstItem="N80-dC-bDd" firstAttribute="leading" secondItem="YTH-x5-45d" secondAttribute="leading" constant="16" id="F7x-gw-6Ya"/>
                             <constraint firstAttribute="trailing" secondItem="N80-dC-bDd" secondAttribute="trailing" constant="16" id="R7I-2C-xYw"/>
+                            <constraint firstAttribute="trailing" secondItem="42P-Gq-rMu" secondAttribute="trailing" id="SBw-hQ-mjf"/>
+                            <constraint firstItem="42P-Gq-rMu" firstAttribute="leading" secondItem="YTH-x5-45d" secondAttribute="leading" id="WQx-ey-DYY"/>
                             <constraint firstItem="BP9-EW-Gh8" firstAttribute="leading" secondItem="YTH-x5-45d" secondAttribute="leading" id="eDp-WL-XCU"/>
+                            <constraint firstItem="42P-Gq-rMu" firstAttribute="top" secondItem="YTH-x5-45d" secondAttribute="top" id="enX-q3-Thj"/>
                             <constraint firstItem="FLS-Ie-ebv" firstAttribute="top" secondItem="YTH-x5-45d" secondAttribute="top" constant="16" id="eqe-0X-XdO"/>
                             <constraint firstAttribute="trailing" secondItem="BP9-EW-Gh8" secondAttribute="trailing" id="fse-11-iCI"/>
+                            <constraint firstItem="BP9-EW-Gh8" firstAttribute="top" secondItem="42P-Gq-rMu" secondAttribute="bottom" id="lAB-Mz-MHn"/>
                             <constraint firstItem="N80-dC-bDd" firstAttribute="top" secondItem="FLS-Ie-ebv" secondAttribute="bottom" constant="12" id="oSd-Mx-5lA"/>
                             <constraint firstAttribute="bottom" secondItem="BP9-EW-Gh8" secondAttribute="bottom" constant="40" id="oxp-qe-MqH"/>
                             <constraint firstItem="FLS-Ie-ebv" firstAttribute="leading" secondItem="YTH-x5-45d" secondAttribute="leading" constant="16" id="xd6-x8-Nms"/>
@@ -133,7 +141,7 @@
                 <outlet property="errorView" destination="N80-dC-bDd" id="sDi-At-SvV"/>
                 <outlet property="titleLabel" destination="FLS-Ie-ebv" id="EID-fu-0hh"/>
             </connections>
-            <point key="canvasLocation" x="21" y="21"/>
+            <point key="canvasLocation" x="20.610687022900763" y="20.422535211267608"/>
         </collectionViewCell>
     </objects>
     <resources>
