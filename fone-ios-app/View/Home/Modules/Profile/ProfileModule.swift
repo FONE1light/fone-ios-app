@@ -36,6 +36,7 @@ class ProfileModule: UICollectionViewCell {
         super.awakeFromNib()
         
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.register(ProfileCell.self)
     }
     
@@ -77,5 +78,15 @@ extension ProfileModule: UICollectionViewDataSource {
             cell.configure(item: item)
         }
         return cell
+    }
+}
+
+extension ProfileModule: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let sceneCoordinator = sceneCoordinator as? SceneCoordinator else { return }
+        if let item = profileInfo?.data?.content?[indexPath.item],
+           let id = item.id, let type = item.type {
+            sceneCoordinator.goJobHuntingDetail(jobHuntingId: id, type: Job.getType(name: type) ?? .actor)
+        }
     }
 }

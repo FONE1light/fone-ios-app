@@ -134,8 +134,8 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                         as? MyPageProfileCell,
                 let id = cell.id,
                 let jobType = Job.getType(name: cell.jobType) else { return }
-                
-                owner.viewModel.goJobHuntingDetail(jobHuntingId: id, type: jobType)
+                guard let sceneCoordinator = owner.viewModel.sceneCoordinator as? SceneCoordinator else { return }
+                sceneCoordinator.goJobHuntingDetail(jobHuntingId: id, type: jobType)
             }.disposed(by: rx.disposeBag)
         
         viewModel.reloadTableView
@@ -461,7 +461,8 @@ extension JobOpeningHuntingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? JobCell else { return }
         guard let id = cell.id, let type = cell.jobType else { return }
-        viewModel.goJobOpeningDetail(jobOpeningId: id, type: type)
+        guard let sceneCoordinator = viewModel.sceneCoordinator as? SceneCoordinator else { return }
+        sceneCoordinator.goJobOpeningDetail(jobOpeningId: id, type: type)
     }
 }
 

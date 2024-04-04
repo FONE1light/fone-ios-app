@@ -33,6 +33,11 @@ class HomeViewController: UIViewController, ViewModelBindableType {
         navigationController?.hidesBarsOnSwipe = true
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+        navigationController?.hidesBarsOnSwipe = false
+    }
+    
     func bindViewModel() {
         viewModel
             .homeInfoDataSubject
