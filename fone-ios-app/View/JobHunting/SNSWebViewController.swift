@@ -68,7 +68,7 @@ class SNSWebViewController: UIViewController, ViewModelBindableType, WKUIDelegat
     }
     
     private func setNavigationBar() {
-        navigationItem.titleView = NavigationTitleView(title: "개인 SNS")
+        navigationItem.titleView = NavigationTitleView(title: viewModel.title)
         navigationItem.rightBarButtonItem = NavigationRightBarButtonItem(
             type: .close,
             viewController: self

@@ -86,7 +86,8 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell
         case ModuleSection.competition.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CompetitionModule
-            cell.setModuleInfo(info: homeInfo?.competition)
+            guard let viewModel else { return cell }
+            cell.setModuleInfo(info: homeInfo?.competition, sceneCoordinator: viewModel.sceneCoordinator)
             return cell
         case ModuleSection.profile.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as ProfileModule
