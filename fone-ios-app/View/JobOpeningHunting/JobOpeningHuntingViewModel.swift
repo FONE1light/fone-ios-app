@@ -20,6 +20,9 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     
     var selectedSortOption = BehaviorRelay<JobOpeningSortOptions>(value: .recent)
     
+    //    private let selectedFilterOptions = PublishSubject<FilterOptions?>()
+    private let selectedFilterOptionsTest = BehaviorSubject<FilterOptions?>(value: nil)
+    
     var sortButtonStateDic: [JobSegmentType: JobOpeningSortOptions] = [
         .jobOpening: .recent,
         .profile: .recent
@@ -41,38 +44,34 @@ class JobOpeningHuntingViewModel: CommonViewModel {
         super.init(sceneCoordinator: sceneCoordinator)
         
         Observable
-            .combineLatest(selectedJobType, selectedSortOption)
+            .combineLatest(selectedJobType, selectedSortOption, selectedFilterOptionsTest)
+            .skip(1) // FIXME: 첫 실행 시 왜 두 번 불리는지 확인, 수정
             .withUnretained(self)
             .bind { owner, result in
-                let (jobType, option) = result
-                
-                print("✅\(jobType), \(owner.selectedTab.value), \(option)")
+                let (jobType, option, filterOptions) = result
+                print("✅\(jobType), \(owner.selectedTab.value), \(option), \(filterOptions)")
                 owner.initList(segmentType: owner.selectedTab.value)
                 owner.fetchList(
                     jobType: jobType,
                     segmentType: owner.selectedTab.value,
-                    sortOption: option
+                    sortOption: option,
+                    filterOptions: filterOptions
                 )
             }.disposed(by: disposeBag)
-            
     }
 
     func showFilter() {
-        let preselectedOptions = PreselectedOptions(
-            jobType: selectedJobType.value,
-            selectedSegmentType: selectedTab.value,
-            sortOption: selectedSortOption.value
-        )
-//        let filterViewModel = FilterViewModel(sceneCoordinator: sceneCoordinator, reloadTableView: reloadTableViewTest, preselectedOptions: preselectedOptions)
-//        let filterScene = Scene.filter(filterViewModel)
-//        sceneCoordinator.transition(to: filterScene, using: .fullScreenModal, animated: true)
+        let filterViewModel = FilterViewModel(sceneCoordinator: sceneCoordinator, filterOptionsSubject: selectedFilterOptionsTest)
+        let filterScene = Scene.filter(filterViewModel)
+        sceneCoordinator.transition(to: filterScene, using: .fullScreenModal, animated: true)
     }
     
     // JobSegmentType(프로필/모집)과 JobType(ACTOR/STAFF)을 알아야 api 쏘므로 ViewModel에  selectedTab, selectedJobType 필요
-    func fetchList(
+    private func fetchList(
         jobType: Job,
         segmentType selectedTab: JobSegmentType,
-        sortOption: JobOpeningSortOptions
+        sortOption: JobOpeningSortOptions,
+        filterOptions: FilterOptions? = nil
     ) {
         isLoading = true
         
