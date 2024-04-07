@@ -28,6 +28,7 @@ class LoginViewController: UIViewController, ViewModelBindableType {
     
     func bindViewModel() {        
         kakaoLoginButton.rx.tap
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .subscribe(onNext: { owner, _ in
                 owner.viewModel.loginWithKakaoTalk()

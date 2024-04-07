@@ -65,6 +65,18 @@ final class SocialLoginManager {
                     self.socialSignIn(accessToken: accessToken, loginType: SocialLoginType.KAKAO.rawValue)
                 }
             }
+        } else {
+            UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+                if let error = error {
+                    print(error)
+                }
+                else {
+                    print("loginWithKakaoAccount() success.")
+                    let accessToken = oauthToken?.accessToken ?? ""
+                    self.getKakaoUserEmailAndName()
+                    self.socialSignIn(accessToken: accessToken, loginType: SocialLoginType.KAKAO.rawValue)
+                }
+            }
         }
     }
     
