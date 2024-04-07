@@ -7,6 +7,19 @@
 
 import Foundation
 
+struct JobOpeningFilterRequest {
+    let type: String
+    let sort: String // TODO: 되는지 확인
+    let page: Int
+    var size: Int = 10
+    
+    var ageMax: Int? = nil
+    var ageMin: Int? = nil
+    var categories: [String]? = nil
+    var genders: [String]? = nil
+    
+}
+
 // MARK: - JobOpeningRequest
 struct JobOpeningRequest: Codable {
     let type: String?

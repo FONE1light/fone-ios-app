@@ -14,7 +14,8 @@ enum APIError: Error {
 }
 
 enum JobOpeningInfoTarget {
-    case jobOpenings(type: Job, sort: String, page: Int, size: Int)
+//    case jobOpenings(type: Job, sort: String, page: Int)
+    case jobOpenings(jobOpeningFilterRequest: JobOpeningFilterRequest)
     case createJobOpenings(jobOpeningRequest: JobOpeningRequest)
     case jobOpeningDetail(jobOpeningId: Int, type: Job)
     case scraps
@@ -64,12 +65,24 @@ extension JobOpeningInfoTarget: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .jobOpenings(let type, let sort, let page, let size):
+//        case .jobOpenings(let type, let sort, let page):
+//            return .requestParameters(parameters: [
+//                "type": type.name,
+//                "sort": sort,
+//                "page": page,
+//                "size": pageSize
+//            ], encoding: URLEncoding.default)
+        case .jobOpenings(let jobOpeningFilterRequest):
+            // GET이라 requestJSONEncodable 사용 불가(body에 넣지 않기 위해)
             return .requestParameters(parameters: [
-                "type": type.name,
-                "sort": sort,
-                "page": page,
-                "size": size
+                "type": jobOpeningFilterRequest.type,
+                "sort": jobOpeningFilterRequest.sort,
+                "page": jobOpeningFilterRequest.page,
+                "size": jobOpeningFilterRequest.size,
+                "ageMax": jobOpeningFilterRequest.ageMax ?? 200,
+                "ageMin": jobOpeningFilterRequest.ageMin ?? 0,
+                "categories": jobOpeningFilterRequest.categories ?? [],
+                "genders": jobOpeningFilterRequest.genders ?? [],
             ], encoding: URLEncoding.default)
         case .createJobOpenings(let jobOpeningRequest):
             return .requestJSONEncodable(jobOpeningRequest)
@@ -94,6 +107,12 @@ extension JobOpeningInfoTarget: TargetType {
     
     var validationType: ValidationType {
         return .successCodes
+    }
+}
+
+extension JobOpeningInfoTarget {
+    private var pageSize: Int {
+        10
     }
 }
 

@@ -25,7 +25,6 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
     private let filterButton = UIButton().then {
         let image = UIImage(named: "Slider")
         $0.setImage(image, for: .normal)
-        $0.isHidden = true // TODO: 추후 hidden 풀고 기능 추가
     }
     
     private var isShownFloating = false
@@ -72,6 +71,8 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         $0.backgroundColor = .gray_EEEFEF
         $0.bounces = false
     }
+    
+    private var jobOpeningsContent: [JobOpeningContent] = []
     
     private lazy var collectionViewProfile: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -138,11 +139,12 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                 sceneCoordinator.goJobHuntingDetail(jobHuntingId: id, type: jobType)
             }.disposed(by: rx.disposeBag)
         
-        viewModel.reloadTableView
+        viewModel.reloadTableViewTest
             .withUnretained(self)
-            .bind { owner, _ in
+            .bind { owner, jobOpeningContent in
                 owner.activityIndicator.stopAnimating()
                 owner.activityIndicator.isHidden = true
+                owner.jobOpeningsContent = jobOpeningContent
                 owner.tableViewJob.reloadData()
             }.disposed(by: disposeBag)
         
@@ -423,14 +425,14 @@ extension JobOpeningHuntingViewController {
 extension JobOpeningHuntingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.jobOpeningsContent.count
+        return jobOpeningsContent.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as JobCell
         
-        guard viewModel.jobOpeningsContent.count > 0 else { return cell }
-        let content = viewModel.jobOpeningsContent[indexPath.row]
+        guard jobOpeningsContent.count > 0 else { return cell }
+        let content = jobOpeningsContent[indexPath.row]
         
         cell.configure(
             id: content.id,
@@ -450,7 +452,7 @@ extension JobOpeningHuntingViewController: UITableViewDataSource {
             .withUnretained(self)
             .bind { owner, _ in
                 owner.viewModel.toggleScrap(id: cell.id)
-                owner.viewModel.jobOpeningsContent[indexPath.row].isScrap = cell.toggleBookmarkButton()
+                owner.jobOpeningsContent[indexPath.row].isScrap = cell.toggleBookmarkButton()
             }.disposed(by: cell.disposeBag)
 
         return cell

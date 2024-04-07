@@ -31,9 +31,10 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     
     private var isLoading = false
     
-    var jobOpeningsContent: [JobOpeningContent] = []
+    private var jobOpeningsContent: [JobOpeningContent] = []
     var profilesContent: [ProfileContent] = []
-    var reloadTableView = PublishSubject<Void>()
+//    var reloadTableView = PublishSubject<Void>()
+    var reloadTableViewTest = PublishSubject<[JobOpeningContent]>()
     var reloadCollectionView = PublishSubject<Void>()
     
     override init(sceneCoordinator: SceneCoordinatorType) {
@@ -57,9 +58,14 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     }
 
     func showFilter() {
-        let filterViewModel = FilterViewModel(sceneCoordinator: sceneCoordinator)
-        let filterScene = Scene.filter(filterViewModel)
-        sceneCoordinator.transition(to: filterScene, using: .fullScreenModal, animated: true)
+        let preselectedOptions = PreselectedOptions(
+            jobType: selectedJobType.value,
+            selectedSegmentType: selectedTab.value,
+            sortOption: selectedSortOption.value
+        )
+//        let filterViewModel = FilterViewModel(sceneCoordinator: sceneCoordinator, reloadTableView: reloadTableViewTest, preselectedOptions: preselectedOptions)
+//        let filterScene = Scene.filter(filterViewModel)
+//        sceneCoordinator.transition(to: filterScene, using: .fullScreenModal, animated: true)
     }
     
     // JobSegmentType(프로필/모집)과 JobType(ACTOR/STAFF)을 알아야 api 쏘므로 ViewModel에  selectedTab, selectedJobType 필요
@@ -70,16 +76,23 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     ) {
         isLoading = true
         
+        let stringJobType = jobType.name
         let sort = sortOption.serverParameter ?? ""
         
         switch selectedTab {
-        case .jobOpening: fetchJobOpenings(jobType: jobType, sort: sort)
+        case .jobOpening: fetchJobOpenings(jobType: stringJobType, sort: sort)
         case .profile: fetchProfiles(jobType: jobType, sort: sort)
         }
     }
     
-    private func fetchJobOpenings(jobType: Job, sort: String) {
-        jobOpeningInfoProvider.rx.request(.jobOpenings(type: jobType, sort: sort, page: jobOpeningsPage, size: pageSize))
+    private func fetchJobOpenings(jobType: String, sort: String) {
+        let filterRequest = JobOpeningFilterRequest(
+            type: jobType,
+            sort: sort,
+            page: jobOpeningsPage
+        )
+        
+        jobOpeningInfoProvider.rx.request(.jobOpenings(jobOpeningFilterRequest: filterRequest))
             .mapObject(Result<JobOpeningsData>.self)
             .asObservable()
             .withUnretained(self)
@@ -91,7 +104,7 @@ class JobOpeningHuntingViewModel: CommonViewModel {
                     return
                 }
                 owner.jobOpeningsContent.append(contentsOf: newContent)
-                owner.reloadTableView.onNext(())
+                owner.reloadTableViewTest.onNext(owner.jobOpeningsContent)
             },
                        onError: { [weak self] error in
                 error.localizedDescription.toast()
