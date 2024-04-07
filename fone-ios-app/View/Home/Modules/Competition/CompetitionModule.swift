@@ -9,6 +9,7 @@ import UIKit
 
 class CompetitionModule: UICollectionViewCell {
     var competitionInfo: CompetitionModuleInfo?
+    var sceneCoordinator: SceneCoordinatorType?
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -18,10 +19,12 @@ class CompetitionModule: UICollectionViewCell {
         super.awakeFromNib()
         
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.register(FilmCompetitionCell.self)
     }
 
-    func setModuleInfo(info: CompetitionModuleInfo?) {
+    func setModuleInfo(info: CompetitionModuleInfo?, sceneCoordinator: SceneCoordinatorType?) {
+        self.sceneCoordinator = sceneCoordinator
         guard let info else {
             errorView.isHidden = false
             return
@@ -53,3 +56,13 @@ extension CompetitionModule: UICollectionViewDataSource {
     }
 }
 
+extension CompetitionModule: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let sceneCoordinator = sceneCoordinator as? SceneCoordinator else { return }
+        if let url = competitionInfo?.data?.content?[indexPath.item].linkURL, !url.isEmpty {
+            let viewModel = SNSWebViewModel(sceneCoordinator: sceneCoordinator, url: url, title: "영화제 정보")
+            let scene = Scene.snsWebViewController(viewModel)
+            sceneCoordinator.transition(to: scene, using: .fullScreenModal, animated: true)
+        }
+    }
+}
