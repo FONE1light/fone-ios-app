@@ -185,6 +185,9 @@
 		AB1851462B1CA1110051D0DC /* RecruitDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1851442B1CA1110051D0DC /* RecruitDetailInfoViewController.swift */; };
 		AB1851472B1CA1110051D0DC /* RecruitDetailInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB1851452B1CA1110051D0DC /* RecruitDetailInfoViewController.xib */; };
 		AB1915752B651A6300424256 /* JobInfoAPIRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1915742B651A6300424256 /* JobInfoAPIRequestModel.swift */; };
+		AB1A7B682BC41DAC005630AC /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1A7B662BC41DAC005630AC /* ReportViewController.swift */; };
+		AB1A7B692BC41DAC005630AC /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB1A7B672BC41DAC005630AC /* ReportViewController.xib */; };
+		AB1A7B6C2BC41DD0005630AC /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1A7B6B2BC41DD0005630AC /* ReportViewModel.swift */; };
 		AB1ADF2B2B1E016900C2F2DD /* RecruitWorkInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1ADF292B1E016900C2F2DD /* RecruitWorkInfoViewController.swift */; };
 		AB1ADF2C2B1E016900C2F2DD /* RecruitWorkInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB1ADF2A2B1E016900C2F2DD /* RecruitWorkInfoViewController.xib */; };
 		AB1CEAA82ABFD1D700E7E54F /* MainBannerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1CEAA62ABFD1D700E7E54F /* MainBannerModule.swift */; };
@@ -535,6 +538,9 @@
 		AB1851442B1CA1110051D0DC /* RecruitDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitDetailInfoViewController.swift; sourceTree = "<group>"; };
 		AB1851452B1CA1110051D0DC /* RecruitDetailInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitDetailInfoViewController.xib; sourceTree = "<group>"; };
 		AB1915742B651A6300424256 /* JobInfoAPIRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoAPIRequestModel.swift; sourceTree = "<group>"; };
+		AB1A7B662BC41DAC005630AC /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		AB1A7B672BC41DAC005630AC /* ReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
+		AB1A7B6B2BC41DD0005630AC /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 		AB1ADF292B1E016900C2F2DD /* RecruitWorkInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitWorkInfoViewController.swift; sourceTree = "<group>"; };
 		AB1ADF2A2B1E016900C2F2DD /* RecruitWorkInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitWorkInfoViewController.xib; sourceTree = "<group>"; };
 		AB1CEAA62ABFD1D700E7E54F /* MainBannerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBannerModule.swift; sourceTree = "<group>"; };
@@ -1399,6 +1405,16 @@
 			path = RecruitDetailInfo;
 			sourceTree = "<group>";
 		};
+		AB1A7B6A2BC41DB2005630AC /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				AB1A7B662BC41DAC005630AC /* ReportViewController.swift */,
+				AB1A7B672BC41DAC005630AC /* ReportViewController.xib */,
+				AB1A7B6B2BC41DD0005630AC /* ReportViewModel.swift */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
 		AB1ADF2D2B1E016E00C2F2DD /* RecruitWorkInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1625,6 +1641,7 @@
 				AB49A3412A81156300748484 /* FindIDPassword */,
 				AB49A3342A810AC600748484 /* Login */,
 				362866792A8B66B900CD42BC /* SignUp */,
+				AB1A7B6A2BC41DB2005630AC /* Report */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2064,6 +2081,7 @@
 				AB60023D2A7E375D000CF1FD /* Main.storyboard in Resources */,
 				ABCDD1792B00DA4F00A598A8 /* TitleCell.xib in Resources */,
 				ABCDD16C2B00B73300A598A8 /* JobOpeningDetailViewController.xib in Resources */,
+				AB1A7B692BC41DAC005630AC /* ReportViewController.xib in Resources */,
 				AB1CEAB82ABFD23A00E7E54F /* JobOpeningModule.xib in Resources */,
 				AB72BC8E2B1E073900EB02FE /* GenreCell.xib in Resources */,
 				AB849DDC2B1C9ACD00B58B9A /* RecruitContactInfoViewController.xib in Resources */,
@@ -2115,6 +2133,7 @@
 				AB1851462B1CA1110051D0DC /* RecruitDetailInfoViewController.swift in Sources */,
 				36A4D49B2B15C164008541E9 /* RegisterInterestViewModel.swift in Sources */,
 				36323CDA2B693E8200AC99ED /* CompetitionInfoProvider.swift in Sources */,
+				AB1A7B682BC41DAC005630AC /* ReportViewController.swift in Sources */,
 				362419D32AE33158007D1AFB /* SignUpSuccessViewModel.swift in Sources */,
 				AB49A33F2A810FE000748484 /* LoginViewController.swift in Sources */,
 				367D9C0F2AD9FBC900DA6C96 /* MyPageTabBarCollectionView.swift in Sources */,
@@ -2346,6 +2365,7 @@
 				AB532B2F2B0A279C003A6A57 /* CareerType.swift in Sources */,
 				36D293D22A961E7300171C77 /* SignUpSelectionViewController.swift in Sources */,
 				3682737B2B28660B00EB0629 /* JobHuntingProfileCollectionViewCell.swift in Sources */,
+				AB1A7B6C2BC41DD0005630AC /* ReportViewModel.swift in Sources */,
 				AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */,
 				AB3458782B0CDB4400F4833D /* Result.swift in Sources */,
 				AB6E1C002B25D41C00594E69 /* RecruitDetailInfoViewModel.swift in Sources */,
