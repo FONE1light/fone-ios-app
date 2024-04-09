@@ -75,27 +75,37 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     ) {
         isLoading = true
         
-        let stringJobType = jobType.name
         let sort = sortOption.serverParameter ?? ""
         
+        let jobOpeningFilterRequest = JobOpeningFilterRequest(
+            type: jobType.name,
+            sort: sort,
+            page: jobOpeningsPage,
+            ageMax: filterOptions?.ageMax,
+            ageMin: filterOptions?.ageMin,
+            categories: filterOptions?.serverNameCategories,
+            genders: filterOptions?.serverNameGenders
+        )
+        
         switch selectedTab {
-        case .jobOpening: fetchJobOpenings(jobType: stringJobType, sort: sort)
+        case .jobOpening: fetchJobOpenings(jobOpeningFilterRequest)
         case .profile: fetchProfiles(jobType: jobType, sort: sort)
         }
     }
     
-    private func fetchJobOpenings(jobType: String, sort: String) {
-        let filterRequest = JobOpeningFilterRequest(
-            type: jobType,
-            sort: sort,
-            page: jobOpeningsPage
-        )
-        
+//    private func fetchJobOpenings(jobType: String, sort: String) {
+//        let filterRequest = JobOpeningFilterRequest(
+//            type: jobType,
+//            sort: sort,
+//            page: jobOpeningsPage
+//        )
+    private func fetchJobOpenings(_ filterRequest: JobOpeningFilterRequest) {
         jobOpeningInfoProvider.rx.request(.jobOpenings(jobOpeningFilterRequest: filterRequest))
             .mapObject(Result<JobOpeningsData>.self)
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
+                // FIXME: 필터 적용되는지 확인. 안되면 왜?
                 print(response)
                 owner.isLoading = false
                 guard let newContent = response.data?.jobOpenings?.content, newContent.count > 0 else {

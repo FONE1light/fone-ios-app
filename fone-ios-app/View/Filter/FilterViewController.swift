@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class FilterViewController: UIViewController, ViewModelBindableType {
     var viewModel: FilterViewModel!
+    private let disposeBag = DisposeBag()
     
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
@@ -16,12 +19,14 @@ class FilterViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var genderClearButton: CustomButton!
     @IBOutlet weak var genderSelectionBlock: SelectionBlock!
     @IBOutlet weak var ageClearButton: CustomButton!
+    // TODO: 나이 무조건 연결되도록.
     @IBOutlet weak var ageSelectionView: FullWidthSelectionView!
     @IBOutlet weak var categoryClearButton: CustomButton!
     @IBOutlet weak var categorySelectionBlock: SelectionBlock!
     
     @IBOutlet weak var confirmButton: CustomButton!
-    
+
+    private let selectedGenders = BehaviorSubject<[GenderType]>(value: [])
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,7 +49,13 @@ class FilterViewController: UIViewController, ViewModelBindableType {
         confirmButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                //TODO: 필터 조건 적용된 리스트 받아오기
+                // TODO: ageSelectionView > selectedItemsRelay 설정(selectedItems와 연결)
+                guard let genders = owner.genderSelectionBlock.selectedItems.value as? [GenderType],
+                      let ages = owner.ageSelectionView.selectedItemsRelay.value as? [FilterAge],
+                      let categories = owner.categorySelectionBlock.selectedItems.value as? [Category] else { return }
+                        
+                let filterOptions = FilterOptions(genders: genders, age: ages, categories: categories)
+                owner.viewModel.applyFilter(filterOptions)
                 owner.viewModel.sceneCoordinator.close(animated: true)
             }.disposed(by: rx.disposeBag)
     }
@@ -87,7 +98,7 @@ enum FilterAge: Selection, CaseIterable {
         }
     }
     
-    // TODO: 구현
+    // 사용 X
     var serverName: String { "" }
     
     var tagTextColor: UIColor? {
@@ -100,5 +111,33 @@ enum FilterAge: Selection, CaseIterable {
     
     var tagCornerRadius: CGFloat? {
         return 11
+    }
+    
+    var ageMax: Int {
+        switch self {
+        case .underNine: 9
+        case .tenToNineTeen: 19
+        case .twentyToTwentyfour: 24
+        case .twentyfiveToTwentynine: 29
+        case .thirtyToThirtyFour: 34
+        case .thirtyfiveToThirtynine: 39
+        case .fourties: 49
+        case .fifties: 59
+        case .overSixty: 200
+        }
+    }
+    
+    var ageMin: Int {
+        switch self {
+        case .underNine: 0
+        case .tenToNineTeen: 10
+        case .twentyToTwentyfour: 20
+        case .twentyfiveToTwentynine: 25
+        case .thirtyToThirtyFour: 30
+        case .thirtyfiveToThirtynine: 35
+        case .fourties: 40
+        case .fifties: 50
+        case .overSixty: 60
+        }
     }
 }

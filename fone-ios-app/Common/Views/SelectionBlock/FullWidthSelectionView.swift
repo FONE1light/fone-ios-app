@@ -26,6 +26,7 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
     private var items: [Selection] = []
     
     private var selectedItems: [Selection]?
+    let selectedItemsRelay = BehaviorRelay<[Selection]>(value: [])
     
     /// selectedItems: 초기화 시 선택되어 있어야 하는 항목들
     init(
