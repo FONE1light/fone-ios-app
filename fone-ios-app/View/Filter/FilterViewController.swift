@@ -49,9 +49,8 @@ class FilterViewController: UIViewController, ViewModelBindableType {
         confirmButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                // TODO: ageSelectionView > selectedItemsRelay 설정(selectedItems와 연결)
                 guard let genders = owner.genderSelectionBlock.selectedItems.value as? [GenderType],
-                      let ages = owner.ageSelectionView.selectedItemsRelay.value as? [FilterAge],
+                      let ages = owner.ageSelectionView.selectedItems as? [FilterAge],
                       let categories = owner.categorySelectionBlock.selectedItems.value as? [Category] else { return }
                         
                 let filterOptions = FilterOptions(genders: genders, age: ages, categories: categories)

@@ -25,8 +25,8 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
     
     private var items: [Selection] = []
     
-    private var selectedItems: [Selection]?
-    let selectedItemsRelay = BehaviorRelay<[Selection]>(value: [])
+    var selectedItems: [Selection] = []
+//    let selectedItems = BehaviorRelay<[Selection]>(value: [])
     
     /// selectedItems: 초기화 시 선택되어 있어야 하는 항목들
     init(
@@ -55,7 +55,7 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
             numberOfItemsInARow: numberOfItemsInARow,
             minimumInteritemSpacing: minimumInteritemSpacing
         )
-        self.selectedItems = selectedItems
+        self.selectedItems = selectedItems ?? []
         
         self.bindViewModel()
     }
@@ -80,7 +80,7 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
             numberOfItemsInARow: numberOfItemsInARow,
             minimumInteritemSpacing: minimumInteritemSpacing
         )
-        self.selectedItems = selectedItems
+        self.selectedItems = selectedItems ?? []
         
         self.bindViewModel()
     }
@@ -98,6 +98,18 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
 extension FullWidthSelectionView {
     private func bindViewModel() {
         rx.setDelegate(self).disposed(by: rx.disposeBag)
+        
+        rx.itemSelected
+            .withUnretained(self)
+            .subscribe { owner, indexPath in
+                guard let cell = owner.cellForItem(at: indexPath) as? DynamicSizeSelectionCell
+ else { return }
+                guard let item = cell.item else { return }
+                owner.selectedItems.append(item)
+//                owner.selectedItems.accept(owner._selectedItems)
+                
+            }.disposed(by: rx.disposeBag)
+        
     }
     
     func selectItem(at indexPath: IndexPath) {
@@ -122,9 +134,9 @@ extension FullWidthSelectionView: UICollectionViewDataSource {
         cell.configure(selectionItem)
         
         // 초기화 시 선택 처리
-        let shouldBeSelected = selectedItems?.contains(where: {
+        let shouldBeSelected = selectedItems.contains(where: {
             $0.name == selectionItem.name
-        }) ?? false
+        })
         
         if shouldBeSelected {
             selectItem(at: indexPath)
