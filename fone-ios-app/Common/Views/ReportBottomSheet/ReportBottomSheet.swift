@@ -9,6 +9,7 @@ import UIKit
 import Then
 import SnapKit
 import RxSwift
+import RxCocoa
 
 class ReportBottomSheet: UIView {
     
@@ -22,12 +23,16 @@ class ReportBottomSheet: UIView {
     
     private let button = UIButton()
     
+    var buttonTap: ControlEvent<Void> {
+        button.rx.tap
+    }
+    
     init() {
         super.init(frame: .zero)
         
         setupUI()
         setConstraints()
-        bindAction()
+//        bindAction()
     }
     
     private func setupUI() {

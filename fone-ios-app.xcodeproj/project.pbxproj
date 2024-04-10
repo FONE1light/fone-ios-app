@@ -184,6 +184,8 @@
 		AB14428F2B6FA606007CAC7F /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB14428E2B6FA606007CAC7F /* WeekDay.swift */; };
 		AB1851462B1CA1110051D0DC /* RecruitDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1851442B1CA1110051D0DC /* RecruitDetailInfoViewController.swift */; };
 		AB1851472B1CA1110051D0DC /* RecruitDetailInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB1851452B1CA1110051D0DC /* RecruitDetailInfoViewController.xib */; };
+		AB18C22D2BC698E70001AF4C /* ReportBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB18C22C2BC698E70001AF4C /* ReportBottomSheetViewController.swift */; };
+		AB18C2302BC699130001AF4C /* ReportBottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB18C22F2BC699130001AF4C /* ReportBottomSheetViewModel.swift */; };
 		AB1915752B651A6300424256 /* JobInfoAPIRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1915742B651A6300424256 /* JobInfoAPIRequestModel.swift */; };
 		AB1A7B682BC41DAC005630AC /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1A7B662BC41DAC005630AC /* ReportViewController.swift */; };
 		AB1A7B692BC41DAC005630AC /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB1A7B672BC41DAC005630AC /* ReportViewController.xib */; };
@@ -537,6 +539,8 @@
 		AB14428E2B6FA606007CAC7F /* WeekDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
 		AB1851442B1CA1110051D0DC /* RecruitDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitDetailInfoViewController.swift; sourceTree = "<group>"; };
 		AB1851452B1CA1110051D0DC /* RecruitDetailInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitDetailInfoViewController.xib; sourceTree = "<group>"; };
+		AB18C22C2BC698E70001AF4C /* ReportBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportBottomSheetViewController.swift; sourceTree = "<group>"; };
+		AB18C22F2BC699130001AF4C /* ReportBottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportBottomSheetViewModel.swift; sourceTree = "<group>"; };
 		AB1915742B651A6300424256 /* JobInfoAPIRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoAPIRequestModel.swift; sourceTree = "<group>"; };
 		AB1A7B662BC41DAC005630AC /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		AB1A7B672BC41DAC005630AC /* ReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
@@ -1371,7 +1375,7 @@
 				36AB6FD72B088E6700D9D6D0 /* LabelTextField.swift */,
 				36AB6FDB2B08A6BA00D9D6D0 /* LabelTextView.swift */,
 				362C80342B139D7F00489E7D /* LetterCountedTextView.swift */,
-				360E843D2B2984C000D4A540 /* ReportBottomSheet.swift */,
+				AB18C22E2BC698ED0001AF4C /* ReportBottomSheet */,
 				36FB6B902B374D9900715EE9 /* BookmarkButton.swift */,
 				36323CD52B68DF9200AC99ED /* HeartButton.swift */,
 			);
@@ -1403,6 +1407,16 @@
 				AB6E1BFF2B25D41C00594E69 /* RecruitDetailInfoViewModel.swift */,
 			);
 			path = RecruitDetailInfo;
+			sourceTree = "<group>";
+		};
+		AB18C22E2BC698ED0001AF4C /* ReportBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				360E843D2B2984C000D4A540 /* ReportBottomSheet.swift */,
+				AB18C22C2BC698E70001AF4C /* ReportBottomSheetViewController.swift */,
+				AB18C22F2BC699130001AF4C /* ReportBottomSheetViewModel.swift */,
+			);
+			path = ReportBottomSheet;
 			sourceTree = "<group>";
 		};
 		AB1A7B6A2BC41DB2005630AC /* Report */ = {
@@ -2158,6 +2172,7 @@
 				362419D12AE319CF007D1AFB /* SignUpSelectionViewModel.swift in Sources */,
 				AB49A32D2A81053200748484 /* Scene.swift in Sources */,
 				367D9BBF2AC1572700DA6C96 /* Divider.swift in Sources */,
+				AB18C22D2BC698E70001AF4C /* ReportBottomSheetViewController.swift in Sources */,
 				AB48A2412B7647EA00007F24 /* RecruitContactLinkInfoViewController.swift in Sources */,
 				367D9BFE2AD7583500DA6C96 /* UITabBar+Extension.swift in Sources */,
 				360E47DC2B721D0500664120 /* LogoutBottomSheetViewModel.swift in Sources */,
@@ -2240,6 +2255,7 @@
 				36AB6FC72B05263E00D9D6D0 /* UISortButtonStackView.swift in Sources */,
 				AB67855C2AA3374F00ACD35C /* EmailSignUpViewController.swift in Sources */,
 				AB1CEAAD2ABFD20F00E7E54F /* ProfileModule.swift in Sources */,
+				AB18C2302BC699130001AF4C /* ReportBottomSheetViewModel.swift in Sources */,
 				367D9C2C2ADA5EC700DA6C96 /* ProfileRegistrationViewController.swift in Sources */,
 				ABB1BB0D2B397DD20012F962 /* FilterViewModel.swift in Sources */,
 				AB1442882B665CAA007CAC7F /* ValidationProvider.swift in Sources */,

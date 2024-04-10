@@ -20,8 +20,12 @@ enum JobOpeningDetailSection: Int, CaseIterable {
     case footer
 }
 
-class JobOpeningDetailViewController: UIViewController, ViewModelBindableType {
+class JobOpeningDetailViewController: UIViewController, ViewModelBindableType, ReportableType {
     var viewModel: JobOpeningDetailViewModel!
+    
+    var profileImageURL: String?
+    var nickname: String?
+    var userJob: String?
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var scrapButton: UIButton!
@@ -35,6 +39,8 @@ class JobOpeningDetailViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
+        setReportInfo()
+        
         scrapButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
@@ -81,6 +87,12 @@ class JobOpeningDetailViewController: UIViewController, ViewModelBindableType {
             type: .more,
             viewController: self
         )
+    }
+    
+    private func setReportInfo() {
+        self.profileImageURL = viewModel.jobOpeningDetail?.userProfileURL
+        self.nickname = viewModel.jobOpeningDetail?.userNickname
+        self.userJob = viewModel.jobOpeningDetail?.userJob
     }
     
     private func setCollectionView() {

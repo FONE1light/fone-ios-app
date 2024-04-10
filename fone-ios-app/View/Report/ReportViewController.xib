@@ -19,6 +19,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReportViewController" customModule="fone_ios_app" customModuleProvider="target">
             <connections>
+                <outlet property="letterCountedTextView" destination="Fso-gI-0BE" id="6ym-61-fJZ"/>
+                <outlet property="nicknameLabel" destination="MBK-ej-JKP" id="5Or-BN-PpJ"/>
+                <outlet property="profileImageView" destination="u3u-bY-JSr" id="Tq4-yX-Y5H"/>
+                <outlet property="userJobLabel" destination="sEz-Wq-5YO" id="cLs-cd-Fel"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -34,10 +38,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fi1-md-zDw">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="818.66666666666663"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="836.66666666666663"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KTq-3L-hqG">
-                                            <rect key="frame" x="16" y="724.66666666666663" width="361" height="48"/>
+                                            <rect key="frame" x="16" y="742.66666666666663" width="361" height="48"/>
                                             <color key="backgroundColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="48" id="dzV-do-Hhy"/>
@@ -71,7 +75,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACTOR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEz-Wq-5YO">
-                                            <rect key="frame" x="101" y="15.666666666666671" width="46" height="17"/>
+                                            <rect key="frame" x="101" y="15.666666666666671" width="47.666666666666657" height="17"/>
                                             <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="14"/>
                                             <color key="textColor" red="0.80784313725490198" green="0.043137254901960784" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -201,7 +205,7 @@
                                             <state key="normal" image="checkboxes_off"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="약속 시간과 장소를 정한 후 직전에 취소했어요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSM-mF-ScX">
-                                            <rect key="frame" x="37.999999999999986" y="366.66666666666669" width="254.66666666666663" height="17"/>
+                                            <rect key="frame" x="38" y="366.66666666666669" width="257.66666666666669" height="17"/>
                                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                             <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -216,7 +220,7 @@
                                             <state key="normal" image="checkboxes_off"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="약속 장소에 나타나지 않아요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7e-gI-X8g">
-                                            <rect key="frame" x="38" y="397.66666666666669" width="159.33333333333334" height="17"/>
+                                            <rect key="frame" x="38" y="397.66666666666669" width="161" height="17"/>
                                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                             <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -231,7 +235,7 @@
                                             <state key="normal" image="checkboxes_off"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="거래와 관련 없는 대화를 해요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Af9-bU-cb9">
-                                            <rect key="frame" x="38" y="428.66666666666669" width="163" height="17"/>
+                                            <rect key="frame" x="38" y="428.66666666666669" width="165" height="17"/>
                                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                             <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -246,7 +250,7 @@
                                             <state key="normal" image="checkboxes_off"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원하지 않는 가격을 계속 요구해요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiK-H2-JBh">
-                                            <rect key="frame" x="38.000000000000014" y="459.66666666666663" width="187.33333333333337" height="17"/>
+                                            <rect key="frame" x="38" y="459.66666666666663" width="189" height="17"/>
                                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                             <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -261,7 +265,7 @@
                                             <state key="normal" image="checkboxes_off"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="게시글에 없는 정보를 자세히 알려주지 않아요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Td-4E-1ZI">
-                                            <rect key="frame" x="38.000000000000014" y="490.66666666666663" width="251.33333333333337" height="17"/>
+                                            <rect key="frame" x="37.999999999999986" y="490.66666666666663" width="253.66666666666663" height="17"/>
                                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                             <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -291,7 +295,7 @@
                                             <state key="normal" image="checkboxes_off"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="연애 목적의 대화를 시도해요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdJ-aa-mmA">
-                                            <rect key="frame" x="38" y="552.66666666666663" width="159.33333333333334" height="17"/>
+                                            <rect key="frame" x="38" y="552.66666666666663" width="161" height="17"/>
                                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                             <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -311,17 +315,12 @@
                                             <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h5c-3R-Dzl">
-                                            <rect key="frame" x="16" y="616.66666666666663" width="361" height="92"/>
-                                            <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fso-gI-0BE" customClass="LetterCountedTextView" customModule="fone_ios_app" customModuleProvider="target">
+                                            <rect key="frame" x="16" y="616.66666666666663" width="361" height="110"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="92" id="YjN-jn-FgO"/>
+                                                <constraint firstAttribute="height" constant="110" id="l8H-4b-6sg"/>
                                             </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="5"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -338,6 +337,7 @@
                                         <constraint firstItem="Yzo-mK-Pj0" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="At3-NY-drB"/>
                                         <constraint firstItem="HD3-w8-yID" firstAttribute="leading" secondItem="O4R-EU-cYF" secondAttribute="trailing" constant="6" id="B0i-UV-ZAT"/>
                                         <constraint firstItem="mFG-rj-gFp" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="D9z-6w-LwN"/>
+                                        <constraint firstAttribute="trailing" secondItem="Fso-gI-0BE" secondAttribute="trailing" constant="16" id="Dpr-gY-Oos"/>
                                         <constraint firstItem="dhy-u8-xLs" firstAttribute="top" secondItem="rDw-l1-qza" secondAttribute="bottom" constant="22" id="E0J-5B-TUT"/>
                                         <constraint firstItem="rDw-l1-qza" firstAttribute="leading" secondItem="JiF-sD-LKM" secondAttribute="trailing" constant="8" id="EpR-C0-NSS"/>
                                         <constraint firstItem="Ntk-bc-lJm" firstAttribute="top" secondItem="dhy-u8-xLs" secondAttribute="bottom" constant="10" id="Fgm-ae-kMo"/>
@@ -348,7 +348,7 @@
                                         <constraint firstItem="MBK-ej-JKP" firstAttribute="leading" secondItem="u3u-bY-JSr" secondAttribute="trailing" constant="7" id="KAs-Qh-pxy"/>
                                         <constraint firstItem="Af9-bU-cb9" firstAttribute="leading" secondItem="1E6-hu-p0M" secondAttribute="trailing" constant="6" id="M9Q-5k-nE6"/>
                                         <constraint firstItem="4Td-4E-1ZI" firstAttribute="centerY" secondItem="GGI-JY-6jm" secondAttribute="centerY" id="MLs-HR-WYO"/>
-                                        <constraint firstItem="h5c-3R-Dzl" firstAttribute="top" secondItem="wga-jq-PPG" secondAttribute="bottom" constant="16" id="MpN-Tf-dMD"/>
+                                        <constraint firstItem="Fso-gI-0BE" firstAttribute="top" secondItem="wga-jq-PPG" secondAttribute="bottom" constant="16" id="OUa-ew-TBb"/>
                                         <constraint firstItem="MBK-ej-JKP" firstAttribute="centerY" secondItem="u3u-bY-JSr" secondAttribute="centerY" id="OsJ-eH-LiR"/>
                                         <constraint firstItem="1E6-hu-p0M" firstAttribute="top" secondItem="HUW-B8-dcg" secondAttribute="bottom" constant="15" id="PLD-iD-1tf"/>
                                         <constraint firstItem="xiK-H2-JBh" firstAttribute="centerY" secondItem="dYl-XS-JEo" secondAttribute="centerY" id="Pf6-6K-733"/>
@@ -369,7 +369,6 @@
                                         <constraint firstItem="HUW-B8-dcg" firstAttribute="top" secondItem="JBq-g7-NPo" secondAttribute="bottom" constant="15" id="fn7-ER-Ubp"/>
                                         <constraint firstItem="Dfa-kw-s83" firstAttribute="centerY" secondItem="Ntk-bc-lJm" secondAttribute="centerY" id="foA-mk-pzS"/>
                                         <constraint firstItem="JiF-sD-LKM" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="gjn-bS-T3b"/>
-                                        <constraint firstAttribute="trailing" secondItem="h5c-3R-Dzl" secondAttribute="trailing" constant="16" id="hfE-za-7NS"/>
                                         <constraint firstItem="Ntk-bc-lJm" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="i0X-Vb-aO6"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="KTq-3L-hqG" secondAttribute="bottom" constant="38" id="i8d-F9-dpt"/>
                                         <constraint firstItem="T7e-gI-X8g" firstAttribute="centerY" secondItem="HUW-B8-dcg" secondAttribute="centerY" id="ip8-c4-S79"/>
@@ -379,16 +378,16 @@
                                         <constraint firstItem="5A9-vR-pKq" firstAttribute="centerY" secondItem="mFG-rj-gFp" secondAttribute="centerY" id="kqo-S9-ac4"/>
                                         <constraint firstItem="HD3-w8-yID" firstAttribute="centerY" secondItem="O4R-EU-cYF" secondAttribute="centerY" id="llS-k2-MLw"/>
                                         <constraint firstItem="u3u-bY-JSr" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="mQy-8F-ML9"/>
-                                        <constraint firstItem="KTq-3L-hqG" firstAttribute="top" secondItem="h5c-3R-Dzl" secondAttribute="bottom" constant="16" id="nmS-4X-d57"/>
-                                        <constraint firstItem="h5c-3R-Dzl" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="oUH-iW-tXf"/>
                                         <constraint firstItem="wga-jq-PPG" firstAttribute="centerY" secondItem="vqi-UJ-lCV" secondAttribute="centerY" id="pFB-YM-zub"/>
                                         <constraint firstAttribute="trailing" secondItem="gUS-cQ-IeU" secondAttribute="trailing" constant="16" id="q1q-8c-sLr"/>
                                         <constraint firstItem="gUS-cQ-IeU" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="qFV-3U-0Y3"/>
                                         <constraint firstItem="gUS-cQ-IeU" firstAttribute="top" secondItem="u3u-bY-JSr" secondAttribute="bottom" constant="8" id="qTj-k5-WFZ"/>
                                         <constraint firstItem="xiK-H2-JBh" firstAttribute="leading" secondItem="dYl-XS-JEo" secondAttribute="trailing" constant="6" id="sJO-MH-5gn"/>
                                         <constraint firstItem="rdJ-aa-mmA" firstAttribute="leading" secondItem="Yzo-mK-Pj0" secondAttribute="trailing" constant="6" id="sgc-L0-cpA"/>
+                                        <constraint firstItem="KTq-3L-hqG" firstAttribute="top" secondItem="Fso-gI-0BE" secondAttribute="bottom" constant="16" id="tcY-k5-zWk"/>
                                         <constraint firstItem="rDw-l1-qza" firstAttribute="centerY" secondItem="JiF-sD-LKM" secondAttribute="centerY" id="toU-gp-2Dc"/>
                                         <constraint firstItem="HUW-B8-dcg" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="ttE-EB-cCh"/>
+                                        <constraint firstItem="Fso-gI-0BE" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="uaH-gN-XC8"/>
                                         <constraint firstAttribute="trailing" secondItem="KTq-3L-hqG" secondAttribute="trailing" constant="16" id="wlX-JS-NhX"/>
                                         <constraint firstItem="tPa-LG-9rf" firstAttribute="top" secondItem="gUS-cQ-IeU" secondAttribute="bottom" constant="32" id="xFK-LK-kNw"/>
                                         <constraint firstItem="dYl-XS-JEo" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="xYP-7g-u0x"/>
