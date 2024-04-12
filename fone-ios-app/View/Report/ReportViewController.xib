@@ -23,9 +23,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReportViewController" customModule="fone_ios_app" customModuleProvider="target">
             <connections>
                 <outlet property="closeButton" destination="2Ei-FP-0B2" id="Pv2-kh-XOx"/>
+                <outlet property="jobOpeningInconveniences" destination="Dac-RJ-IEq" id="jyR-Ab-ugH"/>
+                <outlet property="jobOpeningReportButton" destination="rDw-l1-qza" id="Hvb-nf-t7Z"/>
                 <outlet property="letterCountedTextView" destination="Fso-gI-0BE" id="6ym-61-fJZ"/>
                 <outlet property="nicknameLabel" destination="MBK-ej-JKP" id="5Or-BN-PpJ"/>
                 <outlet property="profileImageView" destination="u3u-bY-JSr" id="Tq4-yX-Y5H"/>
+                <outlet property="profileInconveniences" destination="jN6-mg-qEN" id="mzS-Ke-2JE"/>
+                <outlet property="profileReportButton" destination="JiF-sD-LKM" id="C7v-Zz-xhY"/>
                 <outlet property="submitButton" destination="KTq-3L-hqG" id="8Jb-sE-8xk"/>
                 <outlet property="userJobLabel" destination="sEz-Wq-5YO" id="cLs-cd-Fel"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -71,10 +75,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="393" height="743"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fi1-md-zDw">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="836.66666666666663"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="743"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KTq-3L-hqG">
-                                            <rect key="frame" x="16" y="742.66666666666663" width="361" height="48"/>
+                                            <rect key="frame" x="16" y="649" width="361" height="48"/>
                                             <color key="backgroundColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="48" id="dzV-do-Hhy"/>
@@ -194,163 +198,321 @@
                                             </userDefinedRuntimeAttributes>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="어떤 점이 불편했나요? (최대 5개)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhy-u8-xLs">
-                                            <rect key="frame" x="16" y="277" width="197" height="18"/>
+                                            <rect key="frame" x="16" y="277" width="197.66666666666666" height="18"/>
                                             <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="15"/>
                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ntk-bc-lJm">
-                                            <rect key="frame" x="16" y="305" width="16" height="16"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="16" id="JIU-5s-x8b"/>
-                                                <constraint firstAttribute="width" constant="16" id="tMi-eq-xwC"/>
-                                            </constraints>
-                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                            <state key="normal" image="checkboxes_off"/>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="불친절해요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dfa-kw-s83">
-                                            <rect key="frame" x="37.999999999999993" y="304.66666666666669" width="64.333333333333314" height="17"/>
-                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
-                                            <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mFG-rj-gFp">
-                                            <rect key="frame" x="16" y="336" width="16" height="16"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="16" id="FVg-iK-wuP"/>
-                                                <constraint firstAttribute="width" constant="16" id="nT1-dq-LcL"/>
-                                            </constraints>
-                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                            <state key="normal" image="checkboxes_off"/>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="반말을 사용해요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5A9-vR-pKq">
-                                            <rect key="frame" x="38" y="335.66666666666669" width="92" height="17"/>
-                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
-                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBq-g7-NPo">
-                                            <rect key="frame" x="16" y="367" width="16" height="16"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="16" id="Pz0-8Z-5uC"/>
-                                                <constraint firstAttribute="height" constant="16" id="dfB-qg-AKv"/>
-                                            </constraints>
-                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                            <state key="normal" image="checkboxes_off"/>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="약속 시간과 장소를 정한 후 직전에 취소했어요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSM-mF-ScX">
-                                            <rect key="frame" x="37.999999999999986" y="366.66666666666669" width="254.66666666666663" height="17"/>
-                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
-                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HUW-B8-dcg">
-                                            <rect key="frame" x="16" y="398" width="16" height="16"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="16" id="ERT-xC-FG7"/>
-                                                <constraint firstAttribute="height" constant="16" id="U5o-dx-wEj"/>
-                                            </constraints>
-                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                            <state key="normal" image="checkboxes_off"/>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="약속 장소에 나타나지 않아요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7e-gI-X8g">
-                                            <rect key="frame" x="38" y="397.66666666666669" width="159.33333333333334" height="17"/>
-                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
-                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1E6-hu-p0M">
-                                            <rect key="frame" x="16" y="429" width="16" height="16"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="16" id="aIv-3f-KrA"/>
-                                                <constraint firstAttribute="height" constant="16" id="nyD-Og-VuJ"/>
-                                            </constraints>
-                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                            <state key="normal" image="checkboxes_off"/>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="거래와 관련 없는 대화를 해요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Af9-bU-cb9">
-                                            <rect key="frame" x="38" y="428.66666666666663" width="163" height="17"/>
-                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
-                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYl-XS-JEo">
-                                            <rect key="frame" x="16" y="460" width="16" height="16"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="16" id="ODl-y7-nd6"/>
-                                                <constraint firstAttribute="width" constant="16" id="wJT-b4-xd0"/>
-                                            </constraints>
-                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                            <state key="normal" image="checkboxes_off"/>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원하지 않는 가격을 계속 요구해요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiK-H2-JBh">
-                                            <rect key="frame" x="38.000000000000014" y="459.66666666666663" width="187.33333333333337" height="17"/>
-                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
-                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GGI-JY-6jm">
-                                            <rect key="frame" x="16" y="491" width="16" height="16"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="16" id="qSM-cV-s98"/>
-                                                <constraint firstAttribute="width" constant="16" id="vwZ-Eb-YuT"/>
-                                            </constraints>
-                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                            <state key="normal" image="checkboxes_off"/>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="게시글에 없는 정보를 자세히 알려주지 않아요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Td-4E-1ZI">
-                                            <rect key="frame" x="38.000000000000014" y="490.66666666666663" width="251.33333333333337" height="17"/>
-                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
-                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O4R-EU-cYF">
-                                            <rect key="frame" x="16" y="522" width="16" height="16"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="16" id="rUq-Mn-x5M"/>
-                                                <constraint firstAttribute="width" constant="16" id="vH2-az-lMV"/>
-                                            </constraints>
-                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                            <state key="normal" image="checkboxes_off"/>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="성희롱을 해요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HD3-w8-yID">
-                                            <rect key="frame" x="38.000000000000007" y="521.66666666666663" width="79.666666666666686" height="17"/>
-                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
-                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yzo-mK-Pj0">
-                                            <rect key="frame" x="16" y="553" width="16" height="16"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="16" id="0ik-z7-WQE"/>
-                                                <constraint firstAttribute="width" constant="16" id="wgm-dW-r4L"/>
-                                            </constraints>
-                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                            <state key="normal" image="checkboxes_off"/>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="연애 목적의 대화를 시도해요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdJ-aa-mmA">
-                                            <rect key="frame" x="38" y="552.66666666666663" width="159.33333333333334" height="17"/>
-                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
-                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vqi-UJ-lCV">
-                                            <rect key="frame" x="16" y="584" width="16" height="16"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="16" id="1g0-4j-1XB"/>
-                                                <constraint firstAttribute="height" constant="16" id="lwQ-MW-pMH"/>
-                                            </constraints>
-                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                            <state key="normal" image="checkboxes_off"/>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기타" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wga-jq-PPG">
-                                            <rect key="frame" x="38" y="583.66666666666663" width="24.333333333333329" height="17"/>
-                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
-                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pFi-dm-MQH">
+                                            <rect key="frame" x="16" y="305" width="361" height="202"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jN6-mg-qEN">
+                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="202"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ntk-bc-lJm">
+                                                            <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="16" id="JIU-5s-x8b"/>
+                                                                <constraint firstAttribute="width" constant="16" id="tMi-eq-xwC"/>
+                                                            </constraints>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" image="checkboxes_off"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="권리침해 및 명의 도용 · 사칭을 해요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dfa-kw-s83">
+                                                            <rect key="frame" x="22" y="-0.33333333333331439" width="197.66666666666666" height="17"/>
+                                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                                            <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mFG-rj-gFp">
+                                                            <rect key="frame" x="0.0" y="31" width="16" height="16"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="16" id="FVg-iK-wuP"/>
+                                                                <constraint firstAttribute="width" constant="16" id="nT1-dq-LcL"/>
+                                                            </constraints>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" image="checkboxes_off"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="폭력적 위협 또는 홍보를 해요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5A9-vR-pKq">
+                                                            <rect key="frame" x="22" y="30.666666666666686" width="163" height="17"/>
+                                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBq-g7-NPo">
+                                                            <rect key="frame" x="0.0" y="62" width="16" height="16"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="16" id="Pz0-8Z-5uC"/>
+                                                                <constraint firstAttribute="height" constant="16" id="dfB-qg-AKv"/>
+                                                            </constraints>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" image="checkboxes_off"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="불법 또는 규제 상품을 판매해요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSM-mF-ScX">
+                                                            <rect key="frame" x="22" y="61.666666666666686" width="175" height="17"/>
+                                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HUW-B8-dcg">
+                                                            <rect key="frame" x="0.0" y="93" width="16" height="16"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="16" id="ERT-xC-FG7"/>
+                                                                <constraint firstAttribute="height" constant="16" id="U5o-dx-wEj"/>
+                                                            </constraints>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" image="checkboxes_off"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="보호집단에 대한 혐오 발언을 해요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7e-gI-X8g">
+                                                            <rect key="frame" x="22" y="92.666666666666686" width="187.33333333333334" height="17"/>
+                                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1E6-hu-p0M">
+                                                            <rect key="frame" x="0.0" y="124" width="16" height="16"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="16" id="aIv-3f-KrA"/>
+                                                                <constraint firstAttribute="height" constant="16" id="nyD-Og-VuJ"/>
+                                                            </constraints>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" image="checkboxes_off"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나체 이미지 또는 음란물을 올려요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Af9-bU-cb9">
+                                                            <rect key="frame" x="22" y="123.66666666666663" width="187.33333333333334" height="17"/>
+                                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYl-XS-JEo">
+                                                            <rect key="frame" x="0.0" y="155" width="16" height="16"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="16" id="ODl-y7-nd6"/>
+                                                                <constraint firstAttribute="width" constant="16" id="wJT-b4-xd0"/>
+                                                            </constraints>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" image="checkboxes_off"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="스팸 및 사기." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiK-H2-JBh">
+                                                            <rect key="frame" x="22" y="154.66666666666663" width="71.333333333333329" height="17"/>
+                                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GGI-JY-6jm">
+                                                            <rect key="frame" x="0.0" y="186" width="16" height="16"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="16" id="qSM-cV-s98"/>
+                                                                <constraint firstAttribute="width" constant="16" id="vwZ-Eb-YuT"/>
+                                                            </constraints>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" image="checkboxes_off"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기타" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Td-4E-1ZI">
+                                                            <rect key="frame" x="22" y="185.66666666666663" width="24.333333333333329" height="17"/>
+                                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="JBq-g7-NPo" firstAttribute="top" secondItem="mFG-rj-gFp" secondAttribute="bottom" constant="15" id="5Kq-et-qik"/>
+                                                        <constraint firstItem="xiK-H2-JBh" firstAttribute="leading" secondItem="dYl-XS-JEo" secondAttribute="trailing" constant="6" id="ArA-PB-1Vf"/>
+                                                        <constraint firstItem="T7e-gI-X8g" firstAttribute="centerY" secondItem="HUW-B8-dcg" secondAttribute="centerY" id="D4c-YT-9ig"/>
+                                                        <constraint firstItem="HUW-B8-dcg" firstAttribute="leading" secondItem="jN6-mg-qEN" secondAttribute="leading" id="EeR-Uh-nuQ"/>
+                                                        <constraint firstItem="Af9-bU-cb9" firstAttribute="centerY" secondItem="1E6-hu-p0M" secondAttribute="centerY" id="H92-v9-9zQ"/>
+                                                        <constraint firstItem="mFG-rj-gFp" firstAttribute="top" secondItem="Ntk-bc-lJm" secondAttribute="bottom" constant="15" id="IK0-v7-EcN"/>
+                                                        <constraint firstItem="4Td-4E-1ZI" firstAttribute="leading" secondItem="GGI-JY-6jm" secondAttribute="trailing" constant="6" id="PIG-xm-p7Z"/>
+                                                        <constraint firstItem="xiK-H2-JBh" firstAttribute="centerY" secondItem="dYl-XS-JEo" secondAttribute="centerY" id="QuU-tp-nXU"/>
+                                                        <constraint firstItem="Ntk-bc-lJm" firstAttribute="leading" secondItem="jN6-mg-qEN" secondAttribute="leading" id="SMc-ts-GfK"/>
+                                                        <constraint firstItem="JBq-g7-NPo" firstAttribute="leading" secondItem="jN6-mg-qEN" secondAttribute="leading" id="SoT-vu-BqV"/>
+                                                        <constraint firstItem="PSM-mF-ScX" firstAttribute="leading" secondItem="JBq-g7-NPo" secondAttribute="trailing" constant="6" id="TaU-bg-Tme"/>
+                                                        <constraint firstItem="5A9-vR-pKq" firstAttribute="centerY" secondItem="mFG-rj-gFp" secondAttribute="centerY" id="ai2-lJ-gf4"/>
+                                                        <constraint firstItem="Dfa-kw-s83" firstAttribute="leading" secondItem="Ntk-bc-lJm" secondAttribute="trailing" constant="6" id="eC2-ys-nt7"/>
+                                                        <constraint firstItem="GGI-JY-6jm" firstAttribute="top" secondItem="dYl-XS-JEo" secondAttribute="bottom" constant="15" id="f6J-1j-wr4"/>
+                                                        <constraint firstItem="Ntk-bc-lJm" firstAttribute="top" secondItem="jN6-mg-qEN" secondAttribute="top" id="feZ-Gh-76M"/>
+                                                        <constraint firstAttribute="bottom" secondItem="GGI-JY-6jm" secondAttribute="bottom" id="gap-aH-n3L"/>
+                                                        <constraint firstItem="dYl-XS-JEo" firstAttribute="leading" secondItem="jN6-mg-qEN" secondAttribute="leading" id="hVe-b5-eVJ"/>
+                                                        <constraint firstItem="Dfa-kw-s83" firstAttribute="centerY" secondItem="Ntk-bc-lJm" secondAttribute="centerY" id="i5P-Nm-h2w"/>
+                                                        <constraint firstItem="mFG-rj-gFp" firstAttribute="leading" secondItem="jN6-mg-qEN" secondAttribute="leading" id="lK2-EF-ECm"/>
+                                                        <constraint firstItem="Af9-bU-cb9" firstAttribute="leading" secondItem="1E6-hu-p0M" secondAttribute="trailing" constant="6" id="lUb-cN-lqx"/>
+                                                        <constraint firstItem="HUW-B8-dcg" firstAttribute="top" secondItem="JBq-g7-NPo" secondAttribute="bottom" constant="15" id="mHF-8s-TLI"/>
+                                                        <constraint firstItem="4Td-4E-1ZI" firstAttribute="centerY" secondItem="GGI-JY-6jm" secondAttribute="centerY" id="mNZ-gh-Yq4"/>
+                                                        <constraint firstItem="1E6-hu-p0M" firstAttribute="leading" secondItem="jN6-mg-qEN" secondAttribute="leading" id="ntR-zh-r2n"/>
+                                                        <constraint firstItem="5A9-vR-pKq" firstAttribute="leading" secondItem="mFG-rj-gFp" secondAttribute="trailing" constant="6" id="orn-RJ-s47"/>
+                                                        <constraint firstItem="PSM-mF-ScX" firstAttribute="centerY" secondItem="JBq-g7-NPo" secondAttribute="centerY" id="rMI-jv-NGG"/>
+                                                        <constraint firstItem="dYl-XS-JEo" firstAttribute="top" secondItem="1E6-hu-p0M" secondAttribute="bottom" constant="15" id="sjv-Kg-L0Q"/>
+                                                        <constraint firstItem="T7e-gI-X8g" firstAttribute="leading" secondItem="HUW-B8-dcg" secondAttribute="trailing" constant="6" id="tZX-X4-ueK"/>
+                                                        <constraint firstItem="GGI-JY-6jm" firstAttribute="leading" secondItem="jN6-mg-qEN" secondAttribute="leading" id="uDB-fr-CgX"/>
+                                                        <constraint firstItem="1E6-hu-p0M" firstAttribute="top" secondItem="HUW-B8-dcg" secondAttribute="bottom" constant="15" id="yOn-Tk-R38"/>
+                                                    </constraints>
+                                                </view>
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dac-RJ-IEq">
+                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="233"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PIw-ba-mCj">
+                                                            <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="16" id="Dwb-I9-ZS3"/>
+                                                                <constraint firstAttribute="height" constant="16" id="iPI-Cc-Zf2"/>
+                                                            </constraints>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" image="checkboxes_off"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="게시글의 정보가 너무 부족해요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYW-fE-zsY">
+                                                            <rect key="frame" x="22" y="-0.33333333333331439" width="171.66666666666666" height="17"/>
+                                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ULc-19-GgY">
+                                                            <rect key="frame" x="0.0" y="62" width="16" height="16"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="16" id="PM6-l9-Jux"/>
+                                                                <constraint firstAttribute="width" constant="16" id="TfX-v5-iz6"/>
+                                                            </constraints>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" image="checkboxes_off"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="폭력적 위협 또는 홍보를 해요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hlg-54-Y6j">
+                                                            <rect key="frame" x="22" y="61.666666666666686" width="163" height="17"/>
+                                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4XR-3w-hsq">
+                                                            <rect key="frame" x="0.0" y="93" width="16" height="16"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="16" id="Ipu-7A-ErH"/>
+                                                                <constraint firstAttribute="height" constant="16" id="dLN-sO-1Jk"/>
+                                                            </constraints>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" image="checkboxes_off"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="거짓된 정보를 게시했어요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xw-J9-n7a">
+                                                            <rect key="frame" x="22" y="92.666666666666686" width="144" height="17"/>
+                                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3nL-Gu-2lk">
+                                                            <rect key="frame" x="0.0" y="124" width="16" height="16"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="16" id="1wu-gg-Mw3"/>
+                                                                <constraint firstAttribute="width" constant="16" id="4T9-r1-0JR"/>
+                                                            </constraints>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" image="checkboxes_off"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="보호집단에 대한 혐오 발언을 해요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1f-Sw-8E2">
+                                                            <rect key="frame" x="22" y="123.66666666666663" width="187.33333333333334" height="17"/>
+                                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Gy-oz-Vcf">
+                                                            <rect key="frame" x="0.0" y="155" width="16" height="16"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="16" id="OdA-g2-TDQ"/>
+                                                                <constraint firstAttribute="width" constant="16" id="UqY-s0-SIx"/>
+                                                            </constraints>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" image="checkboxes_off"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나체 이미지 또는 음란물을 올려요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdy-lR-oJ5">
+                                                            <rect key="frame" x="22" y="154.66666666666663" width="187.33333333333334" height="17"/>
+                                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oTO-sS-v75">
+                                                            <rect key="frame" x="0.0" y="186" width="16" height="16"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="16" id="IoT-ah-yYo"/>
+                                                                <constraint firstAttribute="height" constant="16" id="wzz-sX-i1J"/>
+                                                            </constraints>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" image="checkboxes_off"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="스팸 및 사기." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khq-d3-m3c">
+                                                            <rect key="frame" x="22" y="185.66666666666663" width="71.333333333333329" height="17"/>
+                                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3C-iB-WyP">
+                                                            <rect key="frame" x="0.0" y="217" width="16" height="16"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="16" id="2Uf-vy-vCf"/>
+                                                                <constraint firstAttribute="width" constant="16" id="Zzz-JO-2R8"/>
+                                                            </constraints>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" image="checkboxes_off"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기타" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a7P-RC-ALa">
+                                                            <rect key="frame" x="22" y="216.66666666666663" width="24.333333333333329" height="17"/>
+                                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppO-xq-9yW">
+                                                            <rect key="frame" x="0.0" y="31" width="16" height="16"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="16" id="CGz-GO-s4d"/>
+                                                                <constraint firstAttribute="width" constant="16" id="YfJ-Jj-tCg"/>
+                                                            </constraints>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" image="checkboxes_off"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="권리침해 및 명의 도용 · 사칭을 해요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Wq-vv-qd1">
+                                                            <rect key="frame" x="22" y="30.666666666666686" width="197.66666666666666" height="17"/>
+                                                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                                            <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="q3C-iB-WyP" secondAttribute="bottom" id="8NB-7j-PHu"/>
+                                                        <constraint firstItem="oTO-sS-v75" firstAttribute="leading" secondItem="Dac-RJ-IEq" secondAttribute="leading" id="8Rt-WN-Trz"/>
+                                                        <constraint firstItem="Hlg-54-Y6j" firstAttribute="centerY" secondItem="ULc-19-GgY" secondAttribute="centerY" id="8l2-bx-L75"/>
+                                                        <constraint firstItem="khq-d3-m3c" firstAttribute="leading" secondItem="oTO-sS-v75" secondAttribute="trailing" constant="6" id="902-Zg-ixY"/>
+                                                        <constraint firstItem="PIw-ba-mCj" firstAttribute="leading" secondItem="Dac-RJ-IEq" secondAttribute="leading" id="ANf-NZ-k6S"/>
+                                                        <constraint firstItem="q3C-iB-WyP" firstAttribute="leading" secondItem="Dac-RJ-IEq" secondAttribute="leading" id="Bja-m1-s3S"/>
+                                                        <constraint firstItem="khq-d3-m3c" firstAttribute="centerY" secondItem="oTO-sS-v75" secondAttribute="centerY" id="E45-pW-XWG"/>
+                                                        <constraint firstItem="lYW-fE-zsY" firstAttribute="centerY" secondItem="PIw-ba-mCj" secondAttribute="centerY" id="IHk-5D-Ujh"/>
+                                                        <constraint firstItem="3Gy-oz-Vcf" firstAttribute="leading" secondItem="Dac-RJ-IEq" secondAttribute="leading" id="M9M-cN-tgH"/>
+                                                        <constraint firstItem="lYW-fE-zsY" firstAttribute="leading" secondItem="PIw-ba-mCj" secondAttribute="trailing" constant="6" id="MnM-4z-QRL"/>
+                                                        <constraint firstItem="a7P-RC-ALa" firstAttribute="leading" secondItem="q3C-iB-WyP" secondAttribute="trailing" constant="6" id="NU2-YR-Kfg"/>
+                                                        <constraint firstItem="Hlg-54-Y6j" firstAttribute="leading" secondItem="ULc-19-GgY" secondAttribute="trailing" constant="6" id="P1v-Dc-8wZ"/>
+                                                        <constraint firstItem="8Wq-vv-qd1" firstAttribute="centerY" secondItem="ppO-xq-9yW" secondAttribute="centerY" id="QSq-Wh-MXB"/>
+                                                        <constraint firstItem="4XR-3w-hsq" firstAttribute="leading" secondItem="Dac-RJ-IEq" secondAttribute="leading" id="SoW-PE-IOO"/>
+                                                        <constraint firstItem="PIw-ba-mCj" firstAttribute="top" secondItem="Dac-RJ-IEq" secondAttribute="top" id="WBO-2g-K10"/>
+                                                        <constraint firstItem="ppO-xq-9yW" firstAttribute="leading" secondItem="Dac-RJ-IEq" secondAttribute="leading" id="YsM-Pg-pbm"/>
+                                                        <constraint firstItem="mdy-lR-oJ5" firstAttribute="centerY" secondItem="3Gy-oz-Vcf" secondAttribute="centerY" id="aC7-Ls-Whh"/>
+                                                        <constraint firstItem="ppO-xq-9yW" firstAttribute="top" secondItem="PIw-ba-mCj" secondAttribute="bottom" constant="15" id="bs5-7x-sa3"/>
+                                                        <constraint firstItem="q3C-iB-WyP" firstAttribute="top" secondItem="oTO-sS-v75" secondAttribute="bottom" constant="15" id="cD6-Hb-JmS"/>
+                                                        <constraint firstItem="f1f-Sw-8E2" firstAttribute="centerY" secondItem="3nL-Gu-2lk" secondAttribute="centerY" id="cjU-Rh-bPR"/>
+                                                        <constraint firstItem="mdy-lR-oJ5" firstAttribute="leading" secondItem="3Gy-oz-Vcf" secondAttribute="trailing" constant="6" id="eAN-I1-BI8"/>
+                                                        <constraint firstItem="a7P-RC-ALa" firstAttribute="centerY" secondItem="q3C-iB-WyP" secondAttribute="centerY" id="eR1-H5-BF8"/>
+                                                        <constraint firstItem="4XR-3w-hsq" firstAttribute="top" secondItem="ULc-19-GgY" secondAttribute="bottom" constant="15" id="i8u-Bm-XnG"/>
+                                                        <constraint firstItem="oTO-sS-v75" firstAttribute="top" secondItem="3Gy-oz-Vcf" secondAttribute="bottom" constant="15" id="lO1-XH-izl"/>
+                                                        <constraint firstItem="8xw-J9-n7a" firstAttribute="centerY" secondItem="4XR-3w-hsq" secondAttribute="centerY" id="oc7-tv-MNq"/>
+                                                        <constraint firstItem="8xw-J9-n7a" firstAttribute="leading" secondItem="4XR-3w-hsq" secondAttribute="trailing" constant="6" id="okB-vS-JR3"/>
+                                                        <constraint firstItem="f1f-Sw-8E2" firstAttribute="leading" secondItem="3nL-Gu-2lk" secondAttribute="trailing" constant="6" id="omJ-be-tz4"/>
+                                                        <constraint firstItem="ULc-19-GgY" firstAttribute="top" secondItem="ppO-xq-9yW" secondAttribute="bottom" constant="15" id="pEq-jM-BxY"/>
+                                                        <constraint firstItem="3nL-Gu-2lk" firstAttribute="top" secondItem="4XR-3w-hsq" secondAttribute="bottom" constant="15" id="ruK-LF-Eyb"/>
+                                                        <constraint firstItem="3nL-Gu-2lk" firstAttribute="leading" secondItem="Dac-RJ-IEq" secondAttribute="leading" id="sEm-cl-DjZ"/>
+                                                        <constraint firstItem="3Gy-oz-Vcf" firstAttribute="top" secondItem="3nL-Gu-2lk" secondAttribute="bottom" constant="15" id="vh1-Xc-ssk"/>
+                                                        <constraint firstItem="8Wq-vv-qd1" firstAttribute="leading" secondItem="ppO-xq-9yW" secondAttribute="trailing" constant="6" id="vj1-fI-qeN"/>
+                                                        <constraint firstItem="ULc-19-GgY" firstAttribute="leading" secondItem="Dac-RJ-IEq" secondAttribute="leading" id="x85-O5-hgb"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                        </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fso-gI-0BE" customClass="LetterCountedTextView" customModule="fone_ios_app" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="616.66666666666663" width="361" height="110"/>
+                                            <rect key="frame" x="16" y="523" width="361" height="110"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="110" id="l8H-4b-6sg"/>
@@ -360,71 +522,34 @@
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="dhy-u8-xLs" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="1yH-Dz-Mso"/>
-                                        <constraint firstItem="dYl-XS-JEo" firstAttribute="top" secondItem="1E6-hu-p0M" secondAttribute="bottom" constant="15" id="2PE-yg-O6R"/>
-                                        <constraint firstItem="O4R-EU-cYF" firstAttribute="top" secondItem="GGI-JY-6jm" secondAttribute="bottom" constant="15" id="46Z-Hk-XC6"/>
                                         <constraint firstItem="sEz-Wq-5YO" firstAttribute="leading" secondItem="MBK-ej-JKP" secondAttribute="trailing" constant="7" id="5Ww-UR-rc4"/>
-                                        <constraint firstItem="O4R-EU-cYF" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="5lZ-F9-Z9i"/>
-                                        <constraint firstItem="Yzo-mK-Pj0" firstAttribute="top" secondItem="O4R-EU-cYF" secondAttribute="bottom" constant="15" id="6iC-Yv-UEQ"/>
                                         <constraint firstItem="tPa-LG-9rf" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="7Ih-XE-yWY"/>
-                                        <constraint firstItem="PSM-mF-ScX" firstAttribute="centerY" secondItem="JBq-g7-NPo" secondAttribute="centerY" id="8AB-eW-4TH"/>
                                         <constraint firstItem="KTq-3L-hqG" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="8yr-6N-LLa"/>
-                                        <constraint firstItem="Yzo-mK-Pj0" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="At3-NY-drB"/>
-                                        <constraint firstItem="HD3-w8-yID" firstAttribute="leading" secondItem="O4R-EU-cYF" secondAttribute="trailing" constant="6" id="B0i-UV-ZAT"/>
-                                        <constraint firstItem="mFG-rj-gFp" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="D9z-6w-LwN"/>
                                         <constraint firstAttribute="trailing" secondItem="Fso-gI-0BE" secondAttribute="trailing" constant="16" id="Dpr-gY-Oos"/>
                                         <constraint firstItem="dhy-u8-xLs" firstAttribute="top" secondItem="rDw-l1-qza" secondAttribute="bottom" constant="22" id="E0J-5B-TUT"/>
+                                        <constraint firstItem="pFi-dm-MQH" firstAttribute="top" secondItem="dhy-u8-xLs" secondAttribute="bottom" constant="10" id="EMm-LQ-Mri"/>
                                         <constraint firstItem="rDw-l1-qza" firstAttribute="leading" secondItem="JiF-sD-LKM" secondAttribute="trailing" constant="8" id="EpR-C0-NSS"/>
-                                        <constraint firstItem="Ntk-bc-lJm" firstAttribute="top" secondItem="dhy-u8-xLs" secondAttribute="bottom" constant="10" id="Fgm-ae-kMo"/>
                                         <constraint firstItem="KTq-3L-hqG" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="GkO-7j-JpC"/>
-                                        <constraint firstItem="mFG-rj-gFp" firstAttribute="top" secondItem="Ntk-bc-lJm" secondAttribute="bottom" constant="15" id="HZC-cl-Cu3"/>
                                         <constraint firstAttribute="trailing" secondItem="KTq-3L-hqG" secondAttribute="trailing" constant="16" id="IDu-pY-iRt"/>
-                                        <constraint firstItem="JBq-g7-NPo" firstAttribute="top" secondItem="mFG-rj-gFp" secondAttribute="bottom" constant="15" id="Ih6-PX-sRS"/>
                                         <constraint firstItem="MBK-ej-JKP" firstAttribute="leading" secondItem="u3u-bY-JSr" secondAttribute="trailing" constant="7" id="KAs-Qh-pxy"/>
-                                        <constraint firstItem="Af9-bU-cb9" firstAttribute="leading" secondItem="1E6-hu-p0M" secondAttribute="trailing" constant="6" id="M9Q-5k-nE6"/>
-                                        <constraint firstItem="4Td-4E-1ZI" firstAttribute="centerY" secondItem="GGI-JY-6jm" secondAttribute="centerY" id="MLs-HR-WYO"/>
-                                        <constraint firstItem="Fso-gI-0BE" firstAttribute="top" secondItem="wga-jq-PPG" secondAttribute="bottom" constant="16" id="OUa-ew-TBb"/>
                                         <constraint firstItem="MBK-ej-JKP" firstAttribute="centerY" secondItem="u3u-bY-JSr" secondAttribute="centerY" id="OsJ-eH-LiR"/>
-                                        <constraint firstItem="1E6-hu-p0M" firstAttribute="top" secondItem="HUW-B8-dcg" secondAttribute="bottom" constant="15" id="PLD-iD-1tf"/>
-                                        <constraint firstItem="xiK-H2-JBh" firstAttribute="centerY" secondItem="dYl-XS-JEo" secondAttribute="centerY" id="Pf6-6K-733"/>
-                                        <constraint firstItem="vqi-UJ-lCV" firstAttribute="top" secondItem="Yzo-mK-Pj0" secondAttribute="bottom" constant="15" id="Qoe-sV-YkV"/>
-                                        <constraint firstItem="1E6-hu-p0M" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="UH5-nb-vRA"/>
-                                        <constraint firstItem="JBq-g7-NPo" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="Upg-5o-hzu"/>
-                                        <constraint firstItem="rdJ-aa-mmA" firstAttribute="centerY" secondItem="Yzo-mK-Pj0" secondAttribute="centerY" id="Vg4-hO-kgc"/>
-                                        <constraint firstItem="PSM-mF-ScX" firstAttribute="leading" secondItem="JBq-g7-NPo" secondAttribute="trailing" constant="6" id="VwI-5P-Yn2"/>
-                                        <constraint firstItem="T7e-gI-X8g" firstAttribute="leading" secondItem="HUW-B8-dcg" secondAttribute="trailing" constant="6" id="WQr-Pn-q3u"/>
-                                        <constraint firstItem="vqi-UJ-lCV" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="WeX-Xp-A0O"/>
-                                        <constraint firstItem="GGI-JY-6jm" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="XaZ-c4-eb3"/>
-                                        <constraint firstItem="Af9-bU-cb9" firstAttribute="centerY" secondItem="1E6-hu-p0M" secondAttribute="centerY" id="aVv-Tc-Meb"/>
-                                        <constraint firstItem="GGI-JY-6jm" firstAttribute="top" secondItem="dYl-XS-JEo" secondAttribute="bottom" constant="15" id="au9-fl-Zsd"/>
-                                        <constraint firstItem="wga-jq-PPG" firstAttribute="leading" secondItem="vqi-UJ-lCV" secondAttribute="trailing" constant="6" id="bdV-Be-9sB"/>
+                                        <constraint firstItem="Fso-gI-0BE" firstAttribute="top" secondItem="pFi-dm-MQH" secondAttribute="bottom" constant="16" id="Spg-7U-UvQ"/>
+                                        <constraint firstItem="pFi-dm-MQH" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="WAk-Xu-cyd"/>
                                         <constraint firstItem="sEz-Wq-5YO" firstAttribute="centerY" secondItem="MBK-ej-JKP" secondAttribute="centerY" id="bdm-Z1-7Pe"/>
                                         <constraint firstItem="JiF-sD-LKM" firstAttribute="top" secondItem="tPa-LG-9rf" secondAttribute="bottom" constant="6" id="c6L-3c-dhm"/>
-                                        <constraint firstItem="4Td-4E-1ZI" firstAttribute="leading" secondItem="GGI-JY-6jm" secondAttribute="trailing" constant="6" id="f9O-kN-39n"/>
-                                        <constraint firstItem="HUW-B8-dcg" firstAttribute="top" secondItem="JBq-g7-NPo" secondAttribute="bottom" constant="15" id="fn7-ER-Ubp"/>
-                                        <constraint firstItem="Dfa-kw-s83" firstAttribute="centerY" secondItem="Ntk-bc-lJm" secondAttribute="centerY" id="foA-mk-pzS"/>
+                                        <constraint firstAttribute="trailing" secondItem="pFi-dm-MQH" secondAttribute="trailing" constant="16" id="cWd-5J-fqY"/>
                                         <constraint firstItem="JiF-sD-LKM" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="gjn-bS-T3b"/>
-                                        <constraint firstItem="Ntk-bc-lJm" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="i0X-Vb-aO6"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="KTq-3L-hqG" secondAttribute="bottom" constant="38" id="i8d-F9-dpt"/>
-                                        <constraint firstItem="T7e-gI-X8g" firstAttribute="centerY" secondItem="HUW-B8-dcg" secondAttribute="centerY" id="ip8-c4-S79"/>
-                                        <constraint firstItem="Dfa-kw-s83" firstAttribute="leading" secondItem="Ntk-bc-lJm" secondAttribute="trailing" constant="6" id="jNl-B9-dwu"/>
                                         <constraint firstItem="u3u-bY-JSr" firstAttribute="top" secondItem="Fi1-md-zDw" secondAttribute="top" constant="8" id="kCl-Nb-9TM"/>
-                                        <constraint firstItem="5A9-vR-pKq" firstAttribute="leading" secondItem="mFG-rj-gFp" secondAttribute="trailing" constant="6" id="kDu-Lb-HyR"/>
-                                        <constraint firstItem="5A9-vR-pKq" firstAttribute="centerY" secondItem="mFG-rj-gFp" secondAttribute="centerY" id="kqo-S9-ac4"/>
-                                        <constraint firstItem="HD3-w8-yID" firstAttribute="centerY" secondItem="O4R-EU-cYF" secondAttribute="centerY" id="llS-k2-MLw"/>
                                         <constraint firstItem="u3u-bY-JSr" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="mQy-8F-ML9"/>
-                                        <constraint firstItem="wga-jq-PPG" firstAttribute="centerY" secondItem="vqi-UJ-lCV" secondAttribute="centerY" id="pFB-YM-zub"/>
                                         <constraint firstAttribute="trailing" secondItem="gUS-cQ-IeU" secondAttribute="trailing" constant="16" id="q1q-8c-sLr"/>
                                         <constraint firstItem="gUS-cQ-IeU" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="qFV-3U-0Y3"/>
                                         <constraint firstItem="gUS-cQ-IeU" firstAttribute="top" secondItem="u3u-bY-JSr" secondAttribute="bottom" constant="8" id="qTj-k5-WFZ"/>
-                                        <constraint firstItem="xiK-H2-JBh" firstAttribute="leading" secondItem="dYl-XS-JEo" secondAttribute="trailing" constant="6" id="sJO-MH-5gn"/>
-                                        <constraint firstItem="rdJ-aa-mmA" firstAttribute="leading" secondItem="Yzo-mK-Pj0" secondAttribute="trailing" constant="6" id="sgc-L0-cpA"/>
                                         <constraint firstItem="KTq-3L-hqG" firstAttribute="top" secondItem="Fso-gI-0BE" secondAttribute="bottom" constant="16" id="tcY-k5-zWk"/>
                                         <constraint firstItem="rDw-l1-qza" firstAttribute="centerY" secondItem="JiF-sD-LKM" secondAttribute="centerY" id="toU-gp-2Dc"/>
-                                        <constraint firstItem="HUW-B8-dcg" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="ttE-EB-cCh"/>
                                         <constraint firstItem="Fso-gI-0BE" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="uaH-gN-XC8"/>
                                         <constraint firstAttribute="trailing" secondItem="KTq-3L-hqG" secondAttribute="trailing" constant="16" id="wlX-JS-NhX"/>
                                         <constraint firstItem="tPa-LG-9rf" firstAttribute="top" secondItem="gUS-cQ-IeU" secondAttribute="bottom" constant="32" id="xFK-LK-kNw"/>
-                                        <constraint firstItem="dYl-XS-JEo" firstAttribute="leading" secondItem="Fi1-md-zDw" secondAttribute="leading" constant="16" id="xYP-7g-u0x"/>
                                     </constraints>
                                 </view>
                             </subviews>
