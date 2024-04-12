@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Pretendard-Bold.ttf">
+            <string>Pretendard-Bold</string>
+        </array>
         <array key="Pretendard-Medium.ttf">
             <string>Pretendard-Medium</string>
         </array>
@@ -19,9 +22,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReportViewController" customModule="fone_ios_app" customModuleProvider="target">
             <connections>
+                <outlet property="closeButton" destination="2Ei-FP-0B2" id="Pv2-kh-XOx"/>
                 <outlet property="letterCountedTextView" destination="Fso-gI-0BE" id="6ym-61-fJZ"/>
                 <outlet property="nicknameLabel" destination="MBK-ej-JKP" id="5Or-BN-PpJ"/>
                 <outlet property="profileImageView" destination="u3u-bY-JSr" id="Tq4-yX-Y5H"/>
+                <outlet property="submitButton" destination="KTq-3L-hqG" id="8Jb-sE-8xk"/>
                 <outlet property="userJobLabel" destination="sEz-Wq-5YO" id="cLs-cd-Fel"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -31,11 +36,39 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DTF-Oi-lCY">
+                    <rect key="frame" x="0.0" y="59" width="393" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ei-FP-0B2">
+                            <rect key="frame" x="353" y="13" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="VPC-yk-vcT"/>
+                                <constraint firstAttribute="height" constant="24" id="sS0-4Z-7gp"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="close_MD"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="신고하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcz-VV-rum">
+                            <rect key="frame" x="163.66666666666666" y="13.666666666666671" width="66" height="23"/>
+                            <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="19"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="2Ei-FP-0B2" secondAttribute="trailing" constant="16" id="B28-9t-aN8"/>
+                        <constraint firstItem="qcz-VV-rum" firstAttribute="centerX" secondItem="DTF-Oi-lCY" secondAttribute="centerX" id="ETK-wB-4nw"/>
+                        <constraint firstItem="2Ei-FP-0B2" firstAttribute="centerY" secondItem="DTF-Oi-lCY" secondAttribute="centerY" id="Gmu-Yr-G1h"/>
+                        <constraint firstItem="qcz-VV-rum" firstAttribute="centerY" secondItem="DTF-Oi-lCY" secondAttribute="centerY" id="N1u-5B-jEx"/>
+                        <constraint firstAttribute="height" constant="50" id="ocV-13-YMJ"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gqd-eL-pnf">
-                    <rect key="frame" x="0.0" y="59" width="393" height="793"/>
+                    <rect key="frame" x="0.0" y="109" width="393" height="743"/>
                     <subviews>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNm-LI-EqR">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="743"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fi1-md-zDw">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="836.66666666666663"/>
@@ -235,7 +268,7 @@
                                             <state key="normal" image="checkboxes_off"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="거래와 관련 없는 대화를 해요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Af9-bU-cb9">
-                                            <rect key="frame" x="38" y="428.66666666666669" width="165" height="17"/>
+                                            <rect key="frame" x="38" y="428.66666666666663" width="165" height="17"/>
                                             <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                             <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -415,9 +448,12 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="DTF-Oi-lCY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="1lh-kN-g2P"/>
+                <constraint firstItem="DTF-Oi-lCY" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="AHL-zp-HpV"/>
+                <constraint firstItem="DTF-Oi-lCY" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="BT5-As-RIs"/>
                 <constraint firstItem="Gqd-eL-pnf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GHA-LM-mub"/>
-                <constraint firstItem="Gqd-eL-pnf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="I7m-ql-5Xb"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Gqd-eL-pnf" secondAttribute="trailing" id="NMW-TT-lxb"/>
+                <constraint firstItem="Gqd-eL-pnf" firstAttribute="top" secondItem="DTF-Oi-lCY" secondAttribute="bottom" id="Zkl-lo-yDY"/>
                 <constraint firstAttribute="bottom" secondItem="Gqd-eL-pnf" secondAttribute="bottom" id="s82-pu-hOS"/>
             </constraints>
             <point key="canvasLocation" x="28" y="20"/>
@@ -425,6 +461,7 @@
     </objects>
     <resources>
         <image name="checkboxes_off" width="17" height="17"/>
+        <image name="close_MD" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

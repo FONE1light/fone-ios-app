@@ -12,12 +12,11 @@ import RxSwift
 class ReportBottomSheetViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: ReportBottomSheetViewModel!
-    private var disposeBag = DisposeBag()
-    
     let bottomSheetView = ReportBottomSheet()
     
     func bindViewModel() {
         
+        bind()
     }
     
     override func viewDidLoad() {
@@ -25,10 +24,7 @@ class ReportBottomSheetViewController: UIViewController, ViewModelBindableType {
         
         setupUI()
         setConstraints()
-        
-        bind()
     }
-    
     
     private func setupUI() {
         view.backgroundColor = .white_FFFFFF
@@ -44,7 +40,9 @@ class ReportBottomSheetViewController: UIViewController, ViewModelBindableType {
     private func bind() {
         bottomSheetView.buttonTap
             .bind { _ in
-                print("제발제ㅐ랴ㅓㅔㅇ자레ㅏㅈㄹㅇ니ㅏ제발")
-            }.disposed(by: rx.disposeBag)
+                let reportViewModel = ReportViewModel(sceneCoordinator: self.viewModel.sceneCoordinator, profileImageURL: self.viewModel.profileImageURL, nickname: self.viewModel.nickname, userJob: self.viewModel.userJob)
+                let reportScene = Scene.report(reportViewModel)
+                self.viewModel.sceneCoordinator.transition(to: reportScene, using: .fullScreenModal, animated: true)
+            }.disposed(by: bottomSheetView.rx.disposeBag)
     }
 }

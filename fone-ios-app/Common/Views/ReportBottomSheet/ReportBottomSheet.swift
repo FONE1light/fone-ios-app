@@ -32,7 +32,6 @@ class ReportBottomSheet: UIView {
         
         setupUI()
         setConstraints()
-//        bindAction()
     }
     
     private func setupUI() {
@@ -44,12 +43,12 @@ class ReportBottomSheet: UIView {
     
     private func setConstraints() {
         label.snp.makeConstraints {
-            $0.centerY.equalTo(button)
+            $0.top.equalToSuperview().offset(32)
             $0.leading.equalToSuperview().offset(22)
         }
         
         rightArrow.snp.makeConstraints {
-            $0.centerY.equalTo(button)
+            $0.centerY.equalTo(label)
             $0.trailing.equalToSuperview().inset(16)
             $0.size.equalTo(16)
         }
@@ -63,14 +62,6 @@ class ReportBottomSheet: UIView {
         snp.makeConstraints {
             $0.width.equalTo(UIScreen.main.bounds.width)
         }
-    }
-    
-    private func bindAction() {
-        button.rx.tap
-            .withUnretained(self)
-            .bind { owner, _ in
-                // TODO: 화면 연결
-            }.disposed(by: rx.disposeBag)
     }
     
     required init?(coder: NSCoder) {

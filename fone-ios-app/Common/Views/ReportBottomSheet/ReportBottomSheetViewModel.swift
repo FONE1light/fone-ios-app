@@ -8,9 +8,9 @@
 import Foundation
 
 class ReportBottomSheetViewModel: CommonViewModel {
-    private let profileImageURL: String?
-    private let nickname: String?
-    private let userJob: String?
+    let profileImageURL: String?
+    let nickname: String?
+    let userJob: String?
     
     init(sceneCoordinator: SceneCoordinatorType, profileImageURL: String?, nickname: String?, userJob: String?) {
         self.profileImageURL = profileImageURL
