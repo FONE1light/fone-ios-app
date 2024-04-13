@@ -30,6 +30,7 @@
                 <outlet property="profileImageView" destination="u3u-bY-JSr" id="Tq4-yX-Y5H"/>
                 <outlet property="profileInconveniences" destination="jN6-mg-qEN" id="mzS-Ke-2JE"/>
                 <outlet property="profileReportButton" destination="JiF-sD-LKM" id="C7v-Zz-xhY"/>
+                <outlet property="scrollView" destination="ZNm-LI-EqR" id="HUc-UA-OdR"/>
                 <outlet property="submitButton" destination="KTq-3L-hqG" id="8Jb-sE-8xk"/>
                 <outlet property="userJobLabel" destination="sEz-Wq-5YO" id="cLs-cd-Fel"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

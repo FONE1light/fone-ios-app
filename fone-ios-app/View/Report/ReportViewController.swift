@@ -15,6 +15,7 @@ class ReportViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var userJobLabel: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var profileReportButton: UIButton!
     @IBOutlet weak var jobOpeningReportButton: UIButton!
     @IBOutlet weak var profileInconveniences: UIView!
@@ -29,6 +30,17 @@ class ReportViewController: UIViewController, ViewModelBindableType {
     
     func bindViewModel() {
         setUI()
+        
+        keyboardHeight()
+            .bind(to: viewModel.keyboardHeightBehaviorSubject)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.keyboardHeightBehaviorSubject
+            .withUnretained(self)
+            .subscribe(onNext: { (owner, keyboardHeight) in
+                owner.scrollView.contentInset.bottom = keyboardHeight
+                owner.scrollView.verticalScrollIndicatorInsets.bottom = keyboardHeight
+            }).disposed(by: rx.disposeBag)
         
         profileReportButton.rx.tap
             .withUnretained(self)

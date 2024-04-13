@@ -17,6 +17,8 @@ final class ReportViewModel: CommonViewModel {
     let from: JobSegmentType?
     let typeId: Int?
     
+    var keyboardHeightBehaviorSubject = BehaviorSubject<CGFloat>(value: 0)
+    
     init(sceneCoordinator: SceneCoordinatorType, profileImageURL: String?, nickname: String?, userJob: String?, from: JobSegmentType?, typeId: Int?) {
         self.profileImageURL = profileImageURL
         self.nickname = nickname
