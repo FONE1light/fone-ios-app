@@ -23,6 +23,23 @@ class ReportViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var letterCountedTextView: LetterCountedTextView!
     @IBOutlet weak var submitButton: UIButton!
     
+    @IBAction func checkInconveniences(_ sender: UIButton) {
+        sender.isSelected.toggle()
+        sender.setImage(UIImage(named: "checkboxes_off"), for: .normal)
+        sender.setImage(UIImage(named: "checkboxes_on"), for: .selected)
+        if sender.isSelected {
+            guard viewModel.inconveniences.count < 5 else {
+                sender.isSelected.toggle()
+                return
+            }
+            viewModel.inconveniences.append(sender.tag)
+        } else {
+            if let index = viewModel.inconveniences.firstIndex(of: sender.tag) {
+                viewModel.inconveniences.remove(at: index)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -80,6 +97,14 @@ class ReportViewController: UIViewController, ViewModelBindableType {
     }
     
     private func selectReportType(type: JobSegmentType) {
+        viewModel.reportType = type
+        viewModel.inconveniences = []
+        for tag in 1...20 {
+            let view = view.viewWithTag(tag)
+            if let button = view as? UIButton {
+                button.isSelected = false
+            }
+        }
         let profileSelected = type == .profile
         let jobOpeningSelected = type == .jobOpening
         setActivated(button: profileReportButton, activated: profileSelected)
