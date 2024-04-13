@@ -40,7 +40,7 @@ class ReportBottomSheetViewController: UIViewController, ViewModelBindableType {
     private func bind() {
         bottomSheetView.buttonTap
             .bind { _ in
-                let reportViewModel = ReportViewModel(sceneCoordinator: self.viewModel.sceneCoordinator, profileImageURL: self.viewModel.profileImageURL, nickname: self.viewModel.nickname, userJob: self.viewModel.userJob)
+                let reportViewModel = ReportViewModel(sceneCoordinator: self.viewModel.sceneCoordinator, profileImageURL: self.viewModel.profileImageURL, nickname: self.viewModel.nickname, userJob: self.viewModel.userJob, from: self.viewModel.from, typeId: self.viewModel.typeId)
                 let reportScene = Scene.report(reportViewModel)
                 self.viewModel.sceneCoordinator.transition(to: reportScene, using: .fullScreenModal, animated: true)
             }.disposed(by: bottomSheetView.rx.disposeBag)

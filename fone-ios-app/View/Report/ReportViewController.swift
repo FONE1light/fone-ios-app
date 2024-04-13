@@ -25,28 +25,21 @@ class ReportViewController: UIViewController, ViewModelBindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUI()
     }
     
     func bindViewModel() {
-        setUserInfo()
+        setUI()
         
         profileReportButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.setActivated(button: owner.profileReportButton, activated: true)
-                owner.setActivated(button: owner.jobOpeningReportButton, activated: false)
-                owner.profileInconveniences.isHidden = false
-                owner.jobOpeningInconveniences.isHidden = true
+                owner.selectReportType(type: .profile)
             }.disposed(by: rx.disposeBag)
         
         jobOpeningReportButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.setActivated(button: owner.profileReportButton, activated: false)
-                owner.setActivated(button: owner.jobOpeningReportButton, activated: true)
-                owner.profileInconveniences.isHidden = true
-                owner.jobOpeningInconveniences.isHidden = false
+                owner.selectReportType(type: .jobOpening)
             }.disposed(by: rx.disposeBag)
         
         closeButton.rx.tap
@@ -57,6 +50,8 @@ class ReportViewController: UIViewController, ViewModelBindableType {
     }
     
     private func setUI() {
+        setUserInfo()
+        selectReportType(type: viewModel.from ?? .profile)
         letterCountedTextView.xibInit(placeholder: placeholder, textViewHeight: 92, maximumLetterCount: 500)
     }
     
@@ -70,5 +65,14 @@ class ReportViewController: UIViewController, ViewModelBindableType {
         let color = activated ? UIColor.red_F43663 : UIColor.gray_D9D9D9
         button.borderColor = color
         button.setTitleColor(color, for: .normal)
+    }
+    
+    private func selectReportType(type: JobSegmentType) {
+        let profileSelected = type == .profile
+        let jobOpeningSelected = type == .jobOpening
+        setActivated(button: profileReportButton, activated: profileSelected)
+        setActivated(button: jobOpeningReportButton, activated: jobOpeningSelected)
+        profileInconveniences.isHidden = !profileSelected
+        jobOpeningInconveniences.isHidden = !jobOpeningSelected
     }
 }
