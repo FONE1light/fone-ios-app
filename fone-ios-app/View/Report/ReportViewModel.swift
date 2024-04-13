@@ -15,7 +15,7 @@ final class ReportViewModel: CommonViewModel {
     let nickname: String?
     let userJob: String?
     let from: JobSegmentType?
-    let typeId: Int?
+    var typeId: Int?
     
     var keyboardHeightBehaviorSubject = BehaviorSubject<CGFloat>(value: 0)
     var inconveniences: [Int] = []
@@ -46,10 +46,17 @@ final class ReportViewModel: CommonViewModel {
         }
     }
     
-    func submitReport(details: String?, type: String?) {
+    func submitReport(details: String?) {
         let inconveniences = self.inconveniences.map { getInconvenienceString(tag: $0)
         }
-        let reportInfo = ReportInfo(details: details, inconveniences: inconveniences, type: type, typeId: typeId)
+        var details = details
+        if !inconveniences.contains("기타") {
+            details = ""
+        }
+        if reportType != from {
+            typeId = nil
+        }
+        let reportInfo = ReportInfo(details: details, inconveniences: inconveniences, type: reportType.serverName, typeId: typeId)
         reportInfoProvider.rx.request(.reports(reportInfo: reportInfo))
             .mapObject(Result<EmptyData>.self)
             .asObservable()

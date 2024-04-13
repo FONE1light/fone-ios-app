@@ -38,6 +38,7 @@ class ReportViewController: UIViewController, ViewModelBindableType {
                 viewModel.inconveniences.remove(at: index)
             }
         }
+        submitButton.setEnabled(isEnabled: viewModel.inconveniences.count > 0)
     }
     
     override func viewDidLoad() {
@@ -47,6 +48,22 @@ class ReportViewController: UIViewController, ViewModelBindableType {
     
     func bindViewModel() {
         setUI()
+        
+        letterCountedTextView.textView?.rx.text
+            .map { $0 == self.placeholder ? "" : $0 }
+            .withUnretained(self)
+            .bind { owner, text in
+                if let text, !text.isEmpty {
+                    let tag = owner.viewModel.reportType == .profile ? 7 : 18
+                    if let detailsButton = owner.view.viewWithTag(tag) as? UIButton {
+                        detailsButton.isSelected = true
+                        detailsButton.setImage(UIImage(named: "checkboxes_on"), for: .selected)
+                        if !owner.viewModel.inconveniences.contains(tag) {
+                            owner.viewModel.inconveniences.append(tag)
+                        }
+                    }
+                }
+            }.disposed(by: rx.disposeBag)
         
         keyboardHeight()
             .bind(to: viewModel.keyboardHeightBehaviorSubject)
@@ -75,6 +92,12 @@ class ReportViewController: UIViewController, ViewModelBindableType {
             .withUnretained(self)
             .bind { owner, _ in
                 owner.viewModel.sceneCoordinator.close(animated: true)
+            }.disposed(by: rx.disposeBag)
+        
+        submitButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.viewModel.submitReport(details: owner.letterCountedTextView.text)
             }.disposed(by: rx.disposeBag)
     }
     
@@ -111,5 +134,6 @@ class ReportViewController: UIViewController, ViewModelBindableType {
         setActivated(button: jobOpeningReportButton, activated: jobOpeningSelected)
         profileInconveniences.isHidden = !profileSelected
         jobOpeningInconveniences.isHidden = !jobOpeningSelected
+        letterCountedTextView.textView?.text = ""
     }
 }
