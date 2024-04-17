@@ -57,6 +57,57 @@ class FilterViewController: UIViewController, ViewModelBindableType {
                 owner.viewModel.applyFilter(filterOptions)
                 owner.viewModel.sceneCoordinator.close(animated: true)
             }.disposed(by: rx.disposeBag)
+        
+        // SelectionBlocks
+        // 성별
+        genderSelectionBlock.selectedItems
+            .observe(on: MainScheduler.asyncInstance)
+            .withUnretained(self)
+            .bind { owner, items in
+                guard let genders = items as? [GenderType] else { return }
+                guard !genders.isEmpty else { return } // 선택 해제한 경우나 deselectAll()의 경우 추가 작업 X
+                
+                if genders.count == GenderType.allCases.count {
+                    owner.genderClearButton.isActivated = true
+                    owner.genderSelectionBlock.deselectAll()
+                } else {
+                    owner.genderClearButton.isActivated = false
+                }
+            }.disposed(by: disposeBag)
+        
+        genderClearButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                guard !owner.genderClearButton.isActivated else { return }
+                owner.genderClearButton.isActivated = true
+                owner.genderSelectionBlock.deselectAll()
+            }.disposed(by: rx.disposeBag)
+        
+        // 나이
+        
+        // 관심사 선택
+        categorySelectionBlock.selectedItems
+            .observe(on: MainScheduler.asyncInstance)
+            .withUnretained(self)
+            .bind { owner, items in
+                guard let categories = items as? [Category] else { return }
+                guard !categories.isEmpty else { return } // 선택 해제한 경우나 deselectAll()의 경우 추가 작업 X
+                
+                if categories.count == Category.allCases.count {
+                    owner.categoryClearButton.isActivated = true
+                    owner.categorySelectionBlock.deselectAll()
+                } else {
+                    owner.categoryClearButton.isActivated = false
+                }
+            }.disposed(by: disposeBag)
+        
+        categoryClearButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                guard !owner.categoryClearButton.isActivated else { return }
+                owner.categoryClearButton.isActivated = true
+                owner.categorySelectionBlock.deselectAll()
+            }.disposed(by: rx.disposeBag)
     }
     
     private func setupUI() {
