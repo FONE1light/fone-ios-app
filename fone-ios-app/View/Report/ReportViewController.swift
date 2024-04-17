@@ -76,18 +76,6 @@ class ReportViewController: UIViewController, ViewModelBindableType {
                 owner.scrollView.verticalScrollIndicatorInsets.bottom = keyboardHeight
             }).disposed(by: rx.disposeBag)
         
-        profileReportButton.rx.tap
-            .withUnretained(self)
-            .bind { owner, _ in
-                owner.selectReportType(type: .profile)
-            }.disposed(by: rx.disposeBag)
-        
-        jobOpeningReportButton.rx.tap
-            .withUnretained(self)
-            .bind { owner, _ in
-                owner.selectReportType(type: .jobOpening)
-            }.disposed(by: rx.disposeBag)
-        
         closeButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
@@ -103,7 +91,7 @@ class ReportViewController: UIViewController, ViewModelBindableType {
     
     private func setUI() {
         setUserInfo()
-        selectReportType(type: viewModel.from ?? .profile)
+        setReportType(type: viewModel.from ?? .profile)
         letterCountedTextView.xibInit(placeholder: placeholder, textViewHeight: 92, maximumLetterCount: 500)
     }
     
@@ -119,7 +107,7 @@ class ReportViewController: UIViewController, ViewModelBindableType {
         button.setTitleColor(color, for: .normal)
     }
     
-    private func selectReportType(type: JobSegmentType) {
+    private func setReportType(type: JobSegmentType) {
         viewModel.reportType = type
         viewModel.inconveniences = []
         for tag in 1...20 {

@@ -49,13 +49,12 @@ final class ReportViewModel: CommonViewModel {
     func submitReport(details: String?) {
         let inconveniences = self.inconveniences.map { getInconvenienceString(tag: $0)
         }
+        
         var details = details
         if !inconveniences.contains("기타") {
             details = ""
         }
-        if reportType != from {
-            typeId = nil
-        }
+        
         let reportInfo = ReportInfo(details: details, inconveniences: inconveniences, type: reportType.serverName, typeId: typeId)
         reportInfoProvider.rx.request(.reports(reportInfo: reportInfo))
             .mapObject(Result<EmptyData>.self)
