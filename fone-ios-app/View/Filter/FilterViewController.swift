@@ -84,6 +84,28 @@ class FilterViewController: UIViewController, ViewModelBindableType {
             }.disposed(by: rx.disposeBag)
         
         // 나이
+        ageSelectionView.selectedItems
+            .observe(on: MainScheduler.asyncInstance)
+            .withUnretained(self)
+            .bind { owner, items in
+                guard let ages = items as? [FilterAge] else { return }
+                guard !ages.isEmpty else { return } // 선택 해제한 경우나 deselectAll()의 경우 추가 작업 X
+                
+                if ages.count == FilterAge.allCases.count {
+                    owner.ageClearButton.isActivated = true
+                    owner.ageSelectionView.deselectAll()
+                } else {
+                    owner.ageClearButton.isActivated = false
+                }
+            }.disposed(by: disposeBag)
+        
+        ageClearButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                guard !owner.ageClearButton.isActivated else { return }
+                owner.ageClearButton.isActivated = true
+                owner.ageSelectionView.deselectAll()
+            }.disposed(by: rx.disposeBag)
         
         // 관심사 선택
         categorySelectionBlock.selectedItems

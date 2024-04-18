@@ -8,6 +8,8 @@
 import UIKit
 import Then
 import RxRelay
+import RxSwift
+import RxCocoa
 
 /// `width` 너비에 꽉 차도록 [Selection]을 표시하는 UICollectionView
 class FullWidthSelectionView: DynamicHeightCollectionView {
@@ -25,8 +27,7 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
     
     private var items: [Selection] = []
     
-    var selectedItems: [Selection] = []
-//    let selectedItems = BehaviorRelay<[Selection]>(value: [])
+    let selectedItems = BehaviorRelay<[Selection]>(value: [])
     
     /// selectedItems: 초기화 시 선택되어 있어야 하는 항목들
     init(
@@ -34,7 +35,7 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
         width: CGFloat = 307,
         numberOfItemsInARow: Int = 3,
         minimumInteritemSpacing: CGFloat = 8,
-        selectedItems: [Selection]? = nil
+        selectedItems preselectedItems: [Selection]? = nil
     ) {
         
         let layout = UICollectionViewFlowLayout()
@@ -55,7 +56,7 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
             numberOfItemsInARow: numberOfItemsInARow,
             minimumInteritemSpacing: minimumInteritemSpacing
         )
-        self.selectedItems = selectedItems ?? []
+        self.selectedItems.accept(preselectedItems ?? [])
         
         self.bindViewModel()
     }
@@ -65,7 +66,7 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
         width: CGFloat = 307,
         numberOfItemsInARow: Int = 3,
         minimumInteritemSpacing: CGFloat = 8,
-        selectedItems: [Selection]? = nil
+        selectedItems preselectedItems: [Selection]? = nil
     ) {
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
@@ -80,7 +81,7 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
             numberOfItemsInARow: numberOfItemsInARow,
             minimumInteritemSpacing: minimumInteritemSpacing
         )
-        self.selectedItems = selectedItems ?? []
+        self.selectedItems.accept(preselectedItems ?? [])
         
         self.bindViewModel()
     }
@@ -99,21 +100,42 @@ extension FullWidthSelectionView {
     private func bindViewModel() {
         rx.setDelegate(self).disposed(by: rx.disposeBag)
         
-        rx.itemSelected
+        Observable
+            .of(rx.itemSelected, rx.itemDeselected)
+            .merge()
             .withUnretained(self)
-            .subscribe { owner, indexPath in
-                guard let cell = owner.cellForItem(at: indexPath) as? DynamicSizeSelectionCell
- else { return }
-                guard let item = cell.item else { return }
-                owner.selectedItems.append(item)
-//                owner.selectedItems.accept(owner._selectedItems)
+            .bind { owner, indexPath in
+                guard let cell = owner.cellForItem(at: indexPath) as? DynamicSizeSelectionCell,
+                      let item = cell.item else { return }
+                var items = owner.selectedItems.value
+
+                if cell.isSelected {
+                    items.append(item)
+                } else {
+                    items.removeAll { $0.name == item.name }
+                }
                 
+                owner.selectedItems.accept(items)
+
             }.disposed(by: rx.disposeBag)
         
     }
     
-    func selectItem(at indexPath: IndexPath) {
+    private func selectItem(at indexPath: IndexPath) {
         selectItem(at: indexPath, animated: false, scrollPosition: [])
+        
+        guard let cell = cellForItem(at: indexPath) as? DynamicSizeSelectionCell,
+              let item = cell.item else { return }
+        var items = selectedItems.value
+        items.append(item)
+        selectedItems.accept(items)
+    }
+    
+    func deselectAll() {
+        indexPathsForVisibleItems.forEach {
+            deselectItem(at: $0, animated: false)
+        }
+        selectedItems.accept([])
     }
 }
 
@@ -127,14 +149,13 @@ extension FullWidthSelectionView: UICollectionViewDataSource {
     // MARK: cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        
         // configure
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as DynamicSizeSelectionCell
         let selectionItem = items[indexPath.row]
         cell.configure(selectionItem)
         
         // 초기화 시 선택 처리
-        let shouldBeSelected = selectedItems.contains(where: {
+        let shouldBeSelected = selectedItems.value.contains(where: {
             $0.name == selectionItem.name
         })
         
