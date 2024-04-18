@@ -19,8 +19,7 @@ class FilterViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var genderClearButton: CustomButton!
     @IBOutlet weak var genderSelectionBlock: SelectionBlock!
     @IBOutlet weak var ageClearButton: CustomButton!
-    // TODO: 나이 무조건 연결되도록.
-    @IBOutlet weak var ageSelectionView: FullWidthSelectionView!
+    @IBOutlet weak var ageSelectionView: AgeSelectionView!
     @IBOutlet weak var categoryClearButton: CustomButton!
     @IBOutlet weak var categorySelectionBlock: SelectionBlock!
     
