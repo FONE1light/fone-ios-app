@@ -49,7 +49,7 @@ class FilterViewController: UIViewController, ViewModelBindableType {
             .withUnretained(self)
             .bind { owner, _ in
                 guard let genders = owner.genderSelectionBlock.selectedItems.value as? [GenderType],
-                      let ages = owner.ageSelectionView.selectedItems as? [FilterAge],
+                      let ages = owner.ageSelectionView.selectedItems.value as? [FilterAge],
                       let categories = owner.categorySelectionBlock.selectedItems.value as? [Category] else { return }
                         
                 let filterOptions = FilterOptions(genders: genders, age: ages, categories: categories)
@@ -141,6 +141,10 @@ class FilterViewController: UIViewController, ViewModelBindableType {
         let width = UIScreen.main.bounds.width - 16 * 2
         ageSelectionView.xibInit(of: FilterAge.allCases, width: width)
         categorySelectionBlock.setSelections(Category.allCases)
+        
+        genderClearButton.isActivated = true
+        ageClearButton.isActivated = true
+        categoryClearButton.isActivated = true
     }
 }
 
