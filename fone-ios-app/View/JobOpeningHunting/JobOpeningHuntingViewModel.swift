@@ -93,26 +93,32 @@ class JobOpeningHuntingViewModel: CommonViewModel {
         }
     }
     
-//    private func fetchJobOpenings(jobType: String, sort: String) {
-//        let filterRequest = JobOpeningFilterRequest(
-//            type: jobType,
-//            sort: sort,
-//            page: jobOpeningsPage
-//        )
     private func fetchJobOpenings(_ filterRequest: JobOpeningFilterRequest) {
+        print("🔥filterRequest \(filterRequest)")
         jobOpeningInfoProvider.rx.request(.jobOpenings(jobOpeningFilterRequest: filterRequest))
             .mapObject(Result<JobOpeningsData>.self)
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
-                // FIXME: 필터 적용되는지 확인. 안되면 왜?
-                print(response)
+                print("🔥response \(response)")
                 owner.isLoading = false
-                guard let newContent = response.data?.jobOpenings?.content, newContent.count > 0 else {
-                    owner.jobOpeningsPage = owner.jobOpeningsPage - 1 // 원복
+                guard let newContent = response.data?.jobOpenings?.content else { 
+                    owner.jobOpeningsPage = owner.jobOpeningsPage - 1 // 증가시킨 페이지번호 원복
                     return
                 }
-                owner.jobOpeningsContent.append(contentsOf: newContent)
+                
+                // 추가 로드했는데 없는 경우(=마지막 항목까지 노출 완료)
+                if newContent.count == 0, owner.jobOpeningsPage > 0 {
+                    owner.jobOpeningsPage = owner.jobOpeningsPage - 1 // 증가시킨 페이지번호 원복
+                    return
+                }
+                
+                // 화면에 노출시킬 유효한 데이터들
+                if owner.jobOpeningsPage == 0 {
+                    owner.jobOpeningsContent = newContent
+                } else {
+                    owner.jobOpeningsContent.append(contentsOf: newContent)
+                }
                 owner.reloadTableViewTest.onNext(owner.jobOpeningsContent)
             },
                        onError: { [weak self] error in
