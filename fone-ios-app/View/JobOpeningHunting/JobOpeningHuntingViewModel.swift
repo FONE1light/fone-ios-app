@@ -71,7 +71,7 @@ class JobOpeningHuntingViewModel: CommonViewModel {
         switch tabType {
         case .jobOpening:
             let filterViewModel = FilterJobOpeningViewModel(sceneCoordinator: sceneCoordinator, filterOptionsSubject: selectedFilterOptionsJobOpening)
-            let filterScene = Scene.filter(filterViewModel)
+            let filterScene = Scene.filterJobOpening(filterViewModel)
             sceneCoordinator.transition(to: filterScene, using: .fullScreenModal, animated: true)
         case .profile:
             let filterProfileViewModel = FilterProfileViewModel(sceneCoordinator: sceneCoordinator, filterOptionsSubject: selectedFilterOptionsProfile)
