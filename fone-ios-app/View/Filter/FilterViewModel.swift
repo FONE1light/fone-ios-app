@@ -27,12 +27,19 @@ extension FilterOptions {
     }
     
     var ageMin: Int {
-        0
+        calculateMinimum() ?? 0
     }
     
     private func calculateMaximum() -> Int? {
         // `age`로 최댓값 계산
-        return 200
+        let maxes = age.map { $0.ageMax }
+        return maxes.max()
+    }
+    
+    private func calculateMinimum() -> Int? {
+        // `age`로 최솟값 계산
+        let mins = age.map { $0.ageMin }
+        return mins.min()
     }
 }
 
