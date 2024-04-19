@@ -20,8 +20,8 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     
     var selectedSortOption = BehaviorRelay<JobOpeningSortOptions>(value: .recent)
     
-    //    private let selectedFilterOptions = PublishSubject<FilterOptions?>()
-    private let selectedFilterOptionsTest = BehaviorSubject<FilterOptions?>(value: nil)
+    private let selectedFilterOptionsJobOpening = BehaviorSubject<FilterOptions?>(value: nil)
+    private let selectedFilterOptionsProfile = BehaviorSubject<FilterOptions?>(value: nil)
     
     var sortButtonStateDic: [JobSegmentType: JobOpeningSortOptions] = [
         .jobOpening: .recent,
@@ -36,20 +36,27 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     
     private var jobOpeningsContent: [JobOpeningContent] = []
     var profilesContent: [ProfileContent] = []
-//    var reloadTableView = PublishSubject<Void>()
-    var reloadTableViewTest = PublishSubject<[JobOpeningContent]>()
+
+    var reloadTableView = PublishSubject<[JobOpeningContent]>()
     var reloadCollectionView = PublishSubject<Void>()
     
     override init(sceneCoordinator: SceneCoordinatorType) {
         super.init(sceneCoordinator: sceneCoordinator)
         
         Observable
-            .combineLatest(selectedJobType, selectedSortOption, selectedFilterOptionsTest)
+            .combineLatest(selectedJobType, selectedSortOption, selectedFilterOptionsJobOpening, selectedFilterOptionsProfile)
             .skip(1) // FIXME: 첫 실행 시 왜 두 번 불리는지 확인, 수정
             .withUnretained(self)
             .bind { owner, result in
-                let (jobType, option, filterOptions) = result
-                print("✅\(jobType), \(owner.selectedTab.value), \(option), \(filterOptions)")
+                let (jobType, option, filterOptionsJobOpening, filterOptionsProfile) = result
+                print("✅\(jobType), \(owner.selectedTab.value), \(option), \(filterOptionsJobOpening), \(filterOptionsProfile)")
+                var filterOptions: FilterOptions?
+                
+                switch owner.selectedTab.value {
+                case .jobOpening: filterOptions = filterOptionsJobOpening
+                case .profile: filterOptions = filterOptionsProfile
+                }
+                
                 owner.initList(segmentType: owner.selectedTab.value)
                 owner.fetchList(
                     jobType: jobType,
@@ -63,11 +70,11 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     func showFilter(_ tabType: JobSegmentType) {
         switch tabType {
         case .jobOpening:
-            let filterViewModel = FilterViewModel(sceneCoordinator: sceneCoordinator, filterOptionsSubject: selectedFilterOptionsTest)
+            let filterViewModel = FilterViewModel(sceneCoordinator: sceneCoordinator, filterOptionsSubject: selectedFilterOptionsJobOpening)
             let filterScene = Scene.filter(filterViewModel)
             sceneCoordinator.transition(to: filterScene, using: .fullScreenModal, animated: true)
         case .profile:
-            let filterProfileViewModel = FilterProfileViewModel(sceneCoordinator: sceneCoordinator, filterOptionsSubject: selectedFilterOptionsTest)
+            let filterProfileViewModel = FilterProfileViewModel(sceneCoordinator: sceneCoordinator, filterOptionsSubject: selectedFilterOptionsProfile)
             let filterProfileScene = Scene.filterProfile(filterProfileViewModel)
             sceneCoordinator.transition(to: filterProfileScene, using: .fullScreenModal, animated: true)
         }
@@ -127,7 +134,7 @@ class JobOpeningHuntingViewModel: CommonViewModel {
                 } else {
                     owner.jobOpeningsContent.append(contentsOf: newContent)
                 }
-                owner.reloadTableViewTest.onNext(owner.jobOpeningsContent)
+                owner.reloadTableView.onNext(owner.jobOpeningsContent)
             },
                        onError: { [weak self] error in
                 error.localizedDescription.toast()
@@ -146,14 +153,23 @@ class JobOpeningHuntingViewModel: CommonViewModel {
             .subscribe(onNext: { owner, response in
                 print(response)
                 owner.isLoading = false
-                guard let newContent = response.data?.profiles?.content, newContent.count > 0 else {
-                    owner.profilesPage = owner.profilesPage - 1 // 원복
-                    if owner.profilesContent.isEmpty { // 탭 변경 후 받은 리스트가 빈 경우
-                        owner.reloadCollectionView.onNext(())
-                    }
+                guard let newContent = response.data?.profiles?.content else {
+                    owner.profilesPage = owner.profilesPage - 1 // 증가시킨 페이지번호 원복
                     return
                 }
-                owner.profilesContent.append(contentsOf: newContent)
+                
+                // 추가 로드했는데 없는 경우(=마지막 항목까지 노출 완료)
+                if newContent.count == 0, owner.profilesPage > 0 {
+                    owner.profilesPage = owner.profilesPage - 1 // 증가시킨 페이지번호 원복
+                    return
+                }
+                
+                // 화면에 노출시킬 유효한 데이터들
+                if owner.profilesPage == 0 {
+                    owner.profilesContent = newContent
+                } else {
+                    owner.profilesContent.append(contentsOf: newContent)
+                }
                 owner.reloadCollectionView.onNext(())
             },
                        onError: { [weak self] error in

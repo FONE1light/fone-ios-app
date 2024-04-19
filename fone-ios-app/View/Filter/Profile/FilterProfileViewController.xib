@@ -20,7 +20,7 @@
                 <outlet property="ageSelectionView" destination="pHb-sg-jgV" id="F6q-Gx-sKF"/>
                 <outlet property="categoryClearButton" destination="3St-xM-cge" id="uz4-0q-Qst"/>
                 <outlet property="categorySelectionBlock" destination="mUu-iT-x3C" id="rJi-eM-NT2"/>
-                <outlet property="closeButton" destination="xyx-Cw-e6I" id="G1C-w5-hXa"/>
+                <outlet property="closeButton" destination="eHc-t3-fmi" id="8JD-is-lTt"/>
                 <outlet property="confirmButton" destination="xyx-Cw-e6I" id="TmE-N6-8ws"/>
                 <outlet property="contentView" destination="zWl-oA-326" id="Gry-E5-hD0"/>
                 <outlet property="genderClearButton" destination="LOi-cA-8t8" id="rb1-gl-Tf2"/>

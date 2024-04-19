@@ -139,7 +139,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                 sceneCoordinator.goJobHuntingDetail(jobHuntingId: id, type: jobType)
             }.disposed(by: rx.disposeBag)
         
-        viewModel.reloadTableViewTest
+        viewModel.reloadTableView
             .withUnretained(self)
             .bind { owner, jobOpeningContent in
                 owner.activityIndicator.stopAnimating()
