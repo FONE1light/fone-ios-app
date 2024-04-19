@@ -70,7 +70,7 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     func showFilter(_ tabType: JobSegmentType) {
         switch tabType {
         case .jobOpening:
-            let filterViewModel = FilterViewModel(sceneCoordinator: sceneCoordinator, filterOptionsSubject: selectedFilterOptionsJobOpening)
+            let filterViewModel = FilterJobOpeningViewModel(sceneCoordinator: sceneCoordinator, filterOptionsSubject: selectedFilterOptionsJobOpening)
             let filterScene = Scene.filter(filterViewModel)
             sceneCoordinator.transition(to: filterScene, using: .fullScreenModal, animated: true)
         case .profile:

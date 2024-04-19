@@ -1,5 +1,5 @@
 //
-//  FilterViewController.swift
+//  FilterJobOpeningViewController.swift
 //  fone-ios-app
 //
 //  Created by Yukyung Huh on 12/25/23.
@@ -9,8 +9,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class FilterViewController: UIViewController, ViewModelBindableType {
-    var viewModel: FilterViewModel!
+class FilterJobOpeningViewController: UIViewController, ViewModelBindableType {
+    var viewModel: FilterJobOpeningViewModel!
     private let disposeBag = DisposeBag()
     
     @IBOutlet weak var resetButton: UIButton!
@@ -157,6 +157,7 @@ class FilterViewController: UIViewController, ViewModelBindableType {
     
     private func setupDefaults() {
         guard let filterOptions = try? viewModel.filterOptionsSubject.value() else { return }
+        print("💰\(filterOptions)")
         genderSelectionBlock.select(items: filterOptions.genders)
         categorySelectionBlock.select(items: filterOptions.categories)
     }

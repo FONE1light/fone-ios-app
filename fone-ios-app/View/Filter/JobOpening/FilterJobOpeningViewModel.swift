@@ -1,5 +1,5 @@
 //
-//  FilterViewModel.swift
+//  FilterJobOpeningViewModel.swift
 //  fone-ios-app
 //
 //  Created by Yukyung Huh on 12/25/23.
@@ -51,7 +51,7 @@ extension FilterOptions {
     }
 }
 
-final class FilterViewModel: CommonViewModel {
+final class FilterJobOpeningViewModel: CommonViewModel {
     
     let filterOptionsSubject: BehaviorSubject<FilterOptions?>
 

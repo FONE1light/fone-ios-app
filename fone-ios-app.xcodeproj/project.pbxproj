@@ -332,9 +332,9 @@
 		ABA47FF72A850AE600B64403 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA47FF62A850AE600B64403 /* UIView+Extension.swift */; };
 		ABAFA3392A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAFA3382A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift */; };
 		ABAFA33B2A9F612900D50BAF /* QuestionInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAFA33A2A9F612900D50BAF /* QuestionInfoProvider.swift */; };
-		ABB1BB092B397DBD0012F962 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB1BB072B397DBD0012F962 /* FilterViewController.swift */; };
-		ABB1BB0A2B397DBD0012F962 /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABB1BB082B397DBD0012F962 /* FilterViewController.xib */; };
-		ABB1BB0D2B397DD20012F962 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB1BB0C2B397DD20012F962 /* FilterViewModel.swift */; };
+		ABB1BB092B397DBD0012F962 /* FilterJobOpeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB1BB072B397DBD0012F962 /* FilterJobOpeningViewController.swift */; };
+		ABB1BB0A2B397DBD0012F962 /* FilterJobOpeningViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABB1BB082B397DBD0012F962 /* FilterJobOpeningViewController.xib */; };
+		ABB1BB0D2B397DD20012F962 /* FilterJobOpeningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB1BB0C2B397DD20012F962 /* FilterJobOpeningViewModel.swift */; };
 		ABC1DBDD2AC0113800B9A6BF /* JobOpeningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1DBDB2AC0113800B9A6BF /* JobOpeningCell.swift */; };
 		ABC1DBDE2AC0113800B9A6BF /* JobOpeningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC1DBDC2AC0113800B9A6BF /* JobOpeningCell.xib */; };
 		ABCDD16B2B00B73300A598A8 /* JobOpeningDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCDD1692B00B73300A598A8 /* JobOpeningDetailViewController.swift */; };
@@ -640,9 +640,9 @@
 		ABA597302AE7D94500E6F709 /* fone-ios-app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "fone-ios-app.entitlements"; sourceTree = "<group>"; };
 		ABAFA3382A9F5ECB00D50BAF /* QuestionInfoAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionInfoAPIModel.swift; sourceTree = "<group>"; };
 		ABAFA33A2A9F612900D50BAF /* QuestionInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionInfoProvider.swift; sourceTree = "<group>"; };
-		ABB1BB072B397DBD0012F962 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
-		ABB1BB082B397DBD0012F962 /* FilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterViewController.xib; sourceTree = "<group>"; };
-		ABB1BB0C2B397DD20012F962 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
+		ABB1BB072B397DBD0012F962 /* FilterJobOpeningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterJobOpeningViewController.swift; sourceTree = "<group>"; };
+		ABB1BB082B397DBD0012F962 /* FilterJobOpeningViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterJobOpeningViewController.xib; sourceTree = "<group>"; };
+		ABB1BB0C2B397DD20012F962 /* FilterJobOpeningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterJobOpeningViewModel.swift; sourceTree = "<group>"; };
 		ABC1DBDB2AC0113800B9A6BF /* JobOpeningCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningCell.swift; sourceTree = "<group>"; };
 		ABC1DBDC2AC0113800B9A6BF /* JobOpeningCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JobOpeningCell.xib; sourceTree = "<group>"; };
 		ABCDD1692B00B73300A598A8 /* JobOpeningDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningDetailViewController.swift; sourceTree = "<group>"; };
@@ -1213,6 +1213,16 @@
 			path = JobHuntingImages;
 			sourceTree = "<group>";
 		};
+		368390242BD2E8FC006321CD /* JobOpening */ = {
+			isa = PBXGroup;
+			children = (
+				ABB1BB072B397DBD0012F962 /* FilterJobOpeningViewController.swift */,
+				ABB1BB082B397DBD0012F962 /* FilterJobOpeningViewController.xib */,
+				ABB1BB0C2B397DD20012F962 /* FilterJobOpeningViewModel.swift */,
+			);
+			path = JobOpening;
+			sourceTree = "<group>";
+		};
 		369292EE2B84E24F00BA52AA /* RegisterContactLinkInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1779,10 +1789,8 @@
 		ABB1BB0B2B397DC30012F962 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
+				368390242BD2E8FC006321CD /* JobOpening */,
 				3645BD1D2BD2AB2B00AA0BA0 /* Profile */,
-				ABB1BB072B397DBD0012F962 /* FilterViewController.swift */,
-				ABB1BB082B397DBD0012F962 /* FilterViewController.xib */,
-				ABB1BB0C2B397DD20012F962 /* FilterViewModel.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -2077,7 +2085,7 @@
 				ABCDD17D2B00DE8E00A598A8 /* DetailImageCell.xib in Resources */,
 				AB3F071E2AADADB700E54A25 /* FindPasswordCell.xib in Resources */,
 				AB5A0B192B7A4FB600352EC1 /* FilmCompetitionCell.xib in Resources */,
-				ABB1BB0A2B397DBD0012F962 /* FilterViewController.xib in Resources */,
+				ABB1BB0A2B397DBD0012F962 /* FilterJobOpeningViewController.xib in Resources */,
 				AB1CEAAE2ABFD20F00E7E54F /* ProfileModule.xib in Resources */,
 				ABCDD1982B00F3BD00A598A8 /* FooterCell.xib in Resources */,
 				3650F6212A86715C0017645D /* Pretendard-Regular.ttf in Resources */,
@@ -2250,7 +2258,7 @@
 				AB67855C2AA3374F00ACD35C /* EmailSignUpViewController.swift in Sources */,
 				AB1CEAAD2ABFD20F00E7E54F /* ProfileModule.swift in Sources */,
 				367D9C2C2ADA5EC700DA6C96 /* ProfileRegistrationViewController.swift in Sources */,
-				ABB1BB0D2B397DD20012F962 /* FilterViewModel.swift in Sources */,
+				ABB1BB0D2B397DD20012F962 /* FilterJobOpeningViewModel.swift in Sources */,
 				AB1442882B665CAA007CAC7F /* ValidationProvider.swift in Sources */,
 				AB49A3332A8107A500748484 /* SceneCoordinator.swift in Sources */,
 				36D40D4A2B9AD44B00685E41 /* SignoutBottomSheetViewModel.swift in Sources */,
@@ -2365,7 +2373,7 @@
 				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,
 				AB77A6F92AF90F1100EF1C29 /* ImageCollectionViewCell.swift in Sources */,
 				ABC1DBDD2AC0113800B9A6BF /* JobOpeningCell.swift in Sources */,
-				ABB1BB092B397DBD0012F962 /* FilterViewController.swift in Sources */,
+				ABB1BB092B397DBD0012F962 /* FilterJobOpeningViewController.swift in Sources */,
 				AB3F07192AADAA9200E54A25 /* FindIDCell.swift in Sources */,
 				AB6780F62B10C1F80074463E /* AuthInterceptor.swift in Sources */,
 				367D9C182ADA292200DA6C96 /* MyRegistrationsViewController.swift in Sources */,
