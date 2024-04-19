@@ -32,6 +32,11 @@ class FilterViewController: UIViewController, ViewModelBindableType {
         setupUI()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupDefaults()
+    }
+    
     func bindViewModel() {
         resetButton.rx.tap
             .withUnretained(self)
@@ -52,7 +57,7 @@ class FilterViewController: UIViewController, ViewModelBindableType {
                       let ages = owner.ageSelectionView.selectedItems.value as? [FilterAge],
                       let categories = owner.categorySelectionBlock.selectedItems.value as? [Category] else { return }
                         
-                let filterOptions = FilterOptions(genders: genders, age: ages, categories: categories)
+                let filterOptions = FilterOptions(genders: genders, ages: ages, categories: categories)
                 owner.viewModel.applyFilter(filterOptions)
                 owner.viewModel.sceneCoordinator.close(animated: true)
             }.disposed(by: rx.disposeBag)
@@ -139,12 +144,19 @@ class FilterViewController: UIViewController, ViewModelBindableType {
         
         genderSelectionBlock.setSelections(GenderType.allCases)
         let width = UIScreen.main.bounds.width - 16 * 2
-        ageSelectionView.xibInit(of: FilterAge.allCases, width: width)
+        let filterOptions = try? viewModel.filterOptionsSubject.value()
+        ageSelectionView.xibInit(of: FilterAge.allCases, width: width, selectedItems: filterOptions?.ages)
         categorySelectionBlock.setSelections(Category.allCases)
         
         genderClearButton.isActivated = true
         ageClearButton.isActivated = true
         categoryClearButton.isActivated = true
+    }
+    
+    private func setupDefaults() {
+        guard let filterOptions = try? viewModel.filterOptionsSubject.value() else { return }
+        genderSelectionBlock.select(items: filterOptions.genders)
+        categorySelectionBlock.select(items: filterOptions.categories)
     }
 }
 

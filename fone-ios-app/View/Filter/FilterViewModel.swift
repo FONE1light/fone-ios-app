@@ -9,7 +9,7 @@ import RxSwift
 
 struct FilterOptions {
     let genders: [GenderType]
-    let age: [FilterAge]
+    let ages: [FilterAge]
     let categories: [Category]
 }
 
@@ -33,21 +33,21 @@ extension FilterOptions {
     }
     
     private func calculateMaximum() -> Int? {
-        // `age`로 최댓값 계산
-        let maxes = age.map { $0.ageMax }
+        // `ages`로 최댓값 계산
+        let maxes = ages.map { $0.ageMax }
         return maxes.max()
     }
     
     private func calculateMinimum() -> Int? {
-        // `age`로 최솟값 계산
-        let mins = age.map { $0.ageMin }
+        // `ages`로 최솟값 계산
+        let mins = ages.map { $0.ageMin }
         return mins.min()
     }
 }
 
 final class FilterViewModel: CommonViewModel {
     
-    private let filterOptionsSubject: BehaviorSubject<FilterOptions?>
+    let filterOptionsSubject: BehaviorSubject<FilterOptions?>
 
     init(sceneCoordinator: SceneCoordinatorType, filterOptionsSubject: BehaviorSubject<FilterOptions?>) {
         self.filterOptionsSubject = filterOptionsSubject
