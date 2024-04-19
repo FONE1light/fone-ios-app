@@ -157,7 +157,6 @@ class FilterJobOpeningViewController: UIViewController, ViewModelBindableType {
     
     private func setupDefaults() {
         guard let filterOptions = try? viewModel.filterOptionsSubject.value() else { return }
-        print("💰\(filterOptions)")
         genderSelectionBlock.select(items: filterOptions.genders)
         categorySelectionBlock.select(items: filterOptions.categories)
     }

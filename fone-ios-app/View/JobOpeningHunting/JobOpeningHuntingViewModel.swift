@@ -109,13 +109,11 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     }
     
     private func fetchJobOpenings(_ filterRequest: FilterRequest) {
-        print("🔥filterRequest \(filterRequest)")
         jobOpeningInfoProvider.rx.request(.jobOpenings(jobOpeningFilterRequest: filterRequest))
             .mapObject(Result<JobOpeningsData>.self)
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
-                print("🔥response \(response)")
                 owner.isLoading = false
                 guard let newContent = response.data?.jobOpenings?.content else { 
                     owner.jobOpeningsPage = owner.jobOpeningsPage - 1 // 증가시킨 페이지번호 원복
