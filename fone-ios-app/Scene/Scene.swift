@@ -56,6 +56,7 @@ enum Scene {
     case jobHuntingProfiles(JobHuntingProfilesViewModel) // 프로필 상세 > 이미지 더보기
     
     case filter(FilterViewModel)
+    case filterProfile(FilterProfileViewModel)
 
     // 모달
     case reportBottomSheet(SceneCoordinatorType) // 신고하기 바텀시트
@@ -420,6 +421,13 @@ extension Scene {
             filterVC.bind(viewModel: filterViewModel)
             
             return filterVC
+            
+        case .filterProfile(let filterProfileViewModel):
+            var filterProfileVC = FilterProfileViewController()
+            
+            filterProfileVC.bind(viewModel: filterProfileViewModel)
+            
+            return filterProfileVC
             
         case .reportBottomSheet(let sceneCoordinator):
             let bottomSheet = ReportBottomSheet()

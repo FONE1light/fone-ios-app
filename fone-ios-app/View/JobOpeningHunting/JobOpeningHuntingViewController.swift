@@ -189,7 +189,8 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
         filterButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.viewModel.showFilter()
+                guard let tabType = owner.segmentedControl.selectedSegmentType else { return }
+                owner.viewModel.showFilter(tabType)
             }.disposed(by: disposeBag)
         
         floatingButton.rx.tap

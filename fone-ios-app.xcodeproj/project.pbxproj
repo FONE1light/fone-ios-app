@@ -45,6 +45,10 @@
 		364482D52AB8082E00984507 /* MyPageButtonStackViewContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482D42AB8082E00984507 /* MyPageButtonStackViewContentView.swift */; };
 		364482D82AB80EDA00984507 /* MyPageMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364482D72AB80EDA00984507 /* MyPageMenuCell.swift */; };
 		3645BD1A2BD14FA200AA0BA0 /* AgeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3645BD192BD14FA200AA0BA0 /* AgeSelectionView.swift */; };
+		3645BD1C2BD2AB2700AA0BA0 /* FilterProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3645BD1B2BD2AB2700AA0BA0 /* FilterProfileViewModel.swift */; };
+		3645BD1F2BD2AB3F00AA0BA0 /* FilterProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3645BD1E2BD2AB3F00AA0BA0 /* FilterProfileViewController.swift */; };
+		3645BD212BD2ABA700AA0BA0 /* FilterProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3645BD202BD2ABA600AA0BA0 /* FilterProfileViewController.xib */; };
+		3645BD232BD2AF8100AA0BA0 /* DomainSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3645BD222BD2AF8100AA0BA0 /* DomainSelectionView.swift */; };
 		364BCC6A2AB3672500E14B25 /* DynamicHeightCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364BCC692AB3672500E14B25 /* DynamicHeightCollectionView.swift */; };
 		364BCC6C2AB3673900E14B25 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364BCC6B2AB3673900E14B25 /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		364BCC6E2AB36A4900E14B25 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364BCC6D2AB36A4900E14B25 /* Job.swift */; };
@@ -398,6 +402,10 @@
 		364482D42AB8082E00984507 /* MyPageButtonStackViewContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageButtonStackViewContentView.swift; sourceTree = "<group>"; };
 		364482D72AB80EDA00984507 /* MyPageMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageMenuCell.swift; sourceTree = "<group>"; };
 		3645BD192BD14FA200AA0BA0 /* AgeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeSelectionView.swift; sourceTree = "<group>"; };
+		3645BD1B2BD2AB2700AA0BA0 /* FilterProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterProfileViewModel.swift; sourceTree = "<group>"; };
+		3645BD1E2BD2AB3F00AA0BA0 /* FilterProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterProfileViewController.swift; sourceTree = "<group>"; };
+		3645BD202BD2ABA600AA0BA0 /* FilterProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterProfileViewController.xib; sourceTree = "<group>"; };
+		3645BD222BD2AF8100AA0BA0 /* DomainSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainSelectionView.swift; sourceTree = "<group>"; };
 		364BCC692AB3672500E14B25 /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
 		364BCC6B2AB3673900E14B25 /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		364BCC6D2AB36A4900E14B25 /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
@@ -893,6 +901,16 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		3645BD1D2BD2AB2B00AA0BA0 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				3645BD1B2BD2AB2700AA0BA0 /* FilterProfileViewModel.swift */,
+				3645BD202BD2ABA600AA0BA0 /* FilterProfileViewController.xib */,
+				3645BD1E2BD2AB3F00AA0BA0 /* FilterProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		3650F6192A849BDB0017645D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1254,6 +1272,7 @@
 				366E850C2B19FBE400CB7681 /* DomainSelectionPopupViewController.swift */,
 				366E85112B22042700CB7681 /* DomainPreviewTag.swift */,
 				366E85132B220CBE00CB7681 /* DomainContentView.swift */,
+				3645BD222BD2AF8100AA0BA0 /* DomainSelectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1760,6 +1779,7 @@
 		ABB1BB0B2B397DC30012F962 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
+				3645BD1D2BD2AB2B00AA0BA0 /* Profile */,
 				ABB1BB072B397DBD0012F962 /* FilterViewController.swift */,
 				ABB1BB082B397DBD0012F962 /* FilterViewController.xib */,
 				ABB1BB0C2B397DD20012F962 /* FilterViewModel.swift */,
@@ -2049,6 +2069,7 @@
 				AB6780FC2B10F2220074463E /* DatePickerViewController.xib in Resources */,
 				AB48A2472B764D3300007F24 /* RecruitContactLinkInfoViewController.xib in Resources */,
 				3650F6222A86715C0017645D /* Pretendard-Medium.ttf in Resources */,
+				3645BD212BD2ABA700AA0BA0 /* FilterProfileViewController.xib in Resources */,
 				365F30B52BB1C078003D623C /* PrivacyInfo.xcprivacy in Resources */,
 				ABCDD1922B00F23000A598A8 /* SummaryCell.xib in Resources */,
 				AB1CEAA92ABFD1D700E7E54F /* MainBannerModule.xib in Resources */,
@@ -2168,6 +2189,7 @@
 				367D9BB62AC1202A00DA6C96 /* MyPageTabBarItem.swift in Sources */,
 				3645BD1A2BD14FA200AA0BA0 /* AgeSelectionView.swift in Sources */,
 				36BCC7E02AA31A350060E35A /* SignUpPersonalInfoViewController.swift in Sources */,
+				3645BD1C2BD2AB2700AA0BA0 /* FilterProfileViewModel.swift in Sources */,
 				367D9C2D2ADA5EC700DA6C96 /* ProfileRegistrationViewModel.swift in Sources */,
 				368273722B272D6200EB0629 /* StaffInfoTableViewCell.swift in Sources */,
 				364BCC6A2AB3672500E14B25 /* DynamicHeightCollectionView.swift in Sources */,
@@ -2180,6 +2202,7 @@
 				36A554462B39B8B800C87751 /* JobOpeningSortOptions.swift in Sources */,
 				AB532B312B0A306A003A6A57 /* SalaryType.swift in Sources */,
 				ABA47FF72A850AE600B64403 /* UIView+Extension.swift in Sources */,
+				3645BD232BD2AF8100AA0BA0 /* DomainSelectionView.swift in Sources */,
 				AB2578A52AAF387F00328363 /* TabBarViewController.swift in Sources */,
 				AB49A33C2A810CAA00748484 /* ViewModelBindableType.swift in Sources */,
 				367D9BD32AC3B9CC00DA6C96 /* CompetitionViewModel.swift in Sources */,
@@ -2210,6 +2233,7 @@
 				36C364132BAF261E008DAC29 /* FakeLaunchScreenViewController.swift in Sources */,
 				362C80332B13673C00489E7D /* RegisterDetailContentViewController.swift in Sources */,
 				366E85092B19ECC200CB7681 /* FullWidthSelectionView.swift in Sources */,
+				3645BD1F2BD2AB3F00AA0BA0 /* FilterProfileViewController.swift in Sources */,
 				364482CE2AB7C76500984507 /* MyPageViewModel.swift in Sources */,
 				362419CF2AE319B1007D1AFB /* SignUpPersonalInfoViewModel.swift in Sources */,
 				AB1CEAA82ABFD1D700E7E54F /* MainBannerModule.swift in Sources */,

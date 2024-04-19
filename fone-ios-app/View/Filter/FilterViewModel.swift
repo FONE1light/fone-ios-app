@@ -11,6 +11,7 @@ struct FilterOptions {
     let genders: [GenderType]
     let ages: [FilterAge]
     let categories: [Category]
+    let domains: [Domain]? = nil
 }
 
 extension FilterOptions {

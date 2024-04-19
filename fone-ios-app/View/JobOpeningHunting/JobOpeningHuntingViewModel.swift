@@ -60,10 +60,17 @@ class JobOpeningHuntingViewModel: CommonViewModel {
             }.disposed(by: disposeBag)
     }
 
-    func showFilter() {
-        let filterViewModel = FilterViewModel(sceneCoordinator: sceneCoordinator, filterOptionsSubject: selectedFilterOptionsTest)
-        let filterScene = Scene.filter(filterViewModel)
-        sceneCoordinator.transition(to: filterScene, using: .fullScreenModal, animated: true)
+    func showFilter(_ tabType: JobSegmentType) {
+        switch tabType {
+        case .jobOpening:
+            let filterViewModel = FilterViewModel(sceneCoordinator: sceneCoordinator, filterOptionsSubject: selectedFilterOptionsTest)
+            let filterScene = Scene.filter(filterViewModel)
+            sceneCoordinator.transition(to: filterScene, using: .fullScreenModal, animated: true)
+        case .profile:
+            let filterProfileViewModel = FilterProfileViewModel(sceneCoordinator: sceneCoordinator, filterOptionsSubject: selectedFilterOptionsTest)
+            let filterProfileScene = Scene.filterProfile(filterProfileViewModel)
+            sceneCoordinator.transition(to: filterProfileScene, using: .fullScreenModal, animated: true)
+        }
     }
     
     // JobSegmentType(프로필/모집)과 JobType(ACTOR/STAFF)을 알아야 api 쏘므로 ViewModel에  selectedTab, selectedJobType 필요
