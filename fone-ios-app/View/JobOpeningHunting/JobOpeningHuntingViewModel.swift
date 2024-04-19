@@ -84,23 +84,24 @@ class JobOpeningHuntingViewModel: CommonViewModel {
         
         let sort = sortOption.serverParameter ?? ""
         
-        let jobOpeningFilterRequest = JobOpeningFilterRequest(
+        let filterRequest = FilterRequest(
             type: jobType.name,
             sort: sort,
             page: jobOpeningsPage,
             ageMax: filterOptions?.ageMax,
             ageMin: filterOptions?.ageMin,
             stringCategories: filterOptions?.stringCategories,
-            stringGenders: filterOptions?.stringGenders
+            stringGenders: filterOptions?.stringGenders,
+            stringDomains: filterOptions?.stringDomains
         )
         
         switch selectedTab {
-        case .jobOpening: fetchJobOpenings(jobOpeningFilterRequest)
-        case .profile: fetchProfiles(jobType: jobType, sort: sort)
+        case .jobOpening: fetchJobOpenings(filterRequest)
+        case .profile: fetchProfiles(filterRequest)
         }
     }
     
-    private func fetchJobOpenings(_ filterRequest: JobOpeningFilterRequest) {
+    private func fetchJobOpenings(_ filterRequest: FilterRequest) {
         print("🔥filterRequest \(filterRequest)")
         jobOpeningInfoProvider.rx.request(.jobOpenings(jobOpeningFilterRequest: filterRequest))
             .mapObject(Result<JobOpeningsData>.self)
@@ -137,8 +138,8 @@ class JobOpeningHuntingViewModel: CommonViewModel {
             }).disposed(by: disposeBag)
     }
     
-    private func fetchProfiles(jobType: Job, sort: String) {
-        profileInfoProvider.rx.request(.profiles(type: jobType, sort: sort, page: profilesPage, size: pageSize))
+    private func fetchProfiles(_ filterRequest: FilterRequest) {
+        profileInfoProvider.rx.request(.profiles(profileFilterRequest: filterRequest))
             .mapObject(Result<ProfilesData>.self)
             .asObservable()
             .withUnretained(self)

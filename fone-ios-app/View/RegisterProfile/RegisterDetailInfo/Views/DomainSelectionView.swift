@@ -26,12 +26,16 @@ class DomainSelectionView: FullWidthSelectionView {
     
     /// `items`를 선택된 상태로 설정
     func select(items: [Selection]) {
+        let indexPaths = (items as? [Domain])?
+            .compactMap { Domain.allCases.firstIndex(of: $0) }
+            .compactMap { Int($0) }
+            .compactMap { IndexPath(row: $0, section: 0) }
+        
         visibleCells.forEach { cell in
-            guard let cell = cell as? SelectionCell,
-            let item = cell.item else { return }
+            guard let cell = cell as? DynamicSizeSelectionCell else { return }
             
-            if items.contains(where: { $0.serverName == item.serverName }) {
-                cell.isChosen = true
+            indexPaths?.forEach {
+                selectItem(at: $0, animated: false, scrollPosition: [])
             }
         }
         

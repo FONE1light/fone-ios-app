@@ -14,6 +14,8 @@ class FilterProfileViewController: UIViewController, ViewModelBindableType {
     var viewModel: FilterProfileViewModel!
     private let disposeBag = DisposeBag()
     
+    @IBOutlet weak var contentView: UIView!
+    
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
     
@@ -70,9 +72,10 @@ class FilterProfileViewController: UIViewController, ViewModelBindableType {
             .bind { owner, _ in
                 guard let genders = owner.genderSelectionBlock.selectedItems.value as? [GenderType],
                       let ages = owner.ageSelectionView.selectedItems.value as? [FilterAge],
-                      let categories = owner.categorySelectionBlock.selectedItems.value as? [Category] else { return }
-                        
-                let filterOptions = FilterOptions(genders: genders, ages: ages, categories: categories)
+                      let categories = owner.categorySelectionBlock.selectedItems.value as? [Category],
+                      let domains = owner.domainSelectionView.selectedItems.value as? [Domain] else { return }
+                
+                let filterOptions = FilterOptions(genders: genders, ages: ages, categories: categories, domains: domains)
                 owner.viewModel.applyFilter(filterOptions)
                 owner.viewModel.sceneCoordinator.close(animated: true)
             }.disposed(by: rx.disposeBag)
@@ -181,7 +184,7 @@ class FilterProfileViewController: UIViewController, ViewModelBindableType {
             domainClearButton,
             domainSelectionView
         ]
-            .forEach { view.addSubview($0) }
+            .forEach { contentView.addSubview($0) }
         
         genderClearButton.xibInit("전체선택", type: .clear)
         ageClearButton.xibInit("연령무관", type: .clear)
@@ -215,6 +218,7 @@ class FilterProfileViewController: UIViewController, ViewModelBindableType {
         domainSelectionView.snp.makeConstraints {
             $0.top.equalTo(domainLabel.snp.bottom).offset(8)
             $0.leading.trailing.equalTo(categorySelectionBlock)
+            $0.bottom.equalToSuperview()
         }
     }
     

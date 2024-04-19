@@ -11,7 +11,7 @@ struct FilterOptions {
     let genders: [GenderType]
     let ages: [FilterAge]
     let categories: [Category]
-    let domains: [Domain]? = nil
+    var domains: [Domain]? = nil
 }
 
 extension FilterOptions {
@@ -23,6 +23,11 @@ extension FilterOptions {
     var stringCategories: String? {
         let serverNameCategories = categories.compactMap { $0.serverName }
         return serverNameCategories.commaInserted
+    }
+    
+    var stringDomains: String? {
+        let serverNameDomains = domains?.compactMap { $0.serverName }
+        return serverNameDomains?.commaInserted
     }
     
     var ageMax: Int {

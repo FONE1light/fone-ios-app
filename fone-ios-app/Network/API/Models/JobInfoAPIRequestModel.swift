@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct JobOpeningFilterRequest {
+struct FilterRequest {
     let type: String
     let sort: String
     let page: Int
@@ -17,6 +17,7 @@ struct JobOpeningFilterRequest {
     var ageMin: Int? = nil
     var stringCategories: String? = nil
     var stringGenders: String? = nil
+    var stringDomains: String? = nil
 }
 
 // MARK: - JobOpeningRequest
