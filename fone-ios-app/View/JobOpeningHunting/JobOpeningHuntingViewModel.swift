@@ -83,8 +83,8 @@ class JobOpeningHuntingViewModel: CommonViewModel {
             page: jobOpeningsPage,
             ageMax: filterOptions?.ageMax,
             ageMin: filterOptions?.ageMin,
-            categories: filterOptions?.serverNameCategories,
-            genders: filterOptions?.serverNameGenders
+            stringCategories: filterOptions?.stringCategories,
+            stringGenders: filterOptions?.stringGenders
         )
         
         switch selectedTab {

@@ -14,12 +14,14 @@ struct FilterOptions {
 }
 
 extension FilterOptions {
-    var serverNameGenders: [String]? {
-        genders.compactMap { $0.serverName }
+    var stringGenders: String? {
+        let serverNameGenders = genders.compactMap { $0.serverName }
+        return serverNameGenders.commaInserted
     }
     
-    var serverNameCategories: [String]? {
-        categories.compactMap { $0.serverName }
+    var stringCategories: String? {
+        let serverNameCategories = categories.compactMap { $0.serverName }
+        return serverNameCategories.commaInserted
     }
     
     var ageMax: Int {

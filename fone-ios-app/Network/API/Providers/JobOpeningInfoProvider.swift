@@ -65,13 +65,6 @@ extension JobOpeningInfoTarget: TargetType {
     
     var task: Moya.Task {
         switch self {
-//        case .jobOpenings(let type, let sort, let page):
-//            return .requestParameters(parameters: [
-//                "type": type.name,
-//                "sort": sort,
-//                "page": page,
-//                "size": pageSize
-//            ], encoding: URLEncoding.default)
         case .jobOpenings(let jobOpeningFilterRequest):
             // GET이라 requestJSONEncodable 사용 불가(body에 넣지 않기 위해)
             return .requestParameters(parameters: [
@@ -81,8 +74,8 @@ extension JobOpeningInfoTarget: TargetType {
                 "size": jobOpeningFilterRequest.size,
                 "ageMax": jobOpeningFilterRequest.ageMax ?? 200,
                 "ageMin": jobOpeningFilterRequest.ageMin ?? 0,
-                "categories": jobOpeningFilterRequest.categories ?? [],
-                "genders": jobOpeningFilterRequest.genders ?? [],
+                "categories": jobOpeningFilterRequest.stringCategories ?? "",
+                "genders": jobOpeningFilterRequest.stringGenders ?? "",
             ], encoding: URLEncoding.default)
         case .createJobOpenings(let jobOpeningRequest):
             return .requestJSONEncodable(jobOpeningRequest)
