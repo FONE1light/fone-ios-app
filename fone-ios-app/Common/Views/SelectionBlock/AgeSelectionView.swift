@@ -1,8 +1,8 @@
 //
-//  FullWidthSelectionView.swift
+//  AgeSelectionView.swift
 //  fone-ios-app
 //
-//  Created by 여나경 on 12/1/23.
+//  Created by 여나경 on 4/18/24.
 //
 
 import UIKit
@@ -11,8 +11,8 @@ import RxRelay
 import RxSwift
 import RxCocoa
 
-/// `width` 너비에 꽉 차도록 [Selection]을 표시하는 UICollectionView
-class FullWidthSelectionView: DynamicHeightCollectionView {
+/// `width` 너비에 꽉 차도록 [Selection]을 표시하는 UICollectionView + Selection이 나이인 경우 연속적으로 선택되게 하는 UICollectionView
+class AgeSelectionView: DynamicHeightCollectionView {
     
     struct Constants {
         /// collectionView의 width
@@ -48,7 +48,7 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
         allowsMultipleSelection = true // default: true로 변경
         
         register(with: DynamicSizeSelectionCell.self)
-        dataSource = self        
+        dataSource = self
         
         self.items = selections
         self.constants = Constants(
@@ -96,7 +96,7 @@ class FullWidthSelectionView: DynamicHeightCollectionView {
     }
 }
 
-extension FullWidthSelectionView {
+extension AgeSelectionView {
     private func bindViewModel() {
         rx.setDelegate(self).disposed(by: rx.disposeBag)
         
@@ -108,22 +108,58 @@ extension FullWidthSelectionView {
                 guard let cell = owner.cellForItem(at: indexPath) as? DynamicSizeSelectionCell,
                       let item = cell.item else { return }
                 var items = owner.selectedItems.value
-
-                if cell.isSelected {
-                    items.append(item)
-                } else {
-                    items.removeAll { $0.name == item.name }
-                }
                 
-                owner.selectedItems.accept(items)
-
+                // 1. 첫 번째이면 toggleON
+                if items.isEmpty {
+                    items.append(item)
+                    owner.selectedItems.accept(items)
+                } else if items.count == 1 {
+                    // 2. 하나면
+                    guard let preselectedAgeItem = items.first as? FilterAge,
+                          let ageItem = item as? FilterAge else { return }
+                    
+                    if ageItem.ageMin > preselectedAgeItem.ageMin {
+                        // 2-1. 크면 연속 toggleON
+                        guard let preselectedIndex: Int = FilterAge.allCases.firstIndex(of: preselectedAgeItem) else { return }
+                        
+                        let rows = Array(preselectedIndex...indexPath.row)
+                        let indexPaths = rows.map { IndexPath(row: $0, section: 0) }
+                        
+                        owner.deselectAll()
+                        owner.selectItems(atRange: indexPaths)
+                    } else if ageItem.ageMin < preselectedAgeItem.ageMin {
+                        // 2-2. 작으면 새로 toggleON
+                        owner.deselectAll()
+                        owner.selectItem(at: indexPath)
+                    } else {
+                        // 2-3. 같으면 원복 toggleOFF
+                        owner.deselectAll()
+                    }
+                } else {
+                    // 3. 2개 이상이면 새로 toggleON
+                    owner.deselectAll()
+                    owner.selectItem(at: indexPath)
+                }
             }.disposed(by: rx.disposeBag)
         
     }
     
+    private func selectItems(atRange indexPaths: [IndexPath]) {
+        indexPaths.forEach { selectItem(at: $0, animated: false, scrollPosition: []) }
+        
+        let itemsToSelect: [Selection] = indexPaths.compactMap {
+            let cell = cellForItem(at: $0) as? DynamicSizeSelectionCell
+            return cell?.item
+        }
+        
+        var items = selectedItems.value
+        items.append(contentsOf: itemsToSelect)
+        selectedItems.accept(items)
+    }
+    
     private func selectItem(at indexPath: IndexPath) {
         selectItem(at: indexPath, animated: false, scrollPosition: [])
-        
+
         guard let cell = cellForItem(at: indexPath) as? DynamicSizeSelectionCell,
               let item = cell.item else { return }
         var items = selectedItems.value
@@ -139,7 +175,7 @@ extension FullWidthSelectionView {
     }
 }
 
-extension FullWidthSelectionView: UICollectionViewDataSource {
+extension AgeSelectionView: UICollectionViewDataSource {
     
     // MARK: cell count
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -168,7 +204,7 @@ extension FullWidthSelectionView: UICollectionViewDataSource {
 }
 
 
-extension FullWidthSelectionView: UICollectionViewDelegateFlowLayout {
+extension AgeSelectionView: UICollectionViewDelegateFlowLayout {
     // MARK: cellSize
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         

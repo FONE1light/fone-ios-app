@@ -162,6 +162,13 @@ extension String {
     }
 }
 
+extension [String] {
+    var commaInserted: String {
+        self.reduce("", {$0 == "" ? $1 : $0 + "," + $1})
+    }
+}
+
+
 extension NSMutableAttributedString {
     @discardableResult func setAttributeText(_ text: String, _ font : UIFont, _ color: UIColor) -> NSMutableAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor : color]

@@ -20,6 +20,9 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     
     var selectedSortOption = BehaviorRelay<JobOpeningSortOptions>(value: .recent)
     
+    private let selectedFilterOptionsJobOpening = BehaviorSubject<FilterOptions?>(value: nil)
+    private let selectedFilterOptionsProfile = BehaviorSubject<FilterOptions?>(value: nil)
+    
     var sortButtonStateDic: [JobSegmentType: JobOpeningSortOptions] = [
         .jobOpening: .recent,
         .profile: .recent
@@ -31,67 +34,105 @@ class JobOpeningHuntingViewModel: CommonViewModel {
     
     private var isLoading = false
     
-    var jobOpeningsContent: [JobOpeningContent] = []
+    private var jobOpeningsContent: [JobOpeningContent] = []
     var profilesContent: [ProfileContent] = []
-    var reloadTableView = PublishSubject<Void>()
+
+    var reloadTableView = PublishSubject<[JobOpeningContent]>()
     var reloadCollectionView = PublishSubject<Void>()
     
     override init(sceneCoordinator: SceneCoordinatorType) {
         super.init(sceneCoordinator: sceneCoordinator)
         
         Observable
-            .combineLatest(selectedJobType, selectedSortOption)
+            .combineLatest(selectedJobType, selectedSortOption, selectedFilterOptionsJobOpening, selectedFilterOptionsProfile)
+            .skip(1) // FIXME: 첫 실행 시 왜 두 번 불리는지 확인, 수정
             .withUnretained(self)
             .bind { owner, result in
-                let (jobType, option) = result
+                let (jobType, option, filterOptionsJobOpening, filterOptionsProfile) = result
+                print("✅\(jobType), \(owner.selectedTab.value), \(option), \(filterOptionsJobOpening), \(filterOptionsProfile)")
+                var filterOptions: FilterOptions?
                 
-                print("✅\(jobType), \(owner.selectedTab.value), \(option)")
+                switch owner.selectedTab.value {
+                case .jobOpening: filterOptions = filterOptionsJobOpening
+                case .profile: filterOptions = filterOptionsProfile
+                }
+                
                 owner.initList(segmentType: owner.selectedTab.value)
                 owner.fetchList(
                     jobType: jobType,
                     segmentType: owner.selectedTab.value,
-                    sortOption: option
+                    sortOption: option,
+                    filterOptions: filterOptions
                 )
             }.disposed(by: disposeBag)
-            
     }
 
-    func showFilter() {
-        let filterViewModel = FilterViewModel(sceneCoordinator: sceneCoordinator)
-        let filterScene = Scene.filter(filterViewModel)
-        sceneCoordinator.transition(to: filterScene, using: .fullScreenModal, animated: true)
+    func showFilter(_ tabType: JobSegmentType) {
+        switch tabType {
+        case .jobOpening:
+            let filterViewModel = FilterJobOpeningViewModel(sceneCoordinator: sceneCoordinator, filterOptionsSubject: selectedFilterOptionsJobOpening)
+            let filterScene = Scene.filterJobOpening(filterViewModel)
+            sceneCoordinator.transition(to: filterScene, using: .fullScreenModal, animated: true)
+        case .profile:
+            let filterProfileViewModel = FilterProfileViewModel(sceneCoordinator: sceneCoordinator, filterOptionsSubject: selectedFilterOptionsProfile)
+            let filterProfileScene = Scene.filterProfile(filterProfileViewModel)
+            sceneCoordinator.transition(to: filterProfileScene, using: .fullScreenModal, animated: true)
+        }
     }
     
     // JobSegmentType(프로필/모집)과 JobType(ACTOR/STAFF)을 알아야 api 쏘므로 ViewModel에  selectedTab, selectedJobType 필요
-    func fetchList(
+    private func fetchList(
         jobType: Job,
         segmentType selectedTab: JobSegmentType,
-        sortOption: JobOpeningSortOptions
+        sortOption: JobOpeningSortOptions,
+        filterOptions: FilterOptions? = nil
     ) {
         isLoading = true
         
         let sort = sortOption.serverParameter ?? ""
         
+        let filterRequest = FilterRequest(
+            type: jobType.name,
+            sort: sort,
+            page: jobOpeningsPage,
+            ageMax: filterOptions?.ageMax,
+            ageMin: filterOptions?.ageMin,
+            stringCategories: filterOptions?.stringCategories,
+            stringGenders: filterOptions?.stringGenders,
+            stringDomains: filterOptions?.stringDomains
+        )
+        
         switch selectedTab {
-        case .jobOpening: fetchJobOpenings(jobType: jobType, sort: sort)
-        case .profile: fetchProfiles(jobType: jobType, sort: sort)
+        case .jobOpening: fetchJobOpenings(filterRequest)
+        case .profile: fetchProfiles(filterRequest)
         }
     }
     
-    private func fetchJobOpenings(jobType: Job, sort: String) {
-        jobOpeningInfoProvider.rx.request(.jobOpenings(type: jobType, sort: sort, page: jobOpeningsPage, size: pageSize))
+    private func fetchJobOpenings(_ filterRequest: FilterRequest) {
+        jobOpeningInfoProvider.rx.request(.jobOpenings(jobOpeningFilterRequest: filterRequest))
             .mapObject(Result<JobOpeningsData>.self)
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
-                print(response)
                 owner.isLoading = false
-                guard let newContent = response.data?.jobOpenings?.content, newContent.count > 0 else {
-                    owner.jobOpeningsPage = owner.jobOpeningsPage - 1 // 원복
+                guard let newContent = response.data?.jobOpenings?.content else { 
+                    owner.jobOpeningsPage = owner.jobOpeningsPage - 1 // 증가시킨 페이지번호 원복
                     return
                 }
-                owner.jobOpeningsContent.append(contentsOf: newContent)
-                owner.reloadTableView.onNext(())
+                
+                // 추가 로드했는데 없는 경우(=마지막 항목까지 노출 완료)
+                if newContent.count == 0, owner.jobOpeningsPage > 0 {
+                    owner.jobOpeningsPage = owner.jobOpeningsPage - 1 // 증가시킨 페이지번호 원복
+                    return
+                }
+                
+                // 화면에 노출시킬 유효한 데이터들
+                if owner.jobOpeningsPage == 0 {
+                    owner.jobOpeningsContent = newContent
+                } else {
+                    owner.jobOpeningsContent.append(contentsOf: newContent)
+                }
+                owner.reloadTableView.onNext(owner.jobOpeningsContent)
             },
                        onError: { [weak self] error in
                 error.localizedDescription.toast()
@@ -102,22 +143,31 @@ class JobOpeningHuntingViewModel: CommonViewModel {
             }).disposed(by: disposeBag)
     }
     
-    private func fetchProfiles(jobType: Job, sort: String) {
-        profileInfoProvider.rx.request(.profiles(type: jobType, sort: sort, page: profilesPage, size: pageSize))
+    private func fetchProfiles(_ filterRequest: FilterRequest) {
+        profileInfoProvider.rx.request(.profiles(profileFilterRequest: filterRequest))
             .mapObject(Result<ProfilesData>.self)
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
                 print(response)
                 owner.isLoading = false
-                guard let newContent = response.data?.profiles?.content, newContent.count > 0 else {
-                    owner.profilesPage = owner.profilesPage - 1 // 원복
-                    if owner.profilesContent.isEmpty { // 탭 변경 후 받은 리스트가 빈 경우
-                        owner.reloadCollectionView.onNext(())
-                    }
+                guard let newContent = response.data?.profiles?.content else {
+                    owner.profilesPage = owner.profilesPage - 1 // 증가시킨 페이지번호 원복
                     return
                 }
-                owner.profilesContent.append(contentsOf: newContent)
+                
+                // 추가 로드했는데 없는 경우(=마지막 항목까지 노출 완료)
+                if newContent.count == 0, owner.profilesPage > 0 {
+                    owner.profilesPage = owner.profilesPage - 1 // 증가시킨 페이지번호 원복
+                    return
+                }
+                
+                // 화면에 노출시킬 유효한 데이터들
+                if owner.profilesPage == 0 {
+                    owner.profilesContent = newContent
+                } else {
+                    owner.profilesContent.append(contentsOf: newContent)
+                }
                 owner.reloadCollectionView.onNext(())
             },
                        onError: { [weak self] error in

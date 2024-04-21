@@ -55,11 +55,8 @@ final class SocialLoginManager {
             UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
                 if let error = error {
                     print(error)
-                    print("🔥loginWithKakaoTalk-FAILURE")
                 }
                 else {
-                    print("loginWithKakaoTalk() success.")
-                    print("🔥loginWithKakaoTalk-SUCCESS")
                     let accessToken = oauthToken?.accessToken ?? ""
                     self.getKakaoUserEmailAndName()
                     self.socialSignIn(accessToken: accessToken, loginType: SocialLoginType.KAKAO.rawValue)
@@ -71,7 +68,6 @@ final class SocialLoginManager {
                     print(error)
                 }
                 else {
-                    print("loginWithKakaoAccount() success.")
                     let accessToken = oauthToken?.accessToken ?? ""
                     self.getKakaoUserEmailAndName()
                     self.socialSignIn(accessToken: accessToken, loginType: SocialLoginType.KAKAO.rawValue)
@@ -91,10 +87,8 @@ final class SocialLoginManager {
         GIDSignIn.sharedInstance.signIn(withPresenting: presentingVC) { [unowned self] result, error in
             guard error == nil else {
                 print(error as Any)
-                print("🔥loginWithGoogle-FAILURE")
                 return
             }
-            print("🔥loginWithGoogle-SUCCESS")
             guard let user = result?.user,
                   let idToken = user.idToken?.tokenString,
                   let email = user.profile?.email else { return }
@@ -204,17 +198,13 @@ extension SocialLoginManager {
         UserApi.shared.logout { error in
             if let error = error {
                 print(error.localizedDescription)
-                print("🔥logoutFromKakaoTalk-FAILURE")
                 return
-            } else {
-                print("🔥logoutFromKakaoTalk-SUCCESS")
             }
         }
     }
     
     func logoutFromGoogle() {
         GIDSignIn.sharedInstance.signOut()
-        print("🔥logoutFromGoogle-SUCCESS")
     }
 }
 
@@ -223,17 +213,12 @@ extension SocialLoginManager {
         UserApi.shared.unlink {(error) in
             if let error = error {
                 print(error)
-                print("🔥disconnectKakaoTalkLogin-FAILURE")
-            } else {
-                print("unlink() success.")
-                print("🔥disconnectKakaoTalkLogin-SUCCESS")
             }
         }
     }
     
     func disconnectGoogleLogin() {
         GIDSignIn.sharedInstance.disconnect()
-        print("🔥disconnectGoogleLogin-SUCCESS")
     }
 }
 
@@ -241,7 +226,6 @@ extension SocialLoginManager {
 extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         //로그인 성공
-        print("🔥loginWithApple-SUCCESS")
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             if let identityToken = appleIDCredential.identityToken,
@@ -258,8 +242,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // 로그인 실패(유저의 취소도 포함)
-        print("🔥loginWithApple-FAILURE")
-        print("🔥login failed - \(error.localizedDescription)")
+        print("login failed - \(error.localizedDescription)")
     }
 }
 
