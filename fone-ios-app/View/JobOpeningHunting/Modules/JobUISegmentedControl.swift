@@ -32,6 +32,13 @@ enum JobSegmentType: CaseIterable {
         }
     }
     
+    var serverName: String {
+        switch self {
+        case .jobOpening: "JOB_OPENING"
+        case .profile: "PROFILE"
+        }
+    }
+    
     // 필요 시 FloatingButtonStackView 추가
 }
 

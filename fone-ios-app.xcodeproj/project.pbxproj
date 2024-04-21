@@ -182,6 +182,8 @@
 		36FB6B912B374D9900715EE9 /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB6B902B374D9900715EE9 /* BookmarkButton.swift */; };
 		AB04760F2B08F851003DF5EF /* JobOpeningInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB04760E2B08F851003DF5EF /* JobOpeningInfoProvider.swift */; };
 		AB0476112B08FB11003DF5EF /* JobInfoAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0476102B08FB11003DF5EF /* JobInfoAPIModel.swift */; };
+		AB08EACF2BCA6247004C3981 /* ReportInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08EACE2BCA6247004C3981 /* ReportInfoProvider.swift */; };
+		AB08EAD12BCA630B004C3981 /* ReportInfoAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08EAD02BCA630B004C3981 /* ReportInfoAPIModel.swift */; };
 		AB0F8E4C2AB324B7006D85F7 /* HomeInfoAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0F8E4B2AB324B7006D85F7 /* HomeInfoAPIModel.swift */; };
 		AB1442822B664CDB007CAC7F /* SalaryTypeBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1442812B664CDB007CAC7F /* SalaryTypeBottomSheet.swift */; };
 		AB1442842B664D7A007CAC7F /* SalaryTypeBottomSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB1442832B664D7A007CAC7F /* SalaryTypeBottomSheet.xib */; };
@@ -189,7 +191,12 @@
 		AB14428F2B6FA606007CAC7F /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB14428E2B6FA606007CAC7F /* WeekDay.swift */; };
 		AB1851462B1CA1110051D0DC /* RecruitDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1851442B1CA1110051D0DC /* RecruitDetailInfoViewController.swift */; };
 		AB1851472B1CA1110051D0DC /* RecruitDetailInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB1851452B1CA1110051D0DC /* RecruitDetailInfoViewController.xib */; };
+		AB18C22D2BC698E70001AF4C /* ReportBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB18C22C2BC698E70001AF4C /* ReportBottomSheetViewController.swift */; };
+		AB18C2302BC699130001AF4C /* ReportBottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB18C22F2BC699130001AF4C /* ReportBottomSheetViewModel.swift */; };
 		AB1915752B651A6300424256 /* JobInfoAPIRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1915742B651A6300424256 /* JobInfoAPIRequestModel.swift */; };
+		AB1A7B682BC41DAC005630AC /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1A7B662BC41DAC005630AC /* ReportViewController.swift */; };
+		AB1A7B692BC41DAC005630AC /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB1A7B672BC41DAC005630AC /* ReportViewController.xib */; };
+		AB1A7B6C2BC41DD0005630AC /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1A7B6B2BC41DD0005630AC /* ReportViewModel.swift */; };
 		AB1ADF2B2B1E016900C2F2DD /* RecruitWorkInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1ADF292B1E016900C2F2DD /* RecruitWorkInfoViewController.swift */; };
 		AB1ADF2C2B1E016900C2F2DD /* RecruitWorkInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB1ADF2A2B1E016900C2F2DD /* RecruitWorkInfoViewController.xib */; };
 		AB1CEAA82ABFD1D700E7E54F /* MainBannerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1CEAA62ABFD1D700E7E54F /* MainBannerModule.swift */; };
@@ -537,6 +544,8 @@
 		36FB6B902B374D9900715EE9 /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
 		AB04760E2B08F851003DF5EF /* JobOpeningInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOpeningInfoProvider.swift; sourceTree = "<group>"; };
 		AB0476102B08FB11003DF5EF /* JobInfoAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoAPIModel.swift; sourceTree = "<group>"; };
+		AB08EACE2BCA6247004C3981 /* ReportInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportInfoProvider.swift; sourceTree = "<group>"; };
+		AB08EAD02BCA630B004C3981 /* ReportInfoAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportInfoAPIModel.swift; sourceTree = "<group>"; };
 		AB0F8E4B2AB324B7006D85F7 /* HomeInfoAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInfoAPIModel.swift; sourceTree = "<group>"; };
 		AB1442812B664CDB007CAC7F /* SalaryTypeBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalaryTypeBottomSheet.swift; sourceTree = "<group>"; };
 		AB1442832B664D7A007CAC7F /* SalaryTypeBottomSheet.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SalaryTypeBottomSheet.xib; sourceTree = "<group>"; };
@@ -544,7 +553,12 @@
 		AB14428E2B6FA606007CAC7F /* WeekDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
 		AB1851442B1CA1110051D0DC /* RecruitDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitDetailInfoViewController.swift; sourceTree = "<group>"; };
 		AB1851452B1CA1110051D0DC /* RecruitDetailInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitDetailInfoViewController.xib; sourceTree = "<group>"; };
+		AB18C22C2BC698E70001AF4C /* ReportBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportBottomSheetViewController.swift; sourceTree = "<group>"; };
+		AB18C22F2BC699130001AF4C /* ReportBottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportBottomSheetViewModel.swift; sourceTree = "<group>"; };
 		AB1915742B651A6300424256 /* JobInfoAPIRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoAPIRequestModel.swift; sourceTree = "<group>"; };
+		AB1A7B662BC41DAC005630AC /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		AB1A7B672BC41DAC005630AC /* ReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
+		AB1A7B6B2BC41DD0005630AC /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 		AB1ADF292B1E016900C2F2DD /* RecruitWorkInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitWorkInfoViewController.swift; sourceTree = "<group>"; };
 		AB1ADF2A2B1E016900C2F2DD /* RecruitWorkInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecruitWorkInfoViewController.xib; sourceTree = "<group>"; };
 		AB1CEAA62ABFD1D700E7E54F /* MainBannerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBannerModule.swift; sourceTree = "<group>"; };
@@ -816,6 +830,7 @@
 				36B9D1AC2B3BF95200A1F91D /* ProfileInfoProvider.swift */,
 				AB1442872B665CAA007CAC7F /* ValidationProvider.swift */,
 				36323CD92B693E8200AC99ED /* CompetitionInfoProvider.swift */,
+				AB08EACE2BCA6247004C3981 /* ReportInfoProvider.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -844,6 +859,7 @@
 				36B9D1AA2B3BF75400A1F91D /* ProfileInfoAPIResponseModel.swift */,
 				36323CD72B693E6400AC99ED /* CompetitionInfoAPIModel.swift */,
 				369292FF2B85D2E000BA52AA /* EmptyData.swift */,
+				AB08EAD02BCA630B004C3981 /* ReportInfoAPIModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1397,7 +1413,7 @@
 				36AB6FD72B088E6700D9D6D0 /* LabelTextField.swift */,
 				36AB6FDB2B08A6BA00D9D6D0 /* LabelTextView.swift */,
 				362C80342B139D7F00489E7D /* LetterCountedTextView.swift */,
-				360E843D2B2984C000D4A540 /* ReportBottomSheet.swift */,
+				AB18C22E2BC698ED0001AF4C /* ReportBottomSheet */,
 				36FB6B902B374D9900715EE9 /* BookmarkButton.swift */,
 				36323CD52B68DF9200AC99ED /* HeartButton.swift */,
 			);
@@ -1429,6 +1445,26 @@
 				AB6E1BFF2B25D41C00594E69 /* RecruitDetailInfoViewModel.swift */,
 			);
 			path = RecruitDetailInfo;
+			sourceTree = "<group>";
+		};
+		AB18C22E2BC698ED0001AF4C /* ReportBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				360E843D2B2984C000D4A540 /* ReportBottomSheet.swift */,
+				AB18C22C2BC698E70001AF4C /* ReportBottomSheetViewController.swift */,
+				AB18C22F2BC699130001AF4C /* ReportBottomSheetViewModel.swift */,
+			);
+			path = ReportBottomSheet;
+			sourceTree = "<group>";
+		};
+		AB1A7B6A2BC41DB2005630AC /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				AB1A7B662BC41DAC005630AC /* ReportViewController.swift */,
+				AB1A7B672BC41DAC005630AC /* ReportViewController.xib */,
+				AB1A7B6B2BC41DD0005630AC /* ReportViewModel.swift */,
+			);
+			path = Report;
 			sourceTree = "<group>";
 		};
 		AB1ADF2D2B1E016E00C2F2DD /* RecruitWorkInfo */ = {
@@ -1657,6 +1693,7 @@
 				AB49A3412A81156300748484 /* FindIDPassword */,
 				AB49A3342A810AC600748484 /* Login */,
 				362866792A8B66B900CD42BC /* SignUp */,
+				AB1A7B6A2BC41DB2005630AC /* Report */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2096,6 +2133,7 @@
 				AB60023D2A7E375D000CF1FD /* Main.storyboard in Resources */,
 				ABCDD1792B00DA4F00A598A8 /* TitleCell.xib in Resources */,
 				ABCDD16C2B00B73300A598A8 /* JobOpeningDetailViewController.xib in Resources */,
+				AB1A7B692BC41DAC005630AC /* ReportViewController.xib in Resources */,
 				AB1CEAB82ABFD23A00E7E54F /* JobOpeningModule.xib in Resources */,
 				AB72BC8E2B1E073900EB02FE /* GenreCell.xib in Resources */,
 				AB849DDC2B1C9ACD00B58B9A /* RecruitContactInfoViewController.xib in Resources */,
@@ -2147,6 +2185,7 @@
 				AB1851462B1CA1110051D0DC /* RecruitDetailInfoViewController.swift in Sources */,
 				36A4D49B2B15C164008541E9 /* RegisterInterestViewModel.swift in Sources */,
 				36323CDA2B693E8200AC99ED /* CompetitionInfoProvider.swift in Sources */,
+				AB1A7B682BC41DAC005630AC /* ReportViewController.swift in Sources */,
 				362419D32AE33158007D1AFB /* SignUpSuccessViewModel.swift in Sources */,
 				AB49A33F2A810FE000748484 /* LoginViewController.swift in Sources */,
 				367D9C0F2AD9FBC900DA6C96 /* MyPageTabBarCollectionView.swift in Sources */,
@@ -2171,6 +2210,7 @@
 				362419D12AE319CF007D1AFB /* SignUpSelectionViewModel.swift in Sources */,
 				AB49A32D2A81053200748484 /* Scene.swift in Sources */,
 				367D9BBF2AC1572700DA6C96 /* Divider.swift in Sources */,
+				AB18C22D2BC698E70001AF4C /* ReportBottomSheetViewController.swift in Sources */,
 				AB48A2412B7647EA00007F24 /* RecruitContactLinkInfoViewController.swift in Sources */,
 				367D9BFE2AD7583500DA6C96 /* UITabBar+Extension.swift in Sources */,
 				360E47DC2B721D0500664120 /* LogoutBottomSheetViewModel.swift in Sources */,
@@ -2257,6 +2297,7 @@
 				36AB6FC72B05263E00D9D6D0 /* UISortButtonStackView.swift in Sources */,
 				AB67855C2AA3374F00ACD35C /* EmailSignUpViewController.swift in Sources */,
 				AB1CEAAD2ABFD20F00E7E54F /* ProfileModule.swift in Sources */,
+				AB18C2302BC699130001AF4C /* ReportBottomSheetViewModel.swift in Sources */,
 				367D9C2C2ADA5EC700DA6C96 /* ProfileRegistrationViewController.swift in Sources */,
 				ABB1BB0D2B397DD20012F962 /* FilterJobOpeningViewModel.swift in Sources */,
 				AB1442882B665CAA007CAC7F /* ValidationProvider.swift in Sources */,
@@ -2292,6 +2333,7 @@
 				367D9C342ADA657200DA6C96 /* JobRegistrationViewModel.swift in Sources */,
 				ABCDD1912B00F23000A598A8 /* SummaryCell.swift in Sources */,
 				AB49A32B2A8104E000748484 /* SceneCoordinatorType.swift in Sources */,
+				AB08EACF2BCA6247004C3981 /* ReportInfoProvider.swift in Sources */,
 				AB72BC902B1E097B00EB02FE /* Genre.swift in Sources */,
 				AB3F07192AADAA9200E54A25 /* FindIDCell.swift in Sources */,
 				3663DB122AF6843C005899BF /* JobUISegmentedControl.swift in Sources */,
@@ -2301,6 +2343,7 @@
 				36AB6FCC2B07528C00D9D6D0 /* JobTypeDropdown.swift in Sources */,
 				36C8B7EE2ADC853D008B6F88 /* SignUpTerms.swift in Sources */,
 				36D293D42A961FDB00171C77 /* SelectionBlock.swift in Sources */,
+				AB08EAD12BCA630B004C3981 /* ReportInfoAPIModel.swift in Sources */,
 				36D293D22A961E7300171C77 /* SignUpSelectionViewController.swift in Sources */,
 				AB998AFF2B21F976007E6214 /* RecruitWorkConditionViewController.swift in Sources */,
 				AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */,
@@ -2382,6 +2425,7 @@
 				AB532B2F2B0A279C003A6A57 /* CareerType.swift in Sources */,
 				36D293D22A961E7300171C77 /* SignUpSelectionViewController.swift in Sources */,
 				3682737B2B28660B00EB0629 /* JobHuntingProfileCollectionViewCell.swift in Sources */,
+				AB1A7B6C2BC41DD0005630AC /* ReportViewModel.swift in Sources */,
 				AB49A3442A81158900748484 /* FindIDPasswordViewController.swift in Sources */,
 				AB3458782B0CDB4400F4833D /* Result.swift in Sources */,
 				AB6E1C002B25D41C00594E69 /* RecruitDetailInfoViewModel.swift in Sources */,

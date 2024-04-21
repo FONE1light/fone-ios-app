@@ -25,10 +25,14 @@ enum JobHuntingDetailSection: Int, CaseIterable {
     case footer
 }
 
-class JobHuntingDetailViewController: UIViewController, ViewModelBindableType, MFMailComposeViewControllerDelegate {
+class JobHuntingDetailViewController: UIViewController, ViewModelBindableType, ReportableType, MFMailComposeViewControllerDelegate {
     
     var viewModel: JobHuntingDetailViewModel!
     var disposeBag = DisposeBag()
+    
+    var profileImageURL: String?
+    var nickname: String?
+    var userJob: String?
     
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var contactButton: CustomButton!
@@ -49,6 +53,8 @@ class JobHuntingDetailViewController: UIViewController, ViewModelBindableType, M
     }
     
     func bindViewModel() {
+        setReportInfo()
+        
         saveButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
@@ -96,6 +102,13 @@ class JobHuntingDetailViewController: UIViewController, ViewModelBindableType, M
             type: .more,
             viewController: self
         )
+        setReportInfo()
+    }
+    
+    private func setReportInfo() {
+        self.profileImageURL = viewModel.jobHuntingDetail.userProfileURL
+        self.nickname = viewModel.jobHuntingDetail.userNickname
+        self.userJob = viewModel.jobHuntingDetail.userJob
     }
     
     private func setCollectionView() {

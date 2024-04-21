@@ -55,8 +55,19 @@ extension RightBarButtonType {
         case .more:
             if let vc = viewController as? any ViewModelBindableType {
                 guard let viewModel = vc.viewModel as? CommonViewModel else { return }
-                let sceneCoordinator = viewModel.sceneCoordinator
-                sceneCoordinator.transition(to: .reportBottomSheet(sceneCoordinator), using: .customModal, animated: true)
+                if let reportableVC = vc as? ReportableType {
+                    var from = JobSegmentType.jobOpening
+                    var typeId = -1
+                    if let jobOpeningVC = reportableVC as? JobOpeningDetailViewController {
+                        from = .jobOpening
+                        typeId = jobOpeningVC.viewModel.jobOpeningDetail?.id ?? -1
+                    } else if let profileVC = reportableVC as? JobHuntingDetailViewController {
+                        from = .profile
+                        typeId = profileVC.viewModel.jobHuntingDetail.id ?? -1
+                    }
+                    let reportBottomSheetViewModel = ReportBottomSheetViewModel(sceneCoordinator: viewModel.sceneCoordinator, profileImageURL: reportableVC.profileImageURL, nickname: reportableVC.nickname, userJob: reportableVC.userJob, from: from, typeId: typeId)
+                    viewModel.sceneCoordinator.transition(to: .reportBottomSheet(reportBottomSheetViewModel), using: .customModal, animated: true)
+                }
             }
         }
     }

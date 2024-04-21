@@ -22,6 +22,7 @@ enum Scene {
     case emailSignUp(EmailSignUpViewModel)
     case notification
     case myPage(MyPageViewModel)
+    case report(ReportViewModel)
     
     // 마이페이지 내부
     case profile(ProfileViewModel) // 프로필 수정
@@ -59,7 +60,7 @@ enum Scene {
     case filterProfile(FilterProfileViewModel)
 
     // 모달
-    case reportBottomSheet(SceneCoordinatorType) // 신고하기 바텀시트
+    case reportBottomSheet(ReportBottomSheetViewModel) // 신고하기 바텀시트
     case profilePreview(ProfilePreviewViewModel) // 프로필 이미지 크게 보기
     case snsWebViewController(SNSWebViewModel) // 개인 SNS(웹)
     case salaryTypeBottomSheet(SceneCoordinatorType, PublishRelay<SalaryType>)
@@ -180,6 +181,13 @@ extension Scene {
             myPageVC.bind(viewModel: myPageViewModel)
             
             return myPageVC
+            
+        case .report(let reportViewModel):
+            var reportVC = ReportViewController()
+            
+            reportVC.bind(viewModel: reportViewModel)
+            
+            return reportVC
             
         case .profile(let profileViewModel):
             var profileVC = ProfileViewController()
@@ -429,9 +437,12 @@ extension Scene {
             
             return filterProfileVC
             
-        case .reportBottomSheet(let sceneCoordinator):
-            let bottomSheet = ReportBottomSheet()
-            let bottomSheetVC = BottomSheetViewController(view: bottomSheet, sceneCoordinator: sceneCoordinator)
+        case .reportBottomSheet(let reportBottomSheetViewModel):
+            var reportBottomSheetVC = ReportBottomSheetViewController()
+            DispatchQueue.main.async {
+                reportBottomSheetVC.bind(viewModel: reportBottomSheetViewModel)
+            }
+            let bottomSheetVC = BottomSheetViewController(view: reportBottomSheetVC.view, sceneCoordinator: reportBottomSheetViewModel.sceneCoordinator)
             
             return bottomSheetVC
             
