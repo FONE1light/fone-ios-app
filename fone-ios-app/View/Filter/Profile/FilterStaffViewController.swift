@@ -1,5 +1,5 @@
 //
-//  FilterProfileViewController.swift
+//  FilterStaffViewController.swift
 //  fone-ios-app
 //
 //  Created by 여나경 on 4/19/24.
@@ -10,8 +10,8 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
-class FilterProfileViewController: UIViewController, ViewModelBindableType {
-    var viewModel: FilterProfileViewModel!
+class FilterStaffViewController: UIViewController, ViewModelBindableType {
+    var viewModel: FilterStaffViewModel!
     private let disposeBag = DisposeBag()
     
     @IBOutlet weak var contentView: UIView!

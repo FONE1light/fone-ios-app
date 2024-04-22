@@ -56,8 +56,8 @@ enum Scene {
     
     case jobHuntingProfiles(JobHuntingProfilesViewModel) // 프로필 상세 > 이미지 더보기
     
-    case filterJobOpening(FilterJobOpeningViewModel)
-    case filterProfile(FilterProfileViewModel)
+    case filterActor(FilterActorViewModel)
+    case filterStaff(FilterStaffViewModel)
 
     // 모달
     case reportBottomSheet(ReportBottomSheetViewModel) // 신고하기 바텀시트
@@ -423,19 +423,19 @@ extension Scene {
             
             return jobHuntingProfilesVC
             
-        case .filterJobOpening(let filterJobOpeningViewModel):
-            var filterJobOpeningVC = FilterJobOpeningViewController()
+        case .filterActor(let filterActorViewModel):
+            var filterActorVC = FilterActorViewController()
             
-            filterJobOpeningVC.bind(viewModel: filterJobOpeningViewModel)
+            filterActorVC.bind(viewModel: filterActorViewModel)
             
-            return filterJobOpeningVC
+            return filterActorVC
             
-        case .filterProfile(let filterProfileViewModel):
-            var filterProfileVC = FilterProfileViewController()
+        case .filterStaff(let filterStaffViewModel):
+            var filterStaffVC = FilterStaffViewController()
             
-            filterProfileVC.bind(viewModel: filterProfileViewModel)
+            filterStaffVC.bind(viewModel: filterStaffViewModel)
             
-            return filterProfileVC
+            return filterStaffVC
             
         case .reportBottomSheet(let reportBottomSheetViewModel):
             var reportBottomSheetVC = ReportBottomSheetViewController()
