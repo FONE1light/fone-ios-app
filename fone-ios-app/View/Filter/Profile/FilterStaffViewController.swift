@@ -59,6 +59,7 @@ class FilterStaffViewController: UIViewController, ViewModelBindableType {
                 owner.genderSelectionBlock.selectedItems.accept(GenderType.allCases)
                 owner.ageSelectionView.selectedItems.accept(FilterAge.allCases)
                 owner.categorySelectionBlock.selectedItems.accept(Category.allCases)
+                owner.domainSelectionView.selectedItems.accept(Domain.allCases)
             }.disposed(by: rx.disposeBag)
         
         closeButton.rx.tap
