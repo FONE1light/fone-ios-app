@@ -76,6 +76,7 @@ extension JobOpeningInfoTarget: TargetType {
                 "ageMin": jobOpeningFilterRequest.ageMin ?? 0,
                 "categories": jobOpeningFilterRequest.stringCategories ?? "",
                 "genders": jobOpeningFilterRequest.stringGenders ?? "",
+                "domains": jobOpeningFilterRequest.stringDomains ?? "",
             ], encoding: URLEncoding.default)
         case .createJobOpenings(let jobOpeningRequest):
             return .requestJSONEncodable(jobOpeningRequest)
