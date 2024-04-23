@@ -67,16 +67,24 @@ class JobOpeningHuntingViewModel: CommonViewModel {
             }.disposed(by: disposeBag)
     }
 
-    func showFilter(_ tabType: JobSegmentType) {
+    func showFilter(_ tabType: JobSegmentType, jobType: Job) {
+        var filterOptions: BehaviorSubject<FilterOptions?>
+        
         switch tabType {
-        case .jobOpening:
-            let filterViewModel = FilterJobOpeningViewModel(sceneCoordinator: sceneCoordinator, filterOptionsSubject: selectedFilterOptionsJobOpening)
-            let filterScene = Scene.filterJobOpening(filterViewModel)
+        case .jobOpening: filterOptions = selectedFilterOptionsJobOpening
+        case .profile: filterOptions = selectedFilterOptionsProfile
+        }
+        
+        switch jobType {
+        case .actor:
+            let filterViewModel = FilterActorViewModel(sceneCoordinator: sceneCoordinator, filterOptionsSubject: filterOptions)
+            let filterScene = Scene.filterActor(filterViewModel)
             sceneCoordinator.transition(to: filterScene, using: .fullScreenModal, animated: true)
-        case .profile:
-            let filterProfileViewModel = FilterProfileViewModel(sceneCoordinator: sceneCoordinator, filterOptionsSubject: selectedFilterOptionsProfile)
-            let filterProfileScene = Scene.filterProfile(filterProfileViewModel)
+        case .staff:
+            let filterStaffViewModel = FilterStaffViewModel(sceneCoordinator: sceneCoordinator, filterOptionsSubject: filterOptions)
+            let filterProfileScene = Scene.filterStaff(filterStaffViewModel)
             sceneCoordinator.transition(to: filterProfileScene, using: .fullScreenModal, animated: true)
+        default: break
         }
     }
     
@@ -156,7 +164,6 @@ class JobOpeningHuntingViewModel: CommonViewModel {
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
-                print(response)
                 owner.isLoading = false
                 guard let newContent = response.data?.profiles?.content else {
                     owner.profilesPage = owner.profilesPage - 1 // 증가시킨 페이지번호 원복
@@ -206,6 +213,16 @@ class JobOpeningHuntingViewModel: CommonViewModel {
         case .profile:
             profilesPage = 0
             profilesContent = []
+        }
+    }
+    
+    /// ACTOR/STAFF 변경 시 필터 초기화
+    func resetFilter() {
+        switch selectedTab.value {
+        case .jobOpening:
+            selectedFilterOptionsJobOpening.onNext(nil)
+        case .profile:
+            selectedFilterOptionsProfile.onNext(nil)
         }
     }
 }

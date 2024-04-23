@@ -106,6 +106,9 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
                     jobTypeDropdown.setLabel(jobType.name)
                     jobTypeDropdown.switchSelectionState()
                 }
+                
+                // 필터 초기화
+                owner.viewModel.resetFilter()
             }.disposed(by: disposeBag)
         
         viewModel.selectedTab.withUnretained(self)
@@ -190,7 +193,7 @@ class JobOpeningHuntingViewController: UIViewController, ViewModelBindableType {
             .withUnretained(self)
             .bind { owner, _ in
                 guard let tabType = owner.segmentedControl.selectedSegmentType else { return }
-                owner.viewModel.showFilter(tabType)
+                owner.viewModel.showFilter(tabType, jobType: owner.viewModel.selectedJobType.value)
             }.disposed(by: disposeBag)
         
         floatingButton.rx.tap

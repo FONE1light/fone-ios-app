@@ -1,5 +1,5 @@
 //
-//  FilterProfileViewModel.swift
+//  FilterStaffViewModel.swift
 //  fone-ios-app
 //
 //  Created by 여나경 on 4/19/24.
@@ -7,7 +7,7 @@
 
 import RxSwift
 
-final class FilterProfileViewModel: CommonViewModel {
+final class FilterStaffViewModel: CommonViewModel {
     
     let filterOptionsSubject: BehaviorSubject<FilterOptions?>
 
