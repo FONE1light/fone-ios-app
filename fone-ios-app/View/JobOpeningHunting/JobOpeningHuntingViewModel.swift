@@ -91,10 +91,17 @@ class JobOpeningHuntingViewModel: CommonViewModel {
         
         let sort = sortOption.serverParameter ?? ""
         
+        var page: Int
+        
+        switch selectedTab {
+        case .jobOpening: page = jobOpeningsPage
+        case .profile: page = profilesPage
+        }
+        
         let filterRequest = FilterRequest(
             type: jobType.name,
             sort: sort,
-            page: jobOpeningsPage,
+            page: page,
             ageMax: filterOptions?.ageMax,
             ageMin: filterOptions?.ageMin,
             stringCategories: filterOptions?.stringCategories,
