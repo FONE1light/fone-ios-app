@@ -9,6 +9,7 @@ import UIKit
 
 protocol Selection {
     var name: String { get }
+    var serverName: String { get }
     
     var tagTextColor: UIColor? { get }
     var tagBackgroundColor: UIColor? { get }
@@ -21,6 +22,10 @@ enum Job: Selection, CaseIterable {
     case normal
     case hunter
     
+    static func getType(name: String?) -> Job? {
+        Job.allCases.filter { $0.name == name }.first
+    }
+    
     var name: String {
         switch self {
         case .actor: return "ACTOR"
@@ -30,6 +35,14 @@ enum Job: Selection, CaseIterable {
         }
     }
     
+    // 프로필 등록하기 화면의 navigationBar에 사용
+    var koreanName: String {
+        switch self {
+        case .actor: return "배우"
+        case .staff: return "스태프"
+        default: return ""
+        }
+    }
     var serverName: String {
         return self.name
     }

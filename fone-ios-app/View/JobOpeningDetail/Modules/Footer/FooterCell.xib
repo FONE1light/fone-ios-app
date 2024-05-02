@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Regular.ttf">
+            <string>Pretendard-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="FooterCell" customModule="fone_ios_app" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="187"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="187"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="82T-70-deh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="187"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nkf-Fj-zpt">
+                                <rect key="frame" x="16" y="16.000000000000004" width="343" height="57.333333333333343"/>
+                                <string key="text">본 정보는 게시된 담당자측에서 제공한 자료이며, 에프원은 기재된 내용에 대한 오류와 사용자가 이를 신뢰하여 취한 조취에 대해 책임을 지지 않습니다. 또한 누구든 본 정보를 통한 에프원 동의 없이 재배포할 수 없습니다. 부적합한 공고는 신고하기를 통해 알려주세요. </string>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                <color key="textColor" red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="구인구직이 아닌 광고 등의 목적으로 개인정보를 이용할 경우 법적 처벌을 받을 수 있습니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oxf-6t-BXn">
+                                <rect key="frame" x="16" y="89.333333333333329" width="343" height="28.666666666666671"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                <color key="textColor" red="0.61960784310000006" green="0.61960784310000006" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="nkf-Fj-zpt" secondAttribute="trailing" constant="16" id="8Lh-mL-CO2"/>
+                            <constraint firstAttribute="trailing" secondItem="Oxf-6t-BXn" secondAttribute="trailing" constant="16" id="DRB-qx-acR"/>
+                            <constraint firstItem="Oxf-6t-BXn" firstAttribute="top" secondItem="nkf-Fj-zpt" secondAttribute="bottom" constant="16" id="ZPV-IG-WBZ"/>
+                            <constraint firstItem="nkf-Fj-zpt" firstAttribute="leading" secondItem="82T-70-deh" secondAttribute="leading" constant="16" id="eFl-eL-mvj"/>
+                            <constraint firstItem="nkf-Fj-zpt" firstAttribute="top" secondItem="82T-70-deh" secondAttribute="top" constant="16" id="jbk-cZ-Dkh"/>
+                            <constraint firstItem="Oxf-6t-BXn" firstAttribute="leading" secondItem="82T-70-deh" secondAttribute="leading" constant="16" id="l2z-jD-JXs"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="82T-70-deh" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="14h-ZK-CIh"/>
+                <constraint firstAttribute="trailing" secondItem="82T-70-deh" secondAttribute="trailing" id="DFa-Iu-UY6"/>
+                <constraint firstItem="82T-70-deh" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="SFK-1u-Qp7"/>
+                <constraint firstAttribute="bottom" secondItem="82T-70-deh" secondAttribute="bottom" id="w7a-YV-fUU"/>
+            </constraints>
+            <point key="canvasLocation" x="44" y="20"/>
+        </collectionViewCell>
+    </objects>
+</document>

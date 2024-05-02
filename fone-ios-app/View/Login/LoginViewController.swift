@@ -26,27 +26,29 @@ class LoginViewController: UIViewController, ViewModelBindableType {
     @IBOutlet weak var emailSignUpButton: UIButton!
     @IBOutlet weak var questionButton: UIButton!
     
-    func bindViewModel() {
+    func bindViewModel() {        
         kakaoLoginButton.rx.tap
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .withUnretained(self)
-            .subscribe(onNext: { _ in
-                SocialLoginManager.shared.loginWithKakaoTalk()
+            .subscribe(onNext: { owner, _ in
+                owner.viewModel.loginWithKakaoTalk()
             })
             .disposed(by: rx.disposeBag)
         
         googleLoginButton.rx.tap
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .withUnretained(self)
-            .subscribe(onNext: { _ in
-                SocialLoginManager.shared.loginWithGoogle(presentingVC: self)
+            .subscribe(onNext: { owner, _ in
+                owner.viewModel.loginWithGoogle(presentingVC: owner)
             })
             .disposed(by: rx.disposeBag)
         
         appleLoginButton.rx.tap
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .withUnretained(self)
-            .subscribe(onNext: { _ in
-                SocialLoginManager.shared.loginWithApple(presentingVC: self)
+            .subscribe(onNext: { owner, _ in
+                owner.viewModel
+                    .loginWithApple(presentingVC: owner)
             })
             .disposed(by: rx.disposeBag)
         

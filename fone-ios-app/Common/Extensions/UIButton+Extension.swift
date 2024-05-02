@@ -11,7 +11,7 @@ extension UIButton {
     func setEnabled(isEnabled: Bool) {
         self.isEnabled = isEnabled
         if self.isEnabled {
-            self.backgroundColor = UIColor.red_CE0B39
+            self.backgroundColor = UIColor.red_C0002C
             self.applyShadow(shadowType: .shadowBt)
         } else {
             self.backgroundColor = UIColor.gray_C5C5C5

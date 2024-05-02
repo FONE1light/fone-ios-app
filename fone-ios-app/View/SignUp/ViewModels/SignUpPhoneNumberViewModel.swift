@@ -49,6 +49,8 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
     private var timer: Timer?
     private var leftSeconds = 180
     
+    private var authNumber: String?
+    
     /// 휴대전화번호가 유효한지(자릿수 체크) 확인
     func checkPhoneNumberState(_ phoneNumber: String?) {
         if let phoneNumber = phoneNumber,
@@ -80,25 +82,56 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
     }
     
     /// 인증번호 전송
-    func sendAuthNumber() {
-        ToastManager.show(
-            "인증번호를 전송하였습니다.\n(인증번호: 000000)",
-            positionType: .withButton
-        )
-        // TODO: 인증번호 전송 API
+    func sendAuthNumber(_ phoneNumber: String?) {
+        guard let phoneNumber = phoneNumber?.phoneNumberFormatted() else { return }
+        
+        let code = Int.random(in: 100000...999999)
+        authNumber = "\(code)"
+        guard let authNumber = authNumber else { return }
+        
+        var toastMessage = "인증번호를 전송하였습니다."
+        
+        // 디버그 모드이거나 앱 심사 시 인증번호 노출
+        if APISetting.shared.config == .DEV || isAppleReviewInProcess(phoneNumber: phoneNumber) {
+            toastMessage += "\n(인증번호: \(authNumber))"
+            ToastManager.show(
+                toastMessage,
+                positionType: .withButton
+            )
+        } else {
+            userInfoProvider.rx.request(.sendSMSCode(code: authNumber, phoneNumber: phoneNumber))
+                .mapObject(Result<EmptyData>.self) // messageId 내려오지만 필요 없어서 EmptyData 사용
+                .asObservable()
+                .withUnretained(self)
+                .subscribe(
+                    onNext: { owner, response in
+                        if response.result?.isSuccess == true {
+                            ToastManager.show(
+                                toastMessage,
+                                positionType: .withButton
+                            )
+                        }
+                    }, onError: { error in
+                        error.showToast(modelType: String.self, positionType: .withButton)
+                    }).disposed(by: disposeBag)
+        }
         
         startTimer()
         
         phoneNumberAvailableState.accept(.sent)
     }
     
+    private func isAppleReviewInProcess(phoneNumber: String?) -> Bool {
+        guard let isAppleReviewInProcess = RemoteConfigManager.shared.isAppleReviewInProcess else { return false }
+        return phoneNumber == "000-0000-0000" && isAppleReviewInProcess
+    }
+    
     /// 인증번호 유효성 확인
     func validateAuthNumber(phoneNumber: String?, authNumber: String?) {
-        // TODO: 인증번호 확인 API, 결과 따라 분기
-        if authNumber == "000000" { // 성공
+        if authNumber == self.authNumber {
             showAuthSuccessPopup()
             self.phoneNumber = phoneNumber
-        } else { // 실패
+        } else {
             ToastManager.show(
                 "올바른 인증번호를 입력해주세요.",
                 positionType: .withButton
@@ -167,8 +200,8 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
             interests: signUpSelectionInfo?.interests ?? [],
             
             nickname: signUpPersonalInfo?.nickname ?? "",
-            birthday: signUpPersonalInfo?.birthday ?? "",
-            gender: signUpPersonalInfo?.gender ?? "",
+            birthday: signUpPersonalInfo?.birthday ?? nil,
+            gender: signUpPersonalInfo?.gender ?? nil,
             profileUrl: signUpPersonalInfo?.profileURL ?? "",
             
             phoneNumber: phoneNumber?.phoneNumberFormatted() ?? "",
@@ -191,7 +224,7 @@ class SignUpPhoneNumberViewModel: CommonViewModel {
                 }
             }, onError: { error in
                 print(error.localizedDescription)
-                "\(error)".toast(positionType: .withButton)
+                error.showToast(modelType: EmptyData.self, positionType: .withButton)
             }).disposed(by: disposeBag)
         
     }

@@ -37,6 +37,10 @@ extension HomeInfoTarget: TargetType {
             return ["Authorization": authorization]
         }
     }
+    
+    var validationType: ValidationType {
+        return .successCodes
+    }
 }
 
-let homeInfoProvider = MoyaProvider<HomeInfoTarget>()
+let homeInfoProvider = MoyaProvider<HomeInfoTarget>(session: Session(interceptor: AuthInterceptor.shared))

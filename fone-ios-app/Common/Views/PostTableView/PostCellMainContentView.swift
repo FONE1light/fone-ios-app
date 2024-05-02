@@ -8,14 +8,19 @@
 import UIKit
 import Then
 import SnapKit
+import RxCocoa
 
 class PostCellMainContentView: UIView {
     
     var hasBookmark: Bool
+    var hasJobTag: Bool
     
     private let imageView = UIImageView().then {
         $0.cornerRadius = 5
         $0.backgroundColor = .gray_D9D9D9
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
+        $0.image = UIImage(resource: .defaultProfile)
     }
     
     private let horizontalStackView = UIStackView().then {
@@ -32,47 +37,62 @@ class PostCellMainContentView: UIView {
         $0.font = .font_b(14)
         $0.textColor = .gray_161616
         $0.numberOfLines = 2
-        $0.text = "성균관대 영상학과에서 단편영화<Duet>배우 모집합니다."
     }
     
-    private let bookmarkImageView = UIImageView().then {
-        $0.image = UIImage(named: "Bookmark")
+    private let bookmarkButton = BookmarkButton()
+    
+    var bookmarkButtonTap: ControlEvent<Void> {
+        bookmarkButton.rx.tap
+    }
+    var isBookmarkButtonSelected: Bool {
+        bookmarkButton.isSelected
     }
     
     private let detailInfoBlock = DetailInfoBlock()
     
     private var jobTag = Tag()
     
-    init(hasBookmark: Bool = true) {
+    init(hasBookmark: Bool = true, hasJobTag: Bool = false) {
         self.hasBookmark = hasBookmark
-        super.init(frame: .zero)
+        self.hasJobTag = hasJobTag
         
+        super.init(frame: .zero)
+        jobTag.isHidden = !hasJobTag
         setupUI()
         setConstraints()
     }
     
+    // TODO: == nil 삭제
     func configure(
-        isOfficial: Bool = false,
-        job: Job, // actor/staff
+        imageUrl: String? = nil,
+        isVerified: Bool? = nil,
         categories: [Category], // 작품 성격 최대 2개
-        deadline: String? = nil,
-        coorporate: String? = nil,
-        gender: String? = nil,
-        period: String? = nil,
-        casting: String? = nil,
-        field: String? = nil
+        isScrap: Bool? = nil,
+        title: String? = nil,
+        dDay: String? = nil,
+        genre: String? = nil, // 배우 - 장르 중 첫 번째 값
+        domain: String? = nil, // 스태프 - 분야 중 첫 번째 값
+        produce: String? = nil,
+        job: Job? = nil
     ) {
+        imageView.load(url: imageUrl)
+        
         tagList.setValues(
-            isOfficial: isOfficial,
+            isVerified: isVerified ?? false,
             categories: categories
         )
         
+        bookmarkButton.isSelected = isScrap ?? false
+        
+        titleLabel.text = title
+        
         detailInfoBlock.setValues(
-            dDay: "D-15",
-            coorporate: coorporate,
-            field: field ?? casting
+            dDay: dDay,
+            domainOrGenre: domain ?? genre,
+            produce: produce
         )
         
+        guard let job = job else { return }
         jobTag.setType(as: job)
     }
     
@@ -94,7 +114,7 @@ class PostCellMainContentView: UIView {
             }
         
         if hasBookmark {
-            horizontalStackView.addArrangedSubview(bookmarkImageView)
+            horizontalStackView.addArrangedSubview(bookmarkButton)
         }
         
         [tagList, titleLabel]
@@ -113,22 +133,25 @@ class PostCellMainContentView: UIView {
         
         horizontalStackView.snp.makeConstraints {
             $0.top.equalTo(imageView)
-            $0.leading.equalTo(imageView.snp.trailing).offset(7)
+            $0.leading.equalTo(imageView.snp.trailing).offset(8)
             $0.trailing.equalToSuperview()
         }
         
         detailInfoBlock.snp.makeConstraints {
             $0.top.equalTo(horizontalStackView.snp.bottom).offset(6)
             $0.leading.equalTo(horizontalStackView)
+            if hasJobTag {
+                $0.trailing.equalTo(jobTag.snp.leading).offset(-10)
+            } else {
+                $0.trailing.equalToSuperview()
+            }
         }
         
         jobTag.snp.makeConstraints {
-            $0.leading.equalTo(detailInfoBlock.snp.trailing).offset(10) // FIXME: 디자인 확정 후 값 수정
-            $0.trailing.equalTo(horizontalStackView.snp.trailing)
-            $0.bottom.equalToSuperview()
+            $0.trailing.bottom.equalToSuperview()
         }
         
-        bookmarkImageView.snp.makeConstraints {
+        bookmarkButton.snp.makeConstraints {
             $0.size.equalTo(24)
         }
         
@@ -151,3 +174,26 @@ class PostCellMainContentView: UIView {
     }
 }
 
+extension PostCellMainContentView {
+    func toggleBookmarkButton() -> Bool {
+        return bookmarkButton.toggle()
+    }
+}
+
+extension PostCellMainContentView {
+    /// 모든 값 초기화. `prepareForReuse`에서 사용
+    func initialize() {
+        imageView.image = UIImage(resource: .defaultProfile)
+        
+        tagList.setValues(
+            isVerified: false,
+            categories: []
+        )
+        
+        bookmarkButton.isSelected = false
+        
+        titleLabel.text = nil
+        
+        detailInfoBlock.setValues()
+    }
+}

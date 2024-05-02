@@ -5,7 +5,7 @@
 //  Created by 여나경 on 10/20/23.
 //
 
-import Foundation
+import UIKit
 import RxSwift
 import RxCocoa
 
@@ -34,6 +34,7 @@ class SignUpPersonalInfoViewModel: CommonViewModel {
     var profileUrl: String?
     
     var nicknameAvailbleState = BehaviorRelay<NicknameAvailableState>(value: .cannotCheck)
+    var profileImage = PublishRelay<UIImage>()
     
     func checkNicknameDuplication(_ nickname: String) {
         guard nickname.count >= 3 && nickname.count <= 8 else { return }
@@ -42,8 +43,6 @@ class SignUpPersonalInfoViewModel: CommonViewModel {
             .asObservable()
             .withUnretained(self)
             .subscribe(onNext: { owner, response in
-                print("received!")
-                print("response: \(response)")
                 if response.data?.isDuplicate == false {
                     owner.nickname = nickname
                     owner.nicknameAvailbleState.accept(.available)
@@ -52,8 +51,6 @@ class SignUpPersonalInfoViewModel: CommonViewModel {
                     owner.nicknameAvailbleState.accept(.duplicated)
                 }
             }, onError: { error in
-                print("\(error)")
-                self.nicknameAvailbleState.accept(.available)
                 error.localizedDescription.toast(positionType: .withButton)
             }).disposed(by: disposeBag)
     }
@@ -68,33 +65,6 @@ extension SignUpPersonalInfoViewModel {
         return nickname.prefixString(8)
     }
     
-    /// 생년월일을 형식에 맞게 수정하여 반환
-    /// - 마지막은 숫자(유저가 직접 dash를 지우는 일이 없도록 함)
-    /// - 4글자, 6글자 초과 시 dash 추가
-    /// - 8글자까지 입력 가능
-    func formatBirthString(_ birth: String?) -> String? {
-        guard let birth = birth else { return nil }
-
-        if birth.last == "-" {
-            return String(birth.prefix(birth.count - 1))
-        }
-        
-        var birthNumbers = birth.replacingOccurrences(of: "-", with: "")
-        birthNumbers = String(birthNumbers.prefix(8))
-        
-        var newBirthString = birthNumbers
-        
-        if birthNumbers.count > 6 {
-            newBirthString.insert("-", at: newBirthString.index(newBirthString.startIndex, offsetBy: 6))
-        }
-        
-        if birthNumbers.count > 4 {
-            newBirthString.insert("-", at: newBirthString.index(newBirthString.startIndex, offsetBy: 4))
-        }
-        
-        return newBirthString
-    }
-    
     func checkNicknameAvailbleState(_ nickname: String?) {
         if let nickname = nickname,
            nickname.count >= 3 {
@@ -106,9 +76,30 @@ extension SignUpPersonalInfoViewModel {
 }
 
 extension SignUpPersonalInfoViewModel {
-    func uploadProfileImage() {
-        // TODO: 이미지 업로드 API 후 url 저장
-        profileUrl = "<uploadedURL>"
+    func uploadProfileImage(_ pickedImage: UIImage) {
+        // 필요 시 compressionQuality 조정
+        let imageData = pickedImage.jpegData(compressionQuality: 0.1)?.base64EncodedString() ?? ""
+        let imageInfo = ImageInfoToUpload(
+            imageData: imageData,
+            resource: "/image-upload/user-profile",
+            stageVariables: StageVariables(stage: "prod")
+        )
+        
+        let imageUploadRequestModel = ImageUploadRequestModel(images: [imageInfo])
+        imageUploadProvider.rx.request(.uploadImage(images: imageUploadRequestModel))
+            .mapObject(ImageUploadResponseModel.self)
+            .asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, response in
+                if response.result == "SUCCESS" {
+                    owner.profileUrl = response.data?.first?.imageUrl
+                    owner.profileImage.accept(pickedImage)
+                } else {
+                    response.message?.toast(positionType: .withButton)
+                }
+            }, onError: { error in
+                error.localizedDescription.toast(positionType: .withButton)
+            }).disposed(by: disposeBag)
     }
 }
 
@@ -121,7 +112,7 @@ extension SignUpPersonalInfoViewModel {
         phoneNumberViewModel.signUpPersonalInfo = SignUpPersonalInfo(
             nickname: nickname,
             birthday: birthday,
-            gender: gender?.rawValue,
+            gender: gender?.serverName,
             profileURL: profileUrl
         )
         

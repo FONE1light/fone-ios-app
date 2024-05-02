@@ -7,28 +7,27 @@
 
 import Foundation
 
+// MARK: - UserInfoModel
 struct UserInfoModel: Codable {
-    // MARK: - UserInfoModel
-    struct UserInfoModel: Codable {
-        let user: User
-    }
+    let user: User?
 }
 
 // MARK: - User
 struct User: Codable {
-    let agreeToPersonalInformation, agreeToTermsOfServiceTermsOfUse: Bool
-    let birthday, email: String
-    let enabled: Bool
-    let gender: String
-    let id: Int
-    let identifier: String
-    let interests: [String]
-    let isReceiveMarketing: Bool
-    let job, loginType, nickname, phoneNumber: String
-    let profileURL: String
+    let agreeToPersonalInformation, agreeToTermsOfServiceTermsOfUse: Bool?
+    let birthday, email: String?
+    let enabled: Bool?
+    let gender: String?
+    let id: Int?
+    let identifier: String?
+    let interests: [String]?
+    let isReceiveMarketing: Bool?
+    let job, loginType, nickname, phoneNumber: String?
+    let profileURL: String?
+    let isVerified: Bool?
     
     enum CodingKeys: String, CodingKey {
-        case agreeToPersonalInformation, agreeToTermsOfServiceTermsOfUse, birthday, email, enabled, gender, id, identifier, interests, isReceiveMarketing, job, loginType, nickname, phoneNumber
+        case agreeToPersonalInformation, agreeToTermsOfServiceTermsOfUse, birthday, email, enabled, gender, id, identifier, interests, isReceiveMarketing, job, loginType, nickname, phoneNumber, isVerified
         case profileURL = "profileUrl"
     }
 }

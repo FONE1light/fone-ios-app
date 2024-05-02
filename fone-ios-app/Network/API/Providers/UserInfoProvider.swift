@@ -16,12 +16,20 @@ enum UserInfoTarget {
     case emailSignIn(emailSignInInfo: EmailSignInInfo)
     case reissueToken(tokenInfo: TokenInfo)
     case sendSMS(phoneNumber: String)
+    /// 회원가입 시 사용하는 SMS 전송
+    case sendSMSCode(code: String, phoneNumber: String)
+    case checkEmail(email: String)
+    case sendEmail(email: String)
+    case validateEmail(code: String, email: String)
     case emailSignUp(EmailSignUpInfo)
     case socialSignUp(SocialSignUpInfo)
     case findID(code: String, phoneNumber: String)
     case findPassword(code: String, phoneNumber: String)
     case resetPassword(password: String, phoneNumber: String, token: String)
     case socialSignIn(accessToken: String, loginType: String)
+    case modifyUserInfo(userInfo: UserInfo)
+    case logout
+    case signout
 }
 
 extension UserInfoTarget: TargetType {
@@ -41,6 +49,14 @@ extension UserInfoTarget: TargetType {
             return "/api/v1/users/reissue"
         case .sendSMS:
             return "/api/v1/users/sms/send"
+        case .sendSMSCode:
+            return "/api/v1/sms/send-sms"
+        case .checkEmail:
+            return "/api/v1/users/email/duplicate"
+        case .sendEmail:
+            return "/api/v1/users/email/send"
+        case .validateEmail:
+            return "/api/v1/users/email/validate"
         case .emailSignUp:
             return "/api/v1/users/email/sign-up"
         case .socialSignUp:
@@ -53,6 +69,12 @@ extension UserInfoTarget: TargetType {
             return "/api/v1/users/password"
         case .socialSignIn:
             return "/api/v1/users/social/sign-in"
+        case .modifyUserInfo:
+            return "/api/v1/users"
+        case .logout:
+            return "/api/v1/users/log-out"
+        case .signout:
+            return "/api/v1/users/sign-out"
         }
     }
     
@@ -60,9 +82,9 @@ extension UserInfoTarget: TargetType {
         switch self {
         case .fetchMyPage, .checkNicknameDuplication:
             return .get
-        case .emailSignIn, .reissueToken, .sendSMS, .emailSignUp, .findID, .findPassword, .socialSignIn, .socialSignUp:
+        case .emailSignIn, .reissueToken, .sendSMS, .sendSMSCode, .checkEmail, .sendEmail, .validateEmail, .emailSignUp, .findID, .findPassword, .socialSignIn, .socialSignUp, .logout:
             return .post
-        case .resetPassword:
+        case .resetPassword, .modifyUserInfo, .signout:
             return .patch
         }
     }
@@ -78,6 +100,14 @@ extension UserInfoTarget: TargetType {
             return .requestJSONEncodable(tokenInfo)
         case .sendSMS(let phoneNumber):
             return .requestParameters(parameters: ["phoneNumber": phoneNumber], encoding: JSONEncoding.default)
+        case .sendSMSCode(let code, let phoneNumber):
+            return .requestParameters(parameters: ["code": code, "phone": phoneNumber], encoding: JSONEncoding.default)
+        case .checkEmail(let email):
+            return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
+        case .sendEmail(let email):
+            return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
+        case .validateEmail(let code, let email):
+            return .requestParameters(parameters: ["code": code, "email": email], encoding: JSONEncoding.default)
         case .emailSignUp(let emailSignUpInfo): // TODO: 확인 후 통일
             return .requestJSONEncodable(emailSignUpInfo)
         case .socialSignUp(let socialSignUpInfo):
@@ -90,6 +120,8 @@ extension UserInfoTarget: TargetType {
             return .requestParameters(parameters: ["password": password, "phoneNumber": phoneNumber, "token": token], encoding: JSONEncoding.default)
         case .socialSignIn(let accessToken, let loginType):
             return .requestParameters(parameters: ["accessToken": accessToken, "loginType": loginType], encoding: JSONEncoding.default)
+        case .modifyUserInfo(let userInfo):
+            return .requestJSONEncodable(userInfo)
         default:
             return .requestPlain
         }
@@ -102,9 +134,12 @@ extension UserInfoTarget: TargetType {
 //        commonHeaders["Content-Type"] = "application/json;charset=UTF-8"
         
         switch self {
-        case .fetchMyPage:
-            commonHeaders[Tokens.shared.accessToken.key] = Tokens.shared.accessToken.value // TODO: MOCK,
-        case .emailSignIn, .reissueToken, .sendSMS, .emailSignUp, .findID, .findPassword, .resetPassword, .socialSignIn, .socialSignUp:
+        case .emailSignIn, .reissueToken, .sendSMS, .checkEmail, .emailSignUp, .findID, .findPassword, .resetPassword, .socialSignIn, .socialSignUp:
+            commonHeaders["Content-Type"] = "application/json;charset=UTF-8"
+        case .fetchMyPage, .modifyUserInfo, .logout, .signout:
+            let accessToken = Tokens.shared.accessToken.value
+            let authorization = "Bearer \(accessToken)"
+            commonHeaders["Authorization"] = authorization
             commonHeaders["Content-Type"] = "application/json;charset=UTF-8"
         default:
             break
@@ -112,11 +147,13 @@ extension UserInfoTarget: TargetType {
         return commonHeaders
     }
     
-    
+    var validationType: ValidationType {
+        return .successCodes
+    }
 }
 
 #if DEBUG
-    let userInfoProvider = MoyaProvider<UserInfoTarget>(
+    let userInfoProvider = MoyaProvider<UserInfoTarget>(session: Session(interceptor: AuthInterceptor.shared)
 //        requestClosure: TimeoutClosure,
 //        plugins: [NetworkLoggerPlugin(configuration: .init(formatter: .init(responseData: JSONResponseDataFormatter), logOptions: .verbose))]
     )
@@ -125,3 +162,4 @@ extension UserInfoTarget: TargetType {
 //        requestClosure: TimeoutClosure
     )
 #endif
+let tokenProvider = MoyaProvider<UserInfoTarget>()

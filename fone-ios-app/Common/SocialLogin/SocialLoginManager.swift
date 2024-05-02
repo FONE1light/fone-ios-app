@@ -16,9 +16,14 @@ import FirebaseAuth
 import GoogleSignIn
 
 import AuthenticationServices
+import Moya
 
-enum SocialLoginType: String {
+enum SocialLoginType: String, CaseIterable {
     case APPLE, GOOGLE, KAKAO
+    
+    static func getType(string: String?) -> SocialLoginType? {
+        SocialLoginType.allCases.filter { $0.rawValue == string }.first
+    }
 }
 
 final class SocialLoginManager {
@@ -39,6 +44,11 @@ final class SocialLoginManager {
         FirebaseApp.configure()
     }
     
+    /// currentVC가 바뀐 최신 SceneCoordnator를 가지고 있지 않은 경우 SceneCoordinator를 업데이트 하기 위해 사용
+    func updateCoordinator(_ sceneCoordinator: SceneCoordinatorType) {
+        self.sceneCoordinator = sceneCoordinator
+    }
+    
     func loginWithKakaoTalk() {
         // 카카오톡 설치 여부 확인
         if (UserApi.isKakaoTalkLoginAvailable()) {
@@ -47,7 +57,17 @@ final class SocialLoginManager {
                     print(error)
                 }
                 else {
-                    print("loginWithKakaoTalk() success.")
+                    let accessToken = oauthToken?.accessToken ?? ""
+                    self.getKakaoUserEmailAndName()
+                    self.socialSignIn(accessToken: accessToken, loginType: SocialLoginType.KAKAO.rawValue)
+                }
+            }
+        } else {
+            UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+                if let error = error {
+                    print(error)
+                }
+                else {
                     let accessToken = oauthToken?.accessToken ?? ""
                     self.getKakaoUserEmailAndName()
                     self.socialSignIn(accessToken: accessToken, loginType: SocialLoginType.KAKAO.rawValue)
@@ -69,7 +89,6 @@ final class SocialLoginManager {
                 print(error as Any)
                 return
             }
-            
             guard let user = result?.user,
                   let idToken = user.idToken?.tokenString,
                   let email = user.profile?.email else { return }
@@ -105,9 +124,16 @@ final class SocialLoginManager {
                 } else {
                     owner.moveToSocialSignUp(accessToken: accessToken, loginType: loginType)
                 }
-            }, onError: { error in
+            }, onError: { [weak self] error in
+                guard let statusCode = (error as? MoyaError)?.response?.statusCode else { return }
+                switch statusCode {
+                case 400...401:
+                    self?.moveToSocialSignUp(accessToken: accessToken, loginType: loginType)
+                    return
+                default: break
+                }
                 print(error.localizedDescription)
-                "\(error)".toast(positionType: .withButton)
+                error.showToast(modelType: EmptyData.self)
             }).disposed(by: disposeBag)
     }
     
@@ -164,6 +190,35 @@ extension SocialLoginManager {
             self.email = user?.kakaoAccount?.email ?? ""
             self.name = user?.kakaoAccount?.name ?? user?.kakaoAccount?.profile?.nickname
         }
+    }
+}
+
+extension SocialLoginManager {
+    func logoutFromKakaoTalk() {
+        UserApi.shared.logout { error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+        }
+    }
+    
+    func logoutFromGoogle() {
+        GIDSignIn.sharedInstance.signOut()
+    }
+}
+
+extension SocialLoginManager {
+    func disconnectKakaoTalkLogin() {
+        UserApi.shared.unlink {(error) in
+            if let error = error {
+                print(error)
+            }
+        }
+    }
+    
+    func disconnectGoogleLogin() {
+        GIDSignIn.sharedInstance.disconnect()
     }
 }
 

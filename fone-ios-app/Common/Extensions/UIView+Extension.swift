@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxRelay
 
 extension UIView {
     @IBInspectable var borderColor: UIColor {
@@ -103,6 +104,43 @@ extension UIView {
             self.borderColor = .crimson_FF5841
         } else {
             self.borderWidth = 0
+        }
+    }
+}
+
+extension UIView {
+    /// 디바이스 상단의 노치 여백 반환
+    static var notchTop: CGFloat {
+        return UIApplication
+            .keyWindow?
+            .windowScene?
+            .statusBarManager?
+            .statusBarFrame.size.height ?? 0
+    }
+    
+    static var tabBarHeight: CGFloat {
+        return UIApplication.viewOfKeyWindow?.subviews[safe: 1]?.frame.height ?? 0
+    }
+}
+
+extension UIView: Reusable {
+    /// XIB로 만든 UIView를 코드로 로드
+    func loadNib<T: UIView>(_: T.Type) {
+        if let view = Bundle.main.loadNibNamed(T.nibName, owner: self, options: nil)?.first as? UIView {
+            view.frame = self.bounds
+            addSubview(view)
+        } else {
+            print("Nib 로드 실패")
+        }
+    }
+    
+    func loadNib<T: UIView>(_: T.Type, relay: PublishRelay<SalaryType>) {
+        if let view = Bundle.main.loadNibNamed(T.nibName, owner: self, options: nil)?.first as? SalaryTypeBottomSheet {
+            view.frame = self.bounds
+            view.salaryTypeRelay = relay
+            addSubview(view)
+        } else {
+            print("Nib 로드 실패")
         }
     }
 }

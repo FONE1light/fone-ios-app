@@ -7,38 +7,37 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
+import SnapKit
+import Then
 
 class MyPageProfileCell: UICollectionViewCell {
     
-    struct Constants {
-        /// leading, trailing inset
-        static let leadingInset: CGFloat = 16
-        /// top, bottom inset
-        static let topInset: CGFloat = 8
-        /// `label`의 fontSize
-        static let fontSize: CGFloat = 14
+    private struct Constants {
+        static let imageHeight: CGFloat = 198
+        static let nameLabelTopOffset: CGFloat = 6
+        static let ageLabelTopOffset: CGFloat = 2
     }
     
     static let identifier = String(describing: MyPageProfileCell.self)
     var disposeBag = DisposeBag()
-    
-    private var isSaved = false {
+    var id: Int?
+    var jobType: String?
+    var isSaved = false {
         didSet {
-            if isSaved {
-                heartImageView.image = UIImage(named: "heart_on")
-            } else {
-                heartImageView.image = UIImage(named: "heart_off")
-            }
+            heartButton.isSelected = isSaved
         }
     }
     
     private let imageView = UIImageView().then {
         $0.cornerRadius = 5
-        $0.backgroundColor = .gray_9E9E9E
+        $0.backgroundColor = .gray_F8F8F8
+        $0.clipsToBounds = true
+        $0.image = UIImage(resource: .defaultProfile)
     }
     
     private let nameLabel = UILabel().then {
-        $0.font = .font_m(16)
+        $0.font = .font_b(16)
         $0.textColor = .gray_161616
     }
     
@@ -47,8 +46,9 @@ class MyPageProfileCell: UICollectionViewCell {
         $0.textColor = .gray_555555
     }
     
-    private let heartImageView = UIImageView().then {
-        $0.image = UIImage(named: "heart_off")
+    private let heartButton = HeartButton()
+    var heartButtonTap: ControlEvent<Void> {
+        heartButton.rx.tap
     }
     
     override init(frame: CGRect) {
@@ -63,39 +63,70 @@ class MyPageProfileCell: UICollectionViewCell {
     }
     
     private func setupUI() {
-        [imageView, nameLabel, ageLabel, heartImageView]
+        [imageView, nameLabel, ageLabel, heartButton]
             .forEach { addSubview($0) }
-        //        contentView.addSubview(imageView)
     }
     
     private func setConstraints() {
         imageView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(198)
+            $0.height.equalTo(MyPageProfileCell.Constants.imageHeight)
         }
         
         nameLabel.snp.makeConstraints {
-            $0.top.equalTo(imageView.snp.bottom).offset(7)
-            $0.leading.equalToSuperview()
+            $0.top.equalTo(imageView.snp.bottom).offset(MyPageProfileCell.Constants.nameLabelTopOffset)
+            $0.leading.trailing.equalToSuperview()
         }
         
         ageLabel.snp.makeConstraints {
-            $0.leading.equalTo(nameLabel.snp.trailing).offset(6)
-            $0.centerY.equalTo(nameLabel)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(MyPageProfileCell.Constants.ageLabelTopOffset)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
         
-        heartImageView.snp.makeConstraints {
+        heartButton.snp.makeConstraints {
             $0.size.equalTo(24)
             $0.top.trailing.equalToSuperview().inset(10)
         }
     }
     
-    func configure(image: UIImage?, name: String?, age: String?, isSaved: Bool?) {
-        imageView.image = image
+    func configure(
+        id: Int?,
+        jobType: String?,
+        image: String?,
+        name: String?,
+        birthYear: String?,
+        age: Int?,
+        isSaved: Bool?
+    ) {
+        self.id = id
+        self.jobType = jobType
+        imageView.load(url: image)
         nameLabel.text = name
-        ageLabel.text = age
+        ageLabel.text = "\(birthYear ?? "")년생 (\(age ?? 0)살)"
         self.isSaved = isSaved ?? false
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag() // 버튼(bookmarkButtonTap) 바인딩을 한 번만 하기 위해 필요
+        
+        // 초기화
+        imageView.image = UIImage(resource: .defaultProfile)
+        nameLabel.text = nil
+        ageLabel.text = nil
+        isSaved = false
+    }
+    
+    func toggleHeartButton() -> Bool {
+        return heartButton.toggle()
     }
 }
 
+extension MyPageProfileCell {
+    static func cellHeight(width: CGFloat) -> CGFloat {
+        let nameHeight = UILabel.getLabelHeight(width: width, text: "text", font: UIFont.font_b(16), line: 1)
+        let ageHeight = UILabel.getLabelHeight(width: width, text: "text", font: UIFont.font_b(13), line: 1)
+        return MyPageProfileCell.Constants.imageHeight + MyPageProfileCell.Constants.nameLabelTopOffset + nameHeight + MyPageProfileCell.Constants.ageLabelTopOffset + ageHeight
+    }
+}
 

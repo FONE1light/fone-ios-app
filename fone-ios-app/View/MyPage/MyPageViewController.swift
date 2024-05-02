@@ -13,6 +13,8 @@ import PanModal
 class MyPageViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: MyPageViewModel!
+    // 바인딩 전 viewWillAppear에서 호출 시 크래시 방지 위함
+    private var optionalViewModel: MyPageViewModel?
     var hasViewModel = false
     
     var disposeBag = DisposeBag()
@@ -22,6 +24,7 @@ class MyPageViewController: UIViewController, ViewModelBindableType {
     private let profileImage = UIImageView().then {
         $0.backgroundColor = .gray_C5C5C5
         $0.cornerRadius = 34
+        $0.clipsToBounds = true
     }
     
     private let nameLabel = UILabel().then {
@@ -56,7 +59,7 @@ class MyPageViewController: UIViewController, ViewModelBindableType {
     
     private let menuList: [MyPageMenuType] = [
         .postings,
-        .contact,
+        .question,
         .version,
         .logout,
         .withdrawal
@@ -72,13 +75,27 @@ class MyPageViewController: UIViewController, ViewModelBindableType {
         setupProfileSection()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        optionalViewModel?.fetchMyPage()
+    }
+    
     func bindViewModel() {
+        optionalViewModel = viewModel
+        
+        viewModel.userInfo
+            .withUnretained(self)
+            .bind { owner, userInfo in
+                owner.setProfileImage(userInfo?.profileURL)
+                owner.nameLabel.text = userInfo?.nickname
+                owner.jobLabel.text = userInfo?.job
+            }.disposed(by: disposeBag)
+        
         rightArrowButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                let profileViewModel = ProfileViewModel(sceneCoordinator: self.viewModel.sceneCoordinator)
-                let scene = Scene.profile(profileViewModel)
-                self.viewModel.sceneCoordinator.transition(to: scene, using: .push, animated: true)
+                owner.viewModel.moveToProfile()
             }.disposed(by: rx.disposeBag)
         
         buttonStackView?.scrapButtonTap
@@ -94,8 +111,8 @@ class MyPageViewController: UIViewController, ViewModelBindableType {
         buttonStackView?.saveButtonTap
             .withUnretained(self)
             .bind { owner, _ in
-                let viewModel = MyRegistrationsViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator)
-                let scene = Scene.myRegistrations(viewModel)
+                let viewModel = SavedProfilesTabBarViewModel(sceneCoordinator: owner.viewModel.sceneCoordinator)
+                let scene = Scene.savedProfiles(viewModel)
                 
                 owner.viewModel.sceneCoordinator.transition(to: scene, using: .push, animated: true)
             }.disposed(by: rx.disposeBag)
@@ -103,7 +120,7 @@ class MyPageViewController: UIViewController, ViewModelBindableType {
     
     private func setNavigationBar() {
         self.navigationItem.leftBarButtonItem = NavigationLeftBarButtonItem(type: .myPage)
-        self.navigationItem.rightBarButtonItem = NavigationRightBarButtonItem(type: .notification)
+        self.navigationItem.rightBarButtonItem = NavigationRightBarButtonItem(type: .notification, viewController: self)
         
     }
     
@@ -187,6 +204,14 @@ extension MyPageViewController {
             $0.bottom.equalTo(profileImage.snp.bottom)
         }
     }
+    
+    private func setProfileImage(_ stringUrl: String?) {
+        guard let url = stringUrl, !url.isEmpty else {
+            profileImage.image = nil
+            return
+        }
+        profileImage.load(url: url)
+    }
 }
 
 // MARK: - UITableView functions
@@ -201,17 +226,29 @@ extension MyPageViewController: UITableViewDataSource {
         
         let menuType = menuList[indexPath.row]
         
-        // FIXME: index 지정 방식 변경
         cell.setupCell(type: menuType)
         
-        cell.buttonTap.withUnretained(self)
+        cell.buttonTap
+            .throttle(.milliseconds(500), latest: false, scheduler: MainScheduler.instance)
+            .withUnretained(self)
             .bind { owner, _ in
-                
                 if let scene = menuType.nextScene(owner.viewModel.sceneCoordinator) {
-                    owner.viewModel.sceneCoordinator.transition(to: scene, using: .push, animated: true)
-                } else if let bottomSheet = menuType.bottomSheet {
-                    // FIXME: 높이 늘어나는 것 해결(UIView-Encapsulated-Layout-Height)
-                    owner.presentPanModal(view: bottomSheet)
+                    switch menuType {
+                    case .question:
+                        owner.viewModel.sceneCoordinator.transition(to: scene, using: .fullScreenModal, animated: false)
+                    default:
+                        owner.viewModel.sceneCoordinator.transition(to: scene, using: .push, animated: true)
+                    }
+                    return
+                }
+                
+                switch menuType {
+                case .logout:
+//                    // FIXME: 높이 늘어나는 것 해결(UIView-Encapsulated-Layout-Height)
+                    owner.viewModel.logout()
+                case .withdrawal:
+                    owner.viewModel.signout()
+                default: return
                 }
                 
             }.disposed(by: disposeBag)

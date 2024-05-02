@@ -15,7 +15,7 @@ enum MyPageButtonStackViewContentType {
     var imageName: String? {
         switch self {
         case .scrap: return "Bookmark"
-        case .save: return "Heart_02"
+        case .save: return "heart_on"
         }
     }
     

@@ -12,16 +12,21 @@ import RxSwift
 import RxCocoa
 
 enum MyPageMenuType {
+    /// 나의 등록내역
     case postings
-    case contact
+    /// 문의하기
+    case question
+    /// 앱 버전
     case version
+    /// 로그아웃
     case logout
+    /// 회원 탈퇴
     case withdrawal
     
     private var imageName: String? {
         switch self {
         case .postings: return "mySettings"
-        case .contact: return "ContactUs"
+        case .question: return "ContactUs"
         case .version: return "Settings"
         case .logout: return "Logout"
         case .withdrawal: return "Withdrawal"
@@ -36,7 +41,7 @@ enum MyPageMenuType {
     var text: String? {
         switch self {
         case .postings: return "나의 등록내역"
-        case .contact: return "문의하기"
+        case .question: return "문의하기"
         case .version: return "앱 버전"
         case .logout: return "로그아웃"
         case .withdrawal: return "회원 탈퇴"
@@ -45,35 +50,18 @@ enum MyPageMenuType {
     
     var trailingView: UIView? {
         switch self {
-        case .postings, .contact:
+        case .postings, .question:
             return UIImageView().then {
                 $0.image = UIImage(named: "arrow_right16")
             }
         case .version:
             return UILabel().then {
-                $0.text = "0.0.0"
+                $0.text = getCurrentAppVersion()
                 $0.font = .font_m(16)
                 $0.textColor = .violet_6D5999
             }
         default: return nil
         }
-    }
-    
-    var bottomSheet: UIView? {
-        switch self {
-        case .logout:
-            return MyPageBottomSheet(
-                title: "로그아웃 하시겠습니까?",
-                content: "깡총! 소셜 로그인 화면으로 돌아가요"
-            )
-        case .withdrawal:
-            return MyPageBottomSheet(
-                title: ".. 저희 이별하나요? 너무 아쉬워요",
-                content: "회원탈퇴를 진행할 경우 혜택 및\n게시글, 관심, 채팅 등 모든 정보가 삭제됩니다."
-            )
-        default: return nil
-        }
-        
     }
     
     func nextScene(_ sceneCoordinator: SceneCoordinatorType) -> Scene? {
@@ -82,8 +70,19 @@ enum MyPageMenuType {
             let viewModel = MyRegistrationsViewModel(sceneCoordinator: sceneCoordinator)
             let scene = Scene.myRegistrations(viewModel)
             return scene
+        case .question:
+            let viewModel = QuestionViewModel(sceneCoordinator: sceneCoordinator)
+            let scene = Scene.question(viewModel)
+            return scene
         default: return nil
         }
+    }
+    
+    private func getCurrentAppVersion() -> String? {
+        guard let dictionary = Bundle.main.infoDictionary else { return nil }
+        
+        let version = dictionary["CFBundleShortVersionString"] as? String
+        return version
     }
     
 }
@@ -115,8 +114,6 @@ class MyPageMenuCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-//        self.setupCell(type: .contact) // 없어도 됨
     }
     
     func setupCell(type: MyPageMenuType) {

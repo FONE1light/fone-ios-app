@@ -19,12 +19,15 @@ class DetailInfoBlock: UIView {
         $0.font = .font_m(13)
         $0.textColor = .gray_555555
     }
-    private let fieldLabel = UILabel().then {
+    
+    /// 분야(스태프) 혹은 장르(배우)
+    private let domainLabel = UILabel().then {
         $0.font = .font_m(13)
         $0.textColor = .gray_9E9E9E
     }
     
-    private let coorporateLabel = UILabel().then {
+    /// 제작 주제
+    private let produceLabel = UILabel().then {
         $0.font = .font_m(13)
         $0.textColor = .gray_9E9E9E
     }
@@ -38,21 +41,21 @@ class DetailInfoBlock: UIView {
     
     func setValues(
         dDay: String? = nil,
-        coorporate: String? = nil,
-//        casting: String? = nil,
-        field: String? = nil // FIXME: STAFF 일 때는 field, ACTOR 일 때는 casting 넣어야할듯. 서버 데이터 보고 결정
+        domainOrGenre: String? = nil, // STAFF 일 때는 domain, ACTOR 일 때는 genre
+        produce: String? = nil
+        
     ) {
         dDayLabel.text = dDay
-        fieldLabel.text = field
-        coorporateLabel.text = coorporate
+        domainLabel.text = domainOrGenre
+        produceLabel.text = produce
     }
     
     private func setupUI() {
         [
             dDayLabel,
             dotLabel,
-            fieldLabel,
-            coorporateLabel
+            domainLabel,
+            produceLabel
         ]
             .forEach { addSubview($0) }
     }
@@ -67,15 +70,17 @@ class DetailInfoBlock: UIView {
             $0.leading.equalTo(dDayLabel.snp.trailing).offset(4)
         }
         
-        fieldLabel.snp.makeConstraints {
+        domainLabel.snp.makeConstraints {
             $0.centerY.equalTo(dDayLabel)
             $0.leading.equalTo(dotLabel.snp.trailing).offset(4)
         }
         
-        coorporateLabel.snp.makeConstraints {
+        produceLabel.snp.makeConstraints {
             $0.top.equalTo(dDayLabel.snp.bottom).offset(6)
             $0.leading.trailing.bottom.equalToSuperview()
         }
+        
+        produceLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         
     }
     

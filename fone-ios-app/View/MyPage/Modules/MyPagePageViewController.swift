@@ -16,14 +16,11 @@ class MyPagePageViewController: UIPageViewController, UIPageViewControllerDataSo
     
     init(
         tabBarType: TabBarType,
-        presetViewControllers: [SavedProfilesContentViewController] = [SavedProfilesContentViewController(backgroundColor: .beige_624418), SavedProfilesContentViewController(backgroundColor: .gray)]
+        sceneCoordinator: SceneCoordinatorType
     ) {
-//        super.init()
-        self.presetViewControllers = tabBarType.viewControllers
+        self.presetViewControllers = tabBarType.getViewControllers(sceneCoordinator: sceneCoordinator)
 
         super.init(transitionStyle: .pageCurl, navigationOrientation: .horizontal)
-        
-        
     }
     
     required init?(coder: NSCoder) {

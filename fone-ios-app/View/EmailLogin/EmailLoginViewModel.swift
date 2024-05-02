@@ -50,6 +50,8 @@ class EmailLoginViewModel: CommonViewModel {
                 } else {
                     self.showLoginErrorAlertSubject.onNext(())
                 }
+            }, onError: { error in
+                error.showToast(modelType: EmptyData.self, positionType: .withButton)
             }).disposed(by: disposeBag)
     }
     

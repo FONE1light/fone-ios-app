@@ -42,12 +42,9 @@ class Tag: UIView {
     
     private func setConstraints() {
         label.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview().inset(2)
+            $0.top.bottom.equalToSuperview().inset(4)
             $0.leading.trailing.equalToSuperview().inset(10)
         }
-    }
-    
-    private func setColorProperties() {
     }
     
     required init?(coder: NSCoder) {

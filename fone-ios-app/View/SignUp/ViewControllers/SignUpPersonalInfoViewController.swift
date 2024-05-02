@@ -23,7 +23,7 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
         $0.alignment = .leading
     }
     
-    let stepIndicator = StepIndicator(.second)
+    let stepIndicator = StepIndicator(index: 1, totalCount: 3)
     
     let titleLabel = UILabel().then {
         $0.text = "기본 정보를 입력해 주세요"
@@ -34,12 +34,16 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
     let nicknameBlock = UIView()
     
     private let nicknameLabel = UILabel().then {
-        $0.text = "닉네임 *"
+        $0.text = "닉네임"
         $0.font = .font_b(15)
         $0.textColor = .gray_161616
     }
     
-    private let nicknameTextField = DefaultTextField(placeHolder: "3~8자리의 숫자, 영어, 한글만 가능합니다")
+    private let starImageView = UIImageView().then {
+        $0.image = UIImage(resource: .star)
+    }
+    
+    private let nicknameTextField = DefaultTextField(placeholder: "3~8자리의 숫자, 영어, 한글만 가능합니다")
     
     private let duplicatedWarningLabel = UILabel().then {
         $0.text = "중복되는 닉네임입니다."
@@ -52,18 +56,12 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
     let birthBlock = UIView()
     
     private let birthLabel = UILabel().then {
-        $0.text = "생년월일 및 성별 *"
+        $0.text = "생년월일 및 성별"
         $0.font = .font_b(15)
         $0.textColor = .gray_161616
     }
     
-    private let birthSubtitleLabel = UILabel().then {
-        $0.text = "성별과 생년월일의 정보는 변경이 불가능합니다."
-        $0.font = .font_r(12)
-        $0.textColor = .gray_9E9E9E
-    }
-    
-    private let birthTextField = DefaultTextField(placeHolder: "YYYY-MM-DD")
+    private let birthTextField = DefaultTextField(placeholder: "YYYY-MM-DD")
     
     private let maleButton = CustomButton("남자", type: .auth).then {
         $0.isActivated = false
@@ -87,8 +85,11 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
         $0.textColor = .gray_9E9E9E
     }
     
-    private let profileImage = UIImageView().then {
-        $0.image = UIImage(named: "profileImage")
+    private let defaultProfileImage = UIImage(named: "profileImage")
+    private lazy var profileImage = UIImageView().then {
+        $0.image = defaultProfileImage
+        $0.clipsToBounds = true
+        $0.contentMode = .scaleAspectFill
     }
     
     private let imagePickerViewController = UIImagePickerController()
@@ -110,7 +111,7 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
         birthTextField.rx.controlEvent(.editingChanged)
             .withUnretained(self)
             .bind { owner, _ in
-                let formattedBirth = owner.viewModel.formatBirthString(owner.birthTextField.text)
+                let formattedBirth = owner.birthTextField.text?.birthFormatted()
                 owner.birthTextField.text = formattedBirth
                 owner.viewModel.birthday = formattedBirth
             }.disposed(by: rx.disposeBag)
@@ -183,6 +184,11 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
                 }
             }.disposed(by: self.disposeBag)
         
+        viewModel.profileImage
+            .withUnretained(self)
+            .bind { owner, image in
+                owner.setProfileImage(image)
+            }.disposed(by: disposeBag)
     }
     
     override func viewDidLoad() {
@@ -228,6 +234,7 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
         
         [
             nicknameLabel,
+            starImageView,
             nicknameTextField,
             duplicationCheckButton
         ]
@@ -237,7 +244,6 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
         
         [
             birthLabel,
-            birthSubtitleLabel,
             birthTextField,
             maleButton,
             femaleButton
@@ -297,6 +303,12 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
             $0.leading.equalToSuperview()
         }
         
+        starImageView.snp.makeConstraints {
+            $0.size.equalTo(8)
+            $0.leading.equalTo(nicknameLabel.snp.trailing).offset(3)
+            $0.centerY.equalTo(nicknameLabel)
+        }
+        
         nicknameTextField.snp.makeConstraints {
             $0.top.equalTo(nicknameLabel.snp.bottom).offset(8)
             $0.leading.bottom.equalToSuperview()
@@ -316,13 +328,8 @@ class SignUpPersonalInfoViewController: UIViewController, ViewModelBindableType 
             $0.leading.equalToSuperview()
         }
         
-        birthSubtitleLabel.snp.makeConstraints {
-            $0.top.equalTo(birthLabel.snp.bottom).offset(1)
-            $0.leading.equalToSuperview()
-        }
-        
         birthTextField.snp.makeConstraints {
-            $0.top.equalTo(birthSubtitleLabel.snp.bottom).offset(8)
+            $0.top.equalTo(birthLabel.snp.bottom).offset(8)
             $0.leading.bottom.equalToSuperview()
         }
         
@@ -379,7 +386,7 @@ extension SignUpPersonalInfoViewController: UIImagePickerControllerDelegate {
             title: "기본 이미지로 변경",
             style: .default
         ) { _ in
-            self.profileImage.image = UIImage(named: "profileImage")
+            self.setProfileImage(self.defaultProfileImage)
             self.viewModel.profileUrl = nil
         }
         
@@ -404,16 +411,21 @@ extension SignUpPersonalInfoViewController: UIImagePickerControllerDelegate {
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
     ) {
-        if let imageUrl = info[.imageURL] as? URL {
-            print(imageUrl)
-            viewModel.uploadProfileImage()
-        }
         
         if let pickedImage = info[.originalImage] as? UIImage {
-            profileImage.image = pickedImage
+            viewModel.uploadProfileImage(pickedImage)
         }
         
         imagePickerViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    private func setProfileImage(_ image: UIImage?) {
+        profileImage.image = image
+        if image == defaultProfileImage {
+            profileImage.cornerRadius = 0
+        } else {
+            profileImage.cornerRadius = profileImage.frame.width / 2
+        }
     }
 }
 

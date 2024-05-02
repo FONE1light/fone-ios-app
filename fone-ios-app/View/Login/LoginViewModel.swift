@@ -5,7 +5,7 @@
 //  Created by Yukyung Huh on 2023/08/07.
 //
 
-import Foundation
+import UIKit
 
 class LoginViewModel: CommonViewModel {
     func moveToEmailLogin() {
@@ -24,5 +24,20 @@ class LoginViewModel: CommonViewModel {
         let questionViewModel = QuestionViewModel(sceneCoordinator: self.sceneCoordinator)
         let questionScene = Scene.question(questionViewModel)
         self.sceneCoordinator.transition(to: questionScene, using: .fullScreenModal, animated: true)
+    }
+    
+    func loginWithKakaoTalk() {
+        SocialLoginManager.shared.updateCoordinator(sceneCoordinator)
+        SocialLoginManager.shared.loginWithKakaoTalk()
+    }
+    
+    func loginWithGoogle(presentingVC: UIViewController) {
+        SocialLoginManager.shared.updateCoordinator(sceneCoordinator)
+        SocialLoginManager.shared.loginWithGoogle(presentingVC: presentingVC)
+    }
+    
+    func loginWithApple(presentingVC: UIViewController) {
+        SocialLoginManager.shared.updateCoordinator(sceneCoordinator)
+        SocialLoginManager.shared.loginWithApple(presentingVC: presentingVC)
     }
 }

@@ -7,79 +7,181 @@
 
 // MARK: - HomeInfo
 struct HomeInfo: Codable {
-    let result: String
-    let data: HomeInfoData
-    let message: String
+    let result: String?
+    let data: HomeInfoData?
+    let message: String?
     let errorCode: String?
 }
 
 // MARK: - HomeInfoData
 struct HomeInfoData: Codable {
-    let order: [String]
-    let jobOpening, competition, profile: ModuleInfo
+    let order: [String]?
+    let jobOpening: JobOpeningModuleInfo?
+    let competition: CompetitionModuleInfo?
+    let profile: ProfileModuleInfo?
 }
 
-// MARK: - ModuleInfo
-struct ModuleInfo: Codable {
-    let title, subTitle: String
-    let data: ModuleData
+// MARK: - JobOpeningModuleInfo
+struct JobOpeningModuleInfo: Codable {
+    let title, subTitle: String?
+    let data: JobOpeningModuleData?
 }
 
-// MARK: - ModuleData
-struct ModuleData: Codable {
-    let content: [Content]
-    let pageable: Pageable
-    let last: Bool
-    let totalPages, totalElements, size, number: Int
-    let sort: Sort
-    let first: Bool
-    let numberOfElements: Int
-    let empty: Bool
+// MARK: - JobOpeningModuleData
+struct JobOpeningModuleData: Codable {
+    let content: [JobOpeningContent]?
+    let pageable: Pageable?
+    let totalPages, totalElements: Int?
+    let last: Bool?
+    let size, number: Int?
+    let sort: Sort?
+    let numberOfElements: Int?
+    let first, empty: Bool?
 }
 
-// MARK: - Content
-struct Content: Codable {
-    let id: Int
-    let title: String?
-    let categories: [String]
-    let deadline: String?
-    let casting: String?
-    let numberOfRecruits: Int?
-    let gender: String
-    let ageMax, ageMin: Int?
-    let career, type: String
-    let domains: [String]
-    let viewCount: Int
+// MARK: - JobOpeningContent
+struct JobOpeningContent: Codable {
+    let createdAt, dday: String?
+    let recruitContactLinkInfo: RecruitContactLinkInfo?
+    let recruitBasicInfo: RecruitBasicInfo?
+    let recruitConditionInfo: RecruitConditionInfo?
+    let recruitWorkInfo: RecruitWorkInfo?
+    let recruitWorkConditionInfo: RecruitWorkConditionInfo?
+    let recruitDetailInfo: RecruitDetailInfo?
+    let recruitContactInfo: RecruitContactInfo?
+    let id: Int?
+    var isScrap: Bool?
+    let isVerified, contactable: Bool?
     let scrapCount: Int?
-    let work: [String: String?]?
-    let isScrap: Bool?
-    let nickname: String?
-    let profileURL: String
-    let createdAt: String
-    let dday, name, hookingComment, birthday: String?
-    let height, weight: Int?
-    let email, sns, specialty, details: String?
-    let careerDetail: String?
-    let profileUrls: [String]?
-    let isWant: Bool?
-    let age: Int?
-    let userNickname: String?
-
+    let type, userJob, userNickname: String?
+    let userProfileURL: String?
+    let viewCount: Int?
+    let workingDate: String?
+    
     enum CodingKeys: String, CodingKey {
-        case id, title, categories, deadline, casting, numberOfRecruits, gender, ageMax, ageMin, career, type, domains, viewCount, scrapCount, work, isScrap, nickname
-        case profileURL = "profileUrl"
-        case createdAt, dday, name, hookingComment, birthday, height, weight, email, sns, specialty, details, careerDetail, profileUrls, isWant, age, userNickname
+        case contactable, createdAt, dday, id, isScrap, isVerified, scrapCount, type, userJob, userNickname, viewCount, workingDate
+        case recruitContactLinkInfo = "firstPage"
+        case recruitBasicInfo = "secondPage"
+        case recruitConditionInfo = "thirdPage"
+        case recruitWorkInfo = "fourthPage"
+        case recruitWorkConditionInfo = "fifthPage"
+        case recruitDetailInfo = "sixthPage"
+        case recruitContactInfo = "seventhPage"
+        case userProfileURL = "userProfileUrl"
     }
 }
 
-// MARK: - Pageable
-struct Pageable: Codable {
-    let sort: Sort
-    let offset, pageNumber, pageSize: Int
-    let paged, unpaged: Bool
+// MARK: - Work
+struct Work: Codable {
+    let details, director, email: String?
+    let genres: [String]?
+    let logline, manager, produce: String?
+    let salary: Int?
+    let salaryType: String?
+    let selectedDays: [String]?
+    let workTitle, workingCity, workingDate, workingDistrict: String?
+    let workingEndDate: String?
+//    let workingEndTime: WorkingTime?
+    let workingLocation, workingStartDate: String?
+//    let workingStartTime: WorkingTime?
+    let workingTime: String?
 }
 
-// MARK: - Sort
+// MARK: - CompetitionModuleInfo
+struct CompetitionModuleInfo: Codable {
+    let title, subTitle: String?
+    let data: CompetitionModuleData?
+}
+
+// MARK: - CompetitionModuleData
+struct CompetitionModuleData: Codable {
+    let content: [CompetitionContent]?
+    let pageable: Pageable?
+    let totalPages, totalElements: Int?
+    let last: Bool?
+    let size, number: Int?
+    let sort: Sort?
+    let numberOfElements: Int?
+    let first, empty: Bool?
+}
+
+// MARK: - CompetitionContent
+struct CompetitionContent: Codable {
+    let id: Int?
+    let title: String?
+    let imageURL: String?
+    let screeningStartDate, screeningEndDate, exhibitStartDate, exhibitEndDate: String?
+    let showStartDate, agency, details: String?
+    let viewCount, scrapCount: Int?
+    let isScrap: Bool?
+    let linkURL: String?
+    let screeningDDay, screeningDate, exhibitDate: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id, title
+        case imageURL = "imageUrl"
+        case screeningStartDate, screeningEndDate, exhibitStartDate, exhibitEndDate, showStartDate, agency, details, viewCount, scrapCount, isScrap
+        case linkURL = "linkUrl"
+        case screeningDDay, screeningDate, exhibitDate
+    }
+}
+
+
+// MARK: - ProfileModuleInfo
+struct ProfileModuleInfo: Codable {
+    let title, subTitle: String?
+    let data: ProfileModuleData?
+}
+
+// MARK: - ProfileModuleData
+struct ProfileModuleData: Codable {
+    let content: [ProfileContent]?
+    let pageable: Pageable?
+    let totalPages, totalElements: Int?
+    let last: Bool?
+    let size, number: Int?
+    let sort: Sort?
+    let numberOfElements: Int?
+    let first, empty: Bool?
+}
+
+// MARK: - Content
+struct ProfileContent: Codable {
+    let id: Int?
+    let registerContactLinkInfo: RegisterContactLinkInfo?
+    let registerBasicInfo: RegisterBasicInfo?
+    let registerDetailInfo: RegisterDetailInfo?
+    let registerDetailContentInfo: RegisterDetailContentInfo?
+    let registerCareerInfo: RegisterCareerInfo?
+    let registerInterestInfo: RegisterInterestInfo?
+    let type: String?
+    let viewCount: Int?
+    var isWant: Bool?
+    let createdAt, userNickname, userProfileURL, userJob: String?
+    let age: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case id, type, viewCount, isWant, createdAt, userNickname
+        case userProfileURL = "userProfileUrl"
+        case userJob, age
+        case registerContactLinkInfo = "firstPage"
+        case registerBasicInfo = "secondPage"
+        case registerDetailInfo = "thirdPage"
+        case registerDetailContentInfo = "fourthPage"
+        case registerCareerInfo = "fifthPage"
+        case registerInterestInfo = "sixthPage"
+    }
+}
+
+// MARK: - FirstPage
+
+// MARK: - 공통 사용
+struct Pageable: Codable {
+    let sort: Sort?
+    let offset, pageNumber, pageSize: Int?
+    let paged, unpaged: Bool?
+}
+
 struct Sort: Codable {
-    let empty, unsorted, sorted: Bool
+    let empty, unsorted, sorted: Bool?
 }

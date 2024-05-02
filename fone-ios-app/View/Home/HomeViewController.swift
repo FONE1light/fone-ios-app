@@ -29,6 +29,15 @@ class HomeViewController: UIViewController, ViewModelBindableType {
         setCollectionView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.hidesBarsOnSwipe = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+        navigationController?.hidesBarsOnSwipe = false
+    }
+    
     func bindViewModel() {
         viewModel
             .homeInfoDataSubject
@@ -42,7 +51,6 @@ class HomeViewController: UIViewController, ViewModelBindableType {
     
     private func setNavigationBar() {
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.hidesBarsOnSwipe = true
         
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.shadowColor = nil
@@ -73,15 +81,18 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell
         case ModuleSection.jobOpening.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as JobOpeningModule
-            cell.setModuelInfo(info: homeInfo?.jobOpening)
+            guard let viewModel else { return cell }
+            cell.setModuleInfo(info: homeInfo?.jobOpening, sceneCoordinator: viewModel.sceneCoordinator)
             return cell
         case ModuleSection.competition.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CompetitionModule
-            cell.setModuelInfo(info: nil)
+            guard let viewModel else { return cell }
+            cell.setModuleInfo(info: homeInfo?.competition, sceneCoordinator: viewModel.sceneCoordinator)
             return cell
         case ModuleSection.profile.rawValue:
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as ProfileModule
-            cell.setModuelInfo(info: homeInfo?.profile)
+            guard let viewModel else { return cell }
+            cell.setModuleInfo(info: homeInfo?.profile, sceneCoordinator: viewModel.sceneCoordinator)
             return cell
         default:
             return UICollectionViewCell()
@@ -105,11 +116,11 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         case ModuleSection.mainBanner.rawValue:
             height = 250
         case ModuleSection.jobOpening.rawValue:
-            height = 214
+            height = 219
         case ModuleSection.competition.rawValue:
-            height = 259 - 67 //FIXME: 영화제 데이터 들어오면 수정
+            height = 264
         case ModuleSection.profile.rawValue:
-            height = 249
+            height = 254
         default:
             height = 0
         }

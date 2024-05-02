@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Bold.ttf">
+            <string>Pretendard-Bold</string>
+        </array>
+        <array key="Pretendard-Medium.ttf">
+            <string>Pretendard-Medium</string>
+        </array>
+        <array key="Pretendard-Regular.ttf">
+            <string>Pretendard-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecruitWorkInfoViewController" customModule="fone_ios_app" customModuleProvider="target">
+            <connections>
+                <outlet property="directorTextField" destination="QSC-c6-YO9" id="vNj-lY-gMT"/>
+                <outlet property="genreCollectionView" destination="Mn6-s2-lsS" id="w0t-tp-SRX"/>
+                <outlet property="loglineTextView" destination="ul0-5F-MGv" id="6f1-H8-ioY"/>
+                <outlet property="nextButton" destination="dgy-h2-A9m" id="LZW-oZ-NLd"/>
+                <outlet property="privateButton" destination="ej9-L5-rlL" id="V3o-ck-dXt"/>
+                <outlet property="produceTextField" destination="wgA-AL-TDv" id="4ow-II-1mD"/>
+                <outlet property="scrollView" destination="vTT-Wd-2TR" id="1Qy-9g-JaW"/>
+                <outlet property="stepIndicator" destination="uTH-qR-VeE" id="eLK-bL-aNe"/>
+                <outlet property="titleTextField" destination="jgs-og-9BB" id="fSI-VX-P8e"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vTT-Wd-2TR">
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RQz-h7-SE9">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="932"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uTH-qR-VeE" customClass="StepIndicator" customModule="fone_ios_app" customModuleProvider="target">
+                                    <rect key="frame" x="16" y="30" width="102" height="6"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="102" id="Uaa-PO-svS"/>
+                                        <constraint firstAttribute="height" constant="6" id="cSq-Sj-j6U"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="작품 정보를 입력해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCD-Fl-0QZ">
+                                    <rect key="frame" x="16" y="56" width="196.66666666666666" height="26"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="26" id="xIt-Ra-LdF"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="19"/>
+                                    <color key="textColor" red="0.21176470589999999" green="0.17254901959999999" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wgA-AL-TDv" customClass="LabelTextField" customModule="fone_ios_app" customModuleProvider="target">
+                                    <rect key="frame" x="16" y="94" width="361" height="44"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="eeI-4f-faV"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jgs-og-9BB" customClass="LabelTextField" customModule="fone_ios_app" customModuleProvider="target">
+                                    <rect key="frame" x="16" y="152" width="361" height="44"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="vlG-Jr-VTh"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QSC-c6-YO9" customClass="LabelTextField" customModule="fone_ios_app" customModuleProvider="target">
+                                    <rect key="frame" x="16" y="210" width="361" height="44"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="XsR-My-gs7"/>
+                                    </constraints>
+                                </view>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="tgK-2B-Qdu">
+                                    <rect key="frame" x="46" y="290" width="8" height="8"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="8" id="ZJm-Qf-FzS"/>
+                                        <constraint firstAttribute="width" constant="8" id="dd5-m0-xeW"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="장르" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cU9-Dl-9FP">
+                                    <rect key="frame" x="16" y="284" width="28" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="yuv-ot-yq2"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="16"/>
+                                    <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Mn6-s2-lsS">
+                                    <rect key="frame" x="30" y="316" width="333" height="176"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="176" id="S8b-eS-Arx"/>
+                                    </constraints>
+                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="16" minimumInteritemSpacing="16" id="0dM-jU-4ck">
+                                        <size key="itemSize" width="128" height="128"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                </collectionView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="로그라인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Esi-0C-gME">
+                                    <rect key="frame" x="16.000000000000004" y="524" width="55.333333333333343" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="Mhq-Ae-ApR"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="16"/>
+                                    <color key="textColor" red="0.086274509799999996" green="0.086274509799999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ul0-5F-MGv" customClass="LetterCountedTextView" customModule="fone_ios_app" customModuleProvider="target">
+                                    <rect key="frame" x="16" y="552" width="361" height="234"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="234" id="rN7-FV-Vs8"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ej9-L5-rlL" customClass="CustomButton" customModule="fone_ios_app" customModuleProvider="target">
+                                    <rect key="frame" x="305" y="522" width="72" height="24"/>
+                                    <color key="backgroundColor" red="0.21176470589999999" green="0.17254901959999999" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="I5X-dd-yB1"/>
+                                        <constraint firstAttribute="width" constant="72" id="uCl-ap-Si1"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="비공개">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="12"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="tgK-2B-Qdu" firstAttribute="leading" secondItem="cU9-Dl-9FP" secondAttribute="trailing" constant="2" id="2DO-yn-YMW"/>
+                                <constraint firstItem="QSC-c6-YO9" firstAttribute="leading" secondItem="RQz-h7-SE9" secondAttribute="leading" constant="16" id="2SX-eY-6Zf"/>
+                                <constraint firstItem="uTH-qR-VeE" firstAttribute="top" secondItem="RQz-h7-SE9" secondAttribute="top" constant="30" id="2mJ-Sf-rIm"/>
+                                <constraint firstItem="uTH-qR-VeE" firstAttribute="leading" secondItem="RQz-h7-SE9" secondAttribute="leading" constant="16" id="2on-34-b4X"/>
+                                <constraint firstItem="ul0-5F-MGv" firstAttribute="top" secondItem="Esi-0C-gME" secondAttribute="bottom" constant="8" id="3bp-rj-VnK"/>
+                                <constraint firstItem="wgA-AL-TDv" firstAttribute="top" secondItem="mCD-Fl-0QZ" secondAttribute="bottom" constant="12" id="3zy-XR-0HL"/>
+                                <constraint firstItem="Esi-0C-gME" firstAttribute="leading" secondItem="RQz-h7-SE9" secondAttribute="leading" constant="16" id="4ds-nj-Owq"/>
+                                <constraint firstAttribute="trailing" secondItem="jgs-og-9BB" secondAttribute="trailing" constant="16" id="51V-Qh-Yx7"/>
+                                <constraint firstItem="cU9-Dl-9FP" firstAttribute="leading" secondItem="RQz-h7-SE9" secondAttribute="leading" constant="16" id="5rq-DM-yAH"/>
+                                <constraint firstAttribute="trailing" secondItem="ej9-L5-rlL" secondAttribute="trailing" constant="16" id="90Y-FU-KVr"/>
+                                <constraint firstAttribute="trailing" secondItem="QSC-c6-YO9" secondAttribute="trailing" constant="16" id="9cI-qP-eHh"/>
+                                <constraint firstItem="tgK-2B-Qdu" firstAttribute="centerY" secondItem="cU9-Dl-9FP" secondAttribute="centerY" id="D08-KJ-JFs"/>
+                                <constraint firstItem="ej9-L5-rlL" firstAttribute="centerY" secondItem="Esi-0C-gME" secondAttribute="centerY" id="F6W-d5-rMN"/>
+                                <constraint firstItem="ul0-5F-MGv" firstAttribute="leading" secondItem="RQz-h7-SE9" secondAttribute="leading" constant="16" id="Gbh-fQ-IOb"/>
+                                <constraint firstItem="Mn6-s2-lsS" firstAttribute="leading" secondItem="RQz-h7-SE9" secondAttribute="leading" constant="30" id="Ni8-ir-z0l"/>
+                                <constraint firstItem="mCD-Fl-0QZ" firstAttribute="leading" secondItem="RQz-h7-SE9" secondAttribute="leading" constant="16" id="NjC-ZB-tzs"/>
+                                <constraint firstAttribute="trailing" secondItem="Mn6-s2-lsS" secondAttribute="trailing" constant="30" id="O8S-yi-9qA"/>
+                                <constraint firstAttribute="trailing" secondItem="ul0-5F-MGv" secondAttribute="trailing" constant="16" id="Xeo-HH-Scp"/>
+                                <constraint firstItem="wgA-AL-TDv" firstAttribute="leading" secondItem="RQz-h7-SE9" secondAttribute="leading" constant="16" id="YUu-HU-X63"/>
+                                <constraint firstItem="jgs-og-9BB" firstAttribute="leading" secondItem="RQz-h7-SE9" secondAttribute="leading" constant="16" id="aOY-3r-luM"/>
+                                <constraint firstItem="QSC-c6-YO9" firstAttribute="top" secondItem="jgs-og-9BB" secondAttribute="bottom" constant="14" id="afG-kq-E5R"/>
+                                <constraint firstItem="jgs-og-9BB" firstAttribute="top" secondItem="wgA-AL-TDv" secondAttribute="bottom" constant="14" id="cMy-Xr-XeA"/>
+                                <constraint firstItem="cU9-Dl-9FP" firstAttribute="top" secondItem="QSC-c6-YO9" secondAttribute="bottom" constant="30" id="frG-jn-4bx"/>
+                                <constraint firstItem="mCD-Fl-0QZ" firstAttribute="top" secondItem="uTH-qR-VeE" secondAttribute="bottom" constant="20" id="gca-vP-yW6"/>
+                                <constraint firstItem="Mn6-s2-lsS" firstAttribute="top" secondItem="cU9-Dl-9FP" secondAttribute="bottom" constant="12" id="iaG-hn-P5z"/>
+                                <constraint firstAttribute="trailing" secondItem="wgA-AL-TDv" secondAttribute="trailing" constant="16" id="m4q-hd-saS"/>
+                                <constraint firstItem="Esi-0C-gME" firstAttribute="top" secondItem="Mn6-s2-lsS" secondAttribute="bottom" constant="32" id="xAT-w5-CVx"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgy-h2-A9m">
+                            <rect key="frame" x="16" y="846" width="361" height="48"/>
+                            <color key="backgroundColor" red="0.75294117647058822" green="0.0" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="Q8W-ij-0Hk"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="16"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="다음"/>
+                            <state key="disabled" title="제출하기"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="dgy-h2-A9m" firstAttribute="leading" secondItem="ChX-hZ-X2c" secondAttribute="leading" constant="16" id="7R8-Sa-VJg"/>
+                        <constraint firstItem="ChX-hZ-X2c" firstAttribute="trailing" secondItem="dgy-h2-A9m" secondAttribute="trailing" constant="16" id="O3X-st-FRm"/>
+                        <constraint firstItem="RQz-h7-SE9" firstAttribute="trailing" secondItem="gO9-on-LoK" secondAttribute="trailing" id="PwK-7u-qJ2"/>
+                        <constraint firstItem="RQz-h7-SE9" firstAttribute="leading" secondItem="gO9-on-LoK" secondAttribute="leading" id="Tvm-47-fcd"/>
+                        <constraint firstItem="RQz-h7-SE9" firstAttribute="bottom" secondItem="gO9-on-LoK" secondAttribute="bottom" id="eQA-iS-oCF"/>
+                        <constraint firstItem="RQz-h7-SE9" firstAttribute="width" secondItem="vTT-Wd-2TR" secondAttribute="width" id="lXD-95-58V"/>
+                        <constraint firstItem="RQz-h7-SE9" firstAttribute="top" secondItem="gO9-on-LoK" secondAttribute="top" id="uSR-1j-T32"/>
+                        <constraint firstItem="dgy-h2-A9m" firstAttribute="top" secondItem="ul0-5F-MGv" secondAttribute="bottom" constant="60" id="uxL-R7-YIk"/>
+                        <constraint firstAttribute="bottom" secondItem="dgy-h2-A9m" secondAttribute="bottom" constant="38" id="vro-dO-aaT"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="gO9-on-LoK"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="ChX-hZ-X2c"/>
+                </scrollView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vTT-Wd-2TR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="T6r-SU-gpm"/>
+                <constraint firstItem="vTT-Wd-2TR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="nZK-H9-dcD"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="vTT-Wd-2TR" secondAttribute="bottom" id="oBq-CV-3PX"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vTT-Wd-2TR" secondAttribute="trailing" id="x1f-JK-ePo"/>
+            </constraints>
+            <point key="canvasLocation" x="4" y="20"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="star" width="8" height="8"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

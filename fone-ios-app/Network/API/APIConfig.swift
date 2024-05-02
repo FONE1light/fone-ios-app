@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-// TODO: 서버 구조 확인, 필요 없으면 삭제
 enum APIConfig {
     case DEV // 개발 서버
     case STAGING // 테스트 서버
@@ -17,7 +15,14 @@ enum APIConfig {
 
 extension APIConfig {
     var baseURL: String {
-        "http://3.39.0.194"
+        switch self {
+        case .DEV: return "https://dev-api.f-one.app"
+        case .STAGING, .PRODUCT: return "https://api.f-one.app"
+        }
+        
+    }
+    var imageUploadBaseURL: String {
+        "https://du646e9qh1.execute-api.ap-northeast-2.amazonaws.com"
     }
 }
 
@@ -43,7 +48,6 @@ extension Token {
         }
     }
     
-    // FIXME: 테스트용이므로 실제 사용 시 재설정. 구조 변경도 고려
     var value: String {
         get {
             return UserDefaults.standard.string(forKey: self.key) ?? ""

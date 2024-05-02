@@ -14,6 +14,12 @@ protocol ViewModelBindableType {
     func bindViewModel()
 }
 
+protocol ReportableType {
+    var profileImageURL: String? { get set }
+    var nickname: String? { get set }
+    var userJob: String? { get set }
+}
+
 extension ViewModelBindableType where Self: UIViewController {
     mutating func bind(viewModel: Self.ViewModelType) {
         self.viewModel = viewModel

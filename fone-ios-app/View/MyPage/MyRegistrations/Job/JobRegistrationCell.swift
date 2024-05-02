@@ -7,23 +7,32 @@
 
 import UIKit
 import RxCocoa
+import RxSwift
 
 class JobRegistrationCell: UITableViewCell {
+
+    static let identifier = String(describing: JobRegistrationCell.self)
+    var disposeBag = DisposeBag()
     
-    private let mainContentView = PostCellMainContentView(hasBookmark: false)
+    private let mainContentView = PostCellMainContentView(hasBookmark: false, hasJobTag: true)
     
     private let horizontalDivider = Divider(height: 1, color: .gray_D9D9D9)
-    private let verticalDivider = Divider(width: 1, color: .gray_D9D9D9)
         
-    private let modifyButton = JobRegistrationButton(title: "수정하기")
+    private let cellButton = UIButton()
     private let deleteButton = JobRegistrationButton(title: "삭제")
-    
-    static let identifier = String(describing: JobRegistrationCell.self)
-    
+        
     private let separator = Divider(
         width: UIScreen.main.bounds.width,
         height: 6, color: .gray_F8F8F8
     )
+    
+    var cellButtonTap: ControlEvent<Void> {
+        cellButton.rx.tap
+    }
+
+    var deleteButtonTap: ControlEvent<Void> {
+        deleteButton.buttonTap
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,35 +42,32 @@ class JobRegistrationCell: UITableViewCell {
         setConstraints()
     }
     
-    func configure(
-        job: Job, // actor/staff
-        categories: [Category], // 작품 성격 최대 2개
-        deadline: String? = nil,
-        coorporate: String? = nil,
-        gender: String? = nil,
-        period: String? = nil,
-        casting: String? = nil,
-        field: String? = nil
-    ) {
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+    
+    func configure(_ jobRegistration: JobOpening) {
         mainContentView.configure(
-            job: job,
-            categories: categories,
-            deadline: deadline,
-            coorporate: coorporate,
-            gender: gender,
-            period: period,
-            casting: casting,
-            field: field
+            imageUrl: jobRegistration.imageUrl,
+            isVerified: jobRegistration.isVerified,
+            categories: jobRegistration.categories ?? [],
+            isScrap: nil,
+            title: jobRegistration.title,
+            dDay: jobRegistration.dDay,
+            genre: jobRegistration.genre,
+            domain: jobRegistration.domain,
+            produce: jobRegistration.produce,
+            job: jobRegistration.job
         )
     }
     
     private func setupUI() {
         [
             mainContentView,
+            cellButton,
             horizontalDivider,
-            modifyButton,
             deleteButton,
-            verticalDivider,
             separator
         ]
             .forEach { contentView.addSubview($0) }
@@ -74,31 +80,23 @@ class JobRegistrationCell: UITableViewCell {
             $0.trailing.equalToSuperview().offset(-12)
         }
         
+        cellButton.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(horizontalDivider.snp.top)
+        }
+        
         horizontalDivider.snp.makeConstraints {
             $0.top.equalTo(mainContentView.snp.bottom).offset(12)
             $0.leading.trailing.equalToSuperview()
         }
         
-        verticalDivider.snp.makeConstraints {
-            $0.top.equalTo(horizontalDivider.snp.bottom)
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(modifyButton.snp.bottom)
-        }
-        
-        modifyButton.snp.makeConstraints {
-            $0.top.equalTo(verticalDivider.snp.top)
-            $0.leading.equalToSuperview()
-            $0.trailing.equalTo(verticalDivider.snp.leading)
-        }
-        
         deleteButton.snp.makeConstraints {
-            $0.top.bottom.equalTo(modifyButton)
-            $0.leading.equalTo(verticalDivider.snp.trailing)
-            $0.trailing.equalToSuperview()
+            $0.top.equalTo(horizontalDivider.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
         }
-        
+    
         separator.snp.makeConstraints {
-            $0.top.equalTo(modifyButton.snp.bottom)
+            $0.top.equalTo(deleteButton.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }

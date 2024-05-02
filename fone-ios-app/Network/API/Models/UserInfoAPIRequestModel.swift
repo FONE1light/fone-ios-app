@@ -92,7 +92,8 @@ struct SocialSignUpInfo: Codable {
     let job: String
     let interests: [String]
     
-    let nickname, birthday, gender: String
+    let nickname: String
+    let birthday, gender: String?
     let profileUrl: String
     
     let phoneNumber: String
@@ -104,5 +105,15 @@ struct SocialSignUpInfo: Codable {
     let identifier: String
 }
 
+/// 유저 수정 API request model
+struct UserInfo: Codable {
+    let interests: [String]?
+    let job, nickname, profileURL: String?
+
+    enum CodingKeys: String, CodingKey {
+        case interests, job, nickname
+        case profileURL = "profileUrl"
+    }
+}
 
 

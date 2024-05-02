@@ -12,29 +12,23 @@ import Then
 
 class BottomSheetViewController: UIViewController {
     
-    var customHeight: PanModalHeight? = nil
-
     var longFormHeight: PanModalHeight {
         shortFormHeight
     }
-
+    
     var shortFormHeight: PanModalHeight {
-        if let height = customHeight {
-            return height
-        } else {
-            return .intrinsicHeight
-        }
+        return .intrinsicHeight
     }
+    
+    private let bottomSheetView: UIView
+    private let sceneCoordinator: SceneCoordinator?
 
-    init(view: UIView) {
+    init(view: UIView, sceneCoordinator: SceneCoordinatorType?) {
+        bottomSheetView = view
+        self.sceneCoordinator = sceneCoordinator as? SceneCoordinator
         super.init(nibName: nil, bundle: nil)
 //        let height = view.frame.height
 //        self.customHeight = .contentHeight(height)
-        
-        self.view.addSubview(view)
-        view.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
     }
     
     required init?(coder: NSCoder) {
@@ -44,12 +38,26 @@ class BottomSheetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(bottomSheetView)
+        bottomSheetView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 }
 
 extension BottomSheetViewController: PanModalPresentable {
     var panScrollable: UIScrollView? {
         nil
+    }
+    
+    // SceneCoordinator의 close가 호출되지 않고 dismiss 되는 경우(=항목 누르지 않고 dimmedView 눌러서 닫는 경우) currentVC가 업데이트 되지 않으므로 아래 함수에서 수동으로 업데이트
+    func panModalDidDismiss() {
+        guard let presentingVC = sceneCoordinator?.currentVC.presentingViewController
+        else { return }
+        
+        guard sceneCoordinator?.currentVC != presentingVC.sceneViewController else { return }
+        
+        sceneCoordinator?.currentVC = presentingVC.sceneViewController
     }
     
 }

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Bold.ttf">
+            <string>Pretendard-Bold</string>
+        </array>
+        <array key="Pretendard-Medium.ttf">
+            <string>Pretendard-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TitleCell" customModule="fone_ios_app" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4MR-aa-2ps">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d5F-6l-43Q">
+                                <rect key="frame" x="15.999999999999993" y="18" width="96.333333333333314" height="18"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OTT/TV 드라마" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8e1-yi-Ru0">
+                                        <rect key="frame" x="10" y="3" width="76.333333333333329" height="12"/>
+                                        <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="9"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.21176470588235294" green="0.17254901960784313" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="8e1-yi-Ru0" firstAttribute="top" secondItem="d5F-6l-43Q" secondAttribute="top" constant="3" id="AN7-C7-XDW"/>
+                                    <constraint firstAttribute="height" constant="18" id="Uzq-RU-1ca"/>
+                                    <constraint firstItem="8e1-yi-Ru0" firstAttribute="leading" secondItem="d5F-6l-43Q" secondAttribute="leading" constant="10" id="b2s-5m-K4b"/>
+                                    <constraint firstAttribute="bottom" secondItem="8e1-yi-Ru0" secondAttribute="bottom" constant="3" id="f53-2z-6Ax"/>
+                                    <constraint firstAttribute="trailing" secondItem="8e1-yi-Ru0" secondAttribute="trailing" constant="10" id="mBV-I5-X9C"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="9"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUS-nQ-JY9">
+                                <rect key="frame" x="116.33333333333333" y="18" width="61.666666666666671" height="18"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="단편영화" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3UX-75-Hrh">
+                                        <rect key="frame" x="10" y="3" width="41.666666666666664" height="12"/>
+                                        <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="9"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.21176470589999999" green="0.17254901959999999" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="3UX-75-Hrh" secondAttribute="trailing" constant="10" id="BUa-4U-yRQ"/>
+                                    <constraint firstItem="3UX-75-Hrh" firstAttribute="top" secondItem="aUS-nQ-JY9" secondAttribute="top" constant="3" id="SdK-AM-6jw"/>
+                                    <constraint firstItem="3UX-75-Hrh" firstAttribute="leading" secondItem="aUS-nQ-JY9" secondAttribute="leading" constant="10" id="YZ8-nY-18t"/>
+                                    <constraint firstAttribute="bottom" secondItem="3UX-75-Hrh" secondAttribute="bottom" constant="3" id="aQZ-LN-kwL"/>
+                                    <constraint firstAttribute="height" constant="18" id="nBZ-AH-oPf"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="9"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ra-T6-Qdi">
+                                <rect key="frame" x="16" y="44" width="343" height="52"/>
+                                <string key="text">성균관대 영상학과에서 단편영화 &lt;Duet&gt;
+배우 모집합니다.</string>
+                                <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="19"/>
+                                <color key="textColor" red="0.086274509803921567" green="0.086274509803921567" blue="0.086274509803921567" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="9ra-T6-Qdi" firstAttribute="top" secondItem="d5F-6l-43Q" secondAttribute="bottom" constant="8" id="3In-xk-98M"/>
+                            <constraint firstItem="d5F-6l-43Q" firstAttribute="top" secondItem="4MR-aa-2ps" secondAttribute="top" constant="18" id="4fa-S5-HQ8"/>
+                            <constraint firstItem="d5F-6l-43Q" firstAttribute="leading" secondItem="4MR-aa-2ps" secondAttribute="leading" constant="16" id="5KU-CQ-NT1"/>
+                            <constraint firstAttribute="bottom" secondItem="9ra-T6-Qdi" secondAttribute="bottom" constant="20" id="89s-5u-GUK"/>
+                            <constraint firstAttribute="trailing" secondItem="9ra-T6-Qdi" secondAttribute="trailing" constant="16" id="9GG-In-RbS"/>
+                            <constraint firstItem="9ra-T6-Qdi" firstAttribute="leading" secondItem="4MR-aa-2ps" secondAttribute="leading" constant="16" id="T7X-dO-R0y"/>
+                            <constraint firstItem="aUS-nQ-JY9" firstAttribute="centerY" secondItem="d5F-6l-43Q" secondAttribute="centerY" id="tAr-Vd-9Hm"/>
+                            <constraint firstItem="aUS-nQ-JY9" firstAttribute="leading" secondItem="d5F-6l-43Q" secondAttribute="trailing" constant="4" id="zwb-do-5ZK"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="4MR-aa-2ps" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="0d4-cV-Ypa"/>
+                <constraint firstAttribute="trailing" secondItem="4MR-aa-2ps" secondAttribute="trailing" id="EAS-lR-XCb"/>
+                <constraint firstItem="4MR-aa-2ps" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Tc8-nH-3s9"/>
+                <constraint firstAttribute="bottom" secondItem="4MR-aa-2ps" secondAttribute="bottom" id="Zpc-lg-D44"/>
+            </constraints>
+            <connections>
+                <outlet property="firstCategoryLabel" destination="8e1-yi-Ru0" id="edD-Ia-uLJ"/>
+                <outlet property="secondCategoryLabel" destination="3UX-75-Hrh" id="IKO-ba-Ptx"/>
+                <outlet property="secondCategoryView" destination="aUS-nQ-JY9" id="a1K-gT-BAI"/>
+                <outlet property="titleLabel" destination="9ra-T6-Qdi" id="b1J-WB-aIV"/>
+            </connections>
+            <point key="canvasLocation" x="44" y="20"/>
+        </collectionViewCell>
+    </objects>
+</document>

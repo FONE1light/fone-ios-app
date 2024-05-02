@@ -53,7 +53,10 @@ class SavedProfilesTabBarController: UIViewController, ViewModelBindableType {
     }
     
     private func initPageController() {
-        pageController = MyPagePageViewController(tabBarType: .savedProfiles)
+        pageController = MyPagePageViewController(
+            tabBarType: .savedProfiles,
+            sceneCoordinator: viewModel.sceneCoordinator
+        )
         // TODO: y offset, height 확정
         let tabBarHeight = MyPageTabBarCollectionView.Constants.tabBarHeight + MyPageTabBarCollectionView.Constants.grayUnderlineHeight
         self.pageController.view.frame = CGRect.init(
